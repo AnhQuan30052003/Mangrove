@@ -18,6 +18,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Dosis", sans-serif;
     font-size: 16px;
@@ -3742,6 +3746,6 @@ img {
     margin-bottom: 0;
 }
 
-/* ======= The End ======= */
-
-/*# sourceMappingURL=style.css.map */
+.object-fit-cover {
+    object-fit: cover;
+}
