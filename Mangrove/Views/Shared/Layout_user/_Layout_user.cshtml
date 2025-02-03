@@ -4,20 +4,206 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="icon" href="~/img/core-img/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Mangrove.styles.css" asp-append-version="true" />
 
     <title>@ViewData["Title"]</title>
 </head>
 
 <body>
-    @* Start Body *@
-    @RenderBody();
-    @* End Body *@
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="img/core-img/leaf.png" alt="">
+        </div>
+    </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Header -->
+    <header id="user_header" class="header-area position-fixed top-0" style="z-index: 9999; background-color: black;">
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta">
+                                <a href="#user_footer" data-toggle="tooltip" data-placement="bottom"
+                                    title="infodeercreative@gmail.com"><i class="fa fa-envelope-o"
+                                        aria-hidden="true"></i> <span>Email: anhquan300503@gmail.com</span></a>
+                                <a href="#user_footer" data-toggle="tooltip" data-placement="bottom"
+                                    title="+1 234 122 122">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span>Call Us: +84 398 090 114</span>
+                                </a>
+                            </div>
+
+                            <!-- Top Header Content -->
+                            <div class="top-header-meta d-flex">
+                                <!-- Search -->
+                                <div class="search">
+                                    <a href="#">
+                                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                        <span>Tìm kiếm</span>
+                                    </a>
+                                </div>
+
+                                <!-- Login -->
+                                <div class="login">
+                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
+                                </div>
+
+                                <!-- Language Dropdown -->
+                                <div class="language-dropdown">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">Ngôn ngữ
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Anh</a>
+                                            <a class="dropdown-item" href="#">Việt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url(img/bg-img/1.jpg);"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante
+                                    nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis
+                                    nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                    <a href="#" class="btn alazea-btn active">CONTACT US</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url(img/bg-img/2.jpg);"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante
+                                    nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis
+                                    nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                    <a href="#" class="btn alazea-btn active">CONTACT US</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Body-->
+    @RenderBody()
+
+    <footer id="user_footer" class="footer-area bg-img" style="background-image: url(img/bg-img/3.jpg);">
+        <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="footer-logo mb-30">
+                                <a href="#"><img src="img/core-img/logo.png" alt=""></a>
+                            </div>
+                            <p>Cung cấp các thông tin liền quan đến các loài cây ngập mặn ở phía Bắc - Khánh Hoà</p>
+                            <div class="social-info">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Footer Widget -->
+                    <div class="col-12 col-sm-6">
+                        <div class="single-footer-widget">
+                            <div class="widget-title">
+                                <h5>TƯƠNG TÁC</h5>
+                            </div>
+
+                            <div class="contact-information">
+                                <p><span>Địa chỉ:</span> 02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hoà</p>
+                                <p><span>Điện thoại:</span>+84 398 090 114</p>
+                                <p><span>Email:</span> anhquan300503@gmail.com</p>
+                                <p><span>Mở cửa:</span> Thứ 2 - Chủ nhật: 07:00 - 17h00</p>
+                                @* <p><span>Ưu tiên:</span> Sat: 2 PM to 4 PM</p> *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Area -->
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="border-line"></div>
+                    </div>
+                    <!-- Copywrite Text -->
+                    <div class="col-12">
+                        <div class="copywrite-text">
+                            <p>&copy;
+                                <script>document.write(new Date().getFullYear());</script>
+                                Bản quyền thuộc trường Đại học Nha Trang
+                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
