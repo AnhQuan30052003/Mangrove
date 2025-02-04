@@ -28,21 +28,24 @@
 
 <body>
     <!-- Preload -->
-    @await Html.PartialAsync("~/Views/Shared/Layout_user/ImageWhileLoad.cshtml")
+    @await Html.PartialAsync(Helper.Path.components + "/Both_ImageWhileLoad.cshtml")
 
     <!-- Header -->
-    @await Html.PartialAsync("~/Views/Shared/Layout_user/Header.cshtml")
+    @await Html.PartialAsync(Helper.Path.components + "/User_Header.cshtml")
 
     <!-- Body-->
     @RenderBody()
 
     <!-- Footer-->
-    @await Html.PartialAsync("~/Views/Shared/Layout_user/Footer.cshtml")
+    @await Html.PartialAsync(Helper.Path.components + "/User_Footer.cshtml")
 
     <!-- Scroll up-->
     <a id="scrollUp" href="#header">
         <i class="fa fa-angle-up"></i>
     </a>
+
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

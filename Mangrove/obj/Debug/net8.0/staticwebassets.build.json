@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XYlRTgXQvZeT9SB0NQXWCMUhvsxDyACn/+Y5NopBdTI=",
+  "Hash": "SMyrA1gY91IIE1GRXhWDrRdSDuEB/jgdK1bIjNQxPMY=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -178,8 +178,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7g812t4z93",
-      "Integrity": "+UgD+/HLjWDcxQKXHz4bK1kNvYvu6rR7vN1G22AotQE=",
+      "Fingerprint": "vt27dbsko7",
+      "Integrity": "7fyxYRaebnWi8kp6b0JvNdsKJpk7kTr65gWqa+pQt5I=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -955,8 +955,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "5b0x64tttv",
-      "Integrity": "LxoZPQZIFsfGS8/o1AmzRpbjEHNtot2zlQo/Fwge/qM=",
+      "Fingerprint": "h5tbxp2axb",
+      "Integrity": "Vc3ZH0Q+/kgZ1U7rfDAZfT0DtZ5gb0MDCwZIHHvT/gU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\active_from_template.js"
@@ -1060,8 +1060,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "gg0k26fivd",
-      "Integrity": "sDapus+GkXWBffS+iqriX2Hsvsu+T2Cpu+/VUB63XpA=",
+      "Fingerprint": "64ottyhkwh",
+      "Integrity": "qst4S8y4Gtv5ELjWaXFIHlxChh38o7HpReXIp97Ji4s=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -2840,51 +2840,6 @@
       ]
     },
     {
-      "Route": "css/site.7g812t4z93.css",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "82938"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"+UgD+/HLjWDcxQKXHz4bK1kNvYvu6rR7vN1G22AotQE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 07:53:59 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "7g812t4z93"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-+UgD+/HLjWDcxQKXHz4bK1kNvYvu6rR7vN1G22AotQE="
-        }
-      ]
-    },
-    {
       "Route": "css/site.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2895,7 +2850,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "82938"
+          "Value": "83063"
         },
         {
           "Name": "Content-Type",
@@ -2903,11 +2858,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+UgD+/HLjWDcxQKXHz4bK1kNvYvu6rR7vN1G22AotQE=\""
+          "Value": "\"7fyxYRaebnWi8kp6b0JvNdsKJpk7kTr65gWqa+pQt5I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 07:53:59 GMT"
+          "Value": "Tue, 04 Feb 2025 08:57:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2917,7 +2872,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-+UgD+/HLjWDcxQKXHz4bK1kNvYvu6rR7vN1G22AotQE="
+          "Value": "sha256-7fyxYRaebnWi8kp6b0JvNdsKJpk7kTr65gWqa+pQt5I="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.vt27dbsko7.css",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "83063"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7fyxYRaebnWi8kp6b0JvNdsKJpk7kTr65gWqa+pQt5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 04 Feb 2025 08:57:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vt27dbsko7"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7fyxYRaebnWi8kp6b0JvNdsKJpk7kTr65gWqa+pQt5I="
         }
       ]
     },
@@ -5874,7 +5874,7 @@
       ]
     },
     {
-      "Route": "js/active_from_template.5b0x64tttv.js",
+      "Route": "js/active_from_template.h5tbxp2axb.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\active_from_template.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5884,7 +5884,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5889"
+          "Value": "5871"
         },
         {
           "Name": "Content-Type",
@@ -5892,11 +5892,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LxoZPQZIFsfGS8/o1AmzRpbjEHNtot2zlQo/Fwge/qM=\""
+          "Value": "\"Vc3ZH0Q+/kgZ1U7rfDAZfT0DtZ5gb0MDCwZIHHvT/gU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 08:41:14 GMT"
+          "Value": "Tue, 04 Feb 2025 08:59:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5906,7 +5906,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "5b0x64tttv"
+          "Value": "h5tbxp2axb"
         },
         {
           "Name": "label",
@@ -5914,7 +5914,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-LxoZPQZIFsfGS8/o1AmzRpbjEHNtot2zlQo/Fwge/qM="
+          "Value": "sha256-Vc3ZH0Q+/kgZ1U7rfDAZfT0DtZ5gb0MDCwZIHHvT/gU="
         }
       ]
     },
@@ -5929,7 +5929,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5889"
+          "Value": "5871"
         },
         {
           "Name": "Content-Type",
@@ -5937,11 +5937,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LxoZPQZIFsfGS8/o1AmzRpbjEHNtot2zlQo/Fwge/qM=\""
+          "Value": "\"Vc3ZH0Q+/kgZ1U7rfDAZfT0DtZ5gb0MDCwZIHHvT/gU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 08:41:14 GMT"
+          "Value": "Tue, 04 Feb 2025 08:59:50 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5951,7 +5951,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LxoZPQZIFsfGS8/o1AmzRpbjEHNtot2zlQo/Fwge/qM="
+          "Value": "sha256-Vc3ZH0Q+/kgZ1U7rfDAZfT0DtZ5gb0MDCwZIHHvT/gU="
         }
       ]
     },
@@ -6284,7 +6284,7 @@
       ]
     },
     {
-      "Route": "js/site.gg0k26fivd.js",
+      "Route": "js/site.64ottyhkwh.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -6294,7 +6294,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "316"
+          "Value": "335"
         },
         {
           "Name": "Content-Type",
@@ -6302,11 +6302,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"sDapus+GkXWBffS+iqriX2Hsvsu+T2Cpu+/VUB63XpA=\""
+          "Value": "\"qst4S8y4Gtv5ELjWaXFIHlxChh38o7HpReXIp97Ji4s=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 04:47:15 GMT"
+          "Value": "Tue, 04 Feb 2025 08:59:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6316,7 +6316,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "gg0k26fivd"
+          "Value": "64ottyhkwh"
         },
         {
           "Name": "label",
@@ -6324,7 +6324,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-sDapus+GkXWBffS+iqriX2Hsvsu+T2Cpu+/VUB63XpA="
+          "Value": "sha256-qst4S8y4Gtv5ELjWaXFIHlxChh38o7HpReXIp97Ji4s="
         }
       ]
     },
@@ -6339,7 +6339,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "316"
+          "Value": "335"
         },
         {
           "Name": "Content-Type",
@@ -6347,11 +6347,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"sDapus+GkXWBffS+iqriX2Hsvsu+T2Cpu+/VUB63XpA=\""
+          "Value": "\"qst4S8y4Gtv5ELjWaXFIHlxChh38o7HpReXIp97Ji4s=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Feb 2025 04:47:15 GMT"
+          "Value": "Tue, 04 Feb 2025 08:59:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6361,7 +6361,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-sDapus+GkXWBffS+iqriX2Hsvsu+T2Cpu+/VUB63XpA="
+          "Value": "sha256-qst4S8y4Gtv5ELjWaXFIHlxChh38o7HpReXIp97Ji4s="
         }
       ]
     },

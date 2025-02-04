@@ -1,7 +1,8 @@
 @{
     ViewData["Title"] = "Trang chủ";
     Layout = Helper.Path.layoutUser;
+    string _com = Helper.Path._components;
 }
 
-@await Html.PartialAsync("~/Views/Home/Index/HeroSlider.cshtml")
-@await Html.PartialAsync("~/Views/Home/Index/SearchAdvance.cshtml")
+@await Html.PartialAsync(_com + "/HeroSlider.cshtml")
+@await Html.PartialAsync(_com + "/SearchAdvance.cshtml")

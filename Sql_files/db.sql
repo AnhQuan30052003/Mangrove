@@ -1,10 +1,23 @@
 use mangrove;
+---
 
+-- [Drop tables]
+drop table if exists tblHome;
+
+drop table if exists tblProvince_District;
+drop table if exists tblProvince;
+drop table if exists tblDistrict;
+
+drop table if exists tblMangrove_Stage;
+drop table if exists tblMangrove;
+drop table if exists tblStage;
+
+-- [Add tables]
 -- Bảng cho trang home "tìm kiếm"
 create table tblHome
 (
-    _logo nvarchar(256) not null,
-    _footer nvarchar(256) not null,
+    _logoImg nvarchar(256) not null,
+    _footerImg nvarchar(256) not null,
     _itemsSlider int not null,
     _timeWork_open time not null,
     _timeWork_close time not null,

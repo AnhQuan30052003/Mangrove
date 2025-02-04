@@ -1,6 +1,7 @@
 create database mangrove;
 use mangrove;
 
+-- [Insert data for tables]
 -- Dữ liệu cho Tỉnh
 insert into tblProvince
 values
