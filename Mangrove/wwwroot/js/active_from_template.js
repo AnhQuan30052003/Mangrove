@@ -16,12 +16,12 @@
     }
 
     // :: 3.0 Search Active Code
-    // $('#searchIcon').on('click', function () {
-    //     $('.search-form').toggleClass('active');
-    // });
-    // $('.closeIcon').on('click', function () {
-    //     $('.search-form').removeClass('active');
-    // });
+    $('#searchIcon').on('click', function () {
+        $('.search-form').toggleClass('active');
+    });
+    $('.closeIcon').on('click', function () {
+        $('.search-form').removeClass('active');
+    });
 
     // :: 4.0 Sliders Active Code
     if ($.fn.owlCarousel) {
@@ -42,6 +42,9 @@
             mouseDrag: false,
             touchDrag: false
         });
+
+        $(".owl-nav .owl-prev").html('<i class="fa fa-chevron-left"></i>');
+        $(".owl-nav .owl-next").html('<i class="fa fa-chevron-right"></i>');
 
         // testiSlides.owlCarousel({
         //     items: 1,
@@ -68,9 +71,13 @@
         //     smartSpeed: 700,
         //     center: true
         // });
+    }
 
-        $(".owl-nav .owl-prev").html('<i class="fa fa-chevron-left"></i>');
-        $(".owl-nav .owl-next").html('<i class="fa fa-chevron-right"></i>');
+    // :: 10.0 Sticky Active Code
+    if ($.fn.sticky) {
+        $(".alazea-main-menu").sticky({
+            topSpacing: 0
+        });
     }
 
     // :: 5.0 Masonary Gallery Active Code
@@ -136,12 +143,12 @@
     // }
 
     // :: 8.0 ScrollUp Active Code
-    if ($.fn.scrollUp) {
-        browserWindow.scrollUp({
-            scrollSpeed: 500,
-            scrollText: '<i class="fa fa-angle-up"></i>'
-        });
-    }
+    // if ($.fn.scrollUp) {
+    //     browserWindow.scrollUp({
+    //         scrollSpeed: 500,
+    //         scrollText: '<i class="fa fa-angle-up"></i>'
+    //     });
+    // }
 
     // :: 9.0 CounterUp Active Code
     // if ($.fn.counterUp) {
@@ -150,13 +157,6 @@
     //         time: 2000
     //     });
     // }
-
-    // :: 10.0 Sticky Active Code
-    if ($.fn.sticky) {
-        $(".alazea-main-menu").sticky({
-            topSpacing: 0
-        });
-    }
 
     // :: 11.0 Tooltip Active Code
     // if ($.fn.tooltip) {

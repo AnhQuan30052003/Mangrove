@@ -1,0 +1,72 @@
+<header id="header" class="header-area">
+    <!-- ***** Top Header Area ***** -->
+    <div class="top-header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+                        <!-- Top Header Content -->
+                        <div class="top-header-meta">
+                            <a href="#user_footer" data-toggle="tooltip" data-placement="bottom">
+                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+                                <span>Thông tin thêm</span>
+                            </a>
+                        </div>
+
+                        <!-- Top Header Content -->
+                        <div class="top-header-meta d-flex">
+                            <!-- Language Dropdown -->
+                            <div class="language-dropdown">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">Ngôn ngữ</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Anh</a>
+                                        <a class="dropdown-item" href="#">Việt</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Login -->
+                            <div class="login">
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Navbar Area ***** -->
+    <div class="alazea-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="alazeaNav">
+                    <!-- Nav Brand -->
+                    <div class="frame-imgoverflow-hidden h-100">
+                        <a href="@Url.Action("Index", "Home")" class="nav-brand h-100 d-flex align-items-center">
+                            <img src="img/core-img/logo.png" class="object-fit-cover" alt="">
+                        </a>
+                    </div>
+
+                    <!-- Search Icon -->
+                    <div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </nav>
+
+                <!-- Search Form -->
+                <div class="search-form">
+                    <form action="" method="get">
+                        <input type="search" name="search" id="search" placeholder="Tìm nhanh với từ khoá...">
+                        @* <button type="submit" class="d-none"></button> *@
+                    </form>
+                    <!-- Close Icon -->
+                    <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

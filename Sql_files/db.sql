@@ -1,7 +1,10 @@
+use mangrove;
+
 -- Bảng cho trang home "tìm kiếm"
 create table tblHome
 (
     _logo nvarchar(256) not null,
+    _footer nvarchar(256) not null,
     _itemsSlider int not null,
     _timeWork_open time not null,
     _timeWork_close time not null,
@@ -48,7 +51,8 @@ create table tblMangrove
 create table tblStage
 (
     _id varchar(36) not null primary key,
-    _surveyDay dateime not null
+    _surveyDay datetime not null,
+    _qrImgName varchar(36) not null,
 )
 
 -- Bảng tổng quan cây & giai đoạn

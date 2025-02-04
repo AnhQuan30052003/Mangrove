@@ -27,167 +27,22 @@
 </head>
 
 <body>
-
-    <!-- Preloader -->
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-circle"></div>
-        <div class="preloader-img">
-            <img src="~/img/core-img/leaf.png" alt="">
-        </div>
-    </div>
+    <!-- Preload -->
+    @await Html.PartialAsync("~/Views/Shared/Layout_user/ImageWhileLoad.cshtml")
 
     <!-- Header -->
-    <header class="header-area">
-        <!-- ***** Top Header Area ***** -->
-        <div class="top-header-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="top-header-content d-flex align-items-center justify-content-between">
-                            <!-- Top Header Content -->
-                            <div class="top-header-meta">
-                                <a href="#user_footer" data-toggle="tooltip" data-placement="bottom">
-                                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
-                                    <span>Thêm thông tin</span></a>
-
-                                @* <a href="#user_footer" data-toggle="tooltip" data-placement="bottom"
-                                    title="infodeercreative@gmail.com"><i class="fa fa-envelope-o"
-                                        aria-hidden="true"></i> <span>Email: anhquan300503@gmail.com</span></a>
-                                <a href="#user_footer" data-toggle="tooltip" data-placement="bottom"
-                                    title="+1 234 122 122"><i class="fa fa-phone" aria-hidden="true"></i> <span>Liên hệ:
-                                        +84 398 090
-                                        114</span>
-                                </a> *@
-                            </div>
-
-                            <!-- Top Header Content -->
-                            <div class="top-header-meta d-flex">
-                                <!-- Language Dropdown -->
-                                <div class="language-dropdown">
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">Ngôn ngữ</button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Anh</a>
-                                            <a class="dropdown-item" href="#">Việt</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Login -->
-                                <div class="login">
-                                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ***** Navbar Area ***** -->
-        <div class="alazea-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
-                        <!-- Nav Brand -->
-                        <div class="frame-imgoverflow-hidden h-100">
-                            <a href="@Url.Action("Index", "Home")" class="nav-brand h-100 d-flex align-items-center">
-                                <img src="img/core-img/logo.png" class="object-fit-cover" alt="">
-                            </a>
-                        </div>
-
-                        <!-- Search Icon -->
-                        <div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </div>
-
-                    </nav>
-
-                    <!-- Search Form -->
-                    <div class="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search"
-                                placeholder="Type keywords &amp; press enter...">
-                            <button type="submit" class="d-none"></button>
-                        </form>
-                        <!-- Close Icon -->
-                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    @await Html.PartialAsync("~/Views/Shared/Layout_user/Header.cshtml")
 
     <!-- Body-->
     @RenderBody()
 
     <!-- Footer-->
-    <footer id="user_footer" class="footer-area bg-img" style="background-image: url('img/bg-img/bg-footer.jpg');">
-        <div class="main-footer-area">
-            <div class="container">
-                <div class="row">
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6">
-                        <div class="single-footer-widget">
-                            <div class="footer-logo mb-30">
-                                <a href="#"><img src="img/core-img/logo.png" alt=""></a>
-                            </div>
-                            <p>
-                                Website cung cấp các thông tin chi tiết, liên quan đến các loài cây ngập mặn ở phía Bắc
-                                - Khánh
-                                Hoà.
-                            </p>
-                            <div class="social-info">
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    @await Html.PartialAsync("~/Views/Shared/Layout_user/Footer.cshtml")
 
-                    <!-- Single Footer Widget -->
-                    <div class="col-12 col-sm-6">
-                        <div class="single-footer-widget">
-                            <div class="widget-title">
-                                <h5>LIÊN HỆ</h5>
-                            </div>
-
-                            <div class="contact-information">
-                                <p><span>Địa chỉ:</span> 02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hoà</p>
-                                <p><span>Điện thoại:</span>+84 398 090 114</p>
-                                <p><span>Email:</span> anhquan300503@gmail.com</p>
-                                <p><span>Mở cửa:</span> Thứ 2 - Chủ nhật: 07:00 - 17h30</p>
-                                @* <p><span>Ưu tiên:</span> Sat: 2 PM to 4 PM</p> *@
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Bottom Area -->
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="border-line"></div>
-                    </div>
-                    <!-- Copywrite Text -->
-                    <div class="col-12">
-                        <div class="copywrite-text">
-                            <p>&copy;
-                                <script>document.write(new Date().getFullYear());</script>
-                                Bản quyền thuộc trường Đại học Nha Trang
-                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Scroll up-->
+    <a id="scrollUp" href="#header">
+        <i class="fa fa-angle-up"></i>
+    </a>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
