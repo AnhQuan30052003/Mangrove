@@ -56,17 +56,90 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </div>
                 </nav>
-
-                <!-- Search Form -->
-                <div class="search-form">
-                    <form action="" method="get">
-                        <input type="search" name="search" id="search" placeholder="Tìm nhanh với từ khoá...">
-                        @* <button type="submit" class="d-none"></button> *@
-                    </form>
-                    <!-- Close Icon -->
-                    <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
-                </div>
             </div>
         </div>
     </div>
 </header>
+
+<!-- Section Search -->
+<section id="search_form_user" class="toggle_search_frame">
+    <div class="search-form container py-3">
+        <div class="options d-flex justify-content-center gap-2">
+            <button class="m-0 btn_search_keyword btn-option fw-bold">Nhanh</button>
+            <button class="m-0 btn_search_advance btn-option fw-bold active">Nâng cao</button>
+        </div>
+
+        <div class="search_frame mt-2">
+            <div class="result_search search_keyword d-none border my-3">
+                <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
+                    <label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
+                    <input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+                    <button>Tìm kiếm</button>
+                </form>
+            </div>
+
+            <div class="result_search search_advance border mt-3 w-100">
+                <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
+                    <div class="w-100">
+                        <label class="fs-16 mb-2">Khu vực</label>
+                        <div class="wrapper d-flex justify-content-between flex-wrap">
+                            <select name="" class="selected-custom">
+                                <option selected value="">Tỉnh</option>
+                                <option value="">Khánh Hoà</option>
+                            </select>
+
+                            <select name="" class="selected-custom">
+                                <option selected value="">Huyện</option>
+                                <option value="">Ninh Hoà</option>
+                            </select>
+
+                            <select name="" class="selected-custom">
+                                <option selected value="">Xã/Phường</option>
+                                <option value="">Ninh Thân</option>
+                            </select>
+
+                            <select name="" class="selected-custom">
+                                <option selected value="">Thôn</option>
+                                <option value="">Đại Tập</option>
+                            </select>
+                        </div>
+                        <hr class="line_space">
+                    </div>
+
+                    <div class="w-100">
+                        <label class="fs-16 mb-2">Thời gian</label>
+                        <div class="wrapper d-flex justify-content-between flex-wrap">
+                            <select name="" class="selected-custom">
+                                <option selected value="">Năm</option>
+                                <option value="">2024</option>
+                                <option value="">2025</option>
+                            </select>
+
+                            <select name="" class="selected-custom">
+                                <option selected value="">Tháng</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+
+                            <select name="" class="selected-custom">
+                                <option selected value="">Ngày</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                        <hr class="line_space">
+                    </div>
+
+                    <div class="form_fake d-flex flex-column align-items-center gap-2 w-100">
+                        <label for="">Thêm từ khoá</label>
+                        <input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+                    </div>
+
+                    <button>Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
