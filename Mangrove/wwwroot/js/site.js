@@ -9,8 +9,21 @@ document.addEventListener("scroll", function () {
 });
 
 // Click icon search
-document.querySelector("#searchIcon").addEventListener("click", function () {
-    document.querySelector("#search_form_user").classList.toggle("toggle_search_frame");
+const searchIcon = document.querySelector("#searchIcon");
+searchIcon.addEventListener("click", function () {
+    const searchFormUser = document.querySelector("#search_form_user");
+    searchFormUser.classList.toggle("toggle_search_frame");
+
+    const icon = searchIcon.querySelector(".icon");
+    console.log(icon);
+    if (icon.classList.contains("no-click")) {
+        icon.classList.remove("no-click", "fa", "fa-search");
+        icon.classList.add("fa-solid", "fa-x");
+    }
+    else {
+        icon.classList.add("no-click", "fa", "fa-search");
+        icon.classList.remove("fa-solid", "fa-x");
+    }
 });
 
 // Theo dõi chuyển tab của btn-option search-form home
@@ -29,11 +42,3 @@ document.querySelector(".search-form .options").addEventListener("click", functi
         document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
     }
 });
-
-// document.querySelector("body").addEventListener("click", function (e) {
-//     const iconSearch = e.target.matches("#searchIcon");
-//     const formSearch = document.querySelector("#search_form_user .search-form");
-//     if (!iconSearch && formSearch.classList.contains("toggle_search_frame")) {
-//         formSearch.classList.toggle("toggle_search_frame");
-//     }
-// });

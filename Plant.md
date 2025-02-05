@@ -9,7 +9,7 @@
     - Footer (logo, thông tin liên hệ)
     - Banner slider các cây gần đây
 
-2. [❌][Module](tích hợp vào Header) Khung tìm kiếm ?
+2. [✅][Module](tích hợp vào Header) Khung tìm kiếm ?
     - Nhanh         : Input[type="text"] tìm theo keywork
     - Lộc/nâng cao  : Theo khu vực, giai đoạn
 

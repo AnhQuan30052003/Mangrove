@@ -1,13 +1,14 @@
 /* Import Urls */
 /* Font Dosis */
 @import url("https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800");
-@import url("./bootstrap.min.css");
+/* @import url("./bootstrap.min.css"); */
 @import url("./classy-nav.css");
 @import url("./owl.carousel.min.css");
 @import url("./animate.css");
 @import url("./magnific-popup.css");
 @import url("./font-awesome.min.css");
 @import url("./elegant-icon.css");
+@import url("./custom.css");
 
 .footer-area.bg-img {
     background-image: url("../images/user/bg-footer.jpg");
@@ -139,7 +140,7 @@ img {
 }
 
 /* :: 3.2.0 Height */
-.height-400 {
+/* .height-400 {
     height: 400px;
 }
 
@@ -157,10 +158,10 @@ img {
 
 .height-800 {
     height: 800px;
-}
+} */
 
 /* :: 3.3.0 Section Padding */
-.section-padding-100 {
+/* .section-padding-100 {
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -178,22 +179,22 @@ img {
 .section-padding-100-70 {
     padding-top: 100px;
     padding-bottom: 70px;
-}
+} */
 
 /* :: 3.4.0 Section Heading */
-.section-heading {
+/* .section-heading {
     position: relative;
     z-index: 1;
     margin-bottom: 40px;
-}
+} */
 
-.section-heading h2 {
+/* .section-heading h2 {
     font-size: 30px;
     text-transform: uppercase;
     margin-bottom: 0;
-}
+} */
 
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
     .section-heading h2 {
         font-size: 24px;
     }
@@ -203,7 +204,7 @@ img {
     font-size: 16px;
     color: #707070;
     margin-bottom: 0;
-}
+} */
 
 /* :: 3.5.0 Preloader */
 .preloader {
@@ -402,7 +403,7 @@ img {
     z-index: 100;
     background-color: transparent;
     width: 100%;
-    height: 42px;
+    height: 40px;
     border-bottom: 1px solid rgba(235, 235, 235, 0.2);
 }
 
@@ -421,7 +422,7 @@ img {
 .header-area .top-header-area .top-header-content {
     position: relative;
     z-index: 1;
-    height: 41px;
+    height: 40px;
 }
 
 .header-area .top-header-area .top-header-content .top-header-meta a {
@@ -659,52 +660,31 @@ img {
     }
 }
 
-.header-area .alazea-main-menu .search-form {
-    position: relative;
-    z-index: 1;
-    opacity: 0;
-    visibility: hidden;
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-}
 
-.header-area .alazea-main-menu .search-form form {
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    background-color: #ffffff;
-    width: 500px;
-    border-radius: 5px;
-    padding: 30px;
-    box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.15);
-}
 
-@media only screen and (max-width: 767px) {
-    .header-area .alazea-main-menu .search-form form {
+/* @media only screen and (max-width: 767px) {
+    #search_form_user .search-form form {
         width: 290px;
         padding: 20px;
     }
-}
+} */
 
-.header-area .alazea-main-menu .search-form form input {
+/* #search_form_user .search-form form input {
     width: 100%;
     height: 45px;
     border: 1px solid #ebebeb;
     padding: 0 30px;
     border-radius: 5px;
     font-size: 14px;
-}
+} */
 
-@media only screen and (max-width: 767px) {
-    .header-area .alazea-main-menu .search-form form input {
+/* @media only screen and (max-width: 767px) {
+    #search_form_user .search-form form input {
         padding: 0 15px;
     }
-}
+} */
 
-.header-area .alazea-main-menu .search-form .closeIcon {
+/* #search_form_user .search-form .closeIcon {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
     position: absolute;
@@ -713,23 +693,23 @@ img {
     z-index: 200;
     cursor: pointer;
     color: #707070;
-}
+} */
 
-.header-area .alazea-main-menu .search-form .closeIcon:hover {
+/* #search_form_user .search-form .closeIcon:hover {
     color: #70c745;
-}
+} */
 
-@media only screen and (max-width: 767px) {
-    .header-area .alazea-main-menu .search-form .closeIcon {
+/* @media only screen and (max-width: 767px) {
+    #search_form_user .search-form .closeIcon {
         top: 31px;
         right: 35px;
     }
 }
 
-.header-area .alazea-main-menu .search-form.active {
+#search_form_user .search-form.active {
     opacity: 1;
     visibility: visible;
-}
+} */
 
 .header-area .is-sticky .alazea-main-menu {
     background-color: #111111;
@@ -3755,6 +3735,99 @@ img {
     margin-bottom: 0;
 }
 
-.object-fit-cover {
-    object-fit: cover;
+#search_form_user {
+    position: absolute;
+    width: 100%;
+    top: 92px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    opacity: 0;
+}
+
+#search_form_user .search-form {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+
+    background-color: white;
+    width: 100%;
+    box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+/* --------- */
+.search-form .options .btn-option {
+    border: none;
+    outline: black;
+    padding: 5px 10px;
+    min-width: min(50%, 150px);
+    margin-bottom: 10px;
+    transition: all 0.4s;
+
+    &:hover {
+        background-color: #70c745;
+        color: white;
+    }
+}
+
+.search-form .options .btn-option.active {
+    background-color: #70c745;
+    color: white;
+    font-weight: 600;
+}
+
+#search_form_user .search-form .search_keyword,
+#search_form_user .search-form .search_advance {
+    padding: 10px;
+}
+
+#search_form_user .search-form .search_frame .search_keyword form {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    width: 500px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.result_search .form_fake .input_search,
+#search_form_user .search-form .search_frame .search_keyword form .input_search {
+    padding: 7.5px 15px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+    outline-color: green;
+    border: none;
+}
+
+.result_search .form_fake label,
+#search_form_user .search-form .search_frame .search_keyword form label {
+
+    align-self: self-start;
+}
+
+.result_search .form_fake button,
+#search_form_user .search-form .search_frame .search_advance form button,
+#search_form_user .search-form .search_frame .search_keyword form button {
+    outline: none;
+    padding: 3px 8px;
+    min-height: 46px;
+    min-width: 125px;
+    display: inline-block;
+    border: solid 1px #70c745;
+    background-color: #70c745;
+    color: white;
+    font-weight: bold;
+    transition: all 0.4s;
+    margin-top: 10px;
+
+    &:hover {
+        background-color: transparent;
+        color: #70c745;
+    }
+}
+
+@media (width >=576px) {
+    #search_form_user {
+        width: 50%;
+    }
 }

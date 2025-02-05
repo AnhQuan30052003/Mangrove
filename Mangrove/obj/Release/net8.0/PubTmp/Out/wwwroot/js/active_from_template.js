@@ -16,12 +16,12 @@
     }
 
     // :: 3.0 Search Active Code
-    $('#searchIcon').on('click', function () {
-        $('.search-form').toggleClass('active');
-    });
-    $('.closeIcon').on('click', function () {
-        $('.search-form').removeClass('active');
-    });
+    // $('#searchIcon').on('click', function () {
+    //     $('.search-form').toggleClass('active');
+    // });
+    // $('.closeIcon').on('click', function () {
+    //     $('.search-form').removeClass('active');
+    // });
 
     // :: 4.0 Sliders Active Code
     if ($.fn.owlCarousel) {

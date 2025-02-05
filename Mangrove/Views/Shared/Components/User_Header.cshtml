@@ -53,7 +53,7 @@
 
                     <!-- Search Icon -->
                     <div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <i class="icon no-click fa fa-search" aria-hidden="true"></i>
                     </div>
                 </nav>
             </div>
@@ -62,15 +62,15 @@
 </header>
 
 <!-- Section Search -->
-<section id="search_form_user" class="toggle_search_frame">
+<section id="search_form_user">
     <div class="search-form container py-3">
         <div class="options d-flex justify-content-center gap-2">
-            <button class="m-0 btn_search_keyword btn-option fw-bold">Nhanh</button>
-            <button class="m-0 btn_search_advance btn-option fw-bold active">Nâng cao</button>
+            <button class="m-0 btn_search_keyword btn-option fw-bold active">Nhanh</button>
+            <button class="m-0 btn_search_advance btn-option fw-bold">Nâng cao</button>
         </div>
 
         <div class="search_frame mt-2">
-            <div class="result_search search_keyword d-none border my-3">
+            <div class="result_search search_keyword border mt-3">
                 <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
                     <label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
                     <input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
@@ -78,7 +78,7 @@
                 </form>
             </div>
 
-            <div class="result_search search_advance border mt-3 w-100">
+            <div class="result_search search_advance border mt-3 w-100 d-none">
                 <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
                     <div class="w-100">
                         <label class="fs-16 mb-2">Khu vực</label>
@@ -103,7 +103,7 @@
                                 <option value="">Đại Tập</option>
                             </select>
                         </div>
-                        <hr class="line_space">
+                        <hr class="line_space m-0 mt-2">
                     </div>
 
                     <div class="w-100">
@@ -129,7 +129,7 @@
                                 <option value="">3</option>
                             </select>
                         </div>
-                        <hr class="line_space">
+                        <hr class="line_space m-0 mt-2">
                     </div>
 
                     <div class="form_fake d-flex flex-column align-items-center gap-2 w-100">
