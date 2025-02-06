@@ -42,3 +42,44 @@ document.querySelector(".search-form .options").addEventListener("click", functi
         document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
     }
 });
+
+// Theo dõi việc chọn ngôn ngữ và lưu lại 
+// function listenerChangeLanguage() {
+//     const selected = document.querySelector(".selected");
+//     const options = document.querySelectorAll(".dropdown-menu .dropdown-item");
+
+//     // Khi click vào một option
+//     options.forEach(option => {
+//         option.addEventListener("click", function () {
+//             let value = this.getAttribute("data-value");
+//             let text = this.textContent;
+//             selected.textContent = text;
+
+//             // Log change after click
+//             console.log(`Ngôn ngữ: ${text}`);
+
+//             // Gửi tới db để thay đổi trong phiên làm việc của người dùng
+//             const xhr = new XMLHttpRequest();
+//             const url = `/Home/SaveLanguageWebsite?lang=${value}`;
+//             xhr.open("post", url, true);
+//             xhr.setRequestHeader("REQUESTED", "AJAX");
+//             xhr.onload = function () {
+//                 if (xhr.status == 200) {
+//                     location.reload();
+//                 }
+//             }
+//             xhr.send();
+//         });
+//     });
+// }
+
+// listenerChangeLanguage();
+
+// Ẩn mấy cái UI hiển thị dịch của google
+
+const object = document.querySelector("#google_translate_element");
+console.log(object);
+
+// --
+console.log("Run file site.js");
+

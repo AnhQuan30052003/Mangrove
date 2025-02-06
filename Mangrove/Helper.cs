@@ -1,3 +1,6 @@
+using Google.Cloud.Translation.V2;
+using System.Threading.Tasks;
+
 public class Helper {
     // Path layout...
     public static class Path {
@@ -6,4 +9,18 @@ public class Helper {
         public static string components = "~/Views/Shared/Components";
         public static string _components = "~/Views/_Components";
     }
+
+    // Variables
+    public static class Variable {
+
+    }
+
+    // public static class GoogleTranslateService {
+    //     private static readonly TranslationClient _client = TranslationClient.CreateFromApiKey("AIzaSyA4AirVbB-1djs6087vMMFPtN-3ug08iJU");
+
+    //     public static async Task<string> TranslateTextAsync(string text, string targetLanguage) {
+    //         var response = await _client.TranslateTextAsync(text, targetLanguage);
+    //         return response.TranslatedText;
+    //     }
+    // }
 }

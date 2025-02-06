@@ -14,18 +14,21 @@
                         </div>
 
                         <!-- Top Header Content -->
-                        <div class="top-header-meta d-flex">
+                        <div class="top-header-meta d-flex gap-2">
                             <!-- Language Dropdown -->
                             <div class="language-dropdown">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle mr-30" type="button"
+                                <div class="dropdown d-none">
+                                    <button class="selected btn btn-secondary dropdown-toggle mr-30" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">Ngôn ngữ</button>
+                                        aria-expanded="false">Việt Nam</button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Anh</a>
-                                        <a class="dropdown-item" href="#">Việt</a>
+                                        <p class="dropdown-item m-0" data-value="en">Anh</p>
+                                        <p class="dropdown-item m-0" data-value="vi">Việt Nam</p>
                                     </div>
+                                    <input type="hidden" id="selectedLanguage">
                                 </div>
+
+                                <div id="google_translate_element"></div>
                             </div>
                             <!-- Login -->
                             <div class="login">
