@@ -3847,11 +3847,11 @@ iframe.skiptranslate {
 
 #google_translate_element {
     background-color: red;
-    width: 150px;
+    width: auto;
 
     select,
     select option {
-        width: 100% !important;
+        padding: 7.5px 15px;
     }
 
     span {

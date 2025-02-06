@@ -77,8 +77,12 @@ document.querySelector(".search-form .options").addEventListener("click", functi
 
 // Ẩn mấy cái UI hiển thị dịch của google
 
-const object = document.querySelector("#google_translate_element");
-console.log(object);
+const div = document.querySelector("#google_translate_element .skiptranslate");
+
+console.log(div);
+// Lọc bỏ các ký tự text, chỉ giữ lại các thẻ HTML
+div.innerHTML = [...div.children].map(el => el.outerHTML).join('');
+console.log(div);
 
 // --
 console.log("Run file site.js");
