@@ -14,25 +14,16 @@
                         </div>
 
                         <!-- Top Header Content -->
-                        <div class="top-header-meta d-flex gap-2">
-                            <!-- Language Dropdown -->
-                            <div class="language-dropdown">
-                                <div class="dropdown d-none">
-                                    <button class="selected btn btn-secondary dropdown-toggle mr-30" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">Việt Nam</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <p class="dropdown-item m-0" data-value="en">Anh</p>
-                                        <p class="dropdown-item m-0" data-value="vi">Việt Nam</p>
-                                    </div>
-                                    <input type="hidden" id="selectedLanguage">
-                                </div>
-
-                                <div id="google_translate_element"></div>
-                            </div>
+                        <div class="top-header-meta d-flex gap-2 h-100">
                             <!-- Login -->
-                            <div class="login">
+                            <div class="login d-flex align-items-center">
                                 <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
+                            </div>
+
+                            <!-- Language Dropdown -->
+                            <div class="language-dropdown h-100">
+                                <!-- Use google translate -->
+                                <div id="google_translate_element" class="h-100"></div>
                             </div>
                         </div>
                     </div>

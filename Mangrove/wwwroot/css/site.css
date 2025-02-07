@@ -3846,15 +3846,19 @@ iframe.skiptranslate {
 }
 
 #google_translate_element {
-    background-color: red;
-    width: auto;
+    overflow: hidden;
+    border: none !important;
+
+    select {
+        display: block !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
 
     select,
     select option {
-        padding: 7.5px 15px;
-    }
-
-    span {
-        display: none !important;
+        padding: 7.5px 10px;
+        outline: #70c745 !important;
+        border: none !important;
     }
 }

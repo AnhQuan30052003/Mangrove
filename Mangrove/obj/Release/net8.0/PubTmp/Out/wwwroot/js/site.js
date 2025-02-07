@@ -42,3 +42,11 @@ document.querySelector(".search-form .options").addEventListener("click", functi
         document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
     }
 });
+
+
+
+
+
+
+// --
+console.log("Run file site.js");

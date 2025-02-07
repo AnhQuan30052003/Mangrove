@@ -1,63 +1,109 @@
 ﻿@{
-    string com = Helper.Path.components;
-    @* var translate = GoogleTranslateService; *@
+	string com = Helper.Path.components;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>@ViewData["Title"] | Đại học Nha Trang</title>
-    <link rel="icon" href="~/img/core-img/favicon.ico">
+	<title>@ViewData["Title"] | Đại học Nha Trang</title>
+	<link rel="icon" href="~/img/core-img/favicon.ico">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    <!-- jQuery gốc của ASP -->
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+	<!-- jQuery gốc của ASP -->
+	@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+	@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
 
-    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
-    <script src="~/js/bootstrap/popper.min.js"></script>
-    <script src="~/js/bootstrap/bootstrap.min.js"></script>
-    <script src="~/js/plugins/plugins.js"></script>
+	<script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+	<script src="~/js/bootstrap/popper.min.js"></script>
+	<script src="~/js/bootstrap/bootstrap.min.js"></script>
+	<script src="~/js/plugins/plugins.js"></script>
 
-    <!-- Js wait DOM-->
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
-    <script defer>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'vi' }, 'google_translate_element');
-        }
-    </script>
+	<!-- Js wait DOM-->
+	<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+	<script defer>
+		// Khởi tạo Init cho Google Translate
+		function googleTranslateElementInit() {
+			new google.translate.TranslateElement({ pageLanguage: 'vi' }, 'google_translate_element');
+		}
 
-    <script src="~/js/active_from_template.js" defer></script>
-    <script src="~/js/site.js" defer></script>
+		// Xoá các phần tử option dư thừa
+		function removeOption(div) {
+			let select = div.querySelector("select");
+			if (select) {
+				[...select.options].forEach(option => {
+					if (!["", "en", "vi", "zh-CN", "zh-TW", "ja"].includes(option.value)) {
+						option.remove();
+					}
+				});
+			}
+		}
+
+		// Xử lý sau khi load wesite home (index) 1s
+		window.addEventListener("load", function () {
+			let checkReady = setInterval(() => {
+				const div = document.querySelector("#google_translate_element .goog-te-gadget");
+				if (div) {
+					// Lọc bộ lọc lần đầu khi load trang
+					removeOption(div);
+
+					// Lọc lại bộ lọc sau khi thay đổi lựa chọn
+					let select = div.querySelector("select");
+					select.addEventListener("change", function () {
+						removeOption(div);
+					});
+				}
+			}, 500);
+		});
+
+		// Xử lý sau khi thay đổi
+		window.addEventListener("change", function () {
+
+		});
+
+		@* setTimeout(() => {
+				const div = document.querySelector("#google_translate_element .goog-te-gadget");
+				if (div) {
+					// Lọc bộ lọc lần đầu khi load trang
+					removeOption(div);
+					select.addEventListener("change", function () {
+						// Lọc lại bộ lọc sau khi thay đổi lựa chọn
+						setTimeout(removeOption(div), 1000);
+					});
+				}
+			}, 1000); *@
+	</script>
+
+	<script src="~/js/active_from_template.js" defer></script>
+	<script src="~/js/site.js" defer></script>
 </head>
 
 <body>
-    <!-- Preload -->
-    @await Html.PartialAsync(com + "/Both_ImageWhileLoad.cshtml")
+	<!-- Preload -->
+	@await Html.PartialAsync(com + "/Both_ImageWhileLoad.cshtml")
 
-    <!-- Header -->
-    @await Html.PartialAsync(com + "/User_Header.cshtml")
+	<!-- Header -->
+	@await Html.PartialAsync(com + "/User_Header.cshtml")
 
-    <!-- Body-->
-    @RenderBody()
+	<!-- Body-->
+	@RenderBody()
 
-    <!-- Footer-->
-    @await Html.PartialAsync(com + "/User_Footer.cshtml")
+	<!-- Footer-->
+	@await Html.PartialAsync(com + "/User_Footer.cshtml")
 
-    <!-- Scroll up-->
-    <a id="scrollUp" href="#header">
-        <i class="fa fa-angle-up"></i>
-    </a>
+	<!-- Scroll up-->
+	<a id="scrollUp" href="#header">
+		<i class="fa fa-angle-up"></i>
+	</a>
 
-    @await RenderSectionAsync("Scripts", required: false)
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
