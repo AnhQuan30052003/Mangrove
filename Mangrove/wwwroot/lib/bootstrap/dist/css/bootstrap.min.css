@@ -3960,6 +3960,7 @@ fieldset:disabled .btn {
     position: absolute;
     top: 100%;
     left: 0;
+    display: none;
     z-index: 99999;
     float: left;
     min-width: 1rem;

@@ -3958,13 +3958,13 @@ fieldset:disabled .btn {
 
 .dropdown-menu {
     position: absolute;
-    z-index: 1000;
-    display: none;
-    /* min-width: 10rem; */
-    min-width: 50px;
-    /* padding: .5rem 0; */
+    top: 100%;
+    left: 0;
+    z-index: 99999;
+    float: left;
+    min-width: 1rem;
     padding: 5px 0;
-    margin: 0;
+    margin: .125rem 0 0;
     font-size: 1rem;
     color: #212529;
     text-align: left;

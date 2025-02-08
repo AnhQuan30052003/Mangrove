@@ -416,7 +416,7 @@ img {
 
 @media only screen and (max-width: 767px) {
     .header-area .top-header-area {
-        z-index: 1;
+        /* z-index: 1; */
     }
 }
 
@@ -504,7 +504,7 @@ img {
 }
 
 .header-area .top-header-area .top-header-content .top-header-meta .language-dropdown .dropdown-menu .dropdown-item {
-    /* border: solid 1px; */
+    border: solid 1px;
 }
 
 .header-area .top-header-area .top-header-content .top-header-meta .cart {

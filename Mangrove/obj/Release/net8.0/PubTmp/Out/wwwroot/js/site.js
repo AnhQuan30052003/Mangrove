@@ -51,6 +51,7 @@ dropdownItem.forEach((item) => {
 		if (select) {
 			select.value = lang;
 			select.dispatchEvent(new Event("change"));
+			console.log("Language changed: " + lang);
 		}
 	});
 });
