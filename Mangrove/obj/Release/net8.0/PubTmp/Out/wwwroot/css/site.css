@@ -3848,6 +3848,7 @@ iframe.skiptranslate {
 #google_translate_element {
     overflow: hidden;
     border: none !important;
+    width: 100px !important;
 
     select {
         display: block !important;
@@ -3861,4 +3862,13 @@ iframe.skiptranslate {
         outline: #70c745 !important;
         border: none !important;
     }
+}
+
+.dropdown-toggle {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    top: 50%;
 }

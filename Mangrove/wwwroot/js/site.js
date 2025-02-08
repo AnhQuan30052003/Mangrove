@@ -42,7 +42,19 @@ document.querySelector(".search-form .options").addEventListener("click", functi
 	}
 });
 
-
+// Theo dõi thay đổi ngôn ngữ
+const dropdownItem = document.querySelectorAll(".language-dropdown .dropdown .dropdown-menu .dropdown-item");
+dropdownItem.forEach((item) => {
+	item.addEventListener("click", function (e) {
+		const lang = this.getAttribute("data-value");
+		const select = document.querySelector("#google_translate_element .goog-te-gadget .goog-te-combo");
+		if (select) {
+			select.value = lang;
+			select.dispatchEvent(new Event("change"));
+			console.log("Language changed: " + lang);
+		}
+	});
+});
 
 
 

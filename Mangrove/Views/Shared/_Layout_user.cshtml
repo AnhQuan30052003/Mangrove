@@ -10,6 +10,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Social Share-->
+	<meta property="og:title" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
+	<meta property="og:description"
+		content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
+	<meta property="og:image" content="https://mangrove.runasp.net/img/core-img/leaf.png" />
+	<meta property="og:url" content="https://mangrove.runasp.net/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="vi_VN" />
+	<meta property="og:site_name" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
+
+	<!-- Title page + Icon -->
 	<title>@ViewData["Title"] | Đại học Nha Trang</title>
 	<link rel="icon" href="~/img/core-img/favicon.ico">
 
@@ -33,54 +44,9 @@
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement({ pageLanguage: 'vi' }, 'google_translate_element');
 		}
-
-		// Xoá các phần tử option dư thừa
-		function removeOption(div) {
-			let select = div.querySelector("select");
-			if (select) {
-				[...select.options].forEach(option => {
-					if (!["", "en", "vi", "zh-CN", "zh-TW", "ja"].includes(option.value)) {
-						option.remove();
-					}
-				});
-			}
-		}
-
-		// Xử lý sau khi load wesite home (index) 1s
-		window.addEventListener("load", function () {
-			let checkReady = setInterval(() => {
-				const div = document.querySelector("#google_translate_element .goog-te-gadget");
-				if (div) {
-					// Lọc bộ lọc lần đầu khi load trang
-					removeOption(div);
-
-					// Lọc lại bộ lọc sau khi thay đổi lựa chọn
-					let select = div.querySelector("select");
-					select.addEventListener("change", function () {
-						removeOption(div);
-					});
-				}
-			}, 500);
-		});
-
-		// Xử lý sau khi thay đổi
-		window.addEventListener("change", function () {
-
-		});
-
-		@* setTimeout(() => {
-				const div = document.querySelector("#google_translate_element .goog-te-gadget");
-				if (div) {
-					// Lọc bộ lọc lần đầu khi load trang
-					removeOption(div);
-					select.addEventListener("change", function () {
-						// Lọc lại bộ lọc sau khi thay đổi lựa chọn
-						setTimeout(removeOption(div), 1000);
-					});
-				}
-			}, 1000); *@
 	</script>
 
+	<!-- Js Custom-->
 	<script src="~/js/active_from_template.js" defer></script>
 	<script src="~/js/site.js" defer></script>
 </head>

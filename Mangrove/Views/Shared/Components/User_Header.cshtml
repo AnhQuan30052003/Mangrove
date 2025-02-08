@@ -15,15 +15,25 @@
 
                         <!-- Top Header Content -->
                         <div class="top-header-meta d-flex gap-2 h-100">
+                            <!-- Language Dropdown -->
+                            <div class="language-dropdown d-flex align-items-center">
+                                <div class="dropdown" style="margin-right: 15px;">
+                                    <button class="btn btn-secondary dropdown-toggle mr-30" id="dropdownMenuButton">
+                                        Ngôn ngữ
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <p class="dropdown-item m-0 cursor-pointer" data-value="en">Tiếng Anh</p>
+                                        <p class="dropdown-item m-0 cursor-pointer" data-value="vi">Tiếng Việt</p>
+                                    </div>
+                                </div>
+
+                                <div id="google_translate_element" class="position-absolute"
+                                    style="top: -200%; left: 0;"></div>
+                            </div>
+
                             <!-- Login -->
                             <div class="login d-flex align-items-center">
                                 <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
-                            </div>
-
-                            <!-- Language Dropdown -->
-                            <div class="language-dropdown h-100">
-                                <!-- Use google translate -->
-                                <div id="google_translate_element" class="h-100"></div>
                             </div>
                         </div>
                     </div>
