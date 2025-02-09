@@ -1,6 +1,7 @@
 /* Import Urls */
 /* Font Dosis */
 @import url("https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800");
+
 /* @import url("./bootstrap.min.css"); */
 @import url("./classy-nav.css");
 @import url("./owl.carousel.min.css");
@@ -3834,7 +3835,7 @@ img {
     }
 }
 
-@media (width >=576px) {
+@media (width >= 576px) {
     #search_form_user {
         width: 50%;
     }
