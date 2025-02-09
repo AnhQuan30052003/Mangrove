@@ -14,7 +14,7 @@ builder.Services.AddSession((options) => {
 
 // var apiKey = builder.Configuration.GetConnectionString("IPA_Translate") ?? "";
 // builder.Services.AddSingleton(new GoogleTranslateService(apiKey));
- 
+
 
 var app = builder.Build();
 
