@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pXRurW2czB7oIkkamSpnDFYmSa4AmWjP2kuWrODIvOQ=",
+  "Hash": "mpiDc+3xqxr9U8ZNC8ViLPn+iYN1yR8l6ku53l1IiLc=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1039,8 +1039,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fe4p4vlv49",
-      "Integrity": "ea3fuhsxqFnMe7+CgeFy7cprWk6SCWAewlS7IEh6S3g=",
+      "Fingerprint": "kw2u366uep",
+      "Integrity": "NAU6uq4/LKoPEAbljnw5Ep1NqlpcynfKW+kv77kXRgs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -6181,51 +6181,6 @@
       ]
     },
     {
-      "Route": "js/site.fe4p4vlv49.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2207"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ea3fuhsxqFnMe7+CgeFy7cprWk6SCWAewlS7IEh6S3g=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 04:09:11 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "fe4p4vlv49"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-ea3fuhsxqFnMe7+CgeFy7cprWk6SCWAewlS7IEh6S3g="
-        }
-      ]
-    },
-    {
       "Route": "js/site.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
       "Selectors": [],
@@ -6244,11 +6199,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ea3fuhsxqFnMe7+CgeFy7cprWk6SCWAewlS7IEh6S3g=\""
+          "Value": "\"NAU6uq4/LKoPEAbljnw5Ep1NqlpcynfKW+kv77kXRgs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 09 Feb 2025 04:09:11 GMT"
+          "Value": "Sun, 09 Feb 2025 09:39:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6258,7 +6213,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ea3fuhsxqFnMe7+CgeFy7cprWk6SCWAewlS7IEh6S3g="
+          "Value": "sha256-NAU6uq4/LKoPEAbljnw5Ep1NqlpcynfKW+kv77kXRgs="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.kw2u366uep.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2207"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NAU6uq4/LKoPEAbljnw5Ep1NqlpcynfKW+kv77kXRgs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 09 Feb 2025 09:39:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kw2u366uep"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NAU6uq4/LKoPEAbljnw5Ep1NqlpcynfKW+kv77kXRgs="
         }
       ]
     },
