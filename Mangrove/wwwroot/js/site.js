@@ -14,14 +14,14 @@ searchIcon.addEventListener("click", function () {
 	const searchFormUser = document.querySelector("#search_form_user");
 	searchFormUser.classList.toggle("toggle_search_frame");
 
-	const icon = searchIcon.querySelector(".icon");
-	if (icon.classList.contains("no-click")) {
-		icon.classList.remove("no-click", "fa", "fa-search");
-		icon.classList.add("fa-solid", "fa-x");
+	const iconSearch = searchIcon.querySelector(".icon");
+	if (iconSearch.classList.contains("no-click")) {
+		iconSearch.classList.remove("no-click", "fa", "fa-search");
+		iconSearch.classList.add("fa-solid", "fa-x");
 	}
 	else {
-		icon.classList.add("no-click", "fa", "fa-search");
-		icon.classList.remove("fa-solid", "fa-x");
+		iconSearch.classList.add("no-click", "fa", "fa-search");
+		iconSearch.classList.remove("fa-solid", "fa-x");
 	}
 });
 
@@ -56,11 +56,23 @@ dropdownItem.forEach((item) => {
 	});
 });
 
+// Theo dõi thay đổi khi click đóng khung tìm kiếm
+document.addEventListener("click", function (event) {
+	const searchIcon = document.querySelector("#searchIcon");
+	if (searchIcon.contains(event.target)) return;
+
+	const sectionSearch = document.querySelector("#search_form_user");
+	const searchForm = sectionSearch.querySelector(".search-form");
+
+	// Khi SearchForm đang mở mà click ra ngoài 
+	if (!searchForm.contains(event.target) && sectionSearch.classList.contains("toggle_search_frame")) {
+		searchIcon.dispatchEvent(new Event("click"));
+	}
+});
 
 
 
 
 
-
- //--
+//--
 console.log("Run file site.js");

@@ -11,5 +11,13 @@ namespace Mangrove.Controllers {
 		public IActionResult Index() {
 			return View();
 		}
+
+		public IActionResult Results() {
+			return View();
+		}
+
+		public IActionResult Result(string id) {
+			return View();
+		}
 	}
 }
