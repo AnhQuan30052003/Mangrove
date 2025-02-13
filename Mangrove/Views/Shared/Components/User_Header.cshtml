@@ -1,66 +1,49 @@
 
 
-<header id="header" class="header-area">
-	<div class="top-header-area bg-black">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="top-header-content d-flex align-items-center justify-content-between">
-						<!-- Top Header Content -->
-						<div class="top-header-meta">
-							<a href="#user_footer" data-toggle="tooltip" data-placement="bottom">
-								<i class="fa-solid fa-eye" aria-hidden="true"></i>
-								<span>Thông tin thêm</span>
-							</a>
-						</div>
-
-						<div class="top-header-meta d-flex gap-2 h-100">
-							<!-- Language Dropdown -->
-							<div class="language-dropdown d-flex align-items-center">
-								<div class="dropdown" style="margin-right: 15px;">
-									<button class="selected btn btn-secondary dropdown-toggle mr-30" type="button"
-											id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false">
-										Ngôn ngữ
-									</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<p class="dropdown-item m-0 cursor-pointer" data-value="en">Tiếng Anh</p>
-										<p class="dropdown-item m-0 cursor-pointer" data-value="vi">Tiếng Việt</p>
-									</div>
-								</div>
-
-								<div id="google_translate_element" class="position-absolute"
-									 style="top: -200%; left: 0;"></div>
-							</div>
-
-							<!-- Login -->
-							<div class="login d-flex align-items-center">
-								<a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<header id="header" class="bg-black">
+	<div class="container d-flex justify-content-between align-items-center h-100">
+		<div class="logo_title">
+			<a href="#user_footer">
+				<i class="fa-solid fa-leaf color-tree"></i>
+				<span class="ml-7 hidden_mobile">CÂY NGẬP MẶN</span>
+			</a>
 		</div>
-	</div>
 
-	<div class="alazea-main-menu">
-		<div class="classy-nav-container breakpoint-off">
-			<div class="container">
-				<!-- Menu -->
-				<nav class="classy-navbar justify-content-between" id="alazeaNav">
-					<!-- Nav Brand -->
-					<div class="frame-imgoverflow-hidden h-100">
-						<a href="@Url.Action("Index", "Home")" class="nav-brand h-100 d-flex align-items-center">
-							<img src="~/img/core-img/logo.png" class="object-fit-cover" alt="Logo Mangrove">
-						</a>
-					</div>
+		<div class="action_option d-flex gap-2 h-100">
+			<!-- Search Icon -->
+			<div id="searchIcon" class="d-flex justify-content-center m-0">
+				<button class="nav_btn_option">
+					<i class="icon no-click fa fa-search color-tree"></i>
+					<span class="ml-7">Tìm kiếm</span>
+				</button>
+			</div>
 
-					<!-- Search Icon -->
-					<div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
-						<i class="icon no-click fa fa-search" aria-hidden="true"></i>
-					</div>
-				</nav>
+			<!-- Language -->
+			<div class="language text-white position-relative">
+				<button class="nav_btn_option btn_language">
+					<i class="fa-solid fa-language color-tree"></i>
+					<span class="ml-7">
+						Ngôn ngữ
+						<i class="fa-solid fa-caret-down" style="margin-left: 3px;"></i>
+					</span>
+				</button>
+				<ul class="language_dropdown rounded-1 border-none">
+					<li class="p-2" data-value="en">Tiếng Anh</li>
+					<li class="p-2" data-value="vi">Tiếng Việt</li>
+				</ul>
+
+				<div id="google_translate_element" class="position-absolute"
+					 style="top: -10000%; z-index: -10000"></div>
+			</div>
+
+			<!-- Login -->
+			<div class="login d-flex align-items-center">
+				<a href="#" class="h-100">
+					<button class="nav_btn_option">
+						<i class="fa fa-user color-tree"></i>
+						<span class="ml-7">Đăng nhập</span>
+					</button>
+				</a>
 			</div>
 		</div>
 	</div>

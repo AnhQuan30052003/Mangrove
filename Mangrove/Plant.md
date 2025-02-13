@@ -30,4 +30,4 @@
 3. Quản trị các giai đoạn liên quan tới cây bất kỳ
 4. Thống kê (cây, giai đoạn)
 
-[Note] quản trị bao gồm (tìm kiếm, sắp xếp, thêm/sửa/xoá dữ liệu)
+[Note] Quản trị bao gồm (tìm kiếm, sắp xếp, thêm/sửa/xoá dữ liệu)

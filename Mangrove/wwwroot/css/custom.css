@@ -1,13 +1,22 @@
-.toggle_search_frame {
-    top: 90px !important;
-    opacity: 1 !important;
-    height: auto !important;
+a,
+a:hover {
+    color: white;
+    text-decoration: none;
 }
 
-@media (width >= 576px) {
-    .toggle_search_frame {
-        top: 70px !important;
-    }
+ul,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.toggle_hidden_show {
+    opacity: 1 !important;
+    height: auto !important;
 }
 
 .object-fit-cover {
@@ -37,4 +46,23 @@
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.color-tree {
+    color: #70c745;
+}
+
+.ml-7 {
+    margin-left: 7px !important;
+}
+
+.border-none {
+    border: none !important;
+}
+
+.border-line {
+    width: 100%;
+    height: 1px;
+    background-color: #ebebeb;
+    margin-top: 50px;
 }

@@ -1,0 +1,28 @@
+﻿#scrollUp {
+	background-color: #70c745;
+	border-radius: 0;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+	color: #ffffff;
+	font-size: 24px;
+	height: 40px;
+	line-height: 40px;
+	right: 50px;
+	text-align: center;
+	width: 40px;
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	position: fixed;
+	bottom: 10px;
+	right: 20px;
+	z-index: 9999;
+	opacity: 0;
+}
+
+#scrollUp.opacity {
+	opacity: 1;
+}
+
+#scrollUp:hover {
+	background-color: #303030;
+}
+
