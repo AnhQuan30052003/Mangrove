@@ -1,0 +1,122 @@
+﻿#search_form_user {
+	position: fixed;
+	width: 100%;
+	top: 90px;
+	left: 50%;
+	opacity: 0;
+	height: 0;
+	transform: translateX(-50%);
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	background-color: #f8f9fa;
+	border-radius: 5px;
+	overflow: hidden !important;
+}
+
+#search_form_user .options .btn-option {
+	border: solid 1px white;
+	outline: black;
+	padding: 5px 10px;
+	min-width: min(50%, 150px);
+	margin-bottom: 10px;
+	transition: all 0.4s;
+}
+
+#search_form_user .options .btn-option:hover {
+	border: solid 1px green;
+}
+
+#search_form_user .options .btn-option.active {
+	background-color: #70c745;
+	color: white;
+	font-weight: 600;
+}
+
+#search_form_user .search_keyword,
+#search_form_user .search_advance {
+	padding: 10px;
+}
+
+#search_form_user .search_frame .search_keyword form {
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+	width: 500px;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.result_search .form_fake .input_search,
+#search_form_user .search_frame .search_keyword form .input_search {
+	padding: 7.5px 15px;
+	width: 100%;
+	border-radius: 5px;
+	background-color: white;
+	outline-color: green;
+	border: none;
+}
+
+.result_search .form_fake label,
+#search_form_user .search_frame .search_keyword form label {
+	align-self: self-start;
+}
+
+.result_search .form_fake button,
+#search_form_user .search_frame .search_advance form button,
+#search_form_user .search_frame .search_keyword form button {
+	outline: none;
+	padding: 3px 8px;
+/*	min-height: 46px;*/
+	min-width: 125px;
+	display: inline-block;
+	border: solid 1px #70c745;
+	background-color: #70c745;
+	color: white;
+	font-weight: bold;
+	transition: all 0.4s;
+	margin-top: 10px;
+}
+
+.result_search .form_fake button:hover,
+#search_form_user .search_frame .search_advance form button:hover
+#search_form_user .search_frame .search_keyword form button:hover {
+	background-color: transparent;
+	color: #70c745;
+}
+
+@media (width >= 576px) {
+	#search_form_user {
+		width: 50%;
+	}
+}
+
+.goog-te-banner-frame, iframe.skiptranslate {
+	display: none !important;
+}
+
+#google_translate_element {
+	overflow: hidden;
+	border: none !important;
+	width: 100px !important;
+	select
+
+{
+	display: block !important;
+	visibility: visible !important;
+	pointer-events: auto !important;
+}
+
+select,
+select option {
+	padding: 7.5px 10px;
+	outline: #70c745 !important;
+	border: none !important;
+}
+
+.dropdown-toggle {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+		position: absolute;
+		top: 50%;
+	}

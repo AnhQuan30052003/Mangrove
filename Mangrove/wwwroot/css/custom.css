@@ -1,6 +1,13 @@
 .toggle_search_frame {
+    top: 90px !important;
     opacity: 1 !important;
-    z-index: 2 !important;
+    height: auto !important;
+}
+
+@media (width >= 576px) {
+    .toggle_search_frame {
+        top: 70px !important;
+    }
 }
 
 .object-fit-cover {

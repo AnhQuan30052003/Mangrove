@@ -1,149 +1,149 @@
 
 
 <header id="header" class="header-area">
-    <div class="top-header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="top-header-content d-flex align-items-center justify-content-between">
-                        <!-- Top Header Content -->
-                        <div class="top-header-meta">
-                            <a href="#user_footer" data-toggle="tooltip" data-placement="bottom">
-                                <i class="fa-solid fa-eye" aria-hidden="true"></i>
-                                <span>Thông tin thêm</span>
-                            </a>
-                        </div>
+	<div class="top-header-area bg-black">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="top-header-content d-flex align-items-center justify-content-between">
+						<!-- Top Header Content -->
+						<div class="top-header-meta">
+							<a href="#user_footer" data-toggle="tooltip" data-placement="bottom">
+								<i class="fa-solid fa-eye" aria-hidden="true"></i>
+								<span>Thông tin thêm</span>
+							</a>
+						</div>
 
-                        <div class="top-header-meta d-flex gap-2 h-100">
-                            <!-- Language Dropdown -->
-                            <div class="language-dropdown d-flex align-items-center">
-                                <div class="dropdown" style="margin-right: 15px;">
-                                    <button class="selected btn btn-secondary dropdown-toggle mr-30" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">Ngôn ngữ
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <p class="dropdown-item m-0 cursor-pointer" data-value="en">Tiếng Anh</p>
-                                        <p class="dropdown-item m-0 cursor-pointer" data-value="vi">Tiếng Việt</p>
-                                    </div>
-                                </div>
+						<div class="top-header-meta d-flex gap-2 h-100">
+							<!-- Language Dropdown -->
+							<div class="language-dropdown d-flex align-items-center">
+								<div class="dropdown" style="margin-right: 15px;">
+									<button class="selected btn btn-secondary dropdown-toggle mr-30" type="button"
+											id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+											aria-expanded="false">
+										Ngôn ngữ
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<p class="dropdown-item m-0 cursor-pointer" data-value="en">Tiếng Anh</p>
+										<p class="dropdown-item m-0 cursor-pointer" data-value="vi">Tiếng Việt</p>
+									</div>
+								</div>
 
-                                <div id="google_translate_element" class="position-absolute"
-                                    style="top: -200%; left: 0;"></div>
-                            </div>
+								<div id="google_translate_element" class="position-absolute"
+									 style="top: -200%; left: 0;"></div>
+							</div>
 
-                            <!-- Login -->
-                            <div class="login d-flex align-items-center">
-                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+							<!-- Login -->
+							<div class="login d-flex align-items-center">
+								<a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span>Đăng nhập</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="alazea-main-menu">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container">
-                <!-- Menu -->
-                <nav class="classy-navbar justify-content-between" id="alazeaNav">
-                    <!-- Nav Brand -->
-                    <div class="frame-imgoverflow-hidden h-100">
-                        <a href="@Url.Action("Index", "Home")" class="nav-brand h-100 d-flex align-items-center">
-                            <img src="img/core-img/logo.png" class="object-fit-cover" alt="Logo Mangrove">
-                        </a>
-                    </div>
+	<div class="alazea-main-menu">
+		<div class="classy-nav-container breakpoint-off">
+			<div class="container">
+				<!-- Menu -->
+				<nav class="classy-navbar justify-content-between" id="alazeaNav">
+					<!-- Nav Brand -->
+					<div class="frame-imgoverflow-hidden h-100">
+						<a href="@Url.Action("Index", "Home")" class="nav-brand h-100 d-flex align-items-center">
+							<img src="~/img/core-img/logo.png" class="object-fit-cover" alt="Logo Mangrove">
+						</a>
+					</div>
 
-                    <!-- Search Icon -->
-                    <div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
-                        <i class="icon no-click fa fa-search" aria-hidden="true"></i>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
+					<!-- Search Icon -->
+					<div id="searchIcon" class="d-flex justify-content-center align-items-center h-100 m-0">
+						<i class="icon no-click fa fa-search" aria-hidden="true"></i>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div id="search_form_user" class="search-form">
+		<div class="container py-3">
+			<div class="options d-flex justify-content-center gap-2">
+				<button class="m-0 btn_search_keyword btn-option fw-bold active">Nhanh</button>
+				<button class="m-0 btn_search_advance btn-option fw-bold">Nâng cao</button>
+			</div>
+
+			<div class="search_frame mt-2">
+				<div class="result_search search_keyword border mt-3">
+					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
+						<label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
+						<input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+						<button>Tìm kiếm</button>
+					</form>
+				</div>
+
+				<div class="result_search search_advance border mt-3 w-100 d-none">
+					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
+						<div class="w-100">
+							<label class="fs-16 mb-2">Khu vực</label>
+							<div class="wrapper d-flex justify-content-between flex-wrap">
+								<select name="" class="selected-custom">
+									<option selected value="">Tỉnh</option>
+									<option value="">Khánh Hoà</option>
+								</select>
+
+								<select name="" class="selected-custom">
+									<option selected value="">Huyện</option>
+									<option value="">Ninh Hoà</option>
+								</select>
+
+								<select name="" class="selected-custom">
+									<option selected value="">Xã/Phường</option>
+									<option value="">Ninh Thân</option>
+								</select>
+
+								<select name="" class="selected-custom">
+									<option selected value="">Thôn</option>
+									<option value="">Đại Tập</option>
+								</select>
+							</div>
+							<hr class="line_space m-0 mt-2">
+						</div>
+
+						<div class="w-100">
+							<label class="fs-16 mb-2">Thời gian</label>
+							<div class="wrapper d-flex justify-content-between flex-wrap">
+								<select name="" class="selected-custom">
+									<option selected value="">Năm</option>
+									<option value="">2024</option>
+									<option value="">2025</option>
+								</select>
+
+								<select name="" class="selected-custom">
+									<option selected value="">Tháng</option>
+									<option value="">1</option>
+									<option value="">2</option>
+									<option value="">3</option>
+								</select>
+
+								<select name="" class="selected-custom">
+									<option selected value="">Ngày</option>
+									<option value="">1</option>
+									<option value="">2</option>
+									<option value="">3</option>
+								</select>
+							</div>
+							<hr class="line_space m-0 mt-2">
+						</div>
+
+						<div class="form_fake d-flex flex-column align-items-center gap-2 w-100">
+							<label for="">Thêm từ khoá</label>
+							<input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+						</div>
+
+						<button>Tìm kiếm</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </header>
-
-<!-- Section Search -->
-<section id="search_form_user">
-    <div class="search-form container py-3">
-        <div class="options d-flex justify-content-center gap-2">
-            <button class="m-0 btn_search_keyword btn-option fw-bold active">Nhanh</button>
-            <button class="m-0 btn_search_advance btn-option fw-bold">Nâng cao</button>
-        </div>
-
-        <div class="search_frame mt-2">
-            <div class="result_search search_keyword border mt-3">
-                <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
-                    <label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
-                    <input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
-                    <button>Tìm kiếm</button>
-                </form>
-            </div>
-
-            <div class="result_search search_advance border mt-3 w-100 d-none">
-                <form action="" method="get" class="d-flex flex-column align-items-center gap-2">
-                    <div class="w-100">
-                        <label class="fs-16 mb-2">Khu vực</label>
-                        <div class="wrapper d-flex justify-content-between flex-wrap">
-                            <select name="" class="selected-custom">
-                                <option selected value="">Tỉnh</option>
-                                <option value="">Khánh Hoà</option>
-                            </select>
-
-                            <select name="" class="selected-custom">
-                                <option selected value="">Huyện</option>
-                                <option value="">Ninh Hoà</option>
-                            </select>
-
-                            <select name="" class="selected-custom">
-                                <option selected value="">Xã/Phường</option>
-                                <option value="">Ninh Thân</option>
-                            </select>
-
-                            <select name="" class="selected-custom">
-                                <option selected value="">Thôn</option>
-                                <option value="">Đại Tập</option>
-                            </select>
-                        </div>
-                        <hr class="line_space m-0 mt-2">
-                    </div>
-
-                    <div class="w-100">
-                        <label class="fs-16 mb-2">Thời gian</label>
-                        <div class="wrapper d-flex justify-content-between flex-wrap">
-                            <select name="" class="selected-custom">
-                                <option selected value="">Năm</option>
-                                <option value="">2024</option>
-                                <option value="">2025</option>
-                            </select>
-
-                            <select name="" class="selected-custom">
-                                <option selected value="">Tháng</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-
-                            <select name="" class="selected-custom">
-                                <option selected value="">Ngày</option>
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>
-                        </div>
-                        <hr class="line_space m-0 mt-2">
-                    </div>
-
-                    <div class="form_fake d-flex flex-column align-items-center gap-2 w-100">
-                        <label for="">Thêm từ khoá</label>
-                        <input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
-                    </div>
-
-                    <button>Tìm kiếm</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>

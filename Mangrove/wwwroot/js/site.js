@@ -62,10 +62,9 @@ document.addEventListener("click", function (event) {
 	if (searchIcon.contains(event.target)) return;
 
 	const sectionSearch = document.querySelector("#search_form_user");
-	const searchForm = sectionSearch.querySelector(".search-form");
 
 	// Khi SearchForm đang mở mà click ra ngoài 
-	if (!searchForm.contains(event.target) && sectionSearch.classList.contains("toggle_search_frame")) {
+	if (!sectionSearch.contains(event.target) && sectionSearch.classList.contains("toggle_search_frame")) {
 		searchIcon.dispatchEvent(new Event("click"));
 	}
 });
