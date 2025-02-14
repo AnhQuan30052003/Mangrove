@@ -27,7 +27,7 @@
 						<i class="fa-solid fa-caret-down" style="margin-left: 3px;"></i>
 					</span>
 				</button>
-				<ul class="language_dropdown rounded-1">
+				<ul class="language_dropdown rounded-1 d-none">
 					<li class="p-2" data-value="en">Tiếng Anh</li>
 					<li class="p-2" data-value="vi">Tiếng Việt</li>
 				</ul>
@@ -48,79 +48,77 @@
 		</div>
 	</div>
 
-	<div id="search_form_user" class="search-form">
+	<div id="search_form_user" class="search-form d-none">
 		<div class="container py-3">
 			<div class="options d-flex justify-content-center gap-2">
 				<button class="m-0 btn_search_keyword btn-option fw-bold active">Nhanh</button>
-				<button class="m-0 btn_search_advance btn-option fw-bold">Nâng cao</button>
+				<button class="m-0 btn_search_advance btn-option fw-bold">Lọc</button>
 			</div>
 
 			<div class="search_frame mt-2">
-				<div class="result_search search_keyword border mt-3">
-					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
+				<div class="result_search search_keyword pt-2">
+					<form action="" method="get" class="d-flex flex-column align-items-center gap-2 p-2 border ">
 						<label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
-						<input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+						<input type="search" name="search" id="search" class="green_effect input_search" placeholder="Tìm với...">
 						<button>Tìm kiếm</button>
 					</form>
 				</div>
 
-				<div class="result_search search_advance border mt-3 w-100 d-none">
+				<div class="result_search search_advance pt-2 w-100 d-none">
 					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
-						<div class="w-100">
+						<div class="w-100 border  p-2">
 							<label class="fs-16 mb-2">Khu vực</label>
 							<div class="wrapper d-flex justify-content-between flex-wrap">
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Tỉnh</option>
 									<option value="">Khánh Hoà</option>
 								</select>
 
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Huyện</option>
 									<option value="">Ninh Hoà</option>
 								</select>
 
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Xã/Phường</option>
 									<option value="">Ninh Thân</option>
 								</select>
 
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Thôn</option>
 									<option value="">Đại Tập</option>
 								</select>
 							</div>
-							<hr class="line_space m-0 mt-2">
 						</div>
 
-						<div class="w-100">
+						<div class="w-100 border  p-2">
 							<label class="fs-16 mb-2">Thời gian</label>
 							<div class="wrapper d-flex justify-content-between flex-wrap">
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Năm</option>
 									<option value="">2024</option>
 									<option value="">2025</option>
 								</select>
 
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Tháng</option>
 									<option value="">1</option>
 									<option value="">2</option>
 									<option value="">3</option>
 								</select>
 
-								<select name="" class="selected-custom">
+								<select name="" class="selected-custom green_effect">
 									<option selected value="">Ngày</option>
 									<option value="">1</option>
 									<option value="">2</option>
 									<option value="">3</option>
 								</select>
 							</div>
-							<hr class="line_space m-0 mt-2">
 						</div>
 
-						<div class="form_fake d-flex flex-column align-items-center gap-2 w-100">
+						<div class="form_fake p-2 border  d-flex flex-column align-items-center gap-2 w-100">
 							<label for="">Thêm từ khoá</label>
-							<input type="search" name="search" id="search" class="input_search" placeholder="Tìm với...">
+							<input type="search" name="search" id="search" class="input_search green_effect" placeholder="Tìm với...">
 						</div>
 
 						<button>Tìm kiếm</button>

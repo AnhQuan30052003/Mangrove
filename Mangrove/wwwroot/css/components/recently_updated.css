@@ -6,6 +6,7 @@
 	min-width: 50px;
 }
 
+.items-tree .item .image .img-tree,
 .items-tree .item .view,
 .btn_see_more {
 	-webkit-transition-duration: 500ms;
@@ -15,7 +16,11 @@
 .items-tree .item .image {
 	position: relative;
 	z-index: 1;
-	}
+}
+
+.items-tree .item .image:hover .img-tree {
+	transform: scale(1.1);
+}
 
 .items-tree .item .image::after {
 	background-color: rgba(4, 43, 15, 0.4);
@@ -34,6 +39,7 @@
 	color: black;
 }
 
+.items-tree .item .view,
 .items-tree .item .view:hover {
 	color: #70c745;
 }
@@ -41,5 +47,9 @@
 @media (width >= 576px) {
 	.items-tree .item {
 		width: 49% !important;
+	}
+
+	.items-tree .item .view {
+		color: inherit;
 	}
 }

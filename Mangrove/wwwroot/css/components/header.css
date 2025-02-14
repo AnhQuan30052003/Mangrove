@@ -10,18 +10,14 @@
 	width: 100%;
 	top: 60px;
 	left: 50%;
-	opacity: 0;
-	height: 0;
 	transform: translateX(-50%);
-	-webkit-transition-duration: 500ms;
-	transition-duration: 500ms;
 	background-color: #f8f9fa;
 	border-radius: 5px;
-	overflow: hidden !important;
+	border: solid 3px black;
 }
 
 #search_form_user .options .btn-option {
-	border: solid 1px white;
+	border: solid 1px #70c745;
 	outline: black;
 	padding: 5px 10px;
 	min-width: min(50%, 150px);
@@ -29,25 +25,15 @@
 	transition: all 0.4s;
 }
 
-#search_form_user .options .btn-option:hover {
-	border: solid 1px green;
-}
-
+#search_form_user .options .btn-option:not(.active):hover,
 #search_form_user .options .btn-option.active {
 	background-color: #70c745;
 	color: white;
-	font-weight: 600;
-}
-
-#search_form_user .search_keyword,
-#search_form_user .search_advance {
-	padding: 10px;
 }
 
 #search_form_user .search_frame .search_keyword form {
 	-webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
-	width: 500px;
 	border-radius: 5px;
 	width: 100%;
 }
@@ -58,7 +44,6 @@
 	width: 100%;
 	border-radius: 5px;
 	background-color: white;
-	outline-color: green;
 	border: none;
 }
 
@@ -67,11 +52,10 @@
 	align-self: self-start;
 }
 
-.result_search .form_fake button,
 #search_form_user .search_frame .search_advance form button,
 #search_form_user .search_frame .search_keyword form button {
 	outline: none;
-	padding: 3px 8px;
+	padding: 7.5px 15px;
 	min-width: 125px;
 	display: inline-block;
 	border: solid 1px #70c745;
@@ -82,17 +66,10 @@
 	margin-top: 10px;
 }
 
-.result_search .form_fake button:hover,
-#search_form_user .search_frame .search_advance form button:hover
-#search_form_user .search_frame .search_keyword form button:hover {
+#search_form_user .search_frame .search_keyword form button:hover,
+#search_form_user .search_frame .search_advance form button:hover {
 	background-color: transparent;
-	color: #70c745;
-}
-
-@media (width >= 576px) {
-	#search_form_user {
-		width: 50%;
-	}
+	color: black;
 }
 
 .goog-te-banner-frame, iframe.skiptranslate {
@@ -118,8 +95,7 @@
 select,
 select option {
 	padding: 7.5px 10px;
-	outline: #70c745 !important;
-	border: none !important;
+	border: none;
 }
 
 .dropdown-toggle {
@@ -153,15 +129,25 @@ select option {
 	background-color: white;
 	color: black;
 	z-index: 11;
-	opacity: 0;
-	height: 0;
-	-webkit-transition-duration: 500ms;
-	transition-duration: 500ms;
+	background-color: #70c745;
+	color: white;
 }
 
 .language .language_dropdown li:hover {
-	background-color: #70c745;
-	color: white;
+	background-color: black;
+}
+
+.green_effect {
+	outline: none;
+}
+
+.green_effect:hover {
+	outline: solid 1px #70c745;
+}
+
+.selected-custom {
+	width: 49% !important;
+	margin: 5px 0;
 }
 
 @media (width <= 576px) {
@@ -177,5 +163,11 @@ select option {
 	.language .language_dropdown {
 		left: unset;
 		right: 0;
+	}
+}
+
+@media (width >= 576px) {
+	#search_form_user {
+		width: 50%;
 	}
 }

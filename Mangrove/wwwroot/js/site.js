@@ -13,7 +13,7 @@ const btnLanguage = document.querySelector(".btn_language");
 if (btnLanguage) {
 	btnLanguage.addEventListener("click", function (e) {
 		const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-		dropdown.classList.toggle("toggle_hidden_show");
+		dropdown.classList.toggle("d-none");
 	});
 }
 
@@ -22,7 +22,7 @@ const searchIcon = document.querySelector("#searchIcon");
 if (searchIcon) {
 	searchIcon.addEventListener("click", function () {
 		const searchFormUser = document.querySelector("#search_form_user");
-		searchFormUser.classList.toggle("toggle_hidden_show");
+		searchFormUser.classList.toggle("d-none");
 	});
 }
 
@@ -59,21 +59,18 @@ lis.forEach((item) => {
 
 // Theo dõi huỷ khi click ngoài đối tượng
 document.addEventListener("click", function (event) {
-	// Nếu không phải click vào SearchIcon
+	// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
 	const searchIcon = document.querySelector("#searchIcon");
-	if (!searchIcon.contains(event.target)) {
-		// Khi SearchForm đang mở mà click ra ngoài
-		const sectionSearch = document.querySelector("#search_form_user");
-		if (!sectionSearch.contains(event.target) && sectionSearch.classList.contains("toggle_hidden_show")) {
-			sectionSearch.classList.toggle("toggle_hidden_show");
-		}
+	const sectionSearch = document.querySelector("#search_form_user");
+	if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target)) {
+		sectionSearch.classList.add("d-none");
 	}
 
 	// Nếu không click vào button language
 	const btnLanguage = document.querySelector(".btn_language");
 	const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-	if (!btnLanguage.contains(event.target) && dropdown.classList.contains("toggle_hidden_show")) {
-		dropdown.classList.remove("toggle_hidden_show")
+	if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
+		dropdown.classList.add("d-none")
 	}
 });
 
