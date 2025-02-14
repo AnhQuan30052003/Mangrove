@@ -22,7 +22,9 @@ const searchIcon = document.querySelector("#searchIcon");
 if (searchIcon) {
 	searchIcon.addEventListener("click", function () {
 		const searchFormUser = document.querySelector("#search_form_user");
+		const background = document.querySelector("#background");
 		searchFormUser.classList.toggle("d-none");
+		background.classList.toggle("d-none");
 	});
 }
 
@@ -62,8 +64,10 @@ document.addEventListener("click", function (event) {
 	// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
 	const searchIcon = document.querySelector("#searchIcon");
 	const sectionSearch = document.querySelector("#search_form_user");
+	const background = document.querySelector("#background");
 	if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target)) {
 		sectionSearch.classList.add("d-none");
+		background.classList.add("d-none");
 	}
 
 	// Nếu không click vào button language

@@ -2,7 +2,7 @@
 	height: 50px;
 	width: 100%;
 	position: fixed;
-	z-index: 10;
+	z-index: 100;
 }
 
 #search_form_user {
@@ -13,7 +13,6 @@
 	transform: translateX(-50%);
 	background-color: #f8f9fa;
 	border-radius: 5px;
-	border: solid 3px black;
 }
 
 #search_form_user .options .btn-option {
@@ -148,6 +147,15 @@ select option {
 .selected-custom {
 	width: 49% !important;
 	margin: 5px 0;
+}
+
+#background {
+	position: absolute;
+	content: "";
+	inset: 0;
+	background-color: black;
+	opacity: 0.6;
+	z-index: 10;
 }
 
 @media (width <= 576px) {

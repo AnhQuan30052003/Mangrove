@@ -27,4 +27,6 @@ body {
 	background-color: #eaeff1;
 	transition-duration: 500ms;
 	top: 0 !important;
+	position: relative;
+	z-index: 1;
 }
