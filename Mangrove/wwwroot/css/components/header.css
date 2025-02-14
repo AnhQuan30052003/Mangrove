@@ -145,19 +145,18 @@ select option {
 }
 
 .language .language_dropdown {
-	width: max-content;
-	min-width: 100%;
 	position: absolute;
-	background-color: white;
-	color: black;
 	top: 60px;
 	left: 0;
+	width: max-content;
+	min-width: 100%;
+	background-color: white;
+	color: black;
 	z-index: 11;
 	opacity: 0;
 	height: 0;
 	-webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
-	overflow: hidden;
 }
 
 .language .language_dropdown li:hover {

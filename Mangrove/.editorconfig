@@ -2,7 +2,13 @@ root = true
 
 [*.cshtml]
 indent_style = tab
-indent_size = 4
+indent_size = 4	
+
+[*.css]
+indent_style = tab
+tab_width = 4
+max_line_length = off
+charset = utf-8
 
 [*.cs]
 indent_size = space

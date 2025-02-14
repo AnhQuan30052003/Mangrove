@@ -62,7 +62,8 @@
 	@await Html.PartialAsync(com + "/Both_ImageWhileLoad.cshtml")
 
 	<!-- Header -->
-	@await Html.PartialAsync(com + "/user_header.cshtml")
+	@await Html.PartialAsync(com + "/User_Header.cshtml")
+	@await Html.PartialAsync(com + "/BlockHeader.cshtml")
 
 	<!-- Body-->
 	@RenderBody()
@@ -71,7 +72,7 @@
 	@await Html.PartialAsync(com + "/User_Footer.cshtml")
 
 	<!-- Button: Scroll up-->
-	<a id="scrollUp" href="#header">
+	<a id="scrollUp" href="#top_page">
 		<i class="fa fa-angle-up"></i>
 	</a>
 

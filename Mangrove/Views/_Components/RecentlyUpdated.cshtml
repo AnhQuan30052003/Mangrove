@@ -1,0 +1,42 @@
+﻿
+
+<section class="recenty_updated pt-3 pb-5" style="min-height: 100vh;">
+	<div class="container">
+		<div class="title text-center my-1">
+			<h4 class="border py-2 bg-white color-tree border-none">Cập nhật gần đây</h4>
+		</div>
+
+		<div class="items-tree d-flex flex-wrap justify-content-between">
+			@{
+				for (int i = 1; i <= 10; i++)
+				{
+					<div class="item p-2 bg-white m-0 my-2 w-100">
+						<a href="#">
+							<div class="image w-100 overflow-hidden" style="height: 300px;">
+								<img class="object-fit-cover w-100 h-100" src="~/img/tree-img/img_test.jpg" />
+							</div>
+
+							<div class="infomation py-2">
+								<h4 class="text-center upper">Ráng Đại</h4>
+								<p class="mt-1 text-center">Khá phổ biến ở khu vực ven biển Bắc Khánh Hòa.</p>
+							</div>
+
+							<div class="eye_see d-flex justify-content-between align-items-center">
+								<span class="view">
+									100
+									<i class="fa-solid fa-eye"></i>
+									<span class="hidden_mobile">Lượt xem</span>
+								</span>
+
+								<button class="btn_see_more">
+									<span class="hidden_mobile">Xem chi tiết</span>
+									<i class="fa-solid fa-arrow-right"></i>
+								</button>
+							</div>
+						</a>
+					</div>
+				}
+			}
+		</div>
+	</div>
+</section>
