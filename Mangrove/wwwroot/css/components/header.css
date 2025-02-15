@@ -37,7 +37,6 @@
 	width: 100%;
 }
 
-.result_search .form_fake .input_search,
 #search_form_user .search_frame .search_keyword form .input_search {
 	padding: 7.5px 15px;
 	width: 100%;
@@ -46,7 +45,6 @@
 	border: none;
 }
 
-.result_search .form_fake label,
 #search_form_user .search_frame .search_keyword form label {
 	align-self: self-start;
 }
@@ -157,6 +155,8 @@ select option {
 	opacity: 0.6;
 	z-index: 10;
 }
+
+
 
 @media (width <= 576px) {
 	.nav_btn_option {

@@ -13,7 +13,8 @@
 			<!-- Search Icon -->
 			<div id="searchIcon" class="d-flex justify-content-center m-0">
 				<button class="nav_btn_option">
-					<i class="icon no-click fa fa-search color-tree"></i>
+					<i class="icon-x d-none fa-solid fa-xmark color-tree" style="font-size: 14px;"></i>
+					<i class="icon-s fa fa-search color-tree"></i>
 					<span class="ml-7">Tìm kiếm</span>
 				</button>
 			</div>
@@ -41,7 +42,7 @@
 				<a href="#" class="h-100">
 					<button class="nav_btn_option">
 						<i class="fa fa-user color-tree"></i>
-						<span class="ml-7">Đăng nhập</span>
+						<span class="ml-7">Quản trị viên</span>
 					</button>
 				</a>
 			</div>
@@ -66,27 +67,12 @@
 
 				<div class="result_search search_advance pt-2 w-100 d-none">
 					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
-						<div class="w-100 border  p-2">
-							<label class="fs-16 mb-2">Khu vực</label>
-							<div class="wrapper d-flex justify-content-between flex-wrap">
-								<select name="" class="selected-custom green_effect">
-									<option selected value="">Tỉnh</option>
-									<option value="">Khánh Hoà</option>
-								</select>
-
-								<select name="" class="selected-custom green_effect">
-									<option selected value="">Huyện</option>
-									<option value="">Ninh Hoà</option>
-								</select>
-
-								<select name="" class="selected-custom green_effect">
-									<option selected value="">Xã/Phường</option>
-									<option value="">Ninh Thân</option>
-								</select>
-
-								<select name="" class="selected-custom green_effect">
-									<option selected value="">Thôn</option>
-									<option value="">Đại Tập</option>
+						<div class="w-100 border p-2">
+							<label class="fs-16 mb-2">Loài</label>
+							<div class="wrapper">
+								<select name="" class="my-1 w-100 green_effect">
+									<option selected value="">Cây</option>
+									<option value="">Ráng Đại</option>
 								</select>
 							</div>
 						</div>
@@ -94,31 +80,32 @@
 						<div class="w-100 border  p-2">
 							<label class="fs-16 mb-2">Thời gian</label>
 							<div class="wrapper d-flex justify-content-between flex-wrap">
-								<select name="" class="selected-custom green_effect">
+								<select name="year" class="_years selected-custom green_effect" onchange="setupDay()">
 									<option selected value="">Năm</option>
-									<option value="">2024</option>
-									<option value="">2025</option>
+									<option value="2025">2025</option>
+									<option value="2024">2024</option>
 								</select>
 
-								<select name="" class="selected-custom green_effect">
+								<select name="month" class="_months selected-custom green_effect" onchange="setupDay()">
 									<option selected value="">Tháng</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">3</option>
+									<option value="12">Tháng 12</option>
+									<option value="11">Tháng 11</option>
+									<option value="10">Tháng 10</option>
+									<option value="9">Tháng 9</option>
+									<option value="8">Tháng 8</option>
+									<option value="7">Tháng 7</option>
+									<option value="6">Tháng 6</option>
+									<option value="5">Tháng 5</option>
+									<option value="4">Tháng 4</option>
+									<option value="3">Tháng 3</option>
+									<option value="2">Tháng 2</option>
+									<option value="1">Tháng 1</option>
 								</select>
 
-								<select name="" class="selected-custom green_effect">
-									<option selected value="">Ngày</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">3</option>
+								<select name="day" class="_days selected-custom green_effect">
+									<option selected value="" class="select_default">Ngày</option>
 								</select>
 							</div>
-						</div>
-
-						<div class="form_fake p-2 border  d-flex flex-column align-items-center gap-2 w-100">
-							<label for="">Thêm từ khoá</label>
-							<input type="search" name="search" id="search" class="input_search green_effect" placeholder="Tìm với...">
 						</div>
 
 						<button>Tìm kiếm</button>

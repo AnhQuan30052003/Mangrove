@@ -9,6 +9,9 @@ namespace Mangrove.Controllers {
 
 		}
 		public IActionResult Index() {
+			//TempData["Status"] = Helper.StatusNoifier.success;
+			//TempData["Content"] = "Thành công test code";
+
 			return View();
 		}
 

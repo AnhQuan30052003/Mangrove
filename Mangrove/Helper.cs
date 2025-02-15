@@ -1,6 +1,3 @@
-using Google.Cloud.Translation.V2;
-using System.Threading.Tasks;
-
 public class Helper {
     // Path layout...
     public static class Path {
@@ -9,6 +6,12 @@ public class Helper {
         public static string components = "~/Views/Shared/Components";
         public static string _components = "~/Views/_Components";
     }
+
+    // Status noifier
+    public static class StatusNoifier {
+        public static string success = "success";
+        public static string fail = "fail";
+	}
 
     // Variables
     public static class Variable {

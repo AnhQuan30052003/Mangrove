@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mangrove")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b9a6844da8e92f527f83b517371793a7e08ac2e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+987861d2de88bf33f17195592711d72ce3e3cd2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mangrove")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mangrove")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

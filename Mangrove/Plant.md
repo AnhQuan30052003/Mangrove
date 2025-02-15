@@ -1,27 +1,24 @@
 # KẾ HOẠCH CHO ĐỒ ÁN TỐT NGHIỆP
----
+-------------------------------
 
 ## Người tìm kiếm
 ---
-1. [✅][Page] Trang chủ
-    - Khung đăng nhập admin, chọn ngôn ngữ (Anh - Việt)
-    - Header (logo, icon search)
-    - Footer (logo, thông tin liên hệ)
-    - Banner slider các cây gần đây
+1. [✅] Module: Header
+- Logo/title page
+- Tìm kiếm
+    + Nhanh (từ khoá)
+    + Lọc (theo cây, theo thời gian)
+- Chuyển đổi ngôn ngữ
+- Đăng nhập của quản trị
 
-2. [✅][Module](tích hợp vào Header) Khung tìm kiếm ?
-    - Nhanh         : Input[type="text"] tìm theo keywork
-    - Lộc/nâng cao  : Theo khu vực, giai đoạn
+2. [✅] Module: Footer
+- Logo/title page
+- Thông tin tương tác
 
-3. [❌][Module] Kết quả tìm kiếm ?
-    - Khung : Các kết quả
-    - Item  : Ảnh + name + scientific name + surname
-    - Tích hợp tính năng phân trang
-[Note] Nếu nhiều kết quả thì trả về khung, còn một thì đi thẳng tới trang "hiển thị kết quả"
+3. [✅] Module: Cập nhật gần đây
+- Gồm các item về cây được cập nhật (chỉnh sửa, thêm giai đoạn, khảo sát thêm cây) gần đây
 
-4. [❌][Page] Hiển thị kết quả
-    - Thông tin sơ bộ về cây
-    - Các giai đoạn đo đạc + link (trong ngày) & QR code (button)
+4. [❌] Module: ?
 
 ## Quản trị viên
 ---

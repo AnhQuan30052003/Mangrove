@@ -32,6 +32,9 @@ li {
     font-size: 16px;
 }
 
+option {
+    width: 100% !important;
+}
 
 .cursor-pointer {
     cursor: pointer;
@@ -51,4 +54,8 @@ li {
 
 .upper {
     text-transform: uppercase;
+}
+
+._180deg {
+    transform: rotate(180deg);
 }
