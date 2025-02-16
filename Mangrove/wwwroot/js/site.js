@@ -125,7 +125,14 @@ function setupDay() {
 }
 setupDay();
 
-
+// Toggle info title
+const toggleTitles = document.querySelectorAll(".toggle_title");
+toggleTitles.forEach((item) => {
+	item.addEventListener("click", function (e) {
+		const info = item.closest(".box").querySelector(".info");
+		info.classList.toggle("height-0");
+	});
+});
 
 
 

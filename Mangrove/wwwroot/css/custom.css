@@ -59,3 +59,21 @@ option {
 ._180deg {
     transform: rotate(180deg);
 }
+
+.color_green_hover {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.color_green_hover:hover {
+    color: #70c745 !important;
+}
+
+.time_delay {
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+}
+
+.text-justify {
+    text-align: justify !important;
+}

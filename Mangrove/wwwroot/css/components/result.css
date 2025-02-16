@@ -1,0 +1,29 @@
+﻿.space_word {
+	display: inline-block;
+	width: 100px;
+}
+
+.height_responsive {
+	max-height: 300px !important;
+}
+
+@media (width >= 1024px) {
+	.height_responsive {
+		max-height: 500px !important;
+	}
+}
+
+.info {
+	-webkit-transition-duration: 400ms;
+	transition-duration: 400ms;
+	overflow: hidden;
+	max-height: 700px;
+}
+
+.height-0 {
+	max-height: 0 !important;
+}
+
+.mangrove_result .box .toggle_title {
+	cursor: pointer;
+}
