@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Mangrove.Data.TblMangrove>
 
 <section class="recenty_updated pt-3 pb-5">
 	<div class="container">
@@ -8,12 +8,13 @@
 
 		<div class="items-tree d-flex flex-wrap justify-content-between">
 			@{
-				for (int i = 1; i <= 6; i++)
+				foreach (var m in Model)
 				{
 					<div class="item p-2 bg-white m-0 my-2 w-100">
 						<a href="@Url.Action("Result", "Home")">
 							<div class="image w-100 overflow-hidden" style="height 300px;">
-								<img class="img-tree object-fit-cover w-100 h-100" src="@Url.Content("~/img/tree-img/img_test.jpg")" />
+								<img class="img-tree object-fit-cover w-100 h-100"
+									src="@Url.Content("~/img/tree-img/img_test.jpg")" />
 							</div>
 
 							<div class="infomation py-2">

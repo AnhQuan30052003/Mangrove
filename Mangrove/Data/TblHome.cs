@@ -3,10 +3,15 @@ using System.Collections.Generic;
 
 namespace Mangrove.Data;
 
-public partial class TblHome {
-    public int ItemsSlider { get; set; }
+public partial class TblHome
+{
+    public string FooterImg { get; set; } = null!;
 
-    public DateTime TimeWorkOpen { get; set; }
+    public TimeOnly TimeWorkOpen { get; set; }
 
-    public DateTime TimeWorkClose { get; set; }
+    public TimeOnly TimeWorkClose { get; set; }
+
+    public int YearStart { get; set; }
+
+    public int YearEnd { get; set; }
 }

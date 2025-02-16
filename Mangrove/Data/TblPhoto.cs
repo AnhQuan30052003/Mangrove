@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Mangrove.Data;
+
+public partial class TblPhoto
+{
+    public string Id { get; set; } = null!;
+
+    public string IdObj { get; set; } = null!;
+
+    public string? ImageNameId { get; set; }
+}

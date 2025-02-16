@@ -1,8 +1,9 @@
+@model List<Mangrove.Data.TblMangrove>
+
 @{
 	ViewData["Title"] = "";
 	Layout = Helper.Path.layoutUser;
 	string _com = Helper.Path._components;
 }
 
-@await Html.PartialAsync(_com + "/RecentlyUpdated.cshtml")
-
+@await Html.PartialAsync(_com + "/RecentlyUpdated.cshtml", Model)
