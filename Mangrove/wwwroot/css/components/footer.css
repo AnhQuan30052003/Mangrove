@@ -1,25 +1,28 @@
 ﻿#scrollUp {
+	position: fixed;
+	z-index: 10;
+	right: 20px;
+	bottom: 70px;
+
+	width: 40px;
+	height: 0;
+	opacity: 0;
+
+	color: #ffffff;
 	background-color: #70c745;
 	border-radius: 0;
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
-	color: #ffffff;
 	font-size: 24px;
-	height: 40px;
 	line-height: 40px;
-	right: 50px;
 	text-align: center;
-	width: 40px;
+
 	-webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
-	position: fixed;
-	bottom: 10px;
-	right: 20px;
-	z-index: 10;
-	opacity: 0;
 }
 
 #scrollUp.opacity {
 	opacity: 1;
+	height: 40px;
 }
 
 #scrollUp:hover {
@@ -51,4 +54,10 @@
 	height: 1px;
 	background-color: #ebebeb;
 	margin-top: 50px;
+}
+
+@media (width >= 576px) {
+	#scrollUp {
+		bottom: 20px;
+	}
 }

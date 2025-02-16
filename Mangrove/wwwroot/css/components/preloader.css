@@ -41,3 +41,13 @@
 .preloader .preloader-img img {
 	max-width: 45px;
 }
+
+@keyframes zoom {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

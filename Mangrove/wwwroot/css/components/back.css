@@ -1,0 +1,29 @@
+﻿.select_ex_co {
+	border: none;
+	width: 120px;
+}
+
+.btn_back {
+	padding: 7.5px 15px;
+	background-color: white;
+	color: black;
+	border: none;
+}
+
+.btn_back:hover {
+	outline: solid 1px #70c745;
+	color: black;
+}
+
+.btn_back:hover i {
+	animation: _back 1s linear alternate infinite;
+}
+
+@keyframes _back {
+	50% {
+		transform: translateX(-5px);
+	}
+	0%, 100% {
+		transform: translateX(0);
+	}
+}

@@ -1,5 +1,11 @@
-﻿// Theo dõi cuộn màn hình nút quay lên #scrollUp
-document.addEventListener("scroll", function () {
+﻿// Theo dõi biểu tượng khi load page và xoá
+window.addEventListener("load", function (e) {
+	const preloader = document.querySelector(".preloader");
+	preloader.remove();
+});
+
+// Theo dõi cuộn màn hình nút quay lên #scrollUp
+window.addEventListener("scroll", function () {
 	const button = document.querySelector("#scrollUp");
 	if (window.scrollY > window.innerHeight * 1 / 8) {
 		button.classList.add("opacity")
@@ -128,13 +134,38 @@ setupDay();
 // Toggle info title
 const toggleTitles = document.querySelectorAll(".toggle_title");
 toggleTitles.forEach((item) => {
-	item.addEventListener("click", function (e) {
-		const info = item.closest(".box").querySelector(".info");
-		info.classList.toggle("height-0");
+	item.addEventListener("click", function () {
+		const box = item.closest(".box");
+		const info = box.querySelector(".info");
+		info.classList.toggle("box_collapse");
 	});
 });
 
+// Theo dõi mở rộng/thu gọn nội dung trong result
+const selects = document.querySelectorAll(".select_ex_co");
+selects.forEach((item) => {
+	item.addEventListener("change", function () {
+		// Đồng bộ 2 select mở rộng/thu gọn
+		selects.forEach((select) => {
+			if (select !== item) {
+				select.value = item.value;
+			}
+		});
 
+		// Xử lý sự kiện
+		const infos = document.querySelectorAll(".mangrove_result .box .info")
+		if (item.value == "ex") {
+			infos.forEach((info) => {
+				info.classList.remove("box_collapse");
+			});
+		}
+		else {
+			infos.forEach((info) => {
+				info.classList.add("box_collapse");
+			});
+		}
+	});
+});
 
 //--
 console.log("Run file site.js");

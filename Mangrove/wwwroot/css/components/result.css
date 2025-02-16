@@ -14,13 +14,13 @@
 }
 
 .info {
-	-webkit-transition-duration: 400ms;
-	transition-duration: 400ms;
+	transition: all 0.4s;
+
 	overflow: hidden;
-	max-height: 700px;
+	max-height: 1000px;
 }
 
-.height-0 {
+.box_collapse {
 	max-height: 0 !important;
 }
 

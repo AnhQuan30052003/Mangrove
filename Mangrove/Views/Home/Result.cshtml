@@ -1,83 +1,9 @@
 ﻿@{
-	ViewData["Title"] = "Tìm kiếm - Cây Ngập Mặn";
+	ViewData["Title"] = "Ráng Đại - Cây Ngập Mặn";
 	Layout = Helper.Path.layoutUser;
+	string _com = Helper.Path._components;
 }
 
-<section class="mangrove_result">
-	<div class="container py-3">
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="border py-2 bg-black text-white">Hình ảnh</h5>
-			</div>
-
-			<div class="info images height_responsive">
-				<img class="w-100 h-100 object-fit-cover" src='@Url.Content("~/img/tree-img/img_test.jpg")' />
-			</div>
-		</div>
-
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="border py-2 bg-black text-white">Thông tin</h5>
-			</div>
-
-			<div class="info d-flex gap-1 justify-content-between align-items-center">
-				<div class="name_info p-2 border">
-					<h6 class="text-center mb-2">Ráng Đại</h6>
-					<p>
-						<span class="space_word">Tên khác:</span>
-						<span>Ráng vàng, Ráng biển</span>
-					</p>
-					<p>
-						<span class="space_word">Tên khoa học:</span>
-						<span>Acrostichum aureum L.</span>
-					</p>
-					<p>
-						<span class="space_word">Họ:</span>
-						<span>Pteridaceae</span>
-					</p>
-				</div>
-
-				<div class="conservation_status_info p-2 border">
-					<p>Tình trạng bảo tồn:</p>
-					<p>Không có nguy cơ.</p>
-				</div>
-
-				<div class="use_info p-2 border">
-					<p>Công dụng:</p>
-					<p>
-						Đọt non luộc ăn được.
-						Lá khô dùng làm chổi (sóng lá), các sản phẩm thủ công mỹ nghệ, hoặc lợp mái nhà.
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="border py-2 bg-black text-white">Hình thái</h5>
-			</div>
-
-			<div class="info morphology_info">
-				<p class="p-2 text-justify">
-					Loài dương xỉ trên cạn lớn, mọc thành cụm, cao tới 3 m. Thân ngắn, phủ nhiều vảy lớn, và chồi mọc sát gốc. Lá kép lông chim, cao trên 2m, khoảng 30 lá chét có phiến dày.
-					<br />
-					Sinh sản vô tính bằng bào tử ở mặt dưới các “lá chét sinh sản”. Lá chét sinh sản có mặt trên màu xanh lục, mặt dưới nhám mang các ổ bào tử màu nâu vàng.
-				</p>
-			</div>
-		</div>
-
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="border py-2 bg-black text-white">Sinh thái</h5>
-			</div>
-
-			<div class="info ecology_info">
-				<p class="p-2 text-justify">
-					Đó là một loài dương xỉ lâu năm, phổ biến nhất được tìm thấy phía sau rừng ngập mặn. Thường mọc hoang ở vùng trũng, bờ rạch, bên mép đầm lầy ngập mặn, nước lợ hay trên đất có nhiều mùn, đôi khi trên bãi cát. Tái sinh tự nhiên mạnh bằng bào tử.
-					<br />
-					Loài cây ngập mặn thực sự.
-				</p>
-			</div>
-		</div>
-	</div>
-</section>
+@await Html.PartialAsync(_com + "/Back.cshtml")
+@await Html.PartialAsync(_com + "/Infomation_Tree.cshtml")
+@await Html.PartialAsync(_com + "/Back.cshtml")

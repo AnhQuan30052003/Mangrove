@@ -22,7 +22,7 @@
 	transform: scale(1.1);
 }
 
-.items-tree .item .image::after {
+/*.items-tree .item .image::after {
 	background-color: rgba(4, 43, 15, 0.4);
 	position: absolute;
 	z-index: 0;
@@ -31,7 +31,7 @@
 	width: 100%;
 	height: 100%;
 	content: "";
-}
+}*/
 
 .items-tree .item .btn_see_more:hover {
 	background-color: transparent;

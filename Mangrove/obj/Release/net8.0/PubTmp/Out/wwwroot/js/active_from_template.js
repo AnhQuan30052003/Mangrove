@@ -4,16 +4,16 @@
     var browserWindow = $(window);
 
     // :: 1.0 Preloader Active Code
-    browserWindow.on('load', function () {
-        $('.preloader').fadeOut('slow', function () {
-            $(this).remove();
-        });
-    });
+    //browserWindow.on('load', function () {
+    //    $('.preloader').fadeOut('slow', function () {
+    //        $(this).remove();
+    //    });
+    //});
 
     // :: 2.0 Nav Active Code
-    if ($.fn.classyNav) {
-        $('#alazeaNav').classyNav();
-    }
+    //if ($.fn.classyNav) {
+    //    $('#alazeaNav').classyNav();
+    //}
 
 
 
@@ -68,11 +68,11 @@
     }
 
     // :: 10.0 Sticky Active Code
-    if ($.fn.sticky) {
-        $(".alazea-main-menu").sticky({
-            topSpacing: 0
-        });
-    }
+    //if ($.fn.sticky) {
+    //    $(".alazea-main-menu").sticky({
+    //        topSpacing: 0
+    //    });
+    //}
 
     // :: 3.0 Search Active Code
     // $('#searchIcon').on('click', function () {
