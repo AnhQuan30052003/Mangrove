@@ -1,9 +1,11 @@
-﻿@{
+﻿@model Mangrove.Data.TblMangrove
+
+@{
 	ViewData["Title"] = "Ráng Đại - Cây Ngập Mặn";
 	Layout = Helper.Path.layoutUser;
 	string _com = Helper.Path._components;
 }
 
 @await Html.PartialAsync(_com + "/Back.cshtml")
-@await Html.PartialAsync(_com + "/Infomation_Tree.cshtml")
+@await Html.PartialAsync(_com + "/Infomation_Tree.cshtml", Model)
 @await Html.PartialAsync(_com + "/Back.cshtml")

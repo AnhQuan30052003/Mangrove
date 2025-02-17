@@ -8,34 +8,64 @@ using Microsoft.EntityFrameworkCore;
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
 		private readonly MangroveContext context;
+
 		public HomeController(MangroveContext context) {
 			this.context = context;
 		}
 
 		public async Task<IActionResult> Index() {
-			GetDistanceYear();
-			//TempData["Status"] = Helper.StatusNoifier.success;
-			//TempData["Content"] = "Thành công test code";
+			try {
+				//GetDistanceYear();
+				//TempData["Status"] = Helper.StatusNoifier.success;
+				//TempData["Content"] = "Thành công test code";
 
-			int quantityShow = 6;
-			var mangroves = await context.TblMangroves
-			.Skip(0)
-			.Take(quantityShow)
-			.ToListAsync();
+				// Truy vấn 6 item gần đây nhất
+				int quantityShow = 6;
+				var mangroves = await context.TblMangroves
+				.Skip(0)
+				.Take(quantityShow)
+				.OrderByDescending(o => o.UpdateLast)
+				.ToListAsync();
 
-			return View(mangroves);
+				return View(mangroves);
+			}
+			catch (Exception ex) {
+				Console.WriteLine("Error: " + ex.Message);
+				return NotFound("Không kết nối được với Cơ sở dữ liệu");
+			}
 		}
 
 		public IActionResult Results() {
-			GetDistanceYear();
+			//GetDistanceYear();
 
 			return View();
 		}
 
-		public IActionResult Result(string id) {
-			GetDistanceYear();
+		public async Task<IActionResult> Result(string id) {
+			try {
+				//GetDistanceYear();
 
-			return View();
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(o => o.Id == id);
+				if (mangrove == null) {
+					return NotFound($"Không tìm thấy cây có ID = {id}");
+				}
+				else {
+					var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
+					var listPhotos = new List<string>();
+					foreach (var photo in photos) {
+						listPhotos.Add(photo.ImageNameId);
+					}
+					TempData["Photos"] = listPhotos;
+
+					mangrove.View += 1;
+					await context.SaveChangesAsync();
+					return View(mangrove);
+				}
+			}
+			catch (Exception ex) {
+				Console.WriteLine("Error: " + ex.Message);
+				return NotFound("Không kết nối được với Cơ sở dữ liệu");
+			}
 		}
 
 		// Hàm riêng
@@ -53,7 +83,6 @@ namespace Mangrove.Controllers {
 			}
 			catch (Exception ex) {
 				Console.WriteLine("Error: " + ex.Message);
-
 			}
 		}
 	}

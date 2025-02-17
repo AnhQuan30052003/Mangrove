@@ -9,5 +9,5 @@ public partial class TblPhoto
 
     public string IdObj { get; set; } = null!;
 
-    public string? ImageNameId { get; set; }
+    public string ImageNameId { get; set; } = null!;
 }

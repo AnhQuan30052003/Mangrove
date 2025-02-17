@@ -4,12 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mangrove.Data;
 
-public partial class MangroveContext : DbContext {
-    public MangroveContext() {
+public partial class MangroveContext : DbContext
+{
+    public MangroveContext()
+    {
     }
 
     public MangroveContext(DbContextOptions<MangroveContext> options)
-        : base(options) {
+        : base(options)
+    {
     }
 
     public virtual DbSet<TblHome> TblHomes { get; set; }
@@ -22,8 +25,10 @@ public partial class MangroveContext : DbContext {
 
     public virtual DbSet<TblStage> TblStages { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        modelBuilder.Entity<TblHome>(entity => {
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<TblHome>(entity =>
+        {
             entity
                 .HasNoKey()
                 .ToTable("tblHome");
@@ -37,8 +42,9 @@ public partial class MangroveContext : DbContext {
             entity.Property(e => e.YearStart).HasColumnName("_yearStart");
         });
 
-        modelBuilder.Entity<TblIndividual>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C5E9B7DAE");
+        modelBuilder.Entity<TblIndividual>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C970B8777");
 
             entity.ToTable("tblIndividual");
 
@@ -60,8 +66,9 @@ public partial class MangroveContext : DbContext {
                 .HasConstraintName("FK__tblIndivi___idMa__4CA06362");
         });
 
-        modelBuilder.Entity<TblMangrove>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1CF34F0D6D");
+        modelBuilder.Entity<TblMangrove>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1C5B93AFD4");
 
             entity.ToTable("tblMangrove");
 
@@ -76,6 +83,7 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(256)
                 .HasColumnName("_distribution");
             entity.Property(e => e.Ecology).HasColumnName("_ecology");
+            entity.Property(e => e.MainImage).HasColumnName("_mainImage");
             entity.Property(e => e.Morphology).HasColumnName("_morphology");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
@@ -90,12 +98,16 @@ public partial class MangroveContext : DbContext {
             entity.Property(e => e.Surname)
                 .HasMaxLength(50)
                 .HasColumnName("_surname");
+            entity.Property(e => e.UpdateLast)
+                .HasColumnType("datetime")
+                .HasColumnName("_updateLast");
             entity.Property(e => e.Use).HasColumnName("_use");
             entity.Property(e => e.View).HasColumnName("_view");
         });
 
-        modelBuilder.Entity<TblPhoto>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C7B18B4C3");
+        modelBuilder.Entity<TblPhoto>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C44649482");
 
             entity.ToTable("tblPhotos");
 
@@ -110,8 +122,9 @@ public partial class MangroveContext : DbContext {
             entity.Property(e => e.ImageNameId).HasColumnName("_imageNameId");
         });
 
-        modelBuilder.Entity<TblStage>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C4C847F87");
+        modelBuilder.Entity<TblStage>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1CB13A4F71");
 
             entity.ToTable("tblStage");
 

@@ -1,4 +1,10 @@
-﻿<section class="mangrove_result">
+﻿@model Mangrove.Data.TblMangrove
+@{
+	var photos = TempData["Photos"] as List<string> ?? new List<string>();
+	string img = @Url.Content("~/img/tree-img/" + Model.MainImage);
+}
+
+<section class="mangrove_result">
 	<div class="container py-3">
 		<!-- Images -->
 		<div class="box bg-white mb-2">
@@ -7,7 +13,7 @@
 			</div>
 
 			<div class="info images height_responsive">
-				<img class="w-100 h-100 object-fit-cover" src='@Url.Content("~/img/tree-img/img_test.jpg")' />
+				<img class="w-100 h-100 object-fit-cover" src="@img" />
 			</div>
 		</div>
 
@@ -18,30 +24,26 @@
 			</div>
 
 			<div class="info">
-				<h4 class="text-center mb-2 fw-bold">Ráng Đại</h4>
+				<h4 class="text-center mb-2 fw-bold">@Model.Name</h4>
 				<div class="wrapper d-flex flex-wrap">
 					<div class="name_info p-2 col-12 col-sm-6">
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">Tên khác:</span>
-							<span>Ráng vàng, Ráng biển</span>
+							<span>@Model.OtherName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">Tên khoa học:</span>
-							<span>Acrostichum aureum L.</span>
+							<span>@Model.ScientificName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">Họ:</span>
-							<span>Pteridaceae</span>
+							<span>@Model.Surname</span>
 						</p>
 					</div>
 
 					<div class="use_info p-2 col-12 col-sm-6">
 						<p class="fw-bold">Công dụng:</p>
-						<p class="text-justify">
-							Đọt non luộc ăn được
-							<br />
-							Lá khô dùng làm chổi (sóng lá), các sản phẩm thủ công mỹ nghệ, hoặc lợp mái nhà.
-						</p>
+						<p class="text-justify">@Html.Raw(Model.Use)</p>
 					</div>
 				</div>
 			</div>
@@ -54,11 +56,7 @@
 			</div>
 
 			<div class="info morphology_info">
-				<p class="p-2 text-justify">
-					Loài dương xỉ trên cạn lớn, mọc thành cụm, cao tới 3 m. Thân ngắn, phủ nhiều vảy lớn, và chồi mọc sát gốc. Lá kép lông chim, cao trên 2m, khoảng 30 lá chét có phiến dày.
-					<br />
-					Sinh sản vô tính bằng bào tử ở mặt dưới các “lá chét sinh sản”. Lá chét sinh sản có mặt trên màu xanh lục, mặt dưới nhám mang các ổ bào tử màu nâu vàng.
-				</p>
+				<p class="p-2 text-justify">@Html.Raw(Model.Morphology)</p>
 			</div>
 		</div>
 
@@ -69,11 +67,7 @@
 			</div>
 
 			<div class="info ecology_info">
-				<p class="p-2 text-justify">
-					Đó là một loài dương xỉ lâu năm, phổ biến nhất được tìm thấy phía sau rừng ngập mặn. Thường mọc hoang ở vùng trũng, bờ rạch, bên mép đầm lầy ngập mặn, nước lợ hay trên đất có nhiều mùn, đôi khi trên bãi cát. Tái sinh tự nhiên mạnh bằng bào tử.
-					<br />
-					Loài cây ngập mặn thực sự.
-				</p>
+				<p class="p-2 text-justify">@Html.Raw(Model.Ecology)</p>
 			</div>
 		</div>
 
@@ -86,12 +80,12 @@
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">Phân bố - ở phía Bắc Khánh Hòa:</p>
-					<p>Khá phổ biến ở khu vực ven biển Bắc Khánh Hòa.</p>
+					<p>@Html.Raw(Model.Distribution)</p>
 				</div>
 
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">Tình trạng bảo tồn:</p>
-					<p>Không có nguy cơ.</p>
+					<p>@Html.Raw(Model.ConservationStatus)</p>
 				</div>
 			</div>
 		</div>

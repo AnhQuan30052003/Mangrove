@@ -15,6 +15,8 @@ public partial class TblMangrove
 
     public string Surname { get; set; } = null!;
 
+    public string MainImage { get; set; } = null!;
+
     public string Morphology { get; set; } = null!;
 
     public string Ecology { get; set; } = null!;
@@ -28,6 +30,8 @@ public partial class TblMangrove
     public int Quantity { get; set; }
 
     public int View { get; set; }
+
+    public DateTime UpdateLast { get; set; }
 
     public virtual ICollection<TblIndividual> TblIndividuals { get; set; } = new List<TblIndividual>();
 }

@@ -1,11 +1,10 @@
+create database mangrove;
+use mangrove;
+
 use master;
 drop database mangrove;
 
-create database mangrove;
-use mangrove;
----
-
--- [Drop tables]
+--- [Drop tables] --
 drop table if exists tblHome;
 
 drop table if exists tblStage;
@@ -14,7 +13,8 @@ drop table if exists tblMangrove;
 
 drop table if exists tblPhotos;
 
--- [Add tables]
+
+-- [Add tables] --
 -- Bảng cho trang home "tìm kiếm"
 create table tblHome
 (
@@ -33,13 +33,15 @@ create table tblMangrove
     _otherName nvarchar(50) not null,
     _scientificName nvarchar(50) not null,
     _surname nvarchar(50) not null,
+    _mainImage nvarchar(max) not null,
     _morphology nvarchar(max) not null,
     _ecology nvarchar(max) not null,
     _distribution nvarchar(256) not null,
     _conservationStatus nvarchar(256) not null,
     _use nvarchar(max) not null,
     _quantity int not null,
-    _view int not null
+    _view int not null,
+    _updateLast datetime not null
 )
 
 -- Bảng cá thể
@@ -63,5 +65,5 @@ create table tblPhotos
 (
     _id varchar(36) not null primary key,
     _idObj varchar(36) not null,
-    _imageNameId nvarchar(max)
+    _imageNameId nvarchar(max) not null,
 )
