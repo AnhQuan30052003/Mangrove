@@ -167,5 +167,75 @@ selects.forEach((item) => {
 	});
 });
 
+// Theo dõi các slick slider
+function loadSlider() {
+	// Lấy - khởi tạo tham chiếu
+	const slickSliders = document.querySelectorAll(".slick_slider");
+	slickSliders.forEach((slickSlider) => {
+		const slides = slickSlider.querySelector(".slides");
+		const slideItem = slides.querySelectorAll(".slide_item");
+
+		// Nếu không có hoặc chỉ 1 slide_item thì không cần tạo Slick Slider
+		if (slideItem.length <= 1) return;
+
+		const btnPrev = document.createElement("button");
+		const btnNext = document.createElement("button");
+
+		// Tạo 2 nút prev và next
+		btnPrev.classList.add("btn_prev", "disabled");
+		btnNext.classList.add("btn_next");
+		btnPrev.innerHTML = "&#10094;"
+		btnNext.innerHTML = "&#10095;"
+		slickSlider.appendChild(btnPrev);
+		slickSlider.appendChild(btnNext);
+
+		// Xử lý khi click
+		let index = 0;
+
+		function updateSlide() {
+			slides.style.transform = `translateX(-${index * 100}%)`;
+
+			if (index == 0) btnPrev.classList.add("disabled");
+			else btnPrev.classList.remove("disabled");
+			if (index == slideItem.length - 1) btnNext.classList.add("disabled");
+			else btnNext.classList.remove("disabled");
+		}
+
+		function prevSlide() {
+			index -= 1;
+			updateSlide();
+		}
+
+		function nextSlide() {
+			index += 1;
+			updateSlide();
+		}
+
+		btnPrev.addEventListener("click", prevSlide);
+		btnNext.addEventListener("click", nextSlide);
+	});
+}
+loadSlider();
+
+// Xử lý khi click vào ảnh phần thông tin cây
+const imageClick = document.querySelectorAll(".click_show_image");
+imageClick.forEach((item) => {
+	item.addEventListener("click", function (e) {
+		const src = item.getAttribute("src");
+		const showImage = document.querySelector("#click_show_image");
+		const img = showImage.querySelector(".box_show img");
+		img.src = src;
+		showImage.classList.remove("d-none");
+	});
+});
+
+// Đóng ảnh khi xem (btn_close)
+function _btnClose() {
+	const showImage = document.querySelector("#click_show_image");
+	showImage.classList.add("d-none");
+}
+
+
+
 //--
 console.log("Run file site.js");

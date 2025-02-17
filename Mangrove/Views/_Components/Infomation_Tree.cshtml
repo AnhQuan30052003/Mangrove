@@ -1,19 +1,24 @@
 ﻿@model Mangrove.Data.TblMangrove
 @{
 	var photos = TempData["Photos"] as List<string> ?? new List<string>();
-	string img = @Url.Content("~/img/tree-img/" + Model.MainImage);
 }
 
 <section class="mangrove_result">
 	<div class="container py-3">
 		<!-- Images -->
-		<div class="box bg-white mb-2">
+		<div class="box bg-whitez bg-transparent mb-2">
 			<div class="toggle_title text-center mt-1 mb-2">
 				<h5 class="border py-2 bg-black text-white">Hình ảnh</h5>
 			</div>
 
-			<div class="info images height_responsive">
-				<img class="w-100 h-100 object-fit-cover" src="@img" />
+			<div class="info images slick_slider height_responsive">
+				<div class="slides">
+					@foreach (var photo in photos)
+					{
+						string img = @Url.Content("~/img/tree-img/" + photo);
+						<img class="click_show_image slide_item" src="@img" />
+					}
+				</div>
 			</div>
 		</div>
 

@@ -8,19 +8,17 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
 
 	<!-- Social Share-->
 	<meta property="og:title" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
-	<meta property="og:description"
-		content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
+	<meta property="og:description" content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
 	<meta property="og:image" content="https://mangrove.runasp.net/img/logo/leaf.png" />
 	<meta property="og:url" content="https://mangrove.runasp.net/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="vi_VN" />
 	<meta property="og:site_name" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
-
+	
 	<!-- Title page + Favicon page -->
 	<title>@ViewData["Title"] Cây ngập mặn | Đại học Nha Trang</title>
 	<link rel="icon" href="~/img/logo/favicon.ico">
@@ -57,6 +55,7 @@
 <body>
 	<!-- Preload -->
 	@await Html.PartialAsync(com + "/Both_Preloader.cshtml")
+	@await Html.PartialAsync(com + "/Both_ClickShowImage.cshtml")
 
 	<!-- Header -->
 	@await Html.PartialAsync(com + "/User_Header.cshtml")

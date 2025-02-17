@@ -4,18 +4,17 @@
 }
 
 .height_responsive {
-	max-height: 300px !important;
+	height: 300px !important;
 }
 
 @media (width >= 1024px) {
 	.height_responsive {
-		max-height: 550px !important;
+		height: 600px !important;
 	}
 }
 
 .info {
 	transition: all 0.4s;
-
 	overflow: hidden;
 	max-height: 1000px;
 }

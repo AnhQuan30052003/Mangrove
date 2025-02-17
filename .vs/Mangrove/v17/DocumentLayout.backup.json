@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\shared\\_layout_user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\shared\\_layout_user.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\css\\components\\click_show_image.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\css\\components\\click_show_image.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\shared\\components\\both_clickshowimage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\shared\\components\\both_clickshowimage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\_components\\infomation_tree.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\_components\\infomation_tree.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +25,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 212,
+          "DockedWidth": 217,
           "SelectedChildIndex": 4,
           "Children": [
             {
@@ -34,15 +46,60 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_Layout_user.cshtml",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\_Layout_user.cshtml",
-              "RelativeDocumentMoniker": "Mangrove\\Views\\Shared\\_Layout_user.cshtml",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\_Layout_user.cshtml",
-              "RelativeToolTip": "Mangrove\\Views\\Shared\\_Layout_user.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADoAAAAwAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Both_ClickShowImage.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\Components\\Both_ClickShowImage.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Shared\\Components\\Both_ClickShowImage.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\Components\\Both_ClickShowImage.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Shared\\Components\\Both_ClickShowImage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-17T06:45:53.584Z",
+              "WhenOpened": "2025-02-17T17:13:29.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Infomation_Tree.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_Components\\Infomation_Tree.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\_Components\\Infomation_Tree.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_Components\\Infomation_Tree.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\_Components\\Infomation_Tree.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-17T16:18:42.821Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 195,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "click_show_image.css",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\click_show_image.css",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\css\\components\\click_show_image.css",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\click_show_image.css",
+              "RelativeToolTip": "Mangrove\\wwwroot\\css\\components\\click_show_image.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-02-17T17:17:19.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "Mangrove\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAAOoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-17T16:45:45.478Z",
               "EditorCaption": ""
             }
           ]
