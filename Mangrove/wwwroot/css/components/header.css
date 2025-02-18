@@ -10,6 +10,7 @@
 	width: 100%;
 	top: 60px;
 	left: 50%;
+	z-index: 10;
 	transform: translateX(-50%);
 	background-color: #f8f9fa;
 	border-radius: 5px;
@@ -155,10 +156,8 @@ select option {
 	inset: 0;
 	background-color: black;
 	opacity: 0.6;
-	z-index: 10;
+	z-index: 9;
 }
-
-
 
 @media (width <= 576px) {
 	.nav_btn_option {

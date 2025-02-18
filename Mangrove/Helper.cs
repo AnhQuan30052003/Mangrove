@@ -11,11 +11,18 @@ public class Helper {
     public static class StatusNoifier {
         public static string success = "success";
         public static string fail = "fail";
-	}
+    }
 
     // Variables
     public static class Variable {
+    }
 
+
+    // Function
+    public static class Func {
+        public static string Show(string text) {
+            return text.Replace("\n", "<br>");
+        }
     }
 
     // public static class GoogleTranslateService {

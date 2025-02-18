@@ -77,31 +77,6 @@ lis.forEach((item) => {
 	});
 });
 
-// Theo dõi huỷ khi click ngoài đối tượng
-document.addEventListener("click", function (event) {
-	// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
-	const searchIcon = document.querySelector("#searchIcon");
-	const sectionSearch = document.querySelector("#search_form_user");
-	const background = document.querySelector("#background");
-	const iconX = searchIcon.querySelector(".icon-x");
-	const iconS = searchIcon.querySelector(".icon-s");
-	if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target) && iconS.classList.contains("d-none")) {
-		sectionSearch.classList.add("d-none");
-		background.classList.add("d-none");
-		iconX.classList.add("d-none");
-		iconS.classList.remove("d-none");
-	}
-
-	// Nếu không click vào button language
-	const btnLanguage = document.querySelector(".btn_language");
-	const iconDrop = btnLanguage.querySelector("span i");
-	const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-	if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
-		dropdown.classList.add("d-none")
-		iconDrop.classList.remove("_180deg");
-	}
-});
-
 // Setup ngày
 function setupDay() {
 	const years = document.querySelector("._years");
@@ -173,16 +148,24 @@ function loadSlider() {
 	const slickSliders = document.querySelectorAll(".slick_slider");
 	slickSliders.forEach((slickSlider) => {
 		const slides = slickSlider.querySelector(".slides");
-		const slideItem = slides.querySelectorAll(".slide_item");
+		let slideItem = slides.querySelectorAll(".slide_item");
+		const description = document.querySelector(".show_description_photo p");
 
 		// Nếu không có hoặc chỉ 1 slide_item thì không cần tạo Slick Slider
 		if (slideItem.length <= 1) return;
+		let loadSuccess = false;
 
-		const btnPrev = document.createElement("button");
-		const btnNext = document.createElement("button");
+		// Tạo node đầu và cuối slide
+		const firstSlide = slideItem[0].cloneNode(true);
+		const lastSlide = slideItem[slideItem.length - 1].cloneNode(true);
+		slides.insertBefore(lastSlide, slideItem[0]);
+		slides.appendChild(firstSlide);
+		slideItem = slides.querySelectorAll(".slide_item");
 
 		// Tạo 2 nút prev và next
-		btnPrev.classList.add("btn_prev", "disabled");
+		const btnPrev = document.createElement("button");
+		const btnNext = document.createElement("button");
+		btnPrev.classList.add("btn_prev");
 		btnNext.classList.add("btn_next");
 		btnPrev.innerHTML = "&#10094;"
 		btnNext.innerHTML = "&#10095;"
@@ -190,15 +173,21 @@ function loadSlider() {
 		slickSlider.appendChild(btnNext);
 
 		// Xử lý khi click
-		let index = 0;
+		let index = 1;
 
-		function updateSlide() {
+		function updateSlide(loadSlide = true) {
+			if (loadSlide) slides.style.transition = "all 0.5s ease-in-out";
+			else slides.style.transition = "none";
+
 			slides.style.transform = `translateX(-${index * 100}%)`;
 
-			if (index == 0) btnPrev.classList.add("disabled");
-			else btnPrev.classList.remove("disabled");
-			if (index == slideItem.length - 1) btnNext.classList.add("disabled");
-			else btnNext.classList.remove("disabled");
+			if (index == 0 || index == slideItem.length - 1) {
+				index = (index == 0 ? slideItem.length - 2 : 1);
+				setTimeout(() => updateSlide(false), 500);
+			}
+
+			const note = slideItem[index].getAttribute("note");
+			description.innerHTML = note;
 		}
 
 		function prevSlide() {
@@ -211,8 +200,23 @@ function loadSlider() {
 			updateSlide();
 		}
 
-		btnPrev.addEventListener("click", prevSlide);
-		btnNext.addEventListener("click", nextSlide);
+		if (!loadSuccess) {
+			updateSlide(false);
+			loadSuccess = true;
+		}
+
+		btnPrev.addEventListener("click", function () {
+			prevSlide();
+			clearInterval(autoPlaySlide);
+			autoPlaySlide = setInterval(() => nextSlide(), 5000);
+		});
+		btnNext.addEventListener("click", function () {
+			nextSlide();
+			clearInterval(autoPlaySlide);
+			autoPlaySlide = setInterval(() => nextSlide(), 5000);
+		});
+
+		let autoPlaySlide = setInterval(() => nextSlide(), 5000);
 	});
 }
 loadSlider();
@@ -226,16 +230,47 @@ imageClick.forEach((item) => {
 		const img = showImage.querySelector(".box_show img");
 		img.src = src;
 		showImage.classList.remove("d-none");
+		document.body.style.overflow = "hidden";
 	});
 });
 
-// Đóng ảnh khi xem (btn_close)
-function _btnClose() {
-	const showImage = document.querySelector("#click_show_image");
-	showImage.classList.add("d-none");
-}
 
 
+
+
+
+// Theo dõi huỷ khi click ngoài đối tượng
+document.addEventListener("click", function (event) {
+	// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
+	const searchIcon = document.querySelector("#searchIcon");
+	const sectionSearch = document.querySelector("#search_form_user");
+	const background = document.querySelector("#background");
+	const iconX = searchIcon.querySelector(".icon-x");
+	const iconS = searchIcon.querySelector(".icon-s");
+	if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target) && iconS.classList.contains("d-none")) {
+		sectionSearch.classList.add("d-none");
+		background.classList.add("d-none");
+		iconX.classList.add("d-none");
+		iconS.classList.remove("d-none");
+	}
+
+	// Nếu không click vào button language
+	const btnLanguage = document.querySelector(".btn_language");
+	const iconDrop = btnLanguage.querySelector("span i");
+	const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
+	if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
+		dropdown.classList.add("d-none")
+		iconDrop.classList.remove("_180deg");
+	}
+
+	// Huỷ khi mở phóng to ảnh
+	const showImg = document.querySelector("#click_show_image");
+	const boxShow = showImg.querySelector(".box_show");
+	if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !boxShow.contains(event.target)) {
+		showImg.classList.add("d-none");
+		document.body.style.overflow = "auto";
+	}
+});
 
 //--
 console.log("Run file site.js");

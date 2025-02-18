@@ -1,6 +1,8 @@
-﻿@model Mangrove.Data.TblMangrove
+﻿@using Mangrove.Data;
+@model TblMangrove
+
 @{
-	var photos = TempData["Photos"] as List<string> ?? new List<string>();
+	var photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
 }
 
 <section class="mangrove_result">
@@ -11,13 +13,19 @@
 				<h5 class="border py-2 bg-black text-white">Hình ảnh</h5>
 			</div>
 
-			<div class="info images slick_slider height_responsive">
-				<div class="slides">
-					@foreach (var photo in photos)
-					{
-						string img = @Url.Content("~/img/tree-img/" + photo);
-						<img class="click_show_image slide_item" src="@img" />
-					}
+			<div class="info">
+				<div class="images slick_slider height_responsive">
+					<div class="slides">
+						@foreach (var photo in photos)
+						{
+							string img = @Url.Content("~/img/tree-img/" + photo.ImageNameId);
+							<img note="@photo.NoteImg" class="click_show_image slide_item" src="@img" />
+						}
+					</div>
+				</div>
+
+				<div class="show_description_photo">
+					<p class="pt-1 px-2 text-center"></p>
 				</div>
 			</div>
 		</div>
@@ -48,7 +56,7 @@
 
 					<div class="use_info p-2 col-12 col-sm-6">
 						<p class="fw-bold">Công dụng:</p>
-						<p class="text-justify">@Html.Raw(Model.Use)</p>
+						<p class="text-justify">@Html.Raw(Helper.Func.Show(Model.Use))</p>
 					</div>
 				</div>
 			</div>
@@ -61,7 +69,7 @@
 			</div>
 
 			<div class="info morphology_info">
-				<p class="p-2 text-justify">@Html.Raw(Model.Morphology)</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Morphology))</p>
 			</div>
 		</div>
 
@@ -72,7 +80,7 @@
 			</div>
 
 			<div class="info ecology_info">
-				<p class="p-2 text-justify">@Html.Raw(Model.Ecology)</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Ecology))</p>
 			</div>
 		</div>
 
@@ -85,12 +93,12 @@
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">Phân bố - ở phía Bắc Khánh Hòa:</p>
-					<p>@Html.Raw(Model.Distribution)</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
 				</div>
 
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">Tình trạng bảo tồn:</p>
-					<p>@Html.Raw(Model.ConservationStatus)</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.ConservationStatus))</p>
 				</div>
 			</div>
 		</div>

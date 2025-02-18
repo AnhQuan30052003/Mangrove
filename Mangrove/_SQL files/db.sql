@@ -66,4 +66,5 @@ create table tblPhotos
     _id varchar(36) not null primary key,
     _idObj varchar(36) not null,
     _imageNameId nvarchar(max) not null,
+    _noteImg nvarchar(256) not null,
 )

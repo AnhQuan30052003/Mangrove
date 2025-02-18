@@ -10,4 +10,6 @@ public partial class TblPhoto
     public string IdObj { get; set; } = null!;
 
     public string ImageNameId { get; set; } = null!;
+
+    public string NoteImg { get; set; } = null!;
 }

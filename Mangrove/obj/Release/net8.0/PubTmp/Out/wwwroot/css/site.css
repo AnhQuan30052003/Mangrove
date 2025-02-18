@@ -1,14 +1,7 @@
 /* Font Oswald */
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700,800");
 
-/*@import url("./bootstrap.min.css"); */
-/*@import url("./classy-nav.css");*/
-/*@import url("./owl.carousel.min.css");*/
-/*@import url("./animate.css");*/
-/*@import url("./magnific-popup.css");*/
-/*@import url("./font-awesome.min.css");*/
-/*@import url("./elegant-icon.css");*/
-
+/* Import files css custom and feature */
 @import url("./custom.css");
 @import url("./components/header.css");
 @import url("./components/preloader.css");
@@ -17,6 +10,8 @@
 @import url("./components/nofifier.css");
 @import url("./components/result.css");
 @import url("./components/back.css");
+@import url("./components/slick_slider.css");
+@import url("./components/click_show_image.css");
 
 html {
 	scroll-behavior: smooth;
@@ -28,7 +23,8 @@ body {
 	color: #707070;
 	background-color: #eaeff1;
 	transition-duration: 500ms;
-	top: 0 !important;
+
 	position: relative;
+	top: 0 !important;
 	z-index: 1;
 }

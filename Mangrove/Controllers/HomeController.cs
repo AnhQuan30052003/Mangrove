@@ -41,7 +41,7 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 
-		public async Task<IActionResult> Result(string id) {
+		public async Task<IActionResult> Result(string id = "00000000-AAAA-AAAA-AAAA-AAAAAAAAA002") {
 			try {
 				//GetDistanceYear();
 
@@ -51,14 +51,18 @@ namespace Mangrove.Controllers {
 				}
 				else {
 					var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
-					var listPhotos = new List<string>();
-					foreach (var photo in photos) {
-						listPhotos.Add(photo.ImageNameId);
+					var photoMangrove = await context.TblPhotos.Where(o => o.ImageNameId == mangrove.MainImage).FirstOrDefaultAsync();
+
+					if (photoMangrove != null) {
+						photos.Remove(photoMangrove);
+						photos.Insert(0, photoMangrove);
 					}
-					TempData["Photos"] = listPhotos;
+
+					TempData["Photos"] = photos;
 
 					mangrove.View += 1;
 					await context.SaveChangesAsync();
+
 					return View(mangrove);
 				}
 			}
