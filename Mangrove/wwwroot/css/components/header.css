@@ -1,5 +1,4 @@
 ﻿#header {
-	height: 50px;
 	width: 100%;
 	position: fixed;
 	z-index: 10;
@@ -70,7 +69,8 @@
 	color: black;
 }
 
-.goog-te-banner-frame, iframe.skiptranslate {
+.goog-te-banner-frame,
+iframe.skiptranslate {
 	display: none !important;
 }
 
@@ -159,7 +159,7 @@ select option {
 	z-index: 9;
 }
 
-@media (width <= 576px) {
+@media (width <=576px) {
 	.nav_btn_option {
 		min-width: 40px;
 	}
@@ -175,7 +175,7 @@ select option {
 	}
 }
 
-@media (width >= 576px) {
+@media (width >=576px) {
 	#search_form_user {
 		width: 50%;
 	}

@@ -75,7 +75,6 @@ namespace Mangrove.Controllers {
 		// Hàm riêng
 		// Truy vấn thời gian (năm) chi filter tìm kiếm
 		private async void GetDistanceYear() {
-			Console.WriteLine("Đã chạy hàm GetDistanceYear()");
 			try {
 				var home = await context.TblHomes.FirstOrDefaultAsync();
 				if (home == null) {
@@ -87,6 +86,7 @@ namespace Mangrove.Controllers {
 				}
 			}
 			catch (Exception ex) {
+				Console.WriteLine("Không kết nối được với Cơ sở dữ liệu");
 				Console.WriteLine("Error: " + ex.Message);
 			}
 		}

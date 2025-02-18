@@ -1,48 +1,68 @@
-<header id="header" class="bg-black">
-	<div class="container d-flex justify-content-between align-items-center h-100">
-		<div class="logo_title">
-			<a href='@Url.Action("Index", "Home")'>
-				<i class="fa-solid fa-leaf color-tree"></i>
-				<span class="ml-7 hidden_mobile text-white color_green_hover upper">CÂY NGẬP MẶN</span>
-			</a>
-		</div>
-
-		<div class="action_option d-flex gap-2 h-100">
-			<!-- Search Icon -->
-			<div id="searchIcon" class="d-flex justify-content-center m-0">
-				<button class="nav_btn_option">
-					<i class="icon-x d-none fa-solid fa-xmark color-tree" style="font-size: 14px;"></i>
-					<i class="icon-s fa fa-search color-tree"></i>
-					<span class="ml-7">Tìm kiếm</span>
-				</button>
+<header id="header">
+	<div class="bg-black" style="height: 50px;">
+		<div class="container d-flex justify-content-between align-items-center h-100">
+			<div class="logo_title">
+				<a href='@Url.Action("Index", "Home")'>
+					<i class="fa-solid fa-leaf color-tree"></i>
+					<span class="ml-7 hidden_mobile text-white color_green_hover">
+						VIỆN SINH HỌC | <span class="">Cây Ngập Mặn</span>
+					</span>
+				</a>
 			</div>
 
-			<!-- Language -->
-			<div class="language text-white position-relative">
-				<button class="nav_btn_option btn_language">
-					<i class="fa-solid fa-language color-tree"></i>
-					<span class="ml-7">
-						Ngôn ngữ
-						<i class="fa-solid fa-caret-down time_delay" style="margin-left: 3px;"></i>
-					</span>
-				</button>
-				<ul class="language_dropdown rounded-1 d-none">
-					<li class="p-2" data-value="en">Tiếng Anh</li>
-					<li class="p-2" data-value="vi">Tiếng Việt</li>
-				</ul>
+			<div class="action_option d-flex gap-2 h-100">
+				<!-- Language -->
+				<div class="language text-white position-relative">
+					<button class="nav_btn_option btn_language">
+						<i class="fa-solid fa-language color-tree"></i>
+						<span class="ml-7">
+							Ngôn ngữ
+							<i class="fa-solid fa-caret-down time_delay" style="margin-left: 3px;"></i>
+						</span>
+					</button>
+					<ul class="language_dropdown rounded-1 d-none">
+						<li class="p-2" data-value="en">Tiếng Anh</li>
+						<li class="p-2" data-value="vi">Tiếng Việt</li>
+					</ul>
 
-				<div id="google_translate_element" class="position-absolute" style="top: -10000%; z-index: -10000">
+					<div id="google_translate_element" class="position-absolute" style="top: -10000%; z-index: -10000">
+					</div>
+				</div>
+
+				<!-- Login -->
+				<div class="login d-flex align-items-center">
+					<a href="#" class="h-100">
+						<button class="nav_btn_option">
+							<i class="fa fa-user color-tree"></i>
+							<span class="ml-7">Quản trị viên</span>
+						</button>
+					</a>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<!-- Login -->
-			<div class="login d-flex align-items-center">
-				<a href="#" class="h-100">
-					<button class="nav_btn_option">
-						<i class="fa fa-user color-tree"></i>
-						<span class="ml-7">Quản trị viên</span>
-					</button>
-				</a>
+	<hr style="height: 2px; margin: 0;">
+
+	<div class="links container text-white">
+		<div class="wrapper p-2 bg-black d-flex justify-content-between">
+			<ul class="left d-flex gap-4 gap-sm-2">
+				<li>
+					<i class="fa-solid fa-house color-tree"></i>
+					<span class="ml-7 hidden_mobile">Trang chủ</span>
+				</li>
+				<li>
+					<i class="fa-solid fa-location-dot color-tree"></i>
+					<span class="ml-7 hidden_mobile">Thành phần loài</span>
+				</li>
+				<li>
+					<i class="fa-solid fa-map color-tree"></i>
+					<span class="ml-7 hidden_mobile">Phân bố</span>
+				</li>
+			</ul>
+			<div class="right">
+				<i class="icon-s fa fa-search color-tree"></i>
+				<span class="ml-7 hidden_mobile">Tìm kiếm</span>
 			</div>
 		</div>
 	</div>
