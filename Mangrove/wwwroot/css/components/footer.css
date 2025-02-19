@@ -70,6 +70,21 @@
 	margin-top: 50px;
 }
 
+.animation_pointer {
+	animation: _pointer 1s ease-in-out alternate infinite;
+}
+
+@keyframes _pointer {
+	50% {
+		transform: translateX(-5px);
+	}
+
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+}
+
 @media (width >=576px) {
 	#scrollUp {
 		bottom: 20px;
