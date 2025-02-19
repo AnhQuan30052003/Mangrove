@@ -1,12 +1,37 @@
 ﻿// Theo dõi biểu tượng khi load page và xoá
 window.addEventListener("load", function (e) {
 	const preloader = document.querySelector(".preloader");
-	preloader.remove();
+	if (preloader) preloader.remove();
 });
+
+// Theo dõi hamburger menu
+function listnerClickHamburgerMenu() {
+	try {
+		const btnMenu = document.querySelector(".btn_menu");
+		const iconS = btnMenu.querySelector(".icon-s");
+		const iconX = btnMenu.querySelector(".icon-x");
+		const listMenu = document.querySelector(".list_menu");
+
+		iconS.classList.toggle("d-none");
+		iconX.classList.toggle("d-none");
+		listMenu.classList.toggle("left-0");
+
+		if (listMenu.classList.contains("left-0")) {
+			document.body.style.overflow = "hidden";
+		}
+		else {
+			document.body.style.overflow = "auto";
+		}
+	}
+	catch {
+		console.log("Có lỗi khi click vào Hamburger Menu");
+	}
+}
 
 // Theo dõi cuộn màn hình nút quay lên #scrollUp
 window.addEventListener("scroll", function () {
 	const button = document.querySelector("#scrollUp");
+	if (!button) return;
 	if (window.scrollY > window.innerHeight * 1 / 8) {
 		button.classList.add("opacity")
 	} else {
@@ -20,6 +45,8 @@ if (btnLanguage) {
 	btnLanguage.addEventListener("click", function (e) {
 		const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
 		const iconDrop = btnLanguage.querySelector("span i");
+		if (!dropdown || !iconDrop) return;
+
 		dropdown.classList.toggle("d-none");
 		iconDrop.classList.toggle("_180deg");
 	});
@@ -242,35 +269,51 @@ imageClick.forEach((item) => {
 // Theo dõi huỷ khi click ngoài đối tượng
 document.addEventListener("click", function (event) {
 	// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
-	const searchIcon = document.querySelector("#searchIcon");
-	const sectionSearch = document.querySelector("#search_form_user");
-	const background = document.querySelector("#background");
-	const iconX = searchIcon.querySelector(".icon-x");
-	const iconS = searchIcon.querySelector(".icon-s");
-	if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target) && iconS.classList.contains("d-none")) {
-		sectionSearch.classList.add("d-none");
-		background.classList.add("d-none");
-		iconX.classList.add("d-none");
-		iconS.classList.remove("d-none");
+	try {
+		const searchIcon = document.querySelector("#searchIcon");
+		const sectionSearch = document.querySelector("#search_form_user");
+		const background = document.querySelector("#background");
+		const iconX = searchIcon.querySelector(".icon-x");
+		const iconS = searchIcon.querySelector(".icon-s");
+		if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target) && iconS.classList.contains("d-none")) {
+			sectionSearch.classList.add("d-none");
+			background.classList.add("d-none");
+			iconX.classList.add("d-none");
+			iconS.classList.remove("d-none");
+		}
+	}
+	catch {
+		console.log("Có lỗi khi tắt tìm kiếm");
 	}
 
 	// Nếu không click vào button language
-	const btnLanguage = document.querySelector(".btn_language");
-	const iconDrop = btnLanguage.querySelector("span i");
-	const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-	if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
-		dropdown.classList.add("d-none")
-		iconDrop.classList.remove("_180deg");
+	try {
+		const btnLanguage = document.querySelector(".btn_language");
+		const iconDrop = btnLanguage.querySelector("span i");
+		const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
+		if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
+			dropdown.classList.add("d-none")
+			iconDrop.classList.remove("_180deg");
+		}
+	}
+	catch {
+		console.log("Có lỗi khi tắt ngôn ngữ");
 	}
 
 	// Huỷ khi mở phóng to ảnh
-	const showImg = document.querySelector("#click_show_image");
-	const boxShow = showImg.querySelector(".box_show");
-	if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !boxShow.contains(event.target)) {
-		showImg.classList.add("d-none");
-		document.body.style.overflow = "auto";
+	try {
+		const showImg = document.querySelector("#click_show_image");
+		const boxShow = showImg.querySelector(".box_show");
+		if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !boxShow.contains(event.target)) {
+			showImg.classList.add("d-none");
+			document.body.style.overflow = "auto";
+		}
+	}
+	catch {
+		console.log("Có lỗi khi tắt show image");
 	}
 });
+
 
 //--
 console.log("Run file site.js");

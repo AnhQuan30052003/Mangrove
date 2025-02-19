@@ -1,7 +1,6 @@
-﻿#header {
-	width: 100%;
-	position: fixed;
-	z-index: 10;
+﻿#header .logo {
+	height: var(--size_logo);
+	width: var(--size_logo);
 }
 
 #search_form_user {
@@ -16,7 +15,7 @@
 }
 
 #search_form_user .options .btn-option {
-	border: solid 1px #70c745;
+	border: solid 1px var(--greenPage);
 	outline: black;
 	padding: 5px 10px;
 	min-width: min(50%, 150px);
@@ -26,7 +25,7 @@
 
 #search_form_user .options .btn-option:not(.active):hover,
 #search_form_user .options .btn-option.active {
-	background-color: #70c745;
+	background-color: var(--greenPage);
 	color: white;
 }
 
@@ -55,8 +54,8 @@
 	padding: 7.5px 15px;
 	min-width: 125px;
 	display: inline-block;
-	border: solid 1px #70c745;
-	background-color: #70c745;
+	border: solid 1px var(--greenPage);
+	background-color: var(--greenPage);
 	color: white;
 	font-weight: bold;
 	transition: all 0.4s;
@@ -107,20 +106,20 @@ select option {
 
 .nav_btn_option {
 	border: none;
-	min-width: 105px;
+	padding: 0;
 	height: 100%;
+	color: inherit;
+	font-weight: bold;
 	background-color: transparent;
-	color: white;
-	font-size: 13px;
 	-webkit-transition-duration: 500ms;
 	transition-duration: 500ms;
 }
 
 .nav_btn_option:hover {
-	color: #70c745;
+	color: var(--greenPage);
 }
 
-.language .language_dropdown {
+#header .language_dropdown {
 	position: absolute;
 	top: 60px;
 	left: 0;
@@ -129,11 +128,11 @@ select option {
 	background-color: white;
 	color: black;
 	z-index: 11;
-	background-color: #70c745;
+	background-color: var(--greenPage);
 	color: white;
 }
 
-.language .language_dropdown li:hover {
+#header .language_dropdown li:hover {
 	background-color: black;
 }
 
@@ -142,7 +141,7 @@ select option {
 }
 
 .green_effect:hover {
-	outline: solid 1px #70c745;
+	outline: solid 1px var(--greenPage);
 }
 
 .selected-custom {
@@ -160,18 +159,38 @@ select option {
 }
 
 @media (width <=576px) {
+	.actions .left h5 {
+		font-size: 20px;
+	}
+
 	.nav_btn_option {
 		min-width: 40px;
 	}
 
-	.hidden_mobile,
-	.nav_btn_option span {
+	.hidden_mobile {
 		display: none;
 	}
 
-	.language .language_dropdown {
-		left: unset;
-		right: 0;
+	.actions .right .list_menu {
+		background-color: var(--backgroundBody);
+		transition: all 0.5s;
+		color: black;
+		z-index: 11;
+		position: absolute;
+		width: 100% !important;
+		top: 80px;
+		left: 100%;
+		height: calc(100vh - 80px) !important;
+		padding: 10px;
+	}
+
+	.actions .right .list_menu li {
+		padding: 7.5px 15px;
+		border: solid 1px #ccc;
+	}
+
+	.actions .right .list_menu li i {
+		width: 50px;
 	}
 }
 

@@ -35,16 +35,16 @@
 
 .items-tree .item .btn_see_more:hover {
 	background-color: transparent;
-	border-color: #70c745;
+	border-color: var(--greenPage);
 	color: black;
 }
 
 .items-tree .item .view,
 .items-tree .item .view:hover {
-	color: #70c745;
+	color: var(--greenPage);
 }
 
-@media (width >= 576px) {
+@media (width >=576px) {
 	.items-tree .item {
 		width: 49% !important;
 	}

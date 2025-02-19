@@ -11,7 +11,7 @@
 }
 
 .btn_back:hover {
-	outline: solid 1px #70c745;
+	outline: solid 1px var(--greenPage);
 	color: black;
 }
 
@@ -23,7 +23,9 @@
 	50% {
 		transform: translateX(-5px);
 	}
-	0%, 100% {
+
+	0%,
+	100% {
 		transform: translateX(0);
 	}
 }
