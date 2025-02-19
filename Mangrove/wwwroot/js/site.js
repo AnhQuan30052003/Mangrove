@@ -30,12 +30,16 @@ function listnerClickHamburgerMenu() {
 
 // Theo dõi cuộn màn hình nút quay lên #scrollUp
 window.addEventListener("scroll", function () {
-	const button = document.querySelector("#scrollUp");
-	if (!button) return;
+	const btnScrollUp = document.querySelector("#scrollUp");
+	const btnSearch = document.querySelector("#bottom_search");
+	if (!btnScrollUp || !btnSearch) return;
+
 	if (window.scrollY > window.innerHeight * 1 / 8) {
-		button.classList.add("opacity")
+		btnScrollUp.classList.add("opacity")
+		btnSearch.classList.add("opacity")
 	} else {
-		button.classList.remove("opacity")
+		btnScrollUp.classList.remove("opacity")
+		btnSearch.classList.remove("opacity")
 	}
 });
 

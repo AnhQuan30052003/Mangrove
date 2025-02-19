@@ -176,12 +176,13 @@ select option {
 		transition: all 0.5s;
 		color: black;
 		z-index: 11;
-		position: absolute;
+		position: fixed;
 		width: 100% !important;
 		top: 80px;
 		left: 100%;
 		height: calc(100vh - 80px) !important;
 		padding: 10px;
+		/* display: none !important; */
 	}
 
 	.actions .right .list_menu li {

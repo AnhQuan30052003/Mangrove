@@ -72,6 +72,12 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+
+		// Page tìm kiếm
+		public IActionResult Search() {
+			return View();
+		}
+
 		// Hàm riêng
 		// Truy vấn thời gian (năm) chi filter tìm kiếm
 		private async void GetDistanceYear() {
