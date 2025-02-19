@@ -1,5 +1,6 @@
 <header id="header">
-	<div class="p-1 d-flex position-relative" style="background-color: var(--backgroundBody);">
+	@* <div class="p-1 d-flex position-relative" style="background-color: var(--backgroundBody);"> *@
+	<div class="p-1 d-flex position-relative" style="background-color: white;">
 		<div class="logo rounded-pill">
 			<a href='@Url.Action("Index", "Home")'>
 				<img class="h-100 w-100" src="~/img/logo/mangrove.png" alt="">
@@ -7,12 +8,13 @@
 		</div>
 
 		<div class="actions fw-bold d-flex px-3 justify-content-between" style="width: calc(100% - 70px);">
-			<div class="left d-flex flex-column justify-content-center col-9 col-sm-3">
+			<div class="left d-flex flex-column justify-content-center col-8 col-sm-10 col-lg-3">
 				<h5 class="color_green_hover">ĐẠI HỌC NHA TRANG</h5>
 				<p class="color_green_hover">Viện Công Nghệ Sinh Học</p>
 			</div>
 
-			<div class="col-1 d-flex d-sm-none align-items-center h-100 mr-3">
+			<div
+				class="col-2 col-sm-1 d-flex justify-content-center justify-content-sm-end d-lg-none align-items-center h-100 mr-3">
 				<button class="border-none bg-transparent">
 					<a href='@Url.Action("Search", "Home")'>
 						<i class="icon-s fa fa-search"></i>
@@ -20,14 +22,14 @@
 				</button>
 			</div>
 
-			<div class="right col-1 col-sm-9">
-				<button class="btn_menu d-sm-none h-100 border-none bg-transparent fw-bold"
+			<div class="right col-2 col-sm-1  col-lg-9 d-flex justify-content-end">
+				<button class="btn_menu d-lg-none h-100 border-none bg-transparent fw-bold"
 					onclick="listnerClickHamburgerMenu();">
 					<i class="icon-s fa-solid fa-bars fs-5"></i>
 					<i class="icon-x fa-solid fa-x fs-5 d-none"></i>
 				</button>
 				<ul
-					class="list_menu w-100 h-100 d-flex flex-sm-row flex-column justify-content-sm-end gap-sm-4 gap-2 align-items-sm-center">
+					class="list_menu w-100 h-100 d-flex flex-lg-row flex-column justify-content-lg-end gap-lg-4 gap-2 align-items-lg-center">
 					<li class="color_green_hover">
 						<a href='@Url.Action("Index", "Home")'>
 							<i class="fa-solid fa-house"></i>
@@ -37,7 +39,7 @@
 
 					<li class="color_green_hover">
 						<a href="#">
-							<i class="fa-solid fa-location-dot"></i>
+							<i class="fa-solid fa-leaf"></i>
 							<span class="">Thành phần loài</span>
 						</a>
 					</li>
@@ -49,7 +51,7 @@
 						</a>
 					</li>
 
-					<li class="d-none d-sm-inline color_green_hover">
+					<li class="d-none d-lg-inline color_green_hover">
 						<a href='@Url.Action("Search", "Home")'>
 							<i class="icon-s fa fa-search"></i>
 							<span class="">Tìm kiếm</span>
@@ -57,9 +59,9 @@
 					</li>
 
 					<li class="position-relative language">
-						<div class="nav_btn_option btn_language d-sm-block d-flex align-items-center">
+						<div class="btn_language d-lg-block d-flex align-items-center cursor-pointer">
 							<i class="fa-solid fa-language"></i>
-							<span class="d-sm-inline d-flex justify-content-between flex-grow-1 align-items-center">
+							<span class="d-lg-inline d-flex justify-content-between flex-grow-1 align-items-center">
 								<span>Ngôn ngữ</span>
 								<i class="fa-solid fa-caret-down time_delay w-auto" style="margin-left: 3px;"></i>
 							</span>
@@ -101,73 +103,6 @@
 					<span class="space">Quản trị viên</span>
 				</button>
 			</a>
-		</div>
-	</div>
-
-	<div id="search_form_user" class="search-form d-none">
-		<div class="container py-3">
-			<div class="options d-flex justify-content-center gap-2">
-				<button class="m-0 btn_search_keyword btn-option fw-bold active">Nhanh</button>
-				<button class="m-0 btn_search_advance btn-option fw-bold">Lọc</button>
-			</div>
-
-			<div class="search_frame mt-2">
-				<div class="result_search search_keyword pt-2">
-					<form action="" method="get" class="d-flex flex-column align-items-center gap-2 p-2 ">
-						<label for="">Nhập từ khoá <small class="text-danger">(*)</small></label>
-						<input type="search" name="search" id="search" class="green_effect input_search"
-							placeholder="Tìm với..." autofocus>
-						<button>Tìm kiếm</button>
-					</form>
-				</div>
-
-				<div class="result_search search_advance pt-2 w-100 d-none">
-					<form action="" method="get" class="d-flex flex-column align-items-center gap-2">
-						<div class="w-100 p-2">
-							<label class="fs-16 mb-2">Loài</label>
-							<div class="wrapper">
-								<select name="" class="my-1 w-100 green_effect">
-									<option selected value="">Cây</option>
-									<option value="">Ráng Đại</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="w-100  p-2">
-							<label class="fs-16 mb-2">Thời gian</label>
-							<div class="wrapper d-flex justify-content-between flex-wrap">
-								<select name="year" class="_years selected-custom green_effect" onchange="setupDay()">
-									<option selected value="">Năm</option>
-									<option value="2025">2025</option>
-									<option value="2024">2024</option>
-								</select>
-
-								<select name="month" class="_months selected-custom green_effect" onchange="setupDay()">
-									<option selected value="">Tháng</option>
-									<option value="12">Tháng 12</option>
-									<option value="11">Tháng 11</option>
-									<option value="10">Tháng 10</option>
-									<option value="9">Tháng 9</option>
-									<option value="8">Tháng 8</option>
-									<option value="7">Tháng 7</option>
-									<option value="6">Tháng 6</option>
-									<option value="5">Tháng 5</option>
-									<option value="4">Tháng 4</option>
-									<option value="3">Tháng 3</option>
-									<option value="2">Tháng 2</option>
-									<option value="1">Tháng 1</option>
-								</select>
-
-								<select name="day" class="_days selected-custom green_effect">
-									<option selected value="" class="select_default">Ngày</option>
-								</select>
-							</div>
-						</div>
-
-						<button>Tìm kiếm</button>
-					</form>
-				</div>
-			</div>
 		</div>
 	</div>
 </header>

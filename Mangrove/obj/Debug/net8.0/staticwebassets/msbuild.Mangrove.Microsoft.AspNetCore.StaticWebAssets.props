@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>pldsoyecyz</Fingerprint>
-      <Integrity>IwxP27++0++Q6ZHN7warsl5eu4tksc1bIARdMSSMXtE=</Integrity>
+      <Fingerprint>b9j96wj1l6</Fingerprint>
+      <Integrity>QYCRd939s8+DVB3mh3TnxPD6GvY+FbPKjSuPTdCjnf0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\header.css'))</OriginalItemSpec>
@@ -126,6 +126,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\result.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\search.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>css/components/search.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bx2dpxcpnk</Fingerprint>
+      <Integrity>8dI2QZFtMaCaaZkAG1Kj9wkX2z78EPxu7veClqZof0E=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\search.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\slick_slider.css'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
@@ -156,8 +174,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>012aajhhnd</Fingerprint>
-      <Integrity>xO7OWEfaGWxu6N9FYYC9Nnd+rUL9l4SDDSr5/r1lTk4=</Integrity>
+      <Fingerprint>le1wtm2cge</Fingerprint>
+      <Integrity>HUQ5nwc78TchsTsIIk666xGyrjuY2uPEqWwxqBf3Wco=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\custom.css'))</OriginalItemSpec>
@@ -174,8 +192,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>6oi1td0ybz</Fingerprint>
-      <Integrity>xiVecp/olwAL3gFD3jZbUn5pDBcVYdKhGKoAM3y/Keo=</Integrity>
+      <Fingerprint>qoa6obux0e</Fingerprint>
+      <Integrity>ZkDtx334hgLZubEJiRzkNi/8MBDeA/6v67Xu5wId9vw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -1020,8 +1038,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rt22s8a6r5</Fingerprint>
-      <Integrity>z1aPEiIQxr4LjW86EgPYUZxGTvMtESzsx5uoOlwZkLM=</Integrity>
+      <Fingerprint>azqrdjp3f7</Fingerprint>
+      <Integrity>VmqpmS9w0NFagrSc8ElV9/9URsDR4wIVWPTDDXEJ6EY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</OriginalItemSpec>
