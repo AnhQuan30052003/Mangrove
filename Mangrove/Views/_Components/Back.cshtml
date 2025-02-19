@@ -1,8 +1,4 @@
-﻿@{
-	int view = TempData["View"] as int? ?? 0;
-}
-
-<section class="module_back">
+﻿<section class="module_back">
 	<div class="container d-flex justify-content-between align-items-center py-2 mt-2">
 		<a href="javascript:history.back(-1);" class="btn_back d-flex gap-2 align-items-center"
 			style="min-width: 120px;">
@@ -10,7 +6,10 @@
 			Trở về
 		</a>
 
-		<span class="color_green_hover">@Model.View &nbsp;<i class="fa-solid fa-eye"></i></span>
+		<span class="color_green_hover">
+			@(Model.View > 9999 ? "9999+" : Model.View) &nbsp;
+			<i class="fa-solid fa-eye"></i>
+		</span>
 
 		<select class="select_ex_co green_effect">
 			<option selected value="ex">Mở rộng</option>
