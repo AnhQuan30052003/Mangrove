@@ -4,6 +4,8 @@
 	ViewData["Title"] = Model.Name;
 	Layout = Helper.Path.layoutUser;
 	string _com = Helper.Path._components;
+
+	TempData["View"] = Model.View;
 }
 
 @await Html.PartialAsync(_com + "/Back.cshtml")

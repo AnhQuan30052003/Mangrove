@@ -1,12 +1,17 @@
 ﻿.select_ex_co {
 	border: none;
 	width: 120px;
+	color: var(--colorBody)
+}
+
+.select_ex_co:hover {
+	color: black;
 }
 
 .btn_back {
 	padding: 7.5px 15px;
 	background-color: white;
-	color: black;
+	color: inherit;
 	border: none;
 }
 

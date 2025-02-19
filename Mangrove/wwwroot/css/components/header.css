@@ -2,6 +2,11 @@
 	right: 0 !important;
 }
 
+#header {
+	position: relative;
+	z-index: 10;
+}
+
 #header .logo {
 	height: var(--size_logo);
 	width: var(--size_logo);
@@ -107,7 +112,7 @@ select option {
 	.actions .right .list_menu {
 		background-color: white;
 		transition: all 0.5s;
-		z-index: 11;
+		z-index: -1;
 		position: fixed;
 		max-width: 300px !important;
 		top: 80px;

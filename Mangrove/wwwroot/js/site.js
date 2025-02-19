@@ -118,6 +118,8 @@ function listenerChangeLanguage() {
 			changeLanguage(lang);
 		});
 	});
+
+	console.log("Chạy hàm ChangeLanguage thành công.");
 }
 listenerChangeLanguage();
 
