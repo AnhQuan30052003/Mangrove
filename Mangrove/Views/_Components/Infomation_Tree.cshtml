@@ -104,5 +104,16 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Individuals -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Các cá thể đo đạc</h5>
+			</div>
+
+			<div class="info individuals_info">
+				@await Html.PartialAsync(Helper.Path._components + "/Individuals.cshtml")
+			</div>
+		</div>
 	</div>
 </section>

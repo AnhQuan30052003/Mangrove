@@ -182,7 +182,7 @@ function listenerToggleExpandOrCollapseContentResult() {
 			});
 
 			// Xử lý sự kiện
-			const infos = document.querySelectorAll(".mangrove_result .box .info")
+			const infos = document.querySelectorAll(".box .info")
 			if (item.value == "ex") {
 				infos.forEach((info) => {
 					info.classList.remove("box_collapse");

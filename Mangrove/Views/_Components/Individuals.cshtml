@@ -1,13 +1,30 @@
-<section class="individuals">
-    <div class="container">
-        <div class="box bg-white mb-2">
-            <div class="toggle_title text-center mt-1 mb-2">
-                <h5 class="border py-2 bg-black text-white">Các cá thể đo đạc</h5>
+<div class="frame_measure p-2">
+    <div class="form_search">
+        <div class="search d-flex justify-content-center">
+            <div
+                class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
+                <i class="icon-s fa fa-search"></i>
+                <input class="p-2 border-none flex-grow-1 outline-none" type="search"
+                    placeholder="Tìm kiếm: #, ngày (Ví dụ: #1, 01/01/2000)">
             </div>
+        </div>
 
-            <div class="info morphology_info">
-                <p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Morphology))</p>
+        <div class="list_individuals border py-2">
+            <div class="individual_item d-flex justify-content-between">
+                <a class="id_title" href="#">
+                    #1 01/02/2025
+                </a>
+
+                <div class="more">
+                    <span>Giai đoạn: 2</span>
+                    <span>
+                        99&nbsp;
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+                </div>
+
+                <button>QR</button>
             </div>
         </div>
     </div>
-</section>
+</div>
