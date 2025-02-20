@@ -5,26 +5,37 @@
                 class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
                 <i class="icon-s fa fa-search"></i>
                 <input class="p-2 border-none flex-grow-1 outline-none" type="search"
-                    placeholder="Tìm kiếm: #, ngày (Ví dụ: #1, 01/01/2000)">
+                    placeholder="#, ngày, địa điểm (VD: #1, 01/01/2000, Vạn Ninh)">
             </div>
         </div>
 
-        <div class="list_individuals border py-2">
-            <div class="individual_item d-flex justify-content-between">
-                <a class="id_title" href="#">
-                    #1 01/02/2025
-                </a>
+        <div style="height: 2px; background-color: black; margin-top: 10px;"></div>
 
-                <div class="more">
-                    <span>Giai đoạn: 2</span>
-                    <span>
-                        99&nbsp;
-                        <i class="fa-solid fa-eye"></i>
-                    </span>
+        <div class="list_individuals">
+            @for (int i = 998; i <= 1020; i++)
+            {
+                int view = new Random().Next(200, 1000 + 1);
+
+                <div class="individual_item border mt-2 d-flex flex-wrap justify-content-between">
+                    <div class="top col-12 p-2 d-flex justify-content-between">
+                        <a class="id_title" href="#">
+                            <span>#@i &nbsp;|</span>
+                            <span style="text-decoration: underline;">01/02/2025 &nbsp;|</span>
+                            <span>@view &nbsp;<i class="fa-solid fa-eye"></i></span>
+                        </a>
+                        <span>Giai đoạn: 2</span>
+                    </div>
+
+                    <div class="bottom col-12 p-2 d-flex justify-content-between">
+                        <span>Ninh Hoà, Khánh Hoà</span>
+                        <button class="toggleQR px-3 py-1 border-none">QR</button>
+                    </div>
+
+                    <div class="frame_qr text-center col-12">
+                        <img class="h-100 click_show_image" src="~/img/qr-img/qr-code.png" alt="">
+                    </div>
                 </div>
-
-                <button>QR</button>
-            </div>
+            }
         </div>
     </div>
 </div>

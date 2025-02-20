@@ -118,8 +118,6 @@ function listenerChangeLanguage() {
 			changeLanguage(lang);
 		});
 	});
-
-	console.log("Chạy hàm ChangeLanguage thành công.");
 }
 listenerChangeLanguage();
 
@@ -298,6 +296,17 @@ function listenerImageToShow() {
 }
 listenerImageToShow();
 
+// Theo dõi việc toggle QR img
+function listenerClickButtonQR() {
+	const btnQR = document.querySelectorAll(".toggleQR");
+	btnQR.forEach((item) => {
+		item.addEventListener("click", function () {
+			const frameQR = item.closest(".individual_item").querySelector(".frame_qr");
+			if (frameQR) frameQR.classList.toggle("height-222");
+		});
+	});
+}
+listenerClickButtonQR();
 
 
 

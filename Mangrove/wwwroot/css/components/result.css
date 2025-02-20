@@ -14,7 +14,7 @@
 }
 
 .info {
-	transition: all 0.4s;
+	transition: all 0.4s linear;
 	overflow: hidden;
 	max-height: 1000px;
 }
@@ -29,4 +29,25 @@
 
 .form_input {
 	width: 500px;
+}
+
+.hidden_mobile {
+	display: none !important;
+}
+
+.list_individuals {
+	min-height: 0;
+	max-height: 60vh;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.frame_qr {
+	overflow: hidden;
+	height: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+.height-222 {
+	height: 222px !important;
 }
