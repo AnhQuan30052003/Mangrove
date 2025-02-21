@@ -1,11 +1,9 @@
-// JavaScript
+// try...catch handle C# code
 
-try
-{
+try {
 
 }
-catch (Exception ex)
-{
+catch (Exception ex) {
     Console.WriteLine("Error: " + ex.Message);
     return NotFound("Không kết nối được với Cơ sở dữ liệu");
 }

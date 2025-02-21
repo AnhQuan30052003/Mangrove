@@ -4,7 +4,10 @@
 		<div class="col-12 col-sm-4 px-2">
 			<div class="logo_title mb-30">
 				<div class="logo d-inline-flex gap-2 align-items-center rounded-pill">
-					<img class="h-100 w-100 object-fit-cover" src="~/img/logo/mangrove.png" alt="">
+					<a href='@Url.Action("Index", "Home")'>
+						<img class="h-100 w-100 object-fit-cover" src="~/img/logo/mangrove.png" alt=""
+							title="Logo Mangrove">
+					</a>
 				</div>
 				<p class="mb-2 color_green_hover text-white">
 					Website cung cấp các thông tin chi tiết, liên quan đến các loài cây ngập mặn ở phía Bắc - Khánh Hoà.
@@ -60,9 +63,8 @@
 				<i class="fa fa-user color-tree fs-5"></i>
 				<h5 class="text-white color_green_hover">TRUY CẬP</h5>
 			</div>
-			<a href="#" class="text-white color_green_hover d-flex gap-2 align-items-center"
-				title="Website quản trị viên">
-				Quản trị viên
+			<a href="#" class="text-white color_green_hover d-flex gap-2 align-items-center">
+				<span style="text-decoration: underline;" title="Website for admin">Quản trị viên</span>
 				<i class="fa-solid fa-backward animation_pointer"></i>
 			</a>
 		</div>
@@ -89,11 +91,11 @@
 </footer>
 
 <!-- Button: Scroll up-->
-<a id="bottom_search" href='@Url.Action("Search", "Home")'>
+<a id="bottom_search" href='@Url.Action("Search", "Home")' title="Search">
 	<i class="icon-s fa fa-search"></i>
 </a>
 
 <!-- Button: Scroll up-->
-<a id="scrollUp" href="#header">
+<a id="scrollUp" href="#header" title="Top of page">
 	<i class="fa fa-angle-up"></i>
 </a>

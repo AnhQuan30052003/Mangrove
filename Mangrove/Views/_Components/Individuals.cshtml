@@ -1,3 +1,7 @@
+@{
+
+}
+
 <div class="frame_measure p-2">
     <div class="form_search">
         <div class="search d-flex justify-content-center">
@@ -5,7 +9,7 @@
                 class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
                 <i class="icon-s fa fa-search"></i>
                 <input class="p-2 border-none flex-grow-1 outline-none" type="search"
-                    placeholder="Ngày, địa điểm (VD: 01/01/2000, Vạn Ninh)">
+                    placeholder="Ngày hoặc địa điểm (VD: 01/01/2000, Vạn Ninh)">
             </div>
         </div>
 
@@ -20,17 +24,22 @@
                     <div class="px-lg-1 py-1 col-12 col-lg-6">
                         <div class="individual_item border d-lg-flex flex-lg-wrap w-100">
                             <div class="top col-12 p-2 d-flex justify-content-between align-items-center">
-                                <a class="id_title" href="#">
+                                <div class="id_title">
                                     <span>#@stt &nbsp;|</span>
-                                    <span class="a_link">01/02/2025</span>
-                                    <span class="color_green_hover">&nbsp;| @view &nbsp;<i class="fa-solid fa-eye"></i></span>
-                                </a>
-                                <span>Giai đoạn: 2</span>
+                                    <a class="a_link" href="#" title="To the individual">01/02/2025</a>
+                                </div>
+                                <div>
+                                    <span class="color_green_hover">@view &nbsp;<i class="fa-solid fa-eye"
+                                            title="Viewer"></i>&nbsp;|&nbsp;</span>
+                                    <span>Giai đoạn: 2</span>
+                                </div>
                             </div>
 
                             <div class="bottom col-12 p-2 d-flex justify-content-between align-items-center">
                                 <span class="color_green_hover">Ninh Hoà, Khánh Hoà</span>
-                                <button class="toggleQR px-3 py-1 border-none">QR</button>
+                                <button class="toggleQR px-3 py-1 border-none" title="See QR code">
+                                    QR
+                                </button>
                             </div>
 
                             <div class="frame_qr text-center col-12">

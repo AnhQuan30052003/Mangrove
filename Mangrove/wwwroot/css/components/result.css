@@ -59,7 +59,8 @@
 }
 
 .a_link:hover {
-	opacity: 1;
+	opacity: 1 !important;
+	color: blue !important;
 }
 
 .individual_item:hover {
