@@ -37,7 +37,7 @@
 
 .list_individuals {
 	min-height: 0;
-	max-height: 600px;
+	max-height: 500px;
 	overflow: hidden;
 	overflow-y: auto;
 }
@@ -50,4 +50,23 @@
 
 .height-222 {
 	height: 222px !important;
+}
+
+.a_link {
+	text-decoration: underline;
+	color: blue;
+	opacity: 0.5;
+}
+
+.a_link:hover {
+	opacity: 1;
+}
+
+.individual_item:hover {
+	outline: solid 1px black !important;
+}
+
+.individual_item:hover .toggleQR {
+	background-color: black;
+	color: white;
 }

@@ -1,3 +1,10 @@
+:root {
+    --size_logo: 70px;
+    --greenPage: #70c745;
+    --backgroundBody: #eaeff1;
+    --colorBody: #707070;
+}
+
 a,
 a:hover {
     color: inherit;
@@ -44,10 +51,6 @@ option {
     color: #70c745;
 }
 
-.ml-7 {
-    margin-left: 7px !important;
-}
-
 .border-none {
     border: none !important;
 }
@@ -66,7 +69,7 @@ option {
 }
 
 .color_green_hover:hover {
-    color: #70c745 !important;
+    color: var(--greenPage) !important;
 }
 
 .time_delay {

@@ -7,11 +7,11 @@
 @import url("./components/preloader.css");
 @import url("./components/footer.css");
 @import url("./components/recently_updated.css");
-@import url("./components/nofifier.css");
 @import url("./components/result.css");
 @import url("./components/back.css");
 @import url("./components/slick_slider.css");
 @import url("./components/click_show_image.css");
+@import url("./components/search.css");
 
 html {
 	scroll-behavior: smooth;
@@ -20,8 +20,9 @@ html {
 body {
 	font-family: "Oswald", sans-serif;
 	font-size: 16px;
-	color: #707070;
-	background-color: #eaeff1;
+	color: var(--colorBody);
+	background-color: var(--backgroundBody);
+	/* background-color: black; */
 	transition-duration: 500ms;
 
 	position: relative;

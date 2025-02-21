@@ -112,7 +112,16 @@
 			</div>
 
 			<div class="info individuals_info">
-				@await Html.PartialAsync(Helper.Path._components + "/Individuals.cshtml")
+				@{
+					if (true)
+					{
+						@await Html.PartialAsync(Helper.Path._components + "/Individuals.cshtml")
+					}
+					else
+					{
+						<p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
+					}
+				}
 			</div>
 		</div>
 	</div>
