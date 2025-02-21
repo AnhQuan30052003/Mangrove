@@ -1,13 +1,138 @@
-﻿@model Mangrove.Data.TblMangrove
+﻿@using Mangrove.Data
+@model TblMangrove
 
 @{
 	ViewData["Title"] = Model.Name;
 	Layout = Helper.Path.layoutUser;
-	string _com = Helper.Path._components;
+	string _pv = Helper.Path.partialView;
 
-	TempData["View"] = Model.View;
+	List<TblPhoto> photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
+	List<TblIndividual> listIndividuals = TempData["ListIndividuals"] as List<TblIndividual> ?? new List<TblIndividual>();
 }
 
-@await Html.PartialAsync(_com + "/Back.cshtml")
-@await Html.PartialAsync(_com + "/Infomation_Tree.cshtml")
-@await Html.PartialAsync(_com + "/Back.cshtml")
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+
+<section class="mangrove_result">
+	<div class="container py-3">
+		<!-- Images -->
+		<div class="box bg-whitez bg-transparent mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Hình ảnh</h5>
+			</div>
+
+			<div class="info">
+				<div class="images slick_slider height_responsive">
+					<div class="slides">
+						@foreach (var photo in photos)
+						{
+							string img = @Url.Content("~/img/tree-img/" + photo.ImageName);
+							<img note="@photo.NoteImg" class="click_show_image slide_item" src="@img" />
+						}
+					</div>
+				</div>
+
+				<div class="show_description_photo">
+					<p class="pt-1 px-2 text-center"></p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Info: Name, Consrevation status, Uses -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Thông tin</h5>
+			</div>
+
+			<div class="info">
+				<h4 class="text-center mb-2 fw-bold">
+					@Model.Name
+				</h4>
+				<div class="wrapper d-flex flex-wrap">
+					<div class="name_info p-2 col-12 col-sm-6">
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">Tên khác:</span>
+							<span>@Model.OtherName</span>
+						</p>
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">Tên khoa học:</span>
+							<span>@Model.ScientificName</span>
+						</p>
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">Họ:</span>
+							<span>@Model.Surname</span>
+						</p>
+					</div>
+
+					<div class="use_info p-2 col-12 col-sm-6">
+						<p class="fw-bold">Công dụng:</p>
+						<p class="text-justify">@Html.Raw(Helper.Func.Show(Model.Use))</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Morphology -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Hình thái</h5>
+			</div>
+
+			<div class="info morphology_info">
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Morphology))</p>
+			</div>
+		</div>
+
+		<!-- Ecology -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Sinh thái</h5>
+			</div>
+
+			<div class="info ecology_info">
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Ecology))</p>
+			</div>
+		</div>
+
+		<!-- Distribute & Convervation -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Phân bố & Tình trạng bảo tồn</h5>
+			</div>
+
+			<div class="info d-flex flex-wrap">
+				<div class="conservation_status_info p-2 col-12 col-sm-6">
+					<p class="fw-bold">Phân bố - ở phía Bắc Khánh Hòa:</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
+				</div>
+
+				<div class="conservation_status_info p-2 col-12 col-sm-6">
+					<p class="fw-bold">Tình trạng bảo tồn:</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.ConservationStatus))</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Individuals -->
+		<div class="box bg-white mb-2">
+			<div class="toggle_title text-center mt-1 mb-2">
+				<h5 class="border py-2 bg-black text-white">Các cá thể đo đạc</h5>
+			</div>
+
+			<div class="info individuals_info">
+				@{
+					if (listIndividuals.Count() > 0)
+					{
+						@await Html.PartialAsync($"{_pv}/Individuals.cshtml", listIndividuals)
+					}
+					else
+					{
+						<p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)

@@ -1,14 +1,16 @@
 use mangrove;
 
 -- [Delete data from tables]
-delete tblHome;
+-- delete tblHome;
+-- delete tblStage;
+delete tblIndividual;
 delete tblMangrove;
 delete tblPhotos;
 
 -- [Insert data for tables]
-insert into tblHome
-values
-    (N'', '07:30:00', '17:30:00', 2023, 2025);
+-- insert into tblHome
+-- values
+--     (N'', '07:30:00', '17:30:00', 2023, 2025);
 
 insert into tblMangrove
 values
@@ -26,7 +28,7 @@ values
         N'Đọt non luộc ăn được.
         Lá khô dùng làm chổi (sóng lá), các sản phẩm thủ công mỹ nghệ, hoặc lợp mái nhà.',
         0,
-        7,
+        0,
         '2025-02-15'
     ),
     (
@@ -47,7 +49,7 @@ values
         Trụ mầm có thể ăn được.
         Theo YHCT: Vỏ cây dùng để điều trị bệnh sốt rét, tiêu chảy.',
         0,
-        3,
+        0,
         '2025-02-15'
     ),
     (
@@ -68,9 +70,28 @@ values
         N'Gỗ màu đỏ, bền, dùng làm mộc dân dụng, trang trí nội thất, than củi. Vỏ cây có nhiều tannin dùng làm thuốc nhuộm.
         Theo YHCT: Dùng nước sắc từ chồi cây Dà để chữa sốt rét,...',
         0,
-        10,
+        0,
         '2025-02-15'
 );
+
+insert into tblIndividual
+values
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-01', N'Vạn Ninh, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-03', N'La Phong, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI002', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-03', N'Nha Trang, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI003', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-02', N'Ninh Hoà, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI004', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-06', N'Vạn Giã, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI005', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-05', N'Ninh Bình, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI006', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-06', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI007', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-05', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI008', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-04', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI009', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-04', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI010', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-01-03', N'Ninh Tây, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI011', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-01-03', N'Ninh Tây, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI012', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-02-01', N'Ninh Thân, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI013', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-03-01', N'Ninh Thân, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI014', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-04-03', N'Ba Vì, Khánh Hoà', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI015', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-02-11', N'Ba Vì, Khánh Hoà', 'qr-code.png', 0);
 
 insert into tblPhotos
 values

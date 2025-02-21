@@ -27,9 +27,9 @@ public partial class TblMangrove
 
     public string Use { get; set; } = null!;
 
-    public int Quantity { get; set; }
+    public long Quantity { get; set; }
 
-    public int View { get; set; }
+    public long View { get; set; }
 
     public DateTime UpdateLast { get; set; }
 

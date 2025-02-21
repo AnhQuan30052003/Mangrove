@@ -16,14 +16,14 @@ drop table if exists tblPhotos;
 
 -- [Add tables] --
 -- Bảng cho trang home "tìm kiếm"
-create table tblHome
-(
-    _footerImg nvarchar(256) not null,
-    _timeWork_open time not null,
-    _timeWork_close time not null,
-    _yearStart int not null,
-    _yearEnd int not null
-)
+-- create table tblHome
+-- (
+--     _footerImg nvarchar(256) not null,
+--     _timeWork_open time not null,
+--     _timeWork_close time not null,
+--     _yearStart int not null,
+--     _yearEnd int not null
+-- )
 
 -- Bảng tổng quan cây ngập mặn
 create table tblMangrove
@@ -39,8 +39,8 @@ create table tblMangrove
     _distribution nvarchar(256) not null,
     _conservationStatus nvarchar(256) not null,
     _use nvarchar(max) not null,
-    _quantity int not null,
-    _view int not null,
+    _quantity bigint not null,
+    _view bigint not null,
     _updateLast datetime not null
 )
 
@@ -49,8 +49,10 @@ create table tblIndividual
 (
     _id varchar(36) not null primary key,
     _idMangrove varchar(36) foreign key references tblMangrove(_id),
-    _number int not null,
-    _surveyDay datetime not null
+    _surveyDay datetime not null,
+    _position nvarchar(256) not null,
+    _qrName varchar(36) not null,
+    _view bigint not null
 )
 
 -- Bảng giai đoạn
@@ -65,6 +67,6 @@ create table tblPhotos
 (
     _id varchar(36) not null primary key,
     _idObj varchar(36) not null,
-    _imageNameId nvarchar(max) not null,
-    _noteImg nvarchar(256) not null,
+    _imageName nvarchar(max) not null,
+    _noteImg nvarchar(256) null,
 )

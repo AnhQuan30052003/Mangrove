@@ -1,6 +1,4 @@
-﻿@{
-	int view = TempData["View"] as int? ?? 0;
-}
+﻿@model long
 
 <section class="module_back">
 	<div class="container d-flex justify-content-between align-items-center py-2 mt-2 mb-0">
@@ -11,7 +9,7 @@
 		</a>
 
 		<span class="color_green_hover" title="Viewer">
-			@(view > 9999 ? "9999+" : view) &nbsp;
+			@(Model > 9999 ? "9999+" : Model) &nbsp;
 			<i class="fa-solid fa-eye"></i>
 		</span>
 

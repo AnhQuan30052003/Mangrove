@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"] = "Trang chủ";
 	Layout = Helper.Path.layoutUser;
-	string _com = Helper.Path._components;
+	string _pv = Helper.Path.partialView;
 }
 
-@await Html.PartialAsync(_com + "/RecentlyUpdated.cshtml", Model)
+@await Html.PartialAsync($"{_pv}/RecentlyUpdated.cshtml", Model)

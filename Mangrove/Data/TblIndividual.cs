@@ -9,9 +9,13 @@ public partial class TblIndividual
 
     public string? IdMangrove { get; set; }
 
-    public int Number { get; set; }
-
     public DateTime SurveyDay { get; set; }
+
+    public string Position { get; set; } = null!;
+
+    public string QrName { get; set; } = null!;
+
+    public long View { get; set; }
 
     public virtual TblMangrove? IdMangroveNavigation { get; set; }
 

@@ -12,8 +12,6 @@ public partial class MangroveContext : DbContext {
         : base(options) {
     }
 
-    public virtual DbSet<TblHome> TblHomes { get; set; }
-
     public virtual DbSet<TblIndividual> TblIndividuals { get; set; }
 
     public virtual DbSet<TblMangrove> TblMangroves { get; set; }
@@ -23,22 +21,8 @@ public partial class MangroveContext : DbContext {
     public virtual DbSet<TblStage> TblStages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        modelBuilder.Entity<TblHome>(entity => {
-            entity
-                .HasNoKey()
-                .ToTable("tblHome");
-
-            entity.Property(e => e.FooterImg)
-                .HasMaxLength(256)
-                .HasColumnName("_footerImg");
-            entity.Property(e => e.TimeWorkClose).HasColumnName("_timeWork_close");
-            entity.Property(e => e.TimeWorkOpen).HasColumnName("_timeWork_open");
-            entity.Property(e => e.YearEnd).HasColumnName("_yearEnd");
-            entity.Property(e => e.YearStart).HasColumnName("_yearStart");
-        });
-
         modelBuilder.Entity<TblIndividual>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C970B8777");
+            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C826B9B67");
 
             entity.ToTable("tblIndividual");
 
@@ -50,18 +34,25 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idMangrove");
-            entity.Property(e => e.Number).HasColumnName("_number");
+            entity.Property(e => e.Position)
+                .HasMaxLength(256)
+                .HasColumnName("_position");
+            entity.Property(e => e.QrName)
+                .HasMaxLength(36)
+                .IsUnicode(false)
+                .HasColumnName("_qrName");
             entity.Property(e => e.SurveyDay)
                 .HasColumnType("datetime")
                 .HasColumnName("_surveyDay");
+            entity.Property(e => e.View).HasColumnName("_view");
 
             entity.HasOne(d => d.IdMangroveNavigation).WithMany(p => p.TblIndividuals)
                 .HasForeignKey(d => d.IdMangrove)
-                .HasConstraintName("FK__tblIndivi___idMa__4CA06362");
+                .HasConstraintName("FK__tblIndivi___idMa__5EBF139D");
         });
 
         modelBuilder.Entity<TblMangrove>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1C5B93AFD4");
+            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1CE435B37A");
 
             entity.ToTable("tblMangrove");
 
@@ -99,7 +90,7 @@ public partial class MangroveContext : DbContext {
         });
 
         modelBuilder.Entity<TblPhoto>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C42ECDA73");
+            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C5EB153AF");
 
             entity.ToTable("tblPhotos");
 
@@ -111,14 +102,14 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idObj");
-            entity.Property(e => e.ImageNameId).HasColumnName("_imageNameId");
+            entity.Property(e => e.ImageName).HasColumnName("_imageName");
             entity.Property(e => e.NoteImg)
                 .HasMaxLength(256)
                 .HasColumnName("_noteImg");
         });
 
         modelBuilder.Entity<TblStage>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1CB13A4F71");
+            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C287158D3");
 
             entity.ToTable("tblStage");
 
@@ -133,7 +124,7 @@ public partial class MangroveContext : DbContext {
 
             entity.HasOne(d => d.IdIndividualNavigation).WithMany(p => p.TblStages)
                 .HasForeignKey(d => d.IdIndividual)
-                .HasConstraintName("FK__tblStage___idInd__4F7CD00D");
+                .HasConstraintName("FK__tblStage___idInd__619B8048");
         });
 
         OnModelCreatingPartial(modelBuilder);

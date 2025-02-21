@@ -1,5 +1,5 @@
 ﻿@{
-	string com = Helper.Path.components;
+	string _pvl = Helper.Path.partialViewLayout;
 }
 
 <!DOCTYPE html>
@@ -56,12 +56,12 @@
 
 <body>
 	<!-- Preload -->
-	@await Html.PartialAsync(com + "/Both_Preloader.cshtml")
-	@await Html.PartialAsync(com + "/Both_ClickShowImage.cshtml")
+	@await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml")
+	@await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
 
 	<!-- Header -->
-	@await Html.PartialAsync(com + "/User_Header.cshtml")
-	@* @await Html.PartialAsync(com + "/Both_Notifier.cshtml") *@
+	@await Html.PartialAsync(_pvl + "/_HeaderUser.cshtml")
+	@* @await Html.PartialAsync(_pvl + "/_Both_Notifier.cshtml") *@
 
 	<!-- Body-->
 	<main style="min-height: 70vh;">
@@ -69,7 +69,7 @@
 	</main>
 
 	<!-- Footer-->
-	@await Html.PartialAsync(com + "/User_Footer.cshtml")
+	@await Html.PartialAsync(_pvl + "/_FooterUser.cshtml")
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>

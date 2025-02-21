@@ -1,10 +1,10 @@
 public class Helper {
     // Path layout...
     public static class Path {
-        public static string layoutUser = "~/Views/Shared/_Layout_user.cshtml";
-        public static string layoutAdmin = "";
-        public static string components = "~/Views/Shared/Components";
-        public static string _components = "~/Views/_Components";
+        public static string layoutUser = "~/Views/Shared/_LayoutUser.cshtml";
+        public static string layoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
+        public static string partialView = "~/Views/_PartialView";
+        public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
     }
 
     // Status noifier
