@@ -44,48 +44,47 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 
-		public async Task<IActionResult> Result(string id, string? searchInvidiual = null) {
+		public async Task<IActionResult> Result(string id, string? searchIndividual = null) {
 			try {
-				//GetDistanceYear();
-
 				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id);
 				if (mangrove == null) {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
-				else {
-					var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
-					var photoMangrove = await context.TblPhotos.Where(o => o.ImageName == mangrove.MainImage).FirstOrDefaultAsync();
 
-					if (photoMangrove != null) {
-						photos.Remove(photoMangrove);
-						photos.Insert(0, photoMangrove);
+				// Truy vấn ảnh cho banner slick slider
+				var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
+				var photoMangrove = await context.TblPhotos.Where(o => o.ImageName == mangrove.MainImage).FirstOrDefaultAsync();
+
+				// Code Ajax tìm cá thể
+				if (Request.Headers["REQUESTED"] == "AJAX") {
+					// Xử lý logic tìm kiếm
+					List<TblIndividual> listInidivuals;
+					if (searchIndividual != null) {
+						listInidivuals = mangrove.TblIndividuals
+						.Where(o =>
+							o.Position.ToLower().Contains(searchIndividual.ToLower()) ||
+							o.SurveyDay.ToString("dd/MM/yyyy").Replace("-", "/").Contains(searchIndividual.ToLower().Replace("-", "/"))
+						)
+						.ToList();
 					}
+					else listInidivuals = mangrove.TblIndividuals.ToList();
 
-					mangrove.View += 1;
-					await context.SaveChangesAsync();
-
-					// Code Ajax tìm cá thể
-					// if (Request.Headers["REQUESTED"] == "AJAX" && searchInvidiual != null) {
-					// 	// Xử lý logic tìm kiếm
-
-					// 	DateTime searchDate = DateTime.ParseExact(searchInvidiual, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-					// 	string searchString = searchInvidiual.ToLower();
-
-					// 	List<TblIndividual> listInidivuals = mangrove.TblIndividuals
-					// 	.Where(o => o.SurveyDay.ToString("dd/MM/yyyy").Contains("") || o.Position.Contains(searchString))
-					// 	.ToList();
-
-
-
-
-					// 	return PartialView($"{Helper.Path.partialView}/Individuals.cshtml", listInidivuals);
-					// }
-
-					TempData["Photos"] = photos;
-					TempData["ListIndividuals"] = mangrove.TblIndividuals.ToList();
-					Console.WriteLine($"Số lượng item của {mangrove.Name} là: {mangrove.TblIndividuals.ToList().Count()}");
-					return View(mangrove);
+					return PartialView($"{Helper.Path.partialView}/Individuals.cshtml", listInidivuals);
 				}
+
+				// Xử lý thứ tự ảnh banner slick slider
+				if (photoMangrove != null) {
+					photos.Remove(photoMangrove);
+					photos.Insert(0, photoMangrove);
+				}
+
+				// Tăng view của cây
+				mangrove.View += 1;
+				await context.SaveChangesAsync();
+
+				TempData["Photos"] = photos;
+				TempData["ListIndividuals"] = mangrove.TblIndividuals.ToList();
+				return View(mangrove);
 			}
 			catch (Exception ex) {
 				Console.WriteLine("Error: " + ex.Message);

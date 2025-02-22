@@ -277,11 +277,12 @@ loadSlider();
 
 // Xử lý khi click vào ảnh phần thông tin cây
 function listenerImageToShow() {
-	const imageClick = document.querySelectorAll(".click_show_image");
-	imageClick.forEach((item) => {
-		item.addEventListener("click", function (e) {
+	const body = document.body;
+	body.addEventListener("click", function (event) {
+		const clicked = event.target;
+		if (clicked.matches(".click_show_image")) {
 			try {
-				const src = item.getAttribute("src");
+				const src = clicked.getAttribute("src");
 				const showImage = document.querySelector("#click_show_image");
 				const img = showImage.querySelector(".box_show img");
 				img.src = src;
@@ -291,22 +292,57 @@ function listenerImageToShow() {
 			catch {
 				console.log("Lỗi: Ảnh vừa click không thể phóng to !");
 			}
-		});
+		}
 	});
 }
 listenerImageToShow();
 
 // Theo dõi việc toggle QR img
 function listenerClickButtonQR() {
-	const btnQR = document.querySelectorAll(".toggleQR");
-	btnQR.forEach((item) => {
-		item.addEventListener("click", function () {
-			const frameQR = item.closest(".individual_item").querySelector(".frame_qr");
+	const listIndividual = document.querySelector(".list_individuals");
+	listIndividual.addEventListener("click", function (event) {
+		const clicked = event.target;
+		if (clicked.matches(".toggleQR")) {
+			const frameQR = clicked.closest(".individual_item").querySelector(".frame_qr");
 			if (frameQR) frameQR.classList.toggle("height-222");
-		});
+		}
 	});
 }
 listenerClickButtonQR();
+
+// Request with AJAX
+function requestAjax(url, result) {
+	const xhr = new XMLHttpRequest();
+	xhr.open("get", url);
+	xhr.setRequestHeader("REQUESTED", "AJAX");
+	xhr.onload = function () {
+		if (xhr.status == 200) {
+			result.innerHTML = xhr.responseText;
+		}
+	}
+	xhr.send();
+}
+
+// Theo dõ việc tìm kiếm các cá thể trong một cây
+function listenerSearchInvidiual() {
+	const searchInvidiual = document.querySelector("#searchInvidiual");
+	if (!searchInvidiual) return;
+
+	searchInvidiual.addEventListener("input", function (e) {
+		setTimeout(() => {
+			const value = this.value;
+			const id = this.getAttribute("id-mangrove");
+
+			const url = `/Home/Result?id=${id}&searchIndividual=${value}`;
+			const result = document.querySelector(".list_individuals");
+			requestAjax(url, result);
+		}, 500)
+	});
+}
+listenerSearchInvidiual();
+
+
+
 
 
 
@@ -363,5 +399,5 @@ function listenerClickToClose() {
 }
 listenerClickToClose();
 
-//--
+//---
 console.log("Run file site.js");

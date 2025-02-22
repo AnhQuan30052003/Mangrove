@@ -1,6 +1,3 @@
-let saveChecked = new Set();
-
-// Theo dõi Tìm kiếm và gửi quay AJAX
 function searchDetailStaff() {
     const frameSearchDetail = document.querySelector(".frame-search-detail");
     const deptId = frameSearchDetail.querySelector("form input");

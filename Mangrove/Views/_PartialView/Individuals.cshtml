@@ -2,63 +2,48 @@
 @model List<TblIndividual>
 
 @{
-    Console.WriteLine($"Số lượng cá thể hiện tại: {Model.Count()}");
-}
+    if (Model.Count() > 0)
+    {
+        int stt = 0;
+        foreach (var item in Model)
+        {
+            stt += 1;
 
-<div class="frame_measure p-2">
-    <div class="form_search">
-        <div class="search d-flex justify-content-center">
-            <div
-                class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
-                <i class="icon-s fa fa-search"></i>
-                <input class="p-2 border-none flex-grow-1 outline-none" type="search" name="searchInvidiual"
-                    placeholder="Ngày hoặc địa điểm (VD: 01/01/2000, Vạn Ninh)">
-            </div>
-        </div>
+            <div class="px-lg-1 py-1 col-12 col-lg-6">
+                <div class="individual_item border d-lg-flex flex-lg-wrap w-100">
+                    <div class="top col-12 p-2 d-flex justify-content-between align-items-center">
+                        <div class="id_title">
+                            <span>#@stt &nbsp;|</span>
+                            <a class="a_link" href='@Url.Action("Individual", "Home", new { id = @item.Id })'
+                                title="To the individual">@item.SurveyDay.ToString("dd/MM/yyyy").Replace("-", "/")</a>
+                        </div>
 
-        <div class="bg-black mt-2" style="height: 3px;"></div>
-
-        <div class="list_individuals d-lg-flex flex-lg-wrap justify-content-lg-between pb-1 pt-2">
-            @{
-                int stt = 0;
-                foreach (var item in Model)
-                {
-                    stt += 1;
-
-                    <div class="px-lg-1 py-1 col-12 col-lg-6">
-                        <div class="individual_item border d-lg-flex flex-lg-wrap w-100">
-                            <div class="top col-12 p-2 d-flex justify-content-between align-items-center">
-                                <div class="id_title">
-                                    <span>#@stt &nbsp;|</span>
-                                    <a class="a_link" href='@Url.Action("Individual", "Home", new { id = @item.Id })'
-                                        title="To the individual">@item.SurveyDay.ToString("dd/MM/yyyy")</a>
-                                </div>
-
-                                <div>
-                                    <span class="color_green_hover">
-                                        @item.View &nbsp;
-                                        <i class="fa-solid fa-eye" title="Viewer"></i>
-                                        &nbsp;|&nbsp;
-                                    </span>
-                                    <span>Giai đoạn: @item.TblStages.Count()</span>
-                                </div>
-                            </div>
-
-                            <div class="bottom col-12 p-2 d-flex justify-content-between align-items-center">
-                                <span class="color_green_hover">@item.Position</span>
-                                <button class="toggleQR px-3 py-1 border-none" title="See QR code">
-                                    QR
-                                </button>
-                            </div>
-
-                            <div class="frame_qr text-center col-12">
-                                <img class="h-100 click_show_image" src='@Url.Content($"~/img/qr-img/" + @item.QrName)' alt="">
-                            </div>
+                        <div>
+                            <span class="color_green_hover">
+                                @item.View &nbsp;
+                                <i class="fa-solid fa-eye" title="Viewer"></i>
+                                &nbsp;|&nbsp;
+                            </span>
+                            <span>Giai đoạn: @item.TblStages.Count()</span>
                         </div>
                     </div>
 
-                }
-            }
-        </div>
-    </div>
-</div>
+                    <div class="bottom col-12 p-2 d-flex justify-content-between align-items-center">
+                        <span class="color_green_hover">@item.Position</span>
+                        <button class="toggleQR px-3 py-1 border-none" title="See QR code">
+                            QR
+                        </button>
+                    </div>
+
+                    <div class="frame_qr text-center col-12">
+                        <img class="h-100 click_show_image" src='@Url.Content($"~/img/qr-img/" + @item.QrName)' alt="">
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
+    }
+}
