@@ -17,10 +17,6 @@ namespace Mangrove.Controllers {
 		// Page: Trang chủ
 		public async Task<IActionResult> Index() {
 			try {
-				//GetDistanceYear();
-				//TempData["Status"] = Helper.StatusNoifier.success;
-				//TempData["Content"] = "Thành công test code";
-
 				// Truy vấn 6 item gần đây nhất
 				int quantityShow = 6;
 				var mangroves = await context.TblMangroves
@@ -32,16 +28,10 @@ namespace Mangrove.Controllers {
 				return View(mangroves);
 			}
 			catch (Exception ex) {
-				Console.WriteLine("Error: " + ex.Message);
-				return NotFound("Có lỗi khi kết nối với Cơ sở dữ liệu");
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
 			}
-		}
-
-		// Page: Kết quả tìm kiếm ?
-		public IActionResult Results() {
-			//GetDistanceYear();
-
-			return View();
 		}
 
 		public async Task<IActionResult> Result(string id, string? searchIndividual = null) {
@@ -51,19 +41,16 @@ namespace Mangrove.Controllers {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
 
-				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.Where(o => o.ImageName == mangrove.MainImage).FirstOrDefaultAsync();
-
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
 					List<TblIndividual> listInidivuals;
 					if (searchIndividual != null) {
+						string search = searchIndividual.ToLower().Replace("/", "-");
 						listInidivuals = mangrove.TblIndividuals
 						.Where(o =>
-							o.Position.ToLower().Contains(searchIndividual.ToLower()) ||
-							o.SurveyDay.ToString("dd/MM/yyyy").Replace("-", "/").Contains(searchIndividual.ToLower().Replace("-", "/"))
+							o.Position.ToLower().Contains(search) ||
+							o.SurveyDay.ToString("dd/MM/yyyy").Contains(search)
 						)
 						.ToList();
 					}
@@ -72,8 +59,12 @@ namespace Mangrove.Controllers {
 					return PartialView($"{Helper.Path.partialView}/Individuals.cshtml", listInidivuals);
 				}
 
+				// Truy vấn ảnh cho banner slick slider
+				var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
+				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(o => o.ImageName == mangrove.MainImage);
+
 				// Xử lý thứ tự ảnh banner slick slider
-				if (photoMangrove != null) {
+				if (photos.Count() > 1 && photoMangrove != null) {
 					photos.Remove(photoMangrove);
 					photos.Insert(0, photoMangrove);
 				}
@@ -87,38 +78,40 @@ namespace Mangrove.Controllers {
 				return View(mangrove);
 			}
 			catch (Exception ex) {
-				Console.WriteLine("Error: " + ex.Message);
-				return NotFound("Có lỗi khi kết nối với Cơ sở dữ liệu");
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
 			}
 		}
 
 		// Page: cá thể của cây
-		public IActionResult Individual(string id) {
-			return View();
+		public async Task<IActionResult> Individual(string id) {
+			try {
+				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
+				if (individual == null) {
+					return NotFound($"Không tìm thấy cá thể có ID: {id}");
+				}
+
+				// individual.View += 1;
+				// await context.SaveChangesAsync();
+
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(o => o.Id == individual.IdMangrove);
+				if (mangrove != null) {
+					TempData["NameMangrove"] = mangrove.Name;
+				}
+
+				return View(individual);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
 		}
 
 		// Page: tìm kiếm
 		public IActionResult Search() {
 			return View();
 		}
-
-		// Hàm riêng
-		// Truy vấn thời gian (năm) chi filter tìm kiếm
-		// private async void GetDistanceYear() {
-		// 	try {
-		// 		var home = await context.TblHomes.FirstOrDefaultAsync();
-		// 		if (home == null) {
-		// 			Console.WriteLine("Bảng Home không có dữ liệu");
-		// 		}
-		// 		else {
-		// 			TempData["YearStart"] = home.YearStart;
-		// 			TempData["YearEnd"] = DateTime.Now.Year;
-		// 		}
-		// 	}
-		// 	catch (Exception ex) {
-		// 		Console.WriteLine("Không kết nối được với Cơ sở dữ liệu");
-		// 		Console.WriteLine("Error: " + ex.Message);
-		// 	}
-		// }
 	}
 }

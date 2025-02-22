@@ -1,8 +1,15 @@
+@using Mangrove.Data
+@model TblIndividual
 @{
-    ViewData["Title"] = "Cây ?";
+    ViewData["Title"] = TempData["NameMangrove"] ?? "Name ?";
     Layout = Helper.Path.layoutUser;
+    string _pv = Helper.Path.partialView;
 }
+
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
 
 <section class="container text-center">
     <h1>Trang này đang trong quá trình xây dựng</h1>
 </section>
+
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)

@@ -4,6 +4,7 @@ try {
 
 }
 catch (Exception ex) {
-    Console.WriteLine("Error: " + ex.Message);
-    return NotFound("Có lỗi khi kết nối với Cơ sở dữ liệu");
+    string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+    Console.WriteLine(notifier);
+    return NotFound(notifier);
 }
