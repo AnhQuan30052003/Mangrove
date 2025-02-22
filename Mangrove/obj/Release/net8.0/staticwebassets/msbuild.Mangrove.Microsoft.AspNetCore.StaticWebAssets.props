@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ui8l8079ye</Fingerprint>
-      <Integrity>mimANSz+oDamwSPXzKRRJ9XtBUQ3UEPU+Z5NebIZFWk=</Integrity>
+      <Fingerprint>y8pcvdapq1</Fingerprint>
+      <Integrity>LkK5y8KfSmbzKiEaoXM0mkHGMkzFVutYmNvQRIWd5PE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\back.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ysk2l3ylqa</Fingerprint>
-      <Integrity>0lb52rpcbsQuNQyNWxh8T8catTF8mSjFXrj8TCIcXYA=</Integrity>
+      <Fingerprint>39zcvuvpvh</Fingerprint>
+      <Integrity>dySdWP37CORvl6FIa/ne40pflL25BT+NpN3VOVYG/iI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\footer.css'))</OriginalItemSpec>
@@ -120,8 +120,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kf4dq69vo4</Fingerprint>
-      <Integrity>sNn8eTdpw/04XP6ZUsAuNVRHuESDLl1kSsIzAhlXnmc=</Integrity>
+      <Fingerprint>afwx4fhxgg</Fingerprint>
+      <Integrity>mm1bjSEdsy3mJbhQeb7jb5AEKllp1S74zdXY0eccXCU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\result.css'))</OriginalItemSpec>
@@ -1026,6 +1026,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\tree-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAP010.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ajax_demo.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>js/ajax_demo.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>zl0se7c36c</Fingerprint>
+      <Integrity>6UNF3pOl4iH9+061Yhf9G9AOneoW+N7Rdt0DdV6Xg8M=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\ajax_demo.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\jquery\jquery-2.2.4.min.js'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
@@ -1056,8 +1074,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>tl6edz6ar1</Fingerprint>
-      <Integrity>8ZEjeGCvU+YjIOlL3Wv6gH74Z/WZa2didiH++LinzNE=</Integrity>
+      <Fingerprint>84grrhdkv6</Fingerprint>
+      <Integrity>WDn09O7SKnsZmlGRcG9j1Y2efnNWJQN8ZhncWwWQwCk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</OriginalItemSpec>

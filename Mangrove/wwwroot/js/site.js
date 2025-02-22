@@ -329,14 +329,12 @@ function listenerSearchInvidiual() {
 	if (!searchInvidiual) return;
 
 	searchInvidiual.addEventListener("input", function (e) {
-		setTimeout(() => {
-			const value = this.value;
-			const id = this.getAttribute("id-mangrove");
+		const value = this.value;
+		const id = this.getAttribute("id-mangrove");
 
-			const url = `/Home/Result?id=${id}&searchIndividual=${value}`;
-			const result = document.querySelector(".list_individuals");
-			requestAjax(url, result);
-		}, 500)
+		const url = `/Home/Result?id=${id}&searchIndividual=${value}`;
+		const result = document.querySelector(".list_individuals");
+		requestAjax(url, result);
 	});
 }
 listenerSearchInvidiual();
