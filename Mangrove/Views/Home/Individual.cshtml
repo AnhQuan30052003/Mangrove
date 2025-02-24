@@ -1,15 +1,59 @@
 @using Mangrove.Data
 @model TblIndividual
 @{
-    ViewData["Title"] = TempData["NameMangrove"] ?? "Name ?";
+    string name = TempData["NameMangrove"] as string ?? "";
+    ViewData["Title"] = name;
     Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
 @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
 
-<section class="container text-center">
-    <h1>Trang này đang trong quá trình xây dựng</h1>
+<section class="individual_display container py-2">
+    <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
+        @{
+            for (int i = 0; i <= 2; i++)
+            {
+                <span tab=@i class="previod tab @(i == 0 ? "active" : "")">
+                    <span class="hidden_mobile">Giai đoạn</span>
+                    @(i + 1)
+                </span>
+            }
+        }
+    </div>
+
+    <div class="display mt-3">
+        @{
+            for (int i = 0; i <= 2; i++)
+            {
+                <div class="display_item @(i == 0 ? "" : "d-none")">
+                    <div class="title d-flex" style="height: 300px;">
+                        <div class="col-6 border text-center">
+                            <img class="h-100 click_show_image" src="~/img/individual-img/img_test.jpg" alt="">
+                        </div>
+
+                        <div class="col-6 border">
+                            <h4 class="text-center mb-2 fw-bold">@name</h4>
+                            <p class="d-flex justify-content-between px-2">
+                                <span>Thông tin 1</span>
+                                <span>Kết quả 1</span>
+                            </p>
+
+                            <p class="d-flex justify-content-between px-2">
+                                <span>Thông tin 1</span>
+                                <span>Kết quả 1</span>
+                            </p>
+
+                            <p class="d-flex justify-content-between px-2">
+                                <span>Thông tin 1</span>
+                                <span>Kết quả 1</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </section>
 
 @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)

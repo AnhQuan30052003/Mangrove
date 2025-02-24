@@ -35,10 +35,10 @@ namespace Mangrove.Controllers {
 		}
 
 		// Kết quả tìm kiếm cây
-		// [Route("Result/{id}&{searchIndividual}")]
-		public async Task<IActionResult> Result(string id, string? searchIndividual = null) {
+		// [Route("Result/{title} - {id}")]
+		public async Task<IActionResult> Result(string id = "", string? searchIndividual = null) {
 			try {
-				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id);
+				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id.ToUpper());
 				if (mangrove == null) {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
@@ -77,7 +77,6 @@ namespace Mangrove.Controllers {
 
 				TempData["Photos"] = photos;
 				TempData["ListIndividuals"] = mangrove.TblIndividuals.ToList();
-				id = mangrove.Name;
 				return View(mangrove);
 			}
 			catch (Exception ex) {

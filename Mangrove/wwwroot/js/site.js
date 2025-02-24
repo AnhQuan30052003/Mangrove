@@ -280,6 +280,7 @@ function listenerImageToShow() {
 	const body = document.body;
 	body.addEventListener("click", function (event) {
 		const clicked = event.target;
+		let scale;
 		if (clicked.matches(".click_show_image")) {
 			try {
 				const src = clicked.getAttribute("src");
@@ -288,6 +289,19 @@ function listenerImageToShow() {
 				img.src = src;
 				showImage.classList.remove("d-none");
 				document.body.style.overflow = "hidden";
+				scale = 1;
+				img.style.transform = `scale(${scale})`;
+
+				img.addEventListener("wheel", function (e) {
+					if (e.deltaY < 0) {
+						scale += 0.1;
+					}
+					else {
+						scale -= 0.1;
+						if (scale < 0.5) scale = 0.5;
+					}
+					img.style.transform = `scale(${scale})`;
+				});
 			}
 			catch {
 				console.log("Lỗi: Ảnh vừa click không thể phóng to !");
@@ -325,7 +339,7 @@ function requestAjax(url, result) {
 	xhr.send();
 }
 
-// Theo dõ việc tìm kiếm các cá thể trong một cây
+// Theo dõi việc tìm kiếm các cá thể trong một cây
 function listenerSearchInvidiual() {
 	const searchInvidiual = document.querySelector("#searchInvidiual");
 	if (!searchInvidiual) return;
@@ -341,8 +355,27 @@ function listenerSearchInvidiual() {
 }
 listenerSearchInvidiual();
 
+// Theo dõi khi click và tab giai đoạn của mỗi cây
+function listenerClickPreviodOfTree() {
+	try {
+		const individualDisplay = document.querySelector(".individual_display");
+		const tabs = individualDisplay.querySelectorAll(".tab")
+		const displayItems = individualDisplay.querySelectorAll(".display_item");
 
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", function (e) {
+				tabs.forEach((item) => item.classList.remove("active"));
+				this.classList.add("active");
 
+				const idTab = this.getAttribute("tab");
+				displayItems.forEach((item) => item.classList.add("d-none"));
+				displayItems[idTab].classList.remove("d-none");
+			});
+		})
+	}
+	catch { }
+}
+listenerClickPreviodOfTree();
 
 
 
@@ -386,8 +419,8 @@ function listenerClickToClose() {
 		// Huỷ khi mở phóng to ảnh
 		try {
 			const showImg = document.querySelector("#click_show_image");
-			const boxShow = showImg.querySelector(".box_show");
-			if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !boxShow.contains(event.target)) {
+			const img = showImg.querySelector(".box_show .img");
+			if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !img.contains(event.target)) {
 				showImg.classList.add("d-none");
 				document.body.style.overflow = "auto";
 			}

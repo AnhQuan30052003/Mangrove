@@ -15,7 +15,6 @@ builder.Services.AddSession((options) => {
 // var apiKey = builder.Configuration.GetConnectionString("IPA_Translate") ?? "";
 // builder.Services.AddSingleton(new GoogleTranslateService(apiKey));
 
-
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment()) {
@@ -34,6 +33,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
-	//pattern: "{controller=Home}/{action=Result}/{id?}");
+//pattern: "{controller=Home}/{action=Result}/{id?}");
 
 app.Run();
