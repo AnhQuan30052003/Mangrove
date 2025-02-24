@@ -34,6 +34,8 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		// Kết quả tìm kiếm cây
+		// [Route("Result/{id}&{searchIndividual}")]
 		public async Task<IActionResult> Result(string id, string? searchIndividual = null) {
 			try {
 				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id);
@@ -75,6 +77,7 @@ namespace Mangrove.Controllers {
 
 				TempData["Photos"] = photos;
 				TempData["ListIndividuals"] = mangrove.TblIndividuals.ToList();
+				id = mangrove.Name;
 				return View(mangrove);
 			}
 			catch (Exception ex) {

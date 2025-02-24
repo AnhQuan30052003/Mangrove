@@ -300,6 +300,8 @@ listenerImageToShow();
 // Theo dõi việc toggle QR img
 function listenerClickButtonQR() {
 	const listIndividual = document.querySelector(".list_individuals");
+	if (!listIndividual) return;
+
 	listIndividual.addEventListener("click", function (event) {
 		const clicked = event.target;
 		if (clicked.matches(".toggleQR")) {

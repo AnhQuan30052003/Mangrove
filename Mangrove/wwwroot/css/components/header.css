@@ -148,3 +148,25 @@ select option {
 		background-color: white;
 	}
 }
+
+@media (width > 992px) {
+	.list_menu>li {
+		position: relative;
+	}
+
+	.list_menu>li::after {
+		content: "";
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background-color: var(--greenPage);
+		width: 0;
+		transition: all 0.5s;
+	}
+
+	.list_menu>li:hover::after {
+		width: 100%;
+	}
+}
