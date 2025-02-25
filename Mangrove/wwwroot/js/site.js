@@ -27,9 +27,7 @@ function listnerClickHamburgerMenu() {
 			document.body.style.overflow = "auto";
 		}
 	}
-	catch {
-		console.log("Có lỗi khi click vào Hamburger Menu");
-	}
+	catch { }
 }
 
 // Theo dõi cuộn màn hình 
@@ -149,9 +147,7 @@ function setupDay() {
 			days.appendChild(option);
 		}
 	}
-	catch {
-		console.log("Có lỗi khit cập nhật setupDay");
-	}
+	catch { }
 }
 // setupDay();
 
@@ -303,9 +299,7 @@ function listenerImageToShow() {
 					img.style.transform = `scale(${scale})`;
 				});
 			}
-			catch {
-				console.log("Lỗi: Ảnh vừa click không thể phóng to !");
-			}
+			catch { }
 		}
 	});
 }
@@ -398,9 +392,7 @@ function listenerClickToClose() {
 			// 	iconS.classList.remove("d-none");
 			// }
 		}
-		catch {
-			console.log("Có lỗi khi tắt tìm kiếm");
-		}
+		catch { }
 
 		// Nếu không click vào button language
 		try {
@@ -412,9 +404,7 @@ function listenerClickToClose() {
 				iconDrop.classList.remove("_180deg");
 			}
 		}
-		catch {
-			console.log("Có lỗi khi tắt ngôn ngữ");
-		}
+		catch { }
 
 		// Huỷ khi mở phóng to ảnh
 		try {
@@ -425,9 +415,7 @@ function listenerClickToClose() {
 				document.body.style.overflow = "auto";
 			}
 		}
-		catch {
-			console.log("Có lỗi khi tắt show image");
-		}
+		catch { }
 	});
 }
 listenerClickToClose();

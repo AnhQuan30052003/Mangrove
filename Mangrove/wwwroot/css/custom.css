@@ -80,3 +80,11 @@ option {
 .text-justify {
     text-align: justify !important;
 }
+
+.underline_hover {
+    transition: all 0.5s;
+}
+
+.underline_hover:hover {
+    text-decoration: underline;
+}
