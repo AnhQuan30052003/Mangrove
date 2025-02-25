@@ -72,26 +72,33 @@ values
         0,
         0,
         '2025-02-15'
-);
+    ),
+    (
+        '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003',
+        N'Bần trắng', N'',
+        N'Sonneratia alba Smith.', N'Sonneratiaceae (Lythraceae)',
+        N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP014.png',
+        N'Cây gỗ lớn, cao 15m, DBH: 1m; vỏ thân màu nâu sậm, nứt dọc. nhiều rễ thở hình măng (dạng hình măng).
+        Lá đơn, mọc đối, hình trứng ngược, đầu lá tròn. 
+        Hoa mọc thành chùm, 5-8 hoa màu trắng, thường nở vào ban đêm. 
+        đài 6-7; tràng 6-7; nhị nhiều màu trắng; bầu 14-16 ngăn. 
+        Quả thịt, hình bánh xe, rộng 3,5cm, có đài tồn tại phía gốc, với hơn 100 hạt. 
+        Mùa hoa quả: tháng 4-11.',
+        N'Mọc ở khu vực bán ngập triều, thích hợp độ mặn cao, nơi có hỗn hợp đất bùn và cát. Bần trắng là loài cây tiên phong, thường chiếm ưu thế (tạo thành quần thể) phát triển nhanh.   
+        Loài cây ngập mặn thực sự.',
+        N'Hiện diện ở đầm Nha Phu và đầm Môn và hòn Lớn.',
+        N'Do thường bị chặt phá nên phạm vi phân bố đang thu hẹp dần, cần được bảo vệ và gây trồng phục hồi.',
+        N'Gỗ được sử dụng để xây dựng nhà và đóng thuyền. 
+        Rễ dạng măng dùng để làm nút chai và phao.
+        Theo YHCT: Dùng chữa sưng và bong gân.',
+        0,
+        0,
+        '2025-02-22'
+    );
 
 insert into tblIndividual
 values
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-01', N'Vạn Ninh, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-03', N'La Phong, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI002', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-03', N'Nha Trang, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI003', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-02', N'Ninh Hoà, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI004', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA000', '2025-01-06', N'Vạn Giã, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI005', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-05', N'Ninh Bình, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI006', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-06', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI007', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-05', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI008', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-04', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI009', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA001', '2025-01-04', N'Hải Dương Học, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI010', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-01-03', N'Ninh Tây, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI011', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-01-03', N'Ninh Tây, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI012', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-02-01', N'Ninh Thân, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI013', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-03-01', N'Ninh Thân, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI014', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-04-03', N'Ba Vì, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI015', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', '2025-02-11', N'Ba Vì, Khánh Hoà', 'qr-code.png', 0);
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', '2025-02-25', N'Vạn Giã, Vạn Ninh, Khánh Hoà', 'qr-code.png', 0)
 
 insert into tblPhotos
 values
@@ -105,4 +112,9 @@ values
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB007', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP007.jpg', N'Ghi chú 1'),
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB008', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP008.jpg', N'Ghi chú 2'),
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB009', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP009.png', N'Ghi chú 3'),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB010', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP010.jpg', N'Ghi chú 4');
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB010', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP010.jpg', N'Ghi chú 4'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB011', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP011.jpg', N'Ghi chú 1'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB012', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP012.jpg', N'Ghi chú 2'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB013', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP013.jpg', N'Ghi chú 3'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB014', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP014.png', N'Ghi chú 4'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB015', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP015.jpg', N'Ghi chú 5');
