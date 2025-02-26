@@ -14,9 +14,8 @@
 }
 
 .info {
-	transition: all 0.4s linear;
 	overflow: hidden;
-	max-height: 1000px;
+	max-height: max-content;
 }
 
 .box_collapse {

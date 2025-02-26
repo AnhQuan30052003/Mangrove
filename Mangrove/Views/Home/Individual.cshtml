@@ -15,39 +15,61 @@
             for (int i = 0; i <= 4; i++)
             {
                 <span tab=@i class="previod tab @(i == 0 ? "active" : "")">
-                    <span class="hidden_mobile">Giai đoạn</span>
+                    <span class="hidden_mobile cursor-pointer">Giai đoạn</span>
                     @(i + 1)
                 </span>
             }
         }
     </div>
 
-    <div class="display mt-3 d-none">
+    <div class="display mt-3">
         @{
             for (int i = 0; i <= 4; i++)
             {
                 <div class="display_item @(i == 0 ? "" : "d-none")">
-                    <div class="title d-flex" style="height: 300px;">
-                        <div class="col-6 border text-center">
-                            <img class="h-100 click_show_image" src="~/img/individual-img/img_test.jpg" alt="">
+                    <div class="box bg-white cursor-pointer mb-2">
+                        <div class="toggle_title text-center mt-1 mb-2">
+                            <h5 class="py-2 bg-black text-white">Tên giai đoạn ?</h5>
                         </div>
 
-                        <div class="col-6 border">
-                            <h4 class="text-center mb-2 fw-bold">@name</h4>
-                            <p class="d-flex justify-content-between px-2">
-                                <span>Thông tin 1</span>
-                                <span>Kết quả 1</span>
-                            </p>
+                        <div class="info title d-flex flex-wrap">
+                            <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
+                                <img class="h-100 click_show_image" src="~/img/individual-img/img_test.jpg" alt="">
+                            </div>
 
-                            <p class="d-flex justify-content-between px-2">
-                                <span>Thông tin 1</span>
-                                <span>Kết quả 1</span>
-                            </p>
+                            <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2 gap-0">
+                                <h4 class="text-center mb-2 fw-bold">@name</h4>
+                                <p class="d-flex justify-content-between justify-content-lg-start">
+                                    <span style="width: 100px;">Ngày khảo sát:</span>
+                                    <span>@Model.SurveyDay.ToString("dd/MM/yyyy")</span>
+                                </p>
 
-                            <p class="d-flex justify-content-between px-2">
-                                <span>Thông tin 1</span>
-                                <span>Kết quả 1</span>
-                            </p>
+                                <p class="d-flex justify-content-between justify-content-lg-start">
+                                    <span style="width: 100px;">Vị tri:</span>
+                                    <span>@Model.Position</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box bg-white cursor-pointer mb-2">
+                        <div class="toggle_title text-center mt-1 mb-2">
+                            <h5 class="border py-2 bg-black text-white">Hình ảnh chi tiết</h5>
+                        </div>
+
+                        <div class="info d-flex flex-wrap" style="max-height: max-content;">
+                            @{
+                                for (int j = 1; j <= 5; j++)
+                                {
+                                    <div class="col-12 col-sm-6 col-lg-4 p-2">
+                                        <div style="height: 500px;">
+                                            <img class="w-100 h-100 object-fit-cover click_show_image"
+                                                src="~/img/individual-img/img_test.jpg" alt="">
+                                        </div>
+                                        <p class="text-center mt-1">Thông tin của hình ảnh</p>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                 </div>
@@ -56,4 +78,9 @@
     </div>
 </section>
 
-@* @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View) *@
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+
+
+<button id="btnQRFixed" title="QR">
+    <i class="fa-solid fa-qrcode click_show_image" src='@Url.Content($"~/img/qr-img/" + @Model.QrName)'></i>
+</button>

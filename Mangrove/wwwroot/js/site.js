@@ -50,37 +50,39 @@ function listenerScrollPage() {
 listenerScrollPage();
 
 // Click icon search
-// const searchIcon = document.querySelector("#searchIcon");
-// if (searchIcon) {
-// 	searchIcon.addEventListener("click", function () {
-// 		const searchFormUser = document.querySelector("#search_form_user");
-// 		const background = document.querySelector("#background");
-// 		const iconX = searchIcon.querySelector(".icon-x");
-// 		const iconS = searchIcon.querySelector(".icon-s");
+function listenerIconSerch() {
+	const searchIcon = document.querySelector("#searchIcon");
+	if (searchIcon) {
+		searchIcon.addEventListener("click", function () {
+			const searchFormUser = document.querySelector("#search_form_user");
+			const background = document.querySelector("#background");
+			const iconX = searchIcon.querySelector(".icon-x");
+			const iconS = searchIcon.querySelector(".icon-s");
 
-// 		searchFormUser.classList.toggle("d-none");
-// 		background.classList.toggle("d-none");
-// 		iconX.classList.toggle("d-none");
-// 		iconS.classList.toggle("d-none");
-// 	});
-// }
+			searchFormUser.classList.toggle("d-none");
+			background.classList.toggle("d-none");
+			iconX.classList.toggle("d-none");
+			iconS.classList.toggle("d-none");
+		});
+	}
 
-// Theo dõi chuyển tab của btn-option search-form home
-// document.querySelector("#search_form_user .options").addEventListener("click", function (e) {
-// 	const itemClick = e.target;
-// 	if (itemClick.matches(".btn-option")) {
-// 		const div_options = this.querySelectorAll(".btn-option");
-// 		const results = document.querySelectorAll("#search_form_user .result_search");
+	// Theo dõi chuyển tab của btn-option search-form home
+	document.querySelector("#search_form_user .options").addEventListener("click", function (e) {
+		const itemClick = e.target;
+		if (itemClick.matches(".btn-option")) {
+			const div_options = this.querySelectorAll(".btn-option");
+			const results = document.querySelectorAll("#search_form_user .result_search");
 
-// 		for (let i = 0; i < div_options.length; i++) {
-// 			div_options[i].classList.remove("active")
-// 			results[i].classList.add("d-none")
-// 		}
+			for (let i = 0; i < div_options.length; i++) {
+				div_options[i].classList.remove("active")
+				results[i].classList.add("d-none")
+			}
 
-// 		itemClick.classList.add("active");
-// 		document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
-// 	}
-// });
+			itemClick.classList.add("active");
+			document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
+		}
+	});
+}
 
 // Tiến hành thay đổi ngôn ngữ
 function changeLanguage(lang) {
@@ -149,7 +151,6 @@ function setupDay() {
 	}
 	catch { }
 }
-// setupDay();
 
 // Toggle info title
 function toggleInfoTitle() {
@@ -271,7 +272,7 @@ function loadSlider() {
 }
 loadSlider();
 
-// Xử lý khi click vào ảnh phần thông tin cây
+// Xử lý khi click vào ảnh phần thông tin cây và hiển thị nó to hơn
 function listenerImageToShow() {
 	const body = document.body;
 	body.addEventListener("click", function (event) {
