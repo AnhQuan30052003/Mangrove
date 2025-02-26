@@ -416,6 +416,21 @@ function listenerClickToClose() {
 			}
 		}
 		catch { }
+
+		// Huỷ mở menu hamburger
+		try {
+			const btnMenu = document.querySelector(".btn_menu");
+			const iconS = btnMenu.querySelector(".icon-s");
+			const listMenu = document.querySelector(".list_menu");
+
+			if (!listMenu.contains(event.target) && !btnMenu.contains(event.target) && iconS.classList.contains("d-none")) {
+				iconS.classList.remove("d-none");
+				btnMenu.querySelector(".icon-x").classList.add("d-none");
+				listMenu.classList.remove("right-0");
+				document.body.style.overflow = "auto";
+			}
+		}
+		catch { }
 	});
 }
 listenerClickToClose();

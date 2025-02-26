@@ -150,11 +150,11 @@ select option {
 }
 
 @media (width > 992px) {
-	.list_menu>li {
+	.list_menu .list_item>li {
 		position: relative;
 	}
 
-	.list_menu>li::after {
+	.list_menu .list_item>li::after {
 		content: "";
 		position: absolute;
 		bottom: -3px;
@@ -166,7 +166,7 @@ select option {
 		transition: all 0.5s;
 	}
 
-	.list_menu>li:hover::after {
+	.list_menu .list_item>li:hover::after {
 		width: 100%;
 	}
 }

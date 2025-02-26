@@ -12,7 +12,7 @@
 <section class="individual_display container py-2">
     <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
         @{
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i <= 4; i++)
             {
                 <span tab=@i class="previod tab @(i == 0 ? "active" : "")">
                     <span class="hidden_mobile">Giai đoạn</span>
@@ -22,9 +22,9 @@
         }
     </div>
 
-    <div class="display mt-3">
+    <div class="display mt-3 d-none">
         @{
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i <= 4; i++)
             {
                 <div class="display_item @(i == 0 ? "" : "d-none")">
                     <div class="title d-flex" style="height: 300px;">
@@ -56,4 +56,4 @@
     </div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+@* @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View) *@
