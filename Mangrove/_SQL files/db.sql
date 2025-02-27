@@ -49,7 +49,6 @@ create table tblIndividual
 (
     _id varchar(36) not null primary key,
     _idMangrove varchar(36) foreign key references tblMangrove(_id),
-    _surveyDay datetime not null,
     _position nvarchar(256) not null,
     _qrName varchar(36) not null,
     _view bigint not null
@@ -59,7 +58,9 @@ create table tblIndividual
 create table tblStage
 (
     _id varchar(36) not null primary key,
-    _idIndividual varchar(36) foreign key references tblIndividual(_id)
+    _idIndividual varchar(36) foreign key references tblIndividual(_id),
+    _surveyDay datetime not null,
+    _mainImage nvarchar(max) not null,
 )
 
 -- Bảng lưu trữ ảnh

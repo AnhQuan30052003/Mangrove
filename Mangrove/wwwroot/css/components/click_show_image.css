@@ -30,7 +30,9 @@
 #click_show_image button {
 	border: none;
 	outline: none;
-	padding: 5px 10px;
+	background-color: transparent;
+	font-size: 30px;
+	color: white;
 
 	position: absolute;
 	top: 5px;
