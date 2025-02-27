@@ -1,86 +1,100 @@
 @using Mangrove.Data
-@model TblIndividual
+@model InfoStagesOfIndividualModel
 @{
-    string name = TempData["NameMangrove"] as string ?? "";
-    ViewData["Title"] = name;
     Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
 
 <section class="individual_display container py-2">
-    <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
-        @{
-            for (int i = 0; i <= 4; i++)
-            {
-                <span tab=@i class="previod tab @(i == 0 ? "active" : "")">
-                    <span class="hidden_mobile cursor-pointer">Giai đoạn</span>
-                    @(i + 1)
-                </span>
-            }
-        }
-    </div>
+    @{
+        if (Model.Stages.Count() != 0)
+        {
+            <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
+                @{
+                    int countStage = 0;
+                    foreach (var stage in Model.Stages)
+                    {
+                        <span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
+                            <span class="hidden_mobile cursor-pointer">Giai đoạn</span>
+                            @(++countStage)
+                        </span>
+                    }
+                }
+            </div>
 
-    <div class="display mt-3">
-        @{
-            for (int i = 0; i <= 4; i++)
-            {
-                <div class="display_item @(i == 0 ? "" : "d-none")">
-                    <div class="box bg-white cursor-pointer mb-2">
-                        <div class="toggle_title text-center mt-1 mb-2">
-                            <h5 class="py-2 bg-black text-white">Tên giai đoạn ?</h5>
-                        </div>
+            <div class="display mt-3">
+                @{
+                    countStage = 0;
+                    foreach (var stage in Model.Stages)
+                    {
+                        <div class="display_item @(countStage == 0 ? "" : "d-none")">
+                            <div class="box bg-white mb-2">
+                                <div class="toggle_title cursor-pointer text-center mt-1 mb-2">
+                                    <h5 class="py-2 bg-black text-white">@stage.info.Name</h5>
+                                </div>
 
-                        <div class="info title d-flex flex-wrap">
-                            <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
-                                <img class="h-100 click_show_image" src="~/img/individual-img/img_test.jpg" alt="">
-                            </div>
-
-                            <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2 gap-0">
-                                <h4 class="text-center mb-2 fw-bold">@name</h4>
-                                <p class="d-flex justify-content-between justify-content-lg-start">
-                                    <span style="width: 100px;">Ngày khảo sát:</span>
-                                    <span>@Model.SurveyDay.ToString("dd/MM/yyyy")</span>
-                                </p>
-
-                                <p class="d-flex justify-content-between justify-content-lg-start">
-                                    <span style="width: 100px;">Vị tri:</span>
-                                    <span>@Model.Position</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box bg-white cursor-pointer mb-2">
-                        <div class="toggle_title text-center mt-1 mb-2">
-                            <h5 class="border py-2 bg-black text-white">Hình ảnh chi tiết</h5>
-                        </div>
-
-                        <div class="info d-flex flex-wrap" style="max-height: max-content;">
-                            @{
-                                for (int j = 1; j <= 5; j++)
-                                {
-                                    <div class="col-12 col-sm-6 col-lg-4 p-2">
-                                        <div style="height: 500px;">
-                                            <img class="w-100 h-100 object-fit-cover click_show_image"
-                                                src="~/img/individual-img/img_test.jpg" alt="">
-                                        </div>
-                                        <p class="text-center mt-1">Thông tin của hình ảnh</p>
+                                <div class="info title d-flex flex-wrap">
+                                    <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
+                                        <img class="h-100 click_show_image"
+                                            src="@Url.Content("~/img/stage-img/" + stage.info.MainImage)" alt="">
                                     </div>
-                                }
-                            }
+
+                                    <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2 gap-0">
+                                        <h4 class="text-center mb-2 fw-bold">@Model.NameMangrove</h4>
+                                        <p class="d-flex justify-content-between justify-content-lg-start">
+                                            <span style="width: 100px;">Ngày khảo sát:</span>
+                                            <span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
+                                        </p>
+
+                                        <p class="d-flex justify-content-between justify-content-lg-start">
+                                            <span style="width: 100px;">Vị tri:</span>
+                                            <span>@Model.Individual.Position</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box bg-white mb-2">
+                                <div class="toggle_title cursor-pointer text-center mt-1 mb-2">
+                                    <h5 class="border py-2 bg-black text-white">Hình ảnh chi tiết</h5>
+                                </div>
+
+                                <div class="info d-flex flex-wrap" style="max-height: max-content;">
+                                    @{
+                                        foreach (var photo in stage.photo)
+                                        {
+                                            <div class="col-12 col-sm-6 col-lg-4 p-2">
+                                                <div style="height: 500px;">
+                                                    <img class="w-100 h-100 object-fit-cover click_show_image"
+                                                        src="@Url.Content("~/img/stage-img/" + photo.ImageName)" alt="">
+                                                </div>
+                                                <p class="text-center mt-1">@photo.NoteImg</p>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            }
+                    }
+                }
+            </div>
         }
-    </div>
+        else
+        {
+            <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+                <h5>Cá thể này chưa có giai đoạn nào !</h5>
+            </div>
+        }
+    }
+
+
 </section>
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
 
 
 <button id="btnQRFixed" title="QR">
-    <i class="fa-solid fa-qrcode click_show_image" src='@Url.Content($"~/img/qr-img/" + @Model.QrName)'></i>
+    <i class="fa-solid fa-qrcode click_show_image" src='@Url.Content($"~/img/qr-img/" + @Model.Individual.QrName)'></i>
 </button>

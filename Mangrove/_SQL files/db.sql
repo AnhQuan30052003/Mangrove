@@ -1,17 +1,17 @@
-create database mangrove;
-use mangrove;
+create database mangrove
+use mangrove
 
-use master;
-drop database mangrove;
+use master
+drop database mangrove
 
 --- [Drop tables] --
-drop table if exists tblHome;
+drop table if exists tblHome
 
-drop table if exists tblStage;
-drop table if exists tblIndividual;
-drop table if exists tblMangrove;
+drop table if exists tblStage
+drop table if exists tblIndividual
+drop table if exists tblMangrove
 
-drop table if exists tblPhotos;
+drop table if exists tblPhotos
 
 
 -- [Add tables] --
@@ -50,6 +50,7 @@ create table tblIndividual
     _id varchar(36) not null primary key,
     _idMangrove varchar(36) foreign key references tblMangrove(_id),
     _position nvarchar(256) not null,
+    _updateLast datetime not null,
     _qrName varchar(36) not null,
     _view bigint not null
 )
@@ -58,6 +59,7 @@ create table tblIndividual
 create table tblStage
 (
     _id varchar(36) not null primary key,
+    _name nvarchar(100) not null,
     _idIndividual varchar(36) foreign key references tblIndividual(_id),
     _surveyDay datetime not null,
     _mainImage nvarchar(max) not null,

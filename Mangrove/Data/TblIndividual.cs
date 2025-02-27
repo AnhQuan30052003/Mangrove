@@ -9,9 +9,9 @@ public partial class TblIndividual
 
     public string? IdMangrove { get; set; }
 
-    public DateTime SurveyDay { get; set; }
-
     public string Position { get; set; } = null!;
+
+    public DateTime UpdateLast { get; set; }
 
     public string QrName { get; set; } = null!;
 

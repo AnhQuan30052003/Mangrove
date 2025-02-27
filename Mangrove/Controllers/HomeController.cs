@@ -5,6 +5,7 @@ using Mangrove.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using System.Configuration;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -52,7 +53,7 @@ namespace Mangrove.Controllers {
 						listInidivuals = mangrove.TblIndividuals
 						.Where(o =>
 							o.Position.ToLower().Contains(search) ||
-							o.SurveyDay.ToString("dd/MM/yyyy").Contains(search)
+							o.UpdateLast.ToString("dd/MM/yyyy").Contains(search)
 						)
 						.ToList();
 					}
@@ -89,20 +90,46 @@ namespace Mangrove.Controllers {
 		// Page: cá thể của cây
 		public async Task<IActionResult> Individual(string id) {
 			try {
+
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
 				if (individual == null) {
 					return NotFound($"Không tìm thấy cá thể có ID: {id}");
 				}
 
-				// individual.View += 1;
-				// await context.SaveChangesAsync();
+				individual.View += 1;
+				await context.SaveChangesAsync();
 
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(o => o.Id == individual.IdMangrove);
-				if (mangrove != null) {
-					TempData["NameMangrove"] = mangrove.Name;
+
+				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
+				List<Stage> listStages = new List<Stage>();
+				foreach (var stage in individual.TblStages) {
+					var photos = await context.TblPhotos.Where(o => o.IdObj == stage.Id).ToListAsync();
+					if (photos.Count == 0) {
+						photos = new List<TblPhoto>();
+					}
+					else {
+						var photo = await context.TblPhotos.FirstOrDefaultAsync(o => o.IdObj == stage.Id);
+						if (photo != null) {
+							photos.Remove(photo);
+						}
+					}
+
+					var _stage = new Stage {
+						info = stage,
+						photo = photos
+					};
+
+					listStages.Add(_stage);
 				}
 
-				return View(individual);
+				var info = new InfoStagesOfIndividualModel {
+					NameMangrove = mangrove?.Name ?? "",
+					Individual = individual,
+					Stages = listStages
+				};
+
+				return View(info);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";

@@ -1,16 +1,16 @@
-use mangrove;
+use mangrove
 
 -- [Delete data from tables]
--- delete tblHome;
--- delete tblStage;
-delete tblIndividual;
-delete tblMangrove;
-delete tblPhotos;
+-- delete tblHome
+delete tblStage
+delete tblIndividual
+delete tblMangrove
+delete tblPhotos
 
 -- [Insert data for tables]
 -- insert into tblHome
 -- values
---     (N'', '07:30:00', '17:30:00', 2023, 2025);
+--     (N'', '07:30:00', '17:30:00', 2023, 2025)
 
 insert into tblMangrove
 values
@@ -78,10 +78,10 @@ values
         N'Bần trắng', N'',
         N'Sonneratia alba Smith.', N'Sonneratiaceae (Lythraceae)',
         N'00000000-AAAA-AAAA-AAAA-AAAAAAAAP014.png',
-        N'Cây gỗ lớn, cao 15m, DBH: 1m; vỏ thân màu nâu sậm, nứt dọc. nhiều rễ thở hình măng (dạng hình măng).
+        N'Cây gỗ lớn, cao 15m, DBH: 1m vỏ thân màu nâu sậm, nứt dọc. nhiều rễ thở hình măng (dạng hình măng).
         Lá đơn, mọc đối, hình trứng ngược, đầu lá tròn. 
         Hoa mọc thành chùm, 5-8 hoa màu trắng, thường nở vào ban đêm. 
-        đài 6-7; tràng 6-7; nhị nhiều màu trắng; bầu 14-16 ngăn. 
+        đài 6-7 tràng 6-7 nhị nhiều màu trắng bầu 14-16 ngăn. 
         Quả thịt, hình bánh xe, rộng 3,5cm, có đài tồn tại phía gốc, với hơn 100 hạt. 
         Mùa hoa quả: tháng 4-11.',
         N'Mọc ở khu vực bán ngập triều, thích hợp độ mặn cao, nơi có hỗn hợp đất bùn và cát. Bần trắng là loài cây tiên phong, thường chiếm ưu thế (tạo thành quần thể) phát triển nhanh.   
@@ -94,17 +94,17 @@ values
         0,
         0,
         '2025-02-22'
-    );
+    )
 
 insert into tblIndividual
 values
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'Vạn Giã, Vạn Ninh, Khánh Hoà', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'Vạn Giã, Vạn Ninh, Khánh Hoà', 'qr-code.png', 0)
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'Vạn Giã, Vạn Ninh, Khánh Hoà', '2025-02-20', 'qr-code.png', 0),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'Vạn Giã, Vạn Ninh, Khánh Hoà', '2025-02-21', 'qr-code.png', 0)
 
 insert into tblStage
 values
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAS000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '2025-02-25', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB016.jpg'),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAS001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '2025-02-26', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB020.jpg')
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAS000', N'Tên giai đoạn 1', '00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '2025-02-25', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB016.jpg'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAS001', N'Tên giai đoạn 1', '00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '2025-02-26', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB020.jpg')
 
 insert into tblPhotos
 values

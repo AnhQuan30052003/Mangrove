@@ -22,7 +22,7 @@ public partial class MangroveContext : DbContext {
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<TblIndividual>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C826B9B67");
+            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C0D982D30");
 
             entity.ToTable("tblIndividual");
 
@@ -41,18 +41,18 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_qrName");
-            entity.Property(e => e.SurveyDay)
+            entity.Property(e => e.UpdateLast)
                 .HasColumnType("datetime")
-                .HasColumnName("_surveyDay");
+                .HasColumnName("_updateLast");
             entity.Property(e => e.View).HasColumnName("_view");
 
             entity.HasOne(d => d.IdMangroveNavigation).WithMany(p => p.TblIndividuals)
                 .HasForeignKey(d => d.IdMangrove)
-                .HasConstraintName("FK__tblIndivi___idMa__5EBF139D");
+                .HasConstraintName("FK__tblIndivi___idMa__04E4BC85");
         });
 
         modelBuilder.Entity<TblMangrove>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1CE435B37A");
+            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1CD11CB4E6");
 
             entity.ToTable("tblMangrove");
 
@@ -90,7 +90,7 @@ public partial class MangroveContext : DbContext {
         });
 
         modelBuilder.Entity<TblPhoto>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C5EB153AF");
+            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C2F5C2E79");
 
             entity.ToTable("tblPhotos");
 
@@ -109,7 +109,7 @@ public partial class MangroveContext : DbContext {
         });
 
         modelBuilder.Entity<TblStage>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C287158D3");
+            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1CB530B666");
 
             entity.ToTable("tblStage");
 
@@ -121,10 +121,17 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idIndividual");
+            entity.Property(e => e.MainImage).HasColumnName("_mainImage");
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .HasColumnName("_name");
+            entity.Property(e => e.SurveyDay)
+                .HasColumnType("datetime")
+                .HasColumnName("_surveyDay");
 
             entity.HasOne(d => d.IdIndividualNavigation).WithMany(p => p.TblStages)
                 .HasForeignKey(d => d.IdIndividual)
-                .HasConstraintName("FK__tblStage___idInd__619B8048");
+                .HasConstraintName("FK__tblStage___idInd__07C12930");
         });
 
         OnModelCreatingPartial(modelBuilder);
