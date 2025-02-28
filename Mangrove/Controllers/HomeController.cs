@@ -47,7 +47,7 @@ namespace Mangrove.Controllers {
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
 					List<TblIndividual> listInidivuals;
-					if (searchIndividual != null) {
+					if (!string.IsNullOrEmpty(searchIndividual)) {
 						string search = searchIndividual.ToLower().Replace("/", "-");
 						listInidivuals = mangrove.TblIndividuals
 						.Where(o =>
@@ -138,12 +138,33 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: thành phần loài - có tìm kiếm
-		public async Task<IActionResult> SpeciesComposition() {
+		public async Task<IActionResult> SpeciesComposition(string? search = null) {
 			try {
-				var listMangrove = await context.TblMangroves
-				.Include(o => o.TblIndividuals)
+				List<TblMangrove> listMangrove;
+
+				var query = context.TblMangroves
 				.OrderBy(o => o.Name)
-				.ToListAsync();
+				.AsQueryable();
+
+				// Code Ajax tìm cá thể
+				if (Request.Headers["REQUESTED"] == "AJAX") {
+					// Xử lý logic tìm kiếm
+					if (!string.IsNullOrEmpty(search)) {
+						search = search.ToLower();
+
+						listMangrove = await query
+						.Where(o =>
+							o.Name.ToLower().Contains(search) ||
+							o.ScientificName.ToLower().Contains(search) ||
+							o.Morphology.ToLower().Contains(search)
+						// o.OtherName.ToLower().Contains(search) ||
+						)
+						.ToListAsync();
+					}
+					else listMangrove = await query.ToListAsync();
+					return PartialView($"{Helper.Path.partialView}/ListMangrove.cshtml", listMangrove);
+				}
+				else listMangrove = await query.ToListAsync();
 
 				return View(listMangrove);
 			}

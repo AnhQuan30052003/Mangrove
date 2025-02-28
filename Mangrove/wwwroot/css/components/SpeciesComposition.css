@@ -1,4 +1,8 @@
 .module_species_composition {
+    .list_mangrove {
+        overflow-y: scroll;
+        max-height: 65vh;
+    }
 
     .item_mangrove:hover,
     .item_mangrove:focus {
@@ -10,5 +14,11 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+    }
+}
+
+@media (width <=576px) {
+    .module_species_composition .item_mangrove h5 {
+        font-size: 20px;
     }
 }

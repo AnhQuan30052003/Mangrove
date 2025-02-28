@@ -350,6 +350,20 @@ function listenerSearchInvidiual() {
 }
 listenerSearchInvidiual();
 
+// Theo dõi việc tìm kiếm các cây trong thành phân loài
+function listenerSearchMangrove() {
+	const search = document.querySelector("#search_mangrove");
+	if (!search) return;
+
+	search.addEventListener("input", function (e) {
+		const value = this.value;
+		const url = `/Home/SpeciesComposition?search=${value}`;
+		const result = document.querySelector(".list_mangrove");
+		requestAjax(url, result);
+	});
+}
+listenerSearchMangrove();
+
 // Theo dõi khi click và tab giai đoạn của mỗi cây
 function listenerClickPreviodOfTree() {
 	try {

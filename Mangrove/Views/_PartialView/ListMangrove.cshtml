@@ -2,14 +2,22 @@
 @model List<TblMangrove>
 
 @{
-    long stt = 1;
-    foreach (var item in Model)
+    long stt = 0;
+    if (Model.Count > 0)
     {
-        <div class="p-1 mb-2">
-            <a href='' class="item_mangrove d-block text-start">
-                <h5>#@stt @item.Name - @item.ScientificName</h5>
+        foreach (var item in Model)
+        {
+            stt += 1;
+
+            <a href='@Url.Action("Result", "Home", new { id = @item.Id })'
+                class="item_mangrove d-block text-start border py-1 px-2 mb-2">
+                <h5 class="mb-2">#@stt @item.Name - @item.ScientificName</h5>
                 <p class="content">@item.Morphology</p>
             </a>
-        </div>
+        }
+    }
+    else
+    {
+        <p class="text-center">Không tìm thấy kết quả nào !</p>
     }
 }

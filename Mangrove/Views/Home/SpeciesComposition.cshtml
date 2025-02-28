@@ -15,31 +15,26 @@
             <h5 class="py-2 bg-black text-white">Thành phần loài</h5>
         </div>
 
-        <div class="info list_mangrove">
+        <div class="info list_mangrove_info">
             @{
-                if (true)
-                {
-                    <div class="frame_measure p-2">
-                        <div class="form_search">
-                            <div class="search d-flex justify-content-center">
-                                <div
-                                    class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
-                                    <i class="icon-s fa fa-search"></i>
-                                    <input class="p-2 border-none flex-grow-1 outline-none" type="search" id="searchInvidiual"
-                                        placeholder="Tìm kiếm theo tên 40 loài...">
-                                </div>
-                            </div>
-                            <div class="bg-black mt-2" style="height: 3px;"></div>
-                            <div class="list_mangrove pb-1 pt-2 border" style="height: 65vh; overflow-y: scroll;">
-                                @await Html.PartialAsync($"{_pv}/ListMangrove.cshtml", Model)
+                <div class="p-2">
+                    <div class="form_search">
+                        <div class="search d-flex justify-content-center">
+                            <div
+                                class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
+                                <i class="icon-s fa fa-search"></i>
+                                <input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove"
+                                    placeholder="Tìm kiếm trong @Model.Count loài...">
                             </div>
                         </div>
+
+                        <div class="bg-black mt-2" style="height: 3px;"></div>
+
+                        <div class="list_mangrove pb-1 pt-2 borderz">
+                            @await Html.PartialAsync($"{_pv}/ListMangrove.cshtml", Model)
+                        </div>
                     </div>
-                }
-                else
-                {
-                    <p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
-                }
+                </div>
             }
         </div>
     </div>
