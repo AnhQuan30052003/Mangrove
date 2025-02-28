@@ -36,7 +36,6 @@ namespace Mangrove.Controllers {
 		}
 
 		// Kết quả tìm kiếm cây
-		// [Route("Result/{title} - {id}")]
 		public async Task<IActionResult> Result(string id = "", string? searchIndividual = null) {
 			try {
 				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id.ToUpper());
@@ -139,7 +138,24 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: thành phần loài - có tìm kiếm
-		public IActionResult SpeciesComposition() {
+		public async Task<IActionResult> SpeciesComposition() {
+			try {
+				var listMangrove = await context.TblMangroves
+				.Include(o => o.TblIndividuals)
+				.OrderBy(o => o.Name)
+				.ToListAsync();
+
+				return View(listMangrove);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
+		}
+
+		// Page: phân bố
+		public IActionResult Distribution() {
 
 			return View();
 		}

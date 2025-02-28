@@ -372,6 +372,28 @@ function listenerClickPreviodOfTree() {
 }
 listenerClickPreviodOfTree();
 
+// Theo dõi xem ở page nào ?
+function listenerPageType() {
+	try {
+		const width = screen.width;
+		if (width < 992) return;
+
+		const url = location.href;
+		const pageOptions = document.querySelectorAll(".page_option");
+		pageOptions.forEach((item) => {
+			const page = item.getAttribute("page");
+			if (url.includes(page)) item.classList.add("active_underline");
+			else item.classList.remove("active_underline");
+		});
+
+		const active = document.querySelectorAll(".active_underline");
+		if (active.length == 0) pageOptions[0].classList.add("active_underline");
+	}
+	catch { }
+}
+
+listenerPageType();
+
 
 
 

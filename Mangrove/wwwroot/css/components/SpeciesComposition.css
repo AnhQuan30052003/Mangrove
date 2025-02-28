@@ -1,0 +1,14 @@
+.module_species_composition {
+
+    .item_mangrove:hover,
+    .item_mangrove:focus {
+        color: var(--greenPage);
+    }
+
+    .item_mangrove .content {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}

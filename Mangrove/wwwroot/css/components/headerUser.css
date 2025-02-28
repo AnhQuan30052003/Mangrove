@@ -154,6 +154,11 @@ select option {
 		position: relative;
 	}
 
+	.active_underline {
+		color: var(--greenPage);
+	}
+
+	.active_underline::after,
 	.list_menu .list_item>li::after {
 		content: "";
 		position: absolute;
@@ -164,6 +169,10 @@ select option {
 		background-color: var(--greenPage);
 		width: 0;
 		transition: all 0.5s;
+	}
+
+	.active_underline::after {
+		width: 100% !important;
 	}
 
 	.list_menu .list_item>li:hover::after {

@@ -1,13 +1,14 @@
 @using Mangrove.Data
 @model InfoStagesOfIndividualModel
 @{
+    ViewData["Title"] = Model.NameMangrove;
     Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
 @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
 
-<section class="individual_display container py-2" style="font-size: 18px;">
+<section class="individual_display container py-2">
     @{
         if (Model.Stages.Count() != 0)
         {

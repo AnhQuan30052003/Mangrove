@@ -1,4 +1,4 @@
-﻿@model long
+﻿@model long?
 
 <section class="module_back">
 	<div class="container d-flex justify-content-between align-items-center py-2 mt-2 mb-0">
@@ -8,10 +8,15 @@
 			Trở về
 		</a>
 
-		<span class="color_green_hover" title="Viewer">
-			@(Model > 9999 ? "9999+" : Model) &nbsp;
-			<i class="fa-solid fa-eye"></i>
-		</span>
+		@{
+			if (Model.HasValue)
+			{
+				<span class="color_green_hover" title="Viewer">
+					@(Model > 9999 ? "9999+" : Model) &nbsp;
+					<i class="fa-solid fa-eye"></i>
+				</span>
+			}
+		}
 
 		<select class="select_ex_co green_effect cursor-pointer">
 			<option selected value="ex">Mở rộng</option>

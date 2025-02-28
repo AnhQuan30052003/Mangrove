@@ -1,0 +1,15 @@
+@using Mangrove.Data
+@model List<TblMangrove>
+
+@{
+    long stt = 1;
+    foreach (var item in Model)
+    {
+        <div class="p-1 mb-2">
+            <a href='' class="item_mangrove d-block text-start">
+                <h5>#@stt @item.Name - @item.ScientificName</h5>
+                <p class="content">@item.Morphology</p>
+            </a>
+        </div>
+    }
+}
