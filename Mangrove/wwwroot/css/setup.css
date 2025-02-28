@@ -7,11 +7,10 @@ html {
 
 body {
     font-family: "Oswald", sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--colorBody);
     background-color: var(--backgroundBody);
-    /* background-color: black; */
-    transition-duration: 500ms;
+    /* transition-duration: 500ms; */
 
     position: relative;
     top: 0 !important;

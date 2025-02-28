@@ -124,7 +124,7 @@ namespace Mangrove.Controllers {
 				}
 
 				var info = new InfoStagesOfIndividualModel {
-					NameMangrove = mangrove?.Name ?? "",
+					NameMangrove = mangrove?.Name + " (" + mangrove?.ScientificName + ")",
 					Individual = individual,
 					Stages = listStages
 				};

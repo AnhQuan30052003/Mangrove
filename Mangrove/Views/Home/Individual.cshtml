@@ -7,7 +7,7 @@
 
 @await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
 
-<section class="individual_display container py-2">
+<section class="individual_display container py-2" style="font-size: 18px;">
     @{
         if (Model.Stages.Count() != 0)
         {
@@ -41,16 +41,31 @@
                                             src="@Url.Content("~/img/stage-img/" + stage.info.MainImage)" alt="">
                                     </div>
 
-                                    <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2 gap-0">
-                                        <h4 class="text-center mb-2 fw-bold">@Model.NameMangrove</h4>
+                                    <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
+                                        <h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 100px;">Ngày khảo sát:</span>
+                                            <span style="width: 120px;">Ngày khảo sát:</span>
                                             <span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
                                         </p>
 
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 100px;">Vị tri:</span>
+                                            <span style="width: 120px;">Vị trí:</span>
                                             <span>@Model.Individual.Position</span>
+                                        </p>
+
+                                        <p class="d-flex justify-content-between justify-content-lg-start">
+                                            <span style="width: 120px;">Thời tiết:</span>
+                                            <span>Nhiều nắng</span>
+                                        </p>
+
+                                        <p class="d-flex justify-content-between justify-content-lg-start">
+                                            <span style="width: 120px;">Kinh độ:</span>
+                                            <span>180</span>
+                                        </p>
+
+                                        <p class="d-flex justify-content-between justify-content-lg-start">
+                                            <span style="width: 120px;">Vĩ độ:</span>
+                                            <span>180</span>
                                         </p>
                                     </div>
                                 </div>

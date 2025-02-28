@@ -28,7 +28,9 @@
 						@foreach (var photo in photos)
 						{
 							string img = @Url.Content("~/img/tree-img/" + photo.ImageName);
-							<img note="@photo.NoteImg" class="click_show_image slide_item" src="@img" />
+							<div class="slide_item" note="@photo.NoteImg">
+								<img class="click_show_image" src="@img" />
+							</div>
 						}
 					</div>
 				</div>
