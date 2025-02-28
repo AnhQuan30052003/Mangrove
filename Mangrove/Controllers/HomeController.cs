@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Configuration;
+using System.Net.Mime;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -38,7 +39,10 @@ namespace Mangrove.Controllers {
 		// Kết quả tìm kiếm cây
 		public async Task<IActionResult> Result(string id = "", string? searchIndividual = null) {
 			try {
-				var mangrove = await context.TblMangroves.Include(o => o.TblIndividuals).FirstOrDefaultAsync(o => o.Id == id.ToUpper());
+				var mangrove = await context.TblMangroves
+				.Include(o => o.TblIndividuals)
+				.ThenInclude(o => o.TblStages)
+				.FirstOrDefaultAsync(o => o.Id == id.ToUpper());
 				if (mangrove == null) {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
@@ -49,12 +53,10 @@ namespace Mangrove.Controllers {
 					List<TblIndividual> listInidivuals;
 					if (!string.IsNullOrEmpty(searchIndividual)) {
 						string search = searchIndividual.ToLower().Replace("/", "-");
-						listInidivuals = mangrove.TblIndividuals
-						.Where(o =>
+						listInidivuals = mangrove.TblIndividuals.Where(o =>
 							o.Position.ToLower().Contains(search) ||
 							o.UpdateLast.ToString("dd/MM/yyyy").Contains(search)
-						)
-						.ToList();
+						).ToList();
 					}
 					else listInidivuals = mangrove.TblIndividuals.ToList();
 

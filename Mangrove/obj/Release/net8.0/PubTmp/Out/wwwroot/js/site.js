@@ -350,6 +350,20 @@ function listenerSearchInvidiual() {
 }
 listenerSearchInvidiual();
 
+// Theo dõi việc tìm kiếm các cây trong thành phân loài
+function listenerSearchMangrove() {
+	const search = document.querySelector("#search_mangrove");
+	if (!search) return;
+
+	search.addEventListener("input", function (e) {
+		const value = this.value;
+		const url = `/Home/SpeciesComposition?search=${value}`;
+		const result = document.querySelector(".list_mangrove");
+		requestAjax(url, result);
+	});
+}
+listenerSearchMangrove();
+
 // Theo dõi khi click và tab giai đoạn của mỗi cây
 function listenerClickPreviodOfTree() {
 	try {
@@ -371,6 +385,28 @@ function listenerClickPreviodOfTree() {
 	catch { }
 }
 listenerClickPreviodOfTree();
+
+// Theo dõi xem ở page nào ?
+function listenerPageType() {
+	try {
+		const width = screen.width;
+		if (width < 992) return;
+
+		const url = location.href;
+		const pageOptions = document.querySelectorAll(".page_option");
+		pageOptions.forEach((item) => {
+			const page = item.getAttribute("page");
+			if (url.includes(page)) item.classList.add("active_underline");
+			else item.classList.remove("active_underline");
+		});
+
+		const active = document.querySelectorAll(".active_underline");
+		if (active.length == 0) pageOptions[0].classList.add("active_underline");
+	}
+	catch { }
+}
+
+listenerPageType();
 
 
 

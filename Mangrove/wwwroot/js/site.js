@@ -323,15 +323,20 @@ listenerClickButtonQR();
 
 // Request with AJAX
 function requestAjax(url, result) {
-	const xhr = new XMLHttpRequest();
-	xhr.open("get", url);
-	xhr.setRequestHeader("REQUESTED", "AJAX");
-	xhr.onload = function () {
-		if (xhr.status == 200) {
-			result.innerHTML = xhr.responseText;
+	try {
+		const xhr = new XMLHttpRequest();
+		xhr.open("get", url);
+		xhr.setRequestHeader("REQUESTED", "AJAX");
+		xhr.onload = function () {
+			if (xhr.status == 200) {
+				result.innerHTML = xhr.responseText;
+			}
 		}
+		xhr.send();
 	}
-	xhr.send();
+	catch {
+		console.log("Lỗi request ajax tới: " + url);
+	}
 }
 
 // Theo dõi việc tìm kiếm các cá thể trong một cây
