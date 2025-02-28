@@ -138,8 +138,9 @@ namespace Mangrove.Controllers {
 			}
 		}
 
-		// Page: tìm kiếm
-		public IActionResult Search() {
+		// Page: thành phần loài - có tìm kiếm
+		public IActionResult SpeciesComposition() {
+
 			return View();
 		}
 	}
