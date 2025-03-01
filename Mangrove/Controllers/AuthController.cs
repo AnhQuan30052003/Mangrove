@@ -14,12 +14,12 @@ namespace Mangrove.Controllers {
             this.context = context;
         }
 
-        public IActionResult Login() {
+        public IActionResult Page_Login() {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(string account, string password) {
+        public IActionResult Page_Login(string account, string password) {
             ViewBag.account = account;
             TempData["Status"] = Helper.StatusNoifier.success;
             TempData["Content"] = "Đăng nhập thành công";
@@ -27,15 +27,15 @@ namespace Mangrove.Controllers {
             return View();
         }
 
-        public IActionResult ForgottenPassword_Find() {
+        public IActionResult Page_ForgottenPassword_Find() {
             return View();
         }
 
-        public IActionResult ForgottenPassword_Input() {
+        public IActionResult Page_ForgottenPassword_Input() {
             return View();
         }
 
-        public IActionResult ChangePassword() {
+        public IActionResult Page_ChangePassword() {
             return View();
         }
     }

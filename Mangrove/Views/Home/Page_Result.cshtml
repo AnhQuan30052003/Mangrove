@@ -9,10 +9,9 @@
 	TempData["Id"] = Model.Id;
 
 	List<TblPhoto> photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
-	List<TblIndividual> listIndividuals = TempData["ListIndividuals"] as List<TblIndividual> ?? new List<TblIndividual>();
 }
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.View)
 
 <section class="mangrove_result">
 	<div class="container py-3">
@@ -124,7 +123,7 @@
 
 			<div class="info individuals_info">
 				@{
-					if (listIndividuals.Count() > 0)
+					if (Model.TblIndividuals.Count() > 0)
 					{
 						<div class="frame_measure p-2">
 							<div class="form_search">
@@ -141,7 +140,7 @@
 								<div class="bg-black mt-2" style="height: 3px;"></div>
 
 								<div class="list_individuals d-lg-flex flex-lg-wrap justify-content-lg-between pb-1 pt-2">
-									@await Html.PartialAsync($"{_pv}/Individuals.cshtml", listIndividuals)
+									@await Html.PartialAsync($"{_pv}/User_Individuals.cshtml", Model.TblIndividuals)
 								</div>
 							</div>
 						</div>
@@ -156,4 +155,4 @@
 	</div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.View)

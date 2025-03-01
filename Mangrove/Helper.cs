@@ -3,7 +3,7 @@ public class Helper {
     public static class Path {
         public static string layoutUser = "~/Views/Shared/_LayoutUser.cshtml";
         public static string layoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
-        public static string layoutAdmin_Login = "~/Views/Shared/_LayoutAdmin_Auth.cshtml";
+        public static string layoutAdmin_Login = "~/Views/Shared/_LayoutAuth.cshtml";
         public static string partialView = "~/Views/_PartialView";
         public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
     }

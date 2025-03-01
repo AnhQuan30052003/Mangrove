@@ -100,7 +100,7 @@ insert into tblIndividual
 values
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI000', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'Vạn Giã, Vạn Ninh, Khánh Hoà', '2025-02-20', 'qr-code.png', 0),
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI001', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA002', N'Vạn Giã, Vạn Ninh, Khánh Hoà', '2025-02-21', 'qr-code.png', 0),
-    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI002', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'Tuẫn Lẽ, Vạn Ninh, Khánh Hoà', '2025-03-01', 'qr-code.png', 0)
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAI002', '00000000-AAAA-AAAA-AAAA-AAAAAAAAA003', N'Tuần Lẽ, Vạn Ninh, Khánh Hoà', '2025-03-01', 'qr-code.png', 0)
 
 insert into tblStage
 values

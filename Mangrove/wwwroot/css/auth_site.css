@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700,800");
 
 /* Import files css custom and feature */
-@import url("./custom.css");
-@import url("./components/preloader.css");
+@import url("./both_custom.css");
+@import url("./components/both_preloader.css");
 
 html {
     scroll-behavior: smooth;

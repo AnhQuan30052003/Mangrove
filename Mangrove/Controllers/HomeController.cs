@@ -17,7 +17,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: Trang chủ
-		public async Task<IActionResult> Index() {
+		public async Task<IActionResult> Page_Index() {
 			try {
 				// Truy vấn 6 item gần đây nhất
 				int quantityShow = 6;
@@ -37,7 +37,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Kết quả tìm kiếm cây
-		public async Task<IActionResult> Result(string id = "", string? searchIndividual = null) {
+		public async Task<IActionResult> Page_Result(string id = "", string? searchIndividual = null) {
 			try {
 				var mangrove = await context.TblMangroves
 				.Include(o => o.TblIndividuals)
@@ -60,7 +60,7 @@ namespace Mangrove.Controllers {
 					}
 					else listInidivuals = mangrove.TblIndividuals.ToList();
 
-					return PartialView($"{Helper.Path.partialView}/Individuals.cshtml", listInidivuals);
+					return PartialView($"{Helper.Path.partialView}/User_Individuals.cshtml", listInidivuals);
 				}
 
 				// Truy vấn ảnh cho banner slick slider
@@ -78,7 +78,6 @@ namespace Mangrove.Controllers {
 				await context.SaveChangesAsync();
 
 				TempData["Photos"] = photos;
-				TempData["ListIndividuals"] = mangrove.TblIndividuals.ToList();
 				return View(mangrove);
 			}
 			catch (Exception ex) {
@@ -89,7 +88,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: cá thể của cây
-		public async Task<IActionResult> Individual(string id) {
+		public async Task<IActionResult> Page_Individual(string id) {
 			try {
 
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
@@ -140,7 +139,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: thành phần loài - có tìm kiếm
-		public async Task<IActionResult> SpeciesComposition(string? search = null) {
+		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) {
 			try {
 				List<TblMangrove> listMangrove;
 
@@ -164,7 +163,7 @@ namespace Mangrove.Controllers {
 						.ToListAsync();
 					}
 					else listMangrove = await query.ToListAsync();
-					return PartialView($"{Helper.Path.partialView}/ListMangrove.cshtml", listMangrove);
+					return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", listMangrove);
 				}
 				else listMangrove = await query.ToListAsync();
 
@@ -178,7 +177,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: phân bố
-		public IActionResult Distribution() {
+		public IActionResult Page_Distribution() {
 
 			return View();
 		}

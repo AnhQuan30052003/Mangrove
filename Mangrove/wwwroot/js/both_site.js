@@ -49,41 +49,6 @@ function listenerScrollPage() {
 }
 listenerScrollPage();
 
-// Click icon search
-function listenerIconSerch() {
-	const searchIcon = document.querySelector("#searchIcon");
-	if (searchIcon) {
-		searchIcon.addEventListener("click", function () {
-			const searchFormUser = document.querySelector("#search_form_user");
-			const background = document.querySelector("#background");
-			const iconX = searchIcon.querySelector(".icon-x");
-			const iconS = searchIcon.querySelector(".icon-s");
-
-			searchFormUser.classList.toggle("d-none");
-			background.classList.toggle("d-none");
-			iconX.classList.toggle("d-none");
-			iconS.classList.toggle("d-none");
-		});
-	}
-
-	// Theo dõi chuyển tab của btn-option search-form home
-	document.querySelector("#search_form_user .options").addEventListener("click", function (e) {
-		const itemClick = e.target;
-		if (itemClick.matches(".btn-option")) {
-			const div_options = this.querySelectorAll(".btn-option");
-			const results = document.querySelectorAll("#search_form_user .result_search");
-
-			for (let i = 0; i < div_options.length; i++) {
-				div_options[i].classList.remove("active")
-				results[i].classList.add("d-none")
-			}
-
-			itemClick.classList.add("active");
-			document.querySelector(itemClick.classList.contains("btn_search_keyword") ? ".search_keyword" : ".search_advance").classList.remove("d-none")
-		}
-	});
-}
-
 // Tiến hành thay đổi ngôn ngữ
 function changeLanguage(lang) {
 	const select = document.querySelector("#google_translate_element select");
@@ -120,37 +85,6 @@ function listenerChangeLanguage() {
 	});
 }
 listenerChangeLanguage();
-
-// Setup ngày
-function setupDay() {
-	try {
-		const years = document.querySelector("._years");
-		const months = document.querySelector("._months");
-		let countDays = 0;
-
-		if (years.value == "" || months.value == "") {
-			countDays = 31;
-		}
-		else {
-			const getQuantityDay = new Date(years.value, months.value, 0);
-			countDays = getQuantityDay.getDate();
-		}
-
-		// Xoá sách cần phần tử bên trong
-		const selectDefault = document.querySelector(".select_default");
-		const days = document.querySelector("._days");
-		days.innerHTML = "";
-		days.appendChild(selectDefault);
-
-		for (let i = countDays; i > 0; i--) {
-			const option = document.createElement("option");
-			option.value = i;
-			option.innerText = i;
-			days.appendChild(option);
-		}
-	}
-	catch { }
-}
 
 // Toggle info title
 function toggleInfoTitle() {
@@ -344,13 +278,17 @@ function listenerSearchInvidiual() {
 	const searchInvidiual = document.querySelector("#searchInvidiual");
 	if (!searchInvidiual) return;
 
+	let timer;
 	searchInvidiual.addEventListener("input", function (e) {
-		const value = this.value;
-		const id = this.getAttribute("id-mangrove");
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const value = this.value;
+			const id = this.getAttribute("id-mangrove");
 
-		const url = `/Home/Result?id=${id}&searchIndividual=${value}`;
-		const result = document.querySelector(".list_individuals");
-		requestAjax(url, result);
+			const url = `/Home/Page_Result?id=${id}&searchIndividual=${value}`;
+			const result = document.querySelector(".list_individuals");
+			requestAjax(url, result);
+		}, 300);
 	});
 }
 listenerSearchInvidiual();
@@ -360,11 +298,16 @@ function listenerSearchMangrove() {
 	const search = document.querySelector("#search_mangrove");
 	if (!search) return;
 
+	let timer;
 	search.addEventListener("input", function (e) {
-		const value = this.value;
-		const url = `/Home/SpeciesComposition?search=${value}`;
-		const result = document.querySelector(".list_mangrove");
-		requestAjax(url, result);
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const value = this.value;
+
+			const url = `/Home/Page_SpeciesComposition?search=${value}`;
+			const result = document.querySelector(".list_mangrove");
+			requestAjax(url, result);
+		}, 300);
 	});
 }
 listenerSearchMangrove();
@@ -391,7 +334,7 @@ function listenerClickPreviodOfTree() {
 }
 listenerClickPreviodOfTree();
 
-// Theo dõi xem ở page nào ?
+// Theo dõi xem ở page nào để hiển thị tab active khi không ở màn hình mobile
 function listenerPageType() {
 	try {
 		const width = screen.width;
@@ -478,4 +421,4 @@ function listenerClickToClose() {
 listenerClickToClose();
 
 //---
-console.log("Run file site.js");
+console.log("Run file both_site.js");

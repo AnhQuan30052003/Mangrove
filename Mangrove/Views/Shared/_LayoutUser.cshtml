@@ -28,7 +28,7 @@
 	<!-- Import CSS + Icon <i> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/user_site.css" asp-append-version="true" />
 
 	<!-- Import library Js -->
 	<script src="~/js/jquery/jquery-2.2.4.min.js"></script>
@@ -43,7 +43,7 @@
 	</script>
 
 	<!-- Js template + custom-->
-	<script src="~/js/site.js" defer></script>
+	<script src="~/js/both_site.js" defer></script>
 
 
 
@@ -60,7 +60,7 @@
 	@await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
 
 	<!-- Header -->
-	@await Html.PartialAsync(_pvl + "/_HeaderUser.cshtml")
+	@await Html.PartialAsync(_pvl + "/_User_Header.cshtml")
 	@* @await Html.PartialAsync(_pvl + "/_Both_Notifier.cshtml") *@
 
 	<!-- Body-->
@@ -69,7 +69,7 @@
 	</main>
 
 	<!-- Footer-->
-	@await Html.PartialAsync(_pvl + "/_FooterUser.cshtml")
+	@await Html.PartialAsync(_pvl + "/_User_Footer.cshtml")
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -37,7 +37,7 @@
 				@{
 					foreach (var item in Model)
 					{
-						<a href='@Url.Action("Result", "Home", new { id = @item.Id })'
+						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
 							class="item px-2 col-12 col-sm-6 col-lg-4 mt-3">
 							<div class="rounded-1 overflow-hidden">
 								<img class="w-100 h-100 hover_scale time_delay_500ms" src="~/img/tree-img/@item.MainImage"

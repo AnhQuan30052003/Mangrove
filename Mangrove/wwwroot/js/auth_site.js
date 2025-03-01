@@ -17,4 +17,4 @@ function listenrTogglePassword() {
 }
 listenrTogglePassword();
 
-console.log("Run file siteAdmin_Login.js");
+console.log("Run file auth_size.js");

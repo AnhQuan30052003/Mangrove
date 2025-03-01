@@ -7,7 +7,7 @@
     string _pv = Helper.Path.partialView;
 }
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
 
 <section class="module_species_composition container text-center py-2">
     <div class="box bg-white mb-2">
@@ -31,7 +31,7 @@
                         <div class="bg-black mt-2" style="height: 3px;"></div>
 
                         <div class="list_mangrove pb-1 pt-2 px-2">
-                            @await Html.PartialAsync($"{_pv}/ListMangrove.cshtml", Model)
+                            @await Html.PartialAsync($"{_pv}/User_ListMangrove.cshtml", Model)
                         </div>
                     </div>
                 </div>
@@ -40,4 +40,4 @@
     </div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)

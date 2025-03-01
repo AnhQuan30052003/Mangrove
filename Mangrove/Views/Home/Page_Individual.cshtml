@@ -6,7 +6,7 @@
     string _pv = Helper.Path.partialView;
 }
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <section class="individual_display container py-2">
     @{
@@ -37,8 +37,8 @@
                                 </div>
 
                                 <div class="info title d-flex flex-wrap">
-                                    <div class="col-12 col-sm-5 text-center pb-2 overflow-hidden" style="height: 300px;">
-                                        <img class="h-100 click_show_image rounded-1 hover_scale time_delay_500ms"
+                                    <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
+                                        <img class="h-100 click_show_image rounded-1"
                                             src="@Url.Content("~/img/stage-img/" + stage.info.MainImage)" alt="">
                                     </div>
 
@@ -124,7 +124,7 @@
 
 </section>
 
-@await Html.PartialAsync($"{_pv}/Back.cshtml", Model.Individual.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <button id="btnQRFixed" class="rounded-1" title="QR">
     <i class="fa-solid fa-qrcode click_show_image" src='@Url.Content($"~/img/qr-img/" + @Model.Individual.QrName)'></i>
