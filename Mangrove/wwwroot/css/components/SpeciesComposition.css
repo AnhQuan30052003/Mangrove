@@ -9,15 +9,12 @@
         background-color: white;
     }
 
-    .item_mangrove:hover,
-    .item_mangrove:focus {
+    .item_mangrove:hover {
         box-shadow: 0 10px 10px #ccc;
-        /* border: solid 2px !important; */
         border-style: solid;
     }
 
-    .item_mangrove:hover .name,
-    .item_mangrove:focus .name {
+    .item_mangrove:hover .name {
         color: var(--greenPage);
     }
 
