@@ -4,7 +4,7 @@
 		<div class="col-12 col-sm-4 px-2">
 			<div class="logo_title mb-30">
 				<div class="logo d-inline-flex gap-2 align-items-center rounded-pill">
-					<a href='@Url.Action("Index", "Home")'>
+					<a href='@Url.Action("Page_Index", "Home")'>
 						<img class="h-100 w-100 object-fit-cover" src="~/img/logo/logo.png" alt=""
 							title="Logo Mangrove">
 					</a>
@@ -63,7 +63,8 @@
 				<i class="fa fa-user color-tree fs-5"></i>
 				<h5 class="text-white color_green_hover">TRUY CẬP</h5>
 			</div>
-			<a href='@Url.Action("Login", "Auth")' class="text-white color_green_hover d-flex gap-2 align-items-center">
+			<a href='@Url.Action("Page_Login", "Auth")'
+				class="text-white color_green_hover d-flex gap-2 align-items-center">
 				<span style="text-decoration: underline;" title="Website for admin">Quản trị viên</span>
 				<i class="fa-solid fa-backward animation_pointer"></i>
 			</a>
