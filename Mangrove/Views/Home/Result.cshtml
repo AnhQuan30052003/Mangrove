@@ -17,7 +17,7 @@
 <section class="mangrove_result">
 	<div class="container py-3">
 		<!-- Images -->
-		<div class="box bg-whitez bg-transparent mb-2">
+		<div class="box rounded-1 bg-transparent mb-2">
 			<div class="toggle_title text-center mt-1 mb-2">
 				<h5 class="py-2 bg-black text-white">Hình ảnh</h5>
 			</div>
@@ -29,7 +29,7 @@
 						{
 							string img = @Url.Content("~/img/tree-img/" + photo.ImageName);
 							<div class="slide_item" note="@photo.NoteImg">
-								<img class="click_show_image" src="@img" />
+								<img class="rounded-1 click_show_image" src="@img" />
 							</div>
 						}
 					</div>
@@ -42,8 +42,8 @@
 		</div>
 
 		<!-- Info: Name, Consrevation status, Uses -->
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
+		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
 				<h5 class="py-2 bg-black text-white">Thông tin</h5>
 			</div>
 
@@ -76,8 +76,8 @@
 		</div>
 
 		<!-- Morphology -->
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
+		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
 				<h5 class="py-2 bg-black text-white">Hình thái</h5>
 			</div>
 
@@ -87,8 +87,8 @@
 		</div>
 
 		<!-- Ecology -->
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
+		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
 				<h5 class="py-2 bg-black text-white">Sinh thái</h5>
 			</div>
 
@@ -98,8 +98,8 @@
 		</div>
 
 		<!-- Distribute & Convervation -->
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
+		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
 				<h5 class="py-2 bg-black text-white">Phân bố & Tình trạng bảo tồn</h5>
 			</div>
 
@@ -117,8 +117,8 @@
 		</div>
 
 		<!-- Individuals -->
-		<div class="box bg-white mb-2">
-			<div class="toggle_title text-center mt-1 mb-2">
+		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
 				<h5 class="py-2 bg-black text-white">Các cá thể đo đạc</h5>
 			</div>
 
@@ -130,7 +130,7 @@
 							<div class="form_search">
 								<div class="search d-flex justify-content-center">
 									<div
-										class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2">
+										class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2 rounded-1 overflow-hidden">
 										<i class="icon-s fa fa-search"></i>
 										<input class="p-2 border-none flex-grow-1 outline-none" id-mangrove="@Model.Id"
 											type="search" id="searchInvidiual"
@@ -148,7 +148,7 @@
 					}
 					else
 					{
-						<p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
+						<p class="text-center col-12 pb-2">Chưa có cá thể nào !</p>
 					}
 				}
 			</div>

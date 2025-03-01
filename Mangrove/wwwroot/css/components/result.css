@@ -72,5 +72,6 @@
 }
 
 .individual_item:hover {
-	outline: solid 1px black !important;
+	box-shadow: 0 10px 10px #ccc;
+	color: var(--greenPage) !important;
 }

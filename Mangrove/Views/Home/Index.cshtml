@@ -7,4 +7,47 @@
 	string _pv = Helper.Path.partialView;
 }
 
-@* @await Html.PartialAsync($"{_pv}/RecentlyUpdated.cshtml", Model) *@
+<section class="module_home_page py-2">
+	<div class="container d-flex flex-column gap-3">
+		<div class="frame_img">
+			<img class="w-100 h-100 rounded-1 object-fit-cover" src="~/img/logo/bg_home_page.jpg" alt="">
+
+			<div class="frame_title rounded-1 overflow-hidden">
+				<h1 class="title m-0 px-2">Cây Ngập Mặn Tại Bắc - Khánh Hoà</h1>
+			</div>
+
+			<div class="frame_logo">
+				<img class="logo" src="~/img/logo/logo_ntu.png" alt="">
+			</div>
+		</div>
+
+		<div class="frame_introduce">
+			<p class="fw-bold fs-5 mb-2">Mục đích của Website ?</p>
+			<p class="content text-justify p-2">
+				Trang web cung cấp thông tin chi tiết về hệ sinh thái rừng ngập mặn tại Bắc – Khánh Hòa, giúp nâng cao
+				nhận thức và kêu gọi cộng đồng chung tay bảo vệ môi trường. Chúng tôi chia sẻ kiến thức về các loài cây
+				ngập mặn, vai trò quan trọng của chúng, thực trạng hiện tại và những hoạt động bảo tồn đang diễn ra. Hãy
+				cùng chung tay gìn giữ rừng ngập mặn để bảo vệ hệ sinh thái ven biển bền vững !
+			</p>
+		</div>
+
+		<div class="frame_individual_recent">
+			<p class="fw-bold fs-5 mb-2">Thành phần loài gần đây</p>
+			<div class="items d-flex flex-wrap">
+				@{
+					foreach (var item in Model)
+					{
+						<a href='@Url.Action("Result", "Home", new { id = @item.Id })'
+							class="item px-2 col-12 col-sm-6 col-lg-4 mt-3">
+							<div class="rounded-1 overflow-hidden">
+								<img class="w-100 h-100 hover_scale time_delay_500ms" src="~/img/tree-img/@item.MainImage"
+									alt="">
+							</div>
+							<p class="text-center mt-1 color_green_hover">@item.Name - @item.ScientificName</p>
+						</a>
+					}
+				}
+			</div>
+		</div>
+	</div>
+</section>

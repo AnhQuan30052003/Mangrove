@@ -3,6 +3,7 @@
     --greenPage: #70c745;
     --backgroundBody: #eaeff1;
     --colorBody: #707070;
+    --size_logo_sponsorship: 70px;
 }
 
 a,
@@ -72,7 +73,7 @@ option {
     color: var(--greenPage) !important;
 }
 
-.time_delay {
+.time_delay_500ms {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
 }
@@ -87,4 +88,14 @@ option {
 
 .underline_hover:hover {
     text-decoration: underline;
+}
+
+.hover_scale:hover {
+    transform: scale(1.1);
+}
+
+@media (width <=992px) {
+    .hidden_mobile {
+        display: none !important;
+    }
 }

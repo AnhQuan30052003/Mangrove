@@ -2,7 +2,8 @@
 
 <section class="module_back">
 	<div class="container d-flex justify-content-between align-items-center py-2 mt-2 mb-0">
-		<a href="javascript:history.back(-1);" class="btn_back d-flex gap-2 align-items-center justify-content-between"
+		<a href="javascript:history.back(-1);"
+			class="btn_back d-flex gap-2 align-items-center justify-content-between rounded-1"
 			style="min-width: 120px;">
 			<i class="fa-solid fa-backward"></i>
 			Trở về
@@ -14,13 +15,14 @@
 				<span class="color_green_hover" title="Viewer">
 					@(Model > 9999 ? "9999+" : Model) &nbsp;
 					<i class="fa-solid fa-eye"></i>
+					<span class="hidden_mobile">&nbsp; Lượt xem</span>
 				</span>
 			}
 		}
 
-		<select class="select_ex_co green_effect cursor-pointer">
-			<option selected value="ex">Mở rộng</option>
-			<option value="co">Thu gọn</option>
+		<select class="select_ex_co green_effect cursor-pointer rounded-1">
+			<option class="rounded-1" selected value="ex">Mở rộng</option>
+			<option class="rounded-1" value="co">Thu gọn</option>
 		</select>
 	</div>
 </section>
