@@ -4,8 +4,20 @@
         max-height: 65vh;
     }
 
+    .item_mangrove {
+        border: dashed 2px #ccc;
+        background-color: white;
+    }
+
     .item_mangrove:hover,
     .item_mangrove:focus {
+        box-shadow: 0 10px 10px #ccc;
+        /* border: solid 2px !important; */
+        border-style: solid;
+    }
+
+    .item_mangrove:hover .name,
+    .item_mangrove:focus .name {
         color: var(--greenPage);
     }
 

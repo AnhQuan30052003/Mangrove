@@ -10,8 +10,8 @@
             stt += 1;
 
             <a href='@Url.Action("Result", "Home", new { id = @item.Id })'
-                class="item_mangrove d-block text-start border py-1 px-2 mb-2 rounded-1 overflow-hidden">
-                <h5 class="mb-2">#@stt @item.Name - @item.ScientificName</h5>
+                class="item_mangrove d-block text-start py-1 px-2 mb-2 rounded-1 overflow-hidden time_delay_500ms">
+                <h5 class="mb-2 name">#@stt | @item.Name - @item.ScientificName</h5>
                 <p class="content">@item.Morphology</p>
             </a>
         }
