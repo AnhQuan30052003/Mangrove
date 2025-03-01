@@ -88,15 +88,22 @@
 
                                 <div class="info d-flex flex-wrap" style="max-height: max-content;">
                                     @{
-                                        foreach (var photo in stage.photo)
+                                        if (stage.photo.Count > 0)
                                         {
-                                            <div class="col-12 col-sm-6 col-lg-4 p-2">
-                                                <div style="height: 500px;" class="overflow-hidden">
-                                                    <img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale"
-                                                        src="@Url.Content("~/img/stage-img/" + photo.ImageName)" alt="">
+                                            foreach (var photo in stage.photo)
+                                            {
+                                                <div class="col-12 col-sm-6 col-lg-4 p-2">
+                                                    <div style="height: 500px;" class="overflow-hidden">
+                                                        <img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale"
+                                                            src="@Url.Content("~/img/stage-img/" + photo.ImageName)" alt="">
+                                                    </div>
+                                                    <p class="text-center mt-1">@photo.NoteImg</p>
                                                 </div>
-                                                <p class="text-center mt-1">@photo.NoteImg</p>
-                                            </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p class="text-center col-12 pb-2">Giai đoạn này chưa có hình ảnh chi tiết !</p>
                                         }
                                     }
                                 </div>
