@@ -3,21 +3,21 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.OAuth;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MangroveContext>(options => {
+builder.Services.AddDbContext<MangroveContext>(options =>
+{
 	options.UseSqlServer(builder.Configuration.GetConnectionString("mangrove"));
 });
-builder.Services.AddSession((options) => {
+builder.Services.AddSession((options) =>
+{
 	options.IdleTimeout = TimeSpan.FromHours(1);
 });
 
-
-// var apiKey = builder.Configuration.GetConnectionString("IPA_Translate") ?? "";
-// builder.Services.AddSingleton(new GoogleTranslateService(apiKey));
-
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment()) {
+if (!app.Environment.IsDevelopment())
+{
 	app.UseExceptionHandler("/Home/Error");
 	app.UseHsts();
 }

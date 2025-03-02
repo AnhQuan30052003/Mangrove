@@ -10,9 +10,29 @@ body {
     font-size: 18px;
     color: var(--colorBody);
     background-color: var(--backgroundBody);
-    /* transition-duration: 500ms; */
 
     position: relative;
     top: 0 !important;
     z-index: 1;
+}
+
+.goog-te-banner-frame,
+iframe.skiptranslate {
+    display: none !important;
+}
+
+#google_translate_element {
+    overflow: hidden;
+    border: none !important;
+    width: 100px !important;
+}
+
+#google_translate_element select {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+#goog-gt-tt {
+    display: none !important;
 }

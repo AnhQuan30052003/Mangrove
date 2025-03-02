@@ -1,25 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700,800");
-
 /* Import files css custom and feature */
+@import url("./both_setup.css");
 @import url("./both_custom.css");
 @import url("./components/both_preloader.css");
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: "Oswald", sans-serif;
-    font-size: 16px;
-    color: var(--colorBody);
-    background-color: var(--backgroundBody);
-    /* background-color: black; */
-    transition-duration: 500ms;
-
-    position: relative;
-    top: 0 !important;
-    z-index: 1;
-
     height: 100vh;
     width: 100vw;
 }

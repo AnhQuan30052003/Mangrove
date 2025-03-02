@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 public class Helper {
     // Path layout...
     public static class Path {
@@ -15,23 +17,34 @@ public class Helper {
     }
 
     // Variables
-    public static class Variable {
-    }
-
+    public static class Variable { }
 
     // Function
     public static class Func {
         public static string Show(string text) {
             return text.Replace("\n", "<br>");
         }
+
+        public static async Task<string> Translate(string text, string from = "vi", string to = "en") {
+            try {
+                string url = $"https://api.mymemory.translated.net/get?q={text}&langpair={from}|{to}";
+
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync(url);
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+                using var doc = JsonDocument.Parse(jsonString);
+                string translatedText = doc.RootElement
+                    .GetProperty("responseData")
+                    .GetProperty("translatedText")
+                    .GetString() ?? text;
+
+                return translatedText;
+            }
+            catch (Exception ex) {
+                Console.WriteLine($"Error: {ex.Message}");
+                return text;
+            }
+        }
     }
-
-    // public static class GoogleTranslateService {
-    //     private static readonly TranslationClient _client = TranslationClient.CreateFromApiKey("AIzaSyA4AirVbB-1djs6087vMMFPtN-3ug08iJU");
-
-    //     public static async Task<string> TranslateTextAsync(string text, string targetLanguage) {
-    //         var response = await _client.TranslateTextAsync(text, targetLanguage);
-    //         return response.TranslatedText;
-    //     }
-    // }
 }

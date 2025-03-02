@@ -12,27 +12,6 @@
 	width: var(--size_logo);
 }
 
-.goog-te-banner-frame,
-iframe.skiptranslate {
-	display: none !important;
-}
-
-#google_translate_element {
-	overflow: hidden;
-	border: none !important;
-	width: 100px !important;
-}
-
-#google_translate_element select {
-	display: block !important;
-	visibility: visible !important;
-	pointer-events: auto !important;
-}
-
-#goog-gt-tt {
-	display: none !important;
-}
-
 select,
 select option {
 	padding: 7.5px 10px;
