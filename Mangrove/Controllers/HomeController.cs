@@ -156,9 +156,7 @@ namespace Mangrove.Controllers {
 						listMangrove = await query
 						.Where(o =>
 							o.Name.ToLower().Contains(search) ||
-							o.ScientificName.ToLower().Contains(search) ||
-							o.Morphology.ToLower().Contains(search)
-						// o.OtherName.ToLower().Contains(search) ||
+							o.ScientificName.ToLower().Contains(search)
 						)
 						.ToListAsync();
 					}
