@@ -16,15 +16,23 @@ namespace Mangrove.Controllers {
 			this.context = context;
 		}
 
+		// Thay đổi language với ajax
+		public IActionResult SaveChangeLanguage(string lang) {
+			HttpContext.Session.SetString("language", lang);
+			Console.WriteLine($"Save new language after change is: {lang}");
+
+			return NoContent();
+		}
+
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
 			try {
 				// Truy vấn 6 item gần đây nhất
 				int quantityShow = 6;
 				var mangroves = await context.TblMangroves
-				.Skip(0)
+				.OrderByDescending(item => item.UpdateLast)
+				.ThenBy(item => item.Name)
 				.Take(quantityShow)
-				.OrderByDescending(o => o.UpdateLast)
 				.ToListAsync();
 
 				return View(mangroves);
@@ -40,9 +48,9 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Result(string id = "", string? searchIndividual = null) {
 			try {
 				var mangrove = await context.TblMangroves
-				.Include(o => o.TblIndividuals)
-				.ThenInclude(o => o.TblStages)
-				.FirstOrDefaultAsync(o => o.Id == id.ToUpper());
+				.Include(item => item.TblIndividuals)
+				.ThenInclude(item => item.TblStages)
+				.FirstOrDefaultAsync(item => item.Id == id.ToUpper());
 				if (mangrove == null) {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
@@ -64,8 +72,8 @@ namespace Mangrove.Controllers {
 				}
 
 				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(o => o.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(o => o.ImageName == mangrove.MainImage);
+				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
+				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
 
 				// Xử lý thứ tự ảnh banner slick slider
 				if (photos.Count() > 1 && photoMangrove != null) {
@@ -104,12 +112,12 @@ namespace Mangrove.Controllers {
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
 				foreach (var stage in individual.TblStages) {
-					var photos = await context.TblPhotos.Where(o => o.IdObj == stage.Id).ToListAsync();
+					var photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					if (photos.Count == 0) {
 						photos = new List<TblPhoto>();
 					}
 					else {
-						var photo = await context.TblPhotos.FirstOrDefaultAsync(o => o.IdObj == stage.Id);
+						var photo = await context.TblPhotos.FirstOrDefaultAsync(item => item.IdObj == stage.Id);
 						if (photo != null) {
 							photos.Remove(photo);
 						}
@@ -139,31 +147,62 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: thành phần loài - có tìm kiếm
-		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) {
+		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) { // * Cần fix chuyển đổi ngôn ngữ khi dịch => Cần tìm cách tối ưu hơn để dịch nhanh + tốt hơn
 			try {
-				List<TblMangrove> listMangrove;
-
-				var query = context.TblMangroves
-				.OrderBy(o => o.Name)
-				.AsQueryable();
+				List<TblMangrove> listMangrove = await context.TblMangroves.OrderBy(o => o.Name).ToListAsync();
 
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
 					if (!string.IsNullOrEmpty(search)) {
 						search = search.ToLower();
+						string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
 
-						listMangrove = await query
-						.Where(o =>
-							o.Name.ToLower().Contains(search) ||
-							o.ScientificName.ToLower().Contains(search)
+						var translatedList = await Task.WhenAll(listMangrove.Select(async item => new {
+							Item = item,
+							NameVI = await Helper.Func.Translate(item.Name.ToLower(), "en", "vi"),
+							NameEN = await Helper.Func.Translate(item.Name.ToLower(), "vi", "en")
+						}));
+
+						listMangrove = translatedList
+						.Where(x =>
+							x.NameVI.Contains(search) || Helper.Func.FormatUngisnedString(x.NameVI).Contains(unsignStringSearch) ||
+							x.NameEN.Contains(search) || x.Item.ScientificName.ToLower().Contains(search)
 						)
-						.ToListAsync();
+						.Select(x => x.Item)
+						.ToList();
+
+
+
+
+						var data = await Task.WhenAll(listMangrove
+						.Select(async item => new {
+							Item = item,
+							Name = await Helper.Func.Translate(item.Name)
+						})
+						.ToList());
+
+
+						// var data = listMangrove;
+						// listMangrove = new List<TblMangrove>();
+
+
+
+						// foreach (var item in data) {
+						// 	// Tìm kiểm ở Tiếng Việt
+						// 	string nameTranslate = await Helper.Func.Translate(item.Name.ToLower(), "en", "vi");
+						// 	bool searchVI = nameTranslate.Contains(search) || Helper.Func.FormatUngisnedString(nameTranslate).Contains(unsignStringSearch);
+
+						// 	// Tìm kiếm ở Tiếng Anh
+						// 	nameTranslate = await Helper.Func.Translate(item.Name.ToLower(), "vi", "en");
+						// 	bool searchEN = nameTranslate.Contains(search) || item.ScientificName.ToLower().Contains(search);
+
+						// 	if (searchVI || searchEN) listMangrove.Add(item);
+						// }
 					}
-					else listMangrove = await query.ToListAsync();
+
 					return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", listMangrove);
 				}
-				else listMangrove = await query.ToListAsync();
 
 				return View(listMangrove);
 			}

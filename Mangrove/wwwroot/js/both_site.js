@@ -1,14 +1,4 @@
-﻿// Theo dõi khi tải xong trang web
-function listenrLoadDone() {
-	window.addEventListener("load", function (e) {
-		// Theo dõi biểu tượng khi load page và xoá
-		const preloader = document.querySelector(".preloader");
-		if (preloader) preloader.remove();
-	});
-}
-listenrLoadDone();
-
-// Theo dõi click hamburger menu
+﻿// Theo dõi click hamburger menu
 function listnerClickHamburgerMenu() {
 	try {
 		const btnMenu = document.querySelector(".btn_menu");
@@ -57,6 +47,12 @@ function changeLanguage(lang) {
 		select.dispatchEvent(new Event("change"));
 		console.log("Language changed: " + lang);
 		localStorage.setItem("language", lang);
+
+		const url = `/Home/SaveChangeLanguage?lang=${lang}`;
+		requestAjax(url);
+	}
+	else {
+		console.log("Không tồn tại select");
 	}
 }
 
@@ -75,7 +71,7 @@ function listenerChangeLanguage() {
 		});
 	}
 
-	// Khi click từng icon thì thay đổi ngôn ngữ
+	// Khi click từng option thì thay đổi ngôn ngữ
 	const lis = document.querySelectorAll(".language_dropdown li");
 	lis.forEach((item) => {
 		item.addEventListener("click", function (e) {
@@ -256,14 +252,14 @@ function listenerClickButtonQR() {
 listenerClickButtonQR();
 
 // Request with AJAX
-function requestAjax(url, result) {
+function requestAjax(url, result = null) {
 	try {
 		const xhr = new XMLHttpRequest();
 		xhr.open("get", url);
 		xhr.setRequestHeader("REQUESTED", "AJAX");
 		xhr.onload = function () {
 			if (xhr.status == 200) {
-				result.innerHTML = xhr.responseText;
+				if (result != null) result.innerHTML = xhr.responseText;
 			}
 		}
 		xhr.send();
@@ -419,6 +415,30 @@ function listenerClickToClose() {
 	});
 }
 listenerClickToClose();
+
+// Theo dõi khi tải xong trang web
+function listenrLoadDone() {
+	// Theo dõi biểu tượng khi load page và xoá
+	let interval = setInterval(() => {
+		const gtt = document.querySelector("#goog-gt-tt");
+		if (gtt) {
+			const preloader = document.querySelector(".preloader");
+			if (preloader) {
+				console.log("Load success and remove screen wait...");
+				preloader.remove();
+				clearInterval(interval);
+
+
+				let lang = localStorage.getItem("language");
+				if (lang == null) lang = "vi";
+				changeLanguage(lang);
+			}
+		}
+	}, 500);
+}
+listenrLoadDone();
+
+
 
 //---
 console.log("Run file both_site.js");

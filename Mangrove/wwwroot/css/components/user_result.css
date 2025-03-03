@@ -57,6 +57,11 @@
 	color: blue !important;
 }
 
+.individual_item .toggleQR {
+	background-color: black;
+	color: white;
+}
+
 .individual_item:hover .toggleQR,
 .individual_item {
 	transition: all 0.5s;
@@ -64,11 +69,6 @@
 
 .individual_item {
 	outline: solid 1px white;
-}
-
-.individual_item:hover .toggleQR {
-	background-color: black;
-	color: white;
 }
 
 .individual_item:hover {
