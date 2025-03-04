@@ -1,4 +1,5 @@
 ﻿@using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
 @model TblMangrove
 
 @{
@@ -18,7 +19,7 @@
 		<!-- Images -->
 		<div class="box rounded-1 bg-transparent mb-2">
 			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="py-2 bg-black text-white">Hình ảnh</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_anh"]</h5>
 			</div>
 
 			<div class="info">
@@ -43,7 +44,7 @@
 		<!-- Info: Name, Consrevation status, Uses -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">Thông tin</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_thong_tin"]</h5>
 			</div>
 
 			<div class="info">
@@ -53,21 +54,21 @@
 				<div class="wrapper d-flex flex-wrap">
 					<div class="name_info p-2 col-12 col-sm-6">
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">Tên khác:</span>
+							<span class="space_word fw-bold">@translate["Page_Result_ten_khac"]:</span>
 							<span>@Model.OtherName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">Tên khoa học:</span>
+							<span class="space_word fw-bold">@translate["Page_Result_ten_khoa_hoc"]:</span>
 							<span>@Model.ScientificName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">Họ:</span>
+							<span class="space_word fw-bold">@translate["Page_Result_ho"]:</span>
 							<span>@Model.Surname</span>
 						</p>
 					</div>
 
 					<div class="use_info p-2 col-12 col-sm-6">
-						<p class="fw-bold">Công dụng:</p>
+						<p class="fw-bold">@translate["Page_Result_cong_dung"]:</p>
 						<p class="text-justify">@Html.Raw(Helper.Func.Show(Model.Use))</p>
 					</div>
 				</div>
@@ -77,7 +78,7 @@
 		<!-- Morphology -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">Hình thái</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_hinh_thai"]</h5>
 			</div>
 
 			<div class="info morphology_info">
@@ -88,7 +89,7 @@
 		<!-- Ecology -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">Sinh thái</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_sinh_thai"]</h5>
 			</div>
 
 			<div class="info ecology_info">
@@ -99,17 +100,17 @@
 		<!-- Distribute & Convervation -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">Phân bố & Tình trạng bảo tồn</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_phan_bo_&_tinh_trang_bao_ton"]</h5>
 			</div>
 
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
-					<p class="fw-bold">Phân bố - ở phía Bắc Khánh Hòa:</p>
+					<p class="fw-bold">@translate["Page_Result_phan_bo_o_phia_bac_khanh_hoa"]:</p>
 					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
 				</div>
 
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
-					<p class="fw-bold">Tình trạng bảo tồn:</p>
+					<p class="fw-bold">@translate["Page_Result_tinh_trang_bao_ton"]:</p>
 					<p>@Html.Raw(Helper.Func.Show(Model.ConservationStatus))</p>
 				</div>
 			</div>
@@ -118,7 +119,7 @@
 		<!-- Individuals -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">Các cá thể đo đạc</h5>
+				<h5 class="py-2 bg-black text-white">@translate["Page_Result_cac_ca_the_do_dac"]</h5>
 			</div>
 
 			<div class="info individuals_info">
@@ -133,7 +134,7 @@
 										<i class="icon-s fa fa-search"></i>
 										<input class="p-2 border-none flex-grow-1 outline-none" id-mangrove="@Model.Id"
 											type="search" id="searchInvidiual"
-											placeholder="Ngày hoặc địa điểm (VD: 01/01/2000, Vạn Ninh)">
+											placeholder="@translate["Page_Result_key_word"]">
 									</div>
 								</div>
 
@@ -147,7 +148,7 @@
 					}
 					else
 					{
-						<p class="text-center col-12 pb-2">Chưa có cá thể nào !</p>
+						<p class="text-center col-12 pb-2">@translate["Page_Result_chua_co_ca_the_nao"]</p>
 					}
 				}
 			</div>

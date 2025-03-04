@@ -94,6 +94,10 @@ option {
     transform: scale(1.1);
 }
 
+.upper {
+    text-transform: uppercase;
+}
+
 @media (width <=992px) {
     .hidden_mobile {
         display: none !important;

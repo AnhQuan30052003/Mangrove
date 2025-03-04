@@ -1,4 +1,5 @@
 @using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
 @model List<TblIndividual>
 
 @{
@@ -24,7 +25,7 @@
                                 <i class="fa-solid fa-eye" title="Viewer"></i>
                                 &nbsp;|&nbsp;
                             </span>
-                            <span>Giai đoạn: @item.TblStages.Count()</span>
+                            <span>@translate["User_Individuals_giai_doan"]: @item.TblStages.Count()</span>
                         </div>
                     </div>
 
@@ -44,6 +45,6 @@
     }
     else
     {
-        <p class="text-center col-12 pb-2">Không tìm thấy cá thể nào !</p>
+        <p class="text-center col-12 pb-2">@translate["User_Individuals_khong_tim_thay_ca_the_nao"]</p>
     }
 }

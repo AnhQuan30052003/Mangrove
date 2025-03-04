@@ -40,21 +40,21 @@ function listenerScrollPage() {
 listenerScrollPage();
 
 // Tiến hành thay đổi ngôn ngữ
-function changeLanguage(lang) {
-	const select = document.querySelector("#google_translate_element select");
-	if (select) {
-		select.value = lang;
-		select.dispatchEvent(new Event("change"));
-		console.log("Language changed: " + lang);
-		localStorage.setItem("language", lang);
+//function changeLanguage(lang) {
+//	const select = document.querySelector("#google_translate_element select");
+//	if (select) {
+//		select.value = lang;
+//		select.dispatchEvent(new Event("change"));
+//		console.log("Language changed: " + lang);
+//		localStorage.setItem("language", lang);
 
-		const url = `/Home/SaveChangeLanguage?lang=${lang}`;
-		requestAjax(url);
-	}
-	else {
-		console.log("Không tồn tại select");
-	}
-}
+//		const url = `/Home/SaveChangeLanguage?lang=${lang}`;
+//		requestAjax(url);
+//	}
+//	else {
+//		console.log("Không tồn tại select");
+//	}
+//}
 
 // Theo dõi thay đổi ngôn ngữ
 function listenerChangeLanguage() {
@@ -72,13 +72,13 @@ function listenerChangeLanguage() {
 	}
 
 	// Khi click từng option thì thay đổi ngôn ngữ
-	const lis = document.querySelectorAll(".language_dropdown li");
-	lis.forEach((item) => {
-		item.addEventListener("click", function (e) {
-			const lang = this.getAttribute("data-value");
-			changeLanguage(lang);
-		});
-	});
+	//const lis = document.querySelectorAll(".language_dropdown li");
+	//lis.forEach((item) => {
+	//	item.addEventListener("click", function (e) {
+	//		const lang = this.getAttribute("data-value");
+	//		changeLanguage(lang);
+	//	});
+	//});
 }
 listenerChangeLanguage();
 
@@ -419,22 +419,10 @@ listenerClickToClose();
 // Theo dõi khi tải xong trang web
 function listenrLoadDone() {
 	// Theo dõi biểu tượng khi load page và xoá
-	let interval = setInterval(() => {
-		const gtt = document.querySelector("#goog-gt-tt");
-		if (gtt) {
-			const preloader = document.querySelector(".preloader");
-			if (preloader) {
-				console.log("Load success and remove screen wait...");
-				preloader.remove();
-				clearInterval(interval);
-
-
-				let lang = localStorage.getItem("language");
-				if (lang == null) lang = "vi";
-				changeLanguage(lang);
-			}
-		}
-	}, 500);
+	window.addEventListener("load", function () {
+		const preloader = document.querySelector(".preloader");
+		if (preloader) preloader.remove();
+	});
 }
 listenrLoadDone();
 

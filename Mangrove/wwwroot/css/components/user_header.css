@@ -52,7 +52,7 @@ select option {
 	z-index: 10;
 }
 
-#header .language_dropdown li:hover {
+#header .language_dropdown .downdown_item:hover {
 	background-color: var(--greenPage);
 	color: white;
 }
@@ -97,10 +97,11 @@ select option {
 		padding: 10px;
 	}
 
-	.actions .right .list_menu li {
-		padding: 7.5px 15px;
-		border: solid 1px #ccc;
-	}
+		.actions .right .list_menu li,
+		.language_dropdown .downdown_item {
+			padding: 7.5px 15px;
+			border: solid 1px #ccc;
+		}
 
 	.actions .right .list_menu li a {
 		width: 100%;
@@ -120,9 +121,9 @@ select option {
 		background-color: transparent;
 	}
 
-	#header .language_dropdown li {
-		background-color: white;
-	}
+		#header .language_dropdown .downdown_item {
+			background-color: white;
+		}
 }
 
 @media (width > 992px) {

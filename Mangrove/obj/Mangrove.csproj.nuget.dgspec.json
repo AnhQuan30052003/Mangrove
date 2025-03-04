@@ -51,11 +51,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Google.Cloud.Translation.V2": {
-              "target": "Package",
-              "version": "[3.4.0, )"
-            },
             "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -67,9 +65,9 @@
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "Microsoft.Extensions.Localization": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[8.0.0, )"
             }
           },
           "imports": [

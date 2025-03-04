@@ -172,21 +172,8 @@ namespace Mangrove.Controllers {
 						.Select(x => x.Item)
 						.ToList();
 
-
-
-
-						var data = await Task.WhenAll(listMangrove
-						.Select(async item => new {
-							Item = item,
-							Name = await Helper.Func.Translate(item.Name)
-						})
-						.ToList());
-
-
 						// var data = listMangrove;
 						// listMangrove = new List<TblMangrove>();
-
-
 
 						// foreach (var item in data) {
 						// 	// Tìm kiểm ở Tiếng Việt

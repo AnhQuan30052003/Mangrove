@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="both_header_cay_ngap_man" xml:space="preserve">
+    <value>Cây ngập mặn</value>
+  </data>
+  <data name="both_header_khoa_nganh" xml:space="preserve">
+    <value>Viện Công Nghệ Sinh Học &amp; Môi Trường</value>
+  </data>
+  <data name="both_header_ngon_ngu" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="both_header_phan_bo" xml:space="preserve">
+    <value>Phân bố</value>
+  </data>
+  <data name="both_header_ten_truong" xml:space="preserve">
+    <value>Đại học Nha Trang</value>
+  </data>
+  <data name="both_header_thanh_phan_loai" xml:space="preserve">
+    <value>Thành phần Loài</value>
+  </data>
+  <data name="both_header_tieng_anh" xml:space="preserve">
+    <value>Tiếng Anh</value>
+  </data>
+  <data name="both_header_tieng_viet" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="both_header_trang_chu" xml:space="preserve">
+    <value>Trang chủ</value>
+  </data>
+  <data name="Page_Individual_giai_doan" xml:space="preserve">
+    <value>Giai đoạn</value>
+  </data>
+  <data name="Page_Individual_ngay_khao_sat" xml:space="preserve">
+    <value>Ngày khảo sát</value>
+  </data>
+  <data name="Page_Individual_thoi_tiet" xml:space="preserve">
+    <value>Thời tiết</value>
+  </data>
+  <data name="Page_Individual_vi_tri" xml:space="preserve">
+    <value>Vị trí</value>
+  </data>
+  <data name="Page_Result_anh" xml:space="preserve">
+    <value>Hình ảnh</value>
+  </data>
+  <data name="Page_Result_cac_ca_the_do_dac" xml:space="preserve">
+    <value>Các cá thể đo đạc</value>
+  </data>
+  <data name="Page_Result_chua_co_ca_the_nao" xml:space="preserve">
+    <value>Chưa có cá thể nào !</value>
+  </data>
+  <data name="Page_Result_cong_dung" xml:space="preserve">
+    <value>Công dụng</value>
+  </data>
+  <data name="Page_Result_hinh_thai" xml:space="preserve">
+    <value>Hình thái</value>
+  </data>
+  <data name="Page_Result_ho" xml:space="preserve">
+    <value>Họ</value>
+  </data>
+  <data name="Page_Result_key_word" xml:space="preserve">
+    <value>Ngày hoặc địa điểm (VD: 01/01/2000, Vạn Ninh)</value>
+  </data>
+  <data name="Page_Result_phan_bo_&amp;_tinh_trang_bao_ton" xml:space="preserve">
+    <value>Phân bố &amp; Tình trạng bảo tôn</value>
+  </data>
+  <data name="Page_Result_phan_bo_o_phia_bac_khanh_hoa" xml:space="preserve">
+    <value>Phân bố - Phía Bắc Khánh Hoà</value>
+  </data>
+  <data name="Page_Result_sinh_thai" xml:space="preserve">
+    <value>Sinh thái</value>
+  </data>
+  <data name="Page_Result_ten_khac" xml:space="preserve">
+    <value>Tên khác</value>
+  </data>
+  <data name="Page_Result_ten_khoa_hoc" xml:space="preserve">
+    <value>Tên khoa học</value>
+  </data>
+  <data name="Page_Result_thong_tin" xml:space="preserve">
+    <value>Thông tin</value>
+  </data>
+  <data name="Page_Result_tinh_trang_bao_ton" xml:space="preserve">
+    <value>Tình trạng bảo tồn</value>
+  </data>
+  <data name="Page_Individual_kinh_do" xml:space="preserve">
+    <value>Kinh độ</value>
+  </data>
+  <data name="user_back_luot_xem" xml:space="preserve">
+    <value>Lượt xem</value>
+  </data>
+  <data name="user_back_mo_rong" xml:space="preserve">
+    <value>Mở rộng</value>
+  </data>
+  <data name="user_back_thu_gon" xml:space="preserve">
+    <value>Thu gọn</value>
+  </data>
+  <data name="user_back_tro_ve" xml:space="preserve">
+    <value>Trở về</value>
+  </data>
+  <data name="user_header_trang_tich_hop_thong_tin" xml:space="preserve">
+    <value>Trang tích hợp thông tin</value>
+  </data>
+  <data name="User_Individuals_giai_doan" xml:space="preserve">
+    <value>Giai đoạn</value>
+  </data>
+  <data name="User_Individuals_khong_tim_thay_ca_the_nao" xml:space="preserve">
+    <value>Không tìm thấy cá thể nào !</value>
+  </data>
+  <data name="Page_Individual_vi_do" xml:space="preserve">
+    <value>Vĩ độ</value>
+  </data>
+  <data name="Page_Individual_hinh_anh_chi_tiet" xml:space="preserve">
+    <value>Hình ảnh chi tiết</value>
+  </data>
+  <data name="Page_Individual_giai_doan_nay_chua_co_hinh_anh_chi_tiet" xml:space="preserve">
+    <value>Giai đoạn này chưa có hình ảnh chi tiết nào !</value>
+  </data>
+  <data name="Page_Individual_ca_the_nay_chua_co_giai_doan_nao" xml:space="preserve">
+    <value>Cá thể này chưa có giai đoạn nào !</value>
+  </data>
+  <data name="Page_Index_muc_dich_website" xml:space="preserve">
+    <value>Mục đích Website ?</value>
+  </data>
+  <data name="Page_Index_thanh_phan_loai_gan_day" xml:space="preserve">
+    <value>Thành phần loài gần đây</value>
+  </data>
+  <data name="User_Footer_lien_he" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="User_Footer_dia_chi" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="User_Footer_dien_thoai" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="User_Footer_mo_cua" xml:space="preserve">
+    <value>Mở cửa</value>
+  </data>
+  <data name="User_Footer_theo_doi" xml:space="preserve">
+    <value>Theo dõi</value>
+  </data>
+  <data name="User_Footer_truy_cap" xml:space="preserve">
+    <value>Truy cập</value>
+  </data>
+  <data name="User_Footer_quan_tri_vien" xml:space="preserve">
+    <value>Quản trị viên</value>
+  </data>
+  <data name="User_Footer_ban_quyen_thuoc_ve_truong_dai_hoc_nha_trang" xml:space="preserve">
+    <value>Bản quyền thuộc về trường Đại học Nha Trang</value>
+  </data>
+  <data name="User_Footer_tim_kiem" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="User_Footer_len_dau" xml:space="preserve">
+    <value>Lên đầu trang</value>
+  </data>
+  <data name="User_Footer_admin" xml:space="preserve">
+    <value>Trang quản trị</value>
+  </data>
+  <data name="Page_SpeciesComposition_thanh_phan_loai" xml:space="preserve">
+    <value>Thành phần loài</value>
+  </data>
+  <data name="Page_SpeciesComposition_search" xml:space="preserve">
+    <value>Tìm kiếm tên trong</value>
+  </data>
+  <data name="Page_SpeciesComposition_loai" xml:space="preserve">
+    <value>loài</value>
+  </data>
+</root>

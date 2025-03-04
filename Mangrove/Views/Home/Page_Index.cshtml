@@ -1,4 +1,5 @@
 @using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
 @model List<TblMangrove>
 
 @{
@@ -22,7 +23,7 @@
 		</div>
 
 		<div class="frame_introduce">
-			<p class="fw-bold fs-5 mb-2">Mục đích của Website ?</p>
+			<p class="fw-bold fs-5 mb-2">@translate["Page_Index_muc_dich_website"]</p>
 			<p class="content text-justify p-2">
 				Trang web cung cấp thông tin chi tiết về hệ sinh thái rừng ngập mặn tại Bắc – Khánh Hòa, giúp nâng cao
 				nhận thức và kêu gọi cộng đồng chung tay bảo vệ môi trường. Chúng tôi chia sẻ kiến thức về các loài cây
@@ -32,7 +33,7 @@
 		</div>
 
 		<div class="frame_individual_recent">
-			<p class="fw-bold fs-5 mb-2">Thành phần loài gần đây</p>
+			<p class="fw-bold fs-5 mb-2">@translate["Page_Index_thanh_phan_loai_gan_day"]</p>
 			<div class="items d-flex flex-wrap">
 				@{
 					foreach (var item in Model)

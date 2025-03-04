@@ -1,5 +1,7 @@
 @using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
 @model InfoStagesOfIndividualModel
+
 @{
     ViewData["Title"] = Model.NameMangrove;
     Layout = Helper.Path.layoutUser;
@@ -18,7 +20,7 @@
                     foreach (var stage in Model.Stages)
                     {
                         <span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
-                            <span class="hidden_mobile cursor-pointer">Giai đoạn</span>
+                            <span class="hidden_mobile cursor-pointer">@translate["Page_Individual_giai_doan"]</span>
                             @(++countStage)
                         </span>
                     }
@@ -45,19 +47,19 @@
                                     <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
                                         <h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">Ngày khảo sát:</span>
+                                            <span style="width: 120px;">@translate["Page_Individual_ngay_khao_sat"]:</span>
                                             <span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
                                         </p>
 
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">Vị trí:</span>
+                                            <span style="width: 120px;">@translate["Page_Individual_vi_tri"]:</span>
                                             <span>@Model.Individual.Position</span>
                                         </p>
 
                                         @if (true)
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">Thời tiết:</span>
+                                                <span style="width: 120px;">@translate["Page_Individual_thoi_tiet"]:</span>
                                                 <span>Nhiều nắng</span>
                                             </p>
                                         }
@@ -65,7 +67,7 @@
                                         @if (true)
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">Kinh độ:</span>
+                                                <span style="width: 120px;">@translate["Page_Individual_kinh_do"]:</span>
                                                 <span>180</span>
                                             </p>
                                         }
@@ -73,7 +75,7 @@
                                         @if (true)
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">Vĩ độ:</span>
+                                                <span style="width: 120px;">@translate["Page_Individual_vi_do"]:</span>
                                                 <span>180</span>
                                             </p>
                                         }
@@ -83,7 +85,7 @@
 
                             <div class="box bg-white mb-2 rounded-1 overflow-hidden">
                                 <div class="toggle_title cursor-pointer text-center mb-2">
-                                    <h5 class="py-2 bg-black text-white">Hình ảnh chi tiết</h5>
+                                    <h5 class="py-2 bg-black text-white">@translate["Page_Individual_hinh_anh_chi_tiet"]</h5>
                                 </div>
 
                                 <div class="info d-flex flex-wrap" style="max-height: max-content;">
@@ -103,7 +105,7 @@
                                         }
                                         else
                                         {
-                                            <p class="text-center col-12 pb-2">Giai đoạn này chưa có hình ảnh chi tiết !</p>
+                                            <p class="text-center col-12 pb-2">@translate["Page_Individual_giai_doan_nay_chua_co_hinh_anh_chi_tiet"]</p>
                                         }
                                     }
                                 </div>
@@ -116,7 +118,7 @@
         else
         {
             <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
-                <h5>Cá thể này chưa có giai đoạn nào !</h5>
+                <h5>@translate["Page_Individual_ca_the_nay_chua_co_giai_doan_nao"]</h5>
             </div>
         }
     }

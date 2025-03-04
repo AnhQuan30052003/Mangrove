@@ -1,3 +1,5 @@
+@inject IStringLocalizer<Translate> translate
+
 <footer id="user_footer" class="mt-2 py-3" style="background-image: url('@Url.Content("~/img/logo/bg-footer.jpg")');">
 	<div class="container pt-3 d-flex flex-column gap-5 gap-sm-0 flex-sm-row">
 		<!-- Description -->
@@ -19,16 +21,16 @@
 		<div class="col-12 col-sm-4 px-2">
 			<div class="logo_title d-flex gap-2 align-items-center mb-3">
 				<i class="fa-solid fa-phone color-tree fs-4"></i>
-				<h5 class="m-0 text-white color_green_hover">LIÊN HỆ</h5>
+				<h5 class="m-0 text-white color_green_hover upper">@translate["User_Footer_lien_he"]</h5>
 			</div>
 
 			<div class="contact_information d-flex flex-column gap-2">
 				<p>
-					<span>Địa chỉ:</span>
+					<span>@translate["User_Footer_dia_chi"]:</span>
 					<span class="color_green_hover">02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hoà</span>
 				</p>
 				<p>
-					<span>Điện thoại:</span>
+					<span>@translate["User_Footer_dien_thoai"]:</span>
 					<span class="color_green_hover">+84 398 090 114</span>
 				</p>
 				<p>
@@ -36,7 +38,7 @@
 					<span class="color_green_hover">anhquan300503@gmail.com</span>
 				</p>
 				<p>
-					<span>Mở cửa:</span>
+					<span>@translate["User_Footer_mo_cua"]:</span>
 					<span class="color_green_hover">Thứ 2 - Thứ 6: 07:00 - 17h30</span>
 				</p>
 			</div>
@@ -46,7 +48,7 @@
 		<div class="col-12 col-sm-4 px-2">
 			<div class="logo_title d-flex gap-2 align-items-center mb-3">
 				<i class="fa-regular fa-eye color-tree fs-4"></i>
-				<h5 class="m-0 text-white color_green_hover">THEO DÕI</h5>
+				<h5 class="m-0 text-white color_green_hover upper">@translate["User_Footer_theo_doi"]</h5>
 			</div>
 
 			<div class="social-info d-flex gap-3 text-white">
@@ -61,11 +63,11 @@
 
 			<div class="admin mt-5 mt-sm-4 mb-3 d-flex gap-3 align-items-center">
 				<i class="fa fa-user color-tree fs-5"></i>
-				<h5 class="text-white color_green_hover">TRUY CẬP</h5>
+				<h5 class="text-white color_green_hover upper">@translate["User_Footer_truy_cap"]</h5>
 			</div>
 			<a href='@Url.Action("Page_Login", "Auth")'
 				class="text-white color_green_hover d-flex gap-2 align-items-center">
-				<span style="text-decoration: underline;" title="Website for admin">Quản trị viên</span>
+				<span style="text-decoration: underline;" title="@translate["User_Footer_admin"]">@translate["User_Footer_quan_tri_vien"]</span>
 				<i class="fa-solid fa-backward animation_pointer"></i>
 			</a>
 		</div>
@@ -82,7 +84,7 @@
 					<p>
 						&copy;
 						<script>document.write(new Date().getFullYear());</script>
-						Bản quyền thuộc về trường Đại học Nha Trang
+						@translate["User_Footer_ban_quyen_thuoc_ve_truong_dai_hoc_nha_trang"]
 						<i class="fa-regular fa-heart"></i>
 					</p>
 				</div>
@@ -92,11 +94,11 @@
 </footer>
 
 <!-- Button: Scroll up-->
-<a id="bottom_search" href='@Url.Action("Page_SpeciesComposition", "Home")' class="rounded-1" title="Search">
+<a id="bottom_search" href='@Url.Action("Page_SpeciesComposition", "Home")' class="rounded-1" title="@translate["User_Footer_tim_kiem"]">
 	<i class="icon-s fa fa-search"></i>
 </a>
 
 <!-- Button: Scroll up-->
-<a id="scrollUp" href="#header" class="rounded-1" title="Top of page">
+<a id="scrollUp" href="#header" class="rounded-1" title="@translate["User_Footer_len_dau"]">
 	<i class="fa fa-angle-up"></i>
 </a>

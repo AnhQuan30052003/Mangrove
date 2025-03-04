@@ -1,13 +1,11 @@
 using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.OAuth;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<MangroveContext>(options => {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("mangrove"));
-});
+builder.Services.AddDbContext<MangroveContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mangrove")));
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
 builder.Services.AddSession((options) => {
 	options.IdleTimeout = TimeSpan.FromDays(3650);
 	options.Cookie.HttpOnly = true;
@@ -16,12 +14,18 @@ builder.Services.AddSession((options) => {
 });
 
 var app = builder.Build();
-
 if (!app.Environment.IsDevelopment()) {
 	app.UseExceptionHandler("/Home/Error");
 	app.UseHsts();
 }
 
+var supportedCultures = new[] { "vi", "en" };
+var localizationOptions = new RequestLocalizationOptions()
+	.SetDefaultCulture("vi")
+	.AddSupportedCultures(supportedCultures)
+	.AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();

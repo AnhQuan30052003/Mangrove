@@ -1,3 +1,5 @@
+@inject IStringLocalizer<Translate> translate
+
 <header id="header">
     <div class="p-1 d-flex bg-white">
         <div class="logo rounded-pill">
@@ -9,10 +11,10 @@
         <div class="actions fw-bold d-flex px-3 justify-content-between" style="width: calc(100% - 70px);">
             <div class="left d-flex flex-column justify-content-around col-8 col-sm-10 col-lg-4">
                 <a href='@Url.Action("Page_Index", "Home")'>
-                    <h5 class="color_green_hover">ĐẠI HỌC NHA TRANG</h5>
+                    <h5 class="color_green_hover upper">@translate["both_header_ten_truong"]</h5>
                 </a>
                 <a href='@Url.Action("Page_Index", "Home")' class="color_green_hover">
-                    Viện Công Nghệ Sinh Học & Môi Trường
+                    @translate["both_header_khoa_nganh"]
                 </a>
             </div>
 
@@ -33,28 +35,28 @@
                 </button>
 
                 <div class="list_menu col-12 h-100 d-flex flex-column justify-content-lg-around gap-2 gap-lg-0">
-                    <p class="text-lg-end color-tree text-center">Trang tích hợp thông tin</p>
+                    <p class="text-lg-end color-tree text-center">@translate["user_header_trang_tich_hop_thong_tin"]</p>
 
                     <ul
                         class="list_item w-100 col-12z d-flex flex-lg-row flex-column justify-content-lg-end gap-lg-4 gap-2 align-items-lg-center">
                         <li class="color_green_hover page_option" page="Page_Index">
                             <a href='@Url.Action("Page_Index", "Home")'>
                                 <i class="fa-solid fa-house"></i>
-                                <span class="">Trang chủ</span>
+                                <span class="">@translate["both_header_trang_chu"]</span>
                             </a>
                         </li>
 
                         <li class="color_green_hover page_option" page="Page_SpeciesComposition">
                             <a href='@Url.Action("Page_SpeciesComposition", "Home")'>
                                 <i class="fa-solid fa-leaf"></i>
-                                <span class="">Thành phần loài</span>
+                                <span class="">@translate["both_header_thanh_phan_loai"]</span>
                             </a>
                         </li>
 
                         <li class="color_green_hover page_option" page="Page_Distribution">
                             <a href='@Url.Action("Page_Distribution", "Home")'>
                                 <i class="fa-solid fa-map"></i>
-                                <span class="">Phân bố</span>
+                                <span class="">@translate["both_header_phan_bo"]</span>
                             </a>
                         </li>
 
@@ -62,14 +64,14 @@
                             <div class="btn_language d-lg-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-language"></i>
                                 <span class="d-lg-inline d-flex justify-content-between flex-grow-1 align-items-center">
-                                    <span>Ngôn ngữ</span>
+                                    <span>@translate["both_header_ngon_ngu"]</span>
                                     <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
                                         style="margin-left: 3px;"></i>
                                 </span>
                             </div>
                             <ul class="language_dropdown rounded-1 overflow-hidden d-none">
-                                <li class="p-2" data-value="en">Tiếng Anh</li>
-                                <li class="p-2" data-value="vi">Tiếng Việt</li>
+                                <a href='@Url.Action("Change", "Language", new { language = "en" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_anh"]</a>
+                                <a href='@Url.Action("Change", "Language", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_viet"]</a>
                             </ul>
                             <div id="google_translate_element" class="position-fixed"
                                 style="top: -10000%; z-index: -10000;"></div>

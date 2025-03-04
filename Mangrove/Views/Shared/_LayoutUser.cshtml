@@ -1,9 +1,10 @@
-﻿@{
+﻿@inject IStringLocalizer<Translate> translate;
+@{
 	string _pvl = Helper.Path.partialViewLayout;
 }
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="">
 
 <head>
 	<meta charset="utf-8" />
@@ -22,7 +23,7 @@
 	<meta property="og:site_name" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
 
 	<!-- Title page + Favicon page -->
-	<title>@ViewData["Title"] | Cây ngập mặn | Đại học Nha Trang</title>
+	<title>@ViewData["Title"] | @translate["both_header_cay_ngap_man"] | @translate["both_header_ten_truong"]</title>
 	<link rel="icon" href="~/img/logo/logo.png">
 
 	<!-- Import CSS + Icon <i> -->
@@ -34,13 +35,13 @@
 	<script src="~/js/jquery/jquery-2.2.4.min.js"></script>
 
 	<!-- Js wait DOM-->
-	<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
+	@* <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 	<script defer>
 		// Khởi tạo Init cho Google Translate
 		function googleTranslateElementInit() {
 			new google.translate.TranslateElement({ pageLanguage: 'vi' }, 'google_translate_element');
 		}
-	</script>
+	</script> *@
 
 	<!-- Js template + custom-->
 	<script src="~/js/both_site.js" defer></script>
