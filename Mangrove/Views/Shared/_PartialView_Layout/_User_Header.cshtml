@@ -70,8 +70,8 @@
                                 </span>
                             </div>
                             <ul class="language_dropdown rounded-1 overflow-hidden d-none">
-                                <a href='@Url.Action("Change", "Language", new { language = "en" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_anh"]</a>
-                                <a href='@Url.Action("Change", "Language", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_viet"]</a>
+                                <a href='@Url.Action("ChangeLanguage", "Setting", new { language = "en" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_anh"]</a>
+                                <a href='@Url.Action("ChangeLanguage", "Setting", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["both_header_tieng_viet"]</a>
                             </ul>
                             <div id="google_translate_element" class="position-fixed"
                                 style="top: -10000%; z-index: -10000;"></div>

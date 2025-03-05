@@ -16,14 +16,6 @@ namespace Mangrove.Controllers {
 			this.context = context;
 		}
 
-		// Thay đổi language với ajax
-		public IActionResult SaveChangeLanguage(string lang) {
-			HttpContext.Session.SetString("language", lang);
-			Console.WriteLine($"Save new language after change is: {lang}");
-
-			return NoContent();
-		}
-
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
 			try {

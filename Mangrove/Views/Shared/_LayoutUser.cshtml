@@ -1,5 +1,8 @@
-﻿@inject IStringLocalizer<Translate> translate;
+﻿@inject Mangrove.Controllers.SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
 @{
+	var setting = settingWebsite.GetSetting();
+	Console.WriteLine($"Statsus: {setting}");
 	string _pvl = Helper.Path.partialViewLayout;
 }
 

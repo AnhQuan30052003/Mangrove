@@ -1,7 +1,9 @@
+using Mangrove.Controllers;
 using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<SettingWebsiteController>();
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<MangroveContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mangrove")));
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

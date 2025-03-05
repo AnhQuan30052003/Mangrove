@@ -1,4 +1,14 @@
-﻿// Theo dõi click hamburger menu
+﻿// Theo dõi khi tải xong trang web
+function listenrLoadDone() {
+	// Theo dõi biểu tượng khi load page và xoá
+	window.addEventListener("load", function () {
+		const preloader = document.querySelector(".preloader");
+		if (preloader) preloader.remove();
+	});
+}
+listenrLoadDone();
+
+// Theo dõi click hamburger menu
 function listnerClickHamburgerMenu() {
 	try {
 		const btnMenu = document.querySelector(".btn_menu");
@@ -415,16 +425,6 @@ function listenerClickToClose() {
 	});
 }
 listenerClickToClose();
-
-// Theo dõi khi tải xong trang web
-function listenrLoadDone() {
-	// Theo dõi biểu tượng khi load page và xoá
-	window.addEventListener("load", function () {
-		const preloader = document.querySelector(".preloader");
-		if (preloader) preloader.remove();
-	});
-}
-listenrLoadDone();
 
 
 
