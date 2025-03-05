@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<SettingWebsiteController>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<MangroveContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mangrove")));
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -21,9 +22,12 @@ if (!app.Environment.IsDevelopment()) {
 	app.UseHsts();
 }
 
+var httpContextAccessor = app.Services.GetRequiredService<IHttpContextAccessor>();
+Helper.Configure(httpContextAccessor);
+
 var supportedCultures = new[] { "vi", "en" };
 var localizationOptions = new RequestLocalizationOptions()
-	.SetDefaultCulture("vi")
+	.SetDefaultCulture("en")
 	.AddSupportedCultures(supportedCultures)
 	.AddSupportedUICultures(supportedCultures);
 

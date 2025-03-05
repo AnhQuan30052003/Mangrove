@@ -4,13 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mangrove.Data;
 
-public partial class MangroveContext : DbContext {
-    public MangroveContext() {
+public partial class MangroveContext : DbContext
+{
+    public MangroveContext()
+    {
     }
 
     public MangroveContext(DbContextOptions<MangroveContext> options)
-        : base(options) {
+        : base(options)
+    {
     }
+
+    public virtual DbSet<TblHome> TblHomes { get; set; }
 
     public virtual DbSet<TblIndividual> TblIndividuals { get; set; }
 
@@ -18,11 +23,35 @@ public partial class MangroveContext : DbContext {
 
     public virtual DbSet<TblPhoto> TblPhotos { get; set; }
 
+    public virtual DbSet<TblSetting> TblSettings { get; set; }
+
     public virtual DbSet<TblStage> TblStages { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) {
-        modelBuilder.Entity<TblIndividual>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C0D982D30");
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<TblHome>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("tblHome");
+
+            entity.Property(e => e.BannerImg)
+                .HasMaxLength(50)
+                .HasColumnName("_bannerImg");
+            entity.Property(e => e.BannerTitleEn)
+                .HasMaxLength(256)
+                .HasColumnName("_bannerTitleEN");
+            entity.Property(e => e.BannerTitleVi)
+                .HasMaxLength(256)
+                .HasColumnName("_bannerTitleVI");
+            entity.Property(e => e.ItemRecent).HasColumnName("_itemRecent");
+            entity.Property(e => e.PurposeEn).HasColumnName("_purposeEN");
+            entity.Property(e => e.PurposeVi).HasColumnName("_purposeVI");
+        });
+
+        modelBuilder.Entity<TblIndividual>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1CDA25A03B");
 
             entity.ToTable("tblIndividual");
 
@@ -34,12 +63,22 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idMangrove");
-            entity.Property(e => e.Position)
+            entity.Property(e => e.Latitude)
                 .HasMaxLength(256)
-                .HasColumnName("_position");
-            entity.Property(e => e.QrName)
-                .HasMaxLength(36)
                 .IsUnicode(false)
+                .HasColumnName("_latitude");
+            entity.Property(e => e.Longitude)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasColumnName("_longitude");
+            entity.Property(e => e.PositionEn)
+                .HasMaxLength(256)
+                .HasColumnName("_positionEN");
+            entity.Property(e => e.PositionVi)
+                .HasMaxLength(256)
+                .HasColumnName("_positionVI");
+            entity.Property(e => e.QrName)
+                .HasMaxLength(256)
                 .HasColumnName("_qrName");
             entity.Property(e => e.UpdateLast)
                 .HasColumnType("datetime")
@@ -48,11 +87,12 @@ public partial class MangroveContext : DbContext {
 
             entity.HasOne(d => d.IdMangroveNavigation).WithMany(p => p.TblIndividuals)
                 .HasForeignKey(d => d.IdMangrove)
-                .HasConstraintName("FK__tblIndivi___idMa__04E4BC85");
+                .HasConstraintName("FK__tblIndivi___idMa__2CF2ADDF");
         });
 
-        modelBuilder.Entity<TblMangrove>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1CD11CB4E6");
+        modelBuilder.Entity<TblMangrove>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1C5BF59BFF");
 
             entity.ToTable("tblMangrove");
 
@@ -60,37 +100,52 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_id");
-            entity.Property(e => e.ConservationStatus)
+            entity.Property(e => e.CommonNameEn)
                 .HasMaxLength(256)
-                .HasColumnName("_conservationStatus");
-            entity.Property(e => e.Distribution)
+                .HasColumnName("_commonNameEN");
+            entity.Property(e => e.CommonNameVi)
                 .HasMaxLength(256)
-                .HasColumnName("_distribution");
-            entity.Property(e => e.Ecology).HasColumnName("_ecology");
+                .HasColumnName("_commonNameVI");
+            entity.Property(e => e.ConservationStatusEn)
+                .HasMaxLength(256)
+                .HasColumnName("_conservationStatusEN");
+            entity.Property(e => e.ConservationStatusVi)
+                .HasMaxLength(256)
+                .HasColumnName("_conservationStatusVI");
+            entity.Property(e => e.DistributionEn)
+                .HasMaxLength(256)
+                .HasColumnName("_distributionEN");
+            entity.Property(e => e.DistributionVi)
+                .HasMaxLength(256)
+                .HasColumnName("_distributionVI");
+            entity.Property(e => e.EcologyEn).HasColumnName("_ecologyEN");
+            entity.Property(e => e.EcologyVi).HasColumnName("_ecologyVI");
+            entity.Property(e => e.Familia)
+                .HasMaxLength(256)
+                .HasColumnName("_familia");
             entity.Property(e => e.MainImage).HasColumnName("_mainImage");
-            entity.Property(e => e.Morphology).HasColumnName("_morphology");
-            entity.Property(e => e.Name)
-                .HasMaxLength(50)
-                .HasColumnName("_name");
-            entity.Property(e => e.OtherName)
-                .HasMaxLength(50)
-                .HasColumnName("_otherName");
-            entity.Property(e => e.Quantity).HasColumnName("_quantity");
+            entity.Property(e => e.MorphologyEn).HasColumnName("_morphologyEN");
+            entity.Property(e => e.MorphologyVi).HasColumnName("_morphologyVI");
+            entity.Property(e => e.NameEn)
+                .HasMaxLength(256)
+                .HasColumnName("_nameEN");
+            entity.Property(e => e.NameVi)
+                .HasMaxLength(256)
+                .HasColumnName("_nameVI");
             entity.Property(e => e.ScientificName)
-                .HasMaxLength(50)
+                .HasMaxLength(256)
                 .HasColumnName("_scientificName");
-            entity.Property(e => e.Surname)
-                .HasMaxLength(50)
-                .HasColumnName("_surname");
             entity.Property(e => e.UpdateLast)
                 .HasColumnType("datetime")
                 .HasColumnName("_updateLast");
-            entity.Property(e => e.Use).HasColumnName("_use");
+            entity.Property(e => e.UseEn).HasColumnName("_useEN");
+            entity.Property(e => e.UseVi).HasColumnName("_useVI");
             entity.Property(e => e.View).HasColumnName("_view");
         });
 
-        modelBuilder.Entity<TblPhoto>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C2F5C2E79");
+        modelBuilder.Entity<TblPhoto>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C158376A0");
 
             entity.ToTable("tblPhotos");
 
@@ -102,14 +157,62 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idObj");
-            entity.Property(e => e.ImageName).HasColumnName("_imageName");
-            entity.Property(e => e.NoteImg)
+            entity.Property(e => e.ImageName)
                 .HasMaxLength(256)
-                .HasColumnName("_noteImg");
+                .HasColumnName("_imageName");
+            entity.Property(e => e.NoteImgEn)
+                .HasMaxLength(256)
+                .HasColumnName("_noteImgEN");
+            entity.Property(e => e.NoteImgVi)
+                .HasMaxLength(256)
+                .HasColumnName("_noteImgVI");
         });
 
-        modelBuilder.Entity<TblStage>(entity => {
-            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1CB530B666");
+        modelBuilder.Entity<TblSetting>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("tblSetting");
+
+            entity.Property(e => e.AddressEn)
+                .HasMaxLength(256)
+                .HasColumnName("_addressEN");
+            entity.Property(e => e.AddressVi)
+                .HasMaxLength(256)
+                .HasColumnName("_addressVI");
+            entity.Property(e => e.DescriptionWebsiteEn).HasColumnName("_descriptionWebsiteEN");
+            entity.Property(e => e.DescriptionWebsiteVi).HasColumnName("_descriptionWebsiteVI");
+            entity.Property(e => e.Email)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasColumnName("_email");
+            entity.Property(e => e.FacultyEn)
+                .HasMaxLength(256)
+                .HasColumnName("_facultyEN");
+            entity.Property(e => e.FacultyVi)
+                .HasMaxLength(256)
+                .HasColumnName("_facultyVI");
+            entity.Property(e => e.FooterBgImg)
+                .HasMaxLength(50)
+                .HasColumnName("_footerBgImg");
+            entity.Property(e => e.LogoImg)
+                .HasMaxLength(50)
+                .HasColumnName("_logoImg");
+            entity.Property(e => e.Phone)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("_phone");
+            entity.Property(e => e.SchoolNameEn)
+                .HasMaxLength(256)
+                .HasColumnName("_schoolNameEN");
+            entity.Property(e => e.SchoolNameVi)
+                .HasMaxLength(256)
+                .HasColumnName("_schoolNameVI");
+        });
+
+        modelBuilder.Entity<TblStage>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C0483CBF9");
 
             entity.ToTable("tblStage");
 
@@ -121,17 +224,28 @@ public partial class MangroveContext : DbContext {
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_idIndividual");
-            entity.Property(e => e.MainImage).HasColumnName("_mainImage");
-            entity.Property(e => e.Name)
-                .HasMaxLength(100)
-                .HasColumnName("_name");
+            entity.Property(e => e.MainImage)
+                .HasMaxLength(256)
+                .HasColumnName("_mainImage");
+            entity.Property(e => e.NameEn)
+                .HasMaxLength(256)
+                .HasColumnName("_nameEN");
+            entity.Property(e => e.NameVi)
+                .HasMaxLength(256)
+                .HasColumnName("_nameVI");
             entity.Property(e => e.SurveyDay)
                 .HasColumnType("datetime")
                 .HasColumnName("_surveyDay");
+            entity.Property(e => e.WeatherEn)
+                .HasMaxLength(256)
+                .HasColumnName("_weatherEN");
+            entity.Property(e => e.WeatherVi)
+                .HasMaxLength(256)
+                .HasColumnName("_weatherVI");
 
             entity.HasOne(d => d.IdIndividualNavigation).WithMany(p => p.TblStages)
                 .HasForeignKey(d => d.IdIndividual)
-                .HasConstraintName("FK__tblStage___idInd__07C12930");
+                .HasConstraintName("FK__tblStage___idInd__2FCF1A8A");
         });
 
         OnModelCreatingPartial(modelBuilder);

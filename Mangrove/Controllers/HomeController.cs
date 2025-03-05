@@ -19,15 +19,12 @@ namespace Mangrove.Controllers {
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
 			try {
-				// Truy vấn 6 item gần đây nhất
-				int quantityShow = 6;
-				var mangroves = await context.TblMangroves
-				.OrderByDescending(item => item.UpdateLast)
-				.ThenBy(item => item.Name)
-				.Take(quantityShow)
-				.ToListAsync();
+				var home = await context.TblHomes.FirstOrDefaultAsync();	
+				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
+				var mangroves = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
+				TempData["Mangroves"] = mangroves;
 
-				return View(mangroves);
+				return View(home);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
@@ -42,7 +39,7 @@ namespace Mangrove.Controllers {
 				var mangrove = await context.TblMangroves
 				.Include(item => item.TblIndividuals)
 				.ThenInclude(item => item.TblStages)
-				.FirstOrDefaultAsync(item => item.Id == id.ToUpper());
+				.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
 					return NotFound($"Không tìm thấy cây có ID = {id}");
 				}
@@ -50,17 +47,22 @@ namespace Mangrove.Controllers {
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
-					List<TblIndividual> listInidivuals;
+					List<TblIndividual> fillter = mangrove.TblIndividuals.ToList();
 					if (!string.IsNullOrEmpty(searchIndividual)) {
 						string search = searchIndividual.ToLower().Replace("/", "-");
-						listInidivuals = mangrove.TblIndividuals.Where(o =>
-							o.Position.ToLower().Contains(search) ||
-							o.UpdateLast.ToString("dd/MM/yyyy").Contains(search)
-						).ToList();
-					}
-					else listInidivuals = mangrove.TblIndividuals.ToList();
 
-					return PartialView($"{Helper.Path.partialView}/User_Individuals.cshtml", listInidivuals);
+						fillter = new List<TblIndividual>();
+						foreach (var item in mangrove.TblIndividuals) {
+							if (item.UpdateLast.ToString("dd/MM/yyyy").Contains(search) ||
+								item.PositionEn.ToLower().Contains(search) ||
+								item.PositionVi.ToLower().Contains(search)
+							) {
+								fillter.Add(item);
+							}
+						}
+					}
+
+					return PartialView($"{Helper.Path.partialView}/User_Individuals.cshtml", fillter);
 				}
 
 				// Truy vấn ảnh cho banner slick slider
@@ -124,7 +126,7 @@ namespace Mangrove.Controllers {
 				}
 
 				var info = new InfoStagesOfIndividualModel {
-					NameMangrove = mangrove?.Name + " - " + mangrove?.ScientificName,
+					NameMangrove = (Helper.Func.IsLanguage("en") ? mangrove?.NameEn : mangrove?.NameVi + " - " + mangrove?.ScientificName) ?? "",
 					Individual = individual,
 					Stages = listStages
 				};
@@ -139,48 +141,28 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: thành phần loài - có tìm kiếm
-		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) { // * Cần fix chuyển đổi ngôn ngữ khi dịch => Cần tìm cách tối ưu hơn để dịch nhanh + tốt hơn
+		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) {
 			try {
-				List<TblMangrove> listMangrove = await context.TblMangroves.OrderBy(o => o.Name).ToListAsync();
+				bool isEN = Helper.Func.IsLanguage("en");
+				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(o => o.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(o => o.NameVi).ToListAsync();
 
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
+					List<TblMangrove> fillter = listMangrove;
 					if (!string.IsNullOrEmpty(search)) {
 						search = search.ToLower();
 						string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
 
-						var translatedList = await Task.WhenAll(listMangrove.Select(async item => new {
-							Item = item,
-							NameVI = await Helper.Func.Translate(item.Name.ToLower(), "en", "vi"),
-							NameEN = await Helper.Func.Translate(item.Name.ToLower(), "vi", "en")
-						}));
-
-						listMangrove = translatedList
-						.Where(x =>
-							x.NameVI.Contains(search) || Helper.Func.FormatUngisnedString(x.NameVI).Contains(unsignStringSearch) ||
-							x.NameEN.Contains(search) || x.Item.ScientificName.ToLower().Contains(search)
-						)
-						.Select(x => x.Item)
-						.ToList();
-
-						// var data = listMangrove;
-						// listMangrove = new List<TblMangrove>();
-
-						// foreach (var item in data) {
-						// 	// Tìm kiểm ở Tiếng Việt
-						// 	string nameTranslate = await Helper.Func.Translate(item.Name.ToLower(), "en", "vi");
-						// 	bool searchVI = nameTranslate.Contains(search) || Helper.Func.FormatUngisnedString(nameTranslate).Contains(unsignStringSearch);
-
-						// 	// Tìm kiếm ở Tiếng Anh
-						// 	nameTranslate = await Helper.Func.Translate(item.Name.ToLower(), "vi", "en");
-						// 	bool searchEN = nameTranslate.Contains(search) || item.ScientificName.ToLower().Contains(search);
-
-						// 	if (searchVI || searchEN) listMangrove.Add(item);
-						// }
+						fillter = new List<TblMangrove>();
+						foreach (var item in listMangrove) {
+							if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
+								fillter.Add(item);
+							}
+						}
 					}
 
-					return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", listMangrove);
+					return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", fillter);
 				}
 
 				return View(listMangrove);

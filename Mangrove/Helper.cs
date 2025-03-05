@@ -1,78 +1,112 @@
+using Azure.Core;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
 
 public class Helper {
-    // Path layout...
-    public static class Path {
-        public static string layoutUser = "~/Views/Shared/_LayoutUser.cshtml";
-        public static string layoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
-        public static string layoutAdmin_Login = "~/Views/Shared/_LayoutAuth.cshtml";
-        public static string partialView = "~/Views/_PartialView";
-        public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
-    }
+	private static IHttpContextAccessor? httpContextAccessor;
 
-    // Status noifier
-    public static class StatusNoifier {
-        public static string success = "success";
-        public static string fail = "fail";
-    }
+	public static void Configure(IHttpContextAccessor _httpContextAccessor) {
+		httpContextAccessor = _httpContextAccessor;
+	}
 
-    // Variables
-    public static class Variable { }
+	// Path layout...
+	public static class Path {
+		public static string layoutUser = "~/Views/Shared/_LayoutUser.cshtml";
+		public static string layoutAdmin = "~/Views/Shared/_LayoutAdmin.cshtml";
+		public static string layoutAdmin_Login = "~/Views/Shared/_LayoutAuth.cshtml";
+		public static string partialView = "~/Views/_PartialView";
+		public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
+	}
 
-    // Function
-    public static class Func {
-        // Hiển thị content với textare
-        public static string Show(string text) {
-            return text.Replace("\n", "<br>");
-        }
+	// Status noifier
+	public static class StatusNoifier {
+		public static string success = "success";
+		public static string fail = "fail";
+	}
 
-        // Dịch Anh - Việt
-        public static async Task<string> Translate(string input, string from = "vi", string to = "en") {
-            try {
-                int lenInput = input.Length;
-                string translatedText = "";
+	// Variables
+	public static class Variable { }
 
-                for (int i = 0, lenMaxTranslate = 1000; i < lenInput; i += lenMaxTranslate) {
-                    if (i + lenMaxTranslate > lenInput) lenMaxTranslate = lenInput - i;
-                    string text = input.Substring(i, lenMaxTranslate);
-                    string url = $"https://api.mymemory.translated.net/get?q={text}&langpair={from}|{to}";
+	// Function
+	public static class Func {
+		// Hiển thị content với textare
+		public static string Show(string text) {
+			return text.Replace("\n", "<br>");
+		}
 
-                    var httpClient = new HttpClient();
-                    var response = await httpClient.GetAsync(url);
-                    var jsonString = await response.Content.ReadAsStringAsync();
+		// Dịch Anh - Việt
+		public static async Task<string> Translate(string input, string from = "vi", string to = "en") {
+			try {
+				int lenInput = input.Length;
+				string translatedText = "";
 
-                    using var doc = JsonDocument.Parse(jsonString);
-                    translatedText += doc.RootElement
-                        .GetProperty("responseData")
-                        .GetProperty("translatedText")
-                        .GetString() ?? text;
-                }
+				for (int i = 0, lenMaxTranslate = 1000; i < lenInput; i += lenMaxTranslate) {
+					if (i + lenMaxTranslate > lenInput) lenMaxTranslate = lenInput - i;
+					string text = input.Substring(i, lenMaxTranslate);
+					string url = $"https://api.mymemory.translated.net/get?q={text}&langpair={from}|{to}";
 
-                Console.WriteLine($"Done translated input: {input}");
+					var httpClient = new HttpClient();
+					var response = await httpClient.GetAsync(url);
+					var jsonString = await response.Content.ReadAsStringAsync();
 
-                return translatedText;
-            }
-            catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}");
-                return input;
-            }
-        }
+					using var doc = JsonDocument.Parse(jsonString);
+					translatedText += doc.RootElement
+						.GetProperty("responseData")
+						.GetProperty("translatedText")
+						.GetString() ?? text;
+				}
 
-        // Chuỗi về Tiếng Việt không dấu
-        public static string FormatUngisnedString(string input) {
-            string normalized = input.Normalize(NormalizationForm.FormD);
-            StringBuilder sb = new StringBuilder();
+				Console.WriteLine($"Done translated input: {input}");
 
-            foreach (char c in normalized) {
-                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark) {
-                    sb.Append(c);
-                }
-            }
+				return translatedText;
+			}
+			catch (Exception ex) {
+				Console.WriteLine($"Error: {ex.Message}");
+				return input;
+			}
+		}
 
-            string output = sb.ToString().Normalize(NormalizationForm.FormC).Replace("đ", "d").Replace("Đ", "D");
-            return output;
-        }
-    }
+		// Chuỗi về Tiếng Việt không dấu
+		public static string FormatUngisnedString(string input) {
+			string normalized = input.Normalize(NormalizationForm.FormD);
+			StringBuilder sb = new StringBuilder();
+
+			foreach (char c in normalized) {
+				if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark) {
+					sb.Append(c);
+				}
+			}
+
+			string output = sb.ToString().Normalize(NormalizationForm.FormC).Replace("đ", "d").Replace("Đ", "D");
+			return output;
+		}
+
+		// Lấy mã language hiện tại từ cookie
+		public static string GetLanguageCurrent() {
+			var context = httpContextAccessor?.HttpContext;
+			if (context == null) {
+				Console.WriteLine($"Context: null");
+				return "en";
+			}
+
+			// Lấy cookie từ request
+			string? lang = context.Request.Cookies[".AspNetCore.Culture"];
+			return string.IsNullOrEmpty(lang) ? "en" : lang;
+		}
+
+		// Kiểm tra phải Tiếng Anh hay Việt không ?
+		public static bool IsLanguage(string language) {
+			return GetLanguageCurrent().Contains(language.ToLower());
+		}
+
+		// Format number
+		public static string FormatNumber(long number) {
+			string textNumber = number.ToString();
+			if (textNumber.Length > 3) {
+				textNumber = textNumber.Substring(0, 1) + "." + textNumber.Substring(1, 3);	
+			}
+			return textNumber;
+		}
+	}
 }

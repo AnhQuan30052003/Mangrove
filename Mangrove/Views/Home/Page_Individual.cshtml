@@ -1,10 +1,10 @@
-@using Mangrove.Data
 @inject IStringLocalizer<Translate> translate
 @model InfoStagesOfIndividualModel
 
 @{
     ViewData["Title"] = Model.NameMangrove;
     Layout = Helper.Path.layoutUser;
+    bool isEN = Helper.Func.IsLanguage("en");
     string _pv = Helper.Path.partialView;
 }
 
@@ -20,7 +20,7 @@
                     foreach (var stage in Model.Stages)
                     {
                         <span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
-                            <span class="hidden_mobile cursor-pointer">@translate["Page_Individual_giai_doan"]</span>
+                            <span class="hidden_mobile cursor-pointer">@translate["label_giai_doan"]</span>
                             @(++countStage)
                         </span>
                     }
@@ -35,9 +35,9 @@
                         <div class="display_item @(countStage == 0 ? "" : "d-none")">
                             <div class="box bg-white mb-2 rounded-1 overflow-hidden">
                                 <div class="toggle_title cursor-pointer text-center mb-2">
-                                    <h5 class="py-2 bg-black text-white">@stage.info.Name</h5>
+                                    <h5 class="py-2 bg-black text-white">@(isEN ? stage.info.NameEn : stage.info.NameVi)</h5>
                                 </div>
-
+                                                                                                                            
                                 <div class="info title d-flex flex-wrap">
                                     <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
                                         <img class="h-100 click_show_image rounded-1"
@@ -47,36 +47,36 @@
                                     <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
                                         <h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">@translate["Page_Individual_ngay_khao_sat"]:</span>
+                                            <span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
                                             <span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
                                         </p>
 
                                         <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">@translate["Page_Individual_vi_tri"]:</span>
-                                            <span>@Model.Individual.Position</span>
+                                            <span style="width: 120px;">@translate["label_vi_tri_khao_sat"]:</span>
+                                            <span>@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
                                         </p>
 
-                                        @if (true)
+                                        @if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["Page_Individual_thoi_tiet"]:</span>
-                                                <span>Nhiều nắng</span>
+                                                <span style="width: 120px;">@translate["label_thoi_tiet_khao_sat"]:</span>
+                                                <span>@(isEN ? stage.info.WeatherEn : stage.info.WeatherVi)</span>
                                             </p>
                                         }
 
-                                        @if (true)
+                                        @if (!String.IsNullOrEmpty(Model.Individual.Longitude))
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["Page_Individual_kinh_do"]:</span>
-                                                <span>180</span>
+                                                <span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+                                                <span>@Model.Individual.Longitude</span>
                                             </p>
                                         }
 
-                                        @if (true)
+                                        @if (!String.IsNullOrEmpty(Model.Individual.Latitude))
                                         {
                                             <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["Page_Individual_vi_do"]:</span>
-                                                <span>180</span>
+                                                <span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+                                                <span>@Model.Individual.Latitude</span>
                                             </p>
                                         }
                                     </div>
@@ -85,7 +85,7 @@
 
                             <div class="box bg-white mb-2 rounded-1 overflow-hidden">
                                 <div class="toggle_title cursor-pointer text-center mb-2">
-                                    <h5 class="py-2 bg-black text-white">@translate["Page_Individual_hinh_anh_chi_tiet"]</h5>
+                                    <h5 class="py-2 bg-black text-white">@translate["label_hinh_anh_chi_tiet"]</h5>
                                 </div>
 
                                 <div class="info d-flex flex-wrap" style="max-height: max-content;">
@@ -99,13 +99,13 @@
                                                         <img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale"
                                                             src="@Url.Content("~/img/stage-img/" + photo.ImageName)" alt="">
                                                     </div>
-                                                    <p class="text-center mt-1">@photo.NoteImg</p>
+                                                    <p class="text-center mt-1">@(isEN ? photo.NoteImgEn : photo.NoteImgVi)</p>
                                                 </div>
                                             }
                                         }
                                         else
                                         {
-                                            <p class="text-center col-12 pb-2">@translate["Page_Individual_giai_doan_nay_chua_co_hinh_anh_chi_tiet"]</p>
+                                            <p class="text-center col-12 pb-2">@translate["label_giai_doan_chua_co_hinh_anh_chi_tiet"]</p>
                                         }
                                     }
                                 </div>

@@ -9,7 +9,13 @@ public partial class TblIndividual
 
     public string? IdMangrove { get; set; }
 
-    public string Position { get; set; } = null!;
+    public string? Longitude { get; set; }
+
+    public string? Latitude { get; set; }
+
+    public string PositionVi { get; set; } = null!;
+
+    public string PositionEn { get; set; } = null!;
 
     public DateTime UpdateLast { get; set; }
 

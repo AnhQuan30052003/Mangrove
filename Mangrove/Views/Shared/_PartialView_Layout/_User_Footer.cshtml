@@ -1,18 +1,23 @@
+@inject SettingWebsiteController settingWebsite
 @inject IStringLocalizer<Translate> translate
+
+@{
+	bool isEN = Helper.Func.IsLanguage("en");
+	var setting = await settingWebsite.GetSetting();
+}
 
 <footer id="user_footer" class="mt-2 py-3" style="background-image: url('@Url.Content("~/img/logo/bg-footer.jpg")');">
 	<div class="container pt-3 d-flex flex-column gap-5 gap-sm-0 flex-sm-row">
-		<!-- Description -->
 		<div class="col-12 col-sm-4 px-2">
 			<div class="logo_title mb-30">
 				<div class="logo d-inline-flex gap-2 align-items-center rounded-pill">
 					<a href='@Url.Action("Page_Index", "Home")'>
-						<img class="h-100 w-100 object-fit-cover" src="~/img/logo/logo.png" alt=""
+						<img class="h-100 w-100 object-fit-cover" src="~/img/logo/@setting.LogoImg" alt=""
 							title="Logo Mangrove">
 					</a>
 				</div>
 				<p class="mb-2 color_green_hover text-white mt-2">
-					Website cung cấp các thông tin chi tiết, liên quan đến các loài cây ngập mặn ở phía Bắc - Khánh Hoà.
+					@(isEN ? setting.DescriptionWebsiteEn : setting.DescriptionWebsiteVi)
 				</p>
 			</div>
 		</div>
@@ -27,15 +32,17 @@
 			<div class="contact_information d-flex flex-column gap-2">
 				<p>
 					<span>@translate["User_Footer_dia_chi"]:</span>
-					<span class="color_green_hover">02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hoà</span>
+					<span class="color_green_hover">
+						@(isEN ? setting.AddressEn : setting.AddressVi)
+					</span>
 				</p>
 				<p>
 					<span>@translate["User_Footer_dien_thoai"]:</span>
-					<span class="color_green_hover">+84 398 090 114</span>
+					<span class="color_green_hover">@setting.Phone</span>
 				</p>
 				<p>
 					<span>Email:</span>
-					<span class="color_green_hover">anhquan300503@gmail.com</span>
+					<span class="color_green_hover">@setting.Email</span>
 				</p>
 			</div>
 		</div>
@@ -70,7 +77,7 @@
 	</div>
 
 	<div class="info_copy_right">
-		<div class="container">
+		<div class="container">	
 			<div class="frame_border_line">
 				<div class="border-line"></div>
 			</div>
@@ -80,7 +87,7 @@
 					<p>
 						&copy;
 						<script>document.write(new Date().getFullYear());</script>
-						@translate["User_Footer_ban_quyen_thuoc_ve_truong_dai_hoc_nha_trang"]
+						@translate["footer_ban_quyen"] @(isEN ? setting.SchoolNameEn : setting.SchoolNameVi)
 						<i class="fa-regular fa-heart"></i>
 					</p>
 				</div>
@@ -90,11 +97,11 @@
 </footer>
 
 <!-- Button: Scroll up-->
-<a id="bottom_search" href='@Url.Action("Page_SpeciesComposition", "Home")' class="rounded-1" title="@translate["User_Footer_tim_kiem"]">
+<a id="bottom_search" href='@Url.Action("Page_SpeciesComposition", "Home")' class="rounded-1" title="@translate["footer_icon_search"]">
 	<i class="icon-s fa fa-search"></i>
 </a>
 
 <!-- Button: Scroll up-->
-<a id="scrollUp" href="#header" class="rounded-1" title="@translate["User_Footer_len_dau"]">
+<a id="scrollUp" href="#header" class="rounded-1" title="@translate["footer_icon_top"]">
 	<i class="fa fa-angle-up"></i>
 </a>

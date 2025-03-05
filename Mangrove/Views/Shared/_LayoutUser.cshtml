@@ -1,8 +1,7 @@
-﻿@inject Mangrove.Controllers.SettingWebsiteController settingWebsite
+﻿@inject SettingWebsiteController settingWebsite
 @inject IStringLocalizer<Translate> translate
 @{
-	var setting = settingWebsite.GetSetting();
-	Console.WriteLine($"Statsus: {setting}");
+	var setting = await settingWebsite.GetSetting();
 	string _pvl = Helper.Path.partialViewLayout;
 }
 
@@ -19,15 +18,15 @@
 	<meta property="og:title" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
 	<meta property="og:description"
 		content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
-	<meta property="og:image" content="https://mangrove.runasp.net/img/logo/logo.png" />
+	<meta property="og:image" content=$"https://mangrove.runasp.net/img/logo/{@setting.LogoImg}" />
 	<meta property="og:url" content="https://mangrove.runasp.net/" />
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="vi_VN" />
 	<meta property="og:site_name" content="Mangrove - NTU: Tìm kiếm thông tin cây ngập mặn." />
 
 	<!-- Title page + Favicon page -->
-	<title>@ViewData["Title"] | @translate["both_header_cay_ngap_man"] | @translate["both_header_ten_truong"]</title>
-	<link rel="icon" href="~/img/logo/logo.png">
+	<title>@ViewData["Title"] | @translate["title_page"]</title>
+	<link rel="icon" href="~/img/logo/@setting.LogoImg">
 
 	<!-- Import CSS + Icon <i> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -36,15 +35,6 @@
 
 	<!-- Import library Js -->
 	<script src="~/js/jquery/jquery-2.2.4.min.js"></script>
-
-	<!-- Js wait DOM-->
-	@* <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
-	<script defer>
-		// Khởi tạo Init cho Google Translate
-		function googleTranslateElementInit() {
-			new google.translate.TranslateElement({ pageLanguage: 'vi' }, 'google_translate_element');
-		}
-	</script> *@
 
 	<!-- Js template + custom-->
 	<script src="~/js/both_site.js" defer></script>
@@ -60,11 +50,11 @@
 
 <body>
 	<!-- Preload -->
-	@await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml")
+	@await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
 	@await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
 
 	<!-- Header -->
-	@await Html.PartialAsync(_pvl + "/_User_Header.cshtml")
+	@await Html.PartialAsync(_pvl + "/_User_Header.cshtml", setting)
 	@* @await Html.PartialAsync(_pvl + "/_Both_Notifier.cshtml") *@
 
 	<!-- Body-->

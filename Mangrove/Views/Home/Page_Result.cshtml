@@ -1,14 +1,13 @@
-﻿@using Mangrove.Data
-@inject IStringLocalizer<Translate> translate
+﻿@inject IStringLocalizer<Translate> translate
 @model TblMangrove
 
 @{
-	ViewData["Title"] = Model.Name;
+	bool isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = isEN ? Model.NameEn : Model.NameVi;
 	Layout = Helper.Path.layoutUser;
+
 	string _pv = Helper.Path.partialView;
-
 	TempData["Id"] = Model.Id;
-
 	List<TblPhoto> photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
 }
 
@@ -19,7 +18,7 @@
 		<!-- Images -->
 		<div class="box rounded-1 bg-transparent mb-2">
 			<div class="toggle_title text-center mt-1 mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_anh"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_hinh_anh"]</h5>
 			</div>
 
 			<div class="info">
@@ -28,7 +27,7 @@
 						@foreach (var photo in photos)
 						{
 							string img = @Url.Content("~/img/tree-img/" + photo.ImageName);
-							<div class="slide_item" note="@photo.NoteImg">
+							<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
 								<img class="rounded-1 click_show_image" src="@img" />
 							</div>
 						}
@@ -44,32 +43,32 @@
 		<!-- Info: Name, Consrevation status, Uses -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_thong_tin"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_thong_tin"]</h5>
 			</div>
 
 			<div class="info">
 				<h4 class="text-center mb-2 fw-bold">
-					@Model.Name
+					@(isEN ? Model.NameEn : Model.NameVi)
 				</h4>
 				<div class="wrapper d-flex flex-wrap">
 					<div class="name_info p-2 col-12 col-sm-6">
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">@translate["Page_Result_ten_khac"]:</span>
-							<span>@Model.OtherName</span>
+							<span class="space_word fw-bold">@translate["label_ten_khac"]:</span>
+							<span>@(isEN ? Model.CommonNameEn : Model.CommonNameVi)</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">@translate["Page_Result_ten_khoa_hoc"]:</span>
+							<span class="space_word fw-bold">@translate["label_ten_khoa_hoc"]:</span>
 							<span>@Model.ScientificName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
-							<span class="space_word fw-bold">@translate["Page_Result_ho"]:</span>
-							<span>@Model.Surname</span>
+							<span class="space_word fw-bold">@translate["label_ho"]:</span>
+							<span>@Model.Familia</span>
 						</p>
 					</div>
 
 					<div class="use_info p-2 col-12 col-sm-6">
-						<p class="fw-bold">@translate["Page_Result_cong_dung"]:</p>
-						<p class="text-justify">@Html.Raw(Helper.Func.Show(Model.Use))</p>
+						<p class="fw-bold">@translate["label_cong_dung"]:</p>
+						<p class="text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.UseEn : Model.UseVi))</p>
 					</div>
 				</div>
 			</div>
@@ -78,40 +77,40 @@
 		<!-- Morphology -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_hinh_thai"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_hinh_thai"]</h5>
 			</div>
 
 			<div class="info morphology_info">
-				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Morphology))</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.MorphologyEn : Model.MorphologyVi))</p>
 			</div>
 		</div>
 
 		<!-- Ecology -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_sinh_thai"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_sinh_thai"]</h5>
 			</div>
 
 			<div class="info ecology_info">
-				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Ecology))</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.EcologyEn : Model.EcologyVi))</p>
 			</div>
 		</div>
 
 		<!-- Distribute & Convervation -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_phan_bo_&_tinh_trang_bao_ton"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_phan_bo_va_tinh_trang"]</h5>
 			</div>
 
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
-					<p class="fw-bold">@translate["Page_Result_phan_bo_o_phia_bac_khanh_hoa"]:</p>
-					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
+					<p class="fw-bold">@translate["label_phan_bo_phia_bac"]:</p>
+					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.DistributionEn : Model.DistributionVi))</p>
 				</div>
 
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
-					<p class="fw-bold">@translate["Page_Result_tinh_trang_bao_ton"]:</p>
-					<p>@Html.Raw(Helper.Func.Show(Model.ConservationStatus))</p>
+					<p class="fw-bold">@translate["label_tinh_trang_bao_ton"]:</p>
+					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.ConservationStatusEn : Model.ConservationStatusVi))</p>
 				</div>
 			</div>
 		</div>
@@ -119,11 +118,11 @@
 		<!-- Individuals -->
 		<div class="box rounded-1 overflow-hidden bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h5 class="py-2 bg-black text-white">@translate["Page_Result_cac_ca_the_do_dac"]</h5>
+				<h5 class="py-2 bg-black text-white">@translate["label_cac_ca_the_do_dac"]</h5>
 			</div>
 
 			<div class="info individuals_info">
-				@{
+				@{																				  
 					if (Model.TblIndividuals.Count() > 0)
 					{
 						<div class="frame_measure p-2">
@@ -134,7 +133,7 @@
 										<i class="icon-s fa fa-search"></i>
 										<input class="p-2 border-none flex-grow-1 outline-none" id-mangrove="@Model.Id"
 											type="search" id="searchInvidiual"
-											placeholder="@translate["Page_Result_key_word"]">
+											   placeholder="@translate["label_search_key_word"]">
 									</div>
 								</div>
 
@@ -148,7 +147,7 @@
 					}
 					else
 					{
-						<p class="text-center col-12 pb-2">@translate["Page_Result_chua_co_ca_the_nao"]</p>
+						<p class="text-center col-12 pb-2">@translate["label_chua_co_ca_the_nao"]</p>
 					}
 				}
 			</div>

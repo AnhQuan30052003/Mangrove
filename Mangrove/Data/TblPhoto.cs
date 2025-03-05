@@ -11,5 +11,7 @@ public partial class TblPhoto
 
     public string ImageName { get; set; } = null!;
 
-    public string? NoteImg { get; set; }
+    public string? NoteImgVi { get; set; }
+
+    public string? NoteImgEn { get; set; }
 }

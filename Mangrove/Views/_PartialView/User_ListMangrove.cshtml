@@ -1,23 +1,25 @@
-@using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
 @model List<TblMangrove>
 
 @{
-    long stt = 0;
+    bool isEN = Helper.Func.IsLanguage("en");
+
     if (Model.Count > 0)
     {
+        long stt = 0;
         foreach (var item in Model)
         {
             stt += 1;
 
             <a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
                 class="item_mangrove d-block text-start py-1 px-2 mb-2 rounded-1 overflow-hidden time_delay_500ms">
-                <h5 class="mb-2 name">#@stt | @item.Name - @item.ScientificName</h5>
-                <p class="content">@item.Morphology</p>
+                <h5 class="mb-2 name">#@stt | @(isEN ? "" : item.NameVi + " - ") @item.ScientificName</h5>
+                <p class="content">@(isEN ? item.MorphologyEn : item.MorphologyVi)</p>
             </a>
         }
     }
     else
     {
-        <p class="text-center">Không tìm thấy kết quả nào !</p>
+        <p class="text-center">@translate["label_khong_tim_thay_ket_qua"]</p>
     }
 }

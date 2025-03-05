@@ -1,7 +1,8 @@
-@using Mangrove.Data
+@inject IStringLocalizer<Translate> translate
+
 @model InfoStagesOfIndividualModel
 @{
-    ViewData["Title"] = "Phân bố";
+    ViewData["Title"] = translate["label_phan_bo"];
     Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }

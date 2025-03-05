@@ -1,8 +1,9 @@
-@using Mangrove.Data
 @inject IStringLocalizer<Translate> translate
 @model List<TblIndividual>
 
 @{
+    bool isEN = Helper.Func.IsLanguage("en");
+
     if (Model.Count() > 0)
     {
         long stt = 0;
@@ -22,7 +23,7 @@
                         <div>
                             <span>
                                 @item.View &nbsp;
-                                <i class="fa-solid fa-eye" title="Viewer"></i>
+                                <i class="fa-solid fa-eye" title="@(isEN ? "View" : "Lượt xem")"></i>
                                 &nbsp;|&nbsp;
                             </span>
                             <span>@translate["User_Individuals_giai_doan"]: @item.TblStages.Count()</span>
@@ -30,10 +31,8 @@
                     </div>
 
                     <div class="bottom col-12 p-2 d-flex justify-content-between align-items-center">
-                        <span>@item.Position</span>
-                        <button class="toggleQR px-3 py-1 border-none rounded-1" title="See QR code">
-                            QR
-                        </button>
+                        <span>@(isEN ? item.PositionEn : item.PositionVi)</span>
+                        <button class="toggleQR px-3 py-1 border-none rounded-1" title="See QR code">QR</button>
                     </div>
 
                     <div class="frame_qr text-center col-12">

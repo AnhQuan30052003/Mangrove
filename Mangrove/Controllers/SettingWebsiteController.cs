@@ -25,10 +25,9 @@ namespace Mangrove.Controllers {
 		}
 
 		// Lấy dữ liệu cơ bản/mặc định cho website
-		public string GetSetting() {
-			//var setting = await context.TblIndividuals.FirstOrDefaultAsync();
-			//return setting ?? new TblIndividual();
-			return "GetSetting Success.";
+		public async Task<TblSetting> GetSetting() {
+			var setting = await context.TblSettings.FirstOrDefaultAsync();
+			return setting ?? new TblSetting();
 		}
 	}
 }
