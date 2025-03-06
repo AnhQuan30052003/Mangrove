@@ -6,14 +6,14 @@
 }
 
 <header id="header">
-    <div class="p-1 d-flex bg-white">
+    <div class="p-1 d-flex bg-white align-items-center">
         <div class="logo rounded-pill">
             <a href='@Url.Action("Page_Index", "Home")'>
                 <img class="h-100 w-100" src="~/img/logo/@Model.LogoImg" alt="" title="Logo Mangrove">
             </a>
         </div>
 
-        <div class="actions fw-bold d-flex px-3 justify-content-between" style="width: calc(100% - 70px);">
+        <div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
             <div class="left d-flex flex-column justify-content-around col-8 col-sm-10 col-lg-4">
                 <a href='@Url.Action("Page_Index", "Home")'>
                     <h5 class="color_green_hover upper">
@@ -26,8 +26,8 @@
             </div>
 
             <div
-                class="col-2 col-sm-1 d-flex justify-content-center justify-content-sm-end d-lg-none align-items-center h-100 mr-3">
-                <button class="border-none bg-transparent">
+                class="col-2 col-sm-1 d-flex justify-content-end justify-content-sm-end d-lg-none align-items-center mr-3z">
+                <button class="border-none bg-transparent h-100">
                     <a href='@Url.Action("Page_SpeciesComposition", "Home")'>
                         <i class="icon-s fa fa-search"></i>
                     </a>

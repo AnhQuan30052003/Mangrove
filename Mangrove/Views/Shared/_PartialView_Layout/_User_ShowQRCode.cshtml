@@ -1,0 +1,29 @@
+﻿@inject IStringLocalizer<Translate> translate
+
+<div id="show_qr_code" class="d-none">
+	<div class="wrapper bg-white d-flex flex-column justify-content-center align-items-center gap-5 rounded-1">
+		<div class="info d-flex flex-column gap-1 px-5 w-100">
+			<h3 class="color-tree text-center mb-3">@translate["label_thong_tin_QR_code"]</h3>
+			<p>
+				<span>@translate["label_ten"]:</span>
+				<span class="qr_name"></span>
+			</p>
+			<p>
+				<span>@translate["label_ngay_khao_sat"]:</span>
+				<span class="qr_day"></span>
+			</p>
+			<p>
+				<span>@translate["label_vi_tri_khao_sat"]:</span>
+				<span class="qr_pos"></span>
+			</p>
+		</div>
+
+		<div class="box_show_img">
+			<img class="img qr_img" src="/img/qr-img/qr-code.png" />
+		</div>
+
+		<button class="btnQR_cancel">
+			<i class="fa-solid fa-xmark"></i>
+		</button>
+	</div>
+</div>

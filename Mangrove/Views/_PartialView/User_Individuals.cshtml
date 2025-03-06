@@ -12,11 +12,11 @@
             stt += 1;
 
             <div class="px-lg-1 py-1 col-12 col-lg-6">
-                <div class="individual_item border d-lg-flex flex-lg-wrap w-100 rounded-1 overflow-hidden">
+                <div class="info_qr individual_item border d-lg-flex flex-lg-wrap w-100 rounded-1 overflow-hidden">
                     <div class="top col-12 p-2 d-flex justify-content-between align-items-center">
                         <div class="id_title">
                             <span>#@stt &nbsp;|</span>
-                            <a class="a_link" href='@Url.Action("Page_Individual", "Home", new { id = @item.Id })'
+                            <a class="a_link qr_day" href='@Url.Action("Page_Individual", "Home", new { id = @item.Id })'
                                 title="To the individual">@item.UpdateLast.ToString("dd/MM/yyyy").Replace("-", "/")</a>
                         </div>
 
@@ -26,17 +26,17 @@
                                 <i class="fa-solid fa-eye" title="@(isEN ? "View" : "Lượt xem")"></i>
                                 &nbsp;|&nbsp;
                             </span>
-                            <span>@translate["User_Individuals_giai_doan"]: @item.TblStages.Count()</span>
+                            <span>@translate["label_giai_doan"]: @item.TblStages.Count()</span>
                         </div>
                     </div>
 
                     <div class="bottom col-12 p-2 d-flex justify-content-between align-items-center">
-                        <span>@(isEN ? item.PositionEn : item.PositionVi)</span>
+                        <span class="qr_pos">@(isEN ? item.PositionEn : item.PositionVi)</span>
                         <button class="toggleQR px-3 py-1 border-none rounded-1" title="See QR code">QR</button>
                     </div>
 
                     <div class="frame_qr text-center col-12">
-                        <img class="h-100 click_show_image rounded-1" src='@Url.Content($"~/img/qr-img/" + @item.QrName)' alt="">
+                        <img class="h-100 click_show_qr rounded-1" src='@Url.Content($"~/img/qr-img/" + @item.QrName)' alt="">
                     </div>
                 </div>
             </div>
@@ -44,6 +44,6 @@
     }
     else
     {
-        <p class="text-center col-12 pb-2">@translate["User_Individuals_khong_tim_thay_ca_the_nao"]</p>
+        <p class="text-center col-12 pb-2">@translate["label_khong_tim_thay_ca_the_nao"]</p>
     }
 }

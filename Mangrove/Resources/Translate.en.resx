@@ -207,10 +207,7 @@
   <data name="label_tich_hop_thong_tin" xml:space="preserve">
     <value>Information integration page</value>
   </data>
-  <data name="User_Individuals_giai_doan" xml:space="preserve">
-    <value>Stages</value>
-  </data>
-  <data name="User_Individuals_khong_tim_thay_ca_the_nao" xml:space="preserve">
+  <data name="label_khong_tim_thay_ca_the_nao" xml:space="preserve">
     <value>No individuals found !</value>
   </data>
   <data name="label_vi_do_khao_sat" xml:space="preserve">
@@ -222,7 +219,7 @@
   <data name="label_giai_doan_chua_co_hinh_anh_chi_tiet" xml:space="preserve">
     <value>There are no detailed images at this stage !</value>
   </data>
-  <data name="Page_Individual_ca_the_nay_chua_co_giai_doan_nao" xml:space="preserve">
+  <data name="label_ca_the_nay_chua_co_giai_doan_nao" xml:space="preserve">
     <value>This individual has no stages yet !</value>
   </data>
   <data name="label_muc_dich_website" xml:space="preserve">
@@ -272,5 +269,50 @@
   </data>
   <data name="label_khong_tim_thay_ket_qua" xml:space="preserve">
     <value>No results found!</value>
+  </data>
+  <data name="label_ve_trang_chu" xml:space="preserve">
+    <value>Back to home page ?</value>
+  </data>
+  <data name="label_dang_nhap" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="label_tai_khoan" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="label_mat_khau" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="label_quen_mat_khau" xml:space="preserve">
+    <value>Forgotten Password</value>
+  </data>
+  <data name="label_doi_mat_khau" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="label_luu" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="label_nhap_mat_khau_cu" xml:space="preserve">
+    <value>Enter old password</value>
+  </data>
+  <data name="label_nhap_mat_khau_moi" xml:space="preserve">
+    <value>Enter new password</value>
+  </data>
+  <data name="label_nhap_lai_mat_khau_moi" xml:space="preserve">
+    <value>Re-enter new password</value>
+  </data>
+  <data name="label_quay_lai_dang_nhap" xml:space="preserve">
+    <value>Back to login</value>
+  </data>
+  <data name="label_tim" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="label_nhap_ma_6_so" xml:space="preserve">
+    <value>Enter 6 digit code</value>
+  </data>
+  <data name="label_thong_tin_QR_code" xml:space="preserve">
+    <value>QR code information</value>
+  </data>
+  <data name="label_ten" xml:space="preserve">
+    <value>Name</value>
   </data>
 </root>

@@ -10,7 +10,7 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
-<section class="individual_display container py-2">
+<section class="individual_display container py-2 info_qr">
     @{
         if (Model.Stages.Count() != 0)
         {
@@ -45,15 +45,15 @@
                                     </div>
 
                                     <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
-                                        <h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
+                                        <h5 class="text-center mb-2 fw-bold text-sm-start qr_name_mangrove">@Model.NameMangrove</h5>
                                         <p class="d-flex justify-content-between justify-content-lg-start">
                                             <span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
-                                            <span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
+                                            <span class="qr_day">@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
                                         </p>
 
                                         <p class="d-flex justify-content-between justify-content-lg-start">
                                             <span style="width: 120px;">@translate["label_vi_tri_khao_sat"]:</span>
-                                            <span>@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
+                                            <span class="qr_pos">@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
                                         </p>
 
                                         @if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
@@ -118,16 +118,15 @@
         else
         {
             <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
-                <h5>@translate["Page_Individual_ca_the_nay_chua_co_giai_doan_nao"]</h5>
+                <h5>@translate["label_ca_the_nay_chua_co_giai_doan_nao"]</h5>
             </div>
         }
     }
-
 
 </section>
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <button id="btnQRFixed" class="rounded-1" title="QR">
-    <i class="fa-solid fa-qrcode click_show_image" src='@Url.Content($"~/img/qr-img/" + @Model.Individual.QrName)'></i>
+    <i class="fa-solid fa-qrcode click_show_qr" src='@Url.Content($"~/img/qr-img/" + @Model.Individual.QrName)'></i>
 </button>

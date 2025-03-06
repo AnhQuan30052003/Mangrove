@@ -218,22 +218,23 @@ function listenerImageToShow() {
 	body.addEventListener("click", function (event) {
 		const clicked = event.target;
 		let scale;
+
 		if (clicked.matches(".click_show_image")) {
 			try {
 				const src = clicked.getAttribute("src");
 				const showImage = document.querySelector("#click_show_image");
-				const img = showImage.querySelector(".box_show img");
+				const img = showImage.querySelector(".box_show_img img");
 				img.src = src;
 				showImage.classList.remove("d-none");
 				document.body.style.overflow = "hidden";
 				scale = 1;
 				img.style.transform = `scale(${scale})`;
 
-				img.addEventListener("wheel", function (e) {
+				// Zoom ảnh khi cuộn chuột
+				showImage.addEventListener("wheel", function (e) {
 					if (e.deltaY < 0) {
 						scale += 0.1;
-					}
-					else {
+					} else {
 						scale -= 0.1;
 						if (scale < 0.5) scale = 0.5;
 					}
@@ -359,32 +360,36 @@ function listenerPageType() {
 	}
 	catch { }
 }
-
 listenerPageType();
 
+// Theo dõi click hiện thông tin QR
+function listenerClickShowQR() {
+	try {
+		const qrImgs = document.querySelectorAll(".click_show_qr");
+		qrImgs.forEach((item) => {
+			item.addEventListener("click", function () {
+				const infoQR = document.querySelector(".info_qr");
+				const qrDay = infoQR.querySelector(".qr_day");
+				const qrPos = infoQR.querySelector(".qr_pos");
+				const qrName = document.querySelector(".qr_name_mangrove");
 
-
+				const showQRCode = document.querySelector("#show_qr_code");
+				showQRCode.querySelector(".qr_name").innerHTML = qrName.textContent;
+				showQRCode.querySelector(".qr_day").innerHTML = qrDay.textContent;
+				showQRCode.querySelector(".qr_pos").innerHTML = qrPos.textContent;
+				showQRCode.querySelector(".qr_img").src = item.getAttribute("src");
+				showQRCode.classList.remove("d-none");
+			});
+		});
+	}
+	catch { }
+}
+listenerClickShowQR();
 
 
 // Theo dõi huỷ khi click ngoài đối tượng
 function listenerClickToClose() {
 	document.addEventListener("click", function (event) {
-		// Nếu không phải click vào SearchIcon & SearchForm đang mở mà click ra ngoài
-		try {
-			// const searchIcon = document.querySelector("#searchIcon");
-			// const sectionSearch = document.querySelector("#search_form_user");
-			// const background = document.querySelector("#background");
-			// const iconX = searchIcon.querySelector(".icon-x");
-			// const iconS = searchIcon.querySelector(".icon-s");
-			// if (!searchIcon.contains(event.target) && !sectionSearch.contains(event.target) && iconS.classList.contains("d-none")) {
-			// 	sectionSearch.classList.add("d-none");
-			// 	background.classList.add("d-none");
-			// 	iconX.classList.add("d-none");
-			// 	iconS.classList.remove("d-none");
-			// }
-		}
-		catch { }
-
 		// Nếu không click vào button language
 		try {
 			const btnLanguage = document.querySelector(".btn_language");
@@ -400,8 +405,10 @@ function listenerClickToClose() {
 		// Huỷ khi mở phóng to ảnh
 		try {
 			const showImg = document.querySelector("#click_show_image");
-			const img = showImg.querySelector(".box_show .img");
-			if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && !img.contains(event.target)) {
+			const img = showImg.querySelector(".box_show_img .img");
+			const btnShowImgCancel = showImg.querySelector(".btnShowImgCancel");
+			if (!showImg.classList.contains("d-none") && showImg.contains(event.target) && (!img.contains(event.target) || btnShowImgCancel.contains(event.target))) {
+				img.style.cursor = "default";
 				showImg.classList.add("d-none");
 				document.body.style.overflow = "auto";
 			}
@@ -422,11 +429,21 @@ function listenerClickToClose() {
 			}
 		}
 		catch { }
+
+		// Huỷ mở QR code
+		try {
+			const showQRCode = document.querySelector("#show_qr_code");
+			const wrapper = showQRCode.querySelector(".wrapper");
+			const btnQRCancel = showQRCode.querySelector(".btnQR_cancel");
+
+			if (!showQRCode.classList.contains("d-none") && showQRCode.contains(event.target) && (!wrapper.contains(event.target) || btnQRCancel.contains(event.target))) {
+				showQRCode.classList.add("d-none");
+			}
+		}
+		catch { }
 	});
 }
 listenerClickToClose();
-
-
 
 //---
 console.log("Run file both_site.js");

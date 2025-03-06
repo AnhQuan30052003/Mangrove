@@ -1,29 +1,33 @@
+@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
 @{
+    var setting = await settingWebsite.GetSetting();
+    var isEN = Helper.Func.IsLanguage("en");
     string _pvl = Helper.Path.partialViewLayout;
 }
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
 
     <!-- Social Share-->
-    <meta property="og:title" content="Mangrove - NTU: Quản trị tìm kiếm thông tin cây ngập mặn." />
+    <meta property="og:title" content="Mangrove - NTU: Search for mangrove information." />
     <meta property="og:description"
-        content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
-    <meta property="og:image" content="https://mangrove.runasp.net/img/logo/mangrove.png" />
+          content="Website supports searching for information about mangrove trees in the North - Khanh Hoa." />
+    <meta property="og:image" content=$"https://mangrove.runasp.net/img/logo/{@setting.LogoImg}" />
     <meta property="og:url" content="https://mangrove.runasp.net/" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="vi_VN" />
-    <meta property="og:site_name" content="Mangrove - NTU: Quản trị tìm kiếm thông tin cây ngập mặn." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Mangrove - NTU: Search for mangrove information." />
 
     <!-- Title page + Favicon page -->
-    <title>@ViewData["Title"] | Quản trị cây ngập mặn | Đại học Nha Trang</title>
-    <link rel="icon" href="~/img/logo/logo.png">
+    <title>@ViewData["Title"] | @translate["title_page"]</title>
+    <link rel="icon" href="~/img/logo/@setting.LogoImg">
 
     <!-- Import CSS + Icon <i> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -48,11 +52,47 @@
 
 <body>
     <!-- Preload -->
-    @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml")
+    @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
 
-    <!-- Body-->
-    @RenderBody()
+    <section class="module-login h-100 w-100" style="background-image: url('/img/logo/@setting.FooterBgImg');">
+        <div class="container h-100 d-flex flex-column align-items-center justify-content-center">
+            <div class="wrapper d-flex flex-column position-relative">
+                @await Html.PartialAsync($"{Helper.Path.partialViewLayout}/_Both_Notifier.cshtml")
 
+                <div class="display d-flex h-100">
+                    <div class="img col-lg-6 d-none d-lg-block">
+                        <img class="h-100 w-100 object-fit-cover" src="~/img/logo/img_bg.jpg" alt="">
+                    </div>
+
+                    <div class="form col-12 h-100 col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative"
+                         style="background-color: #deefdd;">
+                        <div class="title_info text-center position-absolute" style="top: 10px;">
+                            <a href='@Url.Action("Page_Index", "Home")'>
+                                <h5 class="color-tree upper">@(isEN ? setting.SchoolNameEn : setting.SchoolNameVi)</h5>
+                            </a>
+                            <a href='@Url.Action("Page_Index", "Home")'>
+                                @(isEN ? setting.FacultyEn : setting.FacultyVi)
+                            </a>
+                        </div>
+
+                        <div class="logo" style="height: 70px; width: 70px;">
+                            <img class="h-100 w-100" src="~/img/logo/logo.png" alt="">
+                        </div>
+
+                        <!-- Body-->
+                        @RenderBody()
+
+                        <div class="link_home">
+                            <a href='@Url.Action("Page_Index", "Home")' class="underline_hover color_green_hover">
+                                @translate["label_ve_trang_chu"]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
     <!-- Footer-->
     @* @await Html.PartialAsync(_pvl + "/_FooterUser.cshtml") *@
 

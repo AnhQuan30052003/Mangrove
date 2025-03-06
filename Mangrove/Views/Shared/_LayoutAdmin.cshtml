@@ -1,25 +1,28 @@
+@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
 @{
+    var setting = await settingWebsite.GetSetting();
     string _pvl = Helper.Path.partialViewLayout;
 }
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
 
     <!-- Social Share-->
-    <meta property="og:title" content="Mangrove - NTU: Quản trị tìm kiếm thông tin cây ngập mặn." />
+    <meta property="og:title" content="Mangrove - NTU: Search for mangrove information." />
     <meta property="og:description"
-        content="Website hỗ trợ tìm kiếm các thông tin về cây ngập mặn ở phía Bắc - Khánh Hoà." />
-    <meta property="og:image" content="https://mangrove.runasp.net/img/logo/logo.png" />
+          content="Website supports searching for information about mangrove trees in the North - Khanh Hoa." />
+    <meta property="og:image" content=$"https://mangrove.runasp.net/img/logo/{@setting.LogoImg}" />
     <meta property="og:url" content="https://mangrove.runasp.net/" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="vi_VN" />
-    <meta property="og:site_name" content="Mangrove - NTU: Quản trị tìm kiếm thông tin cây ngập mặn." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Mangrove - NTU: Search for mangrove information." />
 
     <!-- Title page + Favicon page -->
     <title>@ViewData["Title"] | Quản trị cây ngập mặn | Đại học Nha Trang</title>

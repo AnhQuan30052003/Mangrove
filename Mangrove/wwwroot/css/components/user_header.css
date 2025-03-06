@@ -127,6 +127,9 @@ select option {
 }
 
 @media (width > 992px) {
+	:root {
+		--size_logo: 70px;
+	}
 	.list_menu .list_item>li {
 		position: relative;
 	}
