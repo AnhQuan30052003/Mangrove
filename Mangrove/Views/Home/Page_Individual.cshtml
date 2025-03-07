@@ -12,7 +12,7 @@
 
 <section class="individual_display container py-2 info_qr">
     @{
-        if (Model.Stages.Count() != 0)
+        if (Model.Stages.Count() > 0)
         {
             <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
                 @{
@@ -128,5 +128,5 @@
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <button id="btnQRFixed" class="rounded-1" title="QR">
-    <i class="fa-solid fa-qrcode click_show_qr" src='@Url.Content($"~/img/qr-img/" + @Model.Individual.QrName)'></i>
+    <i class="fa-solid fa-qrcode click_show_qr" src="/img/qr-img/@Model.Individual.QrName"></i>
 </button>

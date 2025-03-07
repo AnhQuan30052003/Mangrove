@@ -442,6 +442,26 @@ function listenerClickToClose() {
 		}
 		catch { }
 	});
+
+	document.addEventListener("keydown", function (e) {
+		try {
+			if (e.key == "Escape") {
+				const showImg = document.querySelector("#click_show_image");
+				const img = showImg.querySelector(".box_show_img .img");
+				if (!showImg.classList.contains("d-none")) {
+					img.style.cursor = "default";
+					showImg.classList.add("d-none");
+					document.body.style.overflow = "auto";
+				}
+
+				const showQRCode = document.querySelector("#show_qr_code");
+				if (!showQRCode.classList.contains("d-none")) {
+					showQRCode.classList.add("d-none");
+				}
+			}
+		}
+		catch { }
+	});
 }
 listenerClickToClose();
 
