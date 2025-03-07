@@ -234,6 +234,7 @@ function listenerImageToShow() {
 				showImage.addEventListener("wheel", function (e) {
 					if (e.deltaY < 0) {
 						scale += 0.1;
+						if (scale >= 3) scale = 3;
 					} else {
 						scale -= 0.1;
 						if (scale < 0.5) scale = 0.5;

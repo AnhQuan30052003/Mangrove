@@ -685,7 +685,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 15:24:15 GMT"
+          "Value": "Fri, 07 Mar 2025 02:52:09 GMT"
         }
       ],
       "EndpointProperties": [
@@ -730,7 +730,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 15:24:15 GMT"
+          "Value": "Fri, 07 Mar 2025 02:52:09 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1177,7 +1177,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 07:03:50 GMT"
+          "Value": "Fri, 07 Mar 2025 03:02:34 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1214,7 +1214,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 07:03:50 GMT"
+          "Value": "Fri, 07 Mar 2025 03:02:34 GMT"
         }
       ],
       "EndpointProperties": [
@@ -7055,51 +7055,6 @@
       ]
     },
     {
-      "Route": "js/both_site.gadaw9bwr4.js",
-      "AssetFile": "js/both_site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14042"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"yPWjCaBFu0xu6Yt+SMFWtm6n/IiAdDVfJcc2ORqpo+w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 14:07:20 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "gadaw9bwr4"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-yPWjCaBFu0xu6Yt+SMFWtm6n/IiAdDVfJcc2ORqpo+w="
-        },
-        {
-          "Name": "label",
-          "Value": "js/both_site.js"
-        }
-      ]
-    },
-    {
       "Route": "js/both_site.js",
       "AssetFile": "js/both_site.js",
       "Selectors": [],
@@ -7114,7 +7069,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14042"
+          "Value": "14640"
         },
         {
           "Name": "Content-Type",
@@ -7122,17 +7077,62 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"yPWjCaBFu0xu6Yt+SMFWtm6n/IiAdDVfJcc2ORqpo+w=\""
+          "Value": "\"Fqu9wWpXxFnSii1TIqdpfAiOo94jrBfbE7yUviNwkic=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 14:07:20 GMT"
+          "Value": "Fri, 07 Mar 2025 02:57:38 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-yPWjCaBFu0xu6Yt+SMFWtm6n/IiAdDVfJcc2ORqpo+w="
+          "Value": "sha256-Fqu9wWpXxFnSii1TIqdpfAiOo94jrBfbE7yUviNwkic="
+        }
+      ]
+    },
+    {
+      "Route": "js/both_site.yqi4luz2yq.js",
+      "AssetFile": "js/both_site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14640"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Fqu9wWpXxFnSii1TIqdpfAiOo94jrBfbE7yUviNwkic=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 07 Mar 2025 02:57:38 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yqi4luz2yq"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Fqu9wWpXxFnSii1TIqdpfAiOo94jrBfbE7yUviNwkic="
+        },
+        {
+          "Name": "label",
+          "Value": "js/both_site.js"
         }
       ]
     },

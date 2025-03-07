@@ -26,7 +26,7 @@
 					<div class="slides">
 						@foreach (var photo in photos)
 						{
-							string img = @Url.Content("~/img/tree-img/" + photo.ImageName);
+							string img = $"/img/tree-img/{photo.ImageName}";
 							<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
 								<img class="rounded-1 click_show_image" src="@img" />
 							</div>
