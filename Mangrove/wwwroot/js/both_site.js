@@ -49,48 +49,23 @@ function listenerScrollPage() {
 }
 listenerScrollPage();
 
-// Tiến hành thay đổi ngôn ngữ
-//function changeLanguage(lang) {
-//	const select = document.querySelector("#google_translate_element select");
-//	if (select) {
-//		select.value = lang;
-//		select.dispatchEvent(new Event("change"));
-//		console.log("Language changed: " + lang);
-//		localStorage.setItem("language", lang);
+// Theo dõ click dropdown_menu tự động
+function listnerToggleDropdownMenu() {
+	const dropdownToggles = document.querySelectorAll(".dropdown_toggle");
+	dropdownToggles.forEach((item) => {
+		item.addEventListener("click", function (e) {
+			const dropdownList = item.closest(".dropdown_menu").querySelector(".dropdown_list");
+			dropdownList.classList.toggle("d-none");
 
-//		const url = `/Home/SaveChangeLanguage?lang=${lang}`;
-//		requestAjax(url);
-//	}
-//	else {
-//		console.log("Không tồn tại select");
-//	}
-//}
-
-// Theo dõi thay đổi ngôn ngữ
-function listenerChangeLanguage() {
-	// Khi click vào button language
-	const btnLanguage = document.querySelector(".btn_language");
-	if (btnLanguage) {
-		btnLanguage.addEventListener("click", function (e) {
-			const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-			const iconDrop = btnLanguage.querySelector("span i");
-			if (!dropdown || !iconDrop) return;
-
-			dropdown.classList.toggle("d-none");
-			iconDrop.classList.toggle("_180deg");
+			// Nếu nút đo là chuyển đổi ngôn ngữ
+			if (item.classList.contains("btn_language")) {
+				const iconDrop = item.querySelector("span i");
+				iconDrop.classList.toggle("_180deg");
+			}
 		});
-	}
-
-	// Khi click từng option thì thay đổi ngôn ngữ
-	//const lis = document.querySelectorAll(".language_dropdown li");
-	//lis.forEach((item) => {
-	//	item.addEventListener("click", function (e) {
-	//		const lang = this.getAttribute("data-value");
-	//		changeLanguage(lang);
-	//	});
-	//});
+	});
 }
-listenerChangeLanguage();
+listnerToggleDropdownMenu();
 
 // Toggle info title
 function toggleInfoTitle() {
@@ -390,16 +365,22 @@ listenerClickShowQR();
 
 // Theo dõi huỷ khi click ngoài đối tượng
 function listenerClickToClose() {
+	// Event Click
 	document.addEventListener("click", function (event) {
 		// Nếu không click vào button language
 		try {
-			const btnLanguage = document.querySelector(".btn_language");
-			const iconDrop = btnLanguage.querySelector("span i");
-			const dropdown = btnLanguage.closest(".language").querySelector(".language_dropdown");
-			if (!btnLanguage.contains(event.target) && !dropdown.classList.contains("d-none")) {
-				dropdown.classList.add("d-none")
-				iconDrop.classList.remove("_180deg");
-			}
+			const dropdownToggles = document.querySelectorAll(".dropdown_toggle");
+			dropdownToggles.forEach((item) => {
+				const dropdownList = item.closest(".dropdown_menu").querySelector(".dropdown_list");
+				if (!item.contains(event.target) && !dropdownList.classList.contains("d-none")) {
+					dropdownList.classList.add("d-none");
+
+					if (item.classList.contains("btn_language")) {
+						const iconDrop = item.querySelector("span i");
+						iconDrop.classList.remove("_180deg");
+					}
+				}
+			});
 		}
 		catch { }
 
@@ -444,6 +425,7 @@ function listenerClickToClose() {
 		catch { }
 	});
 
+	// Event Keydown
 	document.addEventListener("keydown", function (e) {
 		try {
 			if (e.key == "Escape") {

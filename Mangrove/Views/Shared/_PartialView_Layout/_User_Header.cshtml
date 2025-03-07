@@ -67,8 +67,8 @@
                             </a>
                         </li>
 
-                        <li class="position-relative language">
-                            <div class="btn_language d-lg-block d-flex align-items-center cursor-pointer">
+                        <li class="dropdown_menu position-relative language">
+                            <div class="dropdown_toggle btn_language d-lg-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-language"></i>
                                 <span class="d-lg-inline d-flex justify-content-between flex-grow-1 align-items-center">
                                     <span>@translate["label_ngon_ngu"]</span>
@@ -76,7 +76,7 @@
                                         style="margin-left: 3px;"></i>
                                 </span>
                             </div>
-                            <ul class="language_dropdown rounded-1 overflow-hidden d-none">
+                            <ul class="dropdown_list language_dropdown rounded-1 overflow-hidden d-none">
                                 <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">@translate["label_tieng_anh"]</a>
                                 <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_tieng_viet"]</a>
                             </ul>
