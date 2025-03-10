@@ -15,24 +15,27 @@
     <link rel="stylesheet" href="~/css/admin_site.css" />
 
     <!-- Js template + custom-->
-    <script src="~/js/admin_site.js" defer></script>
+    <script src="~/js/both_site.js" defer></script>
+    @* <script src="~/js/admin_site.js" defer></script> *@
 </head>
 
 <body>
     <!-- Preload -->
     @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
 
+    <!-- Dynamic Nofifier -->
+    @await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
+
     <!-- Header -->
     @await Html.PartialAsync(_pvl + "/_Admin_Header.cshtml", setting)
-    @* @await Html.PartialAsync(_pvl + "/_Both_Notifier.cshtml") *@
 
     <!-- Body-->
-    <main style="min-height: 70vh;">
+    <main style="min-height: 170vh;">
         @RenderBody()
     </main>
 
     <!-- Footer-->
-    @* @await Html.PartialAsync(_pvl + "/_Admin_Footer.cshtml") *@
+    @await Html.PartialAsync(_pvl + "/_Admin_Footer.cshtml", setting)
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -22,7 +22,8 @@ namespace Mangrove.Controllers {
         public IActionResult Page_Login(string account, string password) {
             ViewBag.account = account;
             TempData["Status"] = Helper.StatusNoifier.success;
-            TempData["Content"] = "Đăng nhập thành công";
+            TempData["Content"] = "Chúng tôi đã gửi một mã 6 số tới email anhquan300503@gmail.com";
+            TempData["Timer"] = 3000;
 
             return View();
         }

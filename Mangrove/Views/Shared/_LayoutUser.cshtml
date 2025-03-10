@@ -9,7 +9,7 @@
 <html lang="en">
 
 <head>
-	@await Html.PartialAsync(_pvl + "/_ImportHeader.cshtml", setting)
+	@await Html.PartialAsync($"{_pvl}/_ImportHeader.cshtml", setting)
 
 	<!-- Add CSS custom-->
 	<link rel="stylesheet" href="~/css/user_site.css" />
@@ -20,16 +20,16 @@
 
 <body>
 	<!-- Preload -->
-	@await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
+	@await Html.PartialAsync($"{_pvl}/_Both_Preloader.cshtml", setting)
 
 	<!-- Show/zoom Image -->
-	@await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
+	@await Html.PartialAsync($"{_pvl}/_Both_ClickShowImage.cshtml")
 	
 	<!-- Show QR code -->
-	@await Html.PartialAsync(_pvl + "/_User_ShowQRCode.cshtml")
+	@await Html.PartialAsync($"{_pvl}/_User_ShowQRCode.cshtml")
 
 	<!-- Header -->
-	@await Html.PartialAsync(_pvl + "/_User_Header.cshtml", setting)
+	@await Html.PartialAsync($"{_pvl}/_User_Header.cshtml", setting)
 
 	<!-- Body-->
 	<main style="min-height: 70vh;">
@@ -37,7 +37,7 @@
 	</main>
 
 	<!-- Footer-->
-	@await Html.PartialAsync(_pvl + "/_User_Footer.cshtml")
+	@await Html.PartialAsync($"{_pvl}/_User_Footer.cshtml")
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -10,7 +10,7 @@
 <html lang="en">
 
 <head>
-    @await Html.PartialAsync(_pvl + "/_ImportHeader.cshtml", setting)
+    @await Html.PartialAsync($"{_pvl}/_ImportHeader.cshtml", setting)
 
     <!-- Add CSS custom-->
     <link rel="stylesheet" href="~/css/auth_site.css" />
@@ -22,12 +22,15 @@
 
 <body>
     <!-- Preload -->
-    @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
+    @await Html.PartialAsync($"{_pvl}/_Both_Preloader.cshtml", setting)
+    
+    <!-- Dynamic Nofifier -->
+    @await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
 
     <section class="module-login h-100 w-100" style="background-image: url('/img/logo/@setting.FooterBgImg');">
         <div class="container h-100 d-flex flex-column align-items-center justify-content-center">
             <div class="wrapper d-flex flex-column position-relative">
-                @await Html.PartialAsync($"{Helper.Path.partialViewLayout}/_Both_Notifier.cshtml")
+                @await Html.PartialAsync($"{_pvl}/_Both_Notifier.cshtml")
 
                 <div class="display d-flex h-100">
                     <div class="img col-lg-6 d-none d-lg-block">
@@ -63,9 +66,6 @@
         </div>
     </section>
    
-    <!-- Footer-->
-    @* @await Html.PartialAsync(_pvl + "/_FooterUser.cshtml") *@
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

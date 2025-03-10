@@ -1,0 +1,7 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = "Admin";
+	Layout = Helper.Path.layoutAdmin;
+}
+

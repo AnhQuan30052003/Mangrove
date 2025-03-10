@@ -23,6 +23,7 @@ public class Helper {
 	public static class StatusNoifier {
 		public static string success = "success";
 		public static string fail = "fail";
+		public static int timer = 3000;
 	}
 
 	// Variables

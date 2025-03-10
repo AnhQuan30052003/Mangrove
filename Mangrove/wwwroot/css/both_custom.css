@@ -98,6 +98,20 @@ option {
     text-transform: uppercase;
 }
 
+.bg-tree {
+	background-color: #70c745;
+}
+
+@keyframes count_time {
+	0% {
+		width: 100%;
+	}
+
+	100% {
+        width: 0%;
+	}
+}
+
 @media (width <=992px) {
     .hidden_mobile {
         display: none !important;

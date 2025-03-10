@@ -1,0 +1,55 @@
+﻿#scrollUp {
+	position: fixed;
+	z-index: 2;
+	right: 20px;
+	bottom: 70px;
+
+	width: 0;
+	height: 40px;
+	opacity: 0;
+
+	color: #ffffff;
+	background-color: var(--greenPage);
+	border-radius: 0;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+	font-size: 24px;
+	line-height: 40px;
+	text-align: center;
+
+	-webkit-transition-duration: 500ms;
+	transition-duration: 500ms;
+}
+
+#scrollUp.opacity {
+	opacity: 1;
+	width: 40px;
+}
+
+#scrollUp:hover {
+	background-color: #303030;
+}
+
+#admin_footer {
+	position: relative;
+	z-index: 1;
+}
+
+.animation_pointer {
+	animation: _pointer 1s ease-in-out alternate infinite;
+}
+
+@keyframes _pointer {
+	50% {
+		transform: translateX(-5px);
+	}
+
+	0%, 100% {
+		transform: translateX(0);
+	}
+}
+
+@media (width >=576px) {
+	#scrollUp {
+		bottom: 20px;
+	}
+}
