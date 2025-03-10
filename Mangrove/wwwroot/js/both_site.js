@@ -20,12 +20,12 @@ function listnerClickHamburgerMenu() {
 		iconX.classList.toggle("d-none");
 		listMenu.classList.toggle("right-0");
 
-		if (listMenu.classList.contains("right-0")) {
-			document.body.style.overflow = "hidden";
-		}
-		else {
-			document.body.style.overflow = "auto";
-		}
+		//if (listMenu.classList.contains("right-0")) {
+		//	document.body.style.overflow = "hidden";
+		//}
+		//else {
+		//	document.body.style.overflow = "auto";
+		//}
 	}
 	catch { }
 }

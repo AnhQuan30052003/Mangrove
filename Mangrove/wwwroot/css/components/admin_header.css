@@ -1,5 +1,6 @@
 .right-0 {
     right: 0 !important;
+    position: absolute !important
 }
 
 #header {
@@ -7,31 +8,10 @@
     z-index: 10;
 }
 
-#header .logo {
-    height: var(--size_logo);
-    width: var(--size_logo);
-}
-
-.goog-te-banner-frame,
-iframe.skiptranslate {
-    display: none !important;
-}
-
-#google_translate_element {
-    overflow: hidden;
-    border: none !important;
-    width: 100px !important;
-}
-
-#google_translate_element select {
-    display: block !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
-
-#goog-gt-tt {
-    display: none !important;
-}
+    #header .logo {
+        height: var(--size_logo);
+        width: var(--size_logo);
+    }
 
 select,
 select option {
@@ -43,10 +23,10 @@ select option {
     position: relative;
 }
 
-.dropdown-toggle::after {
-    position: absolute;
-    top: 50%;
-}
+    .dropdown-toggle::after {
+        position: absolute;
+        top: 50%;
+    }
 
 .btn_language {
     border: none;
@@ -58,9 +38,9 @@ select option {
     transition-duration: 500ms;
 }
 
-.btn_language:hover {
-    color: var(--greenPage);
-}
+    .btn_language:hover {
+        color: var(--greenPage);
+    }
 
 #header .language_dropdown {
     position: absolute;
@@ -73,40 +53,22 @@ select option {
     z-index: 10;
 }
 
-#header .language_dropdown li:hover {
-    background-color: var(--greenPage);
-    color: white;
-}
+    #header .language_dropdown .downdown_item:hover {
+        background-color: var(--greenPage);
+        color: white;
+    }
 
 .green_effect {
     outline: none;
 }
 
-.green_effect:hover {
-    outline: solid 1px var(--greenPage);
-}
-
-.selected-custom {
-    width: 49% !important;
-    margin: 5px 0;
-}
-
-#background {
-    position: absolute;
-    content: "";
-    inset: 0;
-    background-color: black;
-    opacity: 0.6;
-    z-index: 9;
-}
+    .green_effect:hover {
+        outline: solid 1px var(--greenPage);
+    }
 
 @media (width <=992px) {
     .actions .left h5 {
         font-size: 20px;
-    }
-
-    .hidden_mobile {
-        display: none;
     }
 
     .actions .right .list_menu {
@@ -117,23 +79,25 @@ select option {
         max-width: 300px !important;
         top: 80px;
         right: -100%;
-        height: calc(100vh - 80px) !important;
         padding: 10px;
+        /*		height: 100vh !important;*/
+        height: max-content !important;
     }
 
-    .actions .right .list_menu li {
-        padding: 7.5px 15px;
-        border: solid 1px #ccc;
-    }
+        .actions .right .list_menu li,
+        .language_dropdown .downdown_item {
+            padding: 7.5px 15px;
+            border: solid 1px #ccc;
+        }
 
-    .actions .right .list_menu li a {
-        width: 100%;
-        display: block;
-    }
+            .actions .right .list_menu li a {
+                width: 100%;
+                display: block;
+            }
 
-    .actions .right .list_menu li i {
-        width: 50px;
-    }
+            .actions .right .list_menu li i {
+                width: 50px;
+            }
 
     #header .language_dropdown {
         position: unset;
@@ -144,29 +108,48 @@ select option {
         background-color: transparent;
     }
 
-    #header .language_dropdown li {
-        background-color: white;
+        #header .language_dropdown .downdown_item {
+            background-color: white;
+        }
+}
+
+@media (width >= 576px) {
+    .actions .right .list_menu {
+        top: 60px;
     }
 }
 
 @media (width > 992px) {
-    .list_menu>li {
+    :root {
+        --size_logo: 70px;
+    }
+
+    .list_menu .list_item > li {
         position: relative;
     }
 
-    .list_menu>li::after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background-color: var(--greenPage);
-        width: 0;
-        transition: all 0.5s;
+    .active_underline {
+        color: var(--greenPage);
     }
 
-    .list_menu>li:hover::after {
+        .active_underline::after,
+        .list_menu .list_item > li::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--greenPage);
+            width: 0;
+            transition: all 0.5s;
+        }
+
+        .active_underline::after {
+            width: 100% !important;
+        }
+
+    .list_menu .list_item > li:hover::after {
         width: 100%;
     }
 }

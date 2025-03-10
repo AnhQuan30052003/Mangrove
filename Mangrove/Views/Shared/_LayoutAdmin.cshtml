@@ -9,52 +9,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
+    @await Html.PartialAsync(_pvl + "/_ImportHeader.cshtml", setting)
 
-    <!-- Social Share-->
-    <meta property="og:title" content="Mangrove - NTU: Search for mangrove information." />
-    <meta property="og:description"
-          content="Website supports searching for information about mangrove trees in the North - Khanh Hoa." />
-    <meta property="og:image" content=$"https://mangrove.runasp.net/img/logo/{@setting.LogoImg}" />
-    <meta property="og:url" content="https://mangrove.runasp.net/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="Mangrove - NTU: Search for mangrove information." />
-
-    <!-- Title page + Favicon page -->
-    <title>@ViewData["Title"] | Quản trị cây ngập mặn | Đại học Nha Trang</title>
-    <link rel="icon" href="~/img/logo/logo.png">
-
-    <!-- Import CSS + Icon <i> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/admin_site.css" asp-append-version="true" />
-
-    <!-- Import library Js -->
-    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Add CSS custom-->
+    <link rel="stylesheet" href="~/css/admin_site.css" />
 
     <!-- Js template + custom-->
     <script src="~/js/admin_site.js" defer></script>
-
-
-
-
-    <!------------------------------------>
-    <!-- jQuery gốc của ASP -->
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
 </head>
 
 <body>
     <!-- Preload -->
-    @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml")
-    @await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
+    @await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
 
     <!-- Header -->
-    @await Html.PartialAsync(_pvl + "/_Admin_Header.cshtml")
+    @await Html.PartialAsync(_pvl + "/_Admin_Header.cshtml", setting)
     @* @await Html.PartialAsync(_pvl + "/_Both_Notifier.cshtml") *@
 
     <!-- Body-->

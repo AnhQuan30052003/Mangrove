@@ -30,19 +30,19 @@
 			</div>
 
 			<div class="contact_information d-flex flex-column gap-2">
-				<p>
-					<span>@translate["User_Footer_dia_chi"]:</span>
-					<span class="color_green_hover">
+				<p class="d-flex gap-1">
+					<span class="flex-shrink-0">@translate["User_Footer_dia_chi"]:</span>
+					<span class="color_green_hover flex-grow-1 text-white">
 						@(isEN ? setting.AddressEn : setting.AddressVi)
 					</span>
 				</p>
 				<p>
 					<span>@translate["User_Footer_dien_thoai"]:</span>
-					<span class="color_green_hover">@setting.Phone</span>
+					<span class="color_green_hover text-white">@setting.Phone</span>
 				</p>
 				<p>
 					<span>Email:</span>
-					<span class="color_green_hover">@setting.Email</span>
+					<span class="color_green_hover text-white">@setting.Email</span>
 				</p>
 			</div>
 		</div>
@@ -97,11 +97,17 @@
 </footer>
 
 <!-- Button: Scroll up-->
-<a id="bottom_search" href='@Url.Action("Page_SpeciesComposition", "Home")' class="rounded-1" title="@translate["footer_icon_search"]">
+<a	id="bottom_search"
+	href='@Url.Action("Page_SpeciesComposition", "Home")'
+	class="rounded-1"
+	title="@translate["footer_icon_search"]">
 	<i class="icon-s fa fa-search"></i>
 </a>
 
 <!-- Button: Scroll up-->
-<a id="scrollUp" href="#header" class="rounded-1" title="@translate["footer_icon_top"]">
+<a	id="scrollUp"
+	href="#header"
+	class="rounded-1"
+	title="@translate["footer_icon_top"]">
 	<i class="fa fa-angle-up"></i>
 </a>

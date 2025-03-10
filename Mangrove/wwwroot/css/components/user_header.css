@@ -1,5 +1,6 @@
 ﻿.right-0 {
 	right: 0 !important;
+	position: absolute !important
 }
 
 #header {
@@ -65,20 +66,6 @@ select option {
 	outline: solid 1px var(--greenPage);
 }
 
-.selected-custom {
-	width: 49% !important;
-	margin: 5px 0;
-}
-
-#background {
-	position: absolute;
-	content: "";
-	inset: 0;
-	background-color: black;
-	opacity: 0.6;
-	z-index: 9;
-}
-
 @media (width <=992px) {
 	.actions .left h5 {
 		font-size: 20px;
@@ -92,16 +79,17 @@ select option {
 		max-width: 300px !important;
 		top: 80px;
 		right: -100%;
-
-		height: calc(100vh - 80px) !important;
 		padding: 10px;
+
+/*		height: 100vh !important;*/
+		height: max-content !important;
 	}
 
-		.actions .right .list_menu li,
-		.language_dropdown .downdown_item {
-			padding: 7.5px 15px;
-			border: solid 1px #ccc;
-		}
+	.actions .right .list_menu li,
+	.language_dropdown .downdown_item {
+		padding: 7.5px 15px;
+		border: solid 1px #ccc;
+	}
 
 	.actions .right .list_menu li a {
 		width: 100%;
@@ -124,6 +112,12 @@ select option {
 		#header .language_dropdown .downdown_item {
 			background-color: white;
 		}
+}
+
+@media (width >= 576px) {
+	.actions .right .list_menu {
+		top: 60px;
+	}
 }
 
 @media (width > 992px) {

@@ -9,49 +9,23 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=5.0, minimum-scale=1.0">
+	@await Html.PartialAsync(_pvl + "/_ImportHeader.cshtml", setting)
 
-	<!-- Social Share-->
-	<meta property="og:title" content="Mangrove - NTU: Search for mangrove information." />
-	<meta property="og:description"
-		  content="Website supports searching for information about mangrove trees in the North - Khanh Hoa." />
-	<meta property="og:image" content=$"https://mangrove.runasp.net/img/logo/{@setting.LogoImg}" />
-	<meta property="og:url" content="https://mangrove.runasp.net/" />
-	<meta property="og:type" content="website" />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:site_name" content="Mangrove - NTU: Search for mangrove information." />
+	<!-- Add CSS custom-->
+	<link rel="stylesheet" href="~/css/user_site.css" />
 
-	<!-- Title page + Favicon page -->
-	<title>@ViewData["Title"] | @translate["title_page"]</title>
-	<link rel="icon" href="~/img/logo/@setting.LogoImg">
-
-	<!-- Import CSS + Icon <i> -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="~/css/user_site.css" asp-append-version="true" />
-
-	<!-- Import library Js -->
-	<script src="~/js/jquery/jquery-2.2.4.min.js"></script>
-
-	<!-- Js template + custom-->
+	<!-- Js custom-->
 	<script src="~/js/both_site.js" defer></script>
-
-
-
-
-	<!------------------------------------>
-	<!-- jQuery gốc của ASP -->
-	@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-	@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
 </head>
 
 <body>
 	<!-- Preload -->
 	@await Html.PartialAsync(_pvl + "/_Both_Preloader.cshtml", setting)
+
+	<!-- Show/zoom Image -->
 	@await Html.PartialAsync(_pvl + "/_Both_ClickShowImage.cshtml")
+	
+	<!-- Show QR code -->
 	@await Html.PartialAsync(_pvl + "/_User_ShowQRCode.cshtml")
 
 	<!-- Header -->
