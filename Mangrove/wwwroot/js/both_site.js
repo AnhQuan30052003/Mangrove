@@ -15,17 +15,19 @@ function listnerClickHamburgerMenu() {
 		const iconS = btnMenu.querySelector(".icon-s");
 		const iconX = btnMenu.querySelector(".icon-x");
 		const listMenu = document.querySelector(".list_menu");
+		const bg = document.querySelector("#background");
 
 		iconS.classList.toggle("d-none");
 		iconX.classList.toggle("d-none");
 		listMenu.classList.toggle("right-0");
+		bg.classList.toggle("w-100");
 
-		//if (listMenu.classList.contains("right-0")) {
-		//	document.body.style.overflow = "hidden";
-		//}
-		//else {
-		//	document.body.style.overflow = "auto";
-		//}
+		if (listMenu.classList.contains("right-0")) {
+			document.body.style.overflow = "hidden";
+		}
+		else {
+			document.body.style.overflow = "auto";
+		}
 	}
 	catch { }
 }
@@ -55,15 +57,14 @@ listenerScrollPage();
 function listnerToggleDropdownMenu() {
 	const dropdownToggles = document.querySelectorAll(".dropdown_toggle");
 	dropdownToggles.forEach((item) => {
-		item.addEventListener("click", function (e) {
+		item.addEventListener("click", function (e) {			
+			item.classList.toggle("highlight_item");
+																	  
 			const dropdownList = item.closest(".dropdown_menu").querySelector(".dropdown_list");
-			dropdownList.classList.toggle("d-none");
+			if (dropdownList) dropdownList.classList.toggle("d-block");
 
-			// Nếu nút đo là chuyển đổi ngôn ngữ
-			if (item.classList.contains("btn_language")) {
-				const iconDrop = item.querySelector("span i");
-				iconDrop.classList.toggle("_180deg");
-			}
+			const iconDrop = item.querySelector("span i");
+			if (iconDrop) iconDrop.classList.toggle("_180deg");
 		});
 	});
 }
@@ -323,7 +324,7 @@ listenerClickPreviodOfTree();
 function listenerPageType() {
 	try {
 		const width = screen.width;
-		if (width < 992) return;
+		if (width <= 1200) return;
 
 		const url = location.href;
 		const pageOptions = document.querySelectorAll(".page_option");
@@ -365,27 +366,15 @@ function listenerClickShowQR() {
 listenerClickShowQR();
 
 
+
+
+
+
+
 // Theo dõi huỷ khi click ngoài đối tượng
 function listenerClickToClose() {
 	// Event Click
 	document.addEventListener("click", function (event) {
-		// Nếu không click vào button language
-		try {
-			const dropdownToggles = document.querySelectorAll(".dropdown_toggle");
-			dropdownToggles.forEach((item) => {
-				const dropdownList = item.closest(".dropdown_menu").querySelector(".dropdown_list");
-				if (!item.contains(event.target) && !dropdownList.classList.contains("d-none")) {
-					dropdownList.classList.add("d-none");
-
-					if (item.classList.contains("btn_language")) {
-						const iconDrop = item.querySelector("span i");
-						iconDrop.classList.remove("_180deg");
-					}
-				}
-			});
-		}
-		catch { }
-
 		// Huỷ khi mở phóng to ảnh
 		try {
 			const showImg = document.querySelector("#click_show_image");
@@ -410,6 +399,9 @@ function listenerClickToClose() {
 				btnMenu.querySelector(".icon-x").classList.add("d-none");
 				listMenu.classList.remove("right-0");
 				document.body.style.overflow = "auto";
+
+				const bg = document.querySelector("#background");
+				bg.classList.remove("w-100");
 			}
 		}
 		catch { }

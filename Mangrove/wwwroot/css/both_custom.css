@@ -112,8 +112,18 @@ option {
 	}
 }
 
-@media (width <=992px) {
+@media (width <=1200px) {
     .hidden_mobile {
         display: none !important;
+    }
+
+	.highlight_item {
+		background-color: var(--greenPage) !important;
+		color: white !important;
+	}
+
+    .active_click:hover {
+        background-color: var(--greenPage) !important;
+        color: white !important;
     }
 }

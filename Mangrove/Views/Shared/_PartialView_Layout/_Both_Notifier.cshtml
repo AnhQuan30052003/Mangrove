@@ -2,8 +2,8 @@
 	string status = TempData["Status"]?.ToString() ?? "fail";
 	string content = TempData["Content"]?.ToString() ?? "";
 
-	string color = status == Helper.StatusNoifier.success ? "color-tree" : "text-danger";
-	string title = status == Helper.StatusNoifier.success ? "thành công" : "thất bại";
+	string color = status == Helper.SetupNotifier.success ? "color-tree" : "text-danger";
+	string title = status == Helper.SetupNotifier.success ? "thành công" : "thất bại";
 	string display = content.Length > 0 ? "" : "d-none";
 	TempData["Content"] = "";
 }

@@ -20,14 +20,20 @@ public class Helper {
 	}
 
 	// Status noifier
-	public static class StatusNoifier {
-		public static string success = "success";
-		public static string fail = "fail";
-		public static int timer = 3000;
+	public static class Key {
+		public static string status = "Status";
+		public static string timer = "Timer";
+		public static string content = "Content";
 	}
 
-	// Variables
-	public static class Variable { }
+	// Status noifier
+	public static class SetupNotifier {
+		public static string success = "success";
+		public static string fail = "fail";
+		public static int shortTime = 3000;
+		public static int midTime = 7000;
+		public static int longTime = 10000;
+	}
 
 	// Function
 	public static class Func {

@@ -2,86 +2,146 @@
 @model TblSetting
 
 @{
-	var isEN = Helper.Func.IsLanguage("en");
+    var isEN = Helper.Func.IsLanguage("en");
 }
 
 <header id="header">
-	<div class="p-1 d-flex bg-white align-items-center">
-		<div class="logo rounded-pill">
-			<a href='@Url.Action("Page_Index", "Home")'>
-				<img class="h-100 w-100" src="~/img/logo/@Model.LogoImg" alt="" title="Logo Mangrove">
-			</a>
-		</div>
+    <div id="background" class="d-xl-none" style="transition: 0.3s"></div>
+    <div class="p-1 d-flex bg-white align-items-center">
+        <div class="logo rounded-pill">
+            <a href='@Url.Action("Page_Index", "Home")'>
+                <img class="h-100 w-100" src="~/img/logo/@Model.LogoImg" alt="" title="Logo Mangrove">
+            </a>
+        </div>
 
-		<div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
-			<div class="left d-flex flex-column justify-content-around col-8 col-sm-10 col-lg-4">
-				<a href='@Url.Action("Page_Index", "Home")'>
-					<h5 class="color_green_hover upper">
-						@(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)
-					</h5>
-				</a>
-				<a href='@Url.Action("Page_Index", "Home")' class="color_green_hover">
-					@(isEN ? Model.FacultyEn : Model.FacultyVi)
-				</a>
-			</div>
+        <div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
+            <div class="left d-flex flex-column justify-content-around col-8 col-sm-10 col-xl-4">
+                <a href='@Url.Action("Page_Index", "Home")'>
+                    <h5 class="color_green_hover upper">
+                        @(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)
+                    </h5>
+                </a>
+                <a href='@Url.Action("Page_Index", "Home")' class="color_green_hover">
+                    @(isEN ? Model.FacultyEn : Model.FacultyVi)
+                </a>
+            </div>
 
-			<div class="col-2 col-sm-1 d-flex justify-content-end justify-content-sm-end d-lg-none align-items-center mr-3z">
-				<button class="border-none bg-transparent h-100">
-					<a href='@Url.Action("Page_SpeciesComposition", "Home")'>
-						<i class="icon-s fa fa-search"></i>
-					</a>
-				</button>
-			</div>
+            <div class="col-2 col-sm-1 d-flex justify-content-end justify-content-sm-end d-xl-none align-items-center mr-3z">
+                <button class="border-none bg-transparent h-100">
+                    <a href='@Url.Action("Page_SpeciesComposition", "Home")'>
+                        <i class="icon-s fa fa-search"></i>
+                    </a>
+                </button>
+            </div>
 
-			<div class="right col-2 col-sm-1 col-lg-8 d-flex justify-content-end">
-				<button class="btn_menu d-lg-none h-100 border-none bg-transparent fw-bold"
-						onclick="listnerClickHamburgerMenu();">
-					<i class="icon-s fa-solid fa-bars fs-5"></i>
-					<i class="icon-x fa-solid fa-x fs-5 d-none"></i>
-				</button>
+            <div class="right col-2 col-sm-1 col-xl-8 d-flex justify-content-end">
+                <button class="btn_menu d-xl-none h-100 border-none bg-transparent fw-bold"
+                        onclick="listnerClickHamburgerMenu();">
+                    <i class="icon-s fa-solid fa-bars fs-5"></i>
+                    <i class="icon-x fa-solid fa-x fs-5 d-none"></i>
+                </button>
 
-				<div class="list_menu col-12 h-100 d-flex flex-column justify-content-lg-around gap-2 gap-lg-0">
-					<p class="text-lg-end color-tree text-center">Trang quản trị viên</p>
+                <div class="list_menu col-12 h-100 d-flex flex-column gap-2">
+                    <p class="text-lg-end color-tree text-center">@translate["label_trang_quan_tri_vien"]</p>
 
-					<ul class="list_item w-100 col-12z d-flex flex-lg-row flex-column justify-content-lg-end gap-lg-4 gap-2 align-items-lg-center">
-						<li class="color_green_hover page_option" page="Page_Index">
-							<a href='@Url.Action("Page_Index", "Home")'>
-								<i class="fa-solid fa-house"></i>
-								<span class="">@translate["label_trang_chu"]</span>
-							</a>
-						</li>
+                    <ul class="list_item w-100 d-flex flex-xl-row flex-column justify-content-xl-end gap-xl-4 gap-0 align-items-xl-center">
+                        <li class="item active_click page_option" page="Page_Statistical">
+                            <a href=''>
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <span class="">@translate["label_thong_ke"]</span>
+                            </a>
+                        </li>
 
-						<li class="color_green_hover page_option" page="Page_SpeciesComposition">
-							<a href='@Url.Action("Page_SpeciesComposition", "Home")'>
-								<i class="fa-solid fa-leaf"></i>
-								<span class="">@translate["label_thanh_phan_loai"]</span>
-							</a>
-						</li>
+                        <li class="dropdown_menu position-relative">
+                            <div class="item dropdown_toggle d-lg-block d-flex align-items-center cursor-pointer">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
+                                    <span>@translate["label_trang_chu"]</span>
+                                    <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
+                                       style="margin-left: 3px;">
+                                    </i>
+                                </span>
+                            </div>
+                            <ul class="dropdown_list rounded-1 overflow-hidden">
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">Xem</a>
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Sửa</a>
+                            </ul>
+                        </li>
 
-						<li class="color_green_hover page_option" page="Page_Distribution">
-							<a href='@Url.Action("Page_Distribution", "Home")'>
-								<i class="fa-solid fa-map"></i>
-								<span class="">@translate["label_phan_bo"]</span>
-							</a>							
-						</li>
+                        <li class="dropdown_menu position-relative">
+                            <div class="item dropdown_toggle d-lg-block d-flex align-items-center cursor-pointer">
+                                <i class="fa-solid fa-leaf"></i>
+                                <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
+                                <span class="">@translate["label_thanh_phan_loai"]</span>
+                                    <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
+                                       style="margin-left: 3px;">
+                                    </i>
+                                </span>
+                            </div>
+                            <ul class="dropdown_list rounded-1 overflow-hidden">
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">Các loài</a>
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Các cá thể</a>
+                            </ul>
+                        </li>
 
-						<li class="dropdown_menu position-relative language">
-							<div class="dropdown_toggle btn_language d-lg-block d-flex align-items-center cursor-pointer">
-								<i class="fa-solid fa-language"></i>
-								<span class="d-lg-inline d-flex justify-content-between flex-grow-1 align-items-center">
-									<span>@translate["label_ngon_ngu"]</span>
-									<i class="fa-solid fa-caret-down time_delay_500ms w-auto"
-									   style="margin-left: 3px;"></i>
-								</span>
-							</div>
-							<ul class="dropdown_list language_dropdown rounded-1 overflow-hidden d-none">
-								<a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">@translate["label_tieng_anh"]</a>
-								<a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_tieng_viet"]</a>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <li class="item active_click page_option" page="Page_Distribution">
+                            <a href='@Url.Action("Page_Distribution", "Home")'>
+                                <i class="fa-solid fa-map"></i>
+                                <span class="">@translate["label_phan_bo"]</span>
+                            </a>
+                        </li>
+
+                        <li class="dropdown_menu position-relative" style="border-bottom: solid 1px #f5f5f5;">
+                            <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
+                                <i class="fa-solid fa-language"></i>
+                                <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
+                                    <span>@translate["label_ngon_ngu"]</span>
+                                    <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
+                                       style="margin-left: 3px;">
+                                    </i>
+                                </span>
+                            </div>
+                            <ul class="dropdown_list rounded-1 overflow-hidden">
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">@translate["label_tieng_anh"]</a>
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_tieng_viet"]</a>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown_menu position-relative" style="border-bottom: solid 1px #f5f5f5;">
+                            <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
+                                <i class="fa-solid fa-gear"></i>
+                                <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
+                                    <span>@translate["label_cai_dat"]</span>
+                                    <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
+                                       style="margin-left: 3px;">
+                                    </i>
+                                </span>
+                            </div>
+                            <ul class="dropdown_list rounded-1">
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">Thông tin quản trị</a>
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Đổi mật khẩu</a>
+
+                                <li class="p-2 downdown_item dropdown_menu position-relative">
+                                    <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
+                                        <span class="d-flex justify-content-between flex-grow-1 align-items-center">
+                                            <span>@translate["label_ngon_ngu"]</span>
+                                            <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
+                                               style="margin-left: 3px;">
+                                            </i>
+                                        </span>
+                                    </div>
+                                    <ul class="dropdown_list rounded-1 overflow-hidden" style="top: 0; right: 100%;">
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">@translate["label_tieng_anh"]</a>
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_tieng_viet"]</a>
+                                    </ul>
+                                </li>
+
+                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Đăng xuất</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>

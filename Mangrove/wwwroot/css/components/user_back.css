@@ -1,6 +1,7 @@
 ﻿.select_ex_co {
 	border: none;
 	width: 120px;
+	height: 45px;
 	background-color: white;
 	color: var(--colorBody)
 }
@@ -9,11 +10,18 @@
 	color: black;
 }
 
+select,
+select option {
+	padding: 7.5px 10px;
+	border: none;
+}
+
 .btn_back {
 	padding: 7.5px 15px;
 	background-color: white;
 	color: inherit;
 	border: none;
+	height: 45px;
 }
 
 .btn_back:hover {

@@ -7,37 +7,38 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
 namespace Mangrove.Controllers {
-    public class AuthController : Controller {
-        private readonly MangroveContext context;
+	public class AuthController : Controller {
+		private readonly MangroveContext context;
 
-        public AuthController(MangroveContext context) {
-            this.context = context;
-        }
+		public AuthController(MangroveContext context) {
+			this.context = context;
+		}
 
-        public IActionResult Page_Login() {
-            return View();
-        }
+		public IActionResult Page_Login() {
+			return View();
+		}
 
-        [HttpPost]
-        public IActionResult Page_Login(string account, string password) {
-            ViewBag.account = account;
-            TempData["Status"] = Helper.StatusNoifier.success;
-            TempData["Content"] = "Đăng nhập thành công.";
-            //TempData["Timer"] = 3000;
+		[HttpPost]
+		public IActionResult Page_Login(string account, string password) {
+			ViewBag.account = account;
 
-            return View();
-        }
+			TempData[Helper.Key.status] = Helper.SetupNotifier.success;
+			TempData[Helper.Key.content] = "Đăng nhập thành công.";
+			TempData[Helper.Key.timer] = Helper.SetupNotifier.shortTime;
 
-        public IActionResult Page_ForgottenPassword_Find() {
-            return View();
-        }
+			return RedirectToAction("Page_Index", "Admin");
+		}
 
-        public IActionResult Page_ForgottenPassword_Input() {
-            return View();
-        }
+		public IActionResult Page_ForgottenPassword_Find() {
+			return View();
+		}
 
-        public IActionResult Page_ChangePassword() {
-            return View();
-        }
-    }
+		public IActionResult Page_ForgottenPassword_Input() {
+			return View();
+		}
+
+		public IActionResult Page_ChangePassword() {
+			return View();
+		}
+	}
 }
