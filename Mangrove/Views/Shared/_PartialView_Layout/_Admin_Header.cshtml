@@ -3,6 +3,7 @@
 
 @{
     var isEN = Helper.Func.IsLanguage("en");
+    string textLogout = isEN ? "Are you sure you want to log out ?" : "Bạn có chắc chắn muốn đăng xuất không ?";
 }
 
 <header id="header">
@@ -103,7 +104,7 @@
                             </div>
                             <ul class="dropdown_list rounded-1">
                                 <a href='' class="p-2 d-block downdown_item">@translate["label_thong_tin_quan_tri"]</a>
-                                <a href='' class="p-2 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
+                                <a href='@Url.Action("Page_ChangePassword","Auth")' class="p-2 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
 
                                 <li class="p-xl-2 dropdown_level_2 dropdown_menu position-relative">
                                     <div class="px-2 px-xl-0 item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
@@ -120,7 +121,11 @@
                                     </ul>
                                 </li>
 
-                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_dang_xuat"]</a>
+                                <a  href='@Url.Action("Page_Index", "Home")'
+                                    class="p-2 d-block downdown_item"
+                                   onclick="return confirm('@textLogout');">
+                                    @translate["label_dang_xuat"]
+                                </a>
                             </ul>
                         </li>
                     </ul>

@@ -1,13 +1,17 @@
 ﻿@inject IStringLocalizer<Translate> translate
 @{
-	string status = TempData[Helper.Key.status]?.ToString() ?? Helper.SetupNotifier.fail;
-	string content = TempData[Helper.Key.content]?.ToString() ?? "";
-	string bgColor = status == Helper.SetupNotifier.fail ? "bg-danger" : "bg-tree";
-	int timer = TempData[Helper.Key.timer] != null ? Convert.ToInt32(TempData[Helper.Key.timer]) : Helper.SetupNotifier.longTime;
+	string status = Helper.Notifier.GetStatus();
+	string content = Helper.Notifier.GetContent();
+	int timer = Helper.Notifier.GetTimer();
+	string toPage = Helper.Notifier.GetToPage();
+
+	Console.WriteLine($"Lenght Content: {content.Length}");
+
+	string bgColor = status == Helper.SetupNotifier.Status.fail ? "bg-danger" : "bg-tree";
 
 	if (!string.IsNullOrEmpty(content))
 	{
-		TempData.Remove(Helper.Key.content);
+		Helper.Notifier.Clear();
 
 		<div id="dynamic_notifier" class="w-100 position-fixed bg-transparent" style="top: 0; z-index: 100;" title="@translate["label_click_cancel"]">
 			<div class="container cursor-pointer">
@@ -15,7 +19,7 @@
 					<p>@content</p>
 					<div class="frame_time">
 						<div class="nav_time rounded-1"></div>
-					</div>																		   
+					</div>
 				</div>
 			</div>
 		</div>
@@ -35,15 +39,20 @@
 		<script>
 			window.addEventListener("load", function () {
 				const dynamicNotifier = document.querySelector("#dynamic_notifier");
-				const timer = @timer * 1;
+				const timer = parseInt("@timer");
+				const toPage = "@toPage";
+
+				console.log("Cần chuyển tới link: " + toPage);
 
 				if (dynamicNotifier) {
 					setTimeout(() => {
 						dynamicNotifier.classList.add("d-none");
+						if (toPage.length > 0) window.location.href = toPage;
 					}, timer);
 
 					dynamicNotifier.addEventListener("click", function() {
 						this.classList.add("d-none");
+						if (toPage.length > 0) window.location.href = toPage;
 					});
 				}
 			});

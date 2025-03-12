@@ -2,7 +2,11 @@
 
 namespace Mangrove.Controllers {
 	public class AdminController : Controller {
-		public IActionResult Page_Index() {
+		public IActionResult Page_Statistical() {
+			return View();
+		}
+
+		public IActionResult Page_AdminInformation() {
 			return View();
 		}
 	}

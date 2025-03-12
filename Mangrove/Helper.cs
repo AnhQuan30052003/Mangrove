@@ -1,4 +1,7 @@
 using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Identity.Client;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -24,15 +27,83 @@ public class Helper {
 		public static string status = "Status";
 		public static string timer = "Timer";
 		public static string content = "Content";
+		public static string toPage = "ToPage";
 	}
 
-	// Status noifier
+	// Setup noifier
 	public static class SetupNotifier {
-		public static string success = "success";
-		public static string fail = "fail";
-		public static int shortTime = 3000;
-		public static int midTime = 7000;
-		public static int longTime = 10000;
+		public static class Status {
+			public static string success = "success";
+			public static string fail = "fail";
+		}
+		public static class Timer {
+			public static int fastTime = 2000;
+			public static int shortTime = 3000;
+			public static int midTime = 7000;
+			public static int longTime = 10000;
+		}
+	}
+
+	// Nofifier
+	public static class Notifier {
+		public static void Create(string status, string content, int timer, string toPage = "") {
+			var context = httpContextAccessor?.HttpContext;
+			if (context == null) return;
+
+			context.Response.Cookies.Append(Key.status, status);
+			context.Response.Cookies.Append(Key.content, content);
+			context.Response.Cookies.Append(Key.timer, timer.ToString());
+			context.Response.Cookies.Append(Key.toPage, toPage);
+
+			Console.Clear();
+			Console.WriteLine("Đã setup thông báo xong");
+		}
+
+		public static string GetStatus() {
+			var result = "";
+			var context = httpContextAccessor?.HttpContext;
+			if (context != null) {
+				result = context.Request.Cookies[Key.status] ?? result;
+			}
+			return result;
+		}
+
+		public static string GetContent() {
+			var result = "";
+			var context = httpContextAccessor?.HttpContext;
+			if (context != null) {
+				result = context.Request.Cookies[Key.content] ?? result;
+			}
+			return result;
+		}
+
+		public static int GetTimer() {
+			var result = SetupNotifier.Timer.longTime;
+			var context = httpContextAccessor?.HttpContext;
+			if (context != null) {
+				result = Convert.ToInt32(context.Request.Cookies[Key.timer]);
+			}
+			return result;
+		}
+
+		public static string GetToPage() {
+			var result = "";
+			var context = httpContextAccessor?.HttpContext;
+			if (context != null) {
+				result = context.Request.Cookies[Key.toPage] ?? result;
+			}
+			return result;
+		}
+
+		public static void Clear() {
+			var context = httpContextAccessor?.HttpContext;
+			if (context == null) return;
+
+			context.Response.Cookies.Delete(Key.status);
+			context.Response.Cookies.Delete(Key.content);
+			context.Response.Cookies.Delete(Key.timer);
+			context.Response.Cookies.Delete(Key.toPage);
+		}
 	}
 
 	// Function
@@ -111,7 +182,7 @@ public class Helper {
 		public static string FormatNumber(long number) {
 			string textNumber = number.ToString();
 			if (textNumber.Length > 3) {
-				textNumber = textNumber.Substring(0, 1) + "." + textNumber.Substring(1, 3);	
+				textNumber = textNumber.Substring(0, 1) + "." + textNumber.Substring(1, 3);
 			}
 			return textNumber;
 		}

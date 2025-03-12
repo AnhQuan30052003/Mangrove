@@ -366,7 +366,7 @@ function listenerClickShowQR() {
 listenerClickShowQR();
 
 
-
+																						
 
 
 
