@@ -1,0 +1,26 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	Layout = Helper.Path.layoutAdmin;
+}
+
+<section class="mod_list_species_composition">
+	<div class="container py-2 border">
+		<div class="nav_option d-flex justify-content-between">
+			<select class="page_size nav_btn">
+				<option selected value="5">5</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+				<option value="500">500</option>
+			</select>
+
+			<button class="btn_new_item nav_btn">
+				Thêm mới
+			</button>
+		</div>
+	</div>
+</section>

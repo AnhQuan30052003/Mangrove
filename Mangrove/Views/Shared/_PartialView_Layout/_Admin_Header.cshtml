@@ -64,8 +64,8 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">Xem</a>
-                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Sửa</a>
+                                <a href='@Url.Action("Page_Index", "Home")' class="p-2 d-block downdown_item">@translate["label_xem"]</a>
+                                <a href='@Url.Action("Page_Edit", "HomePage")' class="p-2 d-block downdown_item">@translate["label_sua"]</a>
                             </ul>
                         </li>
 
@@ -73,20 +73,20 @@
                             <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-leaf"></i>
                                 <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
-                                <span class="">@translate["label_thanh_phan_loai"]</span>
+                                <span class="">@translate["label_cay_ngap_man"]</span>
                                     <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
                                        style="margin-left: 3px;">
                                     </i>
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">Các loài</a>
-                                <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">Các cá thể</a>
+                                <a href='@Url.Action("Page_Index", "Mangrove")' class="p-2 d-block downdown_item">@translate["label_thanh_phan_loai"]</a>
+                                <a href='@Url.Action("Page_Index", "Individual")' class="p-2 d-block downdown_item">@translate["label_ca_the"]</a>
                             </ul>
                         </li>
 
                         <li class="item active_click page_option" page="Page_Distribution">
-                            <a href='@Url.Action("Page_Distribution", "Home")' class="d-flex align-items-center gap-xl-1">
+                            <a href='@Url.Action("Page_Index", "Distribution")' class="d-flex align-items-center gap-xl-1">
                                 <i class="fa-solid fa-map"></i>
                                 <span class="">@translate["label_phan_bo"]</span>
                             </a>

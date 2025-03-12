@@ -1,7 +1,10 @@
 ﻿@inject IStringLocalizer<Translate> translate
 @{
 	var isEN = Helper.Func.IsLanguage("en");
-	ViewData["Title"] = "Admin";
+	ViewData["Title"] = translate["label_thong_ke"];
 	Layout = Helper.Path.layoutAdmin;
 }
 
+<section class="container">
+	<h1>Trang web đang trong quá trình xây dựng</h1>
+</section>
