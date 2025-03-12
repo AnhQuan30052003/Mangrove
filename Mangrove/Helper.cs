@@ -54,9 +54,6 @@ public class Helper {
 			context.Response.Cookies.Append(Key.content, content);
 			context.Response.Cookies.Append(Key.timer, timer.ToString());
 			context.Response.Cookies.Append(Key.toPage, toPage);
-
-			Console.Clear();
-			Console.WriteLine("Đã setup thông báo xong");
 		}
 
 		public static string GetStatus() {

@@ -3,14 +3,14 @@
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-0Gt3qL39sPZp58wKAW6\u002Blf4vtDrPhyS9\u002Byx4\u002ByNpZyQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"311"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00220Gt3qL39sPZp58wKAW6\u002Blf4vtDrPhyS9\u002Byx4\u002ByNpZyQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 07:22:42 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-iYAyew8SdjN3JyFJ1ni9b\u002BAgi4gubC17hS\u002Bvz/urpX8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"364"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022iYAyew8SdjN3JyFJ1ni9b\u002BAgi4gubC17hS\u002Bvz/urpX8=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 15:01:17 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.k31pmtfhhu.css">
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.xq0zaqmhjl.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"k31pmtfhhu"},{"Name":"integrity","Value":"sha256-0Gt3qL39sPZp58wKAW6\u002Blf4vtDrPhyS9\u002Byx4\u002ByNpZyQ="},{"Name":"label","Value":"_content/Mangrove/css/admin_site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"311"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00220Gt3qL39sPZp58wKAW6\u002Blf4vtDrPhyS9\u002Byx4\u002ByNpZyQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 10 Mar 2025 07:22:42 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xq0zaqmhjl"},{"Name":"integrity","Value":"sha256-iYAyew8SdjN3JyFJ1ni9b\u002BAgi4gubC17hS\u002Bvz/urpX8="},{"Name":"label","Value":"_content/Mangrove/css/admin_site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"364"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022iYAyew8SdjN3JyFJ1ni9b\u002BAgi4gubC17hS\u002Bvz/urpX8=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 15:01:17 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/auth_site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\auth_site.css'))</AssetFile>
@@ -71,6 +71,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gx5znp9ewv"},{"Name":"integrity","Value":"sha256-xJNLwSEGqJZHhiyR8jyOdfB8qq5BQmxHEJzI8qN69yM="},{"Name":"label","Value":"_content/Mangrove/css/components/admin_header.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3320"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022xJNLwSEGqJZHhiyR8jyOdfB8qq5BQmxHEJzI8qN69yM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 02:32:45 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/admin_nav_mangrove.2mg3fsqp7r.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_nav_mangrove.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2mg3fsqp7r"},{"Name":"integrity","Value":"sha256-2rWbDx0Q2tk59TJxxp9f6Ks6Qmn8egxcl8BGEmsmDNs="},{"Name":"label","Value":"_content/Mangrove/css/components/admin_nav_mangrove.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"172"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00222rWbDx0Q2tk59TJxxp9f6Ks6Qmn8egxcl8BGEmsmDNs=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 15:22:55 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/admin_nav_mangrove.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_nav_mangrove.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-2rWbDx0Q2tk59TJxxp9f6Ks6Qmn8egxcl8BGEmsmDNs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"172"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00222rWbDx0Q2tk59TJxxp9f6Ks6Qmn8egxcl8BGEmsmDNs=\u0022"},{"Name":"Last-Modified","Value":"Wed, 12 Mar 2025 15:22:55 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/both_click_show_image.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\both_click_show_image.css'))</AssetFile>
