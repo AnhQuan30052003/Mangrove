@@ -81,8 +81,8 @@
 
     .actions .right .list_menu,
     #background {
-        top: 86px;
-        height: calc(100vh - 86px) !important
+        top: 61px;
+        height: calc(100vh - 61px) !important;
     }
 
     .actions .right .list_menu .item {
@@ -113,11 +113,11 @@
         background-color: #efefef;
     }
 
-    @media (width >= 576px) {
+    @media (width <= 414px) {
         #background,
-        .actions .right .list_menu {
-            top: 60px;
-            height: calc(100vh - 60px) !important
+        .actions .right .list_menu {            
+            top: 87px;
+            height: calc(100vh - 87px) !important
         }
     }
 }

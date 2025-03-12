@@ -16,7 +16,7 @@
         </div>
 
         <div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
-            <div class="left d-flex flex-column justify-content-around col-8 col-sm-10 col-xl-4">
+            <div class="left d-flex flex-column justify-content-around col-10 col-sm-11 col-xl-4">
                 <a href='@Url.Action("Page_Index", "Home")'>
                     <h5 class="color_green_hover upper">
                         @(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)
@@ -25,14 +25,6 @@
                 <a href='@Url.Action("Page_Index", "Home")' class="color_green_hover">
                     @(isEN ? Model.FacultyEn : Model.FacultyVi)
                 </a>
-            </div>
-
-            <div class="col-2 col-sm-1 d-flex justify-content-end justify-content-sm-end d-xl-none align-items-center mr-3z">
-                <button class="border-none bg-transparent h-100">
-                    <a href='@Url.Action("Page_SpeciesComposition", "Home")'>
-                        <i class="icon-s fa fa-search"></i>
-                    </a>
-                </button>
             </div>
 
             <div class="right col-2 col-sm-1 col-xl-8 d-flex justify-content-end">
