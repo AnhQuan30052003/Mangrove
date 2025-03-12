@@ -34,7 +34,7 @@
     width: max-content;
     min-width: 100%;
     background-color: white;
-    color: inherit;
+    color: var(--colorBody);
     z-index: 11;
     padding: 10px 0;
     display: none;
@@ -88,6 +88,10 @@
     .actions .right .list_menu .item {
         padding: 10px 15px;
         border-top: solid 1px #f5f5f5;
+    }
+
+    .mobile_border_bottom {
+        border-bottom: solid 1px #f5f5f5;
     }
 
     .dropdown_toggle .downdown_item {
@@ -152,11 +156,16 @@
         width: 100%;
     }
 
-    .dropdown_menu:hover .fa-caret-down {
-        transform: rotate(180deg);
-    }
-
     .dropdown_menu:hover > .dropdown_list {
         display: block !important;
+    }
+
+    .dropdown_level_2:hover {
+        background-color: var(--greenPage);
+        color: white;
+    }
+
+    #header .dropdown_list {
+        min-width: 150px;
     }
 }

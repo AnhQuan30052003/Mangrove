@@ -30,7 +30,7 @@
 #header .dropdown_list {
 	position: absolute;
 	top: 30px;
-	left: 0;
+	right: 0;
 	width: max-content;
 	min-width: 100%;
 	background-color: white;
@@ -151,11 +151,11 @@
 		width: 100%;
 	}
 
-	.dropdown_menu:hover .fa-caret-down {
-		transform: rotate(180deg);
-	}
-
 	.dropdown_menu:hover .dropdown_list {
 		display: block !important;
+	}
+
+	#header .dropdown_list {
+		min-width: 150px;
 	}
 }

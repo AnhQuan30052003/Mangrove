@@ -117,13 +117,13 @@ option {
         display: none !important;
     }
 
-	.highlight_item {
-		background-color: var(--greenPage) !important;
-		color: white !important;
-	}
-
-    .active_click:hover {
+    .highlight_item {
         background-color: var(--greenPage) !important;
         color: white !important;
+    }
+
+    .active_click:hover {
+        background-color: var(--greenPage);
+        color: white;
     }
 }
