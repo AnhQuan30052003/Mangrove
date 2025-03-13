@@ -14,14 +14,51 @@ namespace Mangrove.Controllers {
 
 		public async Task<IActionResult> Page_Index(string search = "", int currentPage = 1, int pageSize = 5) {
 			try {
-				var data = await context.TblMangroves.ToListAsync();
+				TempData["Search"] = search;
+
+				var mangroves = await context.TblMangroves.ToListAsync();
+				var data = new List<TblMangrove>();
+				for (int i = 1; i <= 3; i++) {
+					foreach (var item in mangroves) {
+						data.Add(item);
+					}
+				}
+
+				search = search.ToLower();
+				string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
+
+				List<TblMangrove> fillter = new List<TblMangrove>();
+				foreach (var item in data) {
+					if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
+						fillter.Add(item);
+					}
+				}
+
+				// Code Ajax tìm cá thể
+				//if (Request.Headers["REQUESTED"] == "AJAX") {
+				//	// Xử lý logic tìm kiếm
+				//	List<TblMangrove> fillter = listMangrove;
+				//	if (!string.IsNullOrEmpty(search)) {
+				//		search = search.ToLower();
+				//		string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
+
+				//		List<TblMangrove> fillter = new List<TblMangrove>();
+				//		foreach (var item in data) {
+				//			if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
+				//				fillter.Add(item);
+				//			}
+				//		}
+				//	}
+
+				//	return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", fillter);
+				//}
 
 				bool isEN = Helper.Func.IsLanguage("EN");
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, data, listTitle, search, "Mangrove", "Index");
+				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, fillter, listTitle, search, "Mangrove", "Index");
 				return View(pagi);
 			}
 			catch (Exception ex) {

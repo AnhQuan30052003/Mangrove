@@ -6,13 +6,15 @@
 	Layout = Helper.Path.layoutAdmin;
 }
 
-<section class="mod_list_species_composition">
+<section class="mod_list_species_composition have_paginate">
 	<div class="container-fluid py-2">
-		<form action="" method="get" class="form">
+		<form action="" method="get" class="form" id="index_mangrove">
 			<div class="nav_option my-3 d-flex flex-column flex-sm-row-reverse justify-content-between">
 				<div class="d-flex justify-content-between justify-content-sm-end gap-3 col-12 mb-2 mb-sm-0 col-sm-3">
-					<select class="page_size nav_btn border-none green_effect rounded-1"
-						asp-items="@Model.InfomationPaginate.SelectListPageSize">
+					<select name="pageSize"
+						class="page_size nav_btn border-none green_effect rounded-1"
+						asp-items="@Model.InfomationPaginate.SelectListPageSize"
+						onchange="submitWhenChangePageSize('#index_mangrove')">
 					</select>
 
 					<button class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms">
@@ -22,8 +24,8 @@
 
 				<div class="form_input col-sm-7 col-xl-5 bg-white border green_effect d-flex h-100 align-items-center justify-content-center gap-1 rounded-1 overflow-hidden" style="padding-left: 10px;">
 					<i class="icon-s fa fa-search"></i>
-					<input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove"
-						   placeholder="Tìm kiếm...">
+					<input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove" name="search"
+						   placeholder="@translate["label_tim"]..." value="@TempData["Search"]">
 				</div>
 			</div>
 
@@ -43,7 +45,7 @@
 							long stt = 1;
 							foreach (var item in Model.DataPaginate)
 							{
-								<tr class="table_item">
+								<tr class="table_item position-relative">
 									<td class="text-center">@(stt++)</td>
 									<td>@item.NameVi</td>
 									<td>@item.CommonNameVi</td>
@@ -51,7 +53,7 @@
 									<td>@item.Familia</td>
 									<td>@item.DistributionVi</td>
 									<td class="text-center">
-										<button type="button" class="btn_toggle_option border-none outline-none bg-black text-white rounded-1">
+										<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">
 											<i class="fas fa-ellipsis-h"></i>
 										</button>
 
@@ -83,6 +85,14 @@
 						}
 					</tbody>
 				</table>
+			</div>
+
+			<div class="pagination d-flex justify-content-center">
+				@{
+					for (int i = 1; i <= 10; i++) {
+						<a href="#" class="page_number rounded-1 border-none green_effect mx-1">@i</a>
+					}
+				}
 			</div>
 		</form>
 	</div>

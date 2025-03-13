@@ -386,7 +386,12 @@ function listenerClickOption() {
 	catch { }
 }
 listenerClickOption();
-																						
+
+// Tìm kiếm trang web khi thay đổi số lượng page_size
+function submitWhenChangePageSize(idForm) {
+	const form = document.querySelector(idForm);											
+	if (form) form.submit();
+}
 
 
 

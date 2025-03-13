@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Policy;
 
 namespace Mangrove.Models {
 	public class PaginateModel<T> {
 		public List<T> DataPaginate;
 		public InfomationPaginate InfomationPaginate;
 
-		public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, List<string> ListTitle, string FindText, string Controller, string Action = "Index") {
+		public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, List<string> ListTitle, string PartialView, string FindText, string Controller, string Action = "Index") {
 			this.InfomationPaginate = new InfomationPaginate(
 				ListTitle,
+				PartialView,
 				CurrentPage,
 				PageSize,
 				FindText,
@@ -29,6 +31,8 @@ namespace Mangrove.Models {
 		public readonly List<int> ListPageSize = new List<int> { 5, 10, 20, 50, 100, 200, 500, 1000 };
 		public SelectList SelectListPageSize;
 		public List<string> ListTitle;
+		public string PartialView;
+
 		public int CurrentPage;
 		public int PageSize;
 		public string FindText;
@@ -36,18 +40,19 @@ namespace Mangrove.Models {
 		public string Action;
 		public int TotalPages;
 
-		public InfomationPaginate(List<string> ListTitle, int CurrentPage, int PageSize, string FindText, string Controller, string Action, int totalPages) {
-			//this.SelectListPageSize = new SelectList(ListPageSize.Select(x => new { Value = x, Text = $"{x} mục/trang" }), "Value", "Text");
+		public InfomationPaginate(List<string> ListTitle, string PartialView, int CurrentPage, int PageSize, string FindText, string Controller, string Action, int totalPages) {
 			this.SelectListPageSize = new SelectList(
 				ListPageSize.Select(item => new {
 					Value = item,
 					Text = item
 				}),
 				"Value",
-				"Text"
+				"Text",
+				PageSize
 			);
-
 			this.ListTitle = ListTitle ?? new List<string>();
+			this.PartialView = PartialView;
+			
 			this.CurrentPage = CurrentPage;
 			this.PageSize = PageSize;
 			this.FindText = FindText;
