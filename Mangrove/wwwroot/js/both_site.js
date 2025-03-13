@@ -365,7 +365,27 @@ function listenerClickShowQR() {
 }
 listenerClickShowQR();
 
+// Theo dõi click ... tuỳ chọn
+function listenerClickOption() {
+	try {
+		const options = document.querySelectorAll(".btn_toggle_option");
+		options.forEach((item) => {
+			item.addEventListener("click", function () {
+				const listOption = item.closest("td").querySelector(".list_option");
+				listOption.classList.toggle("d-none");
 
+				options.forEach((option) => {
+					if (option != item) {
+						const listOption = option.closest("td").querySelector(".list_option");
+						listOption.classList.add("d-none");
+					}
+				});
+			});
+		});
+	}
+	catch { }
+}
+listenerClickOption();
 																						
 
 
@@ -414,6 +434,15 @@ function listenerClickToClose() {
 
 			if (!showQRCode.classList.contains("d-none") && showQRCode.contains(event.target) && (!wrapper.contains(event.target) || btnQRCancel.contains(event.target))) {
 				showQRCode.classList.add("d-none");
+			}
+		}
+		catch { }
+
+		// Ẩn list_option khi click ra ngoài
+		try {
+			if (!event.target.matches(".btn_toggle_option") && !event.target.matches(".fa-ellipsis-h") && !event.target.matches(".list_option")) {
+				const listOption = document.querySelectorAll(".list_option");
+				listOption.forEach((item) => item.classList.add("d-none"));
 			}
 		}
 		catch { }

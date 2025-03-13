@@ -102,6 +102,34 @@ option {
 	background-color: #70c745;
 }
 
+.list_option {
+	position: absolute;
+    top: inherit;
+    width: max-content;
+    min-width: 100px;
+    color: black;
+}
+
+.table .table_item:hover {
+    outline: solid 1px var(--greenPage);
+    color: var(--greenPage);
+}
+
+.list_option .option_item:hover {
+    color: var(--greenPage);
+}
+
+.list_option .option_item a {
+    display: flex;
+    align-items: center;
+}
+
+.list_option .option_item a i {
+    width: 30px;
+    margin-right: 10px;
+}
+
+
 @keyframes count_time {
 	0% {
 		width: 100%;
@@ -126,4 +154,9 @@ option {
         background-color: var(--greenPage);
         color: white;
     }
+
+	.table_responsive {
+		overflow-x: scroll;
+        white-space: nowrap;
+	}
 }
