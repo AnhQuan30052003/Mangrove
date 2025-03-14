@@ -16,13 +16,7 @@ namespace Mangrove.Controllers {
 			try {
 				TempData["Search"] = search;
 
-				var mangroves = await context.TblMangroves.ToListAsync();
-				var data = new List<TblMangrove>();
-				for (int i = 1; i <= 3; i++) {
-					foreach (var item in mangroves) {
-						data.Add(item);
-					}
-				}
+				var data = await context.TblMangroves.ToListAsync();
 
 				search = search.ToLower();
 				string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
@@ -58,7 +52,7 @@ namespace Mangrove.Controllers {
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, fillter, listTitle, search, "Mangrove", "Index");
+				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, fillter, listTitle, "", search, "Mangrove", "Page_Index");
 				return View(pagi);
 			}
 			catch (Exception ex) {

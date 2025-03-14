@@ -388,10 +388,31 @@ function listenerClickOption() {
 listenerClickOption();
 
 // Tìm kiếm trang web khi thay đổi số lượng page_size
-function submitWhenChangePageSize(idForm) {
-	const form = document.querySelector(idForm);											
-	if (form) form.submit();
+function submitWhenChangePageSize() {
+	const forms = document.querySelectorAll(".form_paginate");
+	if (forms.length == 0) return;
+
+	forms.forEach((form) => {
+		const select = form.querySelector(".page_size");
+		if (select) {
+			select.addEventListener("change", function () {
+				form.submit();
+			});
+		}
+	});
 }
+submitWhenChangePageSize();
+
+// Theo dõi hiển thị page_hidden
+function togglePageHidden() {
+	const toggle = document.querySelector(".toggle_page_hidden");
+	if (!toggle) return;
+	toggle.addEventListener("click", function () {
+		const pageHidden = document.querySelector(".page_hidden");
+		if (pageHidden) pageHidden.classList.toggle("d-none");
+	});
+}
+togglePageHidden();
 
 
 

@@ -1,1 +1,179 @@
-﻿
+﻿@inject IStringLocalizer<Translate> translate
+@model PaginateModel<TblMangrove>
+
+<div class="table_responsive bg-white">
+	<table class="table table-striped table-bordered mb-0">
+		<thead>
+			<tr class="text-center bg-black text-white">
+				@foreach (var label in Model.InfomationPaginate.ListTitle)
+				{
+					<th>@label</th>
+				}
+			</tr>
+		</thead>
+
+		<tbody>
+			@{
+				long stt = 1;
+				foreach (var item in Model.DataPaginate)
+				{
+					<tr class="table_item position-relative">
+						<td class="text-center">@(stt++)</td>
+						<td>@item.NameVi</td>
+						<td>@item.CommonNameVi</td>
+						<td>@item.ScientificName</td>
+						<td>@item.Familia</td>
+						<td>@item.DistributionVi</td>
+
+						<td class="text-center">
+							<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">
+								<i class="fas fa-ellipsis-h"></i>
+							</button>
+
+							<ul class="list_option p-2 border rounded-1 d-none bg-white color-black">
+								<li class="option_item">
+									<a href="@Url.Action("Edit", "Mangrove", new { id = item.Id })">
+										<i class="fa-solid fa-eye"></i>
+										<span>@translate["label_xem"]</span>
+									</a>
+								</li>
+
+								<li class="option_item">
+									<a href="@Url.Action("Edit", "Mangrove", new { id = item.Id })">
+										<i class="fas fa-edit"></i>
+										<span>@translate["label_sua"]</span>
+									</a>
+								</li>
+
+								<li class="option_item">
+									<a href="@Url.Action("Edit", "Mangrove", new { id = item.Id })">
+										<i class="fa-solid fa-trash"></i>
+										<span>@translate["label_xoa"]</span>
+									</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+
+				}
+
+				while (stt <= Model.InfomationPaginate.PageSize)
+				{
+					<tr>
+						@foreach (var item in Model.InfomationPaginate.ListTitle)
+						{
+							<td>&nbsp;</td>
+						}
+					</tr>
+					stt += 1;
+				}
+			}
+		</tbody>
+	</table>
+</div>
+
+<div class="pagination p-3 d-flex justify-content-center">
+	<div class="group_page d-flex justify-content-center position-relative">
+		@{
+			int totalPages = Model.InfomationPaginate.TotalPages;
+			int currentPage = Model.InfomationPaginate.CurrentPage;
+			int pageSize = Model.InfomationPaginate.PageSize;
+
+			string search = Model.InfomationPaginate.FindText;
+			string controller = Model.InfomationPaginate.Controller;
+			string action = Model.InfomationPaginate.Action;
+
+			if (totalPages == 1)
+			{
+				<a class="page_number active">1</a>
+			}
+			else
+			{
+				// Mũi tên trái
+				if (currentPage > 1)
+				{
+					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage - 1, pageSize = pageSize })" class="arrow" style="margin-left: 10px;">&#10094</a>
+				}
+
+				if (totalPages <= 10)
+				{
+					for (int i = 1; i <= totalPages; i++)
+					{
+						if (i == currentPage)
+						{
+							<span class="page_number active">@i</span>
+						}
+						else
+						{
+							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+						}
+					}
+				}
+				else
+				{
+					int groupPage = 4;
+					for (int i = 1; i <= groupPage; i++)
+					{
+						if (i == currentPage)
+						{
+							<a class="page_number active">@i</a>
+
+						}
+						else
+						{
+							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+						}
+					}
+
+					if (currentPage > groupPage && currentPage < (totalPages - groupPage + 1))
+					{
+						<a class="page_number cursor-pointer toggle_page_hidden bg-black text-white">
+							<i class="fas fa-ellipsis-h"></i>
+						</a>
+					}
+					else
+					{
+						<a class="page_number cursor-pointer toggle_page_hidden">
+							<i class="fas fa-ellipsis-h"></i>
+						</a>
+
+					}
+
+					<div class="page_hidden d-none position-absolute d-flex flex-wrap justify-content-start gap-0">
+						@for (int i = groupPage + 1; i <= totalPages - groupPage; i++)
+						{
+							if (i == currentPage)
+							{
+								<a class="page_number active">@i</a>
+
+							}
+							else
+							{
+								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+							}
+						}
+					</div>
+
+					for (int i = totalPages - groupPage + 1; i <= totalPages; i++)
+					{
+						if (i == currentPage)
+						{
+							<a class="page_number active">@i</a>
+
+						}
+						else
+						{
+							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+						}
+					}
+				}
+
+				// Mũi tên phải
+				if (currentPage < totalPages)
+				{
+					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage + 1, pageSize = pageSize })" class="arrow" style="margin-left: 10px;">&#10095</a>
+				}
+			}
+		}
+	</div>
+</div>

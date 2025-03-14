@@ -6,7 +6,7 @@ namespace Mangrove.Models {
 		public List<T> DataPaginate;
 		public InfomationPaginate InfomationPaginate;
 
-		public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, List<string> ListTitle, string PartialView, string FindText, string Controller, string Action = "Index") {
+		public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, List<string> ListTitle, string PartialView, string FindText, string Controller, string Action) {
 			this.InfomationPaginate = new InfomationPaginate(
 				ListTitle,
 				PartialView,
@@ -19,7 +19,6 @@ namespace Mangrove.Models {
 			);
 			this.DataPaginate = ExcePaginate(DataPaginate);
 		}
-
 		private List<T> ExcePaginate(List<T> DataPaginate) {
 			return DataPaginate
 			.Skip((InfomationPaginate.CurrentPage - 1) * InfomationPaginate.PageSize)
@@ -41,10 +40,13 @@ namespace Mangrove.Models {
 		public int TotalPages;
 
 		public InfomationPaginate(List<string> ListTitle, string PartialView, int CurrentPage, int PageSize, string FindText, string Controller, string Action, int totalPages) {
+			bool isEN = Helper.Func.IsLanguage("en");
+			string label = Helper.Func.IsLanguage("en") ? " line" : " dòng";
+
 			this.SelectListPageSize = new SelectList(
 				ListPageSize.Select(item => new {
 					Value = item,
-					Text = item
+					Text = item + label
 				}),
 				"Value",
 				"Text",

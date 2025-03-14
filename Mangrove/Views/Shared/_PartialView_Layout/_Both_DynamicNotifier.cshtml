@@ -5,8 +5,6 @@
 	int timer = Helper.Notifier.GetTimer();
 	string toPage = Helper.Notifier.GetToPage();
 
-	Console.WriteLine($"Lenght Content: {content.Length}");
-
 	string bgColor = status == Helper.SetupNotifier.Status.fail ? "bg-danger" : "bg-tree";
 
 	if (!string.IsNullOrEmpty(content))

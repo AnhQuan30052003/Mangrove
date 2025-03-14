@@ -56,8 +56,8 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("Page_Index", "Home")' class="p-2 d-block downdown_item">@translate["label_xem"]</a>
-                                <a href='@Url.Action("Page_Edit", "HomePage")' class="p-2 d-block downdown_item">@translate["label_sua"]</a>
+                                <a href='@Url.Action("Page_Index", "Home")' class="py-2 px-3 d-block downdown_item">@translate["label_xem"]</a>
+                                <a href='@Url.Action("Page_Edit", "HomePage")' class="py-2 px-3 d-block downdown_item">@translate["label_sua"]</a>
                             </ul>
                         </li>
 
@@ -72,8 +72,8 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("Page_Index", "Mangrove")' class="p-2 d-block downdown_item">@translate["label_thanh_phan_loai"]</a>
-                                <a href='@Url.Action("Page_Index", "Individual")' class="p-2 d-block downdown_item">@translate["label_ca_the"]</a>
+                                <a href='@Url.Action("Page_Index", "Mangrove")' class="py-2 px-3 d-block downdown_item">@translate["label_thanh_phan_loai"]</a>
+                                <a href='@Url.Action("Page_Index", "Individual")' class="py-2 px-3 d-block downdown_item">@translate["label_ca_the"]</a>
                             </ul>
                         </li>
 
@@ -95,11 +95,11 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1">
-                                <a href='' class="p-2 d-block downdown_item">@translate["label_thong_tin_quan_tri"]</a>
-                                <a href='@Url.Action("Page_ChangePassword","Auth")' class="p-2 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
+                                <a href='' class="py-2 px-3 d-block downdown_item">@translate["label_thong_tin_quan_tri"]</a>
+                                <a href='@Url.Action("Page_ChangePassword","Auth")' class="py-2 px-3 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
 
-                                <li class="p-xl-2 dropdown_level_2 dropdown_menu position-relative">
-                                    <div class="px-2 px-xl-0 item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
+                                <li class="py-xl-2 px-xl-3 dropdown_level_2 dropdown_menu position-relative">
+                                    <div class="px-3 px-xl-0 item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
                                         <span class="d-flex justify-content-between flex-grow-1 align-items-center">
                                             <span>@translate["label_ngon_ngu"]</span>
                                             <i class="fa-solid fa-caret-down time_delay_500ms w-auto"
@@ -108,13 +108,13 @@
                                         </span>
                                     </div>
                                     <ul class="dropdown_list rounded-1 overflow-hidden" style="top: 0; right: 100%;">
-                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="p-2 d-block downdown_item">@translate["label_tieng_anh"]</a>
-                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="p-2 d-block downdown_item">@translate["label_tieng_viet"]</a>
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="py-2 px-3 d-block downdown_item">@translate["label_tieng_anh"]</a>
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="py-2 px-3 d-block downdown_item">@translate["label_tieng_viet"]</a>
                                     </ul>
                                 </li>
 
                                 <a  href='@Url.Action("Page_Index", "Home")'
-                                    class="p-2 d-block downdown_item"
+                                   class="py-2 px-3 d-block downdown_item"
                                    onclick="return confirm('@textLogout');">
                                     @translate["label_dang_xuat"]
                                 </a>
