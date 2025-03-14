@@ -1,1 +1,22 @@
-﻿
+﻿@inject IStringLocalizer<Translate> translate
+@model InfomationPaginate
+
+<div class="nav_option my-3 d-flex flex-column flex-sm-row-reverse justify-content-between">
+	<div class="d-flex justify-content-between justify-content-sm-end gap-3 col-12 mb-2 mb-sm-0 col-sm-3">
+		<select name="pageSize"
+				class="page_size nav_btn border-none green_effect rounded-1 cursor-pointer"
+				asp-items="@Model.SelectListPageSize">
+		</select>
+
+		<a href="@Url.Action("Create", Model.Controller)" class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms d-flex align-items-center justify-content-around">
+			<i class="fa-solid fa-plus"></i>
+			@translate["label_them"]
+		</a>
+	</div>
+
+	<div class="form_input col-sm-7 col-xl-5 bg-white border green_effect d-flex h-100 align-items-center justify-content-center gap-1 rounded-1 overflow-hidden" style="padding-left: 10px;">
+		<i class="icon-s fa fa-search"></i>
+		<input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_ajax" autofocus
+			   name="search" placeholder="@translate["label_tim"]..." value="@ViewData["Search"]">
+	</div>
+</div>

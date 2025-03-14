@@ -298,6 +298,25 @@ function listenerSearchMangrove() {
 }
 listenerSearchMangrove();
 
+// Theo dõi việc tìm kiếm với các cây trong thành phân loài bên admin
+function listenerSearchMangroveAdmin() {
+	const search = document.querySelector(".search_mangrove_admin #search_ajax");
+	if (!search) return;
+
+	let timer;
+	search.addEventListener("input", function (e) {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const value = this.value;
+
+			const url = `/Mangrove/Page_Index?search=${value}&currentPage=1&pageSize=5`;
+			const result = document.querySelector("#search_mangrove");
+			requestAjax(url, result);
+		}, 300);
+	});
+}
+listenerSearchMangroveAdmin();
+
 // Theo dõi khi click và tab giai đoạn của mỗi cây
 function listenerClickPreviodOfTree() {
 	try {

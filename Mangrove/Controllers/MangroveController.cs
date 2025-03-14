@@ -14,45 +14,40 @@ namespace Mangrove.Controllers {
 
 		public async Task<IActionResult> Page_Index(string search = "", int currentPage = 1, int pageSize = 5) {
 			try {
-				TempData["Search"] = search;
-
-				var data = await context.TblMangroves.ToListAsync();
-
-				search = search.ToLower();
-				string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
-
-				List<TblMangrove> fillter = new List<TblMangrove>();
-				foreach (var item in data) {
-					if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
-						fillter.Add(item);
-					}
-				}
-
-				// Code Ajax tìm cá thể
-				//if (Request.Headers["REQUESTED"] == "AJAX") {
-				//	// Xử lý logic tìm kiếm
-				//	List<TblMangrove> fillter = listMangrove;
-				//	if (!string.IsNullOrEmpty(search)) {
-				//		search = search.ToLower();
-				//		string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
-
-				//		List<TblMangrove> fillter = new List<TblMangrove>();
-				//		foreach (var item in data) {
-				//			if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
-				//				fillter.Add(item);
-				//			}
-				//		}
-				//	}
-
-				//	return PartialView($"{Helper.Path.partialView}/User_ListMangrove.cshtml", fillter);
-				//}
-
+				string findText = search;
+				ViewData["Search"] = search;
 				bool isEN = Helper.Func.IsLanguage("EN");
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, fillter, listTitle, "", search, "Mangrove", "Page_Index");
+				var data = await context.TblMangroves.ToListAsync();
+				if (data.Count() == 0) data = new List<TblMangrove>();
+
+
+				// Code Ajax tìm cá thể
+				if (Request.Headers["REQUESTED"] == "AJAX") {
+
+					// Xử lý logic tìm kiếm
+					List<TblMangrove> fillter = data;
+					if (!string.IsNullOrEmpty(search)) {
+						search = search.ToLower();
+						string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
+
+						fillter = new List<TblMangrove>();
+						foreach (var item in data) {
+							if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
+								fillter.Add(item);
+							}
+						}
+					}
+
+					var pagiFillter = new PaginateModel<TblMangrove>(currentPage, pageSize, fillter, listTitle, findText, "Mangrove", "Page_Index");
+					Console.WriteLine("Đã gửi Ajax: " + search);
+					return PartialView($"{Helper.Path.partialView}/Both_PaginateBody_IndexMangrove.cshtml", pagiFillter);
+				}
+
+				var pagi = new PaginateModel<TblMangrove>(currentPage, pageSize, data, listTitle, findText, "Mangrove", "Page_Index");
 				return View(pagi);
 			}
 			catch (Exception ex) {
