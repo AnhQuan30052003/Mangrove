@@ -1,5 +1,5 @@
-// Theo dõ đóng mắt mắt mật khẩu
-function listenrTogglePassword() {
+﻿// Theo dõ đóng mắt mắt mật khẩu
+function togglePassword() {
     const eyes = document.querySelectorAll(".icon_eye");
     if (!eyes) return;
 
@@ -15,6 +15,4 @@ function listenrTogglePassword() {
         });
     });
 }
-listenrTogglePassword();
-
-console.log("Run file auth_size.js");
+togglePassword();

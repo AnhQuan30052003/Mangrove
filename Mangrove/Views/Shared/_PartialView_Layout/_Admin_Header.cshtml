@@ -28,8 +28,7 @@
             </div>
 
             <div class="right col-2 col-sm-1 col-xl-8 d-flex justify-content-end">
-                <button class="btn_menu d-xl-none h-100 border-none bg-transparent fw-bold"
-                        onclick="listnerClickHamburgerMenu();">
+                <button class="btn_menu d-xl-none h-100 border-none bg-transparent fw-bold">
                     <i class="icon-s fa-solid fa-bars fs-5"></i>
                     <i class="icon-x fa-solid fa-x fs-5 d-none"></i>
                 </button>
@@ -39,13 +38,13 @@
 
                     <ul class="list_item w-100 d-flex flex-xl-row flex-column justify-content-xl-end gap-xl-4 gap-0 align-items-xl-center">
                         <li class="item active_click page_option" page="Page_Statistical">
-                            <a href='' class="d-flex align-items-center gap-xl-1">
+                            <a href='@Url.Action("Page_Statistical", "Admin")' class="d-flex align-items-center gap-xl-1">
                                 <i class="fa-solid fa-chart-simple"></i>
                                 <span class="">@translate["label_thong_ke"]</span>
                             </a>
                         </li>
 
-                        <li class="dropdown_menu position-relative">
+                        <li class="dropdown_menu position-relative page_option" page="Page_Home">
                             <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-house"></i>
                                 <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
@@ -61,7 +60,7 @@
                             </ul>
                         </li>
 
-                        <li class="dropdown_menu position-relative">
+                        <li class="dropdown_menu position-relative page_option" page="Page_Mangrove">
                             <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-leaf"></i>
                                 <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
@@ -84,7 +83,7 @@
                             </a>
                         </li>
 
-                        <li class="dropdown_menu position-relative mobile_border_bottom">
+                        <li class="dropdown_menu position-relative mobile_border_bottom page_option" page="Page_Setting">
                             <div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
                                 <i class="fa-solid fa-gear"></i>
                                 <span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
@@ -96,7 +95,7 @@
                             </div>
                             <ul class="dropdown_list rounded-1">
                                 <a href='' class="py-2 px-3 d-block downdown_item">@translate["label_thong_tin_quan_tri"]</a>
-                                <a href='@Url.Action("Page_ChangePassword","Auth")' class="py-2 px-3 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
+                                <a href='@Url.Action("Page_ChangePassword","Admin")' class="py-2 px-3 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
 
                                 <li class="py-xl-2 px-xl-3 dropdown_level_2 dropdown_menu position-relative">
                                     <div class="px-3 px-xl-0 item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">

@@ -1,0 +1,122 @@
+﻿// Request with AJAX
+function requestAjax(url, result = null, notChangeIcon = true) {
+	try {
+		const xhr = new XMLHttpRequest();
+		xhr.open("get", url);
+		xhr.setRequestHeader("REQUESTED", "AJAX");
+		xhr.onload = function () {
+			if (xhr.status == 200) {
+				if (result != null) result.innerHTML = xhr.responseText;
+				if (notChangeIcon) changeIconSearchOrWait();
+			}
+		}
+		xhr.send();
+	}
+	catch {
+		console.log("Lỗi request ajax tới: " + url);
+	}
+}
+
+// Thay đổi biểu tượng trong quá trình tìm kiếm
+function changeIconSearchOrWait() {
+	try {
+		const iconS = document.querySelector("#icon-s");
+		const iconW = document.querySelector("#icon-w");
+
+		iconS.classList.toggle("d-none");
+		iconW.classList.toggle("d-none");
+	}
+	catch { }
+}
+
+// Theo dõi việc tìm kiếm các cá thể trong một cây
+function searchInvidiual() {
+	const searchInvidiual = document.querySelector("#searchInvidiual");
+	if (!searchInvidiual) return;
+
+	let timer;
+	searchInvidiual.addEventListener("input", function (e) {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const value = this.value;
+			const id = this.getAttribute("id-mangrove");
+			const url = `/Home/Page_Result?id=${id}&searchIndividual=${value}`;
+			const result = document.querySelector(".list_individuals");
+
+			changeIconSearchOrWait();
+			requestAjax(url, result);
+		}, 300);
+	});
+}
+searchInvidiual();
+
+// Theo dõi việc tìm kiếm các cây trong thành phân loài
+function searchMangroveUser() {
+	const search = document.querySelector("#search_mangrove");
+	if (!search) return;
+
+	let timer;
+	search.addEventListener("input", function (e) {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			const value = this.value;
+			const url = `/Home/Page_SpeciesComposition?search=${value}`;
+			const result = document.querySelector(".list_mangrove");
+
+			changeIconSearchOrWait();
+			requestAjax(url, result);
+		}, 300);
+	});
+}
+searchMangroveUser();
+
+// Theo dõi việc tìm kiếm với các cây trong thành phân loài bên admin
+function searchTreeAdmin() {
+	const forms = document.querySelectorAll(".form_paginate");
+	if (forms.length == 0) return;
+
+	forms.forEach((form) => {
+		const search = form.querySelector(".search_ajax");
+		const controller = form.getAttribute("page");
+
+		let timer;
+		search.addEventListener("input", function (e) {
+			clearTimeout(timer);
+			timer = setTimeout(() => {
+				const value = this.value;
+				const pageSize = form.querySelector(".page_size").value;
+				const url = `/${controller}/Page_Index?search=${value}&pageSize=${pageSize}`;
+				const result = document.querySelector("#result_search_ajax");
+
+				changeIconSearchOrWait();
+				requestAjax(url, result);
+			}, 300);
+		});
+	});
+}
+searchTreeAdmin();
+
+// Tìm kiếm trang web khi thay đổi số lượng page_size
+function submitWhenChangePageSize() {
+	try {
+		const forms = document.querySelectorAll(".form_paginate");
+		if (forms.length == 0) return;
+
+		forms.forEach((form) => {
+			const select = form.querySelector(".page_size");
+			if (select) {
+				select.addEventListener("change", function () {
+					const pageSize = this.value;
+					const findText = form.querySelector(".search_ajax").value;
+					const controller = form.getAttribute("page");
+
+					const url = `/${controller}/Page_Index?search=${findText}&currentPage=1&pageSize=${pageSize}`;
+					const result = document.querySelector("#result_search_ajax");
+					requestAjax(url, result, false);
+				});
+			}
+		});
+	} catch { }
+}
+submitWhenChangePageSize();
+

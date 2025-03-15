@@ -3,7 +3,8 @@
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
-	ViewData["NotePage"] = isEN ? "Mangrove List" : "Danh Sách Cây Ngập Mặn";
+	ViewData["InfoPage"] = isEN ? "Mangrove list" : "Danh sách cây ngập mặn";
+	ViewData["TypePage"] = "Page_Mangrove";
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
@@ -11,15 +12,7 @@
 
 <section class="mod_list_species_composition have_paginate">
 	<div class="container-fluid py-2">
-		<form action="" method="get" class="form_paginate search_mangrove_admin">
-			<!-- Search and 2 Button -->
-			@await Html.PartialAsync($"{pv}/Both_PaginateNav.cshtml", Model.InfomationPaginate)
-
-			<div id="search_mangrove">
-				<!-- Data -->
-				@await Html.PartialAsync($"{pv}/Both_PaginateBody_IndexMangrove.cshtml", Model)
-			</div>
-		</form>
+		@await Html.PartialAsync($"{pv}/Both_Paginate.cshtml", Model)
 	</div>
 </section>
 

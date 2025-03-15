@@ -2,10 +2,12 @@
 @model TblHome
 
 @{
-	ViewData["Title"] = translate["label_trang_chu"];
-	Layout = Helper.Path.layoutUser;
-
 	bool isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_trang_chu"];
+	ViewData["InfoPage"] = isEN ? "Introduce" : "Giới thiệu";
+	ViewData["TypePage"] = "Page_Index";
+
+	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
 	var mangroves = TempData["Mangroves"] as List<TblMangrove> ?? new List<TblMangrove>();
 }

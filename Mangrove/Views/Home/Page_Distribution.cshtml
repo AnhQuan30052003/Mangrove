@@ -2,11 +2,14 @@
 
 @model InfoStagesOfIndividualModel
 @{
-    ViewData["Title"] = translate["label_phan_bo"];
+    bool isEN = Helper.Func.IsLanguage("en");
+    ViewData["Title"] = ViewData["InfoPage"] = translate["label_phan_bo"];
+    ViewData["TypePage"] = "Page_Distribution";
+
     Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
 <section class="individual_display container py-2">
-    <h1>Đang trong quá trình xây dựng</h1>
+
 </section>

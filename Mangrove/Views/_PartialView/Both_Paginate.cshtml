@@ -1,0 +1,14 @@
+﻿@model PaginateModel<TblMangrove>
+@{
+	string pv = Helper.Path.partialView;
+}
+
+<div class="form_paginate" page="@Model.InfomationPaginate.Controller">
+	<!-- Search and 2 Button -->
+	@await Html.PartialAsync($"{pv}/Both_PaginateNav.cshtml", Model.InfomationPaginate)
+
+	<div id="result_search_ajax">
+		<!-- Data -->
+		@await Html.PartialAsync($"{pv}/{Model.InfomationPaginate.NameTable}.cshtml", Model)
+	</div>
+</div>

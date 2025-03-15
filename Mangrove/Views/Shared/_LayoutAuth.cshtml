@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="~/css/auth_site.css" />
 
     <!-- Js custom-->
-    <script src="~/js/both_site.js" defer></script>
-    <script src="~/js/auth_site.js" defer></script>
+    <script type="module" src="~/js/custom/both_site.js" defer></script>
+    <script type="module" src="~/js/custom/auth_site.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <!-- Dynamic Nofifier -->
     @await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
 
-    <section class="module-login h-100 w-100" style="background-image: url('/img/logo/@setting.FooterBgImg');">
+    <section class="module_auth purdah h-100 w-100" style="background-image: url('/img/logo/@setting.FooterBgImg');">
         <div class="container h-100 d-flex flex-column align-items-center justify-content-center">
             <div class="wrapper">
                 <div class="display d-flex h-100">

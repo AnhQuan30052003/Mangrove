@@ -2,9 +2,12 @@
 @model InfoStagesOfIndividualModel
 
 @{
-    ViewData["Title"] = Model.NameMangrove;
-    Layout = Helper.Path.layoutUser;
     bool isEN = Helper.Func.IsLanguage("en");
+    ViewData["Title"] = Model.NameMangrove;
+    ViewData["InfoPage"] = isEN ? "Individual infomation" : "Thông tin cá thể";
+    ViewData["TypePage"] = "Page_SpeciesComposition";
+
+    Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
@@ -127,6 +130,6 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
-<button id="btnQRFixed" class="rounded-1" title="QR">
-    <i class="fa-solid fa-qrcode click_show_qr" src="/img/qr-img/@Model.Individual.QrName"></i>
+<button id="btnQRFixed" class="rounded-1 click_show_qr" title="QR" src="/img/qr-img/@Model.Individual.QrName">
+    <i class="fa-solid fa-qrcode"></i>
 </button>

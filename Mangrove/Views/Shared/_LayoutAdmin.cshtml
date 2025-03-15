@@ -3,8 +3,6 @@
 @{
     var setting = await settingWebsite.GetSetting();
     string _pvl = Helper.Path.partialViewLayout;
-
-
 }
 
 <!DOCTYPE html>
@@ -17,8 +15,8 @@
     <link rel="stylesheet" href="~/css/admin_site.css" />
 
     <!-- Js template + custom-->
-    <script src="~/js/both_site.js" defer></script>
-    @* <script src="~/js/admin_site.js" defer></script> *@
+    <script type="module" src="~/js/custom/both_site.js" defer></script>
+    <script type="module" src="~/js/custom/admin_site.js" defer></script>
 </head>
 
 <body>
@@ -31,13 +29,11 @@
     <!-- Header -->
     @await Html.PartialAsync($"{_pvl}/_Admin_Header.cshtml", setting)
 
-    <!-- Note page -->
-    <section class="mod_show_display_working container-fuild bg-black text-white text-center">
-        <h6 class="py-2">@ViewData["NotePage"]</h6>
-    </section>
+    <!-- Info page -->
+    @await Html.PartialAsync($"{_pvl}/_Both_InfoPage.cshtml")
 
     <!-- Body-->
-    <main style="min-height: 90vh;">
+    <main style="min-height: 85vh">
         @RenderBody()
     </main>
 

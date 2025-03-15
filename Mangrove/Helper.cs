@@ -1,7 +1,3 @@
-using Azure.Core;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Identity.Client;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -182,6 +178,18 @@ public class Helper {
 				textNumber = textNumber.Substring(0, 1) + "." + textNumber.Substring(1, 3);
 			}
 			return textNumber;
+		}
+
+		// Check exsits contain
+		public static bool CheckContain(string key, List<string> data) {
+			key = FormatUngisnedString(key.ToLower());
+
+			foreach (string item in data) {
+				string text = FormatUngisnedString(item.ToLower());
+				if (text.Contains(key)) return true;
+			}
+
+			return false;
 		}
 	}
 }

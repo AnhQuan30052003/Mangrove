@@ -2,9 +2,11 @@
 @model List<TblMangrove>
 
 @{
-    ViewData["Title"] = @translate["label_thanh_phan_loai"];
-    Layout = Helper.Path.layoutUser;
+    bool isEN = Helper.Func.IsLanguage("en");
+    ViewData["Title"] = ViewData["InfoPage"] = @translate["label_thanh_phan_loai"];
+    ViewData["TypePage"] = "Page_SpeciesComposition";
 
+    Layout = Helper.Path.layoutUser;
     string _pv = Helper.Path.partialView;
 }
 
@@ -13,7 +15,7 @@
 <section class="module_species_composition container text-center py-2">
     <div class="box bg-white mb-2">
         <div class="toggle_title cursor-pointer text-center mt-1 mb-2">
-            <h5 class="py-2 bg-black text-white">@translate["label_thanh_phan_loai"]</h5>
+            <h5 class="py-2 bg-black text-white">@translate["label_tim"]</h5>
         </div>
 
         <div class="info list_mangrove_info">
@@ -23,7 +25,8 @@
                         <div class="search d-flex justify-content-center">
                             <div
                                 class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2 rounded-1 overflow-hidden">
-                                <i class="icon-s fa fa-search"></i>
+                                <i id="icon-s" class="fa fa-search"></i>
+                                <i id="icon-w" class="fa-solid fa-hourglass-start wait_load d-none"></i>
                                 <input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove"
                                     placeholder="@translate["label_SpeciesComposition_search"] @Model.Count @translate["label_SpeciesComposition_loai"]...">
                             </div>

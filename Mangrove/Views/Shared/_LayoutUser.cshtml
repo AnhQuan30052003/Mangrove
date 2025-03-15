@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="~/css/user_site.css" />
 
 	<!-- Js custom-->
-	<script src="~/js/both_site.js" defer></script>
+	<script type="module" src="~/js/custom/both_site.js" defer></script>
 </head>
 
 <body>
@@ -30,6 +30,9 @@
 
 	<!-- Header -->
 	@await Html.PartialAsync($"{_pvl}/_User_Header.cshtml", setting)
+
+	<!-- Info page -->
+	@await Html.PartialAsync($"{_pvl}/_Both_InfoPage.cshtml")
 
 	<!-- Body-->
 	<main style="min-height: 70vh;">

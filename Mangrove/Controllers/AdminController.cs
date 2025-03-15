@@ -9,5 +9,9 @@ namespace Mangrove.Controllers {
 		public IActionResult Page_AdminInformation() {
 			return View();
 		}
+
+		public IActionResult Page_ChangePassword() {
+			return View();
+		}
 	}
 }
