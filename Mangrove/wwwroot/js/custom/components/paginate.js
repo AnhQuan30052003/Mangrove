@@ -15,22 +15,23 @@ togglePageHidden();
 // Theo dõi click ... tuỳ chọn
 function whenClickOption() {
 	try {
-		const options = document.querySelectorAll(".btn_toggle_option");
-		options.forEach((item) => {
-			item.addEventListener("click", function () {
+		document.addEventListener("click", function (e) {
+			const options = document.querySelectorAll(".btn_toggle_option");
+			for (let i = 0; i < options.length; i++) {
+				const item = options[i];
 				const listOption = item.closest("td").querySelector(".list_option");
-				listOption.classList.toggle("d-none");
+				if (!item.contains(e.target)) {
+					listOption.classList.add("d-none");
+					continue;
+				}
 
-				options.forEach((option) => {
-					if (option != item) {
-						const listOption = option.closest("td").querySelector(".list_option");
-						listOption.classList.add("d-none");
-					}
-				});
-			});
+				if (i > options.length / 2) {
+					listOption.style.top = "-100px";
+				}
+				listOption.classList.toggle("d-none");
+			}
 		});
 	}
 	catch { }
 }
 whenClickOption();
-

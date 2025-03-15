@@ -1,6 +1,7 @@
-﻿@model InfomationPaginate
+﻿@inject IHttpContextAccessor httpContextAccessor
+@model InfomationPaginate
 
-<div class="pagination p-3 d-flex justify-content-center">
+<div class="pagination p-3 d-flex justify-content-center" style="height: max-content;">
 	<div class="group_page d-flex justify-content-center position-relative">
 		@{
 			int totalPages = Model.TotalPages;
@@ -10,6 +11,7 @@
 			string search = Model.FindText;
 			string controller = Model.Controller;
 			string action = Model.Action;
+			int width = Convert.ToInt32(httpContextAccessor.HttpContext?.Request.Cookies["WidthScreen"]);
 
 			if (totalPages == 1)
 			{
@@ -40,6 +42,8 @@
 				else
 				{
 					int groupPage = 4;
+					if (width <= 1200) groupPage = 3;
+
 					for (int i = 1; i <= groupPage; i++)
 					{
 						if (i == currentPage)
@@ -67,7 +71,7 @@
 
 					}
 
-					<div class="page_hidden d-none position-absolute d-flex flex-wrap justify-content-start gap-0">
+					<div class="page_hidden d-nonez position-absolute d-flex flex-wrap justify-content-start gap-0">
 						@for (int i = groupPage + 1; i <= totalPages - groupPage; i++)
 						{
 							if (i == currentPage)
@@ -104,4 +108,4 @@
 			}
 		}
 	</div>
-</div>
+</div>					 

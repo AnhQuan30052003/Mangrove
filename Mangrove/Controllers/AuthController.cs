@@ -39,6 +39,6 @@ namespace Mangrove.Controllers {
 
 		public IActionResult Page_ForgottenPassword_Input() {
 			return View();
-		}		
+		}
 	}
 }

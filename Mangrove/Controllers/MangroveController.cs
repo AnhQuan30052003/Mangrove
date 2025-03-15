@@ -27,18 +27,25 @@ namespace Mangrove.Controllers {
 				var data = await context.TblMangroves.ToListAsync();
 				if (data.Count() == 0) data = new List<TblMangrove>();
 
-				List<TblMangrove> fillter = data;
-				fillter = new List<TblMangrove>();
+				var temp = data;
+				data = new List<TblMangrove>();
+				for (int i = 1; i <= 13; i++) {
+					foreach (var item in temp) {
+						data.Add(item);
+					}
+				}
+
+				List<TblMangrove> fillter = new List<TblMangrove>();
 
 				// Xử lý logic tìm kiếm
 				foreach (var item in data) {
 					bool check = Helper.Func.CheckContain(
 						search,
-						new List<string>() { 
+						new List<string>() {
 							item.NameVi, item.NameEn,
-							item.CommonNameVi, item.CommonNameEn, 
+							item.CommonNameVi, item.CommonNameEn,
 							item.ScientificName, item.Familia,
-							item.DistributionVi, item.DistributionEn 
+							item.DistributionVi, item.DistributionEn
 						}
 					);
 
