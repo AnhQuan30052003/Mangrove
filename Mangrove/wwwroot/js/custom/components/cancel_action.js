@@ -44,15 +44,6 @@ function cancelActionWhenClickOut() {
 			}
 		}
 		catch { }
-
-		// Ẩn list_option khi click ra ngoài
-		//try {
-		//	if (!event.target.matches(".btn_toggle_option") && !event.target.matches(".fa-ellipsis-h") && !event.target.matches(".list_option")) {
-		//		const listOption = document.querySelectorAll(".list_option");
-		//		listOption.forEach((item) => item.classList.add("d-none"));
-		//	}
-		//}
-		//catch { }
 	});
 
 	// Event Keydown

@@ -19,7 +19,6 @@ namespace Mangrove.Controllers {
 				string findText = search;
 				ViewData["Search"] = search;
 
-
 				bool isEN = Helper.Func.IsLanguage("EN");
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
@@ -40,19 +39,17 @@ namespace Mangrove.Controllers {
 				// Xử lý logic tìm kiếm
 				List<TblMangrove> fillter = new List<TblMangrove>();
 				foreach (var item in data) {
-					bool check = Helper.Func.CheckContain(
-						search,
-						new List<string>() {
-							item.NameVi, item.NameEn,
-							item.CommonNameVi, item.CommonNameEn,
-							item.ScientificName, item.Familia,
-							item.DistributionVi, item.DistributionEn
-						}
-					);
+					var conditions = new List<string>();
+					conditions.Add(item.NameVi);
+					conditions.Add(item.NameEn);	
+					conditions.Add(item.CommonNameVi);
+					conditions.Add(item.CommonNameEn);
+					conditions.Add(item.ScientificName);
+					conditions.Add(item.Familia);
+					conditions.Add(item.DistributionVi);
+					conditions.Add(item.DistributionEn);
 
-					if (check) {
-						fillter.Add(item);
-					}
+					if (Helper.Func.CheckContain(search, conditions)) fillter.Add(item);
 				}
 
 				var pagi = new PaginateModel<TblMangrove>(currentPage, (int)pageSize, fillter, "Both_PaginateTable_IndexMangrove", listTitle, findText, "Mangrove", "Page_Index");

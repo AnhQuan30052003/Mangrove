@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Configuration;
 using System.Net.Mime;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -19,7 +20,7 @@ namespace Mangrove.Controllers {
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
 			try {
-				var home = await context.TblHomes.FirstOrDefaultAsync();	
+				var home = await context.TblHomes.FirstOrDefaultAsync();
 				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
 				var mangroves = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
 				TempData["Mangroves"] = mangroves;
@@ -47,18 +48,19 @@ namespace Mangrove.Controllers {
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
-					List<TblIndividual> fillter = mangrove.TblIndividuals.ToList();
+					var data = mangrove.TblIndividuals.ToList();
+					List<TblIndividual> fillter = data;
 					if (!string.IsNullOrEmpty(searchIndividual)) {
-						string search = searchIndividual.ToLower().Replace("/", "-");
+						string search = searchIndividual.Replace("/", "-");
 
 						fillter = new List<TblIndividual>();
-						foreach (var item in mangrove.TblIndividuals) {
-							if (item.UpdateLast.ToString("dd/MM/yyyy").Contains(search) ||
-								item.PositionEn.ToLower().Contains(search) ||
-								item.PositionVi.ToLower().Contains(search)
-							) {
-								fillter.Add(item);
-							}
+						foreach (var item in data) {
+							var conditions = new List<string>();
+							conditions.Add(item.UpdateLast.ToString("dd/MM/yyyy"));
+							conditions.Add(item.PositionEn);
+							conditions.Add(item.PositionVi);
+
+							if (Helper.Func.CheckContain(search, conditions)) fillter.Add(item);
 						}
 					}
 
@@ -92,7 +94,6 @@ namespace Mangrove.Controllers {
 		// Page: cá thể của cây
 		public async Task<IActionResult> Page_Individual(string id) {
 			try {
-
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
 				if (individual == null) {
 					return NotFound($"Không tìm thấy cá thể có ID: {id}");
@@ -144,21 +145,21 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) {
 			try {
 				bool isEN = Helper.Func.IsLanguage("en");
-				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(o => o.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(o => o.NameVi).ToListAsync();
+				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(item => item.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(item => item.NameVi).ToListAsync();
 
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
 					List<TblMangrove> fillter = listMangrove;
 					if (!string.IsNullOrEmpty(search)) {
-						search = search.ToLower();
-						string unsignStringSearch = Helper.Func.FormatUngisnedString(search);
-
 						fillter = new List<TblMangrove>();
+
 						foreach (var item in listMangrove) {
-							if (item.NameVi.ToLower().Contains(search) || Helper.Func.FormatUngisnedString(item.NameVi.ToLower()).Contains(unsignStringSearch) || item.NameEn.ToLower().Contains(search)) {
-								fillter.Add(item);
-							}
+							var conditions = new List<string>();
+							conditions.Add(item.NameVi);
+							conditions.Add(item.NameEn);
+							
+							if (Helper.Func.CheckContain(search, conditions)) fillter.Add(item);
 						}
 					}
 

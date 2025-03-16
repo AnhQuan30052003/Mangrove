@@ -10,4 +10,3 @@ import * as search from "./components/search.js";
 import * as paginate from "./components/paginate.js";
 import * as show_hidden_tab from "./components/show_hidden_tab.js";
 
-console.log("Run file both_site.js");

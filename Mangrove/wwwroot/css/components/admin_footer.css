@@ -48,6 +48,12 @@
 	}
 }
 
+@media (width <= 1200px) {
+	#admin_footer {
+		font-size: 15px;
+	}
+}
+
 @media (width >=576px) {
 	#scrollUp {
 		bottom: 20px;

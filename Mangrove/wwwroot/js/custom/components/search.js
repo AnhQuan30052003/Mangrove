@@ -1,5 +1,5 @@
 ﻿// Request with AJAX
-function requestAjax(url, result = null, notChangeIcon = true, createItemPage = false) {
+function requestAjax(url, result = null, changeIcon = true, createItemPage = false) {
 	try {
 		const xhr = new XMLHttpRequest();
 		xhr.open("get", url);
@@ -7,27 +7,24 @@ function requestAjax(url, result = null, notChangeIcon = true, createItemPage = 
 		xhr.onload = function () {
 			if (xhr.status == 200) {
 				if (result != null) result.innerHTML = xhr.responseText;
-				if (notChangeIcon) changeIconSearchOrWait();
+				if (changeIcon) changeIconSearchOrWait();
 				if (createItemPage) createItemsPage();
 			}
 		}
 		xhr.send();
 	}
 	catch {
-		console.log("Lỗi request ajax tới url: " + url);
+		console.log("Lỗi request AJAX tới URL: " + url);
 	}
 }
 
 // Thay đổi biểu tượng trong quá trình tìm kiếm
 function changeIconSearchOrWait() {
-	try {
-		const iconS = document.querySelector("#icon-s");
-		const iconW = document.querySelector("#icon-w");
+	const iconS = document.querySelector("#icon-s");
+	const iconW = document.querySelector("#icon-w");
 
-		iconS.classList.toggle("d-none");
-		iconW.classList.toggle("d-none");
-	}
-	catch { }
+	if (iconS) iconS.classList.toggle("d-none");
+	if (iconW) iconW.classList.toggle("d-none");
 }
 
 // Theo dõi việc tìm kiếm các cá thể trong một cây
@@ -38,6 +35,10 @@ function searchInvidiual() {
 	let timer;
 	searchInvidiual.addEventListener("input", function (e) {
 		clearTimeout(timer);
+
+		let timeWait = 300;
+		if (this.value.length == 0) timeWait = 0;
+
 		timer = setTimeout(() => {
 			const value = this.value;
 			const id = this.getAttribute("id-mangrove");
@@ -51,7 +52,7 @@ function searchInvidiual() {
 				changeIconSearchOrWait();
 				requestAjax(url, result);
 			}
-		}, 300);
+		}, timeWait);
 	});
 }
 searchInvidiual();
@@ -64,6 +65,10 @@ function searchMangroveUser() {
 	let timer;
 	search.addEventListener("input", function (e) {
 		clearTimeout(timer);
+
+		let timeWait = 300;
+		if (this.value.length == 0) timeWait = 0;
+
 		timer = setTimeout(() => {
 			const value = this.value;
 			const url = `/Home/Page_SpeciesComposition?search=${value}`;
@@ -76,7 +81,7 @@ function searchMangroveUser() {
 				changeIconSearchOrWait();
 				requestAjax(url, result);
 			}
-		}, 300);
+		}, timeWait);
 	});
 }
 searchMangroveUser();
@@ -93,6 +98,10 @@ function searchTreeAdmin() {
 		let timer;
 		search.addEventListener("input", function (e) {
 			clearTimeout(timer);
+
+			let timeWait = 300;
+			if (this.value.length == 0) timeWait = 0;
+
 			timer = setTimeout(() => {
 				const value = this.value;
 				const pageSize = form.querySelector(".page_size").value;
@@ -106,7 +115,7 @@ function searchTreeAdmin() {
 					changeIconSearchOrWait();
 					requestAjax(url, result, true, true);
 				}
-			}, 300);
+			}, timeWait);
 		});
 	});
 }
