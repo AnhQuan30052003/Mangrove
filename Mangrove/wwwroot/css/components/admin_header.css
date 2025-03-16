@@ -1,11 +1,12 @@
 .right-0 {
     right: 0 !important;
-    position: absolute !important
+    position: absolute !important;
 }
 
 #header {
     position: relative;
     z-index: 10;
+    height: 80px;
 }
 
 #header .logo {
@@ -54,6 +55,10 @@
 }
 
 @media (width <=1200px) {
+    #header {
+        height: 61px;
+    }
+
     .actions .left h5 {
         font-size: 20px;
     }
@@ -81,8 +86,8 @@
 
     .actions .right .list_menu,
     #background {
-        top: 61px;
-        height: calc(100vh - 61px) !important;
+        top: 88px;
+        height: calc(100vh - 88px) !important;
     }
 
     .actions .right .list_menu .item {
@@ -113,12 +118,18 @@
         background-color: #efefef;
     }
 
-    @media (width <= 414px) {
+    @media (width >= 576px) {
         #background,
-        .actions .right .list_menu {            
-            top: 87px;
-            height: calc(100vh - 87px) !important
+        .actions .right .list_menu {
+            top: 61px;
+            height: calc(100vh - 61px) !important
         }
+    }
+}
+
+@media (width < 576px) {
+    #header {
+        height: 88px;
     }
 }
 

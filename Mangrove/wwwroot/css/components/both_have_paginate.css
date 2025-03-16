@@ -34,7 +34,7 @@
 .have_paginate .page_number {
 	margin: 0px 3px;
 	padding: 5px 10px;
-	width: 35px;
+	min-width: 35px;
 	height: 38px;
 	border-radius: 0.2rem;
 	text-align: center;
@@ -52,11 +52,8 @@
 }
 
 .have_paginate .page_hidden {
-	background-color: #f2f2f2;
-	top: 50px;
-	left: 45px;
-	right: 45px;
 	height: max-content;
+	width: 100%;
 }
 
 .have_paginate .page_hidden a.page_number {
@@ -85,8 +82,4 @@
 
 .have_paginate .page_number:not(.active):hover {
 	color: var(--greenPage);
-}
-
-@media (width <=1200px) {
-
 }

@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>k7xo7gecsg</Fingerprint>
-      <Integrity>4LqGAAOdSmTzF6bzL0rsPhqLlmR3srycHVLtgFh1xwg=</Integrity>
+      <Fingerprint>1hs1egnbzk</Fingerprint>
+      <Integrity>m3vj/xIbRG+T2emJaeyBonyusuBAV4Dj8DYRnkhznd0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</OriginalItemSpec>
@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>e3m5j84n6d</Fingerprint>
-      <Integrity>GhL+6wFm/6t6QB+nHFUwXwlEUHX4WchoGjvqtJ295Bg=</Integrity>
+      <Fingerprint>3lzddf1f12</Fingerprint>
+      <Integrity>mXHrCcjOYmeQqWd5ltDcHzI2GJYw8Z7Qan/HXxM4WWU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\auth_site.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>m9n7lxluzw</Fingerprint>
-      <Integrity>dmWWlEWcrtG3I2/Qrzm/b1TDZYQtBngcCSLbdzt3wEA=</Integrity>
+      <Fingerprint>1i4aabphc8</Fingerprint>
+      <Integrity>t6TM7+pFZxbDaZbhpr025mcoc0hC9Z95ZPRomvsluwE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\both_custom.css'))</OriginalItemSpec>
@@ -71,6 +71,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\both_setup.css'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_change_password.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>css/components/admin_change_password.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>cs381y0blz</Fingerprint>
+      <Integrity>LO7W3YVX7S5VllzvWz8Na52BsoEzXiv/12i6CgtZ+6g=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_change_password.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_footer.css'))">
       <SourceType>Package</SourceType>
@@ -174,8 +192,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>dulaara5zg</Fingerprint>
-      <Integrity>FQNYZZ3buVRwGk0G6DRTsvQSSgylezsDTnjOf9Gy/aY=</Integrity>
+      <Fingerprint>iae4ufw3bl</Fingerprint>
+      <Integrity>pqQgquy7W6eKJAxWERDmvJCkWaPssrggOLskISef3kQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\both_have_paginate.css'))</OriginalItemSpec>
@@ -264,8 +282,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>una8tajhic</Fingerprint>
-      <Integrity>BgPmQKMV/Q3KqgJa7tlpJM9mV2S2CATJbPMOTkgltvs=</Integrity>
+      <Fingerprint>3rxn5lsuju</Fingerprint>
+      <Integrity>YRxzhFIBD33qWxPhpuCYKfx9oebXxViYbcHrugrdyMg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\user_header.css'))</OriginalItemSpec>
@@ -1620,6 +1638,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\tree-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAP015.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\admin_site.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>js/custom/admin_site.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4sr1o2f98y</Fingerprint>
+      <Integrity>5NJ/qeGEns5P8ldM33cLh44VKih7b/NEO6UThJYToj0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\admin_site.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\auth_site.js'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
@@ -1632,8 +1668,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kkrmrnrg1k</Fingerprint>
-      <Integrity>7GPb3nZ7MtDIXC7mbOQkgs3tfsxqsQjqjlsUVzGEVFo=</Integrity>
+      <Fingerprint>me9v61mff3</Fingerprint>
+      <Integrity>Xsv29i1RQNMj8GTqE2bfHaYgNp6iNihox6oTjzXlndE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\auth_site.js'))</OriginalItemSpec>
@@ -1668,8 +1704,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>7mq7ph9bu7</Fingerprint>
-      <Integrity>gZCmYG6b7S2ymLXXGgRdqmcP14x0vY3snlrYVt5vn+M=</Integrity>
+      <Fingerprint>wm09v29kzn</Fingerprint>
+      <Integrity>eMKpvj0TVwAXo2lJh7CEKN2lbYVpPf9fBoF5Y5OGy7M=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\cancel_action.js'))</OriginalItemSpec>
@@ -1686,8 +1722,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>tvdc2myd10</Fingerprint>
-      <Integrity>SYtg/8JLGJJZPtbYXVDOMuIvKvV5xjQ4dXUgUkDkL2s=</Integrity>
+      <Fingerprint>0pxelhdkd6</Fingerprint>
+      <Integrity>FItv5G86tRBFTI6F5eaTHH/OvjY9Gq0Pp57e8a6k3aY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\collapse_expand.js'))</OriginalItemSpec>
@@ -1704,8 +1740,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9rihvbswb7</Fingerprint>
-      <Integrity>yzvPafj9ikSUEppevd++H2J2oIbnLicTgM6/Lwvz5dc=</Integrity>
+      <Fingerprint>oxz9k1adjy</Fingerprint>
+      <Integrity>LDZdUjdF/398Gab2SydGDtNeUusXljEpz8j0wEYZ87E=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\load_page.js'))</OriginalItemSpec>
@@ -1722,8 +1758,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>o4e4k99udh</Fingerprint>
-      <Integrity>iIg3DavXwnlmJML4sCJdoMEq6GONfw0GwtX+1GLay6w=</Integrity>
+      <Fingerprint>nv5nj7uz5x</Fingerprint>
+      <Integrity>g4wR4JP6oLski43vxZX3BRbXRrBKZBEqO4+1HMIWjz0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\menu_header.js'))</OriginalItemSpec>
@@ -1740,11 +1776,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>gz2w05yzpn</Fingerprint>
-      <Integrity>5BRMyDIYYruDHkvVG456uGHTV2SNN5fbji7lmpxsovY=</Integrity>
+      <Fingerprint>aa1tyb04fz</Fingerprint>
+      <Integrity>PuZqa4KmE33zZeV4zOlpS1GHG8zvrs3hp/zzze0VuKY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\paginate.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\password.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>js/custom/components/password.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>246j8qz057</Fingerprint>
+      <Integrity>soUf8e6Uc51IRI2veAsjP6rHXtpUYyJ7tcFsjQRU6Ss=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\password.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\scroll_page.js'))">
       <SourceType>Package</SourceType>
@@ -1758,8 +1812,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>scc5us0zv8</Fingerprint>
-      <Integrity>zFtQmB7hwfJcf10rSUvaLYUrO51EXw9kfbeT0iXhGOU=</Integrity>
+      <Fingerprint>jpois8yghr</Fingerprint>
+      <Integrity>lykhUo0/vTAVkZujAFm4fdpf6lEq1YuB0EDETPpCafI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\scroll_page.js'))</OriginalItemSpec>
@@ -1776,29 +1830,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>h7xa7d4xph</Fingerprint>
-      <Integrity>Y/4a1vqt4EuFgFty29yPhQ/3K50qjJ2NcKubbvtmiNU=</Integrity>
+      <Fingerprint>rm5lyonxil</Fingerprint>
+      <Integrity>PX6z7TmiEJidX1RFddKYkvkGfEh46jgc4FJJNvDJsXE=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\search.js'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_hidden_password.js'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\send_width.js'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>js/custom/components/show_hidden_password.js</RelativePath>
+      <RelativePath>js/custom/components/send_width.js</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>3unc38f4aq</Fingerprint>
-      <Integrity>VQno3H0xzwH/0HpEiNMMlkCwgGZDTDujSjh7mSpf6S4=</Integrity>
+      <Fingerprint>xq2t6sa8za</Fingerprint>
+      <Integrity>1/aD1tARtG69X1RsrivjwglmJ2fgVG8+0QyEl00fOE0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_hidden_password.js'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\send_width.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_hidden_tab.js'))">
       <SourceType>Package</SourceType>
@@ -1812,8 +1866,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>temb5mmrap</Fingerprint>
-      <Integrity>y1xzD2pAEcW09i7cRDSj0Erpe6JIHagOaVWA21YsbOQ=</Integrity>
+      <Fingerprint>d8yewc2bhp</Fingerprint>
+      <Integrity>zVS+U0XGQ1hnaURRLAWaFtjFrYz5+ECJc2TUhrseDNo=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_hidden_tab.js'))</OriginalItemSpec>
@@ -1830,8 +1884,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>hcqa711as2</Fingerprint>
-      <Integrity>4T5HIGtU7EAtf4rKVlSlbCuD8ImcnPD4Nypm3V7nCc4=</Integrity>
+      <Fingerprint>iuusj8hef8</Fingerprint>
+      <Integrity>Ki4nqhwpkpkWm/KJ/An/XcO+pyFqYnJPU+K6+DRINOI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</OriginalItemSpec>

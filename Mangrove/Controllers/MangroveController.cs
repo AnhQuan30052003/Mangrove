@@ -27,17 +27,17 @@ namespace Mangrove.Controllers {
 				var data = await context.TblMangroves.ToListAsync();
 				if (data.Count() == 0) data = new List<TblMangrove>();
 
+				// Test item
 				var temp = data;
 				data = new List<TblMangrove>();
-				for (int i = 1; i <= 13; i++) {
+				for (int i = 1; i <= 100; i++) {
 					foreach (var item in temp) {
 						data.Add(item);
 					}
 				}
 
-				List<TblMangrove> fillter = new List<TblMangrove>();
-
 				// Xử lý logic tìm kiếm
+				List<TblMangrove> fillter = new List<TblMangrove>();
 				foreach (var item in data) {
 					bool check = Helper.Func.CheckContain(
 						search,

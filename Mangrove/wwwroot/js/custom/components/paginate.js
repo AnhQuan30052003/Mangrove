@@ -4,7 +4,7 @@ function togglePageHidden() {
 		const toggle = document.querySelector(".toggle_page_hidden");
 		if (toggle) {
 			if (toggle.contains(e.target)) {
-				const pageHidden = document.querySelector(".page_hidden");
+				const pageHidden = toggle.closest(".pagination").querySelector(".page_hidden");
 				if (pageHidden) pageHidden.classList.toggle("d-none");
 			}
 		}

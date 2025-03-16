@@ -1,78 +1,56 @@
 ﻿@inject IHttpContextAccessor httpContextAccessor
 @model InfomationPaginate
+@{
+	int totalPages = Model.TotalPages;
+	int currentPage = Model.CurrentPage;
+	int pageSize = Model.PageSize;
 
-<div class="pagination p-3 d-flex justify-content-center" style="height: max-content;">
-	<div class="group_page d-flex justify-content-center position-relative">
-		@{
-			int totalPages = Model.TotalPages;
-			int currentPage = Model.CurrentPage;
-			int pageSize = Model.PageSize;
+	string search = Model.FindText;
+	string controller = Model.Controller;
+	string action = Model.Action;
+	int width = Convert.ToInt32(httpContextAccessor.HttpContext?.Request.Cookies["WidthScreen"]);
+	Console.Clear();
+	Console.WriteLine($"Width nhận: {width}");
+	int groupPage = 10;
+	if (width <= 1200) groupPage = 6;
+	if (width <= 576) groupPage = 3;
+	if (width <= 414) groupPage = 2;
 
-			string search = Model.FindText;
-			string controller = Model.Controller;
-			string action = Model.Action;
-			int width = Convert.ToInt32(httpContextAccessor.HttpContext?.Request.Cookies["WidthScreen"]);
+	bool morePage = false;
+}
 
-			if (totalPages == 1)
-			{
-				<a class="page_number active">1</a>
-			}
-			else
-			{
-				// Mũi tên trái
-				if (currentPage > 1)
+<div class="pagination p-3 d-flex justify-content-center">
+	<div class="pages_ d-inline-flex flex-column justify-content-center align-items-center gap-1" style="width: max-content">
+		<!-- Page main -->
+		<div class="group_page d-flex justify-content-center align-items-center">
+			@{
+				if (totalPages == 1)
 				{
-					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage - 1, pageSize = pageSize })" class="arrow" style="margin-left: 10px;">&#10094</a>
-				}
-
-				if (totalPages <= 10)
-				{
-					for (int i = 1; i <= totalPages; i++)
-					{
-						if (i == currentPage)
-						{
-							<span class="page_number active">@i</span>
-						}
-						else
-						{
-							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-						}
-					}
+					<a class="page_number active">1</a>
 				}
 				else
 				{
-					int groupPage = 4;
-					if (width <= 1200) groupPage = 3;
+					// Mũi tên trái
+					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage - 1, pageSize = pageSize })" class="arrow mx-1 @(currentPage > 1 ? "" : "invisible")" style="margin-left: 10px;">&#10094</a>
 
-					for (int i = 1; i <= groupPage; i++)
+					if (totalPages <= 10)
 					{
-						if (i == currentPage)
+						for (int i = 1; i <= totalPages; i++)
 						{
-							<a class="page_number active">@i</a>
-
+							if (i == currentPage)
+							{
+								<span class="page_number active">@i</span>
+							}
+							else
+							{
+								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+							}
 						}
-						else
-						{
-							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-						}
-					}
-
-					if (currentPage > groupPage && currentPage < (totalPages - groupPage + 1))
-					{
-						<a class="page_number cursor-pointer toggle_page_hidden bg-black text-white">
-							<i class="fas fa-ellipsis-h"></i>
-						</a>
 					}
 					else
 					{
-						<a class="page_number cursor-pointer toggle_page_hidden">
-							<i class="fas fa-ellipsis-h"></i>
-						</a>
-
-					}
-
-					<div class="page_hidden d-nonez position-absolute d-flex flex-wrap justify-content-start gap-0">
-						@for (int i = groupPage + 1; i <= totalPages - groupPage; i++)
+						morePage = true;
+						for (int i = 1; i <= groupPage; i++)
 						{
 							if (i == currentPage)
 							{
@@ -84,9 +62,47 @@
 								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
 							}
 						}
-					</div>
 
-					for (int i = totalPages - groupPage + 1; i <= totalPages; i++)
+						if (currentPage > groupPage && currentPage < (totalPages - groupPage + 1))
+						{
+
+							<a class="page_number cursor-pointer toggle_page_hidden bg-black text-white">
+								<i class="fas fa-ellipsis-h"></i>
+							</a>
+						}
+						else
+						{
+							<a class="page_number cursor-pointer toggle_page_hidden">
+								<i class="fas fa-ellipsis-h"></i>
+							</a>
+
+						}
+						for (int i = totalPages - groupPage + 1; i <= totalPages; i++)
+						{
+							if (i == currentPage)
+							{
+								<a class="page_number active">@i</a>
+
+							}
+							else
+							{
+								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
+							}
+						}
+					}
+
+					// Mũi tên phải
+					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage + 1, pageSize = pageSize })" class="arrow mx-1 @(currentPage < totalPages ? "" : "invisible")" style="margin-left: 10px;">&#10095</a>
+				}
+			}
+		</div>
+
+		<!-- Page hidden -->
+		<div class="page_hidden d-none d-flex flex-wrap justify-content-center">
+			@{
+				if (morePage)
+				{
+					for (int i = groupPage + 1; i <= totalPages - groupPage; i++)
 					{
 						if (i == currentPage)
 						{
@@ -99,13 +115,7 @@
 						}
 					}
 				}
-
-				// Mũi tên phải
-				if (currentPage < totalPages)
-				{
-					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage + 1, pageSize = pageSize })" class="arrow" style="margin-left: 10px;">&#10095</a>
-				}
 			}
-		}
+		</div>
 	</div>
 </div>					 

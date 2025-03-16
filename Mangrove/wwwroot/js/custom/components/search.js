@@ -13,7 +13,7 @@ function requestAjax(url, result = null, notChangeIcon = true) {
 		xhr.send();
 	}
 	catch {
-		console.log("Lỗi request ajax tới: " + url);
+		console.log("Lỗi request ajax tới url: " + url);
 	}
 }
 
@@ -43,8 +43,13 @@ function searchInvidiual() {
 			const url = `/Home/Page_Result?id=${id}&searchIndividual=${value}`;
 			const result = document.querySelector(".list_individuals");
 
-			changeIconSearchOrWait();
-			requestAjax(url, result);
+			if (value.length == 0) {
+				requestAjax(url, result, false);
+			}
+			else {
+				changeIconSearchOrWait();
+				requestAjax(url, result);
+			}
 		}, 300);
 	});
 }
@@ -63,8 +68,13 @@ function searchMangroveUser() {
 			const url = `/Home/Page_SpeciesComposition?search=${value}`;
 			const result = document.querySelector(".list_mangrove");
 
-			changeIconSearchOrWait();
-			requestAjax(url, result);
+			if (value.length == 0) {
+				requestAjax(url, result, false);
+			}
+			else {
+				changeIconSearchOrWait();
+				requestAjax(url, result);
+			}
 		}, 300);
 	});
 }
@@ -88,8 +98,13 @@ function searchTreeAdmin() {
 				const url = `/${controller}/Page_Index?search=${value}&pageSize=${pageSize}`;
 				const result = document.querySelector("#result_search_ajax");
 
-				changeIconSearchOrWait();
-				requestAjax(url, result);
+				if (value.length == 0) {
+					requestAjax(url, result, false);
+				}
+				else {
+					changeIconSearchOrWait();
+					requestAjax(url, result);
+				}
 			}, 300);
 		});
 	});
@@ -112,7 +127,9 @@ function submitWhenChangePageSize() {
 
 					const url = `/${controller}/Page_Index?search=${findText}&currentPage=1&pageSize=${pageSize}`;
 					const result = document.querySelector("#result_search_ajax");
-					requestAjax(url, result, false);
+
+					changeIconSearchOrWait();
+					requestAjax(url, result);
 				});
 			}
 		});
