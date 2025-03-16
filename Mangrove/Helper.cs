@@ -182,7 +182,7 @@ public class Helper {
 
 		// Check exsits contain
 		public static bool CheckContain(string key, List<string> data) {
-			key = FormatUngisnedString(key.ToLower());
+			key = FormatUngisnedString(key.ToLower().Trim());
 
 			foreach (string item in data) {
 				string text = FormatUngisnedString(item.ToLower());

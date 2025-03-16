@@ -19,6 +19,7 @@ namespace Mangrove.Controllers {
 				string findText = search;
 				ViewData["Search"] = search;
 
+
 				bool isEN = Helper.Func.IsLanguage("EN");
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
@@ -28,13 +29,13 @@ namespace Mangrove.Controllers {
 				if (data.Count() == 0) data = new List<TblMangrove>();
 
 				// Test item
-				var temp = data;
-				data = new List<TblMangrove>();
-				for (int i = 1; i <= 100; i++) {
-					foreach (var item in temp) {
-						data.Add(item);
-					}
-				}
+				//var temp = data;
+				//data = new List<TblMangrove>();
+				//for (int i = 1; i <= 100; i++) {
+				//	foreach (var item in temp) {
+				//		data.Add(item);
+				//	}
+				//}
 
 				// Xử lý logic tìm kiếm
 				List<TblMangrove> fillter = new List<TblMangrove>();

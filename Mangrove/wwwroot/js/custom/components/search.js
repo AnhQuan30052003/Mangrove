@@ -1,5 +1,5 @@
 ﻿// Request with AJAX
-function requestAjax(url, result = null, notChangeIcon = true) {
+function requestAjax(url, result = null, notChangeIcon = true, createItemPage = false) {
 	try {
 		const xhr = new XMLHttpRequest();
 		xhr.open("get", url);
@@ -8,6 +8,7 @@ function requestAjax(url, result = null, notChangeIcon = true) {
 			if (xhr.status == 200) {
 				if (result != null) result.innerHTML = xhr.responseText;
 				if (notChangeIcon) changeIconSearchOrWait();
+				if (createItemPage) createItemsPage();
 			}
 		}
 		xhr.send();
@@ -99,11 +100,11 @@ function searchTreeAdmin() {
 				const result = document.querySelector("#result_search_ajax");
 
 				if (value.length == 0) {
-					requestAjax(url, result, false);
+					requestAjax(url, result, false, true);
 				}
 				else {
 					changeIconSearchOrWait();
-					requestAjax(url, result);
+					requestAjax(url, result, true, true);
 				}
 			}, 300);
 		});
@@ -129,7 +130,7 @@ function submitWhenChangePageSize() {
 					const result = document.querySelector("#result_search_ajax");
 
 					changeIconSearchOrWait();
-					requestAjax(url, result);
+					requestAjax(url, result, true, true);
 				});
 			}
 		});

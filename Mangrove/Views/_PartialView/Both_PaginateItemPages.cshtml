@@ -8,114 +8,30 @@
 	string search = Model.FindText;
 	string controller = Model.Controller;
 	string action = Model.Action;
-	int width = Convert.ToInt32(httpContextAccessor.HttpContext?.Request.Cookies["WidthScreen"]);
-	Console.Clear();
-	Console.WriteLine($"Width nhận: {width}");
-	int groupPage = 10;
-	if (width <= 1200) groupPage = 6;
-	if (width <= 576) groupPage = 3;
-	if (width <= 414) groupPage = 2;
 
+	int groupPage = 10;
 	bool morePage = false;
 }
 
-<div class="pagination p-3 d-flex justify-content-center">
+<div class="pagination p-3 d-flex justify-content-center"
+	 totalPages="@totalPages"
+	 currentPage="@currentPage"
+	 pageSize="@pageSize"
+	 search="@search"
+	 controller="@controller"
+	 action="@action">
+
 	<div class="pages_ d-inline-flex flex-column justify-content-center align-items-center gap-1" style="width: max-content">
 		<!-- Page main -->
 		<div class="group_page d-flex justify-content-center align-items-center">
-			@{
-				if (totalPages == 1)
-				{
-					<a class="page_number active">1</a>
-				}
-				else
-				{
-					// Mũi tên trái
-					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage - 1, pageSize = pageSize })" class="arrow mx-1 @(currentPage > 1 ? "" : "invisible")" style="margin-left: 10px;">&#10094</a>
-
-					if (totalPages <= 10)
-					{
-						for (int i = 1; i <= totalPages; i++)
-						{
-							if (i == currentPage)
-							{
-								<span class="page_number active">@i</span>
-							}
-							else
-							{
-								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-							}
-						}
-					}
-					else
-					{
-						morePage = true;
-						for (int i = 1; i <= groupPage; i++)
-						{
-							if (i == currentPage)
-							{
-								<a class="page_number active">@i</a>
-
-							}
-							else
-							{
-								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-							}
-						}
-
-						if (currentPage > groupPage && currentPage < (totalPages - groupPage + 1))
-						{
-
-							<a class="page_number cursor-pointer toggle_page_hidden bg-black text-white">
-								<i class="fas fa-ellipsis-h"></i>
-							</a>
-						}
-						else
-						{
-							<a class="page_number cursor-pointer toggle_page_hidden">
-								<i class="fas fa-ellipsis-h"></i>
-							</a>
-
-						}
-						for (int i = totalPages - groupPage + 1; i <= totalPages; i++)
-						{
-							if (i == currentPage)
-							{
-								<a class="page_number active">@i</a>
-
-							}
-							else
-							{
-								<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-							}
-						}
-					}
-
-					// Mũi tên phải
-					<a href="@Url.Action(action, controller, new { search = search, currentPage = currentPage + 1, pageSize = pageSize })" class="arrow mx-1 @(currentPage < totalPages ? "" : "invisible")" style="margin-left: 10px;">&#10095</a>
-				}
-			}
+			
 		</div>
 
 		<!-- Page hidden -->
 		<div class="page_hidden d-none d-flex flex-wrap justify-content-center">
-			@{
-				if (morePage)
-				{
-					for (int i = groupPage + 1; i <= totalPages - groupPage; i++)
-					{
-						if (i == currentPage)
-						{
-							<a class="page_number active">@i</a>
-
-						}
-						else
-						{
-							<a href="@Url.Action(action, controller, new { search = search, currentPage = i, pageSize = pageSize })" class="page_number">@i</a>
-						}
-					}
-				}
-			}
+			
 		</div>
 	</div>
-</div>					 
+</div>	
+
+<script src="~/js/custom/components/createItemsPage.js"></script>
