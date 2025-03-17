@@ -42,12 +42,15 @@ namespace Mangrove.Models {
 
 		public int CurrentPage;
 		public int PageSize;
+		public int TotalPages;
+		public string sortType;
+		public string? sortFollow;
+
 		public string FindText;
 		public string Controller;
 		public string Action;
-		public int TotalPages;
 
-		public InfomationPaginate(string NameTable, List<string> ListTitle, int CurrentPage, int PageSize, int totalItem, string FindText, string Controller, string Action) {
+		public InfomationPaginate(string NameTable, List<string> ListTitle, int CurrentPage, int PageSize, int totalItem, string sortType, string? sortFollow, string FindText, string Controller, string Action) {
 			bool isEN = Helper.Func.IsLanguage("en");
 			string label = Helper.Func.IsLanguage("en") ? " line" : " dòng";
 
@@ -66,6 +69,8 @@ namespace Mangrove.Models {
 			this.CurrentPage = CurrentPage;
 			this.PageSize = PageSize;
 			this.TotalPages = (int)Math.Ceiling((double)totalItem / PageSize);
+			this.sortType = sortType;
+			this.sortFollow = sortFollow;
 
 			this.FindText = FindText;
 			this.Controller = Controller;

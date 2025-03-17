@@ -102,6 +102,19 @@ option {
 	background-color: #70c745;
 }
 
+.icon_detail:hover {
+    color: #00bcf2;
+}
+
+.icon_edit:hover {
+    color: var(--greenPage);
+}
+
+.icon_delete:hover {
+    color: red;
+}
+
+
 @keyframes count_time {
 	0% {
 		width: 100%;

@@ -54,9 +54,18 @@
     outline: solid 1px var(--greenPage);
 }
 
+.logout {
+    color: red !important;
+
+}
+
 @media (width <=1200px) {
     #header {
         height: 61px;
+    }
+
+    .logout {
+        background-color: transparent !important;
     }
 
     .actions .left h5 {
@@ -178,5 +187,10 @@
 
     #header .dropdown_list {
         min-width: 150px;
+    }
+
+    .logout:hover {
+        background-color: red !important;
+        color: white !important;
     }
 }

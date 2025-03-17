@@ -24,6 +24,8 @@ public class Helper {
 		public static string timer = "Timer";
 		public static string content = "Content";
 		public static string toPage = "ToPage";
+		public static string sortASC = "asc";
+		public static string sortDESC = "desc";
 	}
 
 	// Setup noifier
@@ -186,7 +188,9 @@ public class Helper {
 
 			foreach (string item in data) {
 				string text = FormatUngisnedString(item.ToLower());
-				if (text.Contains(key)) return true;
+				if (text.Contains(key)) {
+					return true;
+				}
 			}
 
 			return false;

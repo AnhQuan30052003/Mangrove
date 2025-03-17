@@ -3,7 +3,8 @@
 	string pv = Helper.Path.partialView;
 }
 
-<div class="form_paginate" page="@Model.InfomationPaginate.Controller">
+<div class="form_paginate">
+
 	<!-- Search and 2 Button -->
 	@await Html.PartialAsync($"{pv}/Both_PaginateNav.cshtml", Model.InfomationPaginate)
 

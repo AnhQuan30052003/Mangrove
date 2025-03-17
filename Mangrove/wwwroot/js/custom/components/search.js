@@ -93,7 +93,12 @@ function searchTreeAdmin() {
 
 	forms.forEach((form) => {
 		const search = form.querySelector(".search_ajax");
-		const controller = form.getAttribute("page");
+
+		const data = form.querySelector(".data_paginate");
+		const controller = data.getAttribute("controller");
+		const action = data.getAttribute("action");
+		const sortType = data.getAttribute("sortType");
+		const sortFollow = data.getAttribute("sortFollow");
 
 		let timer;
 		search.addEventListener("input", function (e) {
@@ -105,7 +110,7 @@ function searchTreeAdmin() {
 			timer = setTimeout(() => {
 				const value = this.value;
 				const pageSize = form.querySelector(".page_size").value;
-				const url = `/${controller}/Page_Index?search=${value}&pageSize=${pageSize}`;
+				const url = `/${controller}/${action}?search=${value}&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
 				const result = document.querySelector("#result_search_ajax");
 
 				if (value.length == 0) {
@@ -133,9 +138,14 @@ function submitWhenChangePageSize() {
 				select.addEventListener("change", function () {
 					const pageSize = this.value;
 					const findText = form.querySelector(".search_ajax").value;
-					const controller = form.getAttribute("page");
 
-					const url = `/${controller}/Page_Index?search=${findText}&currentPage=1&pageSize=${pageSize}`;
+					const data = form.querySelector(".data_paginate");
+					const controller = data.getAttribute("controller");
+					const action = data.getAttribute("action");
+					const sortType = data.getAttribute("sortType");
+					const sortFollow = data.getAttribute("sortFollow");
+
+					const url = `/${controller}/${action}?search=${findText}&currentPage=1&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
 					const result = document.querySelector("#result_search_ajax");
 
 					changeIconSearchOrWait();
@@ -143,7 +153,10 @@ function submitWhenChangePageSize() {
 				});
 			}
 		});
-	} catch { }
+	}
+	catch (e) {
+		console.log(e);
+	}
 }
 submitWhenChangePageSize();
 
