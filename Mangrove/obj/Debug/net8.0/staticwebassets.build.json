@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XURwcd61CnxmxYSvs/hSlzUs6UBGhj819z6cWBAi6cA=",
+  "Hash": "HxyeWkTq5gPgBj37eNe60iJzZBosl0330BDNjEhuc0M=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -136,8 +136,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9flveizcdq",
-      "Integrity": "y/sz4yNFSlfP7jE3dBMHSlFr3fZH1RY4cD8+LgSRgLg=",
+      "Fingerprint": "uawsj0by7m",
+      "Integrity": "hrUkEdQOgusxvG8q5zmSEXlXz7ELK4fHCj3W+dmsSGI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components\\admin_footer.css"
@@ -325,8 +325,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "vja381p649",
-      "Integrity": "KxSQQF2jaBxlnayVJ0T87INQlwS456bJp+ChYRJjyKA=",
+      "Fingerprint": "iyxkr3f6jm",
+      "Integrity": "6j9FAYLCAF9vVMDmdX8em5PVkQPdJuDjM2TWv2jDF8M=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components\\user_footer.css"
@@ -3873,51 +3873,6 @@
       ]
     },
     {
-      "Route": "css/components/admin_footer.9flveizcdq.css",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_footer.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "817"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"y/sz4yNFSlfP7jE3dBMHSlFr3fZH1RY4cD8+LgSRgLg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 10 Mar 2025 07:31:22 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9flveizcdq"
-        },
-        {
-          "Name": "label",
-          "Value": "css/components/admin_footer.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-y/sz4yNFSlfP7jE3dBMHSlFr3fZH1RY4cD8+LgSRgLg="
-        }
-      ]
-    },
-    {
       "Route": "css/components/admin_footer.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_footer.css",
       "Selectors": [],
@@ -3928,7 +3883,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "817"
+          "Value": "892"
         },
         {
           "Name": "Content-Type",
@@ -3936,11 +3891,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"y/sz4yNFSlfP7jE3dBMHSlFr3fZH1RY4cD8+LgSRgLg=\""
+          "Value": "\"hrUkEdQOgusxvG8q5zmSEXlXz7ELK4fHCj3W+dmsSGI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 10 Mar 2025 07:31:22 GMT"
+          "Value": "Sun, 16 Mar 2025 13:49:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3950,7 +3905,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-y/sz4yNFSlfP7jE3dBMHSlFr3fZH1RY4cD8+LgSRgLg="
+          "Value": "sha256-hrUkEdQOgusxvG8q5zmSEXlXz7ELK4fHCj3W+dmsSGI="
+        }
+      ]
+    },
+    {
+      "Route": "css/components/admin_footer.uawsj0by7m.css",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_footer.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "892"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hrUkEdQOgusxvG8q5zmSEXlXz7ELK4fHCj3W+dmsSGI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 16 Mar 2025 13:49:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "uawsj0by7m"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components/admin_footer.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hrUkEdQOgusxvG8q5zmSEXlXz7ELK4fHCj3W+dmsSGI="
         }
       ]
     },
@@ -4621,7 +4621,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1339"
+          "Value": "1413"
         },
         {
           "Name": "Content-Type",
@@ -4629,11 +4629,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KxSQQF2jaBxlnayVJ0T87INQlwS456bJp+ChYRJjyKA=\""
+          "Value": "\"6j9FAYLCAF9vVMDmdX8em5PVkQPdJuDjM2TWv2jDF8M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 14:19:26 GMT"
+          "Value": "Sun, 16 Mar 2025 13:51:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4643,12 +4643,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-KxSQQF2jaBxlnayVJ0T87INQlwS456bJp+ChYRJjyKA="
+          "Value": "sha256-6j9FAYLCAF9vVMDmdX8em5PVkQPdJuDjM2TWv2jDF8M="
         }
       ]
     },
     {
-      "Route": "css/components/user_footer.vja381p649.css",
+      "Route": "css/components/user_footer.iyxkr3f6jm.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\user_footer.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -4658,7 +4658,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1339"
+          "Value": "1413"
         },
         {
           "Name": "Content-Type",
@@ -4666,11 +4666,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"KxSQQF2jaBxlnayVJ0T87INQlwS456bJp+ChYRJjyKA=\""
+          "Value": "\"6j9FAYLCAF9vVMDmdX8em5PVkQPdJuDjM2TWv2jDF8M=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 07 Mar 2025 14:19:26 GMT"
+          "Value": "Sun, 16 Mar 2025 13:51:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4680,7 +4680,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "vja381p649"
+          "Value": "iyxkr3f6jm"
         },
         {
           "Name": "label",
@@ -4688,7 +4688,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-KxSQQF2jaBxlnayVJ0T87INQlwS456bJp+ChYRJjyKA="
+          "Value": "sha256-6j9FAYLCAF9vVMDmdX8em5PVkQPdJuDjM2TWv2jDF8M="
         }
       ]
     },

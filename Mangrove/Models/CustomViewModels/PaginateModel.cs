@@ -3,22 +3,30 @@ using System.Security.Policy;
 
 namespace Mangrove.Models {
 	public class PaginateModel<T> {
-		public List<T> DataPaginate;
 		public InfomationPaginate InfomationPaginate;
+		public List<T> DataPaginate;
 
-		public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, string NameTable, List<string> ListTitle, string FindText, string Controller, string Action) {
-			this.InfomationPaginate = new InfomationPaginate(
-				NameTable,
-				ListTitle,
-				CurrentPage,
-				PageSize,
-				FindText,
-				Controller,
-				Action,
-				DataPaginate.Count()
-			);
+		// Hàm khởi tạo nhiều tham số
+		//public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, string NameTable, List<string> ListTitle, string FindText, string Controller, string Action) {
+		//	this.InfomationPaginate = new InfomationPaginate(
+		//		NameTable,
+		//		ListTitle,
+		//		CurrentPage,
+		//		PageSize,
+		//		DataPaginate.Count(),
+		//		FindText,
+		//		Controller,
+		//		Action
+		//	);
+		//	this.DataPaginate = ExcePaginate(DataPaginate);
+		//}
+
+		// Hàm khởi tạo chỉ tập trung vào 2 tham số (Data & Info)
+		public PaginateModel(List<T> DataPaginate, InfomationPaginate InfomationPaginate) {
+			this.InfomationPaginate = InfomationPaginate;
 			this.DataPaginate = ExcePaginate(DataPaginate);
 		}
+
 		private List<T> ExcePaginate(List<T> DataPaginate) {
 			return DataPaginate
 			.Skip((InfomationPaginate.CurrentPage - 1) * InfomationPaginate.PageSize)
@@ -39,7 +47,7 @@ namespace Mangrove.Models {
 		public string Action;
 		public int TotalPages;
 
-		public InfomationPaginate(string NameTable, List<string> ListTitle, int CurrentPage, int PageSize, string FindText, string Controller, string Action, int totalPages) {
+		public InfomationPaginate(string NameTable, List<string> ListTitle, int CurrentPage, int PageSize, int totalItem, string FindText, string Controller, string Action) {
 			bool isEN = Helper.Func.IsLanguage("en");
 			string label = Helper.Func.IsLanguage("en") ? " line" : " dòng";
 
@@ -57,10 +65,11 @@ namespace Mangrove.Models {
 			
 			this.CurrentPage = CurrentPage;
 			this.PageSize = PageSize;
+			this.TotalPages = (int)Math.Ceiling((double)totalItem / PageSize);
+
 			this.FindText = FindText;
 			this.Controller = Controller;
 			this.Action = Action;
-			this.TotalPages = (int)Math.Ceiling((double)totalPages / PageSize);
 		}
 	}
 }
