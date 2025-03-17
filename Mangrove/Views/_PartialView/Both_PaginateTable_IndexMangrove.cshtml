@@ -6,144 +6,149 @@
 }
 
 <!-- Table -->
-<div class="table_responsive bg-white">
-	<table class="table table-striped table-bordered mb-0 data_paginate"
-	controller="@Model.InfomationPaginate.Controller"
-	action="@Model.InfomationPaginate.Action"
-	sortType="@Model.InfomationPaginate.sortType"
-	sortFollow="@Model.InfomationPaginate.sortFollow">
+<div class="wrapper_data rounded-3 overflow-hidden">
+	<div class="table_responsive bg-white">
+		<table class="table table-striped table-bordered mb-0 data_paginate"
+			   controller="@Model.InfomationPaginate.Controller"
+			   action="@Model.InfomationPaginate.Action"
+			   sortType="@Model.InfomationPaginate.sortType"
+			   sortFollow="@Model.InfomationPaginate.sortFollow">
 
-		<thead>
-			<tr class="text-center bg-black text-white">
-				@{
-					string controller = Model.InfomationPaginate.Controller;
-					string action = Model.InfomationPaginate.Action;
-					string sortType = Model.InfomationPaginate.sortType;
-					string sortFollow = Model.InfomationPaginate.sortFollow ?? "";
+			<thead>
+				<tr class="text-center bg-black text-white">
+					@{
+						string controller = Model.InfomationPaginate.Controller;
+						string action = Model.InfomationPaginate.Action;
+						string sortType = Model.InfomationPaginate.sortType;
+						string sortFollow = Model.InfomationPaginate.sortFollow ?? "";
 
-					string search = Model.InfomationPaginate.FindText;
-					int currentpage = Model.InfomationPaginate.CurrentPage;
-					int pageSize = Model.InfomationPaginate.PageSize;
+						string search = Model.InfomationPaginate.FindText;
+						int currentpage = Model.InfomationPaginate.CurrentPage;
+						int pageSize = Model.InfomationPaginate.PageSize;
 
-					var listStyle = Model.InfomationPaginate.ListTitle;
+						var listStyle = Model.InfomationPaginate.ListTitle;
 
-					for (int i = 0; i < listStyle.Count(); i++)
-					{
-						var label = listStyle[i];
-						bool outList = i == 0 || i == listStyle.Count() - 1;
-
-						string setSortType = "";
-						if (sortFollow == label)
+						for (int i = 0; i < listStyle.Count(); i++)
 						{
-							setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
-						}
-						else
-						{
-							setSortType = Helper.Key.sortASC;
-						}
+							var label = listStyle[i];
+							bool outList = i == 0 || i == listStyle.Count() - 1;
 
-						string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
-
-						string text = isEN ? "Click to sort " : "Click để sắp xếp ";
-						if (typeArrow == "fa-arrow-up") {
-							text += isEN ? "ascending" : "tăng dần";
-						}
-						else {
-							text += isEN ? "descending" : "giảm dần";
-						}
-
-
-							<th class="head_sort position-relative">
-							@if (outList)
+							string setSortType = "";
+							if (sortFollow == label)
 							{
-								<a class="h-100 w-100 d-block">@label</a>
+								setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
 							}
 							else
 							{
-								<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=setSortType, sortFollow=label })'
-								   class="h-100 w-100 d-block"
-								   title="@text">
-									@label
-								</a>
-								<i class="icon_sort fa-solid @typeArrow"></i>
+								setSortType = Helper.Key.sortASC;
 							}
 
-						</th>
-					}
-				}
-			</tr>
-		</thead>
+							string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
 
-		<tbody>
-			<!-- Data -->
-			@{
-				var data = Model.DataPaginate;
-
-				if (data.Count > 0)
-				{
-					long stt = 1;
-					foreach (var item in data)
-					{
-						<tr class="table_item position-relative">
-							<td class="text-center">@(stt++)</td>
-							<td>@(isEN ? item.NameEn : item.NameVi)</td>
-							<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
-							<td>@item.ScientificName</td>
-							<td>@item.Familia</td>
-							<td>@(isEN ? item.DistributionEn : item.DistributionVi)</td>
-
-							<td class="text-center">
-								<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">
-									<i class="fas fa-ellipsis-h"></i>
-								</button>
-
-								<ul class="list_option p-2 border rounded-1 d-none bg-white color-black">
-									<li class="option_item icon_detail">
-										<a href="@Url.Action("Detail", "Mangrove", new { id = item.Id })">
-											<i class="fa-solid fa-circle-info"></i>
-											<span>@translate["label_chi_tiet"]</span>
-										</a>
-									</li>
-
-									<li class="option_item icon_edit">
-										<a href="@Url.Action("Edit", "Mangrove", new { id = item.Id })">
-											<i class="fas fa-edit"></i>
-											<span>@translate["label_sua"]</span>
-										</a>
-									</li>
-
-									<li class="option_item icon_delete">
-										<a href="@Url.Action("Delete", "Mangrove", new { id = item.Id })">
-											<i class="fa-solid fa-trash"></i>
-											<span>@translate["label_xoa"]</span>
-										</a>
-									</li>
-								</ul>
-							</td>
-						</tr>
-					}
-
-					while (stt <= Model.InfomationPaginate.PageSize)
-					{
-						<tr>
-							@foreach (var item in Model.InfomationPaginate.ListTitle)
+							string text = isEN ? "Click to sort " : "Click để sắp xếp ";
+							if (typeArrow == "fa-arrow-up")
 							{
-								<td>&nbsp;</td>
+								text += isEN ? "ascending" : "tăng dần";
 							}
+							else
+							{
+								text += isEN ? "descending" : "giảm dần";
+							}
+
+
+							<th class="head_sort position-relative">
+								@if (outList)
+								{
+									<a class="h-100 w-100 d-block">@label</a>
+								}
+								else
+								{
+									<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=setSortType, sortFollow=label })'
+									   class="h-100 w-100 d-block"
+									   title="@text">
+										@label
+									</a>
+									<i class="icon_sort fa-solid @typeArrow"></i>
+								}
+
+							</th>
+						}
+					}
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- Data -->
+				@{
+					var data = Model.DataPaginate;
+
+					if (data.Count > 0)
+					{
+						long stt = 1;
+						foreach (var item in data)
+						{
+							<tr class="table_item position-relative">
+								<td class="text-center">@(stt++)</td>
+								<td>@(isEN ? item.NameEn : item.NameVi)</td>
+								<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
+								<td>@item.ScientificName</td>
+								<td>@item.Familia</td>
+								<td>@(isEN ? item.DistributionEn : item.DistributionVi)</td>
+
+								<td class="text-center">
+									<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">
+										<i class="fas fa-ellipsis-h"></i>
+									</button>
+
+									<ul class="list_option p-2 border rounded-1 d-none bg-white color-black">
+										<li class="option_item icon_detail">
+											<a href="@Url.Action("Detail", "Mangrove", new { id = item.Id })">
+												<i class="fa-solid fa-circle-info"></i>
+												<span>@translate["label_chi_tiet"]</span>
+											</a>
+										</li>
+
+										<li class="option_item icon_edit">
+											<a href="@Url.Action("Edit", "Mangrove", new { id = item.Id })">
+												<i class="fas fa-edit"></i>
+												<span>@translate["label_sua"]</span>
+											</a>
+										</li>
+
+										<li class="option_item icon_delete">
+											<a href="@Url.Action("Delete", "Mangrove", new { id = item.Id })">
+												<i class="fa-solid fa-trash"></i>
+												<span>@translate["label_xoa"]</span>
+											</a>
+										</li>
+									</ul>
+								</td>
+							</tr>
+						}
+
+						while (stt <= Model.InfomationPaginate.PageSize)
+						{
+							<tr>
+								@foreach (var item in Model.InfomationPaginate.ListTitle)
+								{
+									<td>&nbsp;</td>
+								}
+							</tr>
+							stt += 1;
+						}
+					}
+					else
+					{
+						<tr class="text-center">
+							<td colspan="@Model.InfomationPaginate.ListTitle.Count()">@translate["label_khong_tim_thay_ket_qua"]</td>
 						</tr>
-						stt += 1;
 					}
 				}
-				else
-				{
-					<tr class="text-center">
-						<td colspan="@Model.InfomationPaginate.ListTitle.Count()">@translate["label_khong_tim_thay_ket_qua"]</td>
-					</tr>
-				}
-			}
-		</tbody>
-	</table>
+			</tbody>
+		</table>
+	</div>
 </div>
+
 
 <!-- Pages -->
 @await Html.PartialAsync($"{pv}/Both_PaginateItemPages.cshtml", Model.InfomationPaginate)
