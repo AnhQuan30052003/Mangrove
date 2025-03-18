@@ -15,7 +15,7 @@
 <section class="module_home_page py-2">
 	<div class="container d-flex flex-column gap-3">
 		<div class="frame_img">
-			<img class="w-100 h-100 rounded-1 object-fit-cover" src="~/img/logo/@(Model.BannerImg)" alt="">
+			<img class="w-100 h-100 rounded-1 object-fit-cover lazy-load" data-src="/img/logo/@Model.BannerImg" alt="">
 
 			<div class="frame_title rounded-1 overflow-hidden">
 				<h1 class="title m-0 px-2 text-center">
@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="frame_logo">
-				<img class="logo" src="~/img/logo/logo_ntu.png" alt="">
+				<img class="logo lazy-load" data-src="/img/logo/logo_ntu.png" alt="">
 			</div>
 		</div>
 
@@ -44,7 +44,7 @@
 						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
 							class="item px-2 col-12 col-sm-6 col-lg-4 mt-3">
 							<div class="rounded-1 overflow-hidden">
-								<img class="w-100 h-100 hover_scale time_delay_500ms" src="~/img/tree-img/@item.MainImage"
+								<img class="w-100 h-100 hover_scale time_delay_500ms lazy-load" data-src="/img/tree-img/@item.MainImage"
 									alt="">
 							</div>
 							<p class="text-center mt-1 color_green_hover">@(isEN ? "" : item.NameVi + " - ") @item.ScientificName</p>

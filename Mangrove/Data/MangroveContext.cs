@@ -15,6 +15,8 @@ public partial class MangroveContext : DbContext
     {
     }
 
+    public virtual DbSet<TblDistributiton> TblDistributitons { get; set; }
+
     public virtual DbSet<TblHome> TblHomes { get; set; }
 
     public virtual DbSet<TblIndividual> TblIndividuals { get; set; }
@@ -29,6 +31,27 @@ public partial class MangroveContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TblDistributiton>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblDistr__DED88B1C4B451662");
+
+            entity.ToTable("tblDistributiton");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(36)
+                .IsUnicode(false)
+                .HasColumnName("_id");
+            entity.Property(e => e.ImageMap)
+                .HasMaxLength(256)
+                .HasColumnName("_imageMap");
+            entity.Property(e => e.MapNameEn)
+                .HasMaxLength(256)
+                .HasColumnName("_mapNameEN");
+            entity.Property(e => e.MapNameVi)
+                .HasMaxLength(256)
+                .HasColumnName("_mapNameVI");
+        });
+
         modelBuilder.Entity<TblHome>(entity =>
         {
             entity

@@ -147,6 +147,14 @@ namespace Mangrove.Controllers {
 				bool isEN = Helper.Func.IsLanguage("en");
 				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(item => item.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(item => item.NameVi).ToListAsync();
 
+				var test = listMangrove;
+				listMangrove = new List<TblMangrove>();
+				for (int i = 1; i <= 10; i++) {
+					foreach (var item in test) {
+						listMangrove.Add(item);
+					}
+				}
+
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
@@ -158,7 +166,7 @@ namespace Mangrove.Controllers {
 							var conditions = new List<string>();
 							conditions.Add(item.NameVi);
 							conditions.Add(item.NameEn);
-							
+
 							if (Helper.Func.CheckContain(search, conditions)) fillter.Add(item);
 						}
 					}
@@ -176,9 +184,10 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: phân bố
-		public IActionResult Page_Distribution() {
+		public async Task<IActionResult> Page_Distribution() {
+			var dis = await context.TblDistributitons.ToListAsync();
 
-			return View();
+			return View(dis);
 		}
 	}
 }

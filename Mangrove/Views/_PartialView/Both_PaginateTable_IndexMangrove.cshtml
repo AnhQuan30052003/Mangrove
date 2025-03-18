@@ -84,7 +84,7 @@
 
 					if (data.Count > 0)
 					{
-						long stt = 1;
+						long stt = (Model.InfomationPaginate.CurrentPage - 1) * Model.InfomationPaginate.PageSize + 1;
 						foreach (var item in data)
 						{
 							<tr class="table_item position-relative">

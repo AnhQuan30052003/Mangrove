@@ -120,7 +120,14 @@ create table tblPhotos
     _imageName nvarchar(256) not null,
 
     _noteImgVI nvarchar(256) null,
-    _noteImgEN nvarchar(256) null,
+    _noteImgEN nvarchar(256) null
 )
 
--- Bảng phân bố
+-- Bảng phân bố - bản đồ
+create table tblDistributiton (
+    _id varchar(36) not null primary key,
+    _imageMap nvarchar(256) not null,
+    
+    _mapNameVI nvarchar(256) not null,
+    _mapNameEN nvarchar(256) not null
+)

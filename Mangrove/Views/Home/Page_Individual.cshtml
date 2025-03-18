@@ -2,134 +2,137 @@
 @model InfoStagesOfIndividualModel
 
 @{
-    bool isEN = Helper.Func.IsLanguage("en");
-    ViewData["Title"] = Model.NameMangrove;
-    ViewData["InfoPage"] = isEN ? "Individual infomation" : "Thông tin cá thể";
-    ViewData["TypePage"] = "Page_SpeciesComposition";
+	bool isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = Model.NameMangrove;
+	ViewData["InfoPage"] = isEN ? "Individual infomation" : "Thông tin cá thể";
+	ViewData["TypePage"] = "Page_SpeciesComposition";
 
-    Layout = Helper.Path.layoutUser;
-    string _pv = Helper.Path.partialView;
+	Layout = Helper.Path.layoutUser;
+	string _pv = Helper.Path.partialView;
 }
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <section class="individual_display container py-2 info_qr">
-    @{
-        if (Model.Stages.Count() > 0)
-        {
-            <div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
-                @{
-                    int countStage = 0;
-                    foreach (var stage in Model.Stages)
-                    {
-                        <span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
-                            <span class="hidden_mobile cursor-pointer">@translate["label_giai_doan"]</span>
-                            @(++countStage)
-                        </span>
-                    }
-                }
-            </div>
+	@{
+		if (Model.Stages.Count() > 0)
+		{
+			<div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
+				@{
+					int countStage = 0;
+					foreach (var stage in Model.Stages)
+					{
+						<span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
+							<span class="hidden_mobile cursor-pointer">@translate["label_giai_doan"]</span>
+							@(++countStage)
+						</span>
+					}
+				}
+			</div>
 
-            <div class="display mt-3">
-                @{
-                    countStage = 0;
-                    foreach (var stage in Model.Stages)
-                    {
-                        <div class="display_item @(countStage == 0 ? "" : "d-none")">
-                            <div class="box bg-white mb-2 rounded-1 overflow-hidden">
-                                <div class="toggle_title cursor-pointer text-center mb-2">
-                                    <h5 class="py-2 bg-black text-white">@(isEN ? stage.info.NameEn : stage.info.NameVi)</h5>
-                                </div>
-                                                                                                                            
-                                <div class="info title d-flex flex-wrap">
-                                    <div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
-                                        <img class="h-100 click_show_image rounded-1"
-                                            src="@Url.Content("~/img/stage-img/" + stage.info.MainImage)" alt="">
-                                    </div>
+			<div class="display mt-3">
+				@{
+					countStage = 0;
+					foreach (var stage in Model.Stages)
+					{
+						<div class="display_item @(countStage == 0 ? "" : "d-none")">
+							<div class="box bg-white mb-2 rounded-1 overflow-hidden">
+								<div class="toggle_title cursor-pointer text-center mb-2">
+									<h5 class="py-2 bg-black text-white">@(isEN ? stage.info.NameEn : stage.info.NameVi)</h5>
+								</div>
 
-                                    <div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
-                                        <h5 class="text-center mb-2 fw-bold text-sm-start qr_name_mangrove">@Model.NameMangrove</h5>
-                                        <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
-                                            <span class="qr_day">@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
-                                        </p>
+								<div class="info title d-flex flex-wrap">
+									<div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
+										<img class="h-100 click_show_image rounded-1 lazy-load"
+											 data-src="/img/stage-img/@stage.info.MainImage" alt="">
+									</div>
 
-                                        <p class="d-flex justify-content-between justify-content-lg-start">
-                                            <span style="width: 120px;">@translate["label_vi_tri_khao_sat"]:</span>
-                                            <span class="qr_pos">@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
-                                        </p>
+									<div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
+										<h5 class="text-center mb-2 fw-bold text-sm-start qr_name_mangrove">@Model.NameMangrove</h5>
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
+											<span class="qr_day">@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
+										</p>
 
-                                        @if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
-                                        {
-                                            <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["label_thoi_tiet_khao_sat"]:</span>
-                                                <span>@(isEN ? stage.info.WeatherEn : stage.info.WeatherVi)</span>
-                                            </p>
-                                        }
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_vi_tri_khao_sat"]:</span>
+											<span class="qr_pos">@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
+										</p>
 
-                                        @if (!String.IsNullOrEmpty(Model.Individual.Longitude))
-                                        {
-                                            <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
-                                                <span>@Model.Individual.Longitude</span>
-                                            </p>
-                                        }
+										@if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_thoi_tiet_khao_sat"]:</span>
+												<span>@(isEN ? stage.info.WeatherEn : stage.info.WeatherVi)</span>
+											</p>
+										}
 
-                                        @if (!String.IsNullOrEmpty(Model.Individual.Latitude))
-                                        {
-                                            <p class="d-flex justify-content-between justify-content-lg-start">
-                                                <span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
-                                                <span>@Model.Individual.Latitude</span>
-                                            </p>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+										@if (!String.IsNullOrEmpty(Model.Individual.Longitude))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+												<span>@Model.Individual.Longitude</span>
+											</p>
+										}
 
-                            <div class="box bg-white mb-2 rounded-1 overflow-hidden">
-                                <div class="toggle_title cursor-pointer text-center mb-2">
-                                    <h5 class="py-2 bg-black text-white">@translate["label_hinh_anh_chi_tiet"]</h5>
-                                </div>
+										@if (!String.IsNullOrEmpty(Model.Individual.Latitude))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+												<span>@Model.Individual.Latitude</span>
+											</p>
+										}
+									</div>
+								</div>
+							</div>
 
-                                <div class="info d-flex flex-wrap" style="max-height: max-content;">
-                                    @{
-                                        if (stage.photo.Count > 0)
-                                        {
-                                            foreach (var photo in stage.photo)
-                                            {
-                                                <div class="col-12 col-sm-6 col-lg-4 p-2">
-                                                    <div style="height: 500px;" class="overflow-hidden">
-                                                        <img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale"
-                                                            src="@Url.Content("~/img/stage-img/" + photo.ImageName)" alt="">
-                                                    </div>
-                                                    <p class="text-center mt-1">@(isEN ? photo.NoteImgEn : photo.NoteImgVi)</p>
-                                                </div>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <p class="text-center col-12 pb-2">@translate["label_giai_doan_chua_co_hinh_anh_chi_tiet"]</p>
-                                        }
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        }
-        else
-        {
-            <div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
-                <h5>@translate["label_ca_the_nay_chua_co_giai_doan_nao"]</h5>
-            </div>
-        }
-    }
+							<div class="box bg-white mb-2 rounded-1 overflow-hidden">
+								<div class="toggle_title cursor-pointer text-center mb-2">
+									<h5 class="py-2 bg-black text-white">@translate["label_hinh_anh_chi_tiet"]</h5>
+								</div>
+
+								<div class="info d-flex flex-wrap" style="max-height: max-content;">
+									@{
+										if (stage.photo.Count > 0)
+										{
+											foreach (var photo in stage.photo)
+											{
+												{
+													<div class="col-12 col-sm-6 col-lg-4 p-2">
+														<div style="height: 500px;" class="overflow-hidden">
+															<img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale lazy-load"
+																 data-src="/img/stage-img/@photo.ImageName"
+																 alt="">
+														</div>
+														<p class="text-center mt-1">@(isEN ? photo.NoteImgEn : photo.NoteImgVi)</p>
+													</div>
+												}
+											}
+										}
+										else
+										{
+											<p class="text-center col-12 pb-2">@translate["label_giai_doan_chua_co_hinh_anh_chi_tiet"]</p>
+										}
+									}
+								</div>
+							</div>
+						</div>
+					}
+				}
+			</div>
+		}
+		else
+		{
+			<div class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+				<h5>@translate["label_ca_the_nay_chua_co_giai_doan_nao"]</h5>
+			</div>
+		}
+	}
 
 </section>
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
 <button id="btnQRFixed" class="rounded-1 click_show_qr" title="QR" src="/img/qr-img/@Model.Individual.QrName">
-    <i class="fa-solid fa-qrcode"></i>
+	<i class="fa-solid fa-qrcode"></i>
 </button>

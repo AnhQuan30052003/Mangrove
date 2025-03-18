@@ -114,7 +114,6 @@ option {
     color: red;
 }
 
-
 @keyframes count_time {
 	0% {
 		width: 100%;
@@ -139,4 +138,13 @@ option {
         background-color: var(--greenPage);
         color: white;
     }    
+}
+
+.lazy-load {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
 }

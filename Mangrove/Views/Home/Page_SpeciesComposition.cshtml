@@ -2,46 +2,44 @@
 @model List<TblMangrove>
 
 @{
-    bool isEN = Helper.Func.IsLanguage("en");
-    ViewData["Title"] = ViewData["InfoPage"] = @translate["label_thanh_phan_loai"];
-    ViewData["TypePage"] = "Page_SpeciesComposition";
+	bool isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = ViewData["InfoPage"] = @translate["label_thanh_phan_loai"];
+	ViewData["TypePage"] = "Page_SpeciesComposition";
 
-    Layout = Helper.Path.layoutUser;
-    string _pv = Helper.Path.partialView;
+	Layout = Helper.Path.layoutUser;
+	string _pv = Helper.Path.partialView;
 }
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
 
 <section class="module_species_composition container text-center py-2">
-    <div class="box bg-white mb-2 rounded-1 overflow-hidden">
-        <div class="toggle_title cursor-pointer text-center mb-2">
-            <h5 class="py-2 bg-black text-white">@translate["label_tim"]</h5>
-        </div>
+	<div class="box bg-white mb-2 rounded-1">
+		<div class="toggle_title cursor-pointer text-center mb-2">
+			<h5 class="py-2 bg-black text-white rounded-1">@translate["label_tim"]</h5>
+		</div>
 
-        <div class="info list_mangrove_info">
-            @{
-                <div class="p-2">
-                    <div class="form_search">
-                        <div class="search d-flex justify-content-center">
-                            <div
-                                class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2 rounded-1 overflow-hidden">
-                                <i id="icon-s" class="fa fa-search"></i>
-                                <i id="icon-w" class="fa-solid fa-spinner wait_load d-none"></i>
-                                <input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove"
-                                    placeholder="@translate["label_SpeciesComposition_search"] @Model.Count @translate["label_SpeciesComposition_loai"]...">
-                            </div>
-                        </div>
+		<div class="info list_mangrove_info">
+			<div class="p-2">
+				<div class="form_search">
+					<div class="search d-flex flex-column align-items-center justify-content-center">
+						<div class="form_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2 rounded-1 overflow-hidden">
+							<i id="icon-s" class="fa fa-search"></i>
+							<i id="icon-w" class="fa-solid fa-spinner wait_load d-none"></i>
+							<input class="p-2 border-none flex-grow-1 outline-none" type="search" id="search_mangrove"
+								   placeholder="@translate["label_SpeciesComposition_search"] @Model.Count @translate["label_SpeciesComposition_loai"]...">
+						</div>
 
-                        <div class="bg-black mt-3" style="height: 3px;"></div>
+						<div class="bg-black mt-3 w-100" style="height: 3px;"></div>
+					</div>
 
-                        <div class="list_mangrove pb-1 pt-2 px-2">
-                            @await Html.PartialAsync($"{_pv}/User_ListMangrove.cshtml", Model)
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+
+					<div class="list_mangrove pb-1 pt-2 px-2">
+						@await Html.PartialAsync($"{_pv}/User_ListMangrove.cshtml", Model)
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)

@@ -9,6 +9,7 @@ delete tblIndividual
 delete tblMangrove
 
 delete tblPhotos
+delete tblDistributiton
 
 -- [Insert data for tables
 insert into tblSetting
@@ -269,3 +270,13 @@ values
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB023', '00000000-AAAA-AAAA-AAAA-AAAAAAAAS001', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB023.jpg', N'Rễ cây', N'Tree roots'),
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAB024', '00000000-AAAA-AAAA-AAAA-AAAAAAAAS001', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAB024.jpg', N'Cây non tái sinh', N'Sapling regeneration')
 
+insert into tblDistributiton
+values
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM000', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM000.png', N'Phường Ninh Giang, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Giang Ward, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM001', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM001.png', N'Phường Ninh Hà, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hà Ward, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM002.png', N'Phường Ninh Hải, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hải Ward, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM003.png', N'Xã Ninh Ích, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Ích Communne, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM004', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM004.png', N'Xã Ninh Lộc, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Lộc Communne, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM005', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM005.png', N'Xã Ninh Phú, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phú Communne, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM006', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM006.png', N'Xã Ninh Phước, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phước Communne, Ninh Hoa Town, Khanh Hoa Province'),
+('00000000-AAAA-AAAA-AAAA-AAAAAAAAM007', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province')

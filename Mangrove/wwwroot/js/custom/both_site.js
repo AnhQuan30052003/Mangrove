@@ -9,4 +9,4 @@ import * as show_info_image from "./components/show_info_image.js";
 import * as search from "./components/search.js";		
 import * as paginate from "./components/paginate.js";
 import * as show_hidden_tab from "./components/show_hidden_tab.js";
-
+import * as lazyLoadImage from "./components/lazy_load_image.js"
