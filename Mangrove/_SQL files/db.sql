@@ -122,3 +122,5 @@ create table tblPhotos
     _noteImgVI nvarchar(256) null,
     _noteImgEN nvarchar(256) null,
 )
+
+-- Bảng phân bố

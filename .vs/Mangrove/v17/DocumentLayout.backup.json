@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\mangrovecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\mangrovecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\_partialview\\both_paginatetable_indexmangrove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\_partialview\\both_paginatetable_indexmangrove.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 303,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,15 +42,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Both_PaginateTable_IndexMangrove.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_PartialView\\Both_PaginateTable_IndexMangrove.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\_PartialView\\Both_PaginateTable_IndexMangrove.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_PartialView\\Both_PaginateTable_IndexMangrove.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\_PartialView\\Both_PaginateTable_IndexMangrove.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAAAGAAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-18T07:37:29.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Program.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Program.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Program.cs",
-              "RelativeToolTip": "Mangrove\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAA7AAAAAAAAAA==",
+              "Title": "MangroveController.cs",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\MangroveController.cs",
+              "RelativeDocumentMoniker": "Mangrove\\Controllers\\MangroveController.cs",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\MangroveController.cs",
+              "RelativeToolTip": "Mangrove\\Controllers\\MangroveController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowEAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T02:51:26.491Z",
+              "WhenOpened": "2025-03-18T07:36:08.677Z",
               "EditorCaption": ""
             }
           ]

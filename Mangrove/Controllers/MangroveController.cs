@@ -24,8 +24,8 @@ namespace Mangrove.Controllers {
 
 				bool isEN = Helper.Func.IsLanguage("EN");
 
-				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Tuỳ chọn" };
-				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Options" };
+				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Số cá thể", "Tuỳ chọn" };
+				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Number of individuals", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;
@@ -35,7 +35,8 @@ namespace Mangrove.Controllers {
 					{ listTitleVI[index++], item => item.CommonNameVi },
 					{ listTitleVI[index++], item => item.ScientificName },
 					{ listTitleVI[index++], item => item.Familia },
-					{ listTitleVI[index++], item => item.DistributionVi }
+					{ listTitleVI[index++], item => item.DistributionVi },
+					{ listTitleVI[index++], item => item.TblIndividuals.Count() }
 				};
 				
 				index = 1;
@@ -45,12 +46,13 @@ namespace Mangrove.Controllers {
 					{ listTitleEN[index++], item => item.CommonNameEn },
 					{ listTitleEN[index++], item => item.ScientificName },
 					{ listTitleEN[index++], item => item.Familia },
-					{ listTitleEN[index++], item => item.DistributionEn }
+					{ listTitleEN[index++], item => item.DistributionEn },
+					{ listTitleEN[index++], item => item.TblIndividuals.Count() }
 				};
 				var sortOptions = isEN ? sortOptionsEN : sortOptionsVI;
 
 				// Tạo query
-				var query = context.TblMangroves.AsQueryable();
+				var query = context.TblMangroves.Include(item => item.TblIndividuals).AsQueryable();
 
 				// Kiểm tra nếu có thuộc tính cần sắp xếp
 				if (!string.IsNullOrEmpty(sortFollow) && sortOptions.ContainsKey(sortFollow)) {
@@ -60,15 +62,6 @@ namespace Mangrove.Controllers {
 
 				var data = await query.ToListAsync();
 				//var data = await context.TblMangroves.ToListAsync();
-
-				// Test item
-				//var temp = data;
-				//data = new List<TblMangrove>();
-				//for (int i = 1; i <= 3; i++) {
-				//	foreach (var item in temp) {
-				//		data.Add(item);
-				//	}
-				//}
 
 				// Xử lý logic tìm kiếm
 				List<TblMangrove> fillter = new List<TblMangrove>();
