@@ -18,9 +18,9 @@
 <section class="mangrove_result">
 	<div class="container py-3">
 		<!-- Images -->
-		<div class="box rounded-1 overflow-hidden bg-transparent mb-2">
+		<div class="box rounded-1 bg-transparent mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_hinh_anh"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_anh"]</h6>
 			</div>
 
 			<div class="info">
@@ -29,8 +29,10 @@
 						@foreach (var photo in photos)
 						{
 							string img = $"/img/tree-img/{photo.ImageName}";
-							<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
-								<img class="rounded-1 click_show_image" src="@img" />
+							string? note = isEN ? photo.NoteImgEn : photo.NoteImgVi;
+
+							<div class="slide_item" note="@note">
+								<img class="rounded-1 click_show_image" src="@img" alt="@note" />
 							</div>
 						}
 					</div>
@@ -43,9 +45,9 @@
 		</div>
 
 		<!-- Info: Name, Consrevation status, Uses -->
-		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+		<div class="box rounded-1 bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_thong_tin"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thong_tin"]</h6>
 			</div>
 
 			<div class="info">
@@ -77,9 +79,9 @@
 		</div>
 
 		<!-- Morphology -->
-		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+		<div class="box rounded-1 bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_hinh_thai"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_thai"]</h6>
 			</div>
 
 			<div class="info morphology_info">
@@ -88,9 +90,9 @@
 		</div>
 
 		<!-- Ecology -->
-		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+		<div class="box rounded-1 bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_sinh_thai"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_sinh_thai"]</h6>
 			</div>
 
 			<div class="info ecology_info">
@@ -99,9 +101,9 @@
 		</div>
 
 		<!-- Distribute & Convervation -->
-		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+		<div class="box rounded-1 bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_phan_bo_va_tinh_trang"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_phan_bo_va_tinh_trang"]</h6>
 			</div>
 
 			<div class="info d-flex flex-wrap">
@@ -118,9 +120,9 @@
 		</div>
 
 		<!-- Individuals -->
-		<div class="box rounded-1 overflow-hidden bg-white mb-2">
+		<div class="box rounded-1 bg-white mb-2">
 			<div class="toggle_title text-center mb-2">
-				<h6 class="py-2 bg-black text-white">@translate["label_cac_ca_the_do_dac"]</h6>
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cac_ca_the_do_dac"]</h6>
 			</div>
 
 			<div class="info individuals_info">

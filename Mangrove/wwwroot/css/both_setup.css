@@ -1,6 +1,11 @@
 /* Font Oswald */
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700,800");
 
+body {
+    font-family: 'Oswald', sans-serif;
+}
+
+
 html {
     scroll-behavior: smooth;
 }

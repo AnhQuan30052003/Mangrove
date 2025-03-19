@@ -30,6 +30,9 @@ function toggleDropdownMenu() {
 	const dropdownToggles = document.querySelectorAll(".dropdown_toggle");
 	dropdownToggles.forEach((item) => {
 		item.addEventListener("click", function (e) {
+			const width = screen.width;
+			if (width >= 1200) return;
+
 			item.classList.toggle("highlight_item");
 
 			const dropdownList = item.closest(".dropdown_menu").querySelector(".dropdown_list");

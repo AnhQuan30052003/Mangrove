@@ -4,7 +4,7 @@ function toggleInfoTitle() {
 	toggleTitles.forEach((item) => {
 		item.addEventListener("click", function () {
 			const info = item.closest(".box").querySelector(".info");
-			if (info) info.classList.toggle("box_collapse");
+			if (info) info.classList.toggle("d-none");
 		});
 	});
 }
@@ -26,12 +26,14 @@ function toggleExpandOrCollapseContentResult() {
 			const infos = document.querySelectorAll(".box .info")
 			if (item.value == "ex") {
 				infos.forEach((info) => {
-					info.classList.remove("box_collapse");
+					//info.classList.remove("box_collapse");
+					info.classList.remove("d-none");
 				});
 			}
 			else {
 				infos.forEach((info) => {
-					info.classList.add("box_collapse");
+					//info.classList.add("box_collapse");
+					info.classList.add("d-none");
 				});
 			}
 		});

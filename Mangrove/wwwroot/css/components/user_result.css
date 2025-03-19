@@ -14,13 +14,13 @@
 }
 
 .box .info {
-	overflow: hidden;
+/*	overflow: hidden;*/
 	max-height: max-content;
 }
 
-.box_collapse {
+/*.box_collapse {
 	max-height: 0 !important;
-}
+}*/
 
 .mangrove_result .box .toggle_title {
 	cursor: pointer;
@@ -74,4 +74,10 @@
 .individual_item:hover {
 	box-shadow: 0 10px 10px #ccc;
 	color: var(--greenPage) !important;
+}
+
+@media (width <= 576px) {
+	.form_input {
+		width: 100%;
+	}
 }

@@ -114,7 +114,15 @@ option {
     color: red;
 }
 
-@keyframes count_time {
+.max-h-content {
+    max-height: max-content;
+}
+
+.min-height-lazy {
+    min-height: 100vh;
+}
+
+@keyframes count_down {
 	0% {
 		width: 100%;
 	}

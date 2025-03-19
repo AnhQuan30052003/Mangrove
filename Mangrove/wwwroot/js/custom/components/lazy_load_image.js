@@ -12,12 +12,16 @@
 					// Đợi tải xong mới hiện
 					img.onload = () => img.classList.add("loaded");
 					observer.unobserve(img);
-					console.log("Đã load");
 
 					if (img.classList.contains("hover_scale")) {
 						setTimeout(() => {
 							img.classList.remove("lazy-load");
 						}, 1000);
+					}
+
+					const minHeightLazy = img.closest(".min-height-lazy");
+					if (minHeightLazy) {
+						minHeightLazy.classList.remove("min-height-lazy");
 					}
 				}
 			});

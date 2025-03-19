@@ -18,16 +18,16 @@
 			int i = 1;
 			foreach (var item in Model)
 			{
-				<div class="box rounded-1 overflow-hidden bg-white mb-2">
-					<div class="toggle_title mb-2 cursor-pointer">
-						<h6 class="p-2 bg-black text-white">@translate["label_ban_do"] @(i++)</h6>
+				<div class="box rounded-1 bg-white mb-2">
+					<div class="toggle_title mb-2 cursor-pointer position-sticky top-0" style="z-index: @i;">
+						<h6 class="p-2 bg-black text-white rounded-1">@translate["label_ban_do"] @(i++)</h6>
 					</div>
 
-					<div class="info" style="height: max-content;">
-						<img class="w-100 click_show_image lazy-load"
+					<div class="info max-h-content min-height-lazy">
+						<img class="map-img w-100 click_show_image lazy-load"
 							 data-src="/img/distribution-map-img/@item.ImageMap"
 							 alt="" />
-						<p class="text-center mb-2 fw-bold">@(isEN ? item.MapNameEn : item.MapNameVi)</p>
+						<p class="text-center pb-2 fw-bold">@(isEN ? item.MapNameEn : item.MapNameVi)</p>
 					</div>
 				</div>
 			}

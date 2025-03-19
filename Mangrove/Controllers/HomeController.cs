@@ -147,14 +147,6 @@ namespace Mangrove.Controllers {
 				bool isEN = Helper.Func.IsLanguage("en");
 				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(item => item.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(item => item.NameVi).ToListAsync();
 
-				var test = listMangrove;
-				listMangrove = new List<TblMangrove>();
-				for (int i = 1; i <= 10; i++) {
-					foreach (var item in test) {
-						listMangrove.Add(item);
-					}
-				}
-
 				// Code Ajax tìm cá thể
 				if (Request.Headers["REQUESTED"] == "AJAX") {
 					// Xử lý logic tìm kiếm
