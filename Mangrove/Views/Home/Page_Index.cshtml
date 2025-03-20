@@ -4,7 +4,7 @@
 @{
 	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_trang_chu"];
-	ViewData["InfoPage"] = isEN ? "Introduce" : "Giới thiệu";
+	ViewData["InfoPage"] = translate["label_gioi_thieu"];
 	ViewData["TypePage"] = "Page_Index";
 
 	Layout = Helper.Path.layoutUser;

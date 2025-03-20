@@ -8,7 +8,7 @@
 				asp-items="@Model.SelectListPageSize">
 		</select>
 
-		<a href="@Url.Action("Create", Model.Controller)" class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms d-flex align-items-center justify-content-around">
+		<a href="@Url.Action("Page_Create", Model.Controller)" class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms d-flex align-items-center justify-content-around">
 			<i class="fa-solid fa-plus"></i>
 			@translate["label_them"]
 		</a>

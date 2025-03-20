@@ -4,7 +4,7 @@
 @{
 	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = isEN ? Model.NameEn : Model.NameVi;
-	ViewData["InfoPage"] = isEN ? "Mangrove infomation" : "Thông tin cây";
+	ViewData["InfoPage"] = translate["label_thong_tin_cay"];
 	ViewData["TypePage"] = "Page_SpeciesComposition";
 
 	Layout = Helper.Path.layoutUser;

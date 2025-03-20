@@ -14,6 +14,7 @@ namespace Mangrove.Controllers {
 			this.context = context;
 		}
 
+		// Danh sách cây ngập mặn
 		public async Task<IActionResult> Page_Index(string? search = null, int currentPage = 1, int? pageSize = null, string? sortType = null, string? sortFollow = null) {
 			try {
 				// Setup
@@ -93,6 +94,24 @@ namespace Mangrove.Controllers {
 				Console.WriteLine(notifier);
 				return NotFound(notifier);
 			}
+		}
+
+		// Tạo cây mới
+		public async Task<IActionResult> Page_Create() {
+
+			return View();
+		}
+
+		// Chỉnh sửa cây
+		public async Task<IActionResult> Page_Edit() {
+
+			return View();
+		}
+
+		// Chi tiết
+		public async Task<IActionResult> Page_Detail() {
+
+			return View();
 		}
 	}
 }

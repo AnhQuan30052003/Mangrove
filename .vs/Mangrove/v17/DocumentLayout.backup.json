@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\home\\page_speciescomposition.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\home\\page_speciescomposition.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\_partialview\\both_paginatenav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\_partialview\\both_paginatenav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +17,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 228,
+          "DockedWidth": 197,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -39,14 +43,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Page_SpeciesComposition.cshtml",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Home\\Page_SpeciesComposition.cshtml",
-              "RelativeDocumentMoniker": "Mangrove\\Views\\Home\\Page_SpeciesComposition.cshtml",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Home\\Page_SpeciesComposition.cshtml",
-              "RelativeToolTip": "Mangrove\\Views\\Home\\Page_SpeciesComposition.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Title": "Both_PaginateNav.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_PartialView\\Both_PaginateNav.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\_PartialView\\Both_PaginateNav.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\_PartialView\\Both_PaginateNav.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\_PartialView\\Both_PaginateNav.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-19T06:48:41.394Z",
+              "WhenOpened": "2025-03-20T15:43:11.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Page_Create.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-20T15:18:07.175Z",
               "EditorCaption": ""
             }
           ]

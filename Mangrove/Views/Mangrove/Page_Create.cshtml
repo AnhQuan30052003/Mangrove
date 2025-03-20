@@ -1,0 +1,22 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model PaginateModel<TblMangrove>
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	ViewData["InfoPage"] = translate["label_them_cay_moi"];
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+}
+
+<section class="mod-add-mangrove">
+	<div class="container py-2">
+		<fieldset class="border">
+			<legend>Slide</legend>
+			<div class="add_item">
+				
+			</div>
+		</fieldset>
+	</div>
+</section>
