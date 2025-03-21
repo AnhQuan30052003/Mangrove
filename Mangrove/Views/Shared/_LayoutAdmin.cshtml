@@ -23,6 +23,9 @@
     <!-- Preload -->
     @await Html.PartialAsync($"{_pvl}/_Both_Preloader.cshtml", setting)
 
+    <!-- Show/zoom Image -->
+    @await Html.PartialAsync($"{_pvl}/_Both_ClickShowImage.cshtml")
+
     <!-- Dynamic Nofifier -->
     @await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
 

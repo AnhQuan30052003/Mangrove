@@ -1,16 +1,16 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.1hs1egnbzk.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"1hs1egnbzk"},{"Name":"integrity","Value":"sha256-m3vj/xIbRG\u002BT2emJaeyBonyusuBAV4Dj8DYRnkhznd0="},{"Name":"label","Value":"_content/Mangrove/css/admin_site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"524"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022m3vj/xIbRG\u002BT2emJaeyBonyusuBAV4Dj8DYRnkhznd0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 16 Mar 2025 02:29:25 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-m3vj/xIbRG\u002BT2emJaeyBonyusuBAV4Dj8DYRnkhznd0="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"524"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022m3vj/xIbRG\u002BT2emJaeyBonyusuBAV4Dj8DYRnkhznd0=\u0022"},{"Name":"Last-Modified","Value":"Sun, 16 Mar 2025 02:29:25 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XhTKQ8JoqvdLzVrw3Zr2PKNoec2oN6bzilJZIOh4Vuk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"578"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XhTKQ8JoqvdLzVrw3Zr2PKNoec2oN6bzilJZIOh4Vuk=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 02:39:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/admin_site.i3esme96wc.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"i3esme96wc"},{"Name":"integrity","Value":"sha256-XhTKQ8JoqvdLzVrw3Zr2PKNoec2oN6bzilJZIOh4Vuk="},{"Name":"label","Value":"_content/Mangrove/css/admin_site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"578"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022XhTKQ8JoqvdLzVrw3Zr2PKNoec2oN6bzilJZIOh4Vuk=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 02:39:33 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/auth_site.3lzddf1f12.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\auth_site.css'))</AssetFile>
@@ -83,6 +83,18 @@
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"w3tqwc660c"},{"Name":"integrity","Value":"sha256-3MXm3EX3qw5QQ\u002BdThmQdeK9RjSWOvXX\u002BaEmdKwa/dcI="},{"Name":"label","Value":"_content/Mangrove/css/components/admin_header.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3692"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00223MXm3EX3qw5QQ\u002BdThmQdeK9RjSWOvXX\u002BaEmdKwa/dcI=\u0022"},{"Name":"Last-Modified","Value":"Mon, 17 Mar 2025 07:16:13 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/admin_mangrove_create.3sjkka0d84.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"3sjkka0d84"},{"Name":"integrity","Value":"sha256-I92KkCtVdYABaEXH/jfntgCrt6tLYbX9ailqMu2tGOM="},{"Name":"label","Value":"_content/Mangrove/css/components/admin_mangrove_create.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"324"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I92KkCtVdYABaEXH/jfntgCrt6tLYbX9ailqMu2tGOM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 02:59:44 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/admin_mangrove_create.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-I92KkCtVdYABaEXH/jfntgCrt6tLYbX9ailqMu2tGOM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"324"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022I92KkCtVdYABaEXH/jfntgCrt6tLYbX9ailqMu2tGOM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 21 Mar 2025 02:59:44 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/css/components/admin_nav_mangrove.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_nav_mangrove.css'))</AssetFile>

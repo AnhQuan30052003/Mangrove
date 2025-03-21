@@ -1,0 +1,18 @@
+﻿:root {
+	--size_btn_remove_preview_img: 30px;
+}
+
+.add_img_height {
+	height: 200px;
+	background-color: white;
+}
+
+.btn_remove_preview_img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	border-radius: 50%;
+	height: var(--size_btn_remove_preview_img);
+	width: var(--size_btn_remove_preview_img);
+}
