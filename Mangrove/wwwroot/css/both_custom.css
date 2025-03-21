@@ -4,6 +4,11 @@
     --backgroundBody: #eaeff1;
     --colorBody: #707070;
     --size_logo_sponsorship: 70px;
+    --backgroundForm: #f8f9fa;
+}
+
+.bg-form {
+    background-color: var(--backgroundForm);
 }
 
 a,
@@ -49,7 +54,7 @@ option {
 }
 
 .color-tree {
-    color: #70c745;
+    color: var(--greenPage);
 }
 
 .border-none {
@@ -99,7 +104,7 @@ option {
 }
 
 .bg-tree {
-	background-color: #70c745;
+	background-color: var(--greenPage);
 }
 
 .icon_detail:hover {
@@ -155,4 +160,13 @@ option {
 
 .lazy-load.loaded {
     opacity: 1;
+}
+
+.font-small {
+    font-size: 12px;
+}
+
+.sortable-ghost {
+    opacity: 0.5;
+    background: #f8f9fa;
 }
