@@ -163,10 +163,26 @@ option {
 }
 
 .font-small {
-    font-size: 12px;
+/*    font-size: 12px;*/
+}
+
+.btn_submit_form:hover {
+    background-color: transparent;
+    color: black !important;
+    outline: solid 1px var(--greenPage);
 }
 
 .sortable-ghost {
     opacity: 0.5;
     background: #f8f9fa;
+}
+
+@media (width >= 1200px) {
+    .pr-10 {
+        padding-right: 10px !important
+    }
+
+    .pl-10 {
+        padding-left: 10px !important
+    }
 }

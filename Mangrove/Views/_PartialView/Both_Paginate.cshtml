@@ -5,11 +5,9 @@
 
 <div class="form_paginate">
 
-	<!-- Search and 2 Button -->
+	<!-- Search, Select and Buttons -->
 	@await Html.PartialAsync($"{pv}/Both_PaginateNav.cshtml", Model.InfomationPaginate)
 
-	<div id="result_search_ajax">
-		<!-- Data -->
-		@await Html.PartialAsync($"{pv}/{Model.InfomationPaginate.NameTable}.cshtml", Model)
-	</div>
+	<!-- Data -->
+	@await Html.PartialAsync($"{pv}/{Model.InfomationPaginate.NameTable}.cshtml", Model)
 </div>

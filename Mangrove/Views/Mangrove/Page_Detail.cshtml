@@ -1,1 +1,120 @@
-﻿
+﻿@inject IStringLocalizer<Translate> translate
+@model TblMangrove
+
+@{
+	bool isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_sua"]})";
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string _pv = Helper.Path.partialView;
+	TempData["Id"] = Model.Id;
+	List<TblPhoto> photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
+}
+
+<section class="mangrove_result">
+	<div class="container py-3">
+		<!-- Images -->
+		<div class="box rounded-1 bg-transparent mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_anh"]</h6>
+			</div>
+
+			<div class="info">
+				<div class="images slick_slider height_responsive">
+					<div class="slides">
+						@foreach (var photo in photos)
+						{
+							string img = $"/img/tree-img/{photo.ImageName}";
+							string? note = isEN ? photo.NoteImgEn : photo.NoteImgVi;
+
+							<div class="slide_item" note="@note">
+								<img class="rounded-1 click_show_image" src="@img" alt="@note" />
+							</div>
+						}
+					</div>
+				</div>
+
+				<div class="show_description_photo">
+					<p class="pt-1 px-2 text-center"></p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Info: Name, Consrevation status, Uses -->
+		<div class="box rounded-1 bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thong_tin"]</h6>
+			</div>
+
+			<div class="info">
+				<h4 class="text-center mb-2 fw-bold qr_name_mangrove">
+					@(isEN ? Model.NameEn : Model.NameVi)
+				</h4>
+				<div class="wrapper d-flex flex-wrap">
+					<div class="name_info p-2 col-12 col-sm-6">
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">@translate["label_ten_khac"]:</span>
+							<span>@(isEN ? Model.CommonNameEn : Model.CommonNameVi)</span>
+						</p>
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">@translate["label_ten_khoa_hoc"]:</span>
+							<span>@Model.ScientificName</span>
+						</p>
+						<p class="d-flex justify-content-between d-sm-block">
+							<span class="space_word fw-bold">@translate["label_ho"]:</span>
+							<span>@Model.Familia</span>
+						</p>
+					</div>
+
+					<div class="use_info p-2 col-12 col-sm-6">
+						<p class="fw-bold">@translate["label_cong_dung"]:</p>
+						<p class="text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.UseEn : Model.UseVi))</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Morphology -->
+		<div class="box rounded-1 bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_thai"]</h6>
+			</div>
+
+			<div class="info morphology_info">
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.MorphologyEn : Model.MorphologyVi))</p>
+			</div>
+		</div>
+
+		<!-- Ecology -->
+		<div class="box rounded-1 bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_sinh_thai"]</h6>
+			</div>
+
+			<div class="info ecology_info">
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.EcologyEn : Model.EcologyVi))</p>
+			</div>
+		</div>
+
+		<!-- Distribute & Convervation -->
+		<div class="box rounded-1 bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_phan_bo_va_tinh_trang"]</h6>
+			</div>
+
+			<div class="info d-flex flex-wrap">
+				<div class="conservation_status_info p-2 col-12 col-sm-6">
+					<p class="fw-bold">@translate["label_phan_bo_phia_bac"]:</p>
+					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.DistributionEn : Model.DistributionVi))</p>
+				</div>
+
+				<div class="conservation_status_info p-2 col-12 col-sm-6">
+					<p class="fw-bold">@translate["label_tinh_trang_bao_ton"]:</p>
+					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.ConservationStatusEn : Model.ConservationStatusVi))</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

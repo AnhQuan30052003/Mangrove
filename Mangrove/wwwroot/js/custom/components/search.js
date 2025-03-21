@@ -86,7 +86,7 @@ function searchMangroveUser() {
 }
 searchMangroveUser();
 
-// Theo dõi việc tìm kiếm với các cây trong thành phân loài bên admin
+// Theo dõi việc tìm kiếm với các cây trong thành phân loài bên admin [bỏ]
 function searchTreeAdmin() {
 	const forms = document.querySelectorAll(".form_paginate");
 	if (forms.length == 0) return;
@@ -124,9 +124,9 @@ function searchTreeAdmin() {
 		});
 	});
 }
-searchTreeAdmin();
+//searchTreeAdmin();
 
-// Tìm kiếm trang web khi thay đổi số lượng page_size
+// Tìm kiếm trang web khi thay đổi số lượng page_size [bỏ]
 function submitWhenChangePageSize() {
 	try {
 		const forms = document.querySelectorAll(".form_paginate");
@@ -146,10 +146,7 @@ function submitWhenChangePageSize() {
 					const sortFollow = data.getAttribute("sortFollow");
 
 					const url = `/${controller}/${action}?search=${findText}&currentPage=1&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
-					const result = document.querySelector("#result_search_ajax");
-
-					changeIconSearchOrWait();
-					requestAjax(url, result, true, true);
+					location.href = url;
 				});
 			}
 		});
@@ -158,5 +155,5 @@ function submitWhenChangePageSize() {
 		console.log(e);
 	}
 }
-submitWhenChangePageSize();
+//submitWhenChangePageSize();
 

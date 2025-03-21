@@ -61,7 +61,7 @@ addImageToItem();
 
 function createDivAddItem() {
 	const addItem = document.createElement("div");
-	addItem.className = "add_item border_ bg-white mb-2 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative";
+	addItem.className = "add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative";
 
 	const btnRemoveItem = document.createElement("button");
 	btnRemoveItem.className = "btn_remove_item";
@@ -79,7 +79,7 @@ function createDivAddItem() {
 	photo.innerText = document.querySelector("#photo").value;
 
 	const inputImg = document.createElement("div");
-	inputImg.className = "input_img h-100 d-flex justify-content-center align-items-center";
+	inputImg.className = "input_img bg-white h-100 d-flex justify-content-center align-items-center";
 
 	const btnAddImg = document.createElement("button");
 	btnAddImg.className = "btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1";
@@ -133,7 +133,7 @@ function createDivAddItem() {
 	smallTite.className = "mb-1 d-block font-small";
 
 	const inputText = document.createElement("input");
-	inputText.className = "w-100 border-none bg-form green_effect px-2 py-1 rounded-1";
+	inputText.className = "w-100 border-none bg-white green_effect px-2 py-1 rounded-1";
 	inputText.type = "text";
 	inputText.name = "";
 

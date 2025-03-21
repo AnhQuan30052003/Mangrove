@@ -82,10 +82,10 @@ namespace Mangrove.Controllers {
 				var info = new InfomationPaginate("Both_PaginateTable_IndexMangrove", listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
 				var pagi = new PaginateModel<TblMangrove>(fillter, info);
 
-				// Code Ajax tìm cây
-				if (Request.Headers["REQUESTED"] == "AJAX") {
-					return PartialView($"{Helper.Path.partialView}/{pagi.InfomationPaginate.NameTable}.cshtml", pagi);
-				}
+				// Code Ajax tìm cây [bỏ]
+				//if (Request.Headers["REQUESTED"] == "AJAX") {
+				//	return PartialView($"{Helper.Path.partialView}/{pagi.InfomationPaginate.NameTable}.cshtml", pagi);
+				//}
 
 				return View(pagi);
 			}
@@ -109,9 +109,31 @@ namespace Mangrove.Controllers {
 		}
 
 		// Chi tiết
-		public async Task<IActionResult> Page_Detail() {
+		public async Task<IActionResult> Page_Detail(string id) {
+			try {
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
+				if (mangrove == null) {
+					return NotFound($"Không tìm thấy cây có ID = {id}");
+				}
 
-			return View();
+				// Truy vấn ảnh cho banner slick slider
+				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
+				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
+
+				// Xử lý thứ tự ảnh banner slick slider
+				if (photos.Count() > 1 && photoMangrove != null) {
+					photos.Remove(photoMangrove);
+					photos.Insert(0, photoMangrove);
+				}
+
+				TempData["Photos"] = photos;
+				return View(mangrove);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}			
 		}
 	}
 }

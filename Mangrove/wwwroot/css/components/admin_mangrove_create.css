@@ -9,7 +9,7 @@
 .btn_remove_item,
 .btn_remove_preview_img {
 	position: absolute;
-	right: 0;
+	right: 10px;
 	border: none;
 	height: var(--size_btn_remove_preview_img);
 	width: var(--size_btn_remove_preview_img);

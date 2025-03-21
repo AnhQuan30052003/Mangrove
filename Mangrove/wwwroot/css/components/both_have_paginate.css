@@ -87,3 +87,25 @@
 .have_paginate .page_number:not(.active):hover {
 	color: var(--greenPage);
 }
+
+.have_paginate .nav_btn {
+	min-width: 120px;
+	padding: 7.5px 10px;
+}
+
+.have_paginate .btn_search {
+	background-color: black;
+	color: white;
+}
+
+.have_paginate .btn_new_item {
+	background-color: var(--greenPage);
+	color: white;
+}
+
+.have_paginate .btn_search:hover,
+.have_paginate .btn_new_item:hover {
+	outline: solid 1px var(--greenPage);
+	background-color: transparent;
+	color: black;
+}

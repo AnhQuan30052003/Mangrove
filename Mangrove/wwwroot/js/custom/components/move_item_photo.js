@@ -7,7 +7,7 @@ function changeIndexItemPhoto() {
 			new Sortable(items, {
 				animation: 150,
 				ghostClass: "sortable-ghost",
-				handle: ".add_item",
+				handle: ".add_img",
 				draggable: ".add_item",
 				onEnd: function (evt) {
 					//console.log("Mục đã được kéo từ vị trí", evt.oldIndex, "đến", evt.newIndex);
