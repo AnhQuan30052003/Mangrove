@@ -13,7 +13,7 @@
 					img.onload = () => img.classList.add("loaded");
 					observer.unobserve(img);
 
-					if (img.classList.contains("hover_scale")) {
+					if (img.classList.contains("scale_hover")) {
 						setTimeout(() => {
 							img.classList.remove("lazy-load");
 						}, 1000);

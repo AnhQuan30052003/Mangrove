@@ -100,7 +100,7 @@
 												{
 													<div class="col-12 col-sm-6 col-lg-4 p-2">
 														<div class="overflow-hidden" style="height: 500px;">
-															<img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms hover_scale lazy-load"
+															<img class="w-100 h-100 rounded-1 object-fit-cover click_show_image time_delay_500ms scale_hover lazy-load"
 																 data-src="/img/stage-img/@photo.ImageName"
 																 alt="">
 														</div>
@@ -133,6 +133,6 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
-<button id="btnQRFixed" class="rounded-1 click_show_qr" title="QR" src="/img/qr-img/@Model.Individual.QrName">
+<button id="btnQRFixed" class="rounded-1 click_show_qr bg_black_hover" title="QR" src="/img/qr-img/@Model.Individual.QrName">
 	<i class="fa-solid fa-qrcode"></i>
 </button>

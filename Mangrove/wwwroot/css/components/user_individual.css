@@ -30,10 +30,6 @@
     transition-duration: 500ms;
 }
 
-#btnQRFixed:hover {
-    background-color: #303030;
-}
-
 @media (width >=576px) {
     #btnQRFixed {
         bottom: 20px;

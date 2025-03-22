@@ -24,11 +24,6 @@ select option {
 	height: 45px;
 }
 
-.btn_back:hover {
-	outline: solid 1px var(--greenPage);
-	color: black;
-}
-
 .btn_back:hover i {
 	animation: _back 1s linear alternate infinite;
 }

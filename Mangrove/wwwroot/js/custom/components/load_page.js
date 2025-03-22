@@ -15,18 +15,21 @@ function removeIconLoadPage() {
 
 // Làm nổi bật tab cần highlight
 function highlightTabHeader() {
-	const width = screen.width;
-	if (width <= 1200) return;
+	try {
+		const width = screen.width;
+		if (width <= 1200) return;
 
-	const pageOptions = document.querySelectorAll(".page_option");
-	const typePage = document.querySelector("#typePage").getAttribute("type-page");
+		const pageOptions = document.querySelectorAll(".page_option");
+		const typePage = document.querySelector("#typePage").getAttribute("type-page");
 
-	pageOptions.forEach((item) => {
-		const page = item.getAttribute("page");
-		if (page == typePage) {
-			item.classList.add("active_underline");
-			return;
-		}
-		else item.classList.remove("active_underline");
-	});
+		pageOptions.forEach((item) => {
+			const page = item.getAttribute("page");
+			if (page == typePage) {
+				item.classList.add("active_underline");
+				return;
+			}
+			else item.classList.remove("active_underline");
+		});
+	}
+	catch { }
 }

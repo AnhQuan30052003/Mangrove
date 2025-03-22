@@ -1,3 +1,5 @@
+@import url("./components/both_hover.css");
+
 :root {
     --size_logo: 50px;
     --greenPage: #70c745;
@@ -9,6 +11,10 @@
 
 .bg-form {
     background-color: var(--backgroundForm);
+}
+
+.text_body {
+    color: var(--colorBody);
 }
 
 a,
@@ -69,15 +75,6 @@ option {
     transform: rotate(180deg);
 }
 
-.color_green_hover {
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-}
-
-.color_green_hover:hover {
-    color: var(--greenPage) !important;
-}
-
 .time_delay_500ms {
     -webkit-transition-duration: 500ms;
     transition-duration: 500ms;
@@ -87,36 +84,12 @@ option {
     text-align: justify !important;
 }
 
-.underline_hover {
-    transition: all 0.5s;
-}
-
-.underline_hover:hover {
-    text-decoration: underline;
-}
-
-.hover_scale:hover {
-    transform: scale(1.1);
-}
-
 .upper {
     text-transform: uppercase;
 }
 
 .bg-tree {
 	background-color: var(--greenPage);
-}
-
-.icon_detail:hover {
-    color: #00bcf2;
-}
-
-.icon_edit:hover {
-    color: var(--greenPage);
-}
-
-.icon_delete:hover {
-    color: red;
 }
 
 .max-h-content {
@@ -146,11 +119,6 @@ option {
         background-color: var(--greenPage) !important;
         color: white !important;
     }
-
-    .active_click:hover {
-        background-color: var(--greenPage);
-        color: white;
-    }    
 }
 
 .lazy-load {
@@ -166,11 +134,6 @@ option {
 /*    font-size: 12px;*/
 }
 
-.btn_submit_form:hover {
-    background-color: transparent;
-    color: black !important;
-    outline: solid 1px var(--greenPage);
-}
 
 .sortable-ghost {
     opacity: 0.5;

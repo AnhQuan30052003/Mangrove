@@ -44,10 +44,10 @@
 						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
 							class="item px-2 col-12 col-sm-6 col-lg-4 mt-3">
 							<div class="rounded-1 overflow-hidden">
-								<img class="w-100 h-100 hover_scale time_delay_500ms lazy-load" data-src="/img/tree-img/@item.MainImage"
+								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.MainImage"
 									alt="">
 							</div>
-							<p class="text-center mt-1 color_green_hover">@(isEN ? "" : item.NameVi + " - ") @item.ScientificName</p>
+							<p class="text-center mt-1 text_tree_hover">@(isEN ? "" : item.NameVi + " - ") @item.ScientificName</p>
 						</a>
 					}
 				}

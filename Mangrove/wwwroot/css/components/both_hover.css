@@ -1,0 +1,46 @@
+﻿.bg_transparent_hover:hover {
+	background-color: transparent !important;
+}
+
+.bg_black_hover:hover {
+	background-color: black !important;
+}
+
+.text_white_hover:hover {
+	color: white !important;
+}
+
+.text_black_hover:hover {
+	color: black !important;
+}
+
+.outline_tree_hover:hover {
+	outline: solid 1px var(--greenPage) !important;
+}
+
+.text_tree_hover:hover {
+	color: var(--greenPage) !important;
+}
+
+.scale_hover:hover {
+	transform: scale(1.1) !important;
+}
+
+.underline_hover:hover {
+	text-decoration: underline !important;
+}
+
+.text_blue_hover:hover {
+	color: #00bcf2 !important;
+}
+
+.text_red_hover:hover {
+	color: red !important;
+}
+
+@media (width <=1200px) {
+	.active_click:hover {
+		background-color: var(--greenPage);
+		color: white !important;
+	}
+}
