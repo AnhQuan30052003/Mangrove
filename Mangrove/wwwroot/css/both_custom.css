@@ -17,6 +17,10 @@
     color: var(--colorBody);
 }
 
+.small_font {
+    font-size: 12px !important;
+}
+
 a,
 a:hover {
     color: inherit;

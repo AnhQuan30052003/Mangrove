@@ -2,6 +2,7 @@
 using Mangrove.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.DotNet.Scaffolding.Shared.Project;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Drawing;
@@ -101,16 +102,37 @@ namespace Mangrove.Controllers {
 
 		// Tạo cây mới
 		public IActionResult Call_Create() {
-			var mangrove = new TblMangrove();
+			var mangrove = new MangroveModel();
 			return RedirectToAction("Page_Create", mangrove);
 		}
-		public IActionResult Page_Create(TblMangrove model) {
+		public IActionResult Page_Create(MangroveModel model) {
 
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(TblMangrove model, List<IFormFile> ImageFile, List<string> NoteImgEn, List<string> NoteImgVi) {
+		public async Task<IActionResult> Page_Create(MangroveModel model, string? info = null) {
 			bool isEN = Helper.Func.IsLanguage("en");
+
+			// Bắt lỗi không có ảnh cho slide
+			//if (!model.Photos.Any()) {
+			//	Helper.Notifier.Create(
+			//		Helper.SetupNotifier.Status.fail,
+			//		isEN ? "Must have at least one photo!" : "Phải có ít nhất một ảnh !",
+			//		Helper.SetupNotifier.Timer.shortTime,
+			//		""
+			//	);
+			//	return RedirectToAction("Page_Create", model);
+			//}
+
+			if (model.Photos == null) {
+				Console.WriteLine($"Photos null");
+			}
+			else {
+				Console.WriteLine($"Photos có {model.Photos.Count()} phân tử");
+			}
+
+
+			// Bắt lỗi nhập dữ liệu
 			if (!ModelState.IsValid) {
 				// Setup thông báo
 				Helper.Notifier.Create(
@@ -120,48 +142,59 @@ namespace Mangrove.Controllers {
 					""
 				);
 
-				//TempData["ImageFile"] = ImageFile;
-				//TempData["ImageFile"] = ImageFile;
-				//TempData["ImageFile"] = ImageFile;
-
 				return RedirectToAction("Page_Create", model);
 			}
 
+			return RedirectToAction("Page_Index");
+
 			// Lưu cây
 			string idMangrve = Helper.Func.CreateId();
-			model.Id = idMangrve;
-			model.View = 0;
-			model.UpdateLast = DateTime.Now;
+			var mangrove = new TblMangrove {
+				Id = idMangrve,
+				NameEn = model.NameEn,
+				NameVi = model.NameVi,
+				CommonNameEn = model.CommonNameEn,
+				CommonNameVi = model.CommonNameVi,
+				ScientificName = model.ScientificName,
+				Familia = model.Familia,
+				MainImage = "",
+				MorphologyEn = model.MorphologyEn,
+				MorphologyVi = model.MorphologyVi,
+				EcologyEn = model.EcologyEn,
+				EcologyVi = model.EcologyVi,
+				DistributionEn = model.DistributionEn,
+				DistributionVi = model.DistributionVi,
+				ConservationStatusEn = model.ConservationStatusEn,
+				ConservationStatusVi = model.ConservationStatusVi,
+				UseEn = model.UseEn,
+				UseVi = model.UseVi,
+				View = 0,
+				UpdateLast = DateTime.Now
+			};
 
-			List<TblPhoto> listPhotos = new List<TblPhoto>();
-			if (ImageFile != null && ImageFile.Count > 0) {
-				for (int i = 0; i < ImageFile.Count; i++) {
-					var file = ImageFile[i];
+			//List<TblPhoto> listPhotos = new List<TblPhoto>();
+			//for (int i = 0; i < ImageFile.Count; i++) {
+			//	var file = ImageFile[i];
 
-					string fileName = await Helper.Func.SaveImage(Helper.Path.treeImg, file);
-					if (!string.IsNullOrEmpty(fileName)) {
-						if (string.IsNullOrEmpty(model.MainImage)) {
-							model.MainImage = fileName;
-						}
+			//	string fileName = await Helper.Func.SaveImage(Helper.Path.treeImg, file);
+			//	if (!string.IsNullOrEmpty(fileName)) {
+			//		if (i == 0) mangrove.MainImage = fileName;
 
-						var photo = new TblPhoto {
-							Id = Helper.Func.CreateId(),
-							IdObj = idMangrve,
-							ImageName = fileName,
-							NoteImgEn = NoteImgEn[i],
-							NoteImgVi = NoteImgVi[i]
-						};
-						listPhotos.Add(photo);
-					}
-				}
-			}
+			//		var photo = new TblPhoto {
+			//			Id = Helper.Func.CreateId(),
+			//			IdObj = mangrove.Id,
+			//			ImageName = fileName,
+			//			NoteImgEn = NoteImgEn[i],
+			//			NoteImgVi = NoteImgVi[i]
+			//		};
+			//		listPhotos.Add(photo);
+			//	}
+			//}
 
-			if (string.IsNullOrEmpty(model.MainImage)) model.MainImage = "";
-
-			context.TblMangroves.Add(model);
-			foreach (var photo in listPhotos) {
-				context.TblPhotos.Add(photo);
-			}
+			context.TblMangroves.Add(mangrove);
+			//foreach (var photo in listPhotos) {
+			//	context.TblPhotos.Add(photo);
+			//}
 			await context.SaveChangesAsync();
 
 			// Setup thông báo

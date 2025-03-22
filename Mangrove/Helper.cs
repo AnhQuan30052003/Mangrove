@@ -22,6 +22,11 @@ public class Helper {
 		public static string qrImg = "wwwroot/img/qr-img";
 	}
 
+	// Variable
+	public static class Variable {
+		public static int maxSlide = 10;
+	}
+
 	// Status noifier
 	public static class Key {
 		public static string status = "Status";
