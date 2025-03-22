@@ -1,5 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model PaginateModel<TblMangrove>
+@model TblMangrove
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
@@ -26,48 +26,58 @@
 
 				<div class="info">
 					<div class="items">
-						<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
-							<button class="btn_remove_item"
-									type="button">
-								<i class="icon_remove_item fa-solid fa-xmark"></i>
-							</button>
-
-							<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
-								<p class="text-center">@translate["label_hinh_anh"]</p>
-								<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
-									<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+						@{
+							if (true)
+							{
+								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+									<button class="btn_remove_item"
 											type="button">
-										<i class="icon_add fa-solid fa-plus"></i>
+										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
-									<input class="file" type="file" hidden />
+
+									<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+										<p class="text-center">@translate["label_hinh_anh"]</p>
+										<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
+											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+													type="button">
+												<i class="icon_add fa-solid fa-plus"></i>
+											</button>
+											<input class="file" name="ImageFile" type="file" hidden />
+										</div>
+
+										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
+											<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
+												 src="/img/tree-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAP006.jpg"
+												 name="ImageName"
+												 alt="" />
+
+											<button class="btn_remove_preview_img"
+													type="button">
+												<i class="icon_remove fa-solid fa-xmark"></i>
+											</button>
+										</div>
+									</div>
+
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
+										<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+											<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="NoteImgEn" value="" />
+										</div>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+											<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="NoteImgVi" value="" />
+										</div>
+									</div>
 								</div>
-
-								<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-									<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
-										 src="/img/tree-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAP006.jpg"
-										 alt="" />
-
-									<button class="btn_remove_preview_img"
-											type="button">
-										<i class="icon_remove fa-solid fa-xmark"></i>
-									</button>
-								</div>
-							</div>
-
-							<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-								<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
-
-								<div class="add_content_item mt-1 m-lg-0 col-12">
-									<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-									<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
-								</div>
-
-								<div class="add_content_item mt-1 m-lg-0 col-12">
-									<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-									<input class="w-100 border-none bg_white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
-								</div>
-							</div>
-						</div>
+							}
+							else
+							{
+								
+							}
+						}
 					</div>
 
 					<div class="text-center py-2">
@@ -87,35 +97,35 @@
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="left col-12 col-lg-6 d-flex flex-column gap-1 pr-10">
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Tên (@translate["label_tieng_anh"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_anh"])</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="NameEn" value="@Model.NameEn" />
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Tên (@translate["label_tieng_viet"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_viet"])</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="NameVi" value="@Model.NameVi" />
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Tên khoa học</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ten_khoa_hoc"]</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="ScientificName" value="@Model.ScientificName" />
 						</div>
 					</div>
 
 					<div class="right col-12 col-lg-6 d-flex flex-column gap-1 pl-10">
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Tên khác (@translate["label_tieng_anh"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_anh"])</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="CommonNameEn" value="@Model.CommonNameEn" />
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Tên khác (@translate["label_tieng_viet"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_viet"])</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="CommonNameVi" value="@Model.CommonNameVi" />
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
-							<small class="mb-1 d-block font-small">Họ</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="" value="" />
+							<small class="mb-1 d-block font-small">@translate["label_ho"]</small>
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="Familia" value="@Model.Familia" />
 						</div>
 					</div>
 				</div>
@@ -124,18 +134,18 @@
 			<!-- Morophophy -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
-					<h6 class="py-2 bg-black text-white rounded-1">Hình thái</h6>
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_thai"]</h6>
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="MorphologyEn" cols="30" rows="7">@Model.MorphologyEn</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="MorphologyVi" cols="30" rows="7">@Model.MorphologyVi</textarea>
 					</div>
 				</div>
 			</div>
@@ -143,18 +153,18 @@
 			<!-- Eocology -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
-					<h6 class="py-2 bg-black text-white rounded-1">Sinh thái</h6>
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_sinh_thai"]</h6>
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="EcologyEn" cols="30" rows="7">@Model.EcologyEn</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="EcologyVi" cols="30" rows="7">@Model.EcologyVi</textarea>
 					</div>
 				</div>
 			</div>
@@ -162,18 +172,18 @@
 			<!-- Use -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
-					<h6 class="py-2 bg-black text-white rounded-1">Công dụng</h6>
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cong_dung"]</h6>
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="UseEn" cols="30" rows="7">@Model.UseEn</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="7"> </textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="UseVi" cols="30" rows="7">@Model.UseVi</textarea>
 					</div>
 				</div>
 			</div>
@@ -181,41 +191,55 @@
 			<!-- Distribution and Conservation status -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
-					<h6 class="py-2 bg-black text-white rounded-1">Phân bố & Tình trạng bảo tồn</h6>
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_phan_bo_va_tinh_trang"]</h6>
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
-						<small class="mb-1 d-block font-small">Phân bố (@translate["label_tieng_anh"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="3"> </textarea>
+						<small class="mb-1 d-block font-small">@translate["label_phan_bo"] (@translate["label_tieng_anh"])</small>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="DistributionEn" cols="30" rows="3">@Model.DistributionEn</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
-						<small class="mb-1 d-block font-small">Phân bố (@translate["label_tieng_viet"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="3"> </textarea>
+						<small class="mb-1 d-block font-small">@translate["label_phan_bo"] (@translate["label_tieng_viet"])</small>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="DistributionVi" cols="30" rows="3">@Model.DistributionVi</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
-						<small class="mb-1 d-block font-small">Tình trạng bảo tồn (@translate["label_tieng_anh"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="3"> </textarea>
+						<small class="mb-1 d-block font-small">@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_anh"])</small>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="ConservationStatusEn" cols="30" rows="3">@Model.ConservationStatusEn</textarea>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
-						<small class="mb-1 d-block font-small">Tình trạng bảo tồn (@translate["label_tieng_viet"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" cols="30" rows="3"> </textarea>
+						<small class="mb-1 d-block font-small">@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_viet"])</small>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="ConservationStatusVi" cols="30" rows="3">@Model.ConservationStatusVi</textarea>
 					</div>
 				</div>
 			</div>
 
-			<!-- Button submit -->
-			<div class="d-flex justify-content-between my-3">
-				<button type="button" onclick="getUrlIndex();"
-						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white outline_tree_hover text_black_hover">
-					Quay lại danh sách
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center my-3 gap-2">
+				<button type="button" onclick="saveLinkBack.getUrlIndex();"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover">
+					<i class="fa-solid fa-list"></i>
+					<span class="hidden_mobile">
+						@translate["label_quay_lai_danh_sach"]
+					</span>
 				</button>
 
-				<button class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white time_delay_500ms outline_tree_hover bg_transparent_hover text_black_hover">
-					@translate["label_them"]
+				<button type="button" onclick="location.reload();"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
+					<i class="fa-solid fa-eraser"></i>
+					<span class="hidden_mobile">
+						@translate["label_xoa_sach"]
+					</span>
+				</button>
+
+				<button class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">
+						@translate["label_them"]
+					</span>
 				</button>
 			</div>
 		</form>

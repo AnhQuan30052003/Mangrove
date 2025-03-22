@@ -30,7 +30,8 @@ namespace Mangrove.Controllers {
 				"/Admin/Page_Statistical"
 			);
 
-			return RedirectToAction(nameof(Page_Login));
+			//return RedirectToAction(nameof(Page_Login));
+			return RedirectToAction("Page_Login");
 		}
 
 		public IActionResult Page_ForgottenPassword_Find() {

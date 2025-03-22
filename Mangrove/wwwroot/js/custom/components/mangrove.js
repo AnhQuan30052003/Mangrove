@@ -92,6 +92,7 @@ function createDivAddItem() {
 	inputFile.className = "file";
 	inputFile.type = "file";
 	inputFile.hidden = true;
+	inputFile.name = "ImageFile"
 
 	btnAddImg.appendChild(iconAdd);
 	inputImg.appendChild(btnAddImg);
@@ -103,6 +104,7 @@ function createDivAddItem() {
 
 	const img = document.createElement("img");
 	img.className = "show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image";
+	img.setAttribute("name", "ImageName");
 
 	const btnRemovvPreviewImg = document.createElement("button")
 	btnRemovvPreviewImg.className = "btn_remove_preview_img";

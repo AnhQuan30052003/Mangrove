@@ -1,3 +1,4 @@
+using Mangrove.Data;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -16,6 +17,9 @@ public class Helper {
 		public static string layoutAdmin_Auth = "~/Views/Shared/_LayoutAuth.cshtml";
 		public static string partialView = "~/Views/_PartialView";
 		public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
+		public static string treeImg = "wwwroot/img/tree-img";
+		public static string stageImg = "wwwroot/img/stage-img";
+		public static string qrImg = "wwwroot/img/qr-img";
 	}
 
 	// Status noifier
@@ -194,6 +198,31 @@ public class Helper {
 			}
 
 			return false;
+		}
+
+		// Create id
+		public static string CreateId() {
+			string id = Guid.NewGuid().ToString().ToUpper();
+			return id;
+		}
+
+		// Save img 
+		public static async Task<string> SaveImage(string path, IFormFile? file) {
+			if (file == null || file.Length == 0) return "";
+
+			try {
+				string extension = System.IO.Path.GetExtension(file.FileName);
+				string fileName = $"{CreateId()}{extension}";
+				string pathSave = System.IO.Path.Combine(path, fileName);
+
+				using (var stream = new FileStream(pathSave, FileMode.Create)) {
+					await file.CopyToAsync(stream);
+					return fileName;
+				}
+			}
+			catch {
+				return "";
+			}
 		}
 	}
 }

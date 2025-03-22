@@ -38,6 +38,14 @@
 	color: red !important;
 }
 
+.bg_gray_hover:hover {
+	background-color: #ccc !important;
+}
+
+.opacity_hover:hover {
+	opacity: 0.7;
+}
+
 @media (width <=1200px) {
 	.active_click:hover {
 		background-color: var(--greenPage);

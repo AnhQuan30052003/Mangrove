@@ -3,7 +3,10 @@ using Mangrove.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Drawing;
 using System.Linq.Expressions;
+using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Mangrove.Controllers {
@@ -39,7 +42,7 @@ namespace Mangrove.Controllers {
 					{ listTitleVI[index++], item => item.DistributionVi },
 					{ listTitleVI[index++], item => item.TblIndividuals.Count() }
 				};
-				
+
 				index = 1;
 				var sortOptionsEN = new Dictionary<string, Expression<Func<TblMangrove, object>>>()
 				{
@@ -97,16 +100,113 @@ namespace Mangrove.Controllers {
 		}
 
 		// Tạo cây mới
-		public async Task<IActionResult> Page_Create() {
+		public IActionResult Call_Create() {
+			var mangrove = new TblMangrove();
+			return RedirectToAction("Page_Create", mangrove);
+		}
+		public IActionResult Page_Create(TblMangrove model) {
 
-			return View();
+			return View(model);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_Create(TblMangrove model, List<IFormFile> ImageFile, List<string> NoteImgEn, List<string> NoteImgVi) {
+			bool isEN = Helper.Func.IsLanguage("en");
+			if (!ModelState.IsValid) {
+				// Setup thông báo
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.fail,
+					isEN ? "Error in input data !" : "Có lỗi trong dữ liệu nhập vào !",
+					Helper.SetupNotifier.Timer.shortTime,
+					""
+				);
+
+				//TempData["ImageFile"] = ImageFile;
+				//TempData["ImageFile"] = ImageFile;
+				//TempData["ImageFile"] = ImageFile;
+
+				return RedirectToAction("Page_Create", model);
+			}
+
+			// Lưu cây
+			string idMangrve = Helper.Func.CreateId();
+			model.Id = idMangrve;
+			model.View = 0;
+			model.UpdateLast = DateTime.Now;
+
+			List<TblPhoto> listPhotos = new List<TblPhoto>();
+			if (ImageFile != null && ImageFile.Count > 0) {
+				for (int i = 0; i < ImageFile.Count; i++) {
+					var file = ImageFile[i];
+
+					string fileName = await Helper.Func.SaveImage(Helper.Path.treeImg, file);
+					if (!string.IsNullOrEmpty(fileName)) {
+						if (string.IsNullOrEmpty(model.MainImage)) {
+							model.MainImage = fileName;
+						}
+
+						var photo = new TblPhoto {
+							Id = Helper.Func.CreateId(),
+							IdObj = idMangrve,
+							ImageName = fileName,
+							NoteImgEn = NoteImgEn[i],
+							NoteImgVi = NoteImgVi[i]
+						};
+						listPhotos.Add(photo);
+					}
+				}
+			}
+
+			if (string.IsNullOrEmpty(model.MainImage)) model.MainImage = "";
+
+			context.TblMangroves.Add(model);
+			foreach (var photo in listPhotos) {
+				context.TblPhotos.Add(photo);
+			}
+			await context.SaveChangesAsync();
+
+			// Setup thông báo
+			Helper.Notifier.Create(
+				Helper.SetupNotifier.Status.success,
+				isEN ? "Create successfully." : "Tạo thành công.",
+				Helper.SetupNotifier.Timer.fastTime,
+				""
+			);
+
+			return RedirectToAction("Page_Index");
 		}
 
 		// Chỉnh sửa cây
-		public async Task<IActionResult> Page_Edit() {
+		public async Task<IActionResult> Page_Edit(string id) {
+			try {
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
+				if (mangrove == null) {
+					return NotFound($"Không tìm thấy cây có ID = {id}");
+				}
 
+				// Truy vấn ảnh cho banner slick slider
+				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
+				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
+
+				// Xử lý thứ tự ảnh banner slick slider
+				if (photos.Count() > 1 && photoMangrove != null) {
+					photos.Remove(photoMangrove);
+					photos.Insert(0, photoMangrove);
+				}
+
+				TempData["Photos"] = photos;
+				return View(mangrove);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_Edit(TblMangrove model, List<IFormFile> ImageFile, List<string> listDesVI, List<string> listDesEN) {
 			return View();
 		}
+
 
 		// Chi tiết
 		public async Task<IActionResult> Page_Detail(string id) {
@@ -133,7 +233,7 @@ namespace Mangrove.Controllers {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
 				return NotFound(notifier);
-			}			
+			}
 		}
 	}
 }
