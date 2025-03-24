@@ -1,5 +1,6 @@
 using Mangrove.Controllers;
 using Mangrove.Data;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,11 @@ builder.Services.AddSession((options) => {
 	options.Cookie.HttpOnly = true;
 	options.Cookie.IsEssential = true;
 	options.Cookie.MaxAge = TimeSpan.FromDays(3650);
+});
+
+builder.Services.AddControllersWithViews()
+.AddMvcOptions(options => {
+	options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
 
 var app = builder.Build();
@@ -43,6 +49,6 @@ app.MapControllerRoute(
 	//pattern: "{controller=Home}/{action=Page_Index}/{id?}");
 	//pattern: "{controller=Home}/{action=Page_Distribution}/{id?}");
 	pattern: "{controller=Mangrove}/{action=Page_Index}/{id?}");
-	//pattern: "{controller=Admin}/{action=Page_Statistical}/{id?}");
-	//pattern: "{controller=Mangrove}/{action=Page_Create}/{id?}");
+//pattern: "{controller=Admin}/{action=Page_Statistical}/{id?}");
+//pattern: "{controller=Mangrove}/{action=Page_Create}/{id?}");
 app.Run();

@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mangrove.Models {
 	public class MangroveModel {
-		[ValidateCustom(ValidateCustom.Type.NotEmpty)]
 		public string NameVi { get; set; } = null!;
 
 
-		[ValidateCustom(ValidateCustom.Type.NotEmpty)]
+		[ValidateCustom(ValidateCustomAttribute.Type.NotEmpty)]
+		//[Required(ErrorMessage = "Không được bỏ trống !")]
 		public string NameEn { get; set; } = null!;
 
 
@@ -54,13 +54,7 @@ namespace Mangrove.Models {
 
 	public class PhotoModel {
 		public string Image { get; set; } = null!;
-
-		[ValidateCustom(ValidateCustom.Type.NotEmpty)]
-
 		public string NoteImgEn { get; set; } = null!;
-
-		[ValidateCustom(ValidateCustom.Type.NotEmpty)]
-
 		public string NoteImgVi { get; set; } = null!;
 	}
 }

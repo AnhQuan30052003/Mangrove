@@ -85,54 +85,54 @@
 							}
 							else
 							{
-								for (int i = 0; i < haveItemSlide; i++)
-								{
-									<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
-										<button class="btn_remove_item"
-												type="button">
-											<i class="icon_remove_item fa-solid fa-xmark"></i>
-										</button>
+								// for (int i = 0; i < haveItemSlide; i++)
+								// {
+								// 	<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+								// 		<button class="btn_remove_item"
+								// 				type="button">
+								// 			<i class="icon_remove_item fa-solid fa-xmark"></i>
+								// 		</button>
 
-										<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
-											<p class="text-center">@translate["label_hinh_anh"]</p>
-											<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
-												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
-														type="button">
-													<i class="icon_add fa-solid fa-plus"></i>
-												</button>
-												<input class="file" name="ImageFile" type="file" hidden />
-											</div>
+								// 		<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+								// 			<p class="text-center">@translate["label_hinh_anh"]</p>
+								// 			<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
+								// 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+								// 						type="button">
+								// 					<i class="icon_add fa-solid fa-plus"></i>
+								// 				</button>
+								// 				<input class="file" name="ImageFile" type="file" hidden />
+								// 			</div>
 
-											<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-												<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
-													 src=""
-													 name="ImageName"
-													 alt="" />
+								// 			<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
+								// 				<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
+								// 					 src=""
+								// 					 name="ImageName"
+								// 					 alt="" />
 
-												<button class="btn_remove_preview_img"
-														type="button">
-													<i class="icon_remove fa-solid fa-xmark"></i>
-												</button>
-											</div>
-										</div>
+								// 				<button class="btn_remove_preview_img"
+								// 						type="button">
+								// 					<i class="icon_remove fa-solid fa-xmark"></i>
+								// 				</button>
+								// 			</div>
+								// 		</div>
 
-										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-											<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+								// 		<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
+								// 			<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
 
-											<div class="add_content_item mt-1 m-lg-0 col-12">
-												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-												<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-												<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
-											</div>
+								// 			<div class="add_content_item mt-1 m-lg-0 col-12">
+								// 				<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+								// 				<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+								// 				<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
+								// 			</div>
 
-											<div class="add_content_item mt-1 m-lg-0 col-12">
-												<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-												<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-												<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
-											</div>
-										</div>
-									</div>
-								}
+								// 			<div class="add_content_item mt-1 m-lg-0 col-12">
+								// 				<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+								// 				<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+								// 				<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
+								// 			</div>
+								// 		</div>
+								// 	</div>
+								// }
 							}
 						}
 					</div>
@@ -155,21 +155,21 @@
 					<div class="left col-12 col-lg-6 d-flex flex-column gap-1 pr-10">
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_anh"])</small>
-							<input type="text" asp-for="NameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+							<input type="text" asp-for="@Model.NameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 							<span asp-validation-for="NameEn" class="text-danger small_font"></span>
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_viet"])</small>
 							<input type="text" asp-for="NameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-							<span asp-validation-for="NameVi" class="text-danger small_font"></span>
+							@* <span asp-validation-for="NameVi" class="text-danger small_font"></span> *@
 
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khoa_hoc"]</small>
 							<input type="text" asp-for="ScientificName" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-							<span asp-validation-for="ScientificName" class="text-danger small_font"></span>
+							@* <span asp-validation-for="ScientificName" class="text-danger small_font"></span> *@
 						</div>
 					</div>
 
