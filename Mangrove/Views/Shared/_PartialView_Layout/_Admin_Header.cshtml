@@ -3,7 +3,6 @@
 
 @{
     var isEN = Helper.Func.IsLanguage("en");
-    string textLogout = isEN ? "Are you sure you want to log out ?" : "Bạn có chắc chắn muốn đăng xuất không ?";
 }
 
 <header id="header">
@@ -114,7 +113,7 @@
 
                                 <a  href='@Url.Action("Page_Index", "Home")'
                                    class="py-2 px-3 d-block downdown_item logout"
-                                   onclick="return confirm('@textLogout');">
+                                   onclick="return confirm('@translate["label_text_dang_xuat"]');">
                                     @translate["label_dang_xuat"]
                                 </a>
                             </ul>

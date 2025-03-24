@@ -9,8 +9,18 @@ drop table if exists tblIndividual
 drop table if exists tblMangrove
 
 drop table if exists tblPhotos
+drop table if exists tblDistributiton
+drop table if exists tblAdmin
 
 -- [Add tables] --
+-- Bảng cho admin
+create table tblAdmin
+(
+    _email varchar(256) not null,
+    _username nvarchar(50) not null,
+    _password varchar(50) not null,
+)
+
 -- Bảng cho trang setting
 create table tblSetting
 (
@@ -30,7 +40,6 @@ create table tblSetting
 
      _addressVI nvarchar(256) not null,
      _addressEN nvarchar(256) not null
-
 )
 
 -- Bảng cho trang home

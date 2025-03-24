@@ -72,7 +72,7 @@ namespace Mangrove.Controllers {
 				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
 
 				// Xử lý thứ tự ảnh banner slick slider
-				if (photos.Count() > 1 && photoMangrove != null) {
+				if (photos != null && photos.Count() > 1 && photoMangrove != null) {
 					photos.Remove(photoMangrove);
 					photos.Insert(0, photoMangrove);
 				}
@@ -108,14 +108,8 @@ namespace Mangrove.Controllers {
 				List<Stage> listStages = new List<Stage>();
 				foreach (var stage in individual.TblStages) {
 					var photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
-					if (photos.Count == 0) {
+					if (photos == null || photos.Count() == 0) {
 						photos = new List<TblPhoto>();
-					}
-					else {
-						var photo = await context.TblPhotos.FirstOrDefaultAsync(item => item.IdObj == stage.Id);
-						if (photo != null) {
-							photos.Remove(photo);
-						}
 					}
 
 					var _stage = new Stage {

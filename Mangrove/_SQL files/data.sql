@@ -10,8 +10,13 @@ delete tblMangrove
 
 delete tblPhotos
 delete tblDistributiton
+delete tblAdmin
 
 -- [Insert data for tables
+insert into tblAdmin
+values
+('anhquan300503@gmail.com', 'admin', 'admin')
+
 insert into tblSetting
 values
     (
@@ -272,19 +277,20 @@ values
 
 insert into tblDistributiton
 values
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM000', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM000_Phường Ninh Giang, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Giang, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Giang Ward, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM001', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM001_Phường Ninh Hà, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Hà, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hà Ward, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM002_Phường Ninh Hải, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Hải, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hải Ward, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM003_Xã Ninh Ích, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Ích, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Ích Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM004', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM004_Xã Ninh Lộc, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Lộc, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Lộc Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM005', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM005_Xã Ninh Phú, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Phú, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phú Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM006', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM006_Xã Ninh Phước, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Phước, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phước Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM007', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM000', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM000_Phường Ninh Giang, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Giang, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Giang Ward, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM001', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM001_Phường Ninh Hà, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Hà, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hà Ward, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM002', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM002_Phường Ninh Hải, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Phường Ninh Hải, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Hải Ward, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM003', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM003_Xã Ninh Ích, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Ích, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Ích Communne, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM004', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM004_Xã Ninh Lộc, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Lộc, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Lộc Communne, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM005', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM005_Xã Ninh Phú, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Phú, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phú Communne, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM006', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM006_Xã Ninh Phước, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Phước, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Phước Communne, Ninh Hoà Town, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM007', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoà Town, Khánh Hoà Province'),
 
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM008', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM009', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM010', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM011', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM012', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM013', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province'),
-('00000000-AAAA-AAAA-AAAA-AAAAAAAAM014', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM007_Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà.png', N'Xã Ninh Vân, Thị xã Ninh Hoà, Tỉnh Khánh Hoà', N'Ninh Vân Communne, Ninh Hoa Town, Khanh Hoa Province')
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM008', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM008_Thị trấn Vạn Giã, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Thị trấn Vạn Giã, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Giã Town, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM009', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM009_Xã Vạn Hưng, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Hưng, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Hưng Communne, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM010', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM010_Xã Vạn Khánh, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Khánh, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Khánh Communne, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM011', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM011_Xã Vạn Phước, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Phước, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Phước Communne, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM012', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM012_Xã Vạn Thắng, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Thắng, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Thắng Communne, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM013', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM013_Xã Vạn Thạnh, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Thạnh, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Thạnh Communne, Vạn Ninh District, Khánh Hoà Province'),
+    ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM014', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM014_Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Thọ Communne, Vạn Ninh District, Khánh Hoà Province')
+

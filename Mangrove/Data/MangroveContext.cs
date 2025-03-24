@@ -15,6 +15,8 @@ public partial class MangroveContext : DbContext
     {
     }
 
+    public virtual DbSet<TblAdmin> TblAdmins { get; set; }
+
     public virtual DbSet<TblDistributiton> TblDistributitons { get; set; }
 
     public virtual DbSet<TblHome> TblHomes { get; set; }
@@ -31,9 +33,28 @@ public partial class MangroveContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TblAdmin>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("tblAdmin");
+
+            entity.Property(e => e.Email)
+                .HasMaxLength(256)
+                .IsUnicode(false)
+                .HasColumnName("_email");
+            entity.Property(e => e.Password)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("_password");
+            entity.Property(e => e.Username)
+                .HasMaxLength(50)
+                .HasColumnName("_username");
+        });
+
         modelBuilder.Entity<TblDistributiton>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblDistr__DED88B1C4B451662");
+            entity.HasKey(e => e.Id).HasName("PK__tblDistr__DED88B1C426E7C3D");
 
             entity.ToTable("tblDistributiton");
 
@@ -74,7 +95,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblIndividual>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1CDA25A03B");
+            entity.HasKey(e => e.Id).HasName("PK__tblIndiv__DED88B1C83F6D367");
 
             entity.ToTable("tblIndividual");
 
@@ -110,12 +131,12 @@ public partial class MangroveContext : DbContext
 
             entity.HasOne(d => d.IdMangroveNavigation).WithMany(p => p.TblIndividuals)
                 .HasForeignKey(d => d.IdMangrove)
-                .HasConstraintName("FK__tblIndivi___idMa__2CF2ADDF");
+                .HasConstraintName("FK__tblIndivi___idMa__6166761E");
         });
 
         modelBuilder.Entity<TblMangrove>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1C5BF59BFF");
+            entity.HasKey(e => e.Id).HasName("PK__tblMangr__DED88B1C689D66DB");
 
             entity.ToTable("tblMangrove");
 
@@ -168,7 +189,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblPhoto>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C158376A0");
+            entity.HasKey(e => e.Id).HasName("PK__tblPhoto__DED88B1C40B912C6");
 
             entity.ToTable("tblPhotos");
 
@@ -235,7 +256,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblStage>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C0483CBF9");
+            entity.HasKey(e => e.Id).HasName("PK__tblStage__DED88B1C3A34F8BF");
 
             entity.ToTable("tblStage");
 
@@ -268,7 +289,7 @@ public partial class MangroveContext : DbContext
 
             entity.HasOne(d => d.IdIndividualNavigation).WithMany(p => p.TblStages)
                 .HasForeignKey(d => d.IdIndividual)
-                .HasConstraintName("FK__tblStage___idInd__2FCF1A8A");
+                .HasConstraintName("FK__tblStage___idInd__6442E2C9");
         });
 
         OnModelCreatingPartial(modelBuilder);
