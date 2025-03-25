@@ -19,7 +19,7 @@ namespace Mangrove.ViewModels {
 		}
 	}
 	public class InfomationPaginate {
-		public static readonly List<int> ListPageSize = new List<int> { 5, 10, 20, 50, 100, 200, 500, 1000 };
+		private static readonly List<int> ListPageSize = new List<int> { 5, 10, 20, 50, 100, 200, 500, 1000 };
 		public SelectList SelectListPageSize;
 		public List<string> ListTitle;
 
@@ -57,5 +57,7 @@ namespace Mangrove.ViewModels {
 			this.Controller = Controller;
 			this.Action = Action;
 		}
+	
+		public static int GetFistPageSize() => ListPageSize[0];	
 	}
 }

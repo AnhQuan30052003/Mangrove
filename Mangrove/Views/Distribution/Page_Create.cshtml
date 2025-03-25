@@ -1,7 +1,6 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model Distribution_VM
+@model List<Distribution_VM>
 @{
-	var isEN = Helper.Func.IsEnglish();
 	ViewData["Title"] = translate["label_phan_bo"];
 	ViewData["InfoPage"] = translate["label_ban_do_phan_bo"] + $" ({translate["label_them"]})";
 	ViewData["TypePage"] = "Page_Distribution";
@@ -13,24 +12,29 @@
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
 <input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
 <input id="photo" value="@translate["label_hinh_anh"]" hidden />
-<input id="description" value="@translate["label_mo_ta"]" hidden />
+<input id="description" value="@translate["label_ten"]" hidden />
 
 <section class="mod-add-mangrove">
 	<div class="container py-2">
 		<form action="" method="post" enctype="multipart/form-data">
 			<!-- Maps -->
 			<div class="frame_slide rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">
-						@translate["label_ban_do"]
+						@translate["label_ban_do"] (<span class="quantity_item">@(Model.Count() == 0 ? 1 : Model.Count())</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
 				<div class="info">
 					<div class="items">
 						@{
-							if (true)
+							if (!Model.Any())
 							{
+								for (int i = 1; i <= Helper.Variable.maxItem; i++)
+								{
+									Model.Add(new Distribution_VM());
+								}
+
 								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
 									<button class="btn_remove_item"
 											type="button">
@@ -63,34 +67,90 @@
 											</button>
 										</div>
 
-										<small class="text-danger small_font">@Helper.Validate.ShowError()</small>
+										<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 									</div>
 
 									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-										<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+										<p class="text-center col-12 align-self-start">@translate["label_ten"]</p>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-											<input type="text" asp-for="MapNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-											<small class="text-danger small_font">@Helper.Validate.ShowError()</small>
+											<input type="text" asp-for="@Model[0].MapNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 										</div>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-											<input type="text" asp-for="MapNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-											<small class="text-danger small_font">@Helper.Validate.ShowError()</small>
+											<input type="text" asp-for="@Model[0].MapNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 										</div>
 									</div>
 								</div>
 							}
 							else
 							{
+								for (int i = 0; i < Model.Count(); i++)
+								{
+									<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+										<button class="btn_remove_item"
+												type="button">
+											<i class="icon_remove_item fa-solid fa-xmark"></i>
+										</button>
+
+										<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+											<p class="text-center">
+												@translate["label_hinh_anh"]
+											</p>
+
+											<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+														type="button">
+													<i class="icon_add fa-solid fa-plus"></i>
+												</button>
+												<input class="file" name="ImageFile" type="file" hidden />
+											</div>
+
+											<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
+												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
+													 src="/img/distribution-map-img/"
+													 name="ImageName"
+													 style="max-height: 200px;"
+													 alt="" />
+
+												<button class="btn_remove_preview_img"
+														type="button">
+													<i class="icon_remove fa-solid fa-xmark"></i>
+												</button>
+											</div>
+
+											<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+										</div>
+
+										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
+											<p class="text-center col-12 align-self-start">@translate["label_ten"]</p>
+
+											<div class="add_content_item mt-1 m-lg-0 col-12">
+												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+												<input type="text" asp-for="@Model[i].MapNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="add_content_item mt-1 m-lg-0 col-12">
+												<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+												<input type="text" asp-for="@Model[i].MapNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+										</div>
+									</div>
+								}
 							}
 						}
 					</div>
 
 					<div class="text-center py-2">
-						<button class="btn_add_item_slide" type="button">
+						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+								type="button"
+								att1="MapNameEn"
+								att2="MapNameVi"
+								onclick="item.addItem();">
 							<i class="fa-solid fa-plus"></i>
 							@translate["label_them_anh"]
 						</button>

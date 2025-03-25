@@ -24,7 +24,7 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Index(string? search = null, int currentPage = 1, int? pageSize = null, string? sortType = null, string? sortFollow = null) {
 			try {
 				// Setup
-				if (pageSize == null) pageSize = InfomationPaginate.ListPageSize[0];
+				if (pageSize == null) pageSize = InfomationPaginate.GetFistPageSize();
 				if (sortType == null) sortType = Helper.Key.sortASC;
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
@@ -97,12 +97,8 @@ namespace Mangrove.Controllers {
 		}
 
 		// Tạo mới
-		public IActionResult Call_Create() {
-			var model = new Mangrove_VM();
-			return RedirectToAction("Page_Create", model);
-		}
-		public IActionResult Page_Create(Mangrove_VM model) {
-
+		public IActionResult Page_Create(Mangrove_VM? model = null) {
+			if (model == null) model = new Mangrove_VM();
 			return View(model);
 		}
 		[HttpPost]

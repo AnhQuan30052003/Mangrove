@@ -24,7 +24,7 @@ public class Helper {
 
 	// Variable
 	public static class Variable {
-		public static int maxSlide = 10;
+		public static int maxItem = 10;
 	}
 
 	// Status noifier
@@ -263,11 +263,13 @@ public class Helper {
 
 		// Codes - functions check validate
 		public static void NotEmpty(string? text) {
+			string content = string.Empty;
 			if (string.IsNullOrEmpty(text)) {
 				string EN = "Can't be blank !";
 				string VI = "Không được bỏ trống !";
-				AddError(Func.IsEnglish() ? EN : VI);
+				content = Func.IsEnglish() ? EN : VI;
 			}
+			AddError(content);
 		}
 	}
 }

@@ -27,14 +27,6 @@
 	color: red;
 }
 
-.btn_add_item_slide {
-	border: none;
-	padding: 7.5px 15px;
-	background-color: black;
-	color: white;
-	border-radius: 0.2rem;
-}
-
 @media (width <= 1200px) {
 	:root {
 		--size_btn_remove_preview_img: 30px;

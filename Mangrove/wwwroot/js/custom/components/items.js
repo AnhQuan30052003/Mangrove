@@ -17,7 +17,7 @@ function addImageToItem() {
 
 					const reader = new FileReader();
 					reader.onload = function (e) {
-						const img = previewImg.querySelector(".show_temp");														
+						const img = previewImg.querySelector(".show_temp");
 						img.src = e.target.result;
 					}
 					reader.readAsDataURL(file.files[0]);
@@ -31,7 +31,7 @@ function addImageToItem() {
 
 		// Khi click vào nút xoá ảnh
 		if (clicked.matches(".btn_remove_preview_img") || clicked.matches(".icon_remove")) {
-			const addImg = clicked.closest(".add_img");															
+			const addImg = clicked.closest(".add_img");
 			const inputImg = addImg.querySelector(".input_img");
 			const previewImg = addImg.querySelector(".preview_img");
 			const file = addImg.querySelector(".file");
@@ -39,7 +39,7 @@ function addImageToItem() {
 			inputImg.classList.remove("d-none");
 			previewImg.classList.add("d-none");
 			file.value = "";
-		}	
+		}
 
 		// Khi click vào xoá item
 		if (clicked.matches(".btn_remove_item") || clicked.matches(".icon_remove_item")) {
@@ -47,19 +47,32 @@ function addImageToItem() {
 			const file = addItem.querySelector(".file");
 			file.value = "";
 			addItem.remove();
-		}	
 
-		// Khi click vào nút thêm item
-		if (clicked.matches(".btn_add_item_slide")) {
-			const items = document.querySelector(".items");
-			const addItem = createDivAddItem();
-			items.appendChild(addItem);
+			const quantity = document.querySelector(".quantity_item");
+			quantity.innerHTML = parseInt(quantity.innerText) - 1;
 		}
 	});
 }
 addImageToItem();
 
-function createDivAddItem() {
+// Khi click vào nút thêm item
+export function addItem() {
+	const items = document.querySelector(".items");
+	const addItemFind = items.querySelectorAll(".add_item");
+	if (addItemFind.length == 10) return;
+
+	const btn = document.querySelector(".btn_add_item");
+	const att1 = btn.getAttribute("att1");
+	const att2 = btn.getAttribute("att2");
+
+	const addItem = createDivAddItem(addItemFind.length, att1, att2);
+	items.appendChild(addItem);
+
+	const quantity = document.querySelector(".quantity_item");
+	quantity.innerHTML = addItemFind.length + 1;
+}
+
+function createDivAddItem(index, attribute1, attribute2) {
 	const addItem = document.createElement("div");
 	addItem.className = "add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative";
 
@@ -79,7 +92,8 @@ function createDivAddItem() {
 	photo.innerText = document.querySelector("#photo").value;
 
 	const inputImg = document.createElement("div");
-	inputImg.className = "input_img bg-white h-100 d-flex justify-content-center align-items-center";
+	inputImg.className = "input_img bg-white d-flex justify-content-center align-items-center";
+	inputImg.style.height = "calc(100% - 27px)";
 
 	const btnAddImg = document.createElement("button");
 	btnAddImg.className = "btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1";
@@ -103,8 +117,9 @@ function createDivAddItem() {
 	previewImg.style.height = "calc(100% - 27px)";
 
 	const img = document.createElement("img");
-	img.className = "show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image";
+	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image";
 	img.setAttribute("name", "ImageName");
+	img.style.maxHeight = "200px";
 
 	const btnRemovvPreviewImg = document.createElement("button")
 	btnRemovvPreviewImg.className = "btn_remove_preview_img";
@@ -140,7 +155,10 @@ function createDivAddItem() {
 	inputText.name = "";
 
 	const inputTextEN = inputText.cloneNode(false);
+	inputTextEN.name = `[${index}].${attribute1}`;
+
 	const inputTextVI = inputText.cloneNode(false);
+	inputTextVI.name = `[${index}].${attribute2}`;
 
 	const smallEN = smallTite.cloneNode(false);
 	smallEN.textContent = document.querySelector("#english").value;

@@ -24,7 +24,7 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Index(string? search = null, int currentPage = 1, int? pageSize = null, string? sortType = null, string? sortFollow = null) {
 			try {
 				// Setup
-				if (pageSize == null) pageSize = InfomationPaginate.ListPageSize[0];
+				if (pageSize == null) pageSize = InfomationPaginate.GetFistPageSize();
 				if (sortType == null) sortType = Helper.Key.sortASC;
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
@@ -85,73 +85,81 @@ namespace Mangrove.Controllers {
 		}
 
 		// Tạo mới
-		public IActionResult Call_Create() {
-			var model = new Distribution_VM();
-			return RedirectToAction("Page_Create", model);
-		}
-		public IActionResult Page_Create(Distribution_VM model) {
-			return View(model);
+		public IActionResult Page_Create(List<Distribution_VM>? models = null) {
+			if (models == null) models = new List<Distribution_VM>();
+			return View(models);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(Distribution_VM model, List<IFormFile> ImageName) {
+		public async Task<IActionResult> Page_Create(List<Distribution_VM> models, List<IFormFile>? ImageName = null) {
 			bool isEN = Helper.Func.IsEnglish();
+
+			Console.Clear();
 
 			// Validate
 			Helper.Validate.Clear();
-			Helper.Validate.NotEmpty(ImageName.Count() == 0 ? "" : "");
-			Helper.Validate.NotEmpty(model.MapNameEn);
-			Helper.Validate.NotEmpty(model.MapNameVi);
-
-			if (Helper.Validate.HaveError()) {
-				return View(model);
+			for (int i = 0; i < models.Count(); i++) {
+				if (ImageName != null && i < ImageName.Count()) Helper.Validate.NotEmpty(ImageName[i] == null ? "" : "");
+				else Helper.Validate.NotEmpty(null);
+				Helper.Validate.NotEmpty(models[i].MapNameEn);
+				Helper.Validate.NotEmpty(models[i].MapNameVi);
 			}
 
-			//if (!model.Photos.Any()) {
-			//	Helper.Notifier.Create(
-			//		Helper.SetupNotifier.Status.fail,
-			//		isEN ? "Must have at least one photo!" : "Phải có ít nhất một ảnh !",
-			//		Helper.SetupNotifier.Timer.shortTime,
-			//		""
-			//	);
-			//	return RedirectToAction("Page_Create", model);
-			//}
+			if (Helper.Validate.HaveError()) {
+				return View(models);
+			}
 
+			Console.WriteLine($"Quantity models: {models.Count()}");
 
-			return View(model);
-
-			// Bắt lỗi nhập dữ liệu
-			if (!ModelState.IsValid) {
-				// Setup thông báo
+			if (!models.Any()) {
 				Helper.Notifier.Create(
 					Helper.SetupNotifier.Status.fail,
-					isEN ? "Error in input data !" : "Có lỗi trong dữ liệu nhập vào !",
+					isEN ? "Must have at least one photo!" : "Phải có ít nhất một ảnh !",
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-
-				return RedirectToAction("Page_Create", model);
+				Console.WriteLine("Check thấy không có ảnh !");
+				return View(models);
 			}
 
-			// Lưu bản đồ
-			var map = new TblDistributiton {
-				Id = Helper.Func.CreateId(),
-				ImageMap = "fsfs",
-				MapNameEn = model.MapNameEn,
-				MapNameVi = model.MapNameVi
-			};
+			Console.WriteLine("Chạy qua rồi !");
 
-			context.TblDistributitons.Add(map);
-			await context.SaveChangesAsync();
+			return View(models);
+
+
+
+			// Bắt lỗi nhập dữ liệu
+			//if (!ModelState.IsValid) {
+			//	// Setup thông báo
+			//	Helper.Notifier.Create(
+			//		Helper.SetupNotifier.Status.fail,
+			//		isEN ? "Error in input data !" : "Có lỗi trong dữ liệu nhập vào !",
+			//		Helper.SetupNotifier.Timer.shortTime,
+			//		""
+			//	);
+
+			//	return RedirectToAction("Page_Create", model);
+			//}
+
+			// Lưu bản đồ
+			//var map = new TblDistributiton {
+			//	Id = Helper.Func.CreateId(),
+			//	ImageMap = "fsfs",
+			//	MapNameEn = models.MapNameEn,
+			//	MapNameVi = models.MapNameVi
+			//};
+
+			//context.TblDistributitons.Add(map);
+			//await context.SaveChangesAsync();
 
 			// Setup thông báo
-			Helper.Notifier.Create(
-				Helper.SetupNotifier.Status.success,
-				isEN ? "Create successfully." : "Tạo thành công.",
-				Helper.SetupNotifier.Timer.fastTime,
-				""
-			);
+			//Helper.Notifier.Create(
+			//	Helper.SetupNotifier.Status.success,
+			//	isEN ? "Create successfully." : "Tạo thành công.",
+			//	Helper.SetupNotifier.Timer.fastTime,
+			//	""
+			//);
 
-			return RedirectToAction("Page_Index");
+			//return RedirectToAction("Page_Index");
 		}
 
 		// Chỉnh sửa

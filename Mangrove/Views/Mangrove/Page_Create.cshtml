@@ -24,7 +24,7 @@
 			<div class="frame_slide rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
 					<h6 class="py-2 bg-black text-white rounded-1">
-						Slide (<span class="quantity_slide">@haveItemSlide</span>/@Helper.Variable.maxSlide)
+						Slide (<span class="quantity_item">@haveItemSlide</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
@@ -134,7 +134,8 @@
 					</div>
 
 					<div class="text-center py-2">
-						<button class="btn_add_item_slide" type="button">
+						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+								type="button">
 							@translate["label_them_item"]
 						</button>
 					</div>
@@ -283,7 +284,7 @@
 				</button>
 
 				<button type="button" onclick="location.reload();"
-				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
 					<i class="fa-solid fa-eraser"></i>
 					<span class="hidden_mobile">@translate["label_xoa_sach"]</span>
 				</button>
