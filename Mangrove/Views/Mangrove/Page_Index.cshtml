@@ -3,16 +3,16 @@
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
-	ViewData["InfoPage"] = isEN ? "Mangrove list" : "Danh sách cây ngập mặn";
+	ViewData["InfoPage"] = translate["label_danh_sach_cay_ngap_man"];
 	ViewData["TypePage"] = "Page_Mangrove";
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
 }
 
-<section class="mod_list_species_composition have_paginate">
+<section class="mangrove_list have_paginate">
 	<div class="container-fluid py-2">
-		@await Html.PartialAsync($"{pv}/Both_Paginate.cshtml", Model)
+		@await Html.PartialAsync($"{pv}/Both_Paginate_Mangrove.cshtml", Model)
 	</div>
 </section>
 

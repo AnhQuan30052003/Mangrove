@@ -2,10 +2,6 @@
 	--size_btn_remove_preview_img: 40px;
 }
 
-.add_img_height {
-	height: 200px;
-}
-
 .btn_remove_item,
 .btn_remove_preview_img {
 	position: absolute;
@@ -42,5 +38,8 @@
 @media (width <= 1200px) {
 	:root {
 		--size_btn_remove_preview_img: 30px;
+	}
+	.add_img_height {
+		height: 200px;
 	}
 }

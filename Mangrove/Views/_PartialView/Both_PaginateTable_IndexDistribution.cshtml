@@ -1,5 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model PaginateModel<TblMangrove>
+@model PaginateModel<TblDistributiton>
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	string pv = Helper.Path.partialView;
@@ -70,6 +70,7 @@
 									</a>
 									<i class="icon_sort fa-solid @typeArrow"></i>
 								}
+
 							</th>
 						}
 					}
@@ -88,12 +89,8 @@
 						{
 							<tr class="table_item position-relative">
 								<td class="text-center">@(stt++)</td>
-								<td>@(isEN ? item.NameEn : item.NameVi)</td>
-								<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
-								<td>@item.ScientificName</td>
-								<td>@item.Familia</td>
-								<td>@(isEN ? item.DistributionEn : item.DistributionVi)</td>
-								<td class="text-center">@item.TblIndividuals.Count()</td>
+								<td>@(isEN ? item.MapNameEn : item.MapNameVi)</td>
+								<td>@item.ImageMap</td>
 
 								<td class="text-center">
 									<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">

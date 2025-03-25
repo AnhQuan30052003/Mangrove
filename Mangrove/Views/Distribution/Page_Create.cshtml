@@ -1,0 +1,117 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model DistributionModel
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_phan_bo"];
+	ViewData["InfoPage"] = translate["label_ban_do_phan_bo"] + $" ({translate["label_them"]})";
+	ViewData["TypePage"] = "Page_Distribution";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+}
+
+<input id="english" value="@translate["label_tieng_anh"]" hidden />
+<input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
+<input id="photo" value="@translate["label_hinh_anh"]" hidden />
+<input id="description" value="@translate["label_mo_ta"]" hidden />
+
+<section class="mod-add-mangrove">
+	<div class="container py-2">
+		<form action="" method="post" enctype="multipart/form-data">
+			<!-- Maps -->
+			<div class="frame_slide rounded-1 mb-2 bg-form box">
+				<div class="toggle_title text-center mb-2 cursor-pointer">
+					<h6 class="py-2 bg-black text-white rounded-1">
+						@translate["label_ban_do"]
+					</h6>
+				</div>
+
+				<div class="info">
+					<div class="items">
+						@{
+							if (true)
+							{
+								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+									<button class="btn_remove_item"
+											type="button">
+										<i class="icon_remove_item fa-solid fa-xmark"></i>
+									</button>
+
+									<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+										<p class="text-center">@translate["label_hinh_anh"]</p>
+										<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+													type="button">
+												<i class="icon_add fa-solid fa-plus"></i>
+											</button>
+											<input class="file" name="ImageFile" type="file" hidden />
+										</div>
+
+										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
+												 src="/img/tree-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAP006.jpg"
+												 name="ImageName"
+												 style="max-height: 200px;"
+												 alt="" />
+
+											<button class="btn_remove_preview_img"
+													type="button">
+												<i class="icon_remove fa-solid fa-xmark"></i>
+											</button>
+										</div>
+									</div>
+
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
+										<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+											<input type="text" asp-for="MapNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+											<span asp-validation-for="MapNameEn" class="text-danger small_font"></span>
+										</div>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+											<input type="text" asp-for="MapNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+											<span asp-validation-for="MapNameVi" class="text-danger small_font"></span>
+										</div>
+									</div>
+								</div>
+							}
+							else
+							{
+							}
+						}
+					</div>
+
+					<div class="text-center py-2">
+						<button class="btn_add_item_slide" type="button">
+							<i class="fa-solid fa-plus"></i>
+							@translate["label_them_anh"]
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center my-3 gap-2">
+				<button type="button" onclick="saveLinkBack.getUrlIndex();"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover">
+					<i class="fa-solid fa-list"></i>
+					<span class="hidden_mobile">@translate["label_quay_lai_danh_sach"]</span>
+				</button>
+
+				<a href="@Url.Action("Call_Create", "Mangrove")"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
+					<i class="fa-solid fa-eraser"></i>
+					<span class="hidden_mobile">@translate["label_xoa_sach"]</span>
+				</a>
+
+				<button class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_them"]</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</section>							

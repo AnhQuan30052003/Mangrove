@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\models\\customviewmodels\\mangrovemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\models\\customviewmodels\\mangrovemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\distribution\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\distribution\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\validates\\validatecustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\validates\\validatecustom.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\mangrovecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\mangrovecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\distribution\\page_index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\distribution\\page_index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,8 +17,8 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 253,
-          "SelectedChildIndex": 6,
+          "DockedWidth": 201,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,73 +42,34 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Program.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Program.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Program.cs",
-              "RelativeToolTip": "Mangrove\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:44:19.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ValidateCustom.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Validates\\ValidateCustom.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Validates\\ValidateCustom.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Validates\\ValidateCustom.cs",
-              "RelativeToolTip": "Mangrove\\Validates\\ValidateCustom.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:37:03.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MangroveController.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\MangroveController.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Controllers\\MangroveController.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\MangroveController.cs",
-              "RelativeToolTip": "Mangrove\\Controllers\\MangroveController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA5wG8AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:22:51.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Page_Create.cshtml",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
-              "RelativeDocumentMoniker": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
-              "RelativeToolTip": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
+              "Title": "Page_Index.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Index.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Distribution\\Page_Index.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Index.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Distribution\\Page_Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-24T15:18:24.307Z",
+              "WhenOpened": "2025-03-25T03:01:16.877Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 200,
+          "DockedWidth": 252,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MangroveModel.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Models\\CustomViewModels\\MangroveModel.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Models\\CustomViewModels\\MangroveModel.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Models\\CustomViewModels\\MangroveModel.cs",
-              "RelativeToolTip": "Mangrove\\Models\\CustomViewModels\\MangroveModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T15:24:15.135Z",
+              "Title": "Page_Create.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T02:59:06.102Z",
               "EditorCaption": ""
             }
           ]
