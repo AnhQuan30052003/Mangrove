@@ -1,5 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model PaginateModel<TblMangrove>
+@model Paginate_VM<TblMangrove>
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];

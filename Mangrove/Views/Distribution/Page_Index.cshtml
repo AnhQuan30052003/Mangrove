@@ -1,7 +1,7 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model PaginateModel<TblDistributiton>
+@model Paginate_VM<TblDistributiton>
 @{
-	var isEN = Helper.Func.IsLanguage("en");
+	var isEN = Helper.Func.IsEnglish();
 	ViewData["Title"] = translate["label_phan_bo"];
 	ViewData["InfoPage"] = translate["label_danh_sach_ban_do_phan_bo"];
 	ViewData["TypePage"] = "Page_Distribution";

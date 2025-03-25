@@ -1,28 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Policy;
 
-namespace Mangrove.Models {
-	public class PaginateModel<T> {
+namespace Mangrove.ViewModels {
+	public class Paginate_VM<T> {
 		public InfomationPaginate InfomationPaginate;
 		public List<T> DataPaginate;
 
-		// Hàm khởi tạo nhiều tham số
-		//public PaginateModel(int CurrentPage, int PageSize, List<T> DataPaginate, string NameTable, List<string> ListTitle, string FindText, string Controller, string Action) {
-		//	this.InfomationPaginate = new InfomationPaginate(
-		//		NameTable,
-		//		ListTitle,
-		//		CurrentPage,
-		//		PageSize,
-		//		DataPaginate.Count(),
-		//		FindText,
-		//		Controller,
-		//		Action
-		//	);
-		//	this.DataPaginate = ExcePaginate(DataPaginate);
-		//}
-
-		// Hàm khởi tạo chỉ tập trung vào 2 tham số (Data & Info)
-		public PaginateModel(List<T> DataPaginate, InfomationPaginate InfomationPaginate) {
+		public Paginate_VM(List<T> DataPaginate, InfomationPaginate InfomationPaginate) {
 			this.InfomationPaginate = InfomationPaginate;
 			this.DataPaginate = ExcePaginate(DataPaginate);
 		}
@@ -38,7 +22,6 @@ namespace Mangrove.Models {
 		public static readonly List<int> ListPageSize = new List<int> { 5, 10, 20, 50, 100, 200, 500, 1000 };
 		public SelectList SelectListPageSize;
 		public List<string> ListTitle;
-		public string NameTable;
 
 		public int CurrentPage;
 		public int PageSize;
@@ -50,11 +33,10 @@ namespace Mangrove.Models {
 		public string Controller;
 		public string Action;
 
-		public InfomationPaginate(string NameTable, List<string> ListTitle, int CurrentPage, int PageSize, int totalItem, string sortType, string? sortFollow, string FindText, string Controller, string Action) {
-			bool isEN = Helper.Func.IsLanguage("en");
-			string label = Helper.Func.IsLanguage("en") ? " line" : " dòng";
+		public InfomationPaginate(List<string> ListTitle, int CurrentPage, int PageSize, int totalItem, string sortType, string? sortFollow, string FindText, string Controller, string Action) {
+			string label = Helper.Func.IsEnglish() ? " line" : " dòng";
 
-			this.SelectListPageSize = new SelectList(
+			SelectListPageSize = new SelectList(
 				ListPageSize.Select(item => new {
 					Value = item,
 					Text = item + label
@@ -63,12 +45,11 @@ namespace Mangrove.Models {
 				"Text",
 				PageSize
 			);
-			this.NameTable = NameTable;
 			this.ListTitle = ListTitle ?? new List<string>();
-			
+
 			this.CurrentPage = CurrentPage;
 			this.PageSize = PageSize;
-			this.TotalPages = (int)Math.Ceiling((double)totalItem / PageSize);
+			TotalPages = (int) Math.Ceiling((double) totalItem / PageSize);
 			this.sortType = sortType;
 			this.sortFollow = sortFollow;
 

@@ -1,26 +1,21 @@
 @inject IStringLocalizer<Translate> translate
-@model TblHome
-
+@model HomePage_Client_VM
 @{
-	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_trang_chu"];
 	ViewData["InfoPage"] = translate["label_gioi_thieu"];
 	ViewData["TypePage"] = "Page_Index";
 
 	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
-	var mangroves = TempData["Mangroves"] as List<TblMangrove> ?? new List<TblMangrove>();
 }
 
 <section class="module_home_page py-2">
 	<div class="container d-flex flex-column gap-3">
 		<div class="frame_img">
-			<img class="w-100 h-100 rounded-1 object-fit-cover" src="/img/logo/@Model.BannerImg" alt="">
+			<img class="w-100 h-100 rounded-1 object-fit-cover" src="/img/logo/@Model.BannerImage" alt="">
 
 			<div class="frame_title rounded-1 overflow-hidden">
-				<h1 class="title m-0 px-2 text-center">
-					@(isEN ? Model.BannerTitleEn : Model.BannerTitleVi)
-				</h1>
+				<h1 class="title m-0 px-2 text-center">@Model.BannerTitle</h1>
 			</div>
 
 			<div class="frame_logo">
@@ -31,7 +26,7 @@
 		<div class="frame_introduce">
 			<p class="fw-bold fs-5 mb-2">@translate["label_muc_dich_website"]</p>
 			<p class="content text-justify p-2">
-				@Html.Raw(Helper.Func.Show(isEN ? Model.PurposeEn : Model.PurposeVi))
+				@Html.Raw(Helper.Func.Show(Model.Purpose))
 			</p>
 		</div>
 
@@ -39,15 +34,15 @@
 			<p class="fw-bold fs-5 mb-2">@translate["label_cac_thanh_phan_gan_day"]</p>
 			<div class="items d-flex flex-wrap">
 				@{
-					foreach (var item in mangroves)
+					foreach (var item in Model.Mangroves)
 					{
-						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
+						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'					
 							class="item px-2 col-12 col-sm-6 col-lg-4 mt-3">
 							<div class="rounded-1 overflow-hidden">
-								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.MainImage"
+								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.Image"
 									alt="">
 							</div>
-							<p class="text-center mt-1 text_tree_hover">@(isEN ? "" : item.NameVi + " - ") @item.ScientificName</p>
+							<p class="text-center mt-1 text_tree_hover">@item.Name</p>
 						</a>
 					}
 				}

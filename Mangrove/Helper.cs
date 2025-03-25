@@ -1,4 +1,4 @@
-using Mangrove.Data;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -182,6 +182,9 @@ public class Helper {
 			return GetLanguageCurrent().Contains(language.ToLower());
 		}
 
+		// Kiểm tra có phải Tiếng Anh
+		public static bool IsEnglish() => IsLanguage("en");
+
 		// Format number
 		public static string FormatNumber(long number) {
 			string textNumber = number.ToString();
@@ -206,10 +209,7 @@ public class Helper {
 		}
 
 		// Create id
-		public static string CreateId() {
-			string id = Guid.NewGuid().ToString().ToUpper();
-			return id;
-		}
+		public static string CreateId() => Guid.NewGuid().ToString().ToUpper();
 
 		// Save img 
 		public static async Task<string> SaveImage(string path, IFormFile? file) {
@@ -227,6 +227,46 @@ public class Helper {
 			}
 			catch {
 				return "";
+			}
+		}
+	}
+
+	// Validate
+	public static class Validate {
+		private static List<string> errors = new List<string>();
+		private static int index = 0;
+
+		// Add error
+		public static void AddError(string err) => errors.Add(err);
+
+		// Clear list errors
+		public static void Clear() {
+			errors.Clear();
+			index = 0;
+		}
+
+		// Show error
+		public static string ShowError() {
+			try {
+				return errors[index++];
+			}
+			catch {
+				return "";
+			}
+		}
+
+		// Question have errors ?
+		public static bool HaveError() => errors.Count > 0;
+
+		// Get list error
+		public static List<string> GetListErrors() => errors;
+
+		// Codes - functions check validate
+		public static void NotEmpty(string? text) {
+			if (string.IsNullOrEmpty(text)) {
+				string EN = "Can't be blank !";
+				string VI = "Không được bỏ trống !";
+				AddError(Func.IsEnglish() ? EN : VI);
 			}
 		}
 	}

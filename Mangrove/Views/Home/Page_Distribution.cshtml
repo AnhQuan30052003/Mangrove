@@ -1,7 +1,6 @@
 @inject IStringLocalizer<Translate> translate
-@model List<TblDistributiton>
+@model List<Distribution_Client_VM>
 @{
-	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_phan_bo"];
 	ViewData["InfoPage"] = translate["label_ban_do_phan_bo"];
 	ViewData["TypePage"] = "Page_Distribution";
@@ -25,9 +24,9 @@
 
 					<div class="info max-h-content min-height-lazy">
 						<img class="map-img w-100 click_show_image lazy-load"
-							 data-src="/img/distribution-map-img/@item.ImageMap"
+							 data-src="/img/distribution-map-img/@item.Image"
 							 alt="" />
-						<p class="text-center pb-2 px-2 fw-bold">@(isEN ? item.MapNameEn : item.MapNameVi)</p>
+						<p class="text-center pb-2 px-2 fw-bold">@item.Position</p>
 					</div>
 				</div>
 			}

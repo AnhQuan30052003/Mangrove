@@ -22,7 +22,7 @@ namespace Mangrove.Controllers {
 		public IActionResult Page_Login(string account, string password) {
 			TempData["Account"] = account;
 
-			string textNotifier = Helper.Func.IsLanguage("EN") ? "Login successfully." : "Đăng nhập thành công.";
+			string textNotifier = Helper.Func.IsEnglish() ? "Login successfully." : "Đăng nhập thành công.";
 			Helper.Notifier.Create(
 				Helper.SetupNotifier.Status.success,
 				textNotifier,

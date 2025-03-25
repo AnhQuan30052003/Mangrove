@@ -1,5 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model MangroveModel
+@model Mangrove_VM
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
@@ -10,10 +10,6 @@
 	string pv = Helper.Path.partialView;
 
 	int haveItemSlide = Model.Photos.Count();
-	for (int i = haveItemSlide; i < Helper.Variable.maxSlide; i++) {
-		var photo = new PhotoModel();
-		Model.Photos.Add(photo);
-	}
 }
 
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
@@ -286,13 +282,13 @@
 					<span class="hidden_mobile">@translate["label_quay_lai_danh_sach"]</span>
 				</button>
 
-				<a href="@Url.Action("Call_Create", "Mangrove")"
+				<button type="button" onclick="location.reload();"
 				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
 					<i class="fa-solid fa-eraser"></i>
 					<span class="hidden_mobile">@translate["label_xoa_sach"]</span>
-				</a>
+				</button>
 
-				<button class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
 					<i class="fa-solid fa-floppy-disk"></i>
 					<span class="hidden_mobile">@translate["label_them"]</span>
 				</button>

@@ -1,5 +1,5 @@
 ﻿using Mangrove.Data;
-using Mangrove.Models;
+using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
@@ -29,7 +29,7 @@ namespace Mangrove.Controllers {
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
 
-				bool isEN = Helper.Func.IsLanguage("EN");
+				bool isEN = Helper.Func.IsEnglish();
 
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Số cá thể", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Number of individuals", "Options" };
@@ -68,7 +68,6 @@ namespace Mangrove.Controllers {
 				}
 
 				var data = await query.ToListAsync();
-				//var data = await context.TblMangroves.ToListAsync();
 
 				// Xử lý logic tìm kiếm
 				List<TblMangrove> fillter = new List<TblMangrove>();
@@ -85,13 +84,8 @@ namespace Mangrove.Controllers {
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
-				var info = new InfomationPaginate("Both_PaginateTable_IndexMangrove", listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
-				var pagi = new PaginateModel<TblMangrove>(fillter, info);
-
-				// Code Ajax tìm cây [bỏ]
-				//if (Request.Headers["REQUESTED"] == "AJAX") {
-				//	return PartialView($"{Helper.Path.partialView}/{pagi.InfomationPaginate.NameTable}.cshtml", pagi);
-				//}
+				var info = new InfomationPaginate(listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
+				var pagi = new Paginate_VM<TblMangrove>(fillter, info);
 
 				return View(pagi);
 			}
@@ -104,16 +98,16 @@ namespace Mangrove.Controllers {
 
 		// Tạo mới
 		public IActionResult Call_Create() {
-			var model = new MangroveModel();
+			var model = new Mangrove_VM();
 			return RedirectToAction("Page_Create", model);
 		}
-		public IActionResult Page_Create(MangroveModel model) {
+		public IActionResult Page_Create(Mangrove_VM model) {
 
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(MangroveModel model, string? info = null) {
-			bool isEN = Helper.Func.IsLanguage("en");
+		public async Task<IActionResult> Page_Create(Mangrove_VM model, string? info = null) {
+			bool isEN = Helper.Func.IsEnglish();
 
 			// Bắt lỗi không có ảnh cho slide
 			//if (!model.Photos.Any()) {

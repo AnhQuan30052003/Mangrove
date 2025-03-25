@@ -1,8 +1,7 @@
 @inject IStringLocalizer<Translate> translate
-@model List<TblMangrove>
+@model List<SearchMangroe_Client_VM>
 
 @{
-	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = ViewData["InfoPage"] = translate["label_thanh_phan_loai"];
 	ViewData["TypePage"] = "Page_SpeciesComposition";
 

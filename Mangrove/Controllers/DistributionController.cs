@@ -1,5 +1,5 @@
 ﻿using Mangrove.Data;
-using Mangrove.Models;
+using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
@@ -29,7 +29,7 @@ namespace Mangrove.Controllers {
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
 
-				bool isEN = Helper.Func.IsLanguage("EN");
+				bool isEN = Helper.Func.IsEnglish();
 
 				var listTitleVI = new List<string> { "STT", "Vị trí", "Tên ảnh", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Position", "Photo name", "Options" };
@@ -47,7 +47,7 @@ namespace Mangrove.Controllers {
 				{
 					{ listTitleEN[index++], item => item.MapNameEn },
 					{ listTitleEN[index++], item => item.ImageMap },
-			
+
 				};
 				var sortOptions = isEN ? sortOptionsEN : sortOptionsVI;
 
@@ -61,7 +61,6 @@ namespace Mangrove.Controllers {
 				}
 
 				var data = await query.ToListAsync();
-				//var data = await context.TblMangroves.ToListAsync();
 
 				// Xử lý logic tìm kiếm
 				List<TblDistributiton> fillter = new List<TblDistributiton>();
@@ -73,13 +72,8 @@ namespace Mangrove.Controllers {
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
-				var info = new InfomationPaginate("Both_PaginateTable_IndexDistribution", listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Distribution", "Page_Index");
-				var pagi = new PaginateModel<TblDistributiton>(fillter, info);
-
-				// Code Ajax tìm cây [bỏ]
-				//if (Request.Headers["REQUESTED"] == "AJAX") {
-				//	return PartialView($"{Helper.Path.partialView}/{pagi.InfomationPaginate.NameTable}.cshtml", pagi);
-				//}
+				var info = new InfomationPaginate(listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Distribution", "Page_Index");
+				var pagi = new Paginate_VM<TblDistributiton>(fillter, info);
 
 				return View(pagi);
 			}
@@ -92,18 +86,26 @@ namespace Mangrove.Controllers {
 
 		// Tạo mới
 		public IActionResult Call_Create() {
-			var model = new DistributionModel();
+			var model = new Distribution_VM();
 			return RedirectToAction("Page_Create", model);
 		}
-		public IActionResult Page_Create(DistributionModel model) {
-
+		public IActionResult Page_Create(Distribution_VM model) {
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(DistributionModel model, string? info = null) {
-			bool isEN = Helper.Func.IsLanguage("en");
+		public async Task<IActionResult> Page_Create(Distribution_VM model, List<IFormFile> ImageName) {
+			bool isEN = Helper.Func.IsEnglish();
 
-			// Bắt lỗi không có ảnh cho slide
+			// Validate
+			Helper.Validate.Clear();
+			Helper.Validate.NotEmpty(ImageName.Count() == 0 ? "" : "");
+			Helper.Validate.NotEmpty(model.MapNameEn);
+			Helper.Validate.NotEmpty(model.MapNameVi);
+
+			if (Helper.Validate.HaveError()) {
+				return View(model);
+			}
+
 			//if (!model.Photos.Any()) {
 			//	Helper.Notifier.Create(
 			//		Helper.SetupNotifier.Status.fail,
@@ -113,6 +115,9 @@ namespace Mangrove.Controllers {
 			//	);
 			//	return RedirectToAction("Page_Create", model);
 			//}
+
+
+			return View(model);
 
 			// Bắt lỗi nhập dữ liệu
 			if (!ModelState.IsValid) {

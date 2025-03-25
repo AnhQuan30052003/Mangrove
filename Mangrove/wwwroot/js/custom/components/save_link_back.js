@@ -7,5 +7,10 @@ export function saveIndex() {
 // Lấy ra url index
 export function getUrlIndex() {
 	const url = localStorage.getItem("urlIndex");
-	location.href = url;
+	if (url != null) {
+		location.href = url;
+	}
+	else {
+		console.log(`URL = null`);
+	}
 }

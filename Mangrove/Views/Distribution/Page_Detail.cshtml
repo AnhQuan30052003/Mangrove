@@ -2,7 +2,7 @@
 @model TblMangrove
 
 @{
-	bool isEN = Helper.Func.IsLanguage("en");
+	bool isEN = Helper.Func.IsEnglish();
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
 	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_xem"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
