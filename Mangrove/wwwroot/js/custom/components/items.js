@@ -19,9 +19,12 @@ function addImageToItem() {
 					reader.onload = function (e) {
 						const img = previewImg.querySelector(".show_temp");
 						img.src = e.target.result;
+
+						const saveNameTemp = inputImg.querySelector(".save_name_temp");
+						console.log(saveNameTemp);
+						saveNameTemp.value = e.target.result;
 					}
 					reader.readAsDataURL(file.files[0]);
-
 
 					inputImg.classList.add("d-none");
 					previewImg.classList.remove("d-none");

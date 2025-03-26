@@ -143,6 +143,11 @@ option {
     background: #f8f9fa;
 }
 
+.w-h-0 {
+    width: 0 !important;
+    height: 0 !important;
+}
+
 @media (width >= 1200px) {
     .pr-10 {
         padding-right: 10px !important

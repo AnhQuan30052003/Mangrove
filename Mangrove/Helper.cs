@@ -262,6 +262,7 @@ public class Helper {
 		public static List<string> GetListErrors() => errors;
 
 		// Codes - functions check validate
+		// Không rỗng
 		public static void NotEmpty(string? text) {
 			string content = string.Empty;
 			if (string.IsNullOrEmpty(text)) {
@@ -271,5 +272,6 @@ public class Helper {
 			}
 			AddError(content);
 		}
+
 	}
 }

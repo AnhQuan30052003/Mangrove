@@ -85,31 +85,41 @@ namespace Mangrove.Controllers {
 		}
 
 		// Tạo mới
-		public IActionResult Page_Create(List<Distribution_VM>? models = null) {
-			if (models == null) models = new List<Distribution_VM>();
+		public IActionResult Page_Create() {
+			var models = new List<Distribution_VM>();
 			return View(models);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(List<Distribution_VM> models, List<IFormFile>? ImageName = null) {
-			bool isEN = Helper.Func.IsEnglish();
+		public async Task<IActionResult> Page_Create(List<Distribution_VM> models, List<IFormFile> ImageFile) {
+			Console.WriteLine($"Models: {models.Count()}");
+			Console.WriteLine($"ImageFile: {ImageFile.Count()}");
 
-			Console.Clear();
+			bool isEN = Helper.Func.IsEnglish();
 
 			// Validate
 			Helper.Validate.Clear();
 			for (int i = 0; i < models.Count(); i++) {
-				if (ImageName != null && i < ImageName.Count()) Helper.Validate.NotEmpty(ImageName[i] == null ? "" : "");
-				else Helper.Validate.NotEmpty(null);
-				Helper.Validate.NotEmpty(models[i].MapNameEn);
-				Helper.Validate.NotEmpty(models[i].MapNameVi);
+				//var file = ImageFile[i];
+				//string fileName = file.FileName;
+				//if (string.IsNullOrEmpty(fileName)) {
+				//	Helper.Validate.NotEmpty(null);
+				//}
+				//else {
+				//	Helper.Validate.NotEmpty(" ");
+				//}
+
+				Helper.Validate.NotEmpty(null);
+				var model = models[i];
+				Helper.Validate.NotEmpty(model.MapNameEn);
+				Helper.Validate.NotEmpty(model.MapNameVi);
 			}
 
+			// Trả lại view nếu có lỗi validate
 			if (Helper.Validate.HaveError()) {
 				return View(models);
 			}
 
-			Console.WriteLine($"Quantity models: {models.Count()}");
-
+			// Khi không có ảnh nào
 			if (!models.Any()) {
 				Helper.Notifier.Create(
 					Helper.SetupNotifier.Status.fail,
@@ -117,28 +127,11 @@ namespace Mangrove.Controllers {
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-				Console.WriteLine("Check thấy không có ảnh !");
-				return View(models);
+				return RedirectToAction("Page_Create");
 			}
 
-			Console.WriteLine("Chạy qua rồi !");
+			return RedirectToAction("Page_Statistical");
 
-			return View(models);
-
-
-
-			// Bắt lỗi nhập dữ liệu
-			//if (!ModelState.IsValid) {
-			//	// Setup thông báo
-			//	Helper.Notifier.Create(
-			//		Helper.SetupNotifier.Status.fail,
-			//		isEN ? "Error in input data !" : "Có lỗi trong dữ liệu nhập vào !",
-			//		Helper.SetupNotifier.Timer.shortTime,
-			//		""
-			//	);
-
-			//	return RedirectToAction("Page_Create", model);
-			//}
 
 			// Lưu bản đồ
 			//var map = new TblDistributiton {

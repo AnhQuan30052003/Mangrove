@@ -52,12 +52,13 @@
 												<i class="icon_add fa-solid fa-plus"></i>
 											</button>
 											<input class="file" name="ImageFile" type="file" hidden />
+											<div class="overflow-hidden w-h-0">
+												<input class="save_name_temp" name="ImageName" value="" />
+											</div>
 										</div>
 
 										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
 											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
-												 src="/img/distribution-map-img/"
-												 name="ImageName"
 												 style="max-height: 200px;"
 												 alt="" />
 
@@ -66,8 +67,6 @@
 												<i class="icon_remove fa-solid fa-xmark"></i>
 											</button>
 										</div>
-
-										<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 									</div>
 
 									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
