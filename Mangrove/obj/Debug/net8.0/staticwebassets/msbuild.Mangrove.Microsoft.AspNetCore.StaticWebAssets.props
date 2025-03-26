@@ -702,6 +702,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAM014_Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/distribution-map-img/04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>mzj1kwky27</Fingerprint>
+      <Integrity>jhAK8rS+c/DCyKEAtTeYPsgyG+cXiseJ000BBo7DFPo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\logo\banner.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
@@ -1614,8 +1632,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r20pi80fv9</Fingerprint>
-      <Integrity>XQEDOzxSCULVGh4pKk6Iu+JMl1OS+NsF2k+4pw/Kp2E=</Integrity>
+      <Fingerprint>gz6wmuv8py</Fingerprint>
+      <Integrity>pBaAJ6mKSNSIB9yhZKHgamLHWPl9AYjKcKOdwSHg2As=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\save_link_back.js'))</OriginalItemSpec>

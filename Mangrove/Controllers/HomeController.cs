@@ -61,7 +61,7 @@ namespace Mangrove.Controllers {
 				.ThenInclude(item => item.TblStages)
 				.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
-					return NotFound($"Không tìm thấy cây có ID = {id}");
+					return RedirectToAction("Page_Index");
 				}
 
 				bool isEN = Helper.Func.IsEnglish();
@@ -166,7 +166,7 @@ namespace Mangrove.Controllers {
 			try {
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
 				if (individual == null) {
-					return NotFound($"Không tìm thấy cá thể có ID: {id}");
+					return RedirectToAction("Page_Index");
 				}
 
 				individual.View += 1;
@@ -257,16 +257,23 @@ namespace Mangrove.Controllers {
 
 		// Page: phân bố
 		public async Task<IActionResult> Page_Distribution() {
-			bool isEN = Helper.Func.IsEnglish();
+			try {
+				bool isEN = Helper.Func.IsEnglish();
 
-			var model = await context.TblDistributitons
-			.Select(item => new Distribution_Client_VM {
-				Image = item.ImageMap,
-				Position = isEN ? item.MapNameEn : item.MapNameVi
-			})
-			.ToListAsync();
+				var model = await context.TblDistributitons
+				.Select(item => new Distribution_Client_VM {
+					Image = item.ImageMap,
+					Position = isEN ? item.MapNameEn : item.MapNameVi
+				})
+				.ToListAsync();
 
-			return View(model);
+				return View(model);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
 		}
 	}
 }

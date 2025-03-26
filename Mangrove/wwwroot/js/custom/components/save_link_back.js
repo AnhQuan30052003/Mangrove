@@ -1,16 +1,13 @@
 ﻿// Save danh sách của đối tượng
-export function saveIndex() {
+export function saveIndex(key = null) {
 	const url = location.href;
-	localStorage.setItem("urlIndex", url);
+	localStorage.setItem(key != null ? key : "urlIndex", url);
 }
 
 // Lấy ra url index
-export function getUrlIndex() {
-	const url = localStorage.getItem("urlIndex");
+export function getUrlIndex(key = null) {
+	const url = localStorage.getItem(key != null ? key : "urlIndex");
 	if (url != null) {
 		location.href = url;
-	}
-	else {
-		console.log(`URL = null`);
 	}
 }

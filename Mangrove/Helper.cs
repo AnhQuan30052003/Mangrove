@@ -30,14 +30,33 @@ public class Helper {
 		public static int maxItem = 10;
 	}
 
+	// Links JS
+	public static class Link {
+		// Trở về link trước đó
+		public static string GetUrlBack() {
+			return @"
+				<script>
+					const url = localStorage.getItem('urlIndex');
+					if (url != null) {
+						location.href = url;
+					}
+				</script>
+			";
+		}
+	}
+
 	// Status noifier
 	public static class Key {
+		// For Notifier
 		public static string status = "Status";
 		public static string timer = "Timer";
 		public static string content = "Content";
 		public static string toPage = "ToPage";
 		public static string sortASC = "asc";
 		public static string sortDESC = "desc";
+
+		// For Link
+		public static string urlBack = "urlIndex";
 	}
 
 	// Setup noifier
