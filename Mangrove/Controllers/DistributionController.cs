@@ -6,6 +6,7 @@ using Microsoft.DotNet.Scaffolding.Shared.Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq.Expressions;
 using System.Security.Cryptography.Xml;
@@ -90,26 +91,14 @@ namespace Mangrove.Controllers {
 			return View(models);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(List<Distribution_VM> models, List<IFormFile> ImageFile) {
-			Console.WriteLine($"Models: {models.Count()}");
-			Console.WriteLine($"ImageFile: {ImageFile.Count()}");
-
+		public async Task<IActionResult> Page_Create(List<Distribution_VM> models) {
 			bool isEN = Helper.Func.IsEnglish();
 
-			// Validate
+			// Begin validate
 			Helper.Validate.Clear();
 			for (int i = 0; i < models.Count(); i++) {
-				//var file = ImageFile[i];
-				//string fileName = file.FileName;
-				//if (string.IsNullOrEmpty(fileName)) {
-				//	Helper.Validate.NotEmpty(null);
-				//}
-				//else {
-				//	Helper.Validate.NotEmpty(" ");
-				//}
-
-				Helper.Validate.NotEmpty(null);
 				var model = models[i];
+				Helper.Validate.NotEmpty(model.Image.DataBase64);
 				Helper.Validate.NotEmpty(model.MapNameEn);
 				Helper.Validate.NotEmpty(model.MapNameVi);
 			}
@@ -129,30 +118,45 @@ namespace Mangrove.Controllers {
 				);
 				return RedirectToAction("Page_Create");
 			}
-
-			return RedirectToAction("Page_Statistical");
-
+			// End validate
 
 			// Lưu bản đồ
-			//var map = new TblDistributiton {
-			//	Id = Helper.Func.CreateId(),
-			//	ImageMap = "fsfs",
-			//	MapNameEn = models.MapNameEn,
-			//	MapNameVi = models.MapNameVi
-			//};
+			int itemSaveSuccess = 0;
+			foreach (var model in models) {
+				string id = Helper.Func.CreateId();
+				string fileName = $"{id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
 
-			//context.TblDistributitons.Add(map);
-			//await context.SaveChangesAsync();
+				// Lưu ảnh
+				bool statusSave = await Helper.Func.SaveImageFromBase64Data(
+					model.Image.DataBase64,
+					Helper.Path.distributionImg,
+					fileName
+				);
+
+				// Nếu không lưu được thi bỏ qua
+				if (!statusSave) continue;
+				itemSaveSuccess += 1;
+
+				// Tạo map để lưu vào database
+				var map = new TblDistributiton {
+					Id = id,
+					ImageMap = fileName,
+					MapNameEn = model.MapNameEn,
+					MapNameVi = model.MapNameVi
+				};
+				context.TblDistributitons.Add(map);
+			}
+			await context.SaveChangesAsync();
 
 			// Setup thông báo
-			//Helper.Notifier.Create(
-			//	Helper.SetupNotifier.Status.success,
-			//	isEN ? "Create successfully." : "Tạo thành công.",
-			//	Helper.SetupNotifier.Timer.fastTime,
-			//	""
-			//);
+			Helper.Notifier.Create(
+				Helper.SetupNotifier.Status.success,
+				isEN ? $"Added {itemSaveSuccess} map." : $"Đã thêm {itemSaveSuccess} bản đồ.",
+				Helper.SetupNotifier.Timer.fastTime,
+				""
+			);
 
-			//return RedirectToAction("Page_Index");
+			return RedirectToAction("Page_Index");
 		}
 
 		// Chỉnh sửa
@@ -213,6 +217,49 @@ namespace Mangrove.Controllers {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
 				return NotFound(notifier);
+			}
+		}
+
+		// Xoá
+		public async Task<IActionResult> Page_Delete(string id) {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				// Xoá đối tượng
+				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
+				if (map == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "Map to delete not found !" : "Không tìm thấy bản đồ cần xoá !",
+						Helper.SetupNotifier.Timer.fastTime,
+						""
+					);
+					return RedirectToAction("Page_Index");
+				}
+
+				context.TblDistributitons.Remove(map);
+				await context.SaveChangesAsync();
+
+				// Xoá ảnh
+				Helper.Func.DeletePhoto(Helper.Path.distributionImg, map.ImageMap);
+
+				// Setup thông báo
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.success,
+					isEN ? "Delete successfully." : "Đã xoá thành công.",
+					Helper.SetupNotifier.Timer.fastTime,
+					""
+				); 
+
+				return RedirectToAction("Page_Index");
+			}
+			catch {
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.fail,
+					isEN ? "Map delete failed !" : "Xoá bản đồ thất bại !",
+					Helper.SetupNotifier.Timer.fastTime,
+					""
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 	}

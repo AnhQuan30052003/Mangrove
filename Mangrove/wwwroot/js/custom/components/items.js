@@ -15,19 +15,21 @@ function addImageToItem() {
 				file.addEventListener("change", function () {
 					if (!file.files) return;
 
+					const selected = file.files[0];
 					const reader = new FileReader();
+
+					const img = previewImg.querySelector(".show_temp");
+					const imageType = inputImg.querySelector(".image_type");
+					const imageData = inputImg.querySelector(".image_data");
 					reader.onload = function (e) {
-						const img = previewImg.querySelector(".show_temp");
 						img.src = e.target.result;
+						imageType.value = selected.type;
+						imageData.value = e.target.result;
 
-						const saveNameTemp = inputImg.querySelector(".save_name_temp");
-						console.log(saveNameTemp);
-						saveNameTemp.value = e.target.result;
+						inputImg.classList.add("d-none");
+						previewImg.classList.remove("d-none");
 					}
-					reader.readAsDataURL(file.files[0]);
-
-					inputImg.classList.add("d-none");
-					previewImg.classList.remove("d-none");
+					reader.readAsDataURL(selected);
 				});
 			}
 		}
@@ -37,18 +39,18 @@ function addImageToItem() {
 			const addImg = clicked.closest(".add_img");
 			const inputImg = addImg.querySelector(".input_img");
 			const previewImg = addImg.querySelector(".preview_img");
-			const file = addImg.querySelector(".file");
+
+			const imageType = inputImg.querySelector(".image_type");
+			const imageData = inputImg.querySelector(".image_data");
 
 			inputImg.classList.remove("d-none");
 			previewImg.classList.add("d-none");
-			file.value = "";
+			imageData.value = imageType.value = "";
 		}
 
 		// Khi click vào xoá item
 		if (clicked.matches(".btn_remove_item") || clicked.matches(".icon_remove_item")) {
 			const addItem = clicked.closest(".add_item");
-			const file = addItem.querySelector(".file");
-			file.value = "";
 			addItem.remove();
 
 			const quantity = document.querySelector(".quantity_item");
@@ -65,17 +67,20 @@ export function addItem() {
 	if (addItemFind.length == 10) return;
 
 	const btn = document.querySelector(".btn_add_item");
+	const imageType = btn.getAttribute("data-image-type");
+	const imageData = btn.getAttribute("data-base64");
+
 	const att1 = btn.getAttribute("att1");
 	const att2 = btn.getAttribute("att2");
 
-	const addItem = createDivAddItem(addItemFind.length, att1, att2);
+	const addItem = createDivAddItem(addItemFind.length, imageType, imageData, att1, att2);
 	items.appendChild(addItem);
 
 	const quantity = document.querySelector(".quantity_item");
 	quantity.innerHTML = addItemFind.length + 1;
 }
 
-function createDivAddItem(index, attribute1, attribute2) {
+function createDivAddItem(index, imageType, imageData, att1, att2) {
 	const addItem = document.createElement("div");
 	addItem.className = "add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative";
 
@@ -111,9 +116,25 @@ function createDivAddItem(index, attribute1, attribute2) {
 	inputFile.hidden = true;
 	inputFile.name = "ImageFile"
 
+	const div = document.createElement("div");
+	div.className = "overflow-hidden w-h-0";
+
+	const image_type = document.createElement("input");
+	image_type.className = "image_type";
+	image_type.name = `[${index}].${imageType}`;
+
+	const image_data = document.createElement("input");
+	image_data.className = "image_data";
+	image_data.name = `[${index}].${imageData}`;
+
+	div.appendChild(image_type);
+	div.appendChild(image_data);
+
 	btnAddImg.appendChild(iconAdd);
+
 	inputImg.appendChild(btnAddImg);
 	inputImg.appendChild(inputFile);
+	inputImg.appendChild(div);
 
 	const previewImg = document.createElement("div");
 	previewImg.className = "preview_img position-relative d-none";
@@ -158,10 +179,10 @@ function createDivAddItem(index, attribute1, attribute2) {
 	inputText.name = "";
 
 	const inputTextEN = inputText.cloneNode(false);
-	inputTextEN.name = `[${index}].${attribute1}`;
+	inputTextEN.name = `[${index}].${att1}`;
 
 	const inputTextVI = inputText.cloneNode(false);
-	inputTextVI.name = `[${index}].${attribute2}`;
+	inputTextVI.name = `[${index}].${att2}`;
 
 	const smallEN = smallTite.cloneNode(false);
 	smallEN.textContent = document.querySelector("#english").value;

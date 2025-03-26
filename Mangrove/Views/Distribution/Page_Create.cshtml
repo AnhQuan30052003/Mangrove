@@ -21,7 +21,7 @@
 			<div class="frame_slide rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">
-						@translate["label_ban_do"] (<span class="quantity_item">@(Model.Count() == 0 ? 1 : Model.Count())</span>/@Helper.Variable.maxItem)
+						@translate["label_ban_do"] (<span class="quantity_item">@(Model.Any() ? Model.Count() : 1)</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
@@ -37,7 +37,7 @@
 
 								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
 									<button class="btn_remove_item"
-											type="button">
+									type="button">
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
@@ -48,22 +48,23 @@
 
 										<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
-													type="button">
+											type="button">
 												<i class="icon_add fa-solid fa-plus"></i>
 											</button>
 											<input class="file" name="ImageFile" type="file" hidden />
 											<div class="overflow-hidden w-h-0">
-												<input class="save_name_temp" name="ImageName" value="" />
+												<input class="image_type" asp-for="@Model[0].Image.DataType" />
+												<input class="image_data" asp-for="@Model[0].Image.DataBase64" />
 											</div>
 										</div>
 
 										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
 											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
-												 style="max-height: 200px;"
-												 alt="" />
+											style="max-height: 200px;"
+											alt="" />
 
 											<button class="btn_remove_preview_img"
-													type="button">
+											type="button">
 												<i class="icon_remove fa-solid fa-xmark"></i>
 											</button>
 										</div>
@@ -88,6 +89,8 @@
 							{
 								for (int i = 0; i < Model.Count(); i++)
 								{
+									bool haveImage = !string.IsNullOrEmpty(Model[i].Image.DataBase64);
+
 									<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
 										<button class="btn_remove_item"
 												type="button">
@@ -99,17 +102,21 @@
 												@translate["label_hinh_anh"]
 											</p>
 
-											<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
 												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
 														type="button">
 													<i class="icon_add fa-solid fa-plus"></i>
 												</button>
 												<input class="file" name="ImageFile" type="file" hidden />
+												<div class="overflow-hidden w-h-0">
+													<input class="image_type" asp-for="@Model[0].Image.DataType" />
+													<input class="image_data" asp-for="@Model[i].Image.DataBase64" />
+												</div>
 											</div>
 
-											<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
+											<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
 												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
-													 src="/img/distribution-map-img/"
+													 src="@Model[i].Image.DataBase64"
 													 name="ImageName"
 													 style="max-height: 200px;"
 													 alt="" />
@@ -147,6 +154,8 @@
 					<div class="text-center py-2">
 						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
 								type="button"
+								data-image-type="Image.DataType"
+								data-base64="Image.DataBase64"
 								att1="MapNameEn"
 								att2="MapNameVi"
 								onclick="item.addItem();">

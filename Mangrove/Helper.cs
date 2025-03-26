@@ -1,5 +1,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Globalization;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json;
 
@@ -20,6 +22,7 @@ public class Helper {
 		public static string treeImg = "wwwroot/img/tree-img";
 		public static string stageImg = "wwwroot/img/stage-img";
 		public static string qrImg = "wwwroot/img/qr-img";
+		public static string distributionImg = "wwwroot/img/distribution-map-img";
 	}
 
 	// Variable
@@ -211,7 +214,7 @@ public class Helper {
 		// Create id
 		public static string CreateId() => Guid.NewGuid().ToString().ToUpper();
 
-		// Save img 
+		// Save img với IFormFile
 		public static async Task<string> SaveImage(string path, IFormFile? file) {
 			if (file == null || file.Length == 0) return "";
 
@@ -227,6 +230,50 @@ public class Helper {
 			}
 			catch {
 				return "";
+			}
+		}
+
+		// Save image from database 64
+		public static async Task<bool> SaveImageFromBase64Data(string dataBase64, string folderSave, string fileName) {
+			try {
+				dataBase64 = dataBase64.Trim();
+
+				// Kiểm tra nếu chuỗi có chứa tiền tố MIME
+				if (dataBase64.StartsWith("data:image")) {
+					int commaIndex = dataBase64.IndexOf(',');
+					if (commaIndex > 0) {
+						dataBase64 = dataBase64.Substring(commaIndex + 1);
+
+						// Xóa khoảng trắng dư thừa
+						dataBase64 = dataBase64.Replace("\n", "").Replace("\r", "");
+
+						// Chuyển Base64 thành mảng byte
+						byte[] imageBytes = Convert.FromBase64String(dataBase64);
+
+						// Tạo thư mục lưu ảnh
+						string imageName = fileName;
+						string pathSave = System.IO.Path.Combine(folderSave, imageName);
+						await File.WriteAllBytesAsync(pathSave, imageBytes);
+
+						return true;
+					}
+
+					Console.WriteLine("Lỗi: không thấy ,");
+					return false;
+				}
+				Console.WriteLine("Lỗi: không có data:image");
+				return false;
+			}
+			catch {
+				return false;
+			}
+		}
+
+		// Xoá fiel ảnh
+		public static void DeletePhoto(string folder, string fileName) {
+			string path = System.IO.Path.Combine(folder, fileName);
+			if (File.Exists(path)) {
+				File.Delete(path);
 			}
 		}
 	}
@@ -256,7 +303,12 @@ public class Helper {
 		}
 
 		// Question have errors ?
-		public static bool HaveError() => errors.Count > 0;
+		public static bool HaveError() {
+			foreach (var err in errors) {
+				if (!string.IsNullOrEmpty(err)) return true;
+			}
+			return false;
+		}
 
 		// Get list error
 		public static List<string> GetListErrors() => errors;
@@ -269,7 +321,9 @@ public class Helper {
 				string EN = "Can't be blank !";
 				string VI = "Không được bỏ trống !";
 				content = Func.IsEnglish() ? EN : VI;
+
 			}
+
 			AddError(content);
 		}
 

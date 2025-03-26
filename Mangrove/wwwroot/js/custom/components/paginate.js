@@ -25,6 +25,11 @@ function whenClickOption() {
 					continue;
 				}
 
+				const theads = document.querySelectorAll(".head_sort");
+				const theadLast = theads[theads.length - 1];
+
+				listOption.style.right = theadLast.clientWidth + "px";
+
 				if (i > options.length / 2) {
 					listOption.style.top = "-100px";
 				}
