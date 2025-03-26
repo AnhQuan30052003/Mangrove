@@ -248,7 +248,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Delete successfully." : "Đã xoá thành công.",
 					Helper.SetupNotifier.Timer.fastTime,
 					""
-				); 
+				);
 
 				return RedirectToAction("Page_Index");
 			}
