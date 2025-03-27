@@ -1,7 +1,4 @@
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Globalization;
-using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json;
 
@@ -33,13 +30,13 @@ public class Helper {
 	// Links JS
 	public static class Link {
 		// Trở về link trước đó
-		public static string GetUrlBack() {
-			return @"
+		public static string GetUrlBack(string? key = null) {
+			string getKey = key ?? "urlIndex";
+			string cmd = "location.href = url";
+			return @$"
 				<script>
-					const url = localStorage.getItem('urlIndex');
-					if (url != null) {
-						location.href = url;
-					}
+					const url = localStorage.getItem('{getKey}');
+					if (url != null) {cmd}
 				</script>
 			";
 		}
@@ -288,7 +285,7 @@ public class Helper {
 			}
 		}
 
-		// Xoá fiel ảnh
+		// Xoá file ảnh
 		public static void DeletePhoto(string folder, string fileName) {
 			string path = System.IO.Path.Combine(folder, fileName);
 			if (File.Exists(path)) {

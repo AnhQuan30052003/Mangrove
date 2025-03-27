@@ -1,17 +1,10 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.DotNet.Scaffolding.Shared.Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq.Expressions;
-using System.Security.Cryptography.Xml;
-using System.Xml;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Mangrove.Controllers {
 	public class DistributionController : Controller {
@@ -172,23 +165,31 @@ namespace Mangrove.Controllers {
 		// Chỉnh sửa
 		public async Task<IActionResult> Page_Edit(string id) {
 			try {
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
-				if (mangrove == null) {
-					return NotFound($"Không tìm thấy cây có ID = {id}");
+				bool isEN = Helper.Func.IsEnglish();
+
+				var map = await context.TblDistributitons
+				.Select(item => new Distribution_VM {
+					Id = item.Id,
+					ImageName = item.ImageMap,
+					MapNameEn = item.MapNameEn,
+					MapNameVi = item.MapNameVi,
+					Image = new DataImage {
+						DataType = "type",
+						DataBase64 = "base64"
+					}
+				})
+				.FirstOrDefaultAsync(item => item.Id == id);
+
+				if (map == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "The edit page you just visited does not exist !" : "Trang chỉnh sửa vừa truy cập không tồn tại !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
 				}
 
-				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
-
-				// Xử lý thứ tự ảnh banner slick slider
-				if (photos.Count() > 1 && photoMangrove != null) {
-					photos.Remove(photoMangrove);
-					photos.Insert(0, photoMangrove);
-				}
-
-				TempData["Photos"] = photos;
-				return View(mangrove);
+				return View(map);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
@@ -197,31 +198,91 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Edit(TblMangrove model, List<IFormFile> ImageFile, List<string> listDesVI, List<string> listDesEN) {
-			return View();
-		}
+		public async Task<IActionResult> Page_Edit(Distribution_VM model) {
+			// Begin validate
+			Helper.Validate.Clear();
+			Helper.Validate.NotEmpty(model.Image.DataBase64);
+			Helper.Validate.NotEmpty(model.MapNameEn);
+			Helper.Validate.NotEmpty(model.MapNameVi);
 
+			if (Helper.Validate.HaveError()) {
+				return View(model);
+			}
+			// End validate
+
+			bool isEN = Helper.Func.IsEnglish();
+			var thisMap = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == model.Id);
+
+			if (thisMap == null) {
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.fail,
+					isEN ? $"There was an error editing the map !" : $"Có lỗi trong quá trình chỉnh sửa bản đồ !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
+			}
+
+			// Xử lý hình ảnh và dữ liệu
+			// Nếu có ảnh mới
+			string fileName = $"{thisMap.Id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
+			if (model.Image.DataBase64 != "base64") {
+				bool statusSave = await Helper.Func.SaveImageFromBase64Data(
+					model.Image.DataBase64,
+					Helper.Path.distributionImg,
+				fileName
+				);
+
+				if (statusSave && thisMap.ImageMap != fileName) {
+					Helper.Func.DeletePhoto(Helper.Path.distributionImg, thisMap.ImageMap);
+					thisMap.ImageMap = fileName;
+				}
+			}
+			else {
+				if (thisMap.ImageMap != fileName) {
+					string extension = Path.GetExtension(thisMap.ImageMap);
+					fileName = $"{thisMap.Id}_{model.MapNameVi}{extension}";
+					string oldPath = Path.Combine(Helper.Path.distributionImg, thisMap.ImageMap);
+					string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
+
+					if (System.IO.File.Exists(oldPath)) {
+						System.IO.File.Move(oldPath, newPath);
+						thisMap.ImageMap = fileName;
+					}
+				}
+			}
+
+			thisMap.MapNameEn = model.MapNameEn;
+			thisMap.MapNameVi = model.MapNameVi;
+
+			context.TblDistributitons.Update(thisMap);
+			await context.SaveChangesAsync();
+
+			// Setup thông báo
+			Helper.Notifier.Create(
+				Helper.SetupNotifier.Status.success,
+				isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+				Helper.SetupNotifier.Timer.shortTime,
+				""
+			);
+			return Content(Helper.Link.GetUrlBack(), "text/html");
+		}
 
 		// Chi tiết
 		public async Task<IActionResult> Page_Detail(string id) {
 			try {
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
-				if (mangrove == null) {
-					return NotFound($"Không tìm thấy cây có ID = {id}");
+				bool isEN = Helper.Func.IsEnglish();
+
+				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
+				if (map == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
 				}
 
-				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
-
-				// Xử lý thứ tự ảnh banner slick slider
-				if (photos.Count() > 1 && photoMangrove != null) {
-					photos.Remove(photoMangrove);
-					photos.Insert(0, photoMangrove);
-				}
-
-				TempData["Photos"] = photos;
-				return View(mangrove);
+				return View(map);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";

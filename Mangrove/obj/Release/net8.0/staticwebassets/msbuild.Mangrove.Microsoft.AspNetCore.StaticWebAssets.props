@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5jsk8tzieq</Fingerprint>
-      <Integrity>j+YpK1H27bSLjiDESnY/wjxIxt0mDsXCpKB20MJz9Dc=</Integrity>
+      <Fingerprint>ryxsweasve</Fingerprint>
+      <Integrity>81I6gGytMy0/wPYK/VatzkAKqfhhWYsJlcnrMXc/688=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>npcwpy79vv</Fingerprint>
-      <Integrity>pcb5iu4CQgzgmD3QcvvUVNS9XYNktJAJQcZ9c7v1uMY=</Integrity>
+      <Fingerprint>i306y5ab2o</Fingerprint>
+      <Integrity>AsTpKlilO1HLQb+zfmz58g6nHAGnq83LfLBiOuN20vk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\both_custom.css'))</OriginalItemSpec>
@@ -126,23 +126,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_header.css'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_item_photo.css'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>css/components/admin_mangrove_create.css</RelativePath>
+      <RelativePath>css/components/admin_item_photo.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qoers3buku</Fingerprint>
-      <Integrity>5sThY+rxeW3gCOsUVDabxza7ux8GZeD6ePLf2XbAzGE=</Integrity>
+      <Fingerprint>7x9xmk30cm</Fingerprint>
+      <Integrity>e4bBp1MKkxFvuDxcvmwFRdR2FxiBDinsQPl5qAlIsGw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_item_photo.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\both_click_show_image.css'))">
       <SourceType>Package</SourceType>
@@ -318,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r4ilm8zi36</Fingerprint>
-      <Integrity>9QrdilLjE7+P9jJnr5U6dxhHgxBxBBt89bnbvoekdc4=</Integrity>
+      <Fingerprint>7i9gjpxyvv</Fingerprint>
+      <Integrity>4eSS53L4UxTl0FUamCy4FRWJ6SsDQtUx0Q+4EUOIuBA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\user_index.css'))</OriginalItemSpec>
@@ -1380,8 +1380,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>g7xksl3ejz</Fingerprint>
-      <Integrity>HKU/xR9xdGkRzGjqYiw+fvwyqqfbIPgEPwhevtYgSBc=</Integrity>
+      <Fingerprint>b91byk9jr7</Fingerprint>
+      <Integrity>4aKepskfKuCwLAgLp1hC8caMBwpx32y0LLFp+7dyUP4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\admin_site.js'))</OriginalItemSpec>
@@ -1416,8 +1416,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>sidkbagm65</Fingerprint>
-      <Integrity>jKvYF2pxV/ruCi9rSTYtOxL5oDaUX6icNQbBZb9Fp3Y=</Integrity>
+      <Fingerprint>jebxh9j19w</Fingerprint>
+      <Integrity>BWN/amwVyUHJwmr8eJpgLv476I9asnKueCtgOwbheo4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\both_site.js'))</OriginalItemSpec>
@@ -1476,6 +1476,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\create_items_page.js'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>js/custom/components/items.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8a53h73ra4</Fingerprint>
+      <Integrity>gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\lazy_load_image.js'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
@@ -1511,24 +1529,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\load_page.js'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\mangrove.js'))">
-      <SourceType>Package</SourceType>
-      <SourceId>Mangrove</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>js/custom/components/mangrove.js</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>d5iai185ru</Fingerprint>
-      <Integrity>YTDymKaKIm0Xpza3HjfskGumlB0QGxFBV7uCgN0dqLw=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\mangrove.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\menu_header.js'))">
       <SourceType>Package</SourceType>
@@ -1578,8 +1578,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kl1gfqxrcc</Fingerprint>
-      <Integrity>GFO+wg44s0F/R5FFzblX7Ii8k19cFVqbRqMUVE+EoYM=</Integrity>
+      <Fingerprint>vr42yhkgbx</Fingerprint>
+      <Integrity>qwouO3gh8zNack1htHjeDMJ9+2iWwWwVyhb82jOwgO4=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\paginate.js'))</OriginalItemSpec>
@@ -1614,8 +1614,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>bmqzryc45e</Fingerprint>
-      <Integrity>g/QxK4Aw6stoGVgIWNk14U728snNXeSs5fRHmmmJhsI=</Integrity>
+      <Fingerprint>gz6wmuv8py</Fingerprint>
+      <Integrity>pBaAJ6mKSNSIB9yhZKHgamLHWPl9AYjKcKOdwSHg2As=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\save_link_back.js'))</OriginalItemSpec>

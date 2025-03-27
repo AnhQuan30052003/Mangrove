@@ -55,6 +55,10 @@ function addImageToItem() {
 
 			const quantity = document.querySelector(".quantity_item");
 			quantity.innerHTML = parseInt(quantity.innerText) - 1;
+
+			const imageType = addItem.querySelector(".image_type");
+			const imageData = addItem.querySelector(".image_data");
+			imageData.value = imageType.value = "";
 		}
 	});
 }
@@ -82,7 +86,7 @@ export function addItem() {
 
 function createDivAddItem(index, imageType, imageData, att1, att2) {
 	const addItem = document.createElement("div");
-	addItem.className = "add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative";
+	addItem.className = "add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail";
 
 	const btnRemoveItem = document.createElement("button");
 	btnRemoveItem.className = "btn_remove_item";
@@ -93,7 +97,7 @@ function createDivAddItem(index, imageType, imageData, att1, att2) {
 	btnRemoveItem.appendChild(iconRemoveItem);
 
 	const addImg = document.createElement("div");
-	addImg.className = "add_img col-12 col-lg-6 add_img_height rounded-1 p-2";
+	addImg.className = "add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2";
 
 	const photo = document.createElement("p");
 	photo.className = "text-center";
@@ -141,9 +145,8 @@ function createDivAddItem(index, imageType, imageData, att1, att2) {
 	previewImg.style.height = "calc(100% - 27px)";
 
 	const img = document.createElement("img");
-	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image";
+	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height";
 	img.setAttribute("name", "ImageName");
-	img.style.maxHeight = "200px";
 
 	const btnRemovvPreviewImg = document.createElement("button")
 	btnRemovvPreviewImg.className = "btn_remove_preview_img";
@@ -161,7 +164,7 @@ function createDivAddItem(index, imageType, imageData, att1, att2) {
 	addImg.appendChild(previewImg);
 
 	const addContent = document.createElement("div");
-	addContent.className = "add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2";
+	addContent.className = "add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2";
 
 	const description = document.createElement("p");
 	description.className = "text-center col-12 align-self-start";

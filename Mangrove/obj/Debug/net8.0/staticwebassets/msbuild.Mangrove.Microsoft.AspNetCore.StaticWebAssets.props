@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>5jsk8tzieq</Fingerprint>
-      <Integrity>j+YpK1H27bSLjiDESnY/wjxIxt0mDsXCpKB20MJz9Dc=</Integrity>
+      <Fingerprint>ryxsweasve</Fingerprint>
+      <Integrity>81I6gGytMy0/wPYK/VatzkAKqfhhWYsJlcnrMXc/688=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\admin_site.css'))</OriginalItemSpec>
@@ -48,8 +48,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>c7l87gcvz9</Fingerprint>
-      <Integrity>WESJ/YpTQJlp84JKuKV8X1+ocnLdb5eNI9EsYOPlPR8=</Integrity>
+      <Fingerprint>i306y5ab2o</Fingerprint>
+      <Integrity>AsTpKlilO1HLQb+zfmz58g6nHAGnq83LfLBiOuN20vk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\both_custom.css'))</OriginalItemSpec>
@@ -126,23 +126,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_header.css'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_item_photo.css'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>css/components/admin_mangrove_create.css</RelativePath>
+      <RelativePath>css/components/admin_item_photo.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>2mrnv4p0gc</Fingerprint>
-      <Integrity>dnWRUuIldHb2nHec5oU91xbo+sLgZ77bCJUvbhJnvj8=</Integrity>
+      <Fingerprint>7x9xmk30cm</Fingerprint>
+      <Integrity>e4bBp1MKkxFvuDxcvmwFRdR2FxiBDinsQPl5qAlIsGw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_mangrove_create.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\admin_item_photo.css'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\both_click_show_image.css'))">
       <SourceType>Package</SourceType>
@@ -318,8 +318,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>r4ilm8zi36</Fingerprint>
-      <Integrity>9QrdilLjE7+P9jJnr5U6dxhHgxBxBBt89bnbvoekdc4=</Integrity>
+      <Fingerprint>7i9gjpxyvv</Fingerprint>
+      <Integrity>4eSS53L4UxTl0FUamCy4FRWJ6SsDQtUx0Q+4EUOIuBA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\user_index.css'))</OriginalItemSpec>
@@ -702,23 +702,23 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAM014_Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\2AE2536B-7D51-4FE9-AFF4-63C19FC4BB9E_Hệ thống..jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/distribution-map-img/04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png</RelativePath>
+      <RelativePath>img/distribution-map-img/2AE2536B-7D51-4FE9-AFF4-63C19FC4BB9E_Hệ thống..jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>mzj1kwky27</Fingerprint>
-      <Integrity>jhAK8rS+c/DCyKEAtTeYPsgyG+cXiseJ000BBo7DFPo=</Integrity>
+      <Fingerprint>jtuissfbct</Fingerprint>
+      <Integrity>h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\04DDD88D-B6A7-4C03-8381-51D46CBB03B8_1.png'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\distribution-map-img\2AE2536B-7D51-4FE9-AFF4-63C19FC4BB9E_Hệ thống..jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\logo\banner.jpg'))">
       <SourceType>Package</SourceType>
@@ -1506,8 +1506,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>qpui6my9r4</Fingerprint>
-      <Integrity>AlbzlagP9qftpc4MQkNe7ErtW0a8efrl63+V66bKPPY=</Integrity>
+      <Fingerprint>8a53h73ra4</Fingerprint>
+      <Integrity>gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</OriginalItemSpec>

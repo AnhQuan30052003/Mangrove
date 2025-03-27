@@ -114,17 +114,6 @@ option {
 	}
 }
 
-@media (width <=1200px) {
-    .hidden_mobile {
-        display: none !important;
-    }
-
-    .highlight_item {
-        background-color: var(--greenPage) !important;
-        color: white !important;
-    }
-}
-
 .lazy-load {
     opacity: 0;
     transition: opacity 1s ease-in-out;
@@ -148,12 +137,43 @@ option {
     height: 0 !important;
 }
 
-@media (width >= 1200px) {
+.border_detail {
+    border: dashed 3px #ccc;
+}
+
+.bg_blue {
+    background-color: #00bcf2 !important;
+}
+
+
+@media (width <=1200px) {
+    .hidden_mobile {
+        display: none !important;
+    }
+
+    .highlight_item {
+        background-color: var(--greenPage) !important;
+        color: white !important;
+    }
+
+    .width_notifier {
+        width: 100%;
+    }
+
+}
+
+@media (width > 1200px) {
     .pr-10 {
         padding-right: 10px !important
     }
 
     .pl-10 {
         padding-left: 10px !important
+    }
+
+    .width_notifier {
+        width: max-content;
+        padding: 0 15px;
+        min-width: 500px;
     }
 }

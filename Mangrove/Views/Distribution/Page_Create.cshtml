@@ -12,13 +12,13 @@
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
 <input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
 <input id="photo" value="@translate["label_hinh_anh"]" hidden />
-<input id="description" value="@translate["label_ten"]" hidden />
+<input id="description" value="@translate["label_vi_tri"]" hidden />
 
 <section class="mod-add-mangrove">
 	<div class="container py-2">
 		<form action="" method="post" enctype="multipart/form-data">
 			<!-- Maps -->
-			<div class="frame_slide rounded-1 mb-2 bg-form box">
+			<div class="frame_slide rounded-1 mb-2 box">
 				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">
 						@translate["label_ban_do"] (<span class="quantity_item">@(Model.Any() ? Model.Count() : 1)</span>/@Helper.Variable.maxItem)
@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="info">
-					<div class="items">
+					<div class="items bg-form">
 						@{
 							if (!Model.Any())
 							{
@@ -35,13 +35,13 @@
 									Model.Add(new Distribution_VM());
 								}
 
-								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+								<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 									<button class="btn_remove_item"
 									type="button">
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
-									<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+									<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
 										<p class="text-center">
 											@translate["label_hinh_anh"]
 										</p>
@@ -59,8 +59,7 @@
 										</div>
 
 										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
-											style="max-height: 200px;"
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 											alt="" />
 
 											<button class="btn_remove_preview_img"
@@ -70,8 +69,8 @@
 										</div>
 									</div>
 
-									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-										<p class="text-center col-12 align-self-start">@translate["label_ten"]</p>
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+										<p class="text-center col-12 align-self-start">@translate["label_vi_tri"]</p>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
@@ -91,7 +90,7 @@
 								{
 									bool haveImage = !string.IsNullOrEmpty(Model[i].Image.DataBase64);
 
-									<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
+									<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 										<button class="btn_remove_item"
 												type="button">
 											<i class="icon_remove_item fa-solid fa-xmark"></i>
@@ -115,10 +114,9 @@
 											</div>
 
 											<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
-												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image"
+												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 													 src="@Model[i].Image.DataBase64"
 													 name="ImageName"
-													 style="max-height: 200px;"
 													 alt="" />
 
 												<button class="btn_remove_preview_img"
@@ -131,7 +129,7 @@
 										</div>
 
 										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-											<p class="text-center col-12 align-self-start">@translate["label_ten"]</p>
+											<p class="text-center col-12 align-self-start">@translate["label_vi_tri"]</p>
 
 											<div class="add_content_item mt-1 m-lg-0 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
@@ -182,7 +180,7 @@
 
 				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
 					<i class="fa-solid fa-floppy-disk"></i>
-					<span class="hidden_mobile">@translate["label_them"]</span>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
 				</button>
 			</div>
 		</form>
