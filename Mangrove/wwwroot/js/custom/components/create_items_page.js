@@ -7,6 +7,8 @@
 	const search = pagination.getAttribute("search");
 	const controller = pagination.getAttribute("controller");
 	const action = pagination.getAttribute("action");
+	const sortType = pagination.getAttribute("sortType");
+	const sortFollow = pagination.getAttribute("sortFollow");
 
 	const groupPage = pagination.querySelector(".group_page");
 	const pageHidden = pagination.querySelector(".page_hidden");
@@ -45,14 +47,14 @@
 		// Tạo các phần tử khác (item)
 		if (totalPages <= 10) {
 			for (let i = 1; i <= totalPages; i++) {
-				const a = createLink(controller, action, search, i, pageSize, currentPage);
+				const a = createLink(controller, action, search, i, pageSize, currentPage, sortType, sortFollow);
 				groupPage.appendChild(a);
 			}
 		}
 		else {
 			morePage = true;
 			for (let i = 1; i <= itemShow; i++) {
-				const a = createLink(controller, action, search, i, pageSize, currentPage);
+				const a = createLink(controller, action, search, i, pageSize, currentPage, sortType, sortFollow);
 				groupPage.appendChild(a);
 			}
 
@@ -70,7 +72,7 @@
 			groupPage.appendChild(a);
 
 			for (let i = totalPages - itemShow + 1; i <= totalPages; i++) {
-				const a = createLink(controller, action, search, i, pageSize, currentPage);
+				const a = createLink(controller, action, search, i, pageSize, currentPage, sortType, sortFollow);
 				groupPage.appendChild(a);
 			}
 
@@ -81,7 +83,7 @@
 
 	if (morePage) {
 		for (let i = itemShow + 1; i <= totalPages - itemShow; i++) {
-			const a = createLink(controller, action, search, i, pageSize, currentPage);
+			const a = createLink(controller, action, search, i, pageSize, currentPage, sortType, sortFollow);
 			pageHidden.appendChild(a);
 		}
 	}
@@ -89,13 +91,13 @@
 createItemsPage();
 
 // Tạo thẻ a - link (item page)
-function createLink(controller, action, search, i, pageSize, currentPage) {
+function createLink(controller, action, search, i, pageSize, currentPage, sortType, sortFollow) {
 	const a = document.createElement("a");
 	a.innerHTML = i;
 	a.className = "page_number";
 
 	if (i == currentPage) a.classList.add("active");
-	else a.href = `/${controller}/${action}?search=${search}&currentPage=${i}&pageSize=${pageSize}`;
+	else a.href = `/${controller}/${action}?search=${search}&currentPage=${i}&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
 
 	return a;
 }

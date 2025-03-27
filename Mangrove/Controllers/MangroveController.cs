@@ -97,12 +97,12 @@ namespace Mangrove.Controllers {
 		}
 
 		// Tạo mới
-		public IActionResult Page_Create(Mangrove_VM? model = null) {
-			if (model == null) model = new Mangrove_VM();
+		public IActionResult Page_Create(Mangrove_Admin_VM? model = null) {
+			if (model == null) model = new Mangrove_Admin_VM();
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(Mangrove_VM model, string? info = null) {
+		public async Task<IActionResult> Page_Create(Mangrove_Admin_VM model, string? info = null) {
 			bool isEN = Helper.Func.IsEnglish();
 
 			// Bắt lỗi không có ảnh cho slide

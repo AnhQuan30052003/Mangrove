@@ -80,11 +80,11 @@ namespace Mangrove.Controllers {
 
 		// Tạo mới
 		public IActionResult Page_Create() {
-			var models = new List<Distribution_VM>();
+			var models = new List<Distribution_Admin_VM>();
 			return View(models);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(List<Distribution_VM> models) {
+		public async Task<IActionResult> Page_Create(List<Distribution_Admin_VM> models) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
@@ -168,7 +168,7 @@ namespace Mangrove.Controllers {
 				bool isEN = Helper.Func.IsEnglish();
 
 				var map = await context.TblDistributitons
-				.Select(item => new Distribution_VM {
+				.Select(item => new Distribution_Admin_VM {
 					Id = item.Id,
 					ImageName = item.ImageMap,
 					MapNameEn = item.MapNameEn,
@@ -198,7 +198,7 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Edit(Distribution_VM model) {
+		public async Task<IActionResult> Page_Edit(Distribution_Admin_VM model) {
 			// Begin validate
 			Helper.Validate.Clear();
 			Helper.Validate.NotEmpty(model.Image.DataBase64);

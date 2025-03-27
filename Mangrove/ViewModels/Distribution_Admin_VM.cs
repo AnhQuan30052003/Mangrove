@@ -1,6 +1,6 @@
 ﻿
 namespace Mangrove.ViewModels {
-	public class Distribution_VM {
+	public class Distribution_Admin_VM {
 		public string? Id { get; set; } = null;
 		public string? ImageName { get; set; } = null;
 		public string MapNameEn { get; set; } = null!;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace Mangrove.ViewModels {
-	public class Mangrove_VM {
+	public class Mangrove_Admin_VM {
 		public string NameVi { get; set; } = null!;
 
 		public string NameEn { get; set; } = null!;
