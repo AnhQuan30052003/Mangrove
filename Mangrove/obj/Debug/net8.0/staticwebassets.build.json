@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pNpAlQ/68azcIKVB0HVHvJTO0/VWc6johSJkNYByyHM=",
+  "Hash": "RfpxY3KgE7yhaHbmHnwEadKV088+VjzHXmRA/roYSlY=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1753,8 +1753,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8a53h73ra4",
-      "Integrity": "gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI=",
+      "Fingerprint": "tlcj8av2ba",
+      "Integrity": "kaZ3NGhwV9gJJJf8tf+Ush+zpjx0ones7dpkX4j2JL4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\items.js"
@@ -9956,51 +9956,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/items.8a53h73ra4.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "7567"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 08:01:05 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8a53h73ra4"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/items.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI="
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/items.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
       "Selectors": [],
@@ -10011,7 +9966,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7567"
+          "Value": "7674"
         },
         {
           "Name": "Content-Type",
@@ -10019,11 +9974,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI=\""
+          "Value": "\"kaZ3NGhwV9gJJJf8tf+Ush+zpjx0ones7dpkX4j2JL4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Mar 2025 08:01:05 GMT"
+          "Value": "Thu, 27 Mar 2025 17:07:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10033,7 +9988,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci+BHPI="
+          "Value": "sha256-kaZ3NGhwV9gJJJf8tf+Ush+zpjx0ones7dpkX4j2JL4="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/items.tlcj8av2ba.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7674"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kaZ3NGhwV9gJJJf8tf+Ush+zpjx0ones7dpkX4j2JL4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 17:07:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tlcj8av2ba"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/items.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kaZ3NGhwV9gJJJf8tf+Ush+zpjx0ones7dpkX4j2JL4="
         }
       ]
     },

@@ -984,17 +984,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Tfn7ZSnrrcXJAdNkrc0JFRDg9GSTINvDC21fD\u002B51L00="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3792"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022Tfn7ZSnrrcXJAdNkrc0JFRDg9GSTINvDC21fD\u002B51L00=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Mar 2025 14:19:03 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/items.8a53h73ra4.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8a53h73ra4"},{"Name":"integrity","Value":"sha256-gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci\u002BBHPI="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/items.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7567"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci\u002BBHPI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Mar 2025 08:01:05 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/items.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci\u002BBHPI="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7567"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022gFoIljgAp2gW79iJCBBi/hKcfIU7BzWzkhm3Ci\u002BBHPI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Mar 2025 08:01:05 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kaZ3NGhwV9gJJJf8tf\u002BUsh\u002Bzpjx0ones7dpkX4j2JL4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7674"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kaZ3NGhwV9gJJJf8tf\u002BUsh\u002Bzpjx0ones7dpkX4j2JL4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Mar 2025 17:07:24 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/items.tlcj8av2ba.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"tlcj8av2ba"},{"Name":"integrity","Value":"sha256-kaZ3NGhwV9gJJJf8tf\u002BUsh\u002Bzpjx0ones7dpkX4j2JL4="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/items.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7674"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022kaZ3NGhwV9gJJJf8tf\u002BUsh\u002Bzpjx0ones7dpkX4j2JL4=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Mar 2025 17:07:24 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/lazy_load_image.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\lazy_load_image.js'))</AssetFile>

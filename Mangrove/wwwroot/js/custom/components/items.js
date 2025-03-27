@@ -77,14 +77,16 @@ export function addItem() {
 	const att1 = btn.getAttribute("att1");
 	const att2 = btn.getAttribute("att2");
 
-	const addItem = createDivAddItem(addItemFind.length, imageType, imageData, att1, att2);
+	const attExtra1 = btn.getAttribute("attExtra1");
+
+	const addItem = createDivAddItem(addItemFind.length, imageType, imageData, att1, att2, attExtra1);
 	items.appendChild(addItem);
 
 	const quantity = document.querySelector(".quantity_item");
 	quantity.innerHTML = addItemFind.length + 1;
 }
 
-function createDivAddItem(index, imageType, imageData, att1, att2) {
+function createDivAddItem(index, imageType, imageData, att1, att2, attExtra1 = "") {
 	const addItem = document.createElement("div");
 	addItem.className = "add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail";
 
@@ -125,11 +127,11 @@ function createDivAddItem(index, imageType, imageData, att1, att2) {
 
 	const image_type = document.createElement("input");
 	image_type.className = "image_type";
-	image_type.name = `[${index}].${imageType}`;
+	image_type.name = `${attExtra1}[${index}].${imageType}`;
 
 	const image_data = document.createElement("input");
 	image_data.className = "image_data";
-	image_data.name = `[${index}].${imageData}`;
+	image_data.name = `${attExtra1}[${index}].${imageData}`;
 
 	div.appendChild(image_type);
 	div.appendChild(image_data);
@@ -182,10 +184,10 @@ function createDivAddItem(index, imageType, imageData, att1, att2) {
 	inputText.name = "";
 
 	const inputTextEN = inputText.cloneNode(false);
-	inputTextEN.name = `[${index}].${att1}`;
+	inputTextEN.name = `${attExtra1}[${index}].${att1}`;
 
 	const inputTextVI = inputText.cloneNode(false);
-	inputTextVI.name = `[${index}].${att2}`;
+	inputTextVI.name = `${attExtra1}[${index}].${att2}`;
 
 	const smallEN = smallTite.cloneNode(false);
 	smallEN.textContent = document.querySelector("#english").value;

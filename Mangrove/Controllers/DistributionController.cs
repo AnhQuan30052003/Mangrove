@@ -89,8 +89,7 @@ namespace Mangrove.Controllers {
 			try {
 				// Begin validate
 				Helper.Validate.Clear();
-				for (int i = 0; i < models.Count(); i++) {
-					var model = models[i];
+				foreach (var model in models) {
 					Helper.Validate.NotEmpty(model.Image.DataBase64);
 					Helper.Validate.NotEmpty(model.MapNameEn);
 					Helper.Validate.NotEmpty(model.MapNameVi);

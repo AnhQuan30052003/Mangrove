@@ -8,8 +8,6 @@
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
-
-	int haveItemSlide = Model.Photos.Count();
 }
 
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
@@ -24,35 +22,42 @@
 			<div class="frame_slide rounded-1 mb-2 bg-form box">
 				<div class="toggle_title text-center mb-2 cursor-pointer">
 					<h6 class="py-2 bg-black text-white rounded-1">
-						Slide (<span class="quantity_item">@haveItemSlide</span>/@Helper.Variable.maxItem)
+						Slide (<span class="quantity_item">@(Model.Photos.Any() ? Model.Photos.Count() : 1)</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
 				<div class="info">
 					<div class="items">
 						@{
-							if (haveItemSlide == 0)
+							if (!Model.Photos.Any())
 							{
-								<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
-									<button class="btn_remove_item"
-											type="button">
+								for (int i = 1; i <= Helper.Variable.maxItem; i++)
+								{
+									Model.Photos.Add(new Photo_Mangrove_VM());
+								}
+
+								<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+									<button class="btn_remove_item" type="button">
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
-									<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
+									<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
 										<p class="text-center">@translate["label_hinh_anh"]</p>
-										<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
+
+										<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
 													type="button">
 												<i class="icon_add fa-solid fa-plus"></i>
 											</button>
 											<input class="file" name="ImageFile" type="file" hidden />
+											<div class="overflow-hidden w-h-0">
+												<input class="image_type" asp-for="@Model.Photos[0].Image.DataType" />
+												<input class="image_data" asp-for="@Model.Photos[0].Image.DataBase64" />
+											</div>
 										</div>
 
 										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-											<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
-												 src="/img/tree-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAP006.jpg"
-												 name="ImageName"
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 												 alt="" />
 
 											<button class="btn_remove_preview_img"
@@ -62,81 +67,93 @@
 										</div>
 									</div>
 
-									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 										<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-											<input type="text" asp-for="Photos[0].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-											<span asp-validation-for="Photos[0].NoteImgEn" class="text-danger small_font"></span>
+											<input type="text" asp-for="@Model.Photos[0].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 										</div>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-											<input type="text" asp-for="Photos[0].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-											<span asp-validation-for="Photos[0].NoteImgEn" class="text-danger small_font"></span>
+											<input type="text" asp-for="@Model.Photos[0].NoteImgVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 										</div>
 									</div>
 								</div>
 							}
 							else
 							{
-								// for (int i = 0; i < haveItemSlide; i++)
-								// {
-								// 	<div class="add_item mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative">
-								// 		<button class="btn_remove_item"
-								// 				type="button">
-								// 			<i class="icon_remove_item fa-solid fa-xmark"></i>
-								// 		</button>
+								for (int i = 0; i < Model.Photos.Count(); i++)
+								{
+									bool haveImage = !string.IsNullOrEmpty(Model.Photos[i].Image.DataBase64);
 
-								// 		<div class="add_img col-12 col-lg-6 add_img_height rounded-1 p-2">
-								// 			<p class="text-center">@translate["label_hinh_anh"]</p>
-								// 			<div class="input_img bg-white h-100 d-flex justify-content-center align-items-center">
-								// 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
-								// 						type="button">
-								// 					<i class="icon_add fa-solid fa-plus"></i>
-								// 				</button>
-								// 				<input class="file" name="ImageFile" type="file" hidden />
-								// 			</div>
+									<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+										<button class="btn_remove_item" type="button">
+											<i class="icon_remove_item fa-solid fa-xmark"></i>
+										</button>
 
-								// 			<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-								// 				<img class="show_temp h-100 object-fit-cover mx-auto d-block rounded-1 click_show_image"
-								// 					 src=""
-								// 					 name="ImageName"
-								// 					 alt="" />
+										<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
+											<p class="text-center">@translate["label_hinh_anh"]</p>
 
-								// 				<button class="btn_remove_preview_img"
-								// 						type="button">
-								// 					<i class="icon_remove fa-solid fa-xmark"></i>
-								// 				</button>
-								// 			</div>
-								// 		</div>
+											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+														type="button">
+													<i class="icon_add fa-solid fa-plus"></i>
+												</button>
+												<input class="file" name="ImageFile" type="file" hidden />
+												<div class="overflow-hidden w-h-0">
+													<input class="image_type" asp-for="@Model.Photos[i].Image.DataType" />
+													<input class="image_data" asp-for="@Model.Photos[i].Image.DataBase64" />
+												</div>
+											</div>
 
-								// 		<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap align-items-lg-center p-2">
-								// 			<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+											<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
+												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+													 src="@Model.Photos[i].Image.DataBase64"
+													 alt="" />
 
-								// 			<div class="add_content_item mt-1 m-lg-0 col-12">
-								// 				<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-								// 				<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-								// 				<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
-								// 			</div>
+												<button class="btn_remove_preview_img"
+														type="button">
+													<i class="icon_remove fa-solid fa-xmark"></i>
+												</button>
+											</div>
 
-								// 			<div class="add_content_item mt-1 m-lg-0 col-12">
-								// 				<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-								// 				<input type="text" asp-for="Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-								// 				<span asp-validation-for="Photos[i].NoteImgEn" class="text-danger small_font"></span>
-								// 			</div>
-								// 		</div>
-								// 	</div>
-								// }
+											<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+										</div>
+
+										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+											<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+
+											<div class="add_content_item mt-1 m-lg-0 col-12">
+												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+												<input type="text" asp-for="@Model.Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="add_content_item mt-1 m-lg-0 col-12">
+												<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+												<input type="text" asp-for="@Model.Photos[i].NoteImgVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+										</div>
+									</div>
+								}
 							}
 						}
 					</div>
 
 					<div class="text-center py-2">
 						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
-								type="button">
-							@translate["label_them_item"]
+								type="button"
+								data-image-type="Image.DataType"
+								data-base64="Image.DataBase64"
+								att1="NoteImgEn"
+								att2="NoteImgVi"
+								attExtra1="Photos"
+								onclick="item.addItem();">
+							<i class="fa-solid fa-plus"></i>
+							@translate["label_them_anh"]
 						</button>
 					</div>
 				</div>
@@ -159,31 +176,34 @@
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_viet"])</small>
 							<input type="text" asp-for="NameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-							@* <span asp-validation-for="NameVi" class="text-danger small_font"></span> *@
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khoa_hoc"]</small>
 							<input type="text" asp-for="ScientificName" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-							@* <span asp-validation-for="ScientificName" class="text-danger small_font"></span> *@
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 					</div>
 
 					<div class="right col-12 col-lg-6 d-flex flex-column gap-1 pl-10">
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_anh"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="CommonNameEn" value="@Model.CommonNameEn" />
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" asp-for="@Model.CommonNameEn" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_viet"])</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="CommonNameVi" value="@Model.CommonNameVi" />
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" asp-for="@Model.CommonNameVi" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ho"]</small>
-							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" name="Familia" value="@Model.Familia" />
+							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" type="text" asp-for="@Model.Familia" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 					</div>
 				</div>
@@ -198,12 +218,14 @@
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="MorphologyEn" cols="30" rows="7">@Model.MorphologyEn</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.MorphologyEn" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="MorphologyVi" cols="30" rows="7">@Model.MorphologyVi</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.MorphologyVi" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 				</div>
 			</div>
@@ -217,12 +239,14 @@
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="EcologyEn" cols="30" rows="7">@Model.EcologyEn</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.EcologyEn" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="EcologyVi" cols="30" rows="7">@Model.EcologyVi</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.EcologyVi" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 				</div>
 			</div>
@@ -236,12 +260,14 @@
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="UseEn" cols="30" rows="7">@Model.UseEn</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.UseEn" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="UseVi" cols="30" rows="7">@Model.UseVi</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.UseVi" cols="30" rows="7"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 				</div>
 			</div>
@@ -255,22 +281,26 @@
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_phan_bo"] (@translate["label_tieng_anh"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="DistributionEn" cols="30" rows="3">@Model.DistributionEn</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.DistributionEn" cols="30" rows="3"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_phan_bo"] (@translate["label_tieng_viet"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="DistributionVi" cols="30" rows="3">@Model.DistributionVi</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.DistributionVi" cols="30" rows="3"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small">@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_anh"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="ConservationStatusEn" cols="30" rows="3">@Model.ConservationStatusEn</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.ConservationStatusEn" cols="30" rows="3"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
 					<div class="add_content_item col-12 col-lg-6 mt-1 m-lg-0 pl-10">
 						<small class="mb-1 d-block font-small">@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_viet"])</small>
-						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" name="ConservationStatusVi" cols="30" rows="3">@Model.ConservationStatusVi</textarea>
+						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" asp-for="@Model.ConservationStatusVi" cols="30" rows="3"></textarea>
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 				</div>
 			</div>

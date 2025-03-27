@@ -18,67 +18,9 @@
 				   sortType="@Model.InfomationPaginate.sortType"
 				   sortFollow="@Model.InfomationPaginate.sortFollow">
 
+				<!-- thead -->
 				<thead>
-					<tr class="text-center bg-black text-white">
-						@{
-							string controller = Model.InfomationPaginate.Controller;
-							string action = Model.InfomationPaginate.Action;
-							string sortType = Model.InfomationPaginate.sortType;
-							string sortFollow = Model.InfomationPaginate.sortFollow ?? "";
-
-							string search = Model.InfomationPaginate.FindText;
-							int currentpage = Model.InfomationPaginate.CurrentPage;
-							int pageSize = Model.InfomationPaginate.PageSize;
-
-							var listStyle = Model.InfomationPaginate.ListTitle;
-
-							for (int i = 0; i < listStyle.Count(); i++)
-							{
-								var label = listStyle[i];
-								bool outList = i == 0 || i == listStyle.Count() - 1;
-
-								string setSortType = "";
-								if (sortFollow == label)
-								{
-									setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
-								}
-								else
-								{
-									setSortType = Helper.Key.sortASC;
-								}
-
-								string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
-
-								string text = isEN ? "Click to sort " : "Click để sắp xếp ";
-								if (typeArrow == "fa-arrow-up")
-								{
-									text += isEN ? "ascending" : "tăng dần";
-								}
-								else
-								{
-									text += isEN ? "descending" : "giảm dần";
-								}
-
-
-								<th class="head_sort position-relative">
-									@if (outList)
-									{
-										<a class="h-100 w-100 d-block">@label</a>
-									}
-									else
-									{
-										<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=setSortType, sortFollow=label })'
-										   class="h-100 w-100 d-block"
-										   title="@text">
-											@label
-										</a>
-										<i class="icon_sort fa-solid @typeArrow"></i>
-									}
-
-								</th>
-							}
-						}
-					</tr>
+					@await Html.PartialAsync($"{pv}/Both_PaginateTHead.cshtml", Model.InfomationPaginate)
 				</thead>
 
 				<tbody>
@@ -156,4 +98,4 @@
 	<!-- Pages -->
 	@await Html.PartialAsync($"{pv}/Both_PaginateItemPages.cshtml", Model.InfomationPaginate)
 </div>
-												   
+
