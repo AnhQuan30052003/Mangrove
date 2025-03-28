@@ -71,22 +71,14 @@ export function addItem() {
 	if (addItemFind.length == 10) return;
 
 	const btn = document.querySelector(".btn_add_item");
-	const imageType = btn.getAttribute("data-image-type");
-	const imageData = btn.getAttribute("data-base64");
-
-	const att1 = btn.getAttribute("att1");
-	const att2 = btn.getAttribute("att2");
-
-	const attExtra1 = btn.getAttribute("attExtra1");
-
-	const addItem = createDivAddItem(addItemFind.length, imageType, imageData, att1, att2, attExtra1);
+	const addItem = createDivAddItem();
 	items.appendChild(addItem);
 
 	const quantity = document.querySelector(".quantity_item");
 	quantity.innerHTML = addItemFind.length + 1;
 }
 
-function createDivAddItem(index, imageType, imageData, att1, att2, attExtra1 = "") {
+function createDivAddItem() {
 	const addItem = document.createElement("div");
 	addItem.className = "add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail";
 
@@ -127,11 +119,11 @@ function createDivAddItem(index, imageType, imageData, att1, att2, attExtra1 = "
 
 	const image_type = document.createElement("input");
 	image_type.className = "image_type";
-	image_type.name = `${attExtra1}[${index}].${imageType}`;
+	image_type.name = "dataTypes";
 
 	const image_data = document.createElement("input");
 	image_data.className = "image_data";
-	image_data.name = `${attExtra1}[${index}].${imageData}`;
+	image_data.name = "dataBase64s";
 
 	div.appendChild(image_type);
 	div.appendChild(image_data);
@@ -184,10 +176,10 @@ function createDivAddItem(index, imageType, imageData, att1, att2, attExtra1 = "
 	inputText.name = "";
 
 	const inputTextEN = inputText.cloneNode(false);
-	inputTextEN.name = `${attExtra1}[${index}].${att1}`;
+	inputTextEN.name = "noteENs";
 
 	const inputTextVI = inputText.cloneNode(false);
-	inputTextVI.name = `${attExtra1}[${index}].${att2}`;
+	inputTextVI.name = "noteVIs";
 
 	const smallEN = smallTite.cloneNode(false);
 	smallEN.textContent = document.querySelector("#english").value;

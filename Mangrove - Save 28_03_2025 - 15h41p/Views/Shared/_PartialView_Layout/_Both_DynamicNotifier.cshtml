@@ -1,0 +1,58 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	string status = Helper.Notifier.GetStatus();
+	string content = Helper.Notifier.GetContent();
+	int timer = Helper.Notifier.GetTimer();
+	string toPage = Helper.Notifier.GetToPage();
+
+	string bgColor = status == Helper.SetupNotifier.Status.fail ? "bg-danger" : "bg-tree";
+
+	if (!string.IsNullOrEmpty(content))
+	{
+		Helper.Notifier.Clear();
+
+		<div id="dynamic_notifier" class="w-100 position-fixed bg-transparent" style="top: 0; z-index: 100;" title="@translate["label_click_cancel"]">
+			<div class="container cursor-pointer d-flex justify-content-center">
+				<div class="frame @bgColor text-white text-center py-2 fw-bold position-relative rounded-1 overflow-hidden width_notifier">
+					<p>@content</p>
+					<div class="frame_time">
+						<div class="nav_time rounded-1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<style>
+			#dynamic_notifier .nav_time {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 3px;
+				background-color: black;
+				animation: count_down @($"{timer}ms") linear forwards;
+			}
+		</style>
+
+		<script>
+			window.addEventListener("load", function () {
+				const dynamicNotifier = document.querySelector("#dynamic_notifier");
+				const timer = parseInt("@timer");
+				const toPage = "@toPage";
+
+				if (dynamicNotifier) {
+					setTimeout(() => {
+						dynamicNotifier.classList.add("d-none");
+						if (toPage.length > 0) window.location.href = toPage;
+					}, timer);
+
+					dynamicNotifier.addEventListener("click", function() {
+						this.classList.add("d-none");
+						if (toPage.length > 0) window.location.href = toPage;
+					});
+				}
+			});
+		</script>
+	}
+}
+

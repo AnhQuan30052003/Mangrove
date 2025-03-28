@@ -1,8 +1,8 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
 using System.Drawing;
 using System.Linq.Expressions;
 
@@ -80,74 +80,67 @@ namespace Mangrove.Controllers {
 
 		// Tạo mới
 		public IActionResult Page_Create() {
-			var models = new List<Distribution_Admin_VM>();
-			return View(models);
+			Helper.Validate.Clear();
+			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(List<Distribution_Admin_VM> models) {
+		public async Task<IActionResult> Page_Create(List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
+				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
-				foreach (var model in models) {
-					Helper.Validate.NotEmpty(model.Image.DataBase64);
-					Helper.Validate.NotEmpty(model.MapNameEn);
-					Helper.Validate.NotEmpty(model.MapNameVi);
+
+				for (int i = 0; i < dataTypes.Count(); i++) {
+					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
+					Helper.Validate.NotEmpty(dataBase64s[i]);
+					Helper.Validate.NotEmpty(noteENs[i]);
+					Helper.Validate.NotEmpty(noteVIs[i]);
 				}
+
+				TempData["DataTypes"] = dataTypes;
+				TempData["DataBase64s"] = dataBase64s;
+				TempData["NoteENs"] = noteENs;
+				TempData["NoteVIs"] = noteVIs;
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
-					return View(models);
+					return View();
 				}
 
 				// Khi không có ảnh nào
-				if (!models.Any()) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
-						isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !",
-						Helper.SetupNotifier.Timer.midTime,
-						""
-					);
-					return RedirectToAction("Page_Create");
+				if (!dataBase64s.Any()) {
+					ViewData["NotPhoto"] = isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !";
+					return View();
 				}
 				// End validate
 
 				// Lưu bản đồ
-				int itemSaveSuccess = 0;
-				foreach (var model in models) {
+				for (int i = 0; i < dataTypes.Count(); i++) {
 					string id = Helper.Func.CreateId();
-					string fileName = $"{id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
-
-					// Lưu ảnh
-					bool statusSave = await Helper.Func.SaveImageFromBase64Data(
-						model.Image.DataBase64,
-						Helper.Path.distributionImg,
-						fileName
-					);
-
-					// Nếu không lưu được thi bỏ qua
-					if (!statusSave) continue;
-					itemSaveSuccess += 1;
+					string fileName = $"{id}_{noteVIs[i]}.{Helper.Func.GetTypeImage(dataTypes[i])}";
+					Helper.Func.MovePhoto(Path.Combine(Helper.Path.temptImg, dataBase64s[i]), Path.Combine(Helper.Path.distributionImg, fileName));
 
 					// Tạo map để lưu vào database
 					var map = new TblDistributiton {
 						Id = id,
 						ImageMap = fileName,
-						MapNameEn = model.MapNameEn,
-						MapNameVi = model.MapNameVi
+						MapNameEn = noteENs[i],
+						MapNameVi = noteVIs[i]
 					};
 					context.TblDistributitons.Add(map);
 				}
+
 				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
 				Helper.Notifier.Create(
 					Helper.SetupNotifier.Status.success,
-					isEN ? $"Added {itemSaveSuccess} map." : $"Đã thêm {itemSaveSuccess} bản đồ.",
+					isEN ? $"Added {dataBase64s.Count()} map." : $"Đã thêm {dataBase64s.Count()} bản đồ.",
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 			catch {
@@ -166,18 +159,7 @@ namespace Mangrove.Controllers {
 			try {
 				bool isEN = Helper.Func.IsEnglish();
 
-				var map = await context.TblDistributitons
-				.Select(item => new Distribution_Admin_VM {
-					Id = item.Id,
-					ImageName = item.ImageMap,
-					MapNameEn = item.MapNameEn,
-					MapNameVi = item.MapNameVi,
-					Image = new DataImage {
-						DataType = "type",
-						DataBase64 = "base64"
-					}
-				})
-				.FirstOrDefaultAsync(item => item.Id == id);
+				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 
 				if (map == null) {
 					Helper.Notifier.Create(
@@ -188,6 +170,8 @@ namespace Mangrove.Controllers {
 					return RedirectToAction("Page_Index");
 				}
 
+				TempData["DataBase64"] = map.ImageMap;
+				Helper.Validate.Clear();
 				return View(map);
 			}
 			catch (Exception ex) {
@@ -197,13 +181,17 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Edit(Distribution_Admin_VM model) {
+		public async Task<IActionResult> Page_Edit(TblDistributiton model, string dataBase64, string dataType) {
 			try {
 				// Begin validate
 				Helper.Validate.Clear();
-				Helper.Validate.NotEmpty(model.Image.DataBase64);
+
+				dataBase64 = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64, dataType);
+				Helper.Validate.NotEmpty(dataBase64);
 				Helper.Validate.NotEmpty(model.MapNameEn);
 				Helper.Validate.NotEmpty(model.MapNameVi);
+
+				TempData["DataBase64"] = dataBase64;
 
 				if (Helper.Validate.HaveError()) {
 					return View(model);
@@ -211,51 +199,22 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				bool isEN = Helper.Func.IsEnglish();
-				var thisMap = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == model.Id);
-
-				if (thisMap == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
-						isEN ? $"There was an error editing the map !" : $"Có lỗi trong quá trình chỉnh sửa bản đồ !",
-						Helper.SetupNotifier.Timer.midTime
-					);
-					return RedirectToAction("Page_Index");
-				}
 
 				// Xử lý hình ảnh và dữ liệu
 				// Nếu có ảnh mới
-				string fileName = $"{thisMap.Id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
-				if (model.Image.DataBase64 != "base64") {
-					bool statusSave = await Helper.Func.SaveImageFromBase64Data(
-						model.Image.DataBase64,
-						Helper.Path.distributionImg,
-					fileName
-					);
-
-					if (statusSave && thisMap.ImageMap != fileName) {
-						Helper.Func.DeletePhoto(Helper.Path.distributionImg, thisMap.ImageMap);
-						thisMap.ImageMap = fileName;
-					}
+				string fileName = $"{model.Id}_{model.MapNameVi}{Path.GetExtension(model.ImageMap)}";
+				string oldPath = Path.Combine(Helper.Path.distributionImg, model.ImageMap);
+				string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
+				if (model.ImageMap != dataBase64) {
+					Helper.Func.DeletePhoto(Helper.Path.distributionImg, model.ImageMap);
+					oldPath = Path.Combine(Helper.Path.temptImg, dataBase64);
 				}
-				else {
-					if (thisMap.ImageMap != fileName) {
-						string extension = Path.GetExtension(thisMap.ImageMap);
-						fileName = $"{thisMap.Id}_{model.MapNameVi}{extension}";
-						string oldPath = Path.Combine(Helper.Path.distributionImg, thisMap.ImageMap);
-						string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
+				model.ImageMap = fileName;
+				Helper.Func.MovePhoto(oldPath, newPath);
 
-						if (System.IO.File.Exists(oldPath)) {
-							System.IO.File.Move(oldPath, newPath);
-							thisMap.ImageMap = fileName;
-						}
-					}
-				}
-
-				thisMap.MapNameEn = model.MapNameEn;
-				thisMap.MapNameVi = model.MapNameVi;
-
-				context.TblDistributitons.Update(thisMap);
+				context.TblDistributitons.Update(model);
 				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
 				Helper.Notifier.Create(

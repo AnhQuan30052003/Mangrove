@@ -16,10 +16,12 @@ public class Helper {
 		public static string layoutAdmin_Auth = "~/Views/Shared/_LayoutAuth.cshtml";
 		public static string partialView = "~/Views/_PartialView";
 		public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
+
 		public static string treeImg = "wwwroot/img/tree-img";
 		public static string stageImg = "wwwroot/img/stage-img";
 		public static string qrImg = "wwwroot/img/qr-img";
 		public static string distributionImg = "wwwroot/img/distribution-map-img";
+		public static string temptImg = "wwwroot/img/temp-img";
 	}
 
 	// Variable
@@ -51,6 +53,7 @@ public class Helper {
 		public static string toPage = "ToPage";
 		public static string sortASC = "asc";
 		public static string sortDESC = "desc";
+		public static string notPhoto = "NotPhoto";
 
 		// For Link
 		public static string urlBack = "urlIndex";
@@ -292,6 +295,48 @@ public class Helper {
 				File.Delete(path);
 			}
 		}
+
+		// Lấy đuôi file ảnh
+		public static string GetTypeImage(string textType) {
+			return textType.Replace("image/", "").Replace("jpeg", "jpg");
+		}
+
+		// Xoá toàn bộ file trong thư mục chứa ảnh tạm
+		public static void DeleteAllFile(string path) {
+			if (System.IO.Path.Exists(path)) {
+				foreach (var file in Directory.GetFiles(path)) {
+					File.Delete(file);
+				}
+			}
+		}
+
+		// Chuyển ảnh từ thư mục tạm sang thư mục chính
+		public static void MovePhoto(string oldPath, string newPath) {
+			if (System.IO.Path.Exists(oldPath)) {
+				File.Move(oldPath, newPath);
+			}
+		}
+
+		// Kiểm tra xem có phải là chuỗi data base 64 không ?
+		public static bool IsDataBase64String(string data) {
+			return !string.IsNullOrEmpty(data) && data.StartsWith("data:image");
+		}
+
+		// Check dataBase64 và lưu
+		public static async Task<string> CheckIsDataBase64StringAndSave(string data, string type) {
+			if (IsDataBase64String(data)) {
+				string fileTemp = $"{CreateId()}.{GetTypeImage(type)}";
+				bool status = await SaveImageFromBase64Data(
+					data,
+					Path.temptImg,
+					fileTemp
+				);
+
+				if (status) return fileTemp;
+				return data;
+			}
+			return data;
+		}
 	}
 
 	// Validate
@@ -342,6 +387,5 @@ public class Helper {
 
 			AddError(content);
 		}
-
 	}
 }

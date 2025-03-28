@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Mangrove.Data;
+
+public partial class TblHome
+{
+    public string BannerImg { get; set; } = null!;
+
+    public int ItemRecent { get; set; }
+
+    public string BannerTitleVi { get; set; } = null!;
+
+    public string BannerTitleEn { get; set; } = null!;
+
+    public string PurposeVi { get; set; } = null!;
+
+    public string PurposeEn { get; set; } = null!;
+}

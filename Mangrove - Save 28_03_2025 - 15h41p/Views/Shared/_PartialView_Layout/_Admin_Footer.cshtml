@@ -1,0 +1,30 @@
+﻿@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
+
+@{
+	bool isEN = Helper.Func.IsLanguage("en");
+	var setting = await settingWebsite.GetSetting();
+}
+
+<footer id="admin_footer" class="bg-black text-white">
+	<div class="container">																	  
+		<div class="frame_text">
+			<div class="text-center text_tree_hover py-2">
+				<p>
+					&copy;
+					<script>document.write(new Date().getFullYear());</script>
+					@translate["footer_ban_quyen"] @(isEN ? setting.SchoolNameEn : setting.SchoolNameVi)
+					<i class="fa-regular fa-heart"></i>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Button: Scroll up-->
+<a id="scrollUp"
+   href="#header"
+   class="rounded-1"
+   title="@translate["footer_icon_top"]">
+	<i class="fa fa-angle-up"></i>
+</a>

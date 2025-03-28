@@ -1,0 +1,114 @@
+@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
+
+@{
+	bool isEN = Helper.Func.IsLanguage("en");
+	var setting = await settingWebsite.GetSetting();
+}
+
+<footer id="user_footer" class="mt-2 py-3" style="background-image: url('/img/logo/@setting.FooterBgImg');">
+	<div class="container pt-3 d-flex flex-column gap-5 gap-sm-0 flex-sm-row">
+		<div class="col-12 col-sm-4 px-2">
+			<div class="logo_title mb-30">
+				<div class="logo d-inline-flex gap-2 align-items-center rounded-pill">
+					<a href='@Url.Action("Page_Index", "Home")'>
+						<img class="h-100 w-100 object-fit-cover"
+							 src="/img/logo/@setting.LogoImg"	
+							 title="Logo Mangrove"
+							 alt="">
+					</a>
+				</div>
+				<p class="mb-2 text_tree_hover text-white mt-2">
+					@(isEN ? setting.DescriptionWebsiteEn : setting.DescriptionWebsiteVi)
+				</p>
+			</div>
+		</div>
+
+		<!-- Contact -->
+		<div class="col-12 col-sm-4 px-2">
+			<div class="logo_title d-flex gap-2 align-items-center mb-3">
+				<i class="fa-solid fa-phone color-tree fs-4"></i>
+				<h5 class="m-0 text-white text_tree_hover upper">@translate["User_Footer_lien_he"]</h5>
+			</div>
+
+			<div class="contact_information d-flex flex-column gap-2">
+				<p class="d-flex gap-1">
+					<span class="flex-shrink-0">@translate["User_Footer_dia_chi"]:</span>
+					<span class="text_tree_hover flex-grow-1 text-white">
+						@(isEN ? setting.AddressEn : setting.AddressVi)
+					</span>
+				</p>
+				<p>
+					<span>@translate["User_Footer_dien_thoai"]:</span>
+					<span class="text_tree_hover text-white">@setting.Phone</span>
+				</p>
+				<p>
+					<span>Email:</span>
+					<span class="text_tree_hover text-white">@setting.Email</span>
+				</p>
+			</div>
+		</div>
+
+		<!-- Follow -->
+		<div class="col-12 col-sm-4 px-2">
+			<div class="logo_title d-flex gap-2 align-items-center mb-3">
+				<i class="fa-regular fa-eye color-tree fs-4"></i>
+				<h5 class="m-0 text-white text_tree_hover upper">@translate["User_Footer_theo_doi"]</h5>
+			</div>
+
+			<div class="social-info d-flex gap-3 text-white">
+				<a target="_blank" href="https://ntu.edu.vn/" title="NTU" class="text_tree_hover">
+					<i class="fs-5 fa-solid fa-school"></i>
+				</a>
+				<a target="_blank" href="https://www.facebook.com/NTUedu.Fanpage/" title="Facebook" class="text_tree_hover">
+					<i class="fs-5 fa-brands fa-facebook"></i>
+				</a>
+			</div>
+
+			<div class="admin mt-5 mt-sm-4 mb-3 d-flex gap-3 align-items-center">
+				<i class="fa fa-user color-tree fs-5"></i>
+				<h5 class="text-white text_tree_hover upper">@translate["User_Footer_truy_cap"]</h5>
+			</div>
+			<a href='@Url.Action("Page_Login", "Auth")'
+			   class="text-white text_tree_hover d-flex gap-2 align-items-center">
+				<span style="text-decoration: underline;" title="@translate["User_Footer_admin"]">@translate["User_Footer_quan_tri_vien"]</span>
+				<i class="fa-solid fa-backward animation_pointer"></i>
+			</a>
+		</div>
+	</div>
+
+	<div class="info_copy_right">
+		<div class="container">
+			<div class="frame_border_line">
+				<div class="border-line"></div>
+			</div>
+
+			<div class="frame_text mt-3">
+				<div class="text-center text_tree_hover">
+					<p>
+						&copy;
+						<script>document.write(new Date().getFullYear());</script>
+						@translate["footer_ban_quyen"] @(isEN ? setting.SchoolNameEn : setting.SchoolNameVi)
+						<i class="fa-regular fa-heart"></i>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!-- Button: Search-->
+<a id="bottom_search"
+   href='@Url.Action("Page_SpeciesComposition", "Home")'
+   class="rounded-1 bg_black_hover"
+   title="@translate["footer_icon_search"]">
+	<i class="icon-s fa fa-search"></i>
+</a>
+
+<!-- Button: Scroll up-->
+<a id="scrollUp"
+   href="#header"
+   class="rounded-1 bg_black_hover"
+   title="@translate["footer_icon_top"]">
+	<i class="fa fa-angle-up"></i>
+</a>

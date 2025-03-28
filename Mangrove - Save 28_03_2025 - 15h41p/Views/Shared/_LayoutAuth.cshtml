@@ -1,0 +1,70 @@
+@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
+@{
+    var setting = await settingWebsite.GetSetting();
+    var isEN = Helper.Func.IsLanguage("en");
+    string _pvl = Helper.Path.partialViewLayout;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @await Html.PartialAsync($"{_pvl}/_ImportHeader.cshtml", setting)
+
+    <!-- Add CSS custom-->
+    <link rel="stylesheet" href="~/css/auth_site.css" />
+
+    <!-- Js custom-->
+    <script type="module" src="~/js/custom/both_site.js" defer></script>
+    <script type="module" src="~/js/custom/auth_site.js" defer></script>
+</head>
+
+<body>
+    <!-- Preload -->
+    @await Html.PartialAsync($"{_pvl}/_Both_Preloader.cshtml", setting)
+    
+    <!-- Dynamic Nofifier -->
+    @await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
+
+    <section class="module_auth purdah h-100 w-100" style="background-image: url('/img/logo/@setting.FooterBgImg');">
+        <div class="container h-100 d-flex flex-column align-items-center justify-content-center">
+            <div class="wrapper">
+                <div class="display d-flex h-100">
+                    <div class="img col-lg-6 d-none d-lg-block">
+                        <img class="h-100 w-100 object-fit-cover" src="~/img/logo/img_bg.jpg" alt="">
+                    </div>
+
+                    <div class="form col-12 h-100 col-lg-6 d-flex flex-column justify-content-center align-items-center position-relative"
+                         style="background-color: #deefdd;">
+                        <div class="title_info text-center position-absolute" style="top: 10px;">
+                            <a href='@Url.Action("Page_Index", "Home")'>
+                                <h5 class="color-tree upper">@(isEN ? setting.SchoolNameEn : setting.SchoolNameVi)</h5>
+                            </a>
+                            <a href='@Url.Action("Page_Index", "Home")'>
+                                @(isEN ? setting.FacultyEn : setting.FacultyVi)
+                            </a>
+                        </div>
+
+                        <div class="logo" style="height: 70px; width: 70px;">
+                            <img class="h-100 w-100" src="~/img/logo/logo.png" alt="">
+                        </div>
+
+                        <!-- Body-->
+                        @RenderBody()
+
+                        <div class="link_home">
+                            <a href='@Url.Action("Page_Index", "Home")' class="underline_hover text_tree_hover">
+                                @translate["label_ve_trang_chu"]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

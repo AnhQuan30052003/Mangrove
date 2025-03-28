@@ -1,0 +1,22 @@
+﻿@model InfomationPaginate
+
+<div class="pagination p-3 d-flex justify-content-center"
+	 totalPages="@Model.TotalPages"
+	 currentPage="@Model.CurrentPage"
+	 pageSize="@Model.PageSize"
+	 search="@Model.FindText"
+	 controller="@Model.Controller"
+	 action="@Model.Action"
+	 sortType="@Model.sortType"
+	 sortFollow="@Model.sortFollow">
+
+	<div class="pages_ d-inline-flex flex-column justify-content-center align-items-center gap-1" style="width: max-content">
+		<!-- Page main -->
+		<div class="group_page d-flex justify-content-center align-items-center"></div>
+
+		<!-- Page hidden -->
+		<div class="page_hidden d-none d-flex flex-wrap justify-content-center"></div>
+	</div>
+</div>	
+
+<script src="~/js/custom/components/create_items_page.js"></script>

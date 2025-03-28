@@ -1,0 +1,41 @@
+.module_home_page .frame_img {
+    height: 50vh;
+    position: relative;
+}
+
+.module_home_page .frame_title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    max-width: 100%;
+    backdrop-filter: blur(5px);
+    color: white;
+}
+
+.module_home_page .frame_logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.module_home_page .frame_logo .logo {
+    width: var(--size_logo_sponsorship);
+    height: var(--size_logo_sponsorship);
+}
+
+@media (width <=576px) {
+    .module_home_page .frame_img {
+        height: 35vh;
+    }
+
+    .module_home_page .frame_title .title {
+        font-size: 25px;
+    }
+
+
+    :root {
+        --size_logo_sponsorship: 50px;
+    }
+}

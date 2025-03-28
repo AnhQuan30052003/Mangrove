@@ -1,0 +1,99 @@
+﻿.have_paginate .list_option {
+	position: absolute;
+	width: max-content;
+	min-width: 120px;
+	color: black;
+	top: -20px;
+	right: 6%;
+	z-index: 1;
+}
+
+.have_paginate .table .table_item:hover {
+	outline: solid 1px var(--greenPage);
+	color: var(--greenPage);
+}
+
+.have_paginate .list_option .option_item {
+	padding: 5px 0;
+}
+
+.have_paginate .list_option .option_item a {
+	display: flex;
+	align-items: center;
+}
+
+.have_paginate .list_option .option_item a i {
+	width: 30px;
+	margin-right: 10px;
+}
+
+.have_paginate .page_number {
+	margin: 0px 3px;
+	padding: 5px 10px;
+	min-width: 35px;
+	height: 38px;
+	border-radius: 0.2rem;
+	text-align: center;
+	outline: solid 1px black;
+	color: black;
+}
+
+.have_paginate .page_number.active {
+	background-color: black;
+	color: white;
+}
+
+.have_paginate .group_page {
+	height: 38px;
+}
+
+.have_paginate .page_hidden {
+	height: max-content;
+	width: 100%;
+}
+
+.have_paginate .page_hidden a.page_number {
+	margin: 5px 3px;
+}
+
+.have_paginate .arrow {
+	border-radius: 50%;
+	display: flex;
+	height: 38px;
+	width: 38px;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	color: black;
+}
+
+.have_paginate .arrow:hover {
+	outline: solid 1px;
+}
+
+.have_paginate .head_sort .icon_sort {
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	font-size: 13px;
+}
+
+.have_paginate .table_responsive {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.have_paginate .page_number:not(.active):hover {
+	color: var(--greenPage);
+}
+
+.have_paginate .nav_btn {
+	min-width: 120px;
+	padding: 7.5px 10px;
+}
+
+.have_paginate .btn_search {
+	background-color: black;
+	color: white;
+}
