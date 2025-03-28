@@ -198,72 +198,79 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Edit(Distribution_Admin_VM model) {
-			// Begin validate
-			Helper.Validate.Clear();
-			Helper.Validate.NotEmpty(model.Image.DataBase64);
-			Helper.Validate.NotEmpty(model.MapNameEn);
-			Helper.Validate.NotEmpty(model.MapNameVi);
+			try {
+				// Begin validate
+				Helper.Validate.Clear();
+				Helper.Validate.NotEmpty(model.Image.DataBase64);
+				Helper.Validate.NotEmpty(model.MapNameEn);
+				Helper.Validate.NotEmpty(model.MapNameVi);
 
-			if (Helper.Validate.HaveError()) {
-				return View(model);
-			}
-			// End validate
-
-			bool isEN = Helper.Func.IsEnglish();
-			var thisMap = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == model.Id);
-
-			if (thisMap == null) {
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.fail,
-					isEN ? $"There was an error editing the map !" : $"Có lỗi trong quá trình chỉnh sửa bản đồ !",
-					Helper.SetupNotifier.Timer.midTime
-				);
-				return RedirectToAction("Page_Index");
-			}
-
-			// Xử lý hình ảnh và dữ liệu
-			// Nếu có ảnh mới
-			string fileName = $"{thisMap.Id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
-			if (model.Image.DataBase64 != "base64") {
-				bool statusSave = await Helper.Func.SaveImageFromBase64Data(
-					model.Image.DataBase64,
-					Helper.Path.distributionImg,
-				fileName
-				);
-
-				if (statusSave && thisMap.ImageMap != fileName) {
-					Helper.Func.DeletePhoto(Helper.Path.distributionImg, thisMap.ImageMap);
-					thisMap.ImageMap = fileName;
+				if (Helper.Validate.HaveError()) {
+					return View(model);
 				}
-			}
-			else {
-				if (thisMap.ImageMap != fileName) {
-					string extension = Path.GetExtension(thisMap.ImageMap);
-					fileName = $"{thisMap.Id}_{model.MapNameVi}{extension}";
-					string oldPath = Path.Combine(Helper.Path.distributionImg, thisMap.ImageMap);
-					string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
+				// End validate
 
-					if (System.IO.File.Exists(oldPath)) {
-						System.IO.File.Move(oldPath, newPath);
+				bool isEN = Helper.Func.IsEnglish();
+				var thisMap = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == model.Id);
+
+				if (thisMap == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? $"There was an error editing the map !" : $"Có lỗi trong quá trình chỉnh sửa bản đồ !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
+				}
+
+				// Xử lý hình ảnh và dữ liệu
+				// Nếu có ảnh mới
+				string fileName = $"{thisMap.Id}_{model.MapNameVi}.{model.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
+				if (model.Image.DataBase64 != "base64") {
+					bool statusSave = await Helper.Func.SaveImageFromBase64Data(
+						model.Image.DataBase64,
+						Helper.Path.distributionImg,
+					fileName
+					);
+
+					if (statusSave && thisMap.ImageMap != fileName) {
+						Helper.Func.DeletePhoto(Helper.Path.distributionImg, thisMap.ImageMap);
 						thisMap.ImageMap = fileName;
 					}
 				}
+				else {
+					if (thisMap.ImageMap != fileName) {
+						string extension = Path.GetExtension(thisMap.ImageMap);
+						fileName = $"{thisMap.Id}_{model.MapNameVi}{extension}";
+						string oldPath = Path.Combine(Helper.Path.distributionImg, thisMap.ImageMap);
+						string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
+
+						if (System.IO.File.Exists(oldPath)) {
+							System.IO.File.Move(oldPath, newPath);
+							thisMap.ImageMap = fileName;
+						}
+					}
+				}
+
+				thisMap.MapNameEn = model.MapNameEn;
+				thisMap.MapNameVi = model.MapNameVi;
+
+				context.TblDistributitons.Update(thisMap);
+				await context.SaveChangesAsync();
+
+				// Setup thông báo
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.success,
+					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime,
+					""
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
-
-			thisMap.MapNameEn = model.MapNameEn;
-			thisMap.MapNameVi = model.MapNameVi;
-
-			context.TblDistributitons.Update(thisMap);
-			await context.SaveChangesAsync();
-
-			// Setup thông báo
-			Helper.Notifier.Create(
-				Helper.SetupNotifier.Status.success,
-				isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
-				Helper.SetupNotifier.Timer.shortTime,
-				""
-			);
-			return Content(Helper.Link.GetUrlBack(), "text/html");
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
 		}
 
 		// Chi tiết

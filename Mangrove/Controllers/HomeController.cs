@@ -138,6 +138,7 @@ namespace Mangrove.Controllers {
 
 				var model = new Mangrove_Client_VM {
 					Id = mangrove.Id,
+					MainImage = mangrove.MainImage,
 					Name = isEN ? mangrove.NameEn : mangrove.NameVi,
 					CommonName = isEN ? mangrove.CommonNameEn : mangrove.CommonNameVi,
 					ScientificName = mangrove.ScientificName,

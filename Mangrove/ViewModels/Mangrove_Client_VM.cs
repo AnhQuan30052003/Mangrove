@@ -1,6 +1,7 @@
 ﻿namespace Mangrove.ViewModels {
 	public class Mangrove_Client_VM {
 		public string Id { get; set; } = null!;
+		public string MainImage { get; set; } = null!;
 		public string Name { get; set; } = null!;
 		public string CommonName { get; set; } = null!;
 		public string ScientificName { get; set; } = null!;

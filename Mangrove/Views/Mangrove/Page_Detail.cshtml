@@ -1,16 +1,13 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model TblMangrove
+@model Mangrove_Client_VM
 
 @{
-	bool isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
-	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_xem"]})";
+	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_chi_xem"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
 
 	Layout = Helper.Path.layoutAdmin;
 	string _pv = Helper.Path.partialView;
-	TempData["Id"] = Model.Id;
-	List<TblPhoto> photos = TempData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
 }
 
 <!-- Frame button -->
@@ -41,7 +38,7 @@
 </div>
 
 <section class="mangrove_result">
-	<div class="container">
+	<div class="container py-3">
 		<!-- Images -->
 		<div class="box rounded-1 bg-transparent mb-2">
 			<div class="toggle_title text-center mb-2">
@@ -51,13 +48,10 @@
 			<div class="info">
 				<div class="images slick_slider height_responsive">
 					<div class="slides">
-						@foreach (var photo in photos)
+						@foreach (var photo in Model.Photos)
 						{
-							string img = $"/img/tree-img/{photo.ImageName}";
-							string? note = isEN ? photo.NoteImgEn : photo.NoteImgVi;
-
-							<div class="slide_item" note="@note">
-								<img class="rounded-1 click_show_image" src="@img" alt="@note" />
+							<div class="slide_item" note="@photo.Note">
+								<img class="rounded-1 click_show_image" src="/img/tree-img/@photo.Image" alt="@photo.Note" />
 							</div>
 						}
 					</div>
@@ -76,14 +70,12 @@
 			</div>
 
 			<div class="info">
-				<h4 class="text-center mb-2 fw-bold qr_name_mangrove">
-					@(isEN ? Model.NameEn : Model.NameVi)
-				</h4>
+				<h4 class="text-center mb-2 fw-bold qr_name_mangrove">@Model.Name</h4>
 				<div class="wrapper d-flex flex-wrap">
 					<div class="name_info p-2 col-12 col-sm-6">
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">@translate["label_ten_khac"]:</span>
-							<span>@(isEN ? Model.CommonNameEn : Model.CommonNameVi)</span>
+							<span>@Model.CommonName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">@translate["label_ten_khoa_hoc"]:</span>
@@ -97,7 +89,7 @@
 
 					<div class="use_info p-2 col-12 col-sm-6">
 						<p class="fw-bold">@translate["label_cong_dung"]:</p>
-						<p class="text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.UseEn : Model.UseVi))</p>
+						<p class="text-justify">@Html.Raw(Helper.Func.Show(Model.Use))</p>
 					</div>
 				</div>
 			</div>
@@ -110,7 +102,7 @@
 			</div>
 
 			<div class="info morphology_info">
-				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.MorphologyEn : Model.MorphologyVi))</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Morphology))</p>
 			</div>
 		</div>
 
@@ -121,7 +113,7 @@
 			</div>
 
 			<div class="info ecology_info">
-				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(isEN ? Model.EcologyEn : Model.EcologyVi))</p>
+				<p class="p-2 text-justify">@Html.Raw(Helper.Func.Show(Model.Ecology))</p>
 			</div>
 		</div>
 
@@ -134,17 +126,56 @@
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">@translate["label_phan_bo_phia_bac"]:</p>
-					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.DistributionEn : Model.DistributionVi))</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
 				</div>
 
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
 					<p class="fw-bold">@translate["label_tinh_trang_bao_ton"]:</p>
-					<p>@Html.Raw(Helper.Func.Show(isEN ? Model.ConservationStatusEn : Model.ConservationStatusVi))</p>
+					<p>@Html.Raw(Helper.Func.Show(Model.ConservationStatus))</p>
 				</div>
+			</div>
+		</div>
+
+		<!-- Individuals -->
+		<div class="box rounded-1 bg-white mb-2">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cac_ca_the_do_dac"]</h6>
+			</div>
+
+			<div class="info individuals_info">
+				@{
+					if (Model.Individuals.Any())
+					{
+						<div class="frame_measure p-2">
+							<div class="form_search">
+								<div class="search d-flex justify-content-center">
+									<div class="width_input border green_effect d-flex h-100 align-items-center justify-content-center gap-1 px-2 rounded-1 overflow-hidden">
+										<i id="icon-s" class="fa fa-search"></i>
+										<i id="icon-w" class="fa-solid fa-spinner wait_load d-none"></i>
+										<input class="p-2 border-none flex-grow-1 outline-none" id-mangrove="@Model.Id"
+											   type="search" id="searchInvidiual"
+											   placeholder="@translate["label_search_key_word"]">
+									</div>
+								</div>
+
+								<div class="bg-black mt-3" style="height: 3px;"></div>
+
+								<div class="list_individuals d-lg-flex flex-lg-wrap justify-content-lg-between pb-1 pt-2">
+									@await Html.PartialAsync($"{_pv}/User_Individuals.cshtml", Model.Individuals)
+								</div>
+							</div>
+						</div>
+					}
+					else
+					{
+						<p class="text-center col-12 pb-2">@translate["label_chua_co_ca_the_nao"]</p>
+					}
+				}
 			</div>
 		</div>
 	</div>
 </section>
+
 
 <!-- Frame button -->
 <div class="d-flex justify-content-center my-3 gap-2">

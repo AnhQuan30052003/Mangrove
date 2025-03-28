@@ -33,7 +33,7 @@
 							{
 								for (int i = 1; i <= Helper.Variable.maxItem; i++)
 								{
-									Model.Photos.Add(new Photo_Mangrove_VM());
+									Model.Photos.Add(new Photo_Mangrove_Admin_VM());
 								}
 
 								<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
@@ -170,19 +170,19 @@
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_anh"])</small>
 							<input type="text" asp-for="@Model.NameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
-							<span asp-validation-for="NameEn" class="text-danger small_font"></span>
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten"] (@translate["label_tieng_viet"])</small>
-							<input type="text" asp-for="NameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+							<input type="text" asp-for="@Model.NameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
 						</div>
 
 						<div class="add_content_item mt-1 m-lg-0">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khoa_hoc"]</small>
-							<input type="text" asp-for="ScientificName" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+							<input type="text" asp-for="@Model.ScientificName" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 					</div>

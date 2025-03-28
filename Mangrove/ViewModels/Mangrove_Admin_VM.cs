@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mangrove.ViewModels {
 	public class Mangrove_Admin_VM {
+		public string Id { get; set; } = null!;
+		public string MainImage { get; set; } = null!;
+
 		public string NameEn { get; set; } = null!;
 		public string NameVi { get; set; } = null!;
 
@@ -29,11 +32,13 @@ namespace Mangrove.ViewModels {
 		public string UseVi { get; set; } = null!;
 
 
-		public List<Photo_Mangrove_VM> Photos { get; set; } = new List<Photo_Mangrove_VM>();
+		public List<Photo_Mangrove_Admin_VM> Photos { get; set; } = new List<Photo_Mangrove_Admin_VM>();
 	}
 
-	public class Photo_Mangrove_VM {
+	public class Photo_Mangrove_Admin_VM {
+		public string Id { get; set; } = null!;
 		public DataImage Image { get; set; } = null!;
+		public string ImageName { get; set; } = null!;
 		public string NoteImgEn { get; set; } = null!;
 		public string NoteImgVi { get; set; } = null!;
 	}

@@ -6,6 +6,7 @@ using Microsoft.DotNet.Scaffolding.Shared.Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Drawing;
 using System.Linq.Expressions;
@@ -104,136 +105,190 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Create(Mangrove_Admin_VM model) {
-			bool isEN = Helper.Func.IsEnglish();
+			try {
+				bool isEN = Helper.Func.IsEnglish();
 
-			// Begin validate
-			Helper.Validate.Clear();
-			foreach (var photo in model.Photos) {
-				Helper.Validate.NotEmpty(photo.Image.DataBase64);
-				Helper.Validate.NotEmpty(photo.NoteImgEn);
-				Helper.Validate.NotEmpty(photo.NoteImgVi);
-			}
-			Helper.Validate.NotEmpty(model.NameEn);
-			Helper.Validate.NotEmpty(model.NameVi);
-			Helper.Validate.NotEmpty(model.ScientificName);
-			Helper.Validate.NotEmpty(model.CommonNameEn);
-			Helper.Validate.NotEmpty(model.CommonNameVi);
-			Helper.Validate.NotEmpty(model.Familia);
-			Helper.Validate.NotEmpty(model.MorphologyEn);
-			Helper.Validate.NotEmpty(model.MorphologyVi);
-			Helper.Validate.NotEmpty(model.EcologyEn);
-			Helper.Validate.NotEmpty(model.EcologyVi);
-			Helper.Validate.NotEmpty(model.DistributionEn);
-			Helper.Validate.NotEmpty(model.DistributionVi);
-			Helper.Validate.NotEmpty(model.ConservationStatusEn);
-			Helper.Validate.NotEmpty(model.ConservationStatusVi);
-			Helper.Validate.NotEmpty(model.UseEn);
-			Helper.Validate.NotEmpty(model.UseVi);
+				// Begin validate
+				Helper.Validate.Clear();
+				foreach (var photo in model.Photos) {
+					Helper.Validate.NotEmpty(photo.Image.DataBase64);
+					Helper.Validate.NotEmpty(photo.NoteImgEn);
+					Helper.Validate.NotEmpty(photo.NoteImgVi);
+				}
+				Helper.Validate.NotEmpty(model.NameEn);
+				Helper.Validate.NotEmpty(model.NameVi);
+				Helper.Validate.NotEmpty(model.ScientificName);
+				Helper.Validate.NotEmpty(model.CommonNameEn);
+				Helper.Validate.NotEmpty(model.CommonNameVi);
+				Helper.Validate.NotEmpty(model.Familia);
+				Helper.Validate.NotEmpty(model.MorphologyEn);
+				Helper.Validate.NotEmpty(model.MorphologyVi);
+				Helper.Validate.NotEmpty(model.EcologyEn);
+				Helper.Validate.NotEmpty(model.EcologyVi);
+				Helper.Validate.NotEmpty(model.DistributionEn);
+				Helper.Validate.NotEmpty(model.DistributionVi);
+				Helper.Validate.NotEmpty(model.ConservationStatusEn);
+				Helper.Validate.NotEmpty(model.ConservationStatusVi);
+				Helper.Validate.NotEmpty(model.UseEn);
+				Helper.Validate.NotEmpty(model.UseVi);
 
-			// Trả lại view nếu có lỗi validate
-			if (Helper.Validate.HaveError()) {
-				return View(model);
-			}
-			
-			// Khi không có ảnh nào
-			if (!model.Photos.Any()) {
+				// Khi không có ảnh nào
+				if (!model.Photos.Any()) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !",
+						Helper.SetupNotifier.Timer.midTime,
+						""
+					);
+					return RedirectToAction("Page_Create");
+				}
+
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					return View(model);
+				}
+				// End validate
+
+				// Lưu dữ liệu
+				string idMangrve = Helper.Func.CreateId();
+				string mainImage = "";
+				bool saveMainImage = false;
+
+				// Phần ảnh
+				for (int i = 0; i < model.Photos.Count(); i++) {
+					var photo = model.Photos[i];
+					var image = photo.Image;
+					string idImage = Helper.Func.CreateId();
+					string fileName = $"{idImage}_{model.NameVi}.{image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
+
+					bool statusSave = await Helper.Func.SaveImageFromBase64Data(image.DataBase64, Helper.Path.treeImg, fileName);
+					if (statusSave) {
+						var photoDB = new TblPhoto {
+							Id = idImage,
+							IdObj = idMangrve,
+							ImageName = fileName,
+							NoteImgEn = photo.NoteImgEn,
+							NoteImgVi = photo.NoteImgVi,
+						};
+						context.TblPhotos.Add(photoDB);
+
+						if (!saveMainImage) {
+							saveMainImage = true;
+							mainImage = fileName;
+						}
+
+					}
+				}
+
+				// Lưu cây
+				var mangrove = new TblMangrove {
+					Id = idMangrve,
+					NameEn = model.NameEn,
+					NameVi = model.NameVi,
+					CommonNameEn = model.CommonNameEn,
+					CommonNameVi = model.CommonNameVi,
+					ScientificName = model.ScientificName,
+					Familia = model.Familia,
+					MainImage = mainImage,
+					MorphologyEn = model.MorphologyEn,
+					MorphologyVi = model.MorphologyVi,
+					EcologyEn = model.EcologyEn,
+					EcologyVi = model.EcologyVi,
+					DistributionEn = model.DistributionEn,
+					DistributionVi = model.DistributionVi,
+					ConservationStatusEn = model.ConservationStatusEn,
+					ConservationStatusVi = model.ConservationStatusVi,
+					UseEn = model.UseEn,
+					UseVi = model.UseVi,
+					View = 0,
+					UpdateLast = DateTime.Now
+				};
+				context.TblMangroves.Add(mangrove);
+
+				await context.SaveChangesAsync();
+
+				// Setup thông báo
 				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.fail,
-					isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !",
-					Helper.SetupNotifier.Timer.midTime,
+					Helper.SetupNotifier.Status.success,
+					isEN ? "Create successfully." : "Tạo thành công.",
+					Helper.SetupNotifier.Timer.fastTime,
 					""
 				);
-				return RedirectToAction("Page_Create");
+
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
-			// End validate
-
-			// Lưu dữ liệu
-			string idMangrve = Helper.Func.CreateId();
-			string mainImage = "";
-
-			// Phần ảnh
-			for (int i = 0; i < model.Photos.Count(); i++) {
-				var photo = model.Photos[i];
-				var image = photo.Image;
-				string idImage = Helper.Func.CreateId();
-				string fileName = $"{idImage}_{model.NameVi}.{image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
-
-				bool statusSave = await Helper.Func.SaveImageFromBase64Data(image.DataBase64, Helper.Path.treeImg, fileName);
-				if (statusSave) {
-					var photoDB = new TblPhoto {
-						Id = idImage,
-						IdObj = idMangrve,
-						ImageName = fileName,
-						NoteImgEn = photo.NoteImgEn,
-						NoteImgVi = photo.NoteImgVi,
-					};
-					context.TblPhotos.Add(photoDB);
-
-					if (i == 0) {
-						mainImage = fileName;
-					}
-
-				}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
 			}
-
-			// Lưu cây
-			var mangrove = new TblMangrove {
-				Id = idMangrve,
-				NameEn = model.NameEn,
-				NameVi = model.NameVi,
-				CommonNameEn = model.CommonNameEn,
-				CommonNameVi = model.CommonNameVi,
-				ScientificName = model.ScientificName,
-				Familia = model.Familia,
-				MainImage = mainImage,
-				MorphologyEn = model.MorphologyEn,
-				MorphologyVi = model.MorphologyVi,
-				EcologyEn = model.EcologyEn,
-				EcologyVi = model.EcologyVi,
-				DistributionEn = model.DistributionEn,
-				DistributionVi = model.DistributionVi,
-				ConservationStatusEn = model.ConservationStatusEn,
-				ConservationStatusVi = model.ConservationStatusVi,
-				UseEn = model.UseEn,
-				UseVi = model.UseVi,
-				View = 0,
-				UpdateLast = DateTime.Now
-			};
-			context.TblMangroves.Add(mangrove);
-
-			await context.SaveChangesAsync();
-
-			// Setup thông báo
-			Helper.Notifier.Create(
-				Helper.SetupNotifier.Status.success,
-				isEN ? "Create successfully." : "Tạo thành công.",
-				Helper.SetupNotifier.Timer.fastTime,
-				""
-			);
-
-			return Content(Helper.Link.GetUrlBack(), "text/html");
 		}
 
 		// Chỉnh sửa
 		public async Task<IActionResult> Page_Edit(string id) {
 			try {
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
-				if (mangrove == null) {
-					return NotFound($"Không tìm thấy cây có ID = {id}");
+				bool isEN = Helper.Func.IsEnglish();
+
+				var model = await context.TblMangroves
+				.Select(item => new Mangrove_Admin_VM {
+					Id = item.Id,
+					MainImage = item.MainImage,
+					NameEn = item.NameEn,
+					NameVi = item.NameVi,
+					CommonNameEn = item.CommonNameEn,
+					CommonNameVi = item.CommonNameVi,
+					ScientificName = item.ScientificName,
+					Familia = item.Familia,
+					MorphologyEn = item.MorphologyEn,
+					MorphologyVi = item.MorphologyVi,
+					EcologyEn = item.EcologyEn,
+					EcologyVi = item.EcologyVi,
+					DistributionEn = item.DistributionEn,
+					DistributionVi = item.DistributionVi,
+					UseEn = item.UseEn,
+					UseVi = item.UseVi
+				})
+				.FirstOrDefaultAsync(item => item.Id == id);
+
+				if (model == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "The edit page you just visited does not exist !" : "Trang chỉnh sửa vừa truy cập không tồn tại !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
 				}
 
-				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
+				// Danh sách hình ảnh
+				List<Photo_Mangrove_Admin_VM> listPhoto = await context.TblPhotos
+				.Where(item => item.IdObj == id)
+				.Select(item => new Photo_Mangrove_Admin_VM {
+					Id = item.Id,
+					ImageName = item.ImageName,
+					NoteImgEn = item.NoteImgEn ?? "",
+					NoteImgVi = item.NoteImgVi ?? "",
+					Image = new DataImage {
+						DataType = "type",
+						DataBase64 = "base64"
+					}
+				})
+				.ToListAsync();
 
 				// Xử lý thứ tự ảnh banner slick slider
-				if (photos.Count() > 1 && photoMangrove != null) {
-					photos.Remove(photoMangrove);
-					photos.Insert(0, photoMangrove);
+				if (listPhoto.Count() > 1) {
+					foreach (var photo in listPhoto) {
+						if (photo.ImageName == model.MainImage) {
+							var save = photo;
+							listPhoto.Remove(save);
+							listPhoto.Insert(0, save);
+							break;
+						}
+					}
 				}
 
-				TempData["Photos"] = photos;
-				return View(mangrove);
+				model.Photos = listPhoto;
+
+				return View(model);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
@@ -242,31 +297,180 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Edit(TblMangrove model, List<IFormFile> ImageFile, List<string> listDesVI, List<string> listDesEN) {
-			return View();
-		}
+		public async Task<IActionResult> Page_Edit(Mangrove_Admin_VM model) {
+			try {
+				bool isEN = Helper.Func.IsEnglish();
 
+				// Begin validate
+				Helper.Validate.Clear();
+				foreach (var photo in model.Photos) {
+					Helper.Validate.NotEmpty(photo.Image.DataBase64);
+					Helper.Validate.NotEmpty(photo.NoteImgEn);
+					Helper.Validate.NotEmpty(photo.NoteImgVi);
+				}
+				Helper.Validate.NotEmpty(model.NameEn);
+				Helper.Validate.NotEmpty(model.NameVi);
+				Helper.Validate.NotEmpty(model.ScientificName);
+				Helper.Validate.NotEmpty(model.CommonNameEn);
+				Helper.Validate.NotEmpty(model.CommonNameVi);
+				Helper.Validate.NotEmpty(model.Familia);
+				Helper.Validate.NotEmpty(model.MorphologyEn);
+				Helper.Validate.NotEmpty(model.MorphologyVi);
+				Helper.Validate.NotEmpty(model.EcologyEn);
+				Helper.Validate.NotEmpty(model.EcologyVi);
+				Helper.Validate.NotEmpty(model.DistributionEn);
+				Helper.Validate.NotEmpty(model.DistributionVi);
+				Helper.Validate.NotEmpty(model.ConservationStatusEn);
+				Helper.Validate.NotEmpty(model.ConservationStatusVi);
+				Helper.Validate.NotEmpty(model.UseEn);
+				Helper.Validate.NotEmpty(model.UseVi);
+
+				// Khi không có ảnh nào
+				if (!model.Photos.Any()) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !",
+						Helper.SetupNotifier.Timer.midTime,
+						""
+					);
+					return RedirectToAction("Page_Create");
+				}
+
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					return View(model);
+				}
+				// End validate
+
+
+
+				// Xử lý hình ảnh và dữ liệu
+				// Nếu có ảnh mới
+				foreach (var item in model.Photos) {
+					string fileName = $"{item.Id}_{item.NoteImgVi}.{item.Image.DataType.Replace("image/", "").Replace("jpeg", "jpg")}";
+					if (item.Image.DataBase64 != "base64") {
+						bool statusSave = await Helper.Func.SaveImageFromBase64Data(
+							item.Image.DataBase64,
+							Helper.Path.treeImg,
+							fileName
+						);
+
+						if (statusSave && item.NoteImgVi != fileName) {
+							Helper.Func.DeletePhoto(Helper.Path.treeImg, item.NoteImgVi);
+							item.ImageName = fileName;
+						}
+					}
+					else {
+						if (item.ImageName != fileName) {
+							string extension = Path.GetExtension(item.ImageName);
+							fileName = $"{item.Id}_{item.NoteImgVi}{extension}";
+							string oldPath = Path.Combine(Helper.Path.treeImg, item.ImageName);
+							string newPath = Path.Combine(Helper.Path.treeImg, fileName);
+
+							if (System.IO.File.Exists(oldPath)) {
+								System.IO.File.Move(oldPath, newPath);
+								item.ImageName = fileName;
+							}
+						}
+					}
+
+					var photo = await context.TblPhotos.FirstOrDefaultAsync(p => p.Id == item.Id);
+					if (photo != null) {
+						photo.NoteImgEn = item.NoteImgEn;
+						photo.NoteImgVi = item.NoteImgVi;
+						photo.ImageName = item.ImageName;
+						context.TblPhotos.Update(photo);
+					}
+				}
+
+				// Cây
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == model.Id);
+				if (mangrove == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? $"There was an error editing the mangrove !" : $"Có lỗi trong quá trình chỉnh sửa cây ngập mặn !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
+				}
+
+
+				// Gõ code cập nhật cho cây !
+
+				context.TblMangroves.Update(mangrove);
+				await context.SaveChangesAsync();
+
+				// Setup thông báo
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.success,
+					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime,
+					""
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return NotFound(notifier);
+			}
+		}
 
 		// Chi tiết
 		public async Task<IActionResult> Page_Detail(string id) {
 			try {
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
-				if (mangrove == null) {
-					return NotFound($"Không tìm thấy cây có ID = {id}");
+				bool isEN = Helper.Func.IsEnglish();
+
+				var model = await context.TblMangroves
+				.Select(item => new Mangrove_Client_VM {
+					Id = item.Id,
+					MainImage = item.MainImage,
+					Name = isEN ? item.NameEn : item.NameVi,
+					CommonName = isEN ? item.CommonNameEn : item.CommonNameVi,
+					ScientificName = item.ScientificName,
+					Familia = item.Familia,
+					Use = isEN ? item.UseEn : item.UseVi,
+					Morphology = isEN ? item.MorphologyEn : item.MorphologyVi,
+					Ecology = isEN ? item.EcologyEn : item.EcologyVi,
+					Distribution = isEN ? item.DistributionEn : item.DistributionVi,
+					ConservationStatus = isEN ? item.ConservationStatusEn : item.ConservationStatusVi,
+					View = item.View,
+				})
+				.FirstOrDefaultAsync(item => item.Id == id);
+
+				if (model == null) {
+					Helper.Notifier.Create(
+						Helper.SetupNotifier.Status.fail,
+						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return RedirectToAction("Page_Index");
 				}
 
-				// Truy vấn ảnh cho banner slick slider
-				var photos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
-				var photoMangrove = await context.TblPhotos.FirstOrDefaultAsync(item => item.ImageName == mangrove.MainImage);
+				// Danh sách hình ảnh
+				List<Photo_Mangrove_Client_VM> listPhoto = await context.TblPhotos
+				.Where(item => item.IdObj == id)
+				.Select(item => new Photo_Mangrove_Client_VM {
+					Image = item.ImageName,
+					Note = (isEN ? item.NoteImgEn : item.NoteImgVi) ?? ""
+				})
+				.ToListAsync();
 
 				// Xử lý thứ tự ảnh banner slick slider
-				if (photos.Count() > 1 && photoMangrove != null) {
-					photos.Remove(photoMangrove);
-					photos.Insert(0, photoMangrove);
+				if (listPhoto.Count() > 1) {
+					foreach (var photo in listPhoto) {
+						if (photo.Image == model.MainImage) {
+							var save = photo;
+							listPhoto.Remove(save);
+							listPhoto.Insert(0, save);
+							break;
+						}
+					}
 				}
 
-				TempData["Photos"] = photos;
-				return View(mangrove);
+				model.Photos = listPhoto;
+
+				return View(model);
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
