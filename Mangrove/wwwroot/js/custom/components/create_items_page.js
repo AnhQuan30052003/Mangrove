@@ -16,7 +16,7 @@
 	// clear items
 	groupPage.innerHTML = pageHidden.innerHTML = "";
 
-	let morePage = false;								
+	let morePage = false;
 	const width = screen.width;
 	let itemShow = 0;
 
@@ -34,14 +34,14 @@
 		// Mũi tên trái
 		const aLeft = document.createElement("a");
 		aLeft.href = `/${controller}/${action}?search=${search}&currentPage=${currentPage - 1}&pageSize=${pageSize}`;
-		aLeft.className = `arrow mx-1 ${currentPage > 1 ? "" : "invisible"}`;
+		aLeft.className = `arrow mx-1 btn_loading ${currentPage > 1 ? "" : "invisible"}`;
 		aLeft.innerHTML = "&#10094";
 		groupPage.appendChild(aLeft);
 
 		// Mũi tên phải
 		const aRight = document.createElement("a");
 		aRight.href = `/${controller}/${action}?search=${search}&currentPage=${currentPage + 1}&pageSize=${pageSize}`;
-		aRight.className = `arrow mx-1 ${currentPage < totalPages ? "" : "invisible"}`;
+		aRight.className = `arrow mx-1 btn_loading ${currentPage < totalPages ? "" : "invisible"}`;
 		aRight.innerHTML = "&#10095";
 
 		// Tạo các phần tử khác (item)
@@ -97,7 +97,10 @@ function createLink(controller, action, search, i, pageSize, currentPage, sortTy
 	a.className = "page_number";
 
 	if (i == currentPage) a.classList.add("active");
-	else a.href = `/${controller}/${action}?search=${search}&currentPage=${i}&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
+	else {
+		a.href = `/${controller}/${action}?search=${search}&currentPage=${i}&pageSize=${pageSize}&sortType=${sortType}&sortFollow=${sortFollow}`;
+		a.classList.add("btn_loading");
+	}
 
 	return a;
 }

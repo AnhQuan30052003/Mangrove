@@ -9,19 +9,19 @@
     <div id="background" class="d-xl-none" style="transition: 0.3s"></div>
     <div class="p-1 h-100 d-flex bg-white align-items-center">
         <div class="logo rounded-pill">
-            <a href='@Url.Action("Page_Statistical", "Admin")'>
+            <a href='@Url.Action("Page_Statistical", "Admin")' class="btn_loading">
                 <img class="h-100 w-100" src="~/img/logo/@Model.LogoImg" alt="" title="Logo Mangrove">
             </a>
         </div>
 
         <div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
             <div class="left d-flex flex-column justify-content-around col-10 col-sm-11 col-xl-4">
-                <a href='@Url.Action("Page_Statistical", "Admin")'>
+                <a href='@Url.Action("Page_Statistical", "Admin")' class="btn_loading">
                     <h5 class="text_tree_hover upper">
                         @(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)
                     </h5>
                 </a>
-                <a href='@Url.Action("Page_Statistical", "Admin")' class="text_tree_hover">
+                <a href='@Url.Action("Page_Statistical", "Admin")' class="text_tree_hover btn_loading">
                     @(isEN ? Model.FacultyEn : Model.FacultyVi)
                 </a>
             </div>
@@ -37,7 +37,7 @@
 
                     <ul class="list_item w-100 d-flex flex-xl-row flex-column justify-content-xl-end gap-xl-4 gap-0 align-items-xl-center">
                         <!-- Thống kê -->
-                        <li class="item active_click page_option" page="Page_Statistical">
+                        <li class="item active_click page_option btn_loading" page="Page_Statistical">
                             <a href='@Url.Action("Page_Statistical", "Admin")' class="d-flex align-items-center gap-xl-1">
                                 <i class="fa-solid fa-chart-simple"></i>
                                 <span class="">@translate["label_thong_ke"]</span>
@@ -56,8 +56,8 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("Page_Index", "Home")' class="py-2 px-3 d-block downdown_item">@translate["label_xem"]</a>
-                                <a href='@Url.Action("Page_Edit", "HomePage")' class="py-2 px-3 d-block downdown_item">@translate["label_sua"]</a>
+                                <a href='@Url.Action("Page_Index", "Home")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_xem"]</a>
+                                <a href='@Url.Action("Page_Edit", "HomePage")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_sua"]</a>
                             </ul>
                         </li>
 
@@ -73,14 +73,14 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1 overflow-hidden">
-                                <a href='@Url.Action("Page_Index", "Mangrove")' class="py-2 px-3 d-block downdown_item">@translate["label_thanh_phan_loai"]</a>
-                                <a href='@Url.Action("Page_Index", "Individual")' class="py-2 px-3 d-block downdown_item">@translate["label_ca_the"]</a>
+                                <a href='@Url.Action("Page_Index", "Mangrove")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_thanh_phan_loai"]</a>
+                                <a href='@Url.Action("Page_Index", "Individual")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_ca_the"]</a>
                             </ul>
                         </li>
 
                         <!-- Bản đồ phân bố -->
                         <li class="item active_click page_option" page="Page_Distribution">
-                            <a href='@Url.Action("Page_Index", "Distribution")' class="d-flex align-items-center gap-xl-1">
+                            <a href='@Url.Action("Page_Index", "Distribution")' class="d-flex align-items-center gap-xl-1 btn_loading">
                                 <i class="fa-solid fa-map"></i>
                                 <span class="">@translate["label_phan_bo"]</span>
                             </a>
@@ -98,8 +98,8 @@
                                 </span>
                             </div>
                             <ul class="dropdown_list rounded-1">
-                                <a href='' class="py-2 px-3 d-block downdown_item">@translate["label_thong_tin_quan_tri"]</a>
-                                <a href='@Url.Action("Page_ChangePassword","Admin")' class="py-2 px-3 d-block downdown_item">@translate["label_doi_mat_khau"]</a>
+                                <a href='' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_thong_tin_quan_tri"]</a>
+                                <a href='@Url.Action("Page_ChangePassword","Admin")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_doi_mat_khau"]</a>
 
                                 <li class="py-xl-2 px-xl-3 dropdown_level_2 dropdown_menu position-relative">
                                     <div class="px-3 px-xl-0 item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
@@ -111,8 +111,8 @@
                                         </span>
                                     </div>
                                     <ul class="dropdown_list rounded-1 overflow-hidden" style="top: 0; right: 100%;">
-                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="py-2 px-3 d-block downdown_item">@translate["label_tieng_anh"]</a>
-                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="py-2 px-3 d-block downdown_item">@translate["label_tieng_viet"]</a>
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "en" })' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_tieng_anh"]</a>
+                                        <a href='@Url.Action("ChangeLanguage", "SettingWebsite", new { language = "vi" })' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_tieng_viet"]</a>
                                     </ul>
                                 </li>
 

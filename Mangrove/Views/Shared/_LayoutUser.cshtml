@@ -22,8 +22,12 @@
 	<!-- Preload -->
 	@await Html.PartialAsync($"{_pvl}/_Both_Preloader.cshtml", setting)
 
+	<!-- Dynamic Nofifier -->
+	@await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
+
 	<!-- Show/zoom Image -->
 	@await Html.PartialAsync($"{_pvl}/_Both_ClickShowImage.cshtml")
+
 	
 	<!-- Show QR code -->
 	@await Html.PartialAsync($"{_pvl}/_User_ShowQRCode.cshtml")

@@ -48,7 +48,7 @@
 <!-- Frame button -->
 <div class="d-flex justify-content-center my-3 gap-2">
 	<button type="button" onclick="saveLinkBack.getUrlIndex();"
-			class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover">
+			class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 		<i class="fa-solid fa-list"></i>
 		<span class="hidden_mobile">
 			@translate["label_quay_lai_danh_sach"]
@@ -56,7 +56,7 @@
 	</button>
 
 	<a href="@Url.Action("Page_Edit", "Distribution", new { id = Model.Id })"
-	   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover">
+	   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
 		<i class="fas fa-edit"></i>
 		<span class="hidden_mobile">
 			@translate["label_sua"]
@@ -64,7 +64,7 @@
 	</a>
 
 	<a href="@Url.Action("Page_Delete", "Distribution", new { id = Model.Id })"
-	   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms"
+	   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms btn_loading"
 	   onclick="return confirm('@translate["label_text_xac_nhan_xoa"]');">
 		<i class="fa-solid fa-trash"></i>
 		<span class="hidden_mobile">
