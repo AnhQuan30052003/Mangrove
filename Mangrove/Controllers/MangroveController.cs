@@ -168,7 +168,7 @@ namespace Mangrove.Controllers {
 				// Phần ảnh
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					string idPhoto = Helper.Func.CreateId();
-					string fileName = $"{model.Id}_{model.NameVi}.{Helper.Func.GetTypeImage(dataTypes[i])}";
+					string fileName = $"{model.Id}_{model.NameVi}{Helper.Func.GetTypeImage(dataTypes[i])}";
 
 					// Chuyển ảnh vào đúng thư mục
 					Helper.Func.MovePhoto(
@@ -317,16 +317,20 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Lưu dữ liệu
+				// Lưu cây
+				model.UpdateLast = DateTime.Now;
+				context.TblMangroves.Update(model);
+
 				// Phẩn ảnh - Lưu ảnh mới về (mới này có thể có luôn ảnh cũ)
 				List<string> saveFileName = new List<string>();
 				for (int i = 0; i < dataBase64s.Count(); i++) {
-					string idPhoto = Helper.Func.CreateId();
+					string idPhoto = Helper.Func.GetIdFormFileName(dataBase64s[i]);
 					string fileName = $"{idPhoto}_{model.NameVi}";
 					string oldPath = Path.Combine(Helper.Path.treeImg, dataBase64s[i]);
 
 					// Nếu là ảnh mới
 					if (dataBase64s[i].Contains(Helper.Key.temp)) {
-						fileName += $".{Helper.Func.GetTypeImage(dataTypes[i])}";
+						fileName += Helper.Func.GetTypeImage(dataTypes[i]);
 						oldPath = Path.Combine(Helper.Path.temptImg, dataBase64s[i]);
 					}
 					else {
@@ -334,27 +338,31 @@ namespace Mangrove.Controllers {
 					}
 
 					// Lưu lại tên ảnh này
-					dataBase64s[i] = fileName;
+					if (i == 0) {
+						model.MainImage = fileName;
+					}
 					saveFileName.Add(fileName);
 
 					// Chuyển ảnh vào đúng thư mục
 					string newPath = Path.Combine(Helper.Path.treeImg, fileName);
 					Helper.Func.MovePhoto(oldPath, newPath);
 
-					var newPhoto = new TblPhoto {
+					var photo = new TblPhoto {
 						Id = idPhoto,
 						IdObj = model.Id,
 						ImageName = fileName,
 						NoteImgEn = noteENs[i],
 						NoteImgVi = noteVIs[i],
 					};
-					context.TblPhotos.Add(newPhoto);
-				}				
 
-				// Lưu cây
-				model.MainImage = dataBase64s[0];
-				model.UpdateLast = DateTime.Now;
-				context.TblMangroves.Update(model);
+					if (dataBase64s[i].Contains(Helper.Key.temp)) {
+						context.TblPhotos.Add(photo);
+					}
+					else {
+						context.TblPhotos.Update(photo);
+					}
+				}
+
 				await context.SaveChangesAsync();
 
 				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!

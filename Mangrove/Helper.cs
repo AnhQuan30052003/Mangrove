@@ -316,10 +316,24 @@ public class Helper {
 				File.Delete(path);
 			}
 		}
+		public static void DeletePhoto(string path) {
+			if (File.Exists(path)) {
+				File.Delete(path);
+			}
+		}
+
+		// Lấy ID từ file ảnh
+		public static string GetIdFormFileName(string fileName) {
+			int index = fileName.IndexOf("_");
+			if (index > 0) {
+				return fileName.Substring(0, index);	
+			}
+			return CreateId();
+		}
 
 		// Lấy đuôi file ảnh
 		public static string GetTypeImage(string textType) {
-			return textType.Replace("image/", "").Replace("jpeg", "jpg");
+			return $".{textType.Replace("image/", "").Replace("jpeg", "jpg")}";
 		}
 
 		// Xoá toàn bộ file trong thư mục chứa ảnh tạm
@@ -333,7 +347,7 @@ public class Helper {
 
 		// Chuyển ảnh từ thư mục tạm sang thư mục chính
 		public static void MovePhoto(string oldPath, string newPath) {
-			if (System.IO.Path.Exists(oldPath)) {
+			if (System.IO.Path.Exists(oldPath) && !System.IO.Path.Exists(newPath)) {
 				File.Move(oldPath, newPath);
 			}
 		}

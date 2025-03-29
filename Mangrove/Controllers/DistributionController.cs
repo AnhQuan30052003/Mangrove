@@ -118,7 +118,7 @@ namespace Mangrove.Controllers {
 				// Lưu dữ liệu
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					string id = Helper.Func.CreateId();
-					string fileName = $"{id}_{noteVIs[i]}.{Helper.Func.GetTypeImage(dataTypes[i])}";
+					string fileName = $"{id}_{noteVIs[i]}{Helper.Func.GetTypeImage(dataTypes[i])}";
 
 					// Chuyển ảnh vào đúng thư mục
 					Helper.Func.MovePhoto(
@@ -207,14 +207,19 @@ namespace Mangrove.Controllers {
 
 				// Xử lý hình ảnh và dữ liệu
 				// Nếu có ảnh mới
-				string fileName = $"{model.Id}_{model.MapNameVi}{Path.GetExtension(model.ImageMap)}";
+				string fileName = $"{model.Id}_{model.MapNameVi}";
 				string oldPath = Path.Combine(Helper.Path.distributionImg, model.ImageMap);
-				string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
-				if (model.ImageMap != dataBase64) {
+				if (dataBase64.Contains(Helper.Key.temp)) {
 					Helper.Func.DeletePhoto(Helper.Path.distributionImg, model.ImageMap);
+					fileName += Helper.Func.GetTypeImage(dataType);
 					oldPath = Path.Combine(Helper.Path.temptImg, dataBase64);
 				}
+				else {
+					fileName += Path.GetExtension(model.ImageMap);
+				}
+
 				model.ImageMap = fileName;
+				string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
 				Helper.Func.MovePhoto(oldPath, newPath);
 
 				context.TblDistributitons.Update(model);

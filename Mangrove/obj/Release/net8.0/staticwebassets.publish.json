@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Zqzo6YSpWbfaccLq0nd3hbtSW6ZOqMJkJsBUlYsZlHg=",
+  "Hash": "QQKuKWEAQYOg1o4kovZI00CDO5toaAi7Z9hH0aQ6PV0=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1548,6 +1548,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\tree-img\\A8F39594-D541-44AC-BF76-A0E492461077_Vẹt dù.jpg"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\tree-img\\AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/tree-img/AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "jtuissfbct",
+      "Integrity": "h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\tree-img\\AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\tree-img\\AE099C11-6870-4D36-BB4A-846B50759996_Dà vôi.jpg",
@@ -9214,6 +9235,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-QLGdXcMqvfShuEYPG/wc+zhoowMybqeuVdKogTBoOXQ="
+        }
+      ]
+    },
+    {
+      "Route": "img/tree-img/AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\tree-img\\AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 13:25:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U="
+        }
+      ]
+    },
+    {
+      "Route": "img/tree-img/AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jtuissfbct.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\tree-img\\AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "60889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 29 Mar 2025 13:25:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "jtuissfbct"
+        },
+        {
+          "Name": "label",
+          "Value": "img/tree-img/AB1A31E0-435A-4242-802F-5D7F5F76AE6F_test.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U="
         }
       ]
     },
