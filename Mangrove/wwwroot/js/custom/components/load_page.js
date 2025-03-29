@@ -3,6 +3,11 @@ export function loadPage() {
 	window.addEventListener("load", function () {
 		removeIconLoadPage();
 		highlightTabHeader();
+
+		const searchAJAX = document.querySelector(".search_ajax");
+		if (searchAJAX) {
+			searchAJAX.dispatchEvent(new Event("focus"));
+		}
 	});
 }
 loadPage();
@@ -54,3 +59,16 @@ function loading() {
 	catch { }
 }
 loading();
+
+// Fix length focus seach input 
+function movePointerInput() {
+	const searchAJAX = document.querySelector(".search_ajax");
+	if (searchAJAX) {
+		searchAJAX.addEventListener("focus", function () {
+			let value = searchAJAX.value;
+			searchAJAX.value = "";
+			searchAJAX.value = value;
+		});
+	}
+}
+movePointerInput();
