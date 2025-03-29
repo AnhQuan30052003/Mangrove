@@ -8,6 +8,11 @@
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
+
+	var dataTypes = TempData["DataTypes"] as List<string> ?? new List<string>();
+	var dataBase64s = TempData["DataBase64s"] as List<string> ?? new List<string>();
+	var noteENs = TempData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = TempData["NoteVIs"] as List<string> ?? new List<string>();
 }
 
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
@@ -18,24 +23,23 @@
 <section class="mod-add-mangrove">
 	<div class="container py-2">
 		<form action="" method="post" enctype="multipart/form-data">
+			<input asp-for="@Model.Id" hidden />
+
 			<!-- Slides -->
-			<div class="frame_slide rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+			<div class="frame_slide rounded-1 mb-2 box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">
-						Slide (<span class="quantity_item">@(Model.Photos.Any() ? Model.Photos.Count() : 1)</span>/@Helper.Variable.maxItem)
+						Slide (<span class="quantity_item">@(dataTypes.Any() ? dataTypes.Count() : 1)</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
 				<div class="info">
-					<div class="items">
-						@{
-							if (!Model.Photos.Any())
-							{
-								for (int i = 1; i <= Helper.Variable.maxItem; i++)
-								{
-									Model.Photos.Add(new Photo_Mangrove_Admin_VM());
-								}
+					<p class="mb-1 text-danger text-center">@ViewData[Helper.Key.notPhoto]</p>
 
+					<div class="items bg-form have_move">
+						@{
+							if (!dataBase64s.Any())
+							{
 								<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 									<button class="btn_remove_item" type="button">
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
@@ -51,14 +55,13 @@
 											</button>
 											<input class="file" name="ImageFile" type="file" hidden />
 											<div class="overflow-hidden w-h-0">
-												<input class="image_type" asp-for="@Model.Photos[0].Image.DataType" />
-												<input class="image_data" asp-for="@Model.Photos[0].Image.DataBase64" />
+												<input class="image_type" name="dataTypes" />
+												<input class="image_data" name="dataBase64s" />
 											</div>
 										</div>
 
 										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
 											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-												src="/img/tree-img/@Model.MainImage"
 												 alt="" />
 
 											<button class="btn_remove_preview_img"
@@ -73,21 +76,28 @@
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-											<input type="text" asp-for="@Model.Photos[0].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+											<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+
 										</div>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-											<input type="text" asp-for="@Model.Photos[0].NoteImgVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+											<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
 										</div>
 									</div>
 								</div>
 							}
 							else
 							{
-								for (int i = 0; i < Model.Photos.Count(); i++)
+								for (int i = 0; i < dataBase64s.Count(); i++)
 								{
-									bool haveImage = !string.IsNullOrEmpty(Model.Photos[i].Image.DataBase64);
+									var dataType = dataTypes[i];
+									var dataBase64 = dataBase64s[i];
+									var noteEN = noteENs[i];
+									var noteVI = noteVIs[i];
+
+									bool haveImage = !string.IsNullOrEmpty(dataBase64);
+									string folder = dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "tree-img";
 
 									<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 										<button class="btn_remove_item" type="button">
@@ -104,14 +114,14 @@
 												</button>
 												<input class="file" name="ImageFile" type="file" hidden />
 												<div class="overflow-hidden w-h-0">
-													<input class="image_type" asp-for="@Model.Photos[i].Image.DataType" />
-													<input class="image_data" asp-for="@Model.Photos[i].Image.DataBase64" />
+													<input class="image_type" name="dataTypes" value="@dataType" />
+													<input class="image_data" name="dataBase64s" value="@dataBase64" />
 												</div>
 											</div>
 
 											<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
 												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-													 src="@Model.Photos[i].Image.DataBase64"
+													 src="/img/@folder/@dataBase64"
 													 alt="" />
 
 												<button class="btn_remove_preview_img"
@@ -128,13 +138,13 @@
 
 											<div class="add_content_item mt-1 m-lg-0 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-												<input type="text" asp-for="@Model.Photos[i].NoteImgEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" value="@noteEN" />
 												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 											</div>
 
 											<div class="add_content_item mt-1 m-lg-0 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-												<input type="text" asp-for="@Model.Photos[i].NoteImgVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" />
+												<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1" value="@noteVI" />
 												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 											</div>
 										</div>
@@ -147,11 +157,6 @@
 					<div class="text-center py-2">
 						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
 								type="button"
-								data-image-type="Image.DataType"
-								data-base64="Image.DataBase64"
-								att1="NoteImgEn"
-								att2="NoteImgVi"
-								attExtra1="Photos"
 								onclick="item.addItem();">
 							<i class="fa-solid fa-plus"></i>
 							@translate["label_them_anh"]
@@ -162,7 +167,7 @@
 
 			<!-- Info name -->
 			<div class="frame_name_info rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thong_tin"]</h6>
 				</div>
 
@@ -212,7 +217,7 @@
 
 			<!-- Morophophy -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_thai"]</h6>
 				</div>
 
@@ -233,7 +238,7 @@
 
 			<!-- Eocology -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_sinh_thai"]</h6>
 				</div>
 
@@ -254,7 +259,7 @@
 
 			<!-- Use -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cong_dung"]</h6>
 				</div>
 
@@ -275,7 +280,7 @@
 
 			<!-- Distribution and Conservation status -->
 			<div class="frame_morphophy rounded-1 mb-2 bg-form box">
-				<div class="toggle_title text-center mb-2 cursor-pointer">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_phan_bo_va_tinh_trang"]</h6>
 				</div>
 
@@ -309,20 +314,33 @@
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center my-3 gap-2">
 				<button type="button" onclick="saveLinkBack.getUrlIndex();"
-						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover">
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 					<i class="fa-solid fa-list"></i>
-					<span class="hidden_mobile">@translate["label_quay_lai_danh_sach"]</span>
+					<span class="hidden_mobile">
+						@translate["label_quay_lai_danh_sach"]
+					</span>
 				</button>
 
-				<button type="button" onclick="location.reload();"
-						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-secondary opacity_hover">
-					<i class="fa-solid fa-eraser"></i>
-					<span class="hidden_mobile">@translate["label_xoa_sach"]</span>
-				</button>
+				<a href="@Url.Action("Page_Detail", "Mangrove", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_chi_tiet"]
+					</span>
+				</a>
 
-				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+				<a href="@Url.Action("Page_Delete", "Mangrove", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms btn_loading"
+				   onclick="return confirm('@translate["label_text_xac_nhan_xoa"]');">
+					<i class="fa-solid fa-trash"></i>
+					<span class="hidden_mobile">
+						@translate["label_xoa"]
+					</span>
+				</a>
+
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms btn_loading">
 					<i class="fa-solid fa-floppy-disk"></i>
-					<span class="hidden_mobile">@translate["label_them"]</span>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
 				</button>
 			</div>
 		</form>

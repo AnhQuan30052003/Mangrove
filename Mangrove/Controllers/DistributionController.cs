@@ -103,23 +103,28 @@ namespace Mangrove.Controllers {
 				TempData["NoteENs"] = noteENs;
 				TempData["NoteVIs"] = noteVIs;
 
+				// Khi không có ảnh nào
+				if (!dataBase64s.Any()) {
+					ViewData[Helper.Key.notPhoto] = isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !";
+					return View();
+				}
+
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
 					return View();
 				}
-
-				// Khi không có ảnh nào
-				if (!dataBase64s.Any()) {
-					ViewData["NotPhoto"] = isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !";
-					return View();
-				}
 				// End validate
 
-				// Lưu bản đồ
+				// Lưu dữ liệu
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					string id = Helper.Func.CreateId();
 					string fileName = $"{id}_{noteVIs[i]}.{Helper.Func.GetTypeImage(dataTypes[i])}";
-					Helper.Func.MovePhoto(Path.Combine(Helper.Path.temptImg, dataBase64s[i]), Path.Combine(Helper.Path.distributionImg, fileName));
+
+					// Chuyển ảnh vào đúng thư mục
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[i]),
+						Path.Combine(Helper.Path.distributionImg, fileName)
+					);
 
 					// Tạo map để lưu vào database
 					var map = new TblDistributiton {

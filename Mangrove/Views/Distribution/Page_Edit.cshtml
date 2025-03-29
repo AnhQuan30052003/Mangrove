@@ -14,7 +14,7 @@
 	string dataType = TempData["DataType"] as string ?? string.Empty;
 	string dataBase64 = TempData["DataBase64"] as string ?? string.Empty;
 
-	string folder = dataBase64 == Model.ImageMap ? "distribution-map-img" : "temp-img";
+	string folder = dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "distribution-map-img";
 }
 
 <section class="mod_detal_distribution mt-2">

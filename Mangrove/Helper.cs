@@ -54,6 +54,7 @@ public class Helper {
 		public static string sortASC = "asc";
 		public static string sortDESC = "desc";
 		public static string notPhoto = "NotPhoto";
+		public static string temp = "Temp";
 
 		// For Link
 		public static string urlBack = "urlIndex";
@@ -325,7 +326,7 @@ public class Helper {
 		// Check dataBase64 và lưu
 		public static async Task<string> CheckIsDataBase64StringAndSave(string data, string type) {
 			if (IsDataBase64String(data)) {
-				string fileTemp = $"{CreateId()}.{GetTypeImage(type)}";
+				string fileTemp = $"{CreateId()}_{Key.temp}.{GetTypeImage(type)}";
 				bool status = await SaveImageFromBase64Data(
 					data,
 					Path.temptImg,
