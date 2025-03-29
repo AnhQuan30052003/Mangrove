@@ -16,7 +16,7 @@
 		<div class="card_detail rounded-1 bg-form">
 			<div class="item py-2 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 				<div class="add_img col-12 col-lg-6 add_img_min_height_ rounded-1 p-2">
-					<p class="text-center">
+					<p class="text-center text-black">
 						@translate["label_hinh_anh"]
 					</p>
 
@@ -28,15 +28,15 @@
 				</div>
 
 				<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
-					<p class="text-center col-12 align-self-start">@translate["label_ten"]</p>
+					<p class="text-center col-12 align-self-start text-black">@translate["label_ten"]</p>
 
 					<div class="add_content_item mt-1 m-lg-0 col-12">
-						<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+						<small class="mb-1 d-block font-small text-black">@translate["label_tieng_anh"]</small>
 						<span class="w-100 border-none bg-white px-2 py-1 rounded-1">@Model.MapNameEn</span>
 					</div>
 
 					<div class="add_content_item mt-1 m-lg-0 col-12">
-						<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+						<small class="mb-1 d-block font-small text-black">@translate["label_tieng_viet"]</small>
 						<span class="w-100 border-none bg-white px-2 py-1 rounded-1">@Model.MapNameVi</span>
 					</div>
 				</div>
@@ -56,7 +56,8 @@
 	</button>
 
 	<a href="@Url.Action("Page_Edit", "Distribution", new { id = Model.Id })"
-	   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+	   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading"
+	   onclick="saveLinkBack.saveIndex('@Helper.Key.afterEdit');">
 		<i class="fas fa-edit"></i>
 		<span class="hidden_mobile">
 			@translate["label_sua"]

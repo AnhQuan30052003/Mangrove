@@ -94,7 +94,7 @@ function createDivAddItem() {
 	addImg.className = "add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2";
 
 	const photo = document.createElement("p");
-	photo.className = "text-center";
+	photo.className = "text-center text-black";
 	photo.innerText = document.querySelector("#photo").value;
 
 	const inputImg = document.createElement("div");
@@ -161,7 +161,7 @@ function createDivAddItem() {
 	addContent.className = "add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2";
 
 	const description = document.createElement("p");
-	description.className = "text-center col-12 align-self-start";
+	description.className = "text-center col-12 align-self-start text-black";
 	description.innerText = document.querySelector("#description").value;
 
 	const addContentItem = document.createElement("div");
@@ -171,9 +171,8 @@ function createDivAddItem() {
 	smallTite.className = "mb-1 d-block font-small";
 
 	const inputText = document.createElement("input");
-	inputText.className = "w-100 border-none bg-white green_effect px-2 py-1 rounded-1";
+	inputText.className = "w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body";
 	inputText.type = "text";
-	inputText.name = "";
 
 	const inputTextEN = inputText.cloneNode(false);
 	inputTextEN.name = "noteENs";

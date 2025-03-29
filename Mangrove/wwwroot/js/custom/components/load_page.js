@@ -39,20 +39,14 @@ function highlightTabHeader() {
 	catch { }
 }
 
-// Hiển thị loading trạng thái đang chợ
+// Hiển thị loading trạng thái đang chờ
 function loading() {
 	try {
 		const btnLoadings = document.querySelectorAll(".btn_loading");
 		btnLoadings.forEach((btn) => {
 			btn.addEventListener("click", function () {
 				const loadingNotifier = document.querySelector("#loading_notifier");
-				loadingNotifier.classList.add("animation_loading");
-
-				// Sau 20s mà còn chưa tải xong thì tự xoá
-				const timeCancel = 20;
-				setTimeout(() => {
-					loadingNotifier.classList.remove("animation_loading");
-				}, timeCancel * 1000);
+				loadingNotifier.classList.remove("d-none");
 			});
 		});
 	}

@@ -91,7 +91,7 @@ namespace Mangrove.Controllers {
 				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
 
-				for (int i = 0; i < dataTypes.Count(); i++) {
+				for (int i = 0; i < dataBase64s.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.NotEmpty(dataBase64s[i]);
 					Helper.Validate.NotEmpty(noteENs[i]);
@@ -228,7 +228,7 @@ namespace Mangrove.Controllers {
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.GetUrlBack(Helper.Key.afterEdit), "text/html");
 			}
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";

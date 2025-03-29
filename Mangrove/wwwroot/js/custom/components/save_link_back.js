@@ -9,5 +9,6 @@ export function getUrlIndex(key = null) {
 	const url = localStorage.getItem(key != null ? key : "urlIndex");
 	if (url != null) {
 		location.href = url;
+		localStorage.removeItem("urlIndex");
 	}
 }

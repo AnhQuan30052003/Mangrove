@@ -33,12 +33,31 @@ public class Helper {
 	public static class Link {
 		// Trở về link trước đó
 		public static string GetUrlBack(string? key = null) {
-			string getKey = key ?? "urlIndex";
-			string cmd = "location.href = url";
+			string keyDefault = "urlIndex";
+			if (key == null) {
+				key = keyDefault;
+
+				return @$"
+					<script>
+						const url = localStorage.getItem('{key}');
+						if (url != null) {{
+							location.href = url;
+						}}
+					</script>
+				";
+			}
+
 			return @$"
 				<script>
-					const url = localStorage.getItem('{getKey}');
-					if (url != null) {cmd}
+					let url = localStorage.getItem('{key}');
+					if (url != null) {{
+						location.href = url;
+						localStorage.removeItem('{key}');
+					}}
+					else {{
+						url = localStorage.getItem('{keyDefault}')
+						if (url != null) location.href = url;
+					}}
 				</script>
 			";
 		}
@@ -58,6 +77,7 @@ public class Helper {
 
 		// For Link
 		public static string urlBack = "urlIndex";
+		public static string afterEdit = "afterEdit";
 	}
 
 	// Setup noifier

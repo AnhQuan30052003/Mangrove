@@ -5,10 +5,13 @@ function loadSlider() {
 	slickSliders.forEach((slickSlider) => {
 		const slides = slickSlider.querySelector(".slides");
 		let slideItem = slides.querySelectorAll(".slide_item");
-		const description = document.querySelector(".show_description_photo p");
+		const description = document.querySelector(".show_description_photo p");		
 
 		// Nếu không có hoặc chỉ 1 slide_item thì không cần tạo Slick Slider
-		if (slideItem.length <= 1) return;
+		if (slideItem.length <= 1) {
+			description.innerHTML = document.querySelector(".slide_item").getAttribute("note");
+			return;
+		}
 		let loadSuccess = false;
 
 		// Tạo node đầu và cuối slide
