@@ -50,5 +50,6 @@ app.MapControllerRoute(
 	//pattern: "{controller=Home}/{action=Page_Distribution}/{id?}");
 	//pattern: "{controller=Distribution}/{action=Page_Index}/{id?}");
 	//pattern: "{controller=Admin}/{action=Page_Statistical}/{id?}");
-	pattern: "{controller=Mangrove}/{action=Page_Index}/{id?}");
+	pattern: "{controller=Admin}/{action=Page_ChangePassword}/{id?}");
+	//pattern: "{controller=Mangrove}/{action=Page_Index}/{id?}");
 app.Run();

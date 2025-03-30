@@ -88,7 +88,6 @@ namespace Mangrove.Controllers {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
-				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
 
 				for (int i = 0; i < dataBase64s.Count(); i++) {
@@ -251,7 +250,6 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Detail(string id) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
-
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
 					Helper.Notifier.Fail(

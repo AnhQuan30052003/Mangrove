@@ -2,5 +2,6 @@
 import * as show_info_image from "./components/show_info_image.js";		
 import * as item from "./components/items.js";		
 import * as moveItemPhoto from "./components/move_item_photo.js";		
+import * as password from "./components/password.js"
 
 window.item = item;

@@ -47,6 +47,11 @@ function loading() {
 			btn.addEventListener("click", function () {
 				const loadingNotifier = document.querySelector("#loading_notifier");
 				loadingNotifier.classList.remove("d-none");
+
+				const time = 10;
+				setTimeout(() => {
+					loadingNotifier.classList.add("d-none");								
+				}, time * 1000);
 			});
 		});
 	}

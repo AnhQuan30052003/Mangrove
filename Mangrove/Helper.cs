@@ -79,6 +79,8 @@ public class Helper {
 		// For Link
 		public static string urlBack = "urlIndex";
 		public static string afterEdit = "afterEdit";
+		public static string changePassword = "changePassword";
+		public static string adminInfo = "adminInfo";
 	}
 
 	// Setup noifier

@@ -50,7 +50,18 @@ body {
     border-radius: 5px;
 }
 
+.width_auth {
+    width: 700px;
+}
+
+@media (width <=1200px) {
+    .width_auth {
+        width: 500px;
+    }
+}
+
 @media (width <=576px) {
+    .width_auth,
     .module_auth .wrapper {
         width: 100%;
     }
