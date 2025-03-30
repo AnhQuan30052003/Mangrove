@@ -12,11 +12,11 @@
 <section class="module_auth w-100 d-flex align-items-center justify-content-center" style="min-height: 85vh;">
 	<div class="container d-flex align-items-center justify-content-center">
 		<form action="" method="post"
-			  class="col-12 col-sm-8 col-xl-5 py-4 px-1 px-md-3 px-lg-5 rounded-1 bg-form width_auth">
+			  class="col-12 col-sm-8 col-xl-5 py-4 px-3 rounded-1 bg-form width_auth">
 			<h3 class="text-center mb-3 text-black">@translate["label_thong_tin_quan_tri"]</h3>
 
 			<!-- Username -->
-			<div class="frame_password d-flex justify-content-center align-items-center bg-white my-2 rounded-1 outline_tree_hover">
+			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
 				<i class="fa-solid fa-user col-1 text-center"></i>
 				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Username" />
 				<i class="fa-solid fa-lock-open col-1 text-center"></i>
@@ -24,7 +24,7 @@
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
 			<!-- Email -->
-			<div class="frame_password d-flex justify-content-center align-items-center bg-white my-2 rounded-1 outline_tree_hover">
+			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
 				<i class="fa-solid fa-envelope col-1 text-center"></i>
 				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Email" />
 				<i class="fa-solid fa-lock-open col-1 text-center"></i>
@@ -32,17 +32,17 @@
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
 			<!-- Frame button -->
-			<div class="d-flex justify-content-between align-items-center mt-5">
-				<button type="button"
-						onclick="saveLinkBack.getUrlIndex('@Helper.Key.adminInfo');"
-						class="text-tree_hover border-none bg-white text_body px-3 py-2 rounded-1 opacity_hover btn_loading">
-					@translate["label_tro_ve"] ?
-				</button>
+			<div class="d-flex justify-content-center gap-3 justify-content-sm-between align-items-center mt-5">
+				<a href='@Url.Action("Page_AdminInformation_View", "Admin")'
+				   class="text-tree_hover border-none bg-white text_body px-4 py-2 rounded-1 opacity_hover btn_loading outline">
+					<i class="fa-solid fa-eye"></i>
+					<span class="hidden_mobile">@translate["label_xem"]</span>
+				</a>
 				<button type="submit"
 						class="btn_auth bg-tree text-white bg_black_hover time_delay_500ms btn_loading text-center"
-						href='@Url.Action("Page_AdminInformation_Edit", "Admin")'
-						onclick="">
-					@translate["label_luu"]
+						href='@Url.Action("Page_AdminInformation_Edit", "Admin")'>
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
 				</button>
 			</div>
 		</form>

@@ -5,6 +5,8 @@ namespace Mangrove.Data;
 
 public partial class TblAdmin
 {
+    public string Id { get; set; } = null!;
+
     public string Email { get; set; } = null!;
 
     public string Username { get; set; } = null!;

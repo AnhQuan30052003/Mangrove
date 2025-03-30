@@ -38,6 +38,7 @@ ul,
 p {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 li {
@@ -146,6 +147,9 @@ option {
     background-color: #00bcf2 !important;
 }
 
+.outline {
+    outline: solid 1px;
+}
 
 @media (width <=1200px) {
     .hidden_mobile {

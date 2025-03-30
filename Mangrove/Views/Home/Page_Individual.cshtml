@@ -133,6 +133,9 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
 
-<button id="btnQRFixed" class="rounded-1 click_show_qr bg_black_hover" title="QR" src="/img/qr-img/@Model.Individual.QrName">
+<button id="btnQRFixed"
+		class="rounded-1 click_show_qr outline_tree_hover bg_white_hover text_black_hover"
+		title="QR"
+		src="/img/qr-img/@Model.Individual.QrName">
 	<i class="fa-solid fa-qrcode"></i>
 </button>

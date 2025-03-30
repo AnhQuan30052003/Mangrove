@@ -2,6 +2,11 @@ using Microsoft.CodeAnalysis.Elfie.Model;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
+using System.Net.Mail;
+using System;
+using System.Net;
+using System.Linq;
+using System.Security.Policy;
 
 public class Helper {
 	private static IHttpContextAccessor? httpContextAccessor;
@@ -33,34 +38,50 @@ public class Helper {
 	// Links JS
 	public static class Link {
 		// Trở về link trước đó
-		public static string GetUrlBack(string? key = null) {
+		public static string ScriptGetUrlBack(string? key = null, bool noScript = false) {
 			string keyDefault = "urlIndex";
+			string urlRoot = "/Admin/Page_Statistical";
+			string startScript = "<script>", endScript = "</script>";
+
+			if (noScript) {
+				startScript = endScript = string.Empty;
+			}
+
 			if (key == null) {
 				key = keyDefault;
 
 				return @$"
-					<script>
+					{startScript}
 						const url = localStorage.getItem('{key}');
 						if (url != null) {{
 							location.href = url;
 						}}
-					</script>
+						location.href = '{urlRoot}';
+					{endScript}
 				";
 			}
 
 			return @$"
-				<script>
+				{startScript}
 					let url = localStorage.getItem('{key}');
 					if (url != null) {{
 						location.href = url;
 						localStorage.removeItem('{key}');
 					}}
 					else {{
-						url = localStorage.getItem('{keyDefault}')
+						url = localStorage.getItem('{keyDefault}');
 						if (url != null) location.href = url;
+						else location.href = '{urlRoot}';
 					}}
-				</script>
+				{endScript}
 			";
+		}
+
+		public static string JsGetUrlBack() {
+
+
+
+			return string.Empty;
 		}
 	}
 
@@ -328,7 +349,7 @@ public class Helper {
 		public static string GetIdFormFileName(string fileName) {
 			int index = fileName.IndexOf("_");
 			if (index > 0) {
-				return fileName.Substring(0, index);	
+				return fileName.Substring(0, index);
 			}
 			return CreateId();
 		}
@@ -391,14 +412,7 @@ public class Helper {
 		}
 
 		// Show error
-		public static string ShowError() {
-			try {
-				return errors[index++];
-			}
-			catch {
-				return "";
-			}
-		}
+		public static string ShowError() => index < errors.Count() ? errors[index++] : string.Empty;
 
 		// Question have errors ?
 		public static bool HaveError() {
@@ -413,20 +427,82 @@ public class Helper {
 
 		// Codes - functions check validate
 		// Không rỗng
-		public static void NotEmpty(string? text, bool allowSpace = false) {
+		public static void NotEmpty(string? value, bool allowSpace = false) {
 			string content = string.Empty;
 			if (allowSpace) {
 				AddError(content);
 				return;
 			}
 
-			if (string.IsNullOrEmpty(text)) {
+			if (string.IsNullOrEmpty(value)) {
 				string EN = "Can't be blank !";
 				string VI = "Không được bỏ trống !";
 				content = Func.IsEnglish() ? EN : VI;
 			}
 
 			AddError(content);
+		}
+
+		// Không vượt qua x ký tự
+		public static void MaxLength(string? value, int maxLength, bool allowSpace = false) {
+			if (value == null) {
+				NotEmpty(value, allowSpace);
+				return;
+			}
+
+			string content = string.Empty;
+			if (value.Length > maxLength) {
+				string EN = $"No more than {maxLength} characters !";
+				string VI = $"Không vượt quá {maxLength} ký tự !";
+				content = Func.IsEnglish() ? EN : VI;
+				AddError(content);
+				return;
+			}
+
+			AddError(content);
+		}
+
+		// Có độ dài từ x -> y
+		public static void TextLength(string? value, int minLength, int maxLength, bool allowSpace = false) {
+			if (value == null) {
+				NotEmpty(value, allowSpace);
+				return;
+			}
+
+			string content = string.Empty;
+			if (value.Length > maxLength) {
+				MaxLength(value, maxLength, allowSpace);
+				return;
+			}
+
+			if (value.Length < minLength) {
+				string EN = $"Length from {minLength} to {maxLength} characters !";
+				string VI = $"Độ dài từ {minLength} đến {maxLength} ký tự !";
+				content = Func.IsEnglish() ? EN : VI;
+				AddError(content);
+				return;
+			}
+
+			AddError(content);
+		}
+
+		// Check email có hợp lệ
+		public static void IsEmail(string? value, bool allowSpace = false) {
+			try {
+				if (value == null) {
+					NotEmpty(value, allowSpace);
+					return;
+				}
+
+				var email = new MailAddress(value);
+				TextLength(value, 10, 256, allowSpace);
+			}
+			catch {
+				string EN = "Not a valid email !";
+				string VI = "Không phải là email hợp lệ !";
+				string content = Func.IsEnglish() ? EN : VI;
+				AddError(content);
+			}
 		}
 	}
 }

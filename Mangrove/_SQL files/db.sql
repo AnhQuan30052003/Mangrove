@@ -16,6 +16,7 @@ drop table if exists tblAdmin
 -- Bảng cho admin
 create table tblAdmin
 (
+    _id varchar(36) primary key,
     _email varchar(256) not null,
     _username nvarchar(50) not null,
     _password varchar(50) not null,
@@ -24,6 +25,7 @@ create table tblAdmin
 -- Bảng cho trang setting
 create table tblSetting
 (
+    _id varchar(36) primary key,
      _logoImg nvarchar(50) not null,
      _footerBgImg nvarchar(50) not null,
      _phone varchar(20) not null,

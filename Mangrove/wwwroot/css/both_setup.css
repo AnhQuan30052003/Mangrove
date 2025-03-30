@@ -1,8 +1,10 @@
 /* Font Oswald */
 @import url("https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700,800");
 
-body {
-    font-family: 'Oswald', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -15,4 +17,5 @@ body {
     font-size: 18px;
     color: var(--colorBody);
     background-color: var(--backgroundBody);
+    overflow-x: hidden;
 }

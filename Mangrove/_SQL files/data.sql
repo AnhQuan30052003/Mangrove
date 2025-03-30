@@ -15,11 +15,12 @@ delete tblAdmin
 -- [Insert data for tables
 insert into tblAdmin
 values
-('anhquan300503@gmail.com', 'admin', 'admin')
+('adminID', 'anhquan300503@gmail.com', 'admin', 'admin')
 
 insert into tblSetting
 values
     (
+        'settingID',
         N'logo.png',
         N'bg-footer.jpg',
         N'0398 090 114',

@@ -2,7 +2,7 @@
 @model InfomationPaginate
 
 <div class="nav_option my-3 d-flex flex-column flex-sm-row-reverse justify-content-between gap-2 gap-xl-0">
-	<div class="d-flex justify-content-center justify-content-sm-end col-12 mb-2 mb-sm-0 col-sm-2">
+	<div class="d-none d-sm-flex justify-content-sm-end col-2">
 		<a href="@Url.Action("Page_Create", Model.Controller)"
 		   class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms
 			d-flex align-items-center justify-content-around bg-tree text-white
@@ -13,7 +13,7 @@
 		</a>
 	</div>
 
-	<form class="d-inline-flex flex-wrap justify-content-between justify-content-sm-start flex-sm-nowrap col-12 gap-2 gap-sm-1 gap-xl-2 col-sm-9 col-lg-10"
+	<form class="d-inline-flex flex-wrap justify-content-between justify-content-sm-start flex-sm-nowrap col-12 gap-3 gap-sm-1 gap-xl-2 col-sm-9 col-lg-10"
 		  method="get"
 		  action="@Url.Action("Page_Index", Model.Controller)">
 
@@ -40,3 +40,14 @@
 		</button>
 	</form>
 </div>
+
+<!-- Button: Add item -->
+<a href="@Url.Action("Page_Create", Model.Controller)"
+   id="addItem"
+   class="rounded-1 border-none outline-none time_delay_500ms d-sm-none fs-5
+			d-flex align-items-center justify-content-around bg-tree text-white position-fixed
+			outline_tree_hover bg_white_hover text_black_hover btn_loading"
+   onclick="saveLinkBack.saveIndex();"
+   title="@translate["label_them"]">
+	<i class="fa-solid fa-plus"></i>
+</a>

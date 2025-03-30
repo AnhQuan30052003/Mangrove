@@ -5,6 +5,8 @@ namespace Mangrove.Data;
 
 public partial class TblSetting
 {
+    public string Id { get; set; } = null!;
+
     public string LogoImg { get; set; } = null!;
 
     public string FooterBgImg { get; set; } = null!;

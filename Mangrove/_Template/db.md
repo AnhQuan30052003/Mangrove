@@ -20,5 +20,5 @@ catch {
 	    isEN ? "" : "",
 	    Helper.SetupNotifier.Timer.midTime
     );
-    return Content(Helper.Link.GetUrlBack(), "text/html");
+    return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 }

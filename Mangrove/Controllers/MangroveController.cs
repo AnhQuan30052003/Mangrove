@@ -86,7 +86,7 @@ namespace Mangrove.Controllers {
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
-				var info = new InfomationPaginate(listTitle, currentPage, (int)pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
+				var info = new InfomationPaginate(listTitle, currentPage, (int) pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
 				var pagi = new Paginate_VM<TblMangrove>(fillter, info);
 
 				return View(pagi);
@@ -153,7 +153,7 @@ namespace Mangrove.Controllers {
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
 					Helper.Notifier.Fail(
-						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
 						Helper.SetupNotifier.Timer.shortTime
 					);
 					return View(model);
@@ -202,7 +202,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Create successfully." : "Tạo thành công.",
 					Helper.SetupNotifier.Timer.fastTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 			catch {
 				Helper.Notifier.Success(
@@ -268,7 +268,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 		}
 		[HttpPost]
@@ -319,7 +319,7 @@ namespace Mangrove.Controllers {
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
 					Helper.Notifier.Fail(
-						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
 						Helper.SetupNotifier.Timer.shortTime
 					);
 					return View(model);
@@ -404,14 +404,14 @@ namespace Mangrove.Controllers {
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-				return Content(Helper.Link.GetUrlBack(Helper.Key.afterEdit), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.afterEdit), "text/html");
 			}
 			catch {
 				Helper.Notifier.Fail(
 					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 		}
 
@@ -442,7 +442,7 @@ namespace Mangrove.Controllers {
 						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
 						Helper.SetupNotifier.Timer.shortTime
 					);
-					return Content(Helper.Link.GetUrlBack(), "text/html");
+					return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 				}
 
 				// Danh sách hình ảnh
@@ -475,7 +475,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Request to access detail status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chi tiết thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 		}
 
@@ -494,7 +494,7 @@ namespace Mangrove.Controllers {
 				}
 				context.TblMangroves.Remove(mangrove);
 				await context.SaveChangesAsync();
-				
+
 				// Xoá ảnh
 				var mangrovePhotos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
 				if (mangrovePhotos.Any()) {
@@ -510,14 +510,14 @@ namespace Mangrove.Controllers {
 					isEN ? "Delete successfully." : "Đã xoá thành công.",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 			catch {
 				Helper.Notifier.Fail(
 					isEN ? "Delete request failed. Please try again later !" : "Yêu cầu xoá thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.GetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
 			}
 		}
 	}
