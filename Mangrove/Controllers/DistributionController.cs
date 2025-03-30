@@ -3,6 +3,7 @@ using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq.Expressions;
 
@@ -16,14 +17,13 @@ namespace Mangrove.Controllers {
 
 		// Danh sách
 		public async Task<IActionResult> Page_Index(string? search = null, int currentPage = 1, int? pageSize = null, string? sortType = null, string? sortFollow = null) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Setup
 				if (pageSize == null) pageSize = InfomationPaginate.GetFistPageSize();
 				if (sortType == null) sortType = Helper.Key.sortASC;
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
-
-				bool isEN = Helper.Func.IsEnglish();
 
 				var listTitleVI = new List<string> { "STT", "Vị trí", "Tên ảnh", "Tuỳ chọn" };
 				var listTitleEN = new List<string> { "No", "Position", "Photo name", "Options" };
@@ -105,12 +105,19 @@ namespace Mangrove.Controllers {
 
 				// Khi không có ảnh nào
 				if (!dataBase64s.Any()) {
-					ViewData[Helper.Key.notPhoto] = isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !";
+					Helper.Notifier.Fail(
+						isEN ? "Must have at least one map !" : "Phải có ít nhất một bản đồ !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View();
 				}
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View();
 				}
 				// End validate
@@ -140,20 +147,16 @@ namespace Mangrove.Controllers {
 				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.success,
+				Helper.Notifier.Success(
 					isEN ? $"Added {dataBase64s.Count()} map." : $"Đã thêm {dataBase64s.Count()} bản đồ.",
-					Helper.SetupNotifier.Timer.shortTime,
-					""
+					Helper.SetupNotifier.Timer.shortTime
 				);
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 			catch {
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.fail,
-					isEN ? $"There was an error adding the map !" : $"Có lỗi trong quá trình thêm bản đồ !",
-					Helper.SetupNotifier.Timer.midTime,
-					""
+				Helper.Notifier.Fail(
+					isEN ? $"TThere was an error adding the map. Please try again later !" : $"Có lỗi trong quá trình thêm bản đồ. Vui lòng thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
 				);
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
@@ -161,32 +164,32 @@ namespace Mangrove.Controllers {
 
 		// Chỉnh sửa
 		public async Task<IActionResult> Page_Edit(string id) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
-
 				if (map == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
+					Helper.Notifier.Fail(
 						isEN ? "The edit page you just visited does not exist !" : "Trang chỉnh sửa vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.midTime
+						Helper.SetupNotifier.Timer.shortTime
 					);
-					return RedirectToAction("Page_Index");
+					return Content(Helper.Link.GetUrlBack(), "text/html");
 				}
 
 				TempData["DataBase64"] = map.ImageMap;
 				Helper.Validate.Clear();
 				return View(map);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Edit(TblDistributiton model, string dataBase64, string dataType) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
 				Helper.Validate.Clear();
@@ -199,11 +202,13 @@ namespace Mangrove.Controllers {
 				TempData["DataBase64"] = dataBase64;
 
 				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View(model);
 				}
 				// End validate
-
-				bool isEN = Helper.Func.IsEnglish();
 
 				// Xử lý hình ảnh và dữ liệu
 				// Nếu có ảnh mới
@@ -227,42 +232,43 @@ namespace Mangrove.Controllers {
 				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.success,
-					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
-					Helper.SetupNotifier.Timer.shortTime,
-					""
+				Helper.Notifier.Success(
+				isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime
 				);
 				return Content(Helper.Link.GetUrlBack(Helper.Key.afterEdit), "text/html");
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 
 		// Chi tiết
 		public async Task<IActionResult> Page_Detail(string id) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
 
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
+					Helper.Notifier.Fail(
 						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.midTime
+						Helper.SetupNotifier.Timer.shortTime
 					);
-					return RedirectToAction("Page_Index");
+					return Content(Helper.Link.GetUrlBack(), "text/html");
 				}
 
 				return View(map);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access detail status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chi tiết thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 
@@ -273,11 +279,9 @@ namespace Mangrove.Controllers {
 				// Xoá đối tượng
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
+					Helper.Notifier.Fail(
 						isEN ? "Map to delete not found !" : "Không tìm thấy bản đồ cần xoá !",
-						Helper.SetupNotifier.Timer.midTime,
-						""
+						Helper.SetupNotifier.Timer.shortTime
 					);
 					return RedirectToAction("Page_Index");
 				}
@@ -289,21 +293,16 @@ namespace Mangrove.Controllers {
 				Helper.Func.DeletePhoto(Helper.Path.distributionImg, map.ImageMap);
 
 				// Setup thông báo
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.success,
+				Helper.Notifier.Success(
 					isEN ? "Delete successfully." : "Đã xoá thành công.",
-					Helper.SetupNotifier.Timer.shortTime,
-					""
+					Helper.SetupNotifier.Timer.shortTime
 				);
-
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 			catch {
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.fail,
-					isEN ? "Map delete failed !" : "Xoá bản đồ thất bại !",
-					Helper.SetupNotifier.Timer.midTime,
-					""
+				Helper.Notifier.Fail(
+					isEN ? "Delete request failed. Please try again later !" : "Yêu cầu xoá thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
 				);
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}

@@ -9,8 +9,9 @@
 
 	if (!string.IsNullOrEmpty(content))
 	{
+		// Xoa thông báo sau khi hiển thị xong
 		Helper.Notifier.Clear();
-
+		
 		<div id="dynamic_notifier" class="w-100 position-fixed bg-transparent" style="top: 0; z-index: 100;" title="@translate["label_click_cancel"]">
 			<div class="container cursor-pointer d-flex justify-content-center">
 				<div class="frame @bgColor text-white text-center py-2 fw-bold position-relative rounded-1 overflow-hidden width_notifier">

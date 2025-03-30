@@ -25,6 +25,7 @@ namespace Mangrove.Controllers {
 
 		// Danh sách 
 		public async Task<IActionResult> Page_Index(string? search = null, int currentPage = 1, int? pageSize = null, string? sortType = null, string? sortFollow = null) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Setup
 				if (pageSize == null) pageSize = InfomationPaginate.GetFistPageSize();
@@ -32,10 +33,8 @@ namespace Mangrove.Controllers {
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
 
-				bool isEN = Helper.Func.IsEnglish();
-
-				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Phân bố", "Số cá thể", "Cập nhật lần cuối", "Tuỳ chọn" };
-				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Distribution", "Number of individuals", "Last updated", "Options" };
+				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Số cá thể", "Cập nhật lần cuối", "Tuỳ chọn" };
+				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Number of individuals", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;
@@ -45,7 +44,6 @@ namespace Mangrove.Controllers {
 					{ listTitleVI[index++], item => item.CommonNameVi },
 					{ listTitleVI[index++], item => item.ScientificName },
 					{ listTitleVI[index++], item => item.Familia },
-					{ listTitleVI[index++], item => item.DistributionVi },
 					{ listTitleVI[index++], item => item.TblIndividuals.Count() },
 					{ listTitleVI[index++], item => item.UpdateLast },
 				};
@@ -57,7 +55,6 @@ namespace Mangrove.Controllers {
 					{ listTitleEN[index++], item => item.CommonNameEn },
 					{ listTitleEN[index++], item => item.ScientificName },
 					{ listTitleEN[index++], item => item.Familia },
-					{ listTitleEN[index++], item => item.DistributionEn },
 					{ listTitleEN[index++], item => item.TblIndividuals.Count() },
 					{ listTitleEN[index++], item => item.UpdateLast },
 				};
@@ -109,9 +106,8 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Create(TblMangrove model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				// Begin validate
 				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
@@ -126,8 +122,8 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.NameEn);
 				Helper.Validate.NotEmpty(model.NameVi);
 				Helper.Validate.NotEmpty(model.ScientificName);
-				Helper.Validate.NotEmpty(model.CommonNameEn);
-				Helper.Validate.NotEmpty(model.CommonNameVi);
+				Helper.Validate.NotEmpty(model.CommonNameEn, true);
+				Helper.Validate.NotEmpty(model.CommonNameVi, true);
 				Helper.Validate.NotEmpty(model.Familia);
 				Helper.Validate.NotEmpty(model.MorphologyEn);
 				Helper.Validate.NotEmpty(model.MorphologyVi);
@@ -147,12 +143,19 @@ namespace Mangrove.Controllers {
 
 				// Khi không có ảnh nào
 				if (!dataBase64s.Any()) {
-					ViewData[Helper.Key.notPhoto] = isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !";
+					Helper.Notifier.Fail(
+						isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View(model);
 				}
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View(model);
 				}
 				// End validate
@@ -162,6 +165,8 @@ namespace Mangrove.Controllers {
 				string idMangrve = Helper.Func.CreateId();
 				model.Id = idMangrve;
 				model.View = 0;
+				model.CommonNameEn = model.CommonNameEn ?? string.Empty;
+				model.CommonNameVi = model.CommonNameVi ?? string.Empty;
 				model.UpdateLast = DateTime.Now;
 				context.TblMangroves.Add(model);
 
@@ -193,27 +198,25 @@ namespace Mangrove.Controllers {
 				await context.SaveChangesAsync();
 
 				// Setup thông báo
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.success,
+				Helper.Notifier.Success(
 					isEN ? "Create successfully." : "Tạo thành công.",
-					Helper.SetupNotifier.Timer.fastTime,
-					""
+					Helper.SetupNotifier.Timer.fastTime
 				);
-
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Success(
+					isEN ? $"TThere was an error adding the mangrove. Please try again later !" : $"Có lỗi trong quá trình thêm cây ngập mặn. Vui lòng thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 
 		// Chỉnh sửa
 		public async Task<IActionResult> Page_Edit(string id) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				var model = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (model == null) {
 					Helper.Notifier.Create(
@@ -260,19 +263,19 @@ namespace Mangrove.Controllers {
 				Helper.Validate.Clear();
 				return View(model);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Edit(TblMangrove model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				// Begin validate
-				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
 
 				for (int i = 0; i < dataTypes.Count(); i++) {
@@ -285,8 +288,8 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.NameEn);
 				Helper.Validate.NotEmpty(model.NameVi);
 				Helper.Validate.NotEmpty(model.ScientificName);
-				Helper.Validate.NotEmpty(model.CommonNameEn);
-				Helper.Validate.NotEmpty(model.CommonNameVi);
+				Helper.Validate.NotEmpty(model.CommonNameEn, true);
+				Helper.Validate.NotEmpty(model.CommonNameVi, true);
 				Helper.Validate.NotEmpty(model.Familia);
 				Helper.Validate.NotEmpty(model.MorphologyEn);
 				Helper.Validate.NotEmpty(model.MorphologyVi);
@@ -306,24 +309,34 @@ namespace Mangrove.Controllers {
 
 				// Khi không có ảnh nào
 				if (!dataBase64s.Any()) {
-					ViewData[Helper.Key.notPhoto] = isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !";
+					Helper.Notifier.Fail(
+						isEN ? "Must have at least one photo !" : "Phải có ít nhất một ảnh !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View(model);
 				}
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Required fields are not filled in!" : "Các ô bắt buộc chưa được nhập !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return View(model);
 				}
 				// End validate
 
 				// Lưu dữ liệu
 				// Lưu cây
+				model.CommonNameEn = model.CommonNameEn ?? string.Empty;
+				model.CommonNameVi = model.CommonNameVi ?? string.Empty;
 				model.UpdateLast = DateTime.Now;
 				context.TblMangroves.Update(model);
 
 				// Phẩn ảnh - Lưu ảnh mới về (mới này có thể có luôn ảnh cũ)
 				List<string> saveFileName = new List<string>();
 				for (int i = 0; i < dataBase64s.Count(); i++) {
+					// Setup cho ảnh cũ
 					string idPhoto = Helper.Func.GetIdFormFileName(dataBase64s[i]);
 					string fileName = $"{idPhoto}_{model.NameVi}";
 					string oldPath = Path.Combine(Helper.Path.treeImg, dataBase64s[i]);
@@ -347,27 +360,32 @@ namespace Mangrove.Controllers {
 					string newPath = Path.Combine(Helper.Path.treeImg, fileName);
 					Helper.Func.MovePhoto(oldPath, newPath);
 
-					var photo = new TblPhoto {
-						Id = idPhoto,
-						IdObj = model.Id,
-						ImageName = fileName,
-						NoteImgEn = noteENs[i],
-						NoteImgVi = noteVIs[i],
-					};
-
 					if (dataBase64s[i].Contains(Helper.Key.temp)) {
-						context.TblPhotos.Add(photo);
+						var newPhoto = new TblPhoto {
+							Id = idPhoto,
+							IdObj = model.Id,
+							ImageName = fileName,
+							NoteImgEn = noteENs[i],
+							NoteImgVi = noteVIs[i],
+						};
+
+						context.TblPhotos.Add(newPhoto);
 					}
 					else {
-						context.TblPhotos.Update(photo);
+						var photo = await context.TblPhotos.FindAsync(idPhoto);
+						if (photo != null) {
+							photo.ImageName = fileName;
+							photo.NoteImgEn = noteENs[i];
+							photo.NoteImgVi = noteVIs[i];
+							context.TblPhotos.Update(photo);
+						}
 					}
 				}
-
 				await context.SaveChangesAsync();
 
 				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!
 				var photoMangrove = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
-				if (photoMangrove.Any()) {
+				if (photoMangrove.Count() >= saveFileName.Count()) {
 					foreach (var photo in photoMangrove) {
 						if (!saveFileName.Contains(photo.ImageName)) {
 							Helper.Func.DeletePhoto(Helper.Path.treeImg, photo.ImageName);
@@ -388,18 +406,19 @@ namespace Mangrove.Controllers {
 				);
 				return Content(Helper.Link.GetUrlBack(Helper.Key.afterEdit), "text/html");
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 
 		// Chi tiết
 		public async Task<IActionResult> Page_Detail(string id) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				var model = await context.TblMangroves
 				.Select(item => new Mangrove_Client_VM {
 					Id = item.Id,
@@ -421,9 +440,9 @@ namespace Mangrove.Controllers {
 					Helper.Notifier.Create(
 						Helper.SetupNotifier.Status.fail,
 						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.midTime
+						Helper.SetupNotifier.Timer.shortTime
 					);
-					return RedirectToAction("Page_Index");
+					return Content(Helper.Link.GetUrlBack(), "text/html");
 				}
 
 				// Danh sách hình ảnh
@@ -451,10 +470,12 @@ namespace Mangrove.Controllers {
 
 				return View(model);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access detail status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chi tiết thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 		}
 
@@ -465,17 +486,15 @@ namespace Mangrove.Controllers {
 				// Xoá đối tượng
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
+					Helper.Notifier.Fail(
 						isEN ? "Mangrove to delete not found !" : "Không tìm thấy cây ngập mặn cần xoá !",
-						Helper.SetupNotifier.Timer.midTime,
-						""
+						Helper.SetupNotifier.Timer.shortTime
 					);
 					return RedirectToAction("Page_Index");
 				}
 				context.TblMangroves.Remove(mangrove);
 				await context.SaveChangesAsync();
-
+				
 				// Xoá ảnh
 				var mangrovePhotos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
 				if (mangrovePhotos.Any()) {
@@ -487,21 +506,16 @@ namespace Mangrove.Controllers {
 				await context.SaveChangesAsync();
 
 				// Setup thông báo
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.success,
+				Helper.Notifier.Success(
 					isEN ? "Delete successfully." : "Đã xoá thành công.",
-					Helper.SetupNotifier.Timer.shortTime,
-					""
+					Helper.SetupNotifier.Timer.shortTime
 				);
-
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}
 			catch {
-				Helper.Notifier.Create(
-					Helper.SetupNotifier.Status.fail,
-					isEN ? "Mangrove delete failed !" : "Xoá cây ngập mặn thất bại !",
-					Helper.SetupNotifier.Timer.midTime,
-					""
+				Helper.Notifier.Fail(
+					isEN ? "Delete request failed. Please try again later !" : "Yêu cầu xoá thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
 				);
 				return Content(Helper.Link.GetUrlBack(), "text/html");
 			}

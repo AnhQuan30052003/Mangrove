@@ -17,21 +17,26 @@ namespace Mangrove.Controllers {
 		public IActionResult Page_Login() {
 			return View();
 		}
-
 		[HttpPost]
 		public IActionResult Page_Login(string account, string password) {
-			TempData["Account"] = account;
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				TempData["Account"] = account;
 
-			string textNotifier = Helper.Func.IsEnglish() ? "Login successfully." : "Đăng nhập thành công.";
-			Helper.Notifier.Create(
-				Helper.SetupNotifier.Status.success,
-				textNotifier,
-				Helper.SetupNotifier.Timer.fastTime,
-				"/Admin/Page_Statistical"
-			);
-
-			//return RedirectToAction(nameof(Page_Login));
-			return RedirectToAction("Page_Login");
+				Helper.Notifier.Success(
+					isEN ? "Login successfully." : "Đăng nhập thành công.",
+					Helper.SetupNotifier.Timer.fastTime,
+					Url.Action("Page_Statistical", "Admin")
+				);
+				return RedirectToAction("Page_Login");
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Login request failed. Please try again later !" : "Gửi yêu cầu đăng nhập thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Login");
+			}
 		}
 
 		public IActionResult Page_ForgottenPassword_Find() {

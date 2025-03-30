@@ -1,3 +1,4 @@
+using Microsoft.CodeAnalysis.Elfie.Model;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -96,60 +97,59 @@ public class Helper {
 
 	// Nofifier
 	public static class Notifier {
-		public static void Create(string status, string content, int timer, string toPage = "") {
+		public static void Create(string status, string content, int timer, string? toPage = null) {
 			var context = httpContextAccessor?.HttpContext;
 			if (context == null) return;
 
-			context.Response.Cookies.Append(Key.status, status);
-			context.Response.Cookies.Append(Key.content, content);
-			context.Response.Cookies.Append(Key.timer, timer.ToString());
-			context.Response.Cookies.Append(Key.toPage, toPage);
+			context.Session.SetString(Key.status, status);
+			context.Session.SetString(Key.content, content);
+			context.Session.SetInt32(Key.timer, timer);
+			context.Session.SetString(Key.toPage, toPage ?? string.Empty);
 		}
 
+		public static void Success(string content, int timer, string? toPage = null) => Create(SetupNotifier.Status.success, content, timer, toPage);
+		public static void Fail(string content, int timer, string? toPage = null) => Create(SetupNotifier.Status.fail, content, timer, toPage);
+
 		public static string GetStatus() {
-			var result = "";
 			var context = httpContextAccessor?.HttpContext;
 			if (context != null) {
-				result = context.Request.Cookies[Key.status] ?? result;
+				return context.Session.GetString(Key.status) ?? string.Empty;
 			}
-			return result;
+			return string.Empty;
 		}
 
 		public static string GetContent() {
-			var result = "";
 			var context = httpContextAccessor?.HttpContext;
 			if (context != null) {
-				result = context.Request.Cookies[Key.content] ?? result;
+				return context.Session.GetString(Key.content) ?? string.Empty;
 			}
-			return result;
+			return string.Empty;
 		}
 
 		public static int GetTimer() {
-			var result = SetupNotifier.Timer.longTime;
 			var context = httpContextAccessor?.HttpContext;
 			if (context != null) {
-				result = Convert.ToInt32(context.Request.Cookies[Key.timer]);
+				return context.Session.GetInt32(Key.timer) ?? 0;
 			}
-			return result;
+			return 0;
 		}
 
 		public static string GetToPage() {
-			var result = "";
 			var context = httpContextAccessor?.HttpContext;
 			if (context != null) {
-				result = context.Request.Cookies[Key.toPage] ?? result;
+				return context.Session.GetString(Key.toPage) ?? string.Empty;
 			}
-			return result;
+			return string.Empty;
 		}
 
 		public static void Clear() {
 			var context = httpContextAccessor?.HttpContext;
 			if (context == null) return;
 
-			context.Response.Cookies.Delete(Key.status);
-			context.Response.Cookies.Delete(Key.content);
-			context.Response.Cookies.Delete(Key.timer);
-			context.Response.Cookies.Delete(Key.toPage);
+			context.Session.Remove(Key.status);
+			context.Session.Remove(Key.content);
+			context.Session.Remove(Key.timer);
+			context.Session.Remove(Key.toPage);
 		}
 	}
 
@@ -411,13 +411,17 @@ public class Helper {
 
 		// Codes - functions check validate
 		// Không rỗng
-		public static void NotEmpty(string? text) {
+		public static void NotEmpty(string? text, bool allowSpace = false) {
 			string content = string.Empty;
+			if (allowSpace) {
+				AddError(content);
+				return;
+			}
+
 			if (string.IsNullOrEmpty(text)) {
 				string EN = "Can't be blank !";
 				string VI = "Không được bỏ trống !";
 				content = Func.IsEnglish() ? EN : VI;
-
 			}
 
 			AddError(content);

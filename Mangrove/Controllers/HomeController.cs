@@ -10,6 +10,7 @@ using Mangrove.ViewModels;
 using System.Security.Principal;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Linq.Expressions;
+using System.Collections.Generic;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -21,12 +22,12 @@ namespace Mangrove.Controllers {
 
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var home = await context.TblHomes.FirstOrDefaultAsync();
 				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
 				var listMangrove = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
 
-				bool isEN = Helper.Func.IsEnglish();
 				List<Mangrove_HomePage_Client_VM> list = new List<Mangrove_HomePage_Client_VM>();
 				foreach (var mangrove in listMangrove) {
 					var item = new Mangrove_HomePage_Client_VM {
@@ -55,6 +56,7 @@ namespace Mangrove.Controllers {
 
 		// Kết quả tìm kiếm cây
 		public async Task<IActionResult> Page_Result(string id = "", string? searchIndividual = null) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var mangrove = await context.TblMangroves
 				.Include(item => item.TblIndividuals)
@@ -63,8 +65,6 @@ namespace Mangrove.Controllers {
 				if (mangrove == null) {
 					return RedirectToAction("Page_Index");
 				}
-
-				bool isEN = Helper.Func.IsEnglish();
 
 				// Danh sách cá thể
 				List<Individual_Mangrove_Client_VM> listIndividual = new List<Individual_Mangrove_Client_VM>();
@@ -164,9 +164,14 @@ namespace Mangrove.Controllers {
 
 		// Page: cá thể của cây
 		public async Task<IActionResult> Page_Individual(string id) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
 				if (individual == null) {
+					Helper.Notifier.Fail(
+						isEN ? "The personal page you just visited does not exist !" : "Trang cá thể vừa truy cập không tồn tại !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
 					return RedirectToAction("Page_Index");
 				}
 
@@ -199,10 +204,12 @@ namespace Mangrove.Controllers {
 
 				return View(info);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return NotFound(notifier);
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access individual page failed. Please try again later !" : "Gửi yêu cầu truy cập trang cá thể thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 

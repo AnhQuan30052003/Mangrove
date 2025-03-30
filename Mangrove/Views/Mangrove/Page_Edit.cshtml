@@ -3,7 +3,7 @@
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
-	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_sua"]})";
+	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_duoc_chinh_sua"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
 
 	Layout = Helper.Path.layoutAdmin;
@@ -68,8 +68,6 @@
 				</div>
 
 				<div class="info">
-					<p class="mb-1 text-danger text-center">@ViewData[Helper.Key.notPhoto]</p>
-
 					<div class="items bg-form have_move">
 						@{
 							if (!dataBase64s.Any())
@@ -80,7 +78,7 @@
 									</button>
 
 									<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
-										<p class="text-center">@translate["label_hinh_anh"]</p>
+										<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
 										<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
@@ -106,7 +104,7 @@
 									</div>
 
 									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
-										<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+										<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
 										<div class="add_content_item mt-1 m-lg-0 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
@@ -130,7 +128,7 @@
 									var noteVI = noteVIs[i];
 
 									bool haveImage = !string.IsNullOrEmpty(dataBase64);
-									string folder = dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "tree-img";
+									string folder = dataBase64 != null && dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "tree-img";
 
 									<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 										<button class="btn_remove_item" type="button">
@@ -138,7 +136,7 @@
 										</button>
 
 										<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
-											<p class="text-center">@translate["label_hinh_anh"]</p>
+											<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
 											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
 												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
@@ -167,7 +165,7 @@
 										</div>
 
 										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
-											<p class="text-center col-12 align-self-start">@translate["label_mo_ta"]</p>
+											<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
 											<div class="add_content_item mt-1 m-lg-0 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
