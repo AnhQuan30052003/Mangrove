@@ -7,9 +7,11 @@
 
 	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
+
+	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageDistribution, null);
 }
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
 <section class="distribution_maps">
 	<div class="container py-2">
@@ -34,4 +36,4 @@
 	</div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)

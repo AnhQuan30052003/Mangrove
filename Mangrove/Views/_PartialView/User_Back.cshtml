@@ -1,20 +1,25 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model long?
+@model BackPage_Client_VM
+@{
+	string? key = Model.KeyURL;
+	long? view = Model.View;
+}
 
 <section class="module_back">
 	<div class="container d-flex justify-content-between align-items-center py-2 mt-2 mb-0">
-		<a href="javascript:history.back(-1);"
-			class="btn_back d-flex gap-2 align-items-center justify-content-between rounded-1 outline_tree_hover text_black_hover"
-			style="min-width: 120px;">
+		<button type="button"
+				onclick="@Helper.Link.ScriptGetUrlBack(key, true, true)"
+				class="btn_back d-flex gap-2 align-items-center justify-content-between rounded-1 outline_tree_hover text_black_hover btn_loading"
+				style="min-width: 120px;">
 			<i class="fa-solid fa-backward"></i>
 			@translate["label_tro_ve"]
-		</a>
+		</button>
 
 		@{
-			if (Model.HasValue)
+			if (view != null)
 			{
 				<span class="text_tree_hover" title="@translate["label_luot_xem"]">
-					@(Model > 9999 ? "9999+" : Helper.Func.FormatNumber(Model ?? 1)) &nbsp;
+					@(view > 9999 ? "9999+" : Helper.Func.FormatNumber(view ?? 1)) &nbsp;
 					<i class="fa-solid fa-eye"></i>
 					<span class="hidden_mobile">&nbsp; @translate["label_luot_xem"]</span>
 				</span>

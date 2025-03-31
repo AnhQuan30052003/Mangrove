@@ -86,7 +86,11 @@ namespace Mangrove.Controllers {
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
-				var info = new InfomationPaginate(listTitle, currentPage, (int) pageSize, fillter.Count(), sortType, sortFollow, findText, "Mangrove", "Page_Index");
+				var info = new InfomationPaginate(
+					listTitle, currentPage, (int)pageSize, fillter.Count(),
+					sortType, sortFollow, findText,
+					"Mangrove", "Page_Index"
+				);
 				var pagi = new Paginate_VM<TblMangrove>(fillter, info);
 
 				return View(pagi);
@@ -109,7 +113,6 @@ namespace Mangrove.Controllers {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
-				ViewData[Helper.Key.notPhoto] = string.Empty;
 				Helper.Validate.Clear();
 
 				for (int i = 0; i < dataTypes.Count(); i++) {
@@ -202,14 +205,14 @@ namespace Mangrove.Controllers {
 					isEN ? "Create successfully." : "Tạo thành công.",
 					Helper.SetupNotifier.Timer.fastTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 			catch {
 				Helper.Notifier.Success(
 					isEN ? $"TThere was an error adding the mangrove. Please try again later !" : $"Có lỗi trong quá trình thêm cây ngập mặn. Vui lòng thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return RedirectToAction("Page_Index");
+				return View(model);
 			}
 		}
 
@@ -219,12 +222,7 @@ namespace Mangrove.Controllers {
 			try {
 				var model = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (model == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
-						isEN ? "The edit page you just visited does not exist !" : "Trang chỉnh sửa vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.midTime
-					);
-					return RedirectToAction("Page_Index");
+					return RedirectToAction("Page_NotExists", "SettingWebsite");
 				}
 
 				// Danh sách hình ảnh
@@ -268,7 +266,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 		}
 		[HttpPost]
@@ -404,14 +402,14 @@ namespace Mangrove.Controllers {
 					Helper.SetupNotifier.Timer.shortTime,
 					""
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.afterEdit), "text/html");
+				return RedirectToAction("Page_Detail", new { id = model.Id });
 			}
 			catch {
 				Helper.Notifier.Fail(
 					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return View(model);
 			}
 		}
 
@@ -437,12 +435,7 @@ namespace Mangrove.Controllers {
 				.FirstOrDefaultAsync(item => item.Id == id);
 
 				if (model == null) {
-					Helper.Notifier.Create(
-						Helper.SetupNotifier.Status.fail,
-						isEN ? "The detail page you just visited does not exist !" : "Trang chi tiết vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.shortTime
-					);
-					return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+					return RedirectToAction("Page_NotExists", "SettingWebsite");
 				}
 
 				// Danh sách hình ảnh
@@ -475,7 +468,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Request to access detail status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chi tiết thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 		}
 
@@ -486,11 +479,7 @@ namespace Mangrove.Controllers {
 				// Xoá đối tượng
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
-					Helper.Notifier.Fail(
-						isEN ? "Mangrove to delete not found !" : "Không tìm thấy cây ngập mặn cần xoá !",
-						Helper.SetupNotifier.Timer.shortTime
-					);
-					return RedirectToAction("Page_Index");
+					return RedirectToAction("Page_NotExists", "SettingWebsite");
 				}
 				context.TblMangroves.Remove(mangrove);
 				await context.SaveChangesAsync();
@@ -510,14 +499,14 @@ namespace Mangrove.Controllers {
 					isEN ? "Delete successfully." : "Đã xoá thành công.",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 			catch {
 				Helper.Notifier.Fail(
 					isEN ? "Delete request failed. Please try again later !" : "Yêu cầu xoá thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 		}
 	}

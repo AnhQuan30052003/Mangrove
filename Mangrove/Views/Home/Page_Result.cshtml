@@ -8,9 +8,11 @@
 
 	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
+
+	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageResult, Model.View);
 }
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
 <section class="mangrove_result">
 	<div class="container py-3">
@@ -152,4 +154,4 @@
 	</div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)

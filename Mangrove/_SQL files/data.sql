@@ -42,6 +42,7 @@ values
 insert into tblHome
 values
     (
+		'homeID',
         N'banner.jpg',
         6,
 

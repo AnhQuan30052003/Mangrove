@@ -38,50 +38,32 @@ public class Helper {
 	// Links JS
 	public static class Link {
 		// Trở về link trước đó
-		public static string ScriptGetUrlBack(string? key = null, bool noScript = false) {
-			string keyDefault = "urlIndex";
-			string urlRoot = "/Admin/Page_Statistical";
+		public static string ScriptGetUrlBack(string key, bool noScript = false, bool pageUser = false) {
+			string urlRoot = pageUser ? Key.defaultUrlUser : Key.defaultUrlAdmin;
 			string startScript = "<script>", endScript = "</script>";
 
 			if (noScript) {
 				startScript = endScript = string.Empty;
 			}
 
-			if (key == null) {
-				key = keyDefault;
-
-				return @$"
-					{startScript}
-						const url = localStorage.getItem('{key}');
-						if (url != null) {{
-							location.href = url;
-						}}
-						location.href = '{urlRoot}';
-					{endScript}
-				";
-			}
-
 			return @$"
 				{startScript}
-					let url = localStorage.getItem('{key}');
+					const url = localStorage.getItem('{key}');
 					if (url != null) {{
 						location.href = url;
-						localStorage.removeItem('{key}');
 					}}
 					else {{
-						url = localStorage.getItem('{keyDefault}');
-						if (url != null) location.href = url;
-						else location.href = '{urlRoot}';
+						location.href = '{urlRoot}';
 					}}
 				{endScript}
 			";
 		}
 
-		public static string JsGetUrlBack() {
-
-
-
-			return string.Empty;
+		public static string JSSetUrlBack(string key) {
+			return @$"
+				const url = location.href;
+				localStorage.setItem('{key}', url);
+			";
 		}
 	}
 
@@ -94,14 +76,23 @@ public class Helper {
 		public static string toPage = "ToPage";
 		public static string sortASC = "asc";
 		public static string sortDESC = "desc";
-		public static string notPhoto = "NotPhoto";
 		public static string temp = "Temp";
 
-		// For Link
-		public static string urlBack = "urlIndex";
-		public static string afterEdit = "afterEdit";
-		public static string changePassword = "changePassword";
-		public static string adminInfo = "adminInfo";
+		// For Link - Client
+		public static string clientToPageResult = "clientToPageResult";
+		public static string clientToPageIndividual = "clientToPageIndividual";
+		public static string clientToPageSeachMangrove = "clientToPageSeachMangrove";
+		public static string clientToPageDistribution = "clientToPageDistribution";
+
+		// For Link - Admin
+		public static string adminToPageChangePassword = "adminToPageChangePassword";
+		public static string adminToPageInfo = "adminToPageInfo";
+
+		public static string adminToPageListIndex = "adminToPageListIndex";
+
+		// For Link - Default
+		public static string defaultUrlAdmin = "/Admin/Page_Statistical";
+		public static string defaultUrlUser = "/Home/Page_Index";
 	}
 
 	// Setup noifier

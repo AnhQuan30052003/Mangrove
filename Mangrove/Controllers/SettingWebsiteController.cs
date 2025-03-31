@@ -29,5 +29,20 @@ namespace Mangrove.Controllers {
 			var setting = await context.TblSettings.FirstOrDefaultAsync();
 			return setting ?? new TblSetting();
 		}
+
+		// Page không tồn tại
+		public IActionResult Page_NotExists() {
+			return View();
+		}
+
+		// Page không có quyền truy cập
+		public IActionResult Page_NotAccess() {
+			return View();
+		}
+
+		// Page không thể kết nối với Database
+		public IActionResult Page_DisconnectDatabase() {
+			return View();
+		}
 	}
 }

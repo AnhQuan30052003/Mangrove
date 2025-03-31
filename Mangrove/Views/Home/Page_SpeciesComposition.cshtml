@@ -7,9 +7,11 @@
 
 	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
+
+	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageSeachMangrove, null);
 }
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
 <section class="module_species_composition container text-center py-2">
 	<div class="box bg-white rounded-1">
@@ -40,4 +42,4 @@
 	</div>
 </section>
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", (long?)null)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)

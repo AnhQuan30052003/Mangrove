@@ -7,7 +7,7 @@
 		   class="btn_new_item nav_btn rounded-1 border-none time_delay_500ms
 			d-flex align-items-center justify-content-around bg-tree text-white
 			outline_tree_hover bg_transparent_hover text_black_hover btn_loading"
-		   onclick="saveLinkBack.saveIndex();">
+		   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageListIndex)">
 			<i class="fa-solid fa-plus"></i>
 			@translate["label_them"]
 		</a>
@@ -47,7 +47,7 @@
    class="rounded-1 border-none outline-none time_delay_500ms d-sm-none fs-5
 			d-flex align-items-center justify-content-around bg-tree text-white position-fixed
 			outline_tree_hover bg_white_hover text_black_hover btn_loading"
-   onclick="saveLinkBack.saveIndex();"
+   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageListIndex)"
    title="@translate["label_them"]">
 	<i class="fa-solid fa-plus"></i>
 </a>

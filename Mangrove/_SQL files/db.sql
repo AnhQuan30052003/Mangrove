@@ -25,7 +25,7 @@ create table tblAdmin
 -- Bảng cho trang setting
 create table tblSetting
 (
-    _id varchar(36) primary key,
+	_id varchar(36) primary key,
      _logoImg nvarchar(50) not null,
      _footerBgImg nvarchar(50) not null,
      _phone varchar(20) not null,
@@ -47,6 +47,8 @@ create table tblSetting
 -- Bảng cho trang home
  create table tblHome
  (
+	
+	_id varchar(36) primary key,
      _bannerImg nvarchar(50) not null,
      _itemRecent int not null,
 

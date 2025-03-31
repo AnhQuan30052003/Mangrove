@@ -30,7 +30,7 @@ namespace Mangrove.Controllers {
 					isEN ? "The admin information page is currently inaccessible !" : "Trang thông tin quản trị hiện tại không thể truy cập !",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminInfo), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageInfo), "text/html");
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace Mangrove.Controllers {
 					isEN ? "The edit admin information page is currently inaccessible !" : "Trang chỉnh sửa thông tin quản trị hiện tại không thể truy cập !",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminInfo), "text/html");
+				return RedirectToAction("Page_AdminInformation_View");
 			}
 		}
 		[HttpPost]
@@ -80,14 +80,14 @@ namespace Mangrove.Controllers {
 					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
 					Helper.SetupNotifier.Timer.fastTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminInfo), "text/html");
+				return RedirectToAction("Page_AdminInformation_View");
 			}
 			catch {
 				Helper.Notifier.Fail(
 				isEN ? "Request to edit admin infomation status failed. Please try again later !" : "Gửi yêu cầu sửa thông tin quản trị thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminInfo), "text/html");
+				return RedirectToAction("Page_AdminInformation_View");
 			}
 		}
 
@@ -148,14 +148,14 @@ namespace Mangrove.Controllers {
 					isEN ? "Change password successfully." : "Đổi mật khẩu thành công.",
 					Helper.SetupNotifier.Timer.fastTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.changePassword), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageChangePassword), "text/html");
 			}
 			catch {
 				Helper.Notifier.Fail(
 					isEN ? "Change password request failed. Please try again later !" : "Yêu cầu đổi mật khẩu thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.changePassword), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageChangePassword), "text/html");
 			}
 		}
 	}

@@ -5,6 +5,8 @@ namespace Mangrove.Data;
 
 public partial class TblHome
 {
+    public string Id { get; set; } = null!;
+
     public string BannerImg { get; set; } = null!;
 
     public int ItemRecent { get; set; }

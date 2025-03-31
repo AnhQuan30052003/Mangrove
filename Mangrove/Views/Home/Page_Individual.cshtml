@@ -9,9 +9,11 @@
 
 	Layout = Helper.Path.layoutUser;
 	string _pv = Helper.Path.partialView;
+
+	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageIndividual, Model.Individual.View);
 }
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
 <section class="individual_display container py-2 info_qr">
 	@{
@@ -131,7 +133,7 @@
 
 </section>
 
-@await Html.PartialAsync($"{_pv}/User_Back.cshtml", Model.Individual.View)
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
 <button id="btnQRFixed"
 		class="rounded-1 click_show_qr outline_tree_hover bg_white_hover text_black_hover"

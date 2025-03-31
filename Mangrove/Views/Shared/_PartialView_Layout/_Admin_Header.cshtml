@@ -101,12 +101,12 @@
 								<!-- Thông tin admin - tài khoản -->
 								<a href='@Url.Action("Page_AdminInformation_View", "Admin")'
 								   class="py-2 px-3 d-block downdown_item btn_loading"
-								   onclick="saveLinkBack.saveIndex();">@translate["label_thong_tin_quan_tri"]</a>
+								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageInfo)">@translate["label_thong_tin_quan_tri"]</a>
 
 								<!-- Thay đổi mật khẩu -->
 								<a href='@Url.Action("Page_ChangePassword","Admin")'
 								   class="py-2 px-3 d-block downdown_item btn_loading"
-								   onclick="saveLinkBack.saveIndex('@Helper.Key.changePassword');">@translate["label_doi_mat_khau"]</a>
+								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageChangePassword)">@translate["label_doi_mat_khau"]</a>
 
 								<!-- Thay đổi ngôn ngữ -->
 								<li class="py-xl-2 px-xl-3 dropdown_level_2 dropdown_menu position-relative">
@@ -125,7 +125,7 @@
 								</li>
 
 								<!-- Đăng xuất -->
-								<a href='@Url.Action("Page_Index", "Home")'
+								<a href='@Url.Action("Page_Logout", "Auth")'
 								   class="py-2 px-3 d-block downdown_item logout"
 								   onclick="return confirm('@translate["label_text_dang_xuat"]');">
 									@translate["label_dang_xuat"]
