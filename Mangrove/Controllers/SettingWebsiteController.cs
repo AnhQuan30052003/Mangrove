@@ -2,11 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mangrove.Controllers {
 	public class SettingWebsiteController : Controller {
 		private readonly MangroveContext context;
-		
+
 		public SettingWebsiteController(MangroveContext context) {
 			this.context = context;
 		}
@@ -31,17 +32,38 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page không tồn tại
-		public IActionResult Page_NotExists() {
-			return View();
-		}
+		public async Task<IActionResult> Page_Error(string? typeError = null) {
+			bool isEN = Helper.Func.IsEnglish();
+			bool justBackPageLogin = false;
+			if (typeError == null) {
+				typeError = Helper.Variable.TypeError.notPermission;
+				justBackPageLogin = true;
+			}
 
-		// Page không có quyền truy cập
-		public IActionResult Page_NotAccess() {
-			return View();
-		}
+			// Setup for not permisstion
+			string EN = "You do not have permission to access this site !";
+			string VI = "Bạn không có quyền truy cập trang web này !";
 
-		// Page không thể kết nối với Database
-		public IActionResult Page_DisconnectDatabase() {
+			var setting = await GetSetting();
+			string image = "notPermission.png";
+			string text = isEN ? EN : VI;
+
+			if (typeError == Helper.Variable.TypeError.notExists) {
+				EN = "You have accessed a web page that does not exist on our website !";
+				VI = "Bạn đã truy cập một trang web không tồn tại trong website của chúng tôi !";
+				image = setting.LogoImg;
+				text = isEN ? EN : VI;
+			}
+			else if (typeError == Helper.Variable.TypeError.disconnectDatabase) {
+				EN = "Error connecting to Database !";
+				VI = "Có lỗi khi kết nối đến Cơ sở dữ liệu !";
+				image = "disconnnetDatabase.png";
+				text = isEN ? EN : VI;
+			}
+
+			ViewData["Image"] = image;
+			ViewData["Text"] = text;
+			ViewData["JustBackPageLogin"] = justBackPageLogin;
 			return View();
 		}
 	}

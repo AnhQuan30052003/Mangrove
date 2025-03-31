@@ -20,6 +20,21 @@ namespace Mangrove.Controllers {
 			this.context = context;
 		}
 
+		// Page: Xử lý xem có phải admin còn đăng nhập ?
+		public IActionResult Handle_Index() {
+			try {
+				var admin = HttpContext.User.FindFirst("Username")?.Value;
+				// Có admin 
+				if (!string.IsNullOrEmpty(admin)) {
+					return RedirectToAction("Page_Statistical", "Admin");
+				}
+				return RedirectToAction("Page_Index");
+			}
+			catch {
+				return RedirectToAction("Page_Index");
+			}
+		}
+
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
 			bool isEN = Helper.Func.IsEnglish();
@@ -50,7 +65,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 
@@ -63,7 +78,7 @@ namespace Mangrove.Controllers {
 				.ThenInclude(item => item.TblStages)
 				.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
-					return RedirectToAction("Page_Index");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				// Danh sách cá thể
@@ -158,7 +173,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 
@@ -168,11 +183,7 @@ namespace Mangrove.Controllers {
 			try {
 				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
 				if (individual == null) {
-					Helper.Notifier.Fail(
-						isEN ? "The personal page you just visited does not exist !" : "Trang cá thể vừa truy cập không tồn tại !",
-						Helper.SetupNotifier.Timer.shortTime
-					);
-					return RedirectToAction("Page_Index");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				individual.View += 1;
@@ -259,7 +270,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 
@@ -280,7 +291,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 	}

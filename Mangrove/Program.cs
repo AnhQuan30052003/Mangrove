@@ -11,10 +11,18 @@ builder.Services.AddDbContext<MangroveContext>(options => options.UseSqlServer(b
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
 builder.Services.AddSession((options) => {
-	options.IdleTimeout = TimeSpan.FromDays(3650);
+	options.IdleTimeout = TimeSpan.FromDays(Helper.Variable.timeSession);
 	options.Cookie.HttpOnly = true;
 	options.Cookie.IsEssential = true;
-	options.Cookie.MaxAge = TimeSpan.FromDays(3650);
+	options.Cookie.MaxAge = TimeSpan.FromDays(Helper.Variable.timeSession);
+});
+builder.Services.AddAuthentication(Helper.Variable.cookieName)
+.AddCookie(Helper.Variable.cookieName, options => {
+	options.Cookie.Name = Helper.Variable.cookieName;
+	options.LoginPath = "/SettingWebsite/Page_Error";
+	options.ExpireTimeSpan = TimeSpan.FromDays(Helper.Variable.timeLogin);
+	options.ExpireTimeSpan = TimeSpan.FromDays(Helper.Variable.timeLogin);
+	options.SlidingExpiration = true;
 });
 
 builder.Services.AddControllersWithViews()
@@ -46,10 +54,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
-	//pattern: "{controller=Home}/{action=Page_Index}/{id?}");
-	//pattern: "{controller=Home}/{action=Page_Distribution}/{id?}");
-	//pattern: "{controller=Distribution}/{action=Page_Index}/{id?}");
-	//pattern: "{controller=Admin}/{action=Page_Statistical}/{id?}");
-	pattern: "{controller=Admin}/{action=Page_ChangePassword}/{id?}");
-	//pattern: "{controller=Mangrove}/{action=Page_Index}/{id?}");
+	pattern: "{controller=Home}/{action=Handle_Index}/{id?}");
 app.Run();

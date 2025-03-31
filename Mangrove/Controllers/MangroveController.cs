@@ -1,6 +1,7 @@
 ﻿using Humanizer;
 using Mangrove.Data;
 using Mangrove.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Project;
@@ -16,6 +17,7 @@ using System.Xml;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Mangrove.Controllers {
+	[Authorize]
 	public class MangroveController : Controller {
 		private readonly MangroveContext context;
 
@@ -37,7 +39,7 @@ namespace Mangrove.Controllers {
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Number of individuals", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				int index = 1;
+				int index = 0;
 				var sortOptionsVI = new Dictionary<string, Expression<Func<TblMangrove, object>>>()
 				{
 					{ listTitleVI[index++], item => item.NameVi },
@@ -98,7 +100,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 
@@ -222,7 +224,7 @@ namespace Mangrove.Controllers {
 			try {
 				var model = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (model == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				// Danh sách hình ảnh
@@ -435,7 +437,7 @@ namespace Mangrove.Controllers {
 				.FirstOrDefaultAsync(item => item.Id == id);
 
 				if (model == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				// Danh sách hình ảnh
@@ -479,7 +481,7 @@ namespace Mangrove.Controllers {
 				// Xoá đối tượng
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 				context.TblMangroves.Remove(mangrove);
 				await context.SaveChangesAsync();

@@ -1,5 +1,6 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
+	[Authorize]
 	public class DistributionController : Controller {
 		private readonly MangroveContext context;
 
@@ -79,7 +81,7 @@ namespace Mangrove.Controllers {
 			catch (Exception ex) {
 				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
 				Console.WriteLine(notifier);
-				return NotFound(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 			}
 		}
 
@@ -159,7 +161,7 @@ namespace Mangrove.Controllers {
 			}
 			catch {
 				Helper.Notifier.Fail(
-					isEN ? $"TThere was an error adding the map. Please try again later !" : $"Có lỗi trong quá trình thêm bản đồ. Vui lòng thử lại sau !",
+					isEN ? "TThere was an error adding the map. Please try again later !" : "Có lỗi trong quá trình thêm bản đồ. Vui lòng thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
 				return View();
@@ -172,7 +174,7 @@ namespace Mangrove.Controllers {
 			try {
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				TempData["DataBase64"] = map.ImageMap;
@@ -253,7 +255,7 @@ namespace Mangrove.Controllers {
 			try {
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				return View(map);
@@ -274,7 +276,7 @@ namespace Mangrove.Controllers {
 				// Xoá đối tượng
 				var map = await context.TblDistributitons.FirstOrDefaultAsync(item => item.Id == id);
 				if (map == null) {
-					return RedirectToAction("Page_NotExists", "SettingWebsite");
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
 				context.TblDistributitons.Remove(map);

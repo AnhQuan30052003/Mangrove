@@ -6,7 +6,7 @@ try {
 catch (Exception ex) {
     string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
     Console.WriteLine(notifier);
-    return NotFound(notifier);
+    return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
 }
 
 

@@ -6,6 +6,10 @@
 	background-color: black !important;
 }
 
+.bg_tree_hover:hover {
+	background-color: var(--greenPage) !important;
+}
+
 .bg_white_hover:hover {
 	background-color: white !important;
 }

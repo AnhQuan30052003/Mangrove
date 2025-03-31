@@ -10,10 +10,10 @@
 
 	<div class="px-2 d-flex justify-content-center align-items-center bg-white my-2 rounded-2">
 		<i class="fa-solid fa-user col-1"></i>
-		<input name="account"
+		<input name="username"
 			   type="text"
 			   placeholder="@translate["label_tai_khoan"]"
-			   value="@TempData["Account"]" autofocus
+			   value="@ViewData["Username"]" autofocus
 			   class="col-11 border-none py-2 outline-none">
 	</div>
 	<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -23,6 +23,7 @@
 		<input name="password"
 			   type="password"
 			   placeholder="@translate["label_mat_khau"]"
+			   value="@ViewData["Password"]"
 			   class="col-10 border-none py-2 outline-none">
 
 		<span class="d-flex col-1 justify-content-center cursor-pointer">

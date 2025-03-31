@@ -1,0 +1,33 @@
+﻿:root {
+	--size_logo: 200px;
+	--colorBody: #707070;
+}
+
+img {
+	width: var(--size_logo);
+	height: var(--size_logo);
+}
+
+.main_content {
+	font-size: 25px;
+}
+
+@media (width >= 576px) {
+	.main_content {
+		font-size: 30px;
+	}
+}
+
+.btn_back:hover i {
+	animation: _back 1s linear alternate infinite;
+}
+
+@keyframes _back {
+	50% {
+		transform: translateX(-5px);
+	}
+
+	0%, 100% {
+		transform: translateX(0);
+	}
+}

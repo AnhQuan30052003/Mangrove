@@ -33,6 +33,16 @@ public class Helper {
 	// Variable
 	public static class Variable {
 		public static int maxItem = 10;
+		public static int timeSession = 365;
+		public static int timeLogin = 30;
+
+		public static string cookieName = "ASP_Auth_Mangrove";
+
+		public class TypeError {
+			public static string notPermission = "notPermission";
+			public static string disconnectDatabase = "disconnectDatabase";
+			public static string notExists = "notExists";
+		}
 	}
 
 	// Links JS

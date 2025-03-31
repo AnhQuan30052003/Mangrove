@@ -1,0 +1,84 @@
+﻿@inject SettingWebsiteController settingWebsite
+@inject IStringLocalizer<Translate> translate
+@{
+	ViewData["Title"] = translate["label_khong_ton_tai"];
+	Layout = null;
+
+	var setting = await settingWebsite.GetSetting();
+	string _pvl = Helper.Path.partialViewLayout;
+
+	bool justBackPageLogin = Convert.ToBoolean(ViewData["JustBackPageLogin"]);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	@await Html.PartialAsync($"{_pvl}/_ImportHeader.cshtml", setting)
+
+	<!-- Add CSS custom-->
+	<link rel="stylesheet" href="~/css/both_setup.css" />
+	<link rel="stylesheet" href="~/css/both_custom.css" />
+	<link rel="stylesheet" href="~/css/components/not_exists.css" />
+
+	<!-- Js template + custom-->
+	<script type="module" src="~/js/custom/both_site.js" defer></script>
+</head>
+
+<body class="vw-100 vh-100">
+	<!-- Dynamic Nofifier -->
+	@await Html.PartialAsync($"{_pvl}/_Both_DynamicNotifier.cshtml")
+
+	<main class="container h-100 d-flex flex-column py-5 justify-content-center gap-3">
+		<div class="frame_logo text-center d-flex align-items-center justify-content-center">
+			<img class="object-fit-cover" src="/img/logo/@ViewData["Image"]" alt="" />
+		</div>
+
+		<div class="content text-center">
+			<p class="main_content">@ViewData["Text"]</p>
+
+			<button type="button"
+				onclick="backPage();"
+				class="btn_back mt-3 px-4 py-2 outline-none border-none rounded-1 bg-black text-white bg_tree_hover time_delay_500ms btn_loading">
+				<i class="fa-solid fa-backward"></i>
+				<span class="hidden_mobile">@translate["label_tro_ve"] (<span class="time">10</span>s)</span>
+			</button>
+		</div>
+	</main>
+
+	<script>
+		// try {
+			const time = document.querySelector(".time");
+			let value = time.innerHTML;
+			const backPageLogin = '@justBackPageLogin';
+
+			function backPage() {
+				if (backPageLogin == "True") {
+					location.href = "/Auth/Page_Login";
+					return;
+				}
+
+				if (window.history.length > 1) {
+					history.back();
+				}
+				else {
+					const url = "/";
+					location.href = url;
+				}
+			}
+
+			const interval = setInterval(() => {
+				time.innerHTML = value;
+				value -= 1;
+
+				if (value < 0) {
+					clearInterval(interval);
+					backPage();
+				}
+			}, 1000);
+		// }
+		// catch {}
+	</script>
+</body>
+
+</html>
