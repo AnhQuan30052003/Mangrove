@@ -1,12 +1,14 @@
 ﻿// Theo dõi biểu tượng khi load page và xoá
-export function loadPage() {
+function loadPage() {
 	window.addEventListener("load", function () {
 		removeIconLoadPage();
 		highlightTabHeader();
 
-		const searchAJAX = document.querySelector(".search_ajax");
-		if (searchAJAX) {
-			searchAJAX.dispatchEvent(new Event("focus"));
+		const pointerLastInputs = document.querySelectorAll(".pointer_last");
+		if (pointerLastInputs.length > 0) {
+			pointerLastInputs.forEach((item) => {
+				item.dispatchEvent(new Event("focus"));
+			});
 		}
 	});
 }
@@ -50,7 +52,7 @@ function loading() {
 
 				const time = 10;
 				setTimeout(() => {
-					loadingNotifier.classList.add("d-none");								
+					loadingNotifier.classList.add("d-none");
 				}, time * 1000);
 			});
 		});
@@ -61,12 +63,14 @@ loading();
 
 // Fix length focus seach input 
 function movePointerInput() {
-	const searchAJAX = document.querySelector(".search_ajax");
-	if (searchAJAX) {
-		searchAJAX.addEventListener("focus", function () {
-			let value = searchAJAX.value;
-			searchAJAX.value = "";
-			searchAJAX.value = value;
+	const pointerLastInputs = document.querySelectorAll(".pointer_last");
+	if (pointerLastInputs.length > 0) {
+		pointerLastInputs.forEach((item) => {
+			item.addEventListener("focus", function () {
+				let value = item.value;
+				item.value = "";
+				item.value = value;
+			});
 		});
 	}
 }

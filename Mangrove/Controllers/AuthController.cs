@@ -1,15 +1,10 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Mangrove.Data;
-using Mangrove.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
-using Azure.Identity;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
-using System.Collections.Generic;
+using Microsoft.Identity.Client;
 
 namespace Mangrove.Controllers {
 	public class AuthController : Controller {
@@ -92,12 +87,89 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 		[HttpPost]
-		public IActionResult Page_ForgottenPassword_Find(string email) {
+		public async Task<IActionResult> Page_ForgottenPassword_Find(string email) {
 			ViewData["Email"] = email;
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				// Begin validate
 				Helper.Validate.IsEmail(email);
+
+				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Some input fields are missing or contain errors !" : "Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View();
+				}
+				// End validate
+
+				// Check email với email admin
+				var admin = await context.TblAdmins.FirstOrDefaultAsync();
+				if (admin!.Email != email) {
+					Helper.Notifier.Fail(
+						isEN ? "The email entered is not from an administrator !" : "Email đã nhập không phải của quản trị viên !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View();
+				}
+
+				// Tạo mã 6 số
+				string codeReset = Helper.Func.CreateCodeRandom(6);
+				HttpContext.Response.Cookies.Append(
+					Helper.Key.resetPassword,
+					codeReset,
+					new CookieOptions {
+						Expires = DateTimeOffset.UtcNow.AddMinutes(5)
+					}
+				);
+
+				// Gửi email thông báo
+				string subject = "Reset password | Tạo lại mật khẩu.";
+				string body = Helper.Email.CreateFormHtml(codeReset);
+				Helper.Email.SendAsync(admin.Email, admin.CodeSendEmail, admin.Email, subject, body);
+
+				// Setup thông báo thành công
+				Helper.Notifier.Success(
+					isEN ? "Please check your email for a password reset code." : "Hãy kiểm tra email để lấy mã tạo lại mật khẩu.",
+					Helper.SetupNotifier.Timer.longTime
+				);
+				return RedirectToAction("Page_ForgottenPassword_Input", new { access = true });
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Your password recovery request failed. Please try again later !" : "Gửi yêu cầu khôi phục mật khẩu của bạn thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return View();
+			}
+		}
+
+		// Quên mật khẩu - Nhập dữ liệu
+		public async Task<IActionResult> Page_ForgottenPassword_Input(bool access = false) {
+			if (!access) {
+				return RedirectToAction("Page_ForgottenPassword_Find");
+			}
+
+			var admin = await context.TblAdmins.FirstOrDefaultAsync();
+			ViewData["Email"] = admin?.Email ?? string.Empty;
+
+			Helper.Validate.Clear();
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_ForgottenPassword_Input(string email, string codeNumber, string newPass, string newPassConfirm) {
+			bool isEN = Helper.Func.IsEnglish();
+			ViewData["Email"] = email;
+			ViewData["CodeNumber"] = codeNumber;
+			ViewData["NewPass"] = newPass;
+			ViewData["NewPassConfirm"] = newPassConfirm;
+
+			try {
+				// Beigin validate
+				Helper.Validate.Clear();
+				Helper.Validate.TextLength(codeNumber, 6);
+				Helper.Validate.TextLength(newPass, 4, 40);
+				Helper.Validate.TextLength(newPassConfirm, 4, 40);
 
 				if (Helper.Validate.HaveError()) {
 					Helper.Notifier.Fail(
@@ -108,44 +180,56 @@ namespace Mangrove.Controllers {
 				}
 				// End validate
 
-				// Tạo mã 6 số
-				// Gửi email thông báo
+				// Check mật khẩu xác nhận
+				if (newPass != newPassConfirm) {
+					Helper.Notifier.Fail(
+						isEN ? "Mật khẩu xác nhận không khớp !" : "Mật khẩu xác nhận không khớp !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View();
+				}
 
-				// Setup thông báo thàh công
+				// Check mã 6 số
+				string codeRest = HttpContext.Request.Cookies[Helper.Key.resetPassword] ?? string.Empty;
+				if (codeRest != codeNumber) {
+					Helper.Notifier.Fail(
+						isEN ? "Recovery code does not exist !" : "Mã tạo lại không tồn tại !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View();
+				}
+
+				// Check thời hạn của mã
+				if (string.IsNullOrEmpty(codeRest)) {
+					Helper.Notifier.Fail(
+						isEN ? "Recovery code expired !" : "Mã tạo lại đã hết hạn !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View();
+				}
+
+				// Lưu dữ liệu
+				var admin = await context.TblAdmins.FirstOrDefaultAsync();
+				admin!.Password = newPass;
+				context.TblAdmins.Update(admin);
+				await context.SaveChangesAsync();
+
+				// Tạo thông báo thành công
 				Helper.Notifier.Success(
-					isEN ? "Please check your email for a password reset code." : "Hãy kiểm tra email để lấy mã tạo lại mật khẩu.",
-					Helper.SetupNotifier.Timer.longTime
+					isEN ? "Password recovery successful." : "Khôi phục mật khẩu thành công.",
+					Helper.SetupNotifier.Timer.fastTime,
+					Url.Action("Page_Login", "Auth")
 				);
-				return RedirectToAction("Page_ForgottenPassword_Input", new { access = true });
+				return View();
 			}
 			catch {
 				Helper.Notifier.Fail(
-					isEN ? "Password recovery request failed. Please try again later !" : "Gửi yêu cầu khôi phục mật khẩu thất bại. Hãy thử lại sau !",
-					Helper.SetupNotifier.Timer.midTime
+					isEN ? "Password recovery request failed. Please try again later !" : "Yêu cầu khôi phục mật khẩu thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.shortTime
 				);
 				return View();
 			}
 		}
-
-		// Quên mật khẩu - Nhập dữ liệu
-		public IActionResult Page_ForgottenPassword_Input(bool access = false) {
-			if (!access) {
-				return RedirectToAction("Page_ForgottenPassword_Find");
-			}
-
-			return View();
-		}
-		[HttpPost]
-		public IActionResult Page_ForgottenPassword_Input(string codeNumber, string newPass, string newPassConfirm) {
-			bool isEN = Helper.Func.IsEnglish();
-			// Check mã 6 số
-
-			// Check mật khẩu xác nhận
-
-			
-			return RedirectToAction("Page_Login");
-		}
-
 
 		// Đăng xuất
 		[Authorize]

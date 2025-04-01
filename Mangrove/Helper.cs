@@ -7,6 +7,7 @@ using System;
 using System.Net;
 using System.Linq;
 using System.Security.Policy;
+using System.Composition;
 
 public class Helper {
 	private static IHttpContextAccessor? httpContextAccessor;
@@ -103,6 +104,9 @@ public class Helper {
 		// For Link - Default
 		public static string defaultUrlAdmin = "/Admin/Page_Statistical";
 		public static string defaultUrlUser = "/Home/Page_Index";
+
+		// Cookie reset password
+		public static string resetPassword = "resetPassword";
 	}
 
 	// Setup noifier
@@ -396,6 +400,16 @@ public class Helper {
 			}
 			return data;
 		}
+
+		// Code generate 6 digit reset password
+		public static string CreateCodeRandom(int length) {
+			string code = string.Empty;
+			Random random = new Random();
+			for (int loop = 1; loop <= length; loop++) {
+				code += random.Next(0, 10);
+			}
+			return code;
+		}
 	}
 
 	// Validate
@@ -487,6 +501,25 @@ public class Helper {
 			AddError(content);
 		}
 
+		// Có độ dài từ x ký tự
+		public static void TextLength(string? value, int length, bool allowSpace = false) {
+			if (value == null) {
+				NotEmpty(value, allowSpace);
+				return;
+			}
+
+			string content = string.Empty;
+			if (value.Length == length) {
+				AddError(content);
+				return;
+			}
+
+			string EN = $"Must be {length} characters !";
+			string VI = $"Phải có {length} ký tự !";
+			content = Func.IsEnglish() ? EN : VI;
+			AddError(content);
+		}
+
 		// Check email có hợp lệ
 		public static void IsEmail(string? value, bool allowSpace = false) {
 			try {
@@ -503,6 +536,134 @@ public class Helper {
 				string VI = "Không phải là email hợp lệ !";
 				string content = Func.IsEnglish() ? EN : VI;
 				AddError(content);
+			}
+		}
+	}
+
+	// Email
+	public static class Email {
+		// Lấy Form Html
+		public static string CreateFormHtml(string code) {
+			string html = @$"
+				<!DOCTYPE html>
+				<html lang='en' style='scroll-behavior: smooth;'>
+
+				<head>
+					<meta charset='UTF-8'>
+					<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-slcale=1.5, maximum-scale=5.0'>
+					<title></title>
+
+					<style>
+						* {{padding: 0;
+							margin: 0;
+							box-sizing: border-box;
+						}}
+					</style>
+				</head>
+
+				<body style='width: 100%; background-color: #eaeff1; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif; overflow-x: hidden;'>
+
+					<section class='mod_email'  
+							 style='padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;'>
+						<div class='email_header'
+							 style='width: 100%; display: flex; gap: 13px; align-items: center; min-height: 80px; background-color: white; padding: 15px 10px;'>
+							<div class='logo' style='display: flex; align-items: end;'>
+								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
+							</div>
+
+							<div class='info' style='display: flex; flex-direction: column; justify-content: center; gap: 10px;'>
+								<h3 style='font-weight: bold;'>Nha Trang University</h3>
+								<p style='font-weight: bold;'>Institute of Biotechnology & Environment</p>
+							</div>
+						</div>
+
+						<div class='email_body'
+							 style='max-width: 500px; display: flex; flex-direction: column; justify-content: center;'>
+							<div class='email_title'
+								 style='margin: 20px 0; display: flex; flex-direction: column; justify-content: center; gap: 15px; align-items: center; padding: 0 10px;'>
+								<img style='width: 100px; height: 100px;' src='https://mangrove.runasp.net/img/logo/password_recovery.png'
+									 alt=''>
+								<h2 style='text-align: center;'>Password Recovery</h2>
+							</div>
+
+							<div class='email_content'
+								 style='margin: 20px 0; padding: 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: center;'>
+								<span><b>Hello Admin</b>, your rebuild code is</span>
+								<span style='padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; '>{code}</span>
+							</div>
+
+							<div class='note' style='padding: 0 10px;'>
+								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Remark:</p>
+								<p>The value of the code is limited to <i style='text-decoration: underline;'>5 minute</i>.</p>
+							</div>
+						</div>
+					</section>
+
+					<section class='mod_email'
+							 style='padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;'>
+
+						<div class='email_header'
+							 style=' width: 100%; display: flex; gap: 13px; align-items: center; min-height: 80px; background-color: white; padding: 15px 10px;'>
+							<div class='logo' style='display: flex; align-items: end;'>
+								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
+							</div>
+
+							<div class='info' style='display: flex; flex-direction: column; justify-content: center; gap: 10px;'>
+								<h3 style='font-weight: bold;'>Trường Đại học Nha Trang</h3>
+								<p style='font-weight: bold;'>Viện Công Nghệ Sinh Học & Môi Trường</p>
+							</div>
+						</div>
+
+						<div class='email_body'
+							 style='max-width: 500px; display: flex; flex-direction: column; justify-content: center;'>
+							<div class='email_title'
+								 style='margin: 20px 0; display: flex; flex-direction: column; justify-content: center; gap: 15px; align-items: center; padding: 0 10px;'>
+								<img style='width: 100px; height: 100px;' src='https://mangrove.runasp.net/img/logo/password_recovery.png'
+									 alt=''>
+								<h2 style='text-align: center;'>Khôi phục mật khẩu</h2>
+							</div>
+
+							<div class='email_content'
+								 style='margin: 20px 0; padding: 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: center;'>
+								<span><b>Xin chào Quản trị viên</b>, mã tạo lại của bạn là</span>
+								<span style='padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; '>{code}</span>
+							</div>
+
+							<div class='note' style='padding: 0 10px;'>
+								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Lưu ý:</p>
+								<p>Giá trị của mã chỉ có thời hạn là <i style='text-decoration: underline;'>5 phút</i>.</p>
+							</div>
+						</div>
+					</section>
+				</body>
+
+				</html>
+			";
+			
+			return html;
+		}
+
+		// Gửi email
+		public static async void SendAsync(string username, string passwordCode, string toEmail, string subject, string body) {
+			try {
+				var smtpClient = new SmtpClient("smtp.gmail.com") {
+					Port = 587,
+					Credentials = new NetworkCredential(username, passwordCode),
+					EnableSsl = true
+				};
+
+				var mailMessage = new MailMessage {
+					From = new MailAddress(username),
+					Subject = subject,
+					Body = body,
+					IsBodyHtml = true
+				};
+
+				mailMessage.To.Add(toEmail);
+				await smtpClient.SendMailAsync(mailMessage);
+			}
+			catch (Exception ex) {
+				Console.WriteLine($"Error send email is: {ex.Message}");
 			}
 		}
 	}

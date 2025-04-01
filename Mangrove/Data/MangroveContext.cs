@@ -30,12 +30,11 @@ public partial class MangroveContext : DbContext
     public virtual DbSet<TblSetting> TblSettings { get; set; }
 
     public virtual DbSet<TblStage> TblStages { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblAdmin>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblAdmin__DED88B1CF66DDD3A");
+            entity.HasKey(e => e.Id).HasName("PK__tblAdmin__DED88B1C793478F7");
 
             entity.ToTable("tblAdmin");
 
@@ -43,6 +42,10 @@ public partial class MangroveContext : DbContext
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_id");
+            entity.Property(e => e.CodeSendEmail)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("_codeSendEmail");
             entity.Property(e => e.Email)
                 .HasMaxLength(256)
                 .IsUnicode(false)

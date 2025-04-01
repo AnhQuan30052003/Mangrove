@@ -20,6 +20,7 @@ create table tblAdmin
     _email varchar(256) not null,
     _username nvarchar(50) not null,
     _password varchar(50) not null,
+    _codeSendEmail varchar(20) not null
 )
 
 -- Bảng cho trang setting
