@@ -546,96 +546,88 @@ public class Helper {
 		// Lấy Form Html
 		public static string CreateFormHtml(string code) {
 			string html = @$"
-				<!DOCTYPE html>
-				<html lang='en' style='scroll-behavior: smooth;'>
+				<html>
 
 				<head>
-					<meta charset='UTF-8'>
 					<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0'>
-					<title></title>
-
-					<style>
-						* {{padding: 0;
-							margin: 0;
-							box-sizing: border-box;
-						}}
-					</style>
 				</head>
 
-				<body style='width: 100%; background-color: #eaeff1; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif; overflow-x: hidden;'>
-
-					<section class='mod_email'  
-							 style='padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;'>
-						<div class='email_header'
-							 style='width: 100%; display: flex; gap: 13px; align-items: center; min-height: 80px; background-color: white; padding: 15px 10px;'>
-							<div class='logo' style='display: flex; align-items: end;'>
+				<body style='overflow-x: hidden; margin: 0;'>
+					<div class='mod_email'
+						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif;'>
+						<div class='email_header' style='min-height: 60px; background-color: white; padding: 10px 5px; margin: 0;'>
+							<div class='logo' style='display: inline; float: left;'>
 								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
 							</div>
 
-							<div class='info' style='display: flex; flex-direction: column; justify-content: center; gap: 10px;'>
-								<h3 style='font-weight: bold;'>Nha Trang University</h3>
-								<p style='font-weight: bold;'>Institute of Biotechnology & Environment</p>
+							<div class='info' style='display: inline; padding-left: 10px; float: left;'>
+								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>Nha Trang University</h3>
+								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>
+									Institute of Biotechnology & Environment
+								</p>
 							</div>
 						</div>
 
-						<div class='email_body'
-							 style='max-width: 500px; display: flex; flex-direction: column; justify-content: center;'>
-							<div class='email_title'
-								 style='margin: 20px 0; display: flex; flex-direction: column; justify-content: center; gap: 15px; align-items: center; padding: 0 10px;'>
-								<img style='width: 100px; height: 100px;' src='https://mangrove.runasp.net/img/logo/password_recovery.png'
-									 alt=''>
-								<h2 style='text-align: center;'>Password Recovery</h2>
+						<div class='email_body' style='padding: 10px; max-width: 500px; margin: 0 auto;'>
+							<div class='email_title' style='text-align: center;'>
+								<img style='width: 100px; height: 100px; margin: 30px 0;'
+									src='https://cdn-icons-png.flaticon.com/512/6146/6146587.png' alt=''>
+								<h2 style='text-align: center; margin: 0;'>Password Recovery</h2>
 							</div>
 
-							<div class='email_content'
-								 style='margin: 20px 0; padding: 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: center;'>
-								<span><b>Hello Admin</b>, your rebuild code is</span>
-								<span style='padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; '>{code}</span>
+							<div class='email_content' style='margin: 30px 0; text-align: center;'>
+								<p style='display: inline-block; margin: 0 5px 10px 0;'>
+									<b>Hello Admin</b>, your rebuild code is
+								</p>
+								<p
+									style='display: inline-block; padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; margin: 0;'>
+									{code}
+								</p>
 							</div>
 
-							<div class='note' style='padding: 0 10px;'>
+							<div class='note'>
 								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Remark:</p>
 								<p>The value of the code is limited to <i style='text-decoration: underline;'>5 minute</i>.</p>
 							</div>
 						</div>
-					</section>
+					</div>
 
-					<section class='mod_email'
-							 style='padding-bottom: 30px; display: flex; flex-direction: column; align-items: center;'>
-
-						<div class='email_header'
-							 style=' width: 100%; display: flex; gap: 13px; align-items: center; min-height: 80px; background-color: white; padding: 15px 10px;'>
-							<div class='logo' style='display: flex; align-items: end;'>
+					<div class='mod_email'
+						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif;'>
+						<div class='email_header' style='min-height: 60px; background-color: white; padding: 10px 5px; margin: 0;'>
+							<div class='logo' style='display: inline; float: left;'>
 								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
 							</div>
 
-							<div class='info' style='display: flex; flex-direction: column; justify-content: center; gap: 10px;'>
-								<h3 style='font-weight: bold;'>Trường Đại học Nha Trang</h3>
-								<p style='font-weight: bold;'>Viện Công Nghệ Sinh Học & Môi Trường</p>
+							<div class='info' style='display: inline; padding-left: 10px; float: left;'>
+								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>Trường Đại học Nha Trang</h3>
+								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>Viện Công Nghệ Sinh Học & Môi Trường</p>
 							</div>
 						</div>
 
-						<div class='email_body'
-							 style='max-width: 500px; display: flex; flex-direction: column; justify-content: center;'>
-							<div class='email_title'
-								 style='margin: 20px 0; display: flex; flex-direction: column; justify-content: center; gap: 15px; align-items: center; padding: 0 10px;'>
-								<img style='width: 100px; height: 100px;' src='https://mangrove.runasp.net/img/logo/password_recovery.png'
-									 alt=''>
-								<h2 style='text-align: center;'>Khôi phục mật khẩu</h2>
+						<div class='email_body' style='padding: 10px; max-width: 500px; margin: 0 auto;'>
+							<div class='email_title' style='text-align: center;'>
+								<img style='width: 100px; height: 100px; margin: 30px 0;'
+									src='https://cdn-icons-png.flaticon.com/512/6146/6146587.png' alt=''>
+								<h2 style='text-align: center; margin: 0;'>Khôi phục mật khẩu</h2>
 							</div>
 
-							<div class='email_content'
-								 style='margin: 20px 0; padding: 0 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: center;'>
-								<span><b>Xin chào Quản trị viên</b>, mã tạo lại của bạn là</span>
-								<span style='padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; '>{code}</span>
+							<div class='email_content' style='margin: 30px 0; text-align: center;'>
+								<p style='display: inline-block; margin: 0 5px 10px 0;'>
+									<b>Xin chào Quản trị viên</b>, mã tạo lại của bạn là
+								</p>
+								<p
+									style='display: inline-block; padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; margin: 0;'>
+									{code}
+								</p>
 							</div>
 
-							<div class='note' style='padding: 0 10px;'>
+							<div class='note'>
 								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Lưu ý:</p>
 								<p>Giá trị của mã chỉ có thời hạn là <i style='text-decoration: underline;'>5 phút</i>.</p>
 							</div>
 						</div>
-					</section>
+					</div>
 				</body>
 
 				</html>

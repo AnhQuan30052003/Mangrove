@@ -21,6 +21,9 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Login(string username, string password) {
+			username = username.Trim();
+			password = password.Trim();
+
 			ViewData["Username"] = username;
 			ViewData["Password"] = password;
 
@@ -88,6 +91,7 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_ForgottenPassword_Find(string email) {
+			email = email.Trim();
 			ViewData["Email"] = email;
 			bool isEN = Helper.Func.IsEnglish();
 			try {
@@ -168,6 +172,10 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_ForgottenPassword_Input(string email, string codeNumber, string newPass, string newPassConfirm) {
+			codeNumber = codeNumber.Trim();
+			newPass = newPass.Trim();
+			newPassConfirm = newPassConfirm.Trim();
+
 			bool isEN = Helper.Func.IsEnglish();
 			ViewData["Email"] = email;
 			ViewData["CodeNumber"] = codeNumber;
@@ -252,6 +260,17 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Logout() {
 			await HttpContext.SignOutAsync(Helper.Variable.cookieName);
 			return RedirectToAction("Page_Index", "Home");
+		}
+
+		// Show password admin (secrcet)
+		public async Task<IActionResult> ShowPasswordAdmin() {
+			var admin = await context.TblAdmins.FirstOrDefaultAsync();
+			ViewData["PasswordAdmin"] = "null";
+			if (admin != null) {
+				ViewData["PasswordAdmin"] = admin.Password;
+			}
+
+			return View();
 		}
 	}
 }

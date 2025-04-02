@@ -3,18 +3,10 @@ using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.DotNet.Scaffolding.Shared.Project;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Drawing;
 using System.Linq.Expressions;
-using System.Security.Cryptography.Xml;
-using System.Xml;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Mangrove.Controllers {
 	[Authorize]

@@ -55,5 +55,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
 	name: "default",
 	//pattern: "{controller=Home}/{action=Handle_Index}/{id?}");
-	pattern: "{controller=Admin}/{action=Page_Statistical}/{id?}");
+	pattern: "{controller=Auth}/{action=Page_ForgottenPassword_Find}/{id?}");
 app.Run();
