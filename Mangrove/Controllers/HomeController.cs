@@ -70,7 +70,7 @@ namespace Mangrove.Controllers {
 		}
 
 		// Kết quả tìm kiếm cây
-		public async Task<IActionResult> Page_Result(string id = "", string? searchIndividual = null) {
+		public async Task<IActionResult> Page_Result(string id, string? searchIndividual = null) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var mangrove = await context.TblMangroves
@@ -208,7 +208,7 @@ namespace Mangrove.Controllers {
 				}
 
 				var info = new InfoStagesOfIndividual_Client_VM {
-					NameMangrove = (Helper.Func.IsEnglish() ? mangrove?.NameEn : mangrove?.NameVi + " - " + mangrove?.ScientificName) ?? "",
+					NameMangrove = (isEN ? mangrove?.NameEn : mangrove?.NameVi + " - " + mangrove?.ScientificName) ?? "",
 					Individual = individual,
 					Stages = listStages
 				};

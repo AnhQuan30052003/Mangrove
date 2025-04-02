@@ -77,6 +77,7 @@ namespace Mangrove.Controllers {
 					conditions.Add(item.Familia);
 					conditions.Add(item.DistributionVi);
 					conditions.Add(item.DistributionEn);
+					conditions.Add(item.TblIndividuals.Count().ToString());
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}

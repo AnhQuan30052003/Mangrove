@@ -8,7 +8,7 @@ using Microsoft.Identity.Client;
 
 namespace Mangrove.Controllers {
 	public class AuthController : Controller {
-		private readonly MangroveContext context;
+		private readonly MangroveContext context;		
 
 		public AuthController(MangroveContext context) {
 			this.context = context;
@@ -57,9 +57,7 @@ namespace Mangrove.Controllers {
 							Helper.Variable.cookieName
 						)
 					);
-					await HttpContext.SignInAsync(Helper.Variable.cookieName, principal);
-
-					ViewData["Username"] = ViewData["Password"] = string.Empty;
+					await HttpContext.SignInAsync(Helper.Variable.cookieName, principal);					
 
 					Helper.Notifier.Success(
 						isEN ? "Login successfully. Redirecting..." : "Đăng nhập thành công. Đang chuyển hướng...",
@@ -237,6 +235,7 @@ namespace Mangrove.Controllers {
 
 				// Xoá code reset password đã lưu 1 năm 
 				HttpContext.Response.Cookies.Delete(Helper.Key.resetPassword);
+				HttpContext.Response.Cookies.Delete(Helper.Key.resetPasswordSave);
 
 				// Tạo thông báo thành công
 				Helper.Notifier.Success(
@@ -263,10 +262,12 @@ namespace Mangrove.Controllers {
 		}
 
 		// Show password admin (secrcet)
-		public async Task<IActionResult> ShowPasswordAdmin() {
+		public async Task<IActionResult> ShowAccountAdmin() {
 			var admin = await context.TblAdmins.FirstOrDefaultAsync();
 			ViewData["PasswordAdmin"] = "null";
 			if (admin != null) {
+				ViewData["UsernameAdmin"] = admin.Username;
+				ViewData["EmailAdmin"] = admin.Email;
 				ViewData["PasswordAdmin"] = admin.Password;
 			}
 

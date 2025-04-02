@@ -266,6 +266,15 @@ public class Helper {
 			return textNumber;
 		}
 
+		// Find index 
+		public static int FindIndex(List<string> data, string find) {
+			for (int i = 0; i < data.Count(); i++) {
+				if (data[i] == find) return i;
+			}
+
+			return -1;
+		}
+
 		// Check exsits contain
 		public static bool CheckContain(string key, List<string> data) {
 			key = FormatUngisnedString(key.ToLower().Trim());

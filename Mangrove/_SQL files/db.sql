@@ -1,4 +1,4 @@
-use mangrove
+use mangrove;
 
 --- [Drop tables] --
 drop table if exists tblHome

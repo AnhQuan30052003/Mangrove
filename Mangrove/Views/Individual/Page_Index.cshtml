@@ -1,0 +1,18 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model Paginate_VM<Individual_ListIndex_Admin_VM>
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_ca_the"];
+	ViewData["InfoPage"] = translate["label_danh_sach_ca_the"];
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+}
+
+<section class="individual_list have_paginate">
+	<div class="container-fluid py-2">
+		@await Html.PartialAsync($"{pv}/Both_Paginate_Individual.cshtml", Model)
+	</div>
+</section>
+
