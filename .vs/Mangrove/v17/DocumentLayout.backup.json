@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\distribution\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\distribution\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\mangrove\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\js\\custom\\components\\items.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\js\\custom\\components\\items.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 280,
+          "DockedWidth": 247,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -43,27 +47,46 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Mangrove\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAuwAABAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T09:19:20.134Z",
+              "Title": "Page_Create.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Distribution\\Page_Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-02T14:31:00.284Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IndividualController.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Controllers\\IndividualController.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeToolTip": "Mangrove\\Controllers\\IndividualController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T09:11:26.342Z",
+              "Title": "Page_Create.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Mangrove\\Page_Create.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-02T14:25:30.418Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "items.js",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+              "RelativeToolTip": "Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-02T14:26:43.948Z",
               "EditorCaption": ""
             }
           ]

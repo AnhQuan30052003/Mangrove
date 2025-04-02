@@ -1,7 +1,6 @@
 ﻿@inject IStringLocalizer<Translate> translate
 @model TblMangrove
 @{
-	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
 	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_them"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
@@ -51,7 +50,7 @@
 					</h6>
 				</div>
 
-				<div class="info">
+				<div class="info frame_items">
 					<div class="items bg-form have_move">
 						@{
 							if (!dataBase64s.Any())
@@ -170,9 +169,10 @@
 					</div>
 
 					<div class="text-center py-2">
-						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+						<button id="btn_add_item_1"
+								class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
 								type="button"
-								onclick="item.addItem();">
+								onclick="item.addItem('#btn_add_item_1');">
 							<i class="fa-solid fa-plus"></i>
 							@translate["label_them_anh"]
 						</button>

@@ -29,7 +29,7 @@
 					</h6>
 				</div>
 
-				<div class="info">
+				<div class="info frame_items">
 					<div class="items bg-form">
 						@{
 							if (!dataBase64s.Any())
@@ -149,9 +149,10 @@
 					</div>
 
 					<div class="text-center py-2">
-						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+						<button id="btn_add_item1"
+							class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
 								type="button"
-								onclick="item.addItem();">
+								onclick="item.addItem('#btn_add_item1');">
 							<i class="fa-solid fa-plus"></i>
 							@translate["label_them_anh"]
 						</button>

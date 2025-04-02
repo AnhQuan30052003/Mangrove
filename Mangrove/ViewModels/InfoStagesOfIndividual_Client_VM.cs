@@ -2,6 +2,7 @@ using Mangrove.Data;
 
 namespace Mangrove.ViewModels {
 	public class InfoStagesOfIndividual_Client_VM {
+		public string IdIndividual { get; set; } = null!;
 		public string NameMangrove { get; set; } = null!;
 		public TblIndividual Individual { get; set; } = null!;
 

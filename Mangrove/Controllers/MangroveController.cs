@@ -31,7 +31,7 @@ namespace Mangrove.Controllers {
 				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Number of individuals", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				int index = 0;
+				int index = 1;
 				var sortOptionsVI = new Dictionary<string, Expression<Func<TblMangrove, object>>>()
 				{
 					{ listTitleVI[index++], item => item.NameVi },
@@ -78,6 +78,7 @@ namespace Mangrove.Controllers {
 					conditions.Add(item.DistributionVi);
 					conditions.Add(item.DistributionEn);
 					conditions.Add(item.TblIndividuals.Count().ToString());
+					conditions.Add(item.UpdateLast.ToShortDateString());
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
@@ -203,8 +204,8 @@ namespace Mangrove.Controllers {
 				return RedirectToAction("Page_Detail", new { id = model.Id });
 			}
 			catch {
-				Helper.Notifier.Success(
-					isEN ? $"TThere was an error adding the mangrove. Please try again later !" : $"Có lỗi trong quá trình thêm cây ngập mặn. Vui lòng thử lại sau !",
+				Helper.Notifier.Fail(
+					isEN ? "There was an error adding the mangrove. Please try again later !" : "Có lỗi trong quá trình thêm cây ngập mặn. Vui lòng thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
 				return View(model);

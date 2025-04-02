@@ -26,51 +26,30 @@ namespace Mangrove.Controllers {
 				var listTitleEN = new List<string> { "No", "Individual name", "Position", "Number of stage", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
-				int index = 0;
-				var sortOptionsVI = new Dictionary<string, Expression<Func<Individual_ListIndex_Admin_VM, object>>>()
+				int index = 1;
+				var sortOptionsVI = new Dictionary<string, Expression<Func<TblIndividual, object>>>()
 				{
-					{ listTitleVI[index++], item => item.NameVI },
-					{ listTitleVI[index++], item => item.PositionVI },
-					{ listTitleVI[index++], item => item.TotalStage },
+					{ listTitleVI[index++], item => item.IdMangroveNavigation!.NameVi },
+					{ listTitleVI[index++], item => item.PositionVi },
+					{ listTitleVI[index++], item => item.TblStages.Count() },
 					{ listTitleVI[index++], item => item.UpdateLast },
 				};
 
 				index = 1;
-				var sortOptionsEN = new Dictionary<string, Expression<Func<Individual_ListIndex_Admin_VM, object>>>()
+				var sortOptionsEN = new Dictionary<string, Expression<Func<TblIndividual, object>>>()
 				{
-					{ listTitleEN[index++], item => item.NameEN },
-					{ listTitleEN[index++], item => item.PositionEN },
-					{ listTitleEN[index++], item => item.TotalStage },
+					{ listTitleEN[index++], item => item.IdMangroveNavigation!.NameEn },
+					{ listTitleEN[index++], item => item.PositionEn },
+					{ listTitleEN[index++], item => item.TblStages.Count() },
 					{ listTitleEN[index++], item => item.UpdateLast },
 				};
 				var sortOptions = isEN ? sortOptionsEN : sortOptionsVI;
 
-				// Truy vấn NameEN, NameVI và ID mangrove
-				var listMangrove = await context.TblMangroves.ToListAsync();
-				var listNameVI_mangrove = new List<string>();
-				var listNameEN_mangrove = new List<string>();
-				var listID_mangrove = new List<string>();
-				foreach (var mangrove in listMangrove) {
-					listNameEN_mangrove.Add(mangrove.NameEn);
-					listNameVI_mangrove.Add(mangrove.NameVi);
-					listID_mangrove.Add(mangrove.Id);
-				}
-
-				// Lấy ra trường dữ liệu cần thiết
-				var getQuery = await context.TblIndividuals.Include(item => item.TblStages).ToListAsync();
-
 				// Tạo query
-				var query = getQuery.Select(
-					item => new Individual_ListIndex_Admin_VM {
-						Id = item.Id,
-						NameEN = listNameEN_mangrove[Helper.Func.FindIndex(listID_mangrove, item.IdMangrove ?? string.Empty)],
-						NameVI = listNameVI_mangrove[Helper.Func.FindIndex(listID_mangrove, item.IdMangrove ?? string.Empty)],
-						PositionEN = item.PositionEn,
-						PositionVI = item.PositionVi,
-						TotalStage = item.TblStages.Count(),
-						UpdateLast = item.UpdateLast
-					}
-				).AsQueryable();
+				var query = context.TblIndividuals
+				.Include(item => item.TblStages)
+				.Include(item => item.IdMangroveNavigation)
+				.AsQueryable();
 
 				// Kiểm tra nếu có thuộc tính cần sắp xếp
 				if (!string.IsNullOrEmpty(sortFollow) && sortOptions.ContainsKey(sortFollow)) {
@@ -81,14 +60,15 @@ namespace Mangrove.Controllers {
 				var data = await query.ToListAsync();
 
 				// Xử lý logic tìm kiếm
-				List<Individual_ListIndex_Admin_VM> fillter = new List<Individual_ListIndex_Admin_VM>();
+				List<TblIndividual> fillter = new List<TblIndividual>();
 				foreach (var item in data) {
 					var conditions = new List<string>();
-					conditions.Add(item.NameEN);
-					conditions.Add(item.NameVI);
-					conditions.Add(item.PositionEN);
-					conditions.Add(item.PositionVI);
-					conditions.Add(item.TotalStage.ToString());
+					conditions.Add(item.IdMangroveNavigation!.NameEn);
+					conditions.Add(item.IdMangroveNavigation!.NameVi);
+					conditions.Add(item.PositionEn);
+					conditions.Add(item.PositionVi);
+					conditions.Add(item.TblStages.Count().ToString());
+					conditions.Add(item.UpdateLast.ToShortDateString());
 
 					if (Helper.Func.CheckContain(findText, conditions)) fillter.Add(item);
 				}
@@ -97,7 +77,7 @@ namespace Mangrove.Controllers {
 					sortType, sortFollow, findText,
 					"Individual", "Page_Index"
 				);
-				var pagi = new Paginate_VM<Individual_ListIndex_Admin_VM>(fillter, info);
+				var pagi = new Paginate_VM<TblIndividual>(fillter, info);
 
 				return View(pagi);
 			}
@@ -110,6 +90,12 @@ namespace Mangrove.Controllers {
 
 		// Create
 		public IActionResult Page_Create() {
+			var mode = new TblIndividual();
+			Helper.Validate.Clear();
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_Create(TblDistributiton model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			return View();
 		}
 
@@ -119,8 +105,45 @@ namespace Mangrove.Controllers {
 		}
 
 		// Detail
-		public IActionResult Page_Detail() {
-			return View();
+		public async Task<IActionResult> Page_Detail(string id) {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				// Truy vấn cá thể
+				var individual = await context.TblIndividuals
+				.Include(item => item.TblStages)
+				.Include(item => item.IdMangroveNavigation)
+				.FirstOrDefaultAsync(item => item.Id == id);
+				if (individual == null) {
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
+				}
+
+				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
+				List<Stage> listStages = new List<Stage>();
+				foreach (var stage in individual.TblStages.ToList()) {
+					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+					var _stage = new Stage {
+						info = stage,
+						photo = photos
+					};
+					listStages.Add(_stage);
+				}
+
+				var info = new InfoStagesOfIndividual_Client_VM {
+					IdIndividual = individual.Id,
+					NameMangrove = isEN ? individual.IdMangroveNavigation!.NameEn : individual.IdMangroveNavigation!.NameVi + " - " + individual.IdMangroveNavigation!.ScientificName,
+					Individual = individual,
+					Stages = listStages
+				};
+
+				return View(info);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access individual page failed. Please try again later !" : "Gửi yêu cầu truy cập trang cá thể thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
+			}
 		}
 
 		// Delete

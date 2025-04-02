@@ -1,0 +1,29 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model TblIndividual
+
+@{
+	ViewData["Title"] = translate["label_ca_the"];
+	ViewData["InfoPage"] = translate["label_thong_tin_ca_the"] + $" ({translate["label_them"]})";
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string _pv = Helper.Path.partialView;
+
+	var dataTypes = TempData["DataTypes"] as List<string> ?? new List<string>();
+	var dataBase64s = TempData["DataBase64s"] as List<string> ?? new List<string>();
+	var noteENs = TempData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = TempData["NoteVIs"] as List<string> ?? new List<string>();
+}
+
+<input id="english" value="@translate["label_tieng_anh"]" hidden />
+<input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
+<input id="photo" value="@translate["label_hinh_anh"]" hidden />
+<input id="description" value="@translate["label_mo_ta"]" hidden />
+
+<section class="mod-add-individual">
+	<div class="container py-2">
+		<form action="" method="post" enctype="multipart/form-data">
+
+		</form>
+	</div>
+</section>	

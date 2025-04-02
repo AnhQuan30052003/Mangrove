@@ -1,7 +1,9 @@
 ﻿@inject IStringLocalizer<Translate> translate
 @model TblMangrove
 @{
-	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	bool isEN = Helper.Func.IsEnglish();
+
+	ViewData["Title"] = isEN ? Model.NameEn : Model.NameVi;
 	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_duoc_chinh_sua"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
 

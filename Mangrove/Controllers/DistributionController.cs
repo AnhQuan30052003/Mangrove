@@ -267,7 +267,6 @@ namespace Mangrove.Controllers {
 				if (map == null) {
 					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
-
 				return View(map);
 			}
 			catch {

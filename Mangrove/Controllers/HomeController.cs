@@ -170,10 +170,12 @@ namespace Mangrove.Controllers {
 
 				return View(model);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "The mangrove website you just accessed has an error. Please try again later !" : "Website cây ngập mặn vừa truy cập bị lỗi. Hãy truy cập lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 
@@ -181,34 +183,33 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Individual(string id) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
-				var individual = await context.TblIndividuals.Include(o => o.TblStages).FirstOrDefaultAsync(o => o.Id == id);
+				// Truy vấn cá thể
+				var individual = await context.TblIndividuals
+				.Include(item => item.TblStages)
+				.Include(item => item.IdMangroveNavigation)
+				.FirstOrDefaultAsync(item => item.Id == id);
 				if (individual == null) {
 					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 
+				// Tăng View cho lần xem này
 				individual.View += 1;
 				await context.SaveChangesAsync();
-
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(o => o.Id == individual.IdMangrove);
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
 				foreach (var stage in individual.TblStages.ToList()) {
-					var photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
-					if (photos == null || photos.Count() == 0) {
-						photos = new List<TblPhoto>();
-					}
-
+					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					var _stage = new Stage {
 						info = stage,
 						photo = photos
 					};
-
 					listStages.Add(_stage);
 				}
 
 				var info = new InfoStagesOfIndividual_Client_VM {
-					NameMangrove = (isEN ? mangrove?.NameEn : mangrove?.NameVi + " - " + mangrove?.ScientificName) ?? "",
+					IdIndividual = individual.Id,
+					NameMangrove = isEN ? individual.IdMangroveNavigation!.NameEn : individual.IdMangroveNavigation!.NameVi + " - " + individual.IdMangroveNavigation!.ScientificName,
 					Individual = individual,
 					Stages = listStages
 				};
@@ -217,7 +218,7 @@ namespace Mangrove.Controllers {
 			}
 			catch {
 				Helper.Notifier.Fail(
-					isEN ? "Request to access individual page failed. Please try again later !" : "Gửi yêu cầu truy cập trang cá thể thất bại. Hãy thử lại sau !",
+					isEN ? "The mangrove individual website you just accessed has an error. Please try again later !" : "Website cá thể cây ngập mặn vừa truy cập bị lỗi. Hãy truy cập lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
 				return RedirectToAction("Page_Index");
@@ -226,8 +227,8 @@ namespace Mangrove.Controllers {
 
 		// Page: thành phần loài - có tìm kiếm
 		public async Task<IActionResult> Page_SpeciesComposition(string? search = null) {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
 				List<TblMangrove> listMangrove = isEN ? await context.TblMangroves.OrderBy(item => item.NameEn).ToListAsync() : await context.TblMangroves.OrderBy(item => item.NameVi).ToListAsync();
 
 				var model = new List<SearchMangroe_Client_VM>();
@@ -267,18 +268,19 @@ namespace Mangrove.Controllers {
 
 				return View(model);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "The mangrove tree search website is down. Please try again later !" : "Website tìm kiếm cây ngập mặn bị lỗi. Hãy truy cập lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 
 		// Page: phân bố
 		public async Task<IActionResult> Page_Distribution() {
+			bool isEN = Helper.Func.IsEnglish();
 			try {
-				bool isEN = Helper.Func.IsEnglish();
-
 				var model = await context.TblDistributitons
 				.Select(item => new Distribution_Client_VM {
 					Image = item.ImageMap,
@@ -288,10 +290,12 @@ namespace Mangrove.Controllers {
 
 				return View(model);
 			}
-			catch (Exception ex) {
-				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
-				Console.WriteLine(notifier);
-				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "The mangrove distribution map website is down. Please try again later !" : "Website bản đồ phân bố cây ngập mặn bị lỗi. Hãy truy cập lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 @model Mangrove_Client_VM
 
 @{
-	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	ViewData["Title"] = Model.Name;
 	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_chi_xem"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
 
@@ -36,7 +36,7 @@
 			@translate["label_xoa"]
 		</span>
 	</a>
-</div>>
+</div>
 
 <section class="mangrove_result">
 	<div class="container py-3">

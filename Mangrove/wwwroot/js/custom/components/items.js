@@ -65,12 +65,12 @@ function addImageToItem() {
 addImageToItem();
 
 // Khi click vào nút thêm item
-export function addItem() {
-	const items = document.querySelector(".items");
+export function addItem(idButtonClick) {
+	const clicked = document.querySelector(idButtonClick)
+	const items = clicked.closest(".frame_items").querySelector(".items");
 	const addItemFind = items.querySelectorAll(".add_item");
 	if (addItemFind.length == 10) return;
 
-	const btn = document.querySelector(".btn_add_item");
 	const addItem = createDivAddItem();
 	items.appendChild(addItem);
 

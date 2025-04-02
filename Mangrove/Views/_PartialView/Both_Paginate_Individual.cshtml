@@ -1,5 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
-@model Paginate_VM<Individual_ListIndex_Admin_VM>
+@model Paginate_VM<TblIndividual>
 @{
 	var isEN = Helper.Func.IsEnglish();
 	string pv = Helper.Path.partialView;
@@ -36,9 +36,9 @@
 							{
 								<tr class="table_item position-relative">
 									<td class="text-center">@(stt++)</td>
-									<td>@(isEN ? item.NameEN : item.NameVI)</td>
-									<td>@(isEN ? item.PositionEN : item.PositionVI)</td>
-									<td class="text-center">@item.TotalStage</td>
+									<td>@(isEN ? item.IdMangroveNavigation!.NameEn : item.IdMangroveNavigation!.NameVi)</td>
+									<td>@(isEN ? item.PositionEn : item.PositionVi)</td>
+									<td class="text-center">@item.TblStages.Count()</td>
 									<td class="text-center">@item.UpdateLast.ToShortDateString()</td>
 
 									<td class="text-center">
