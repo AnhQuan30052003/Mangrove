@@ -31,6 +31,14 @@
 			</div>
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
+			<!-- Key application -->
+			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
+				<i class="fa-solid fa-key col-1 text-center"></i>
+				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.CodeSendEmail" />
+				<i class="fa-solid fa-lock-open col-1 text-center"></i>
+			</div>
+			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center gap-3 justify-content-sm-between align-items-center mt-5">
 				<a href='@Url.Action("Page_AdminInformation_View", "Admin")'

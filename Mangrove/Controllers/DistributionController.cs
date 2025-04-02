@@ -129,6 +129,7 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Lưu dữ liệu
+				string idFirstMap = string.Empty;
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					string id = Helper.Func.CreateId();
 					string fileName = $"{id}_{noteVIs[i]}{Helper.Func.GetTypeImage(dataTypes[i])}";
@@ -147,6 +148,10 @@ namespace Mangrove.Controllers {
 						MapNameVi = noteVIs[i]
 					};
 					context.TblDistributitons.Add(map);
+
+					if (i == 0) {
+						idFirstMap = map.Id;
+					}
 				}
 
 				await context.SaveChangesAsync();
@@ -157,6 +162,11 @@ namespace Mangrove.Controllers {
 					isEN ? $"Added {dataBase64s.Count()} map." : $"Đã thêm {dataBase64s.Count()} bản đồ.",
 					Helper.SetupNotifier.Timer.shortTime
 				);
+				
+				if (dataBase64s.Count() == 1) {
+					return RedirectToAction("Page_Detail", new { id = idFirstMap });
+				}
+
 				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 			catch {

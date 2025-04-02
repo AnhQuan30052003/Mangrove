@@ -207,7 +207,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Create successfully." : "Tạo thành công.",
 					Helper.SetupNotifier.Timer.fastTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+				return RedirectToAction("Page_Detail", new { id = model.Id });
 			}
 			catch {
 				Helper.Notifier.Success(

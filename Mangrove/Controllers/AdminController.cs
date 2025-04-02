@@ -60,6 +60,7 @@ namespace Mangrove.Controllers {
 				Helper.Validate.Clear();
 				Helper.Validate.TextLength(model.Username, 4, 30);
 				Helper.Validate.IsEmail(model.Email);
+				Helper.Validate.TextLength(model.CodeSendEmail, 19);
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {

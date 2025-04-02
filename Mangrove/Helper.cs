@@ -107,6 +107,7 @@ public class Helper {
 
 		// Cookie reset password
 		public static string resetPassword = "resetPassword";
+		public static string resetPasswordSave = "resetPasswordSave";
 	}
 
 	// Setup noifier
@@ -550,7 +551,7 @@ public class Helper {
 
 				<head>
 					<meta charset='UTF-8'>
-					<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-slcale=1.5, maximum-scale=5.0'>
+					<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0'>
 					<title></title>
 
 					<style>
@@ -644,16 +645,16 @@ public class Helper {
 		}
 
 		// Gửi email
-		public static async void SendAsync(string username, string passwordCode, string toEmail, string subject, string body) {
+		public static async void SendAsync(string email, string passwordCode, string toEmail, string subject, string body) {
 			try {
 				var smtpClient = new SmtpClient("smtp.gmail.com") {
 					Port = 587,
-					Credentials = new NetworkCredential(username, passwordCode),
+					Credentials = new NetworkCredential(email, passwordCode),
 					EnableSsl = true
 				};
 
 				var mailMessage = new MailMessage {
-					From = new MailAddress(username),
+					From = new MailAddress(email),
 					Subject = subject,
 					Body = body,
 					IsBodyHtml = true

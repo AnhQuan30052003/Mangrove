@@ -115,23 +115,33 @@ namespace Mangrove.Controllers {
 
 				// Tạo mã 6 số
 				string codeReset = Helper.Func.CreateCodeRandom(6);
+				
+				// Mã có tác dụng trong 5 phút
 				HttpContext.Response.Cookies.Append(
-					Helper.Key.resetPassword,
+					Helper.Key.resetPasswordSave,
 					codeReset,
 					new CookieOptions {
 						Expires = DateTimeOffset.UtcNow.AddMinutes(5)
 					}
 				);
+				// Lưu lại mã trong 1 năm
+				HttpContext.Response.Cookies.Append(
+					Helper.Key.resetPassword,
+					codeReset,
+					new CookieOptions {
+						Expires = DateTimeOffset.UtcNow.AddDays(365)
+					}
+				);
 
 				// Gửi email thông báo
-				string subject = "Reset password | Tạo lại mật khẩu.";
+				string subject = "ADMIN - RESET PASSWORD | TẠO LẠI MẬT KHẨU.";
 				string body = Helper.Email.CreateFormHtml(codeReset);
 				Helper.Email.SendAsync(admin.Email, admin.CodeSendEmail, admin.Email, subject, body);
 
 				// Setup thông báo thành công
 				Helper.Notifier.Success(
 					isEN ? "Please check your email for a password reset code." : "Hãy kiểm tra email để lấy mã tạo lại mật khẩu.",
-					Helper.SetupNotifier.Timer.longTime
+					Helper.SetupNotifier.Timer.midTime
 				);
 				return RedirectToAction("Page_ForgottenPassword_Input", new { access = true });
 			}
@@ -190,19 +200,22 @@ namespace Mangrove.Controllers {
 				}
 
 				// Check mã 6 số
+				string codeRestSave = HttpContext.Request.Cookies[Helper.Key.resetPasswordSave] ?? string.Empty;
 				string codeRest = HttpContext.Request.Cookies[Helper.Key.resetPassword] ?? string.Empty;
+
+				// Nếu khác
 				if (codeRest != codeNumber) {
 					Helper.Notifier.Fail(
-						isEN ? "Recovery code does not exist !" : "Mã tạo lại không tồn tại !",
+						isEN ? "Recovery code incorrect !" : "Mã tạo lại không chính xác !",
 						Helper.SetupNotifier.Timer.shortTime
 					);
 					return View();
 				}
 
 				// Check thời hạn của mã
-				if (string.IsNullOrEmpty(codeRest)) {
+				if (string.IsNullOrEmpty(codeRestSave)) {
 					Helper.Notifier.Fail(
-						isEN ? "Recovery code expired !" : "Mã tạo lại đã hết hạn !",
+						isEN ? "Recovery code is out of time !" : "Mã tạo lại đã hết thời gian !",
 						Helper.SetupNotifier.Timer.shortTime
 					);
 					return View();
@@ -213,6 +226,9 @@ namespace Mangrove.Controllers {
 				admin!.Password = newPass;
 				context.TblAdmins.Update(admin);
 				await context.SaveChangesAsync();
+
+				// Xoá code reset password đã lưu 1 năm 
+				HttpContext.Response.Cookies.Delete(Helper.Key.resetPassword);
 
 				// Tạo thông báo thành công
 				Helper.Notifier.Success(
