@@ -48,7 +48,7 @@
 					int countStage = 0;
 					foreach (var stage in Model.Stages)
 					{
-						<span tab=@countStage class="previod tab @(countStage == 0 ? "active" : "")">
+						<span tab=@countStage class="previod rounded-1 tab @(countStage == 0 ? "active" : "")">
 							<span class="hidden_mobile cursor-pointer">@translate["label_giai_doan"]</span>
 							@(++countStage)
 						</span>
