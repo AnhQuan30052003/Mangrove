@@ -165,7 +165,7 @@ function createDivAddItem() {
 	description.innerText = document.querySelector("#description").value;
 
 	const addContentItem = document.createElement("div");
-	addContentItem.className = "add_content_item mt-1 m-lg-0 col-12";
+	addContentItem.className = "add_content_item mt-1 col-12";
 
 	const smallTite = document.createElement("small");
 	smallTite.className = "mb-1 d-block font-small";

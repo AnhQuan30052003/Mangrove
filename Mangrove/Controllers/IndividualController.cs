@@ -1,6 +1,7 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -89,10 +90,27 @@ namespace Mangrove.Controllers {
 		}
 
 		// Create
-		public IActionResult Page_Create() {
-			var mode = new TblIndividual();
+		public async Task<IActionResult> Page_Create() {
+			bool isEN = Helper.Func.IsEnglish();
+
+			// Tạo model
+			var model = new TblIndividual();
+
+			// Tạo select
+			var mangroves = await context.TblMangroves.ToListAsync();
+			var select = new SelectList(
+				mangroves.Select(item => new {
+					Value = item.Id,
+					Text = isEN ? item.NameEn : item.NameVi + " - " + item.ScientificName
+				}),
+				"Value",
+				"Text"
+			);
+
+			ViewData["SelectMangrove"] = select;
+
 			Helper.Validate.Clear();
-			return View();
+			return View(model);
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Create(TblDistributiton model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
