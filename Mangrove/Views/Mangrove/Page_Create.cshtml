@@ -60,10 +60,10 @@
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
-									<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
+									<div class="add_img col-12 col-lg-6 rounded-1 p-2">
 										<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-										<div class="input_img bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
 													type="button">
 												<i class="icon_add fa-solid fa-plus"></i>
@@ -75,8 +75,8 @@
 											</div>
 										</div>
 
-										<div class="preview_img position-relative d-none" style="height: calc(100% - 27px);">
-											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+										<div class="preview_img position-relative d-none">
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100"
 												 alt="" />
 
 											<button class="btn_remove_preview_img"
@@ -118,10 +118,10 @@
 											<i class="icon_remove_item fa-solid fa-xmark"></i>
 										</button>
 
-										<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
+										<div class="add_img col-12 col-lg-6 rounded-1 p-2">
 											<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center" style="height: calc(100% - 27px);">
+											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">
 												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
 														type="button">
 													<i class="icon_add fa-solid fa-plus"></i>
@@ -133,8 +133,8 @@
 												</div>
 											</div>
 
-											<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
-												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+											<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100"
 													 src="/img/temp-img/@dataBase64"
 													 alt="" />
 

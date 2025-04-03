@@ -40,12 +40,13 @@ function addImageToItem() {
 			const inputImg = addImg.querySelector(".input_img");
 			const previewImg = addImg.querySelector(".preview_img");
 
+			const inputFile = inputImg.querySelector("input");
 			const imageType = inputImg.querySelector(".image_type");
 			const imageData = inputImg.querySelector(".image_data");
 
 			inputImg.classList.remove("d-none");
 			previewImg.classList.add("d-none");
-			imageData.value = imageType.value = "";
+			inputFile.value = imageData.value = imageType.value = "";
 		}
 
 		// Khi click vào xoá item
@@ -56,9 +57,10 @@ function addImageToItem() {
 			const quantity = document.querySelector(".quantity_item");
 			quantity.innerHTML = parseInt(quantity.innerText) - 1;
 
+			const inputFile = addItem.querySelector("input");
 			const imageType = addItem.querySelector(".image_type");
 			const imageData = addItem.querySelector(".image_data");
-			imageData.value = imageType.value = "";
+			inputFile.value = imageData.value = imageType.value = "";
 		}
 	});
 }
@@ -98,8 +100,7 @@ function createDivAddItem() {
 	photo.innerText = document.querySelector("#photo").value;
 
 	const inputImg = document.createElement("div");
-	inputImg.className = "input_img bg-white d-flex justify-content-center align-items-center";
-	inputImg.style.height = "calc(100% - 27px)";
+	inputImg.className = "input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1";
 
 	const btnAddImg = document.createElement("button");
 	btnAddImg.className = "btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1";
@@ -136,10 +137,9 @@ function createDivAddItem() {
 
 	const previewImg = document.createElement("div");
 	previewImg.className = "preview_img position-relative d-none";
-	previewImg.style.height = "calc(100% - 27px)";
 
 	const img = document.createElement("img");
-	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height";
+	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100";
 	img.setAttribute("name", "ImageName");
 
 	const btnRemovvPreviewImg = document.createElement("button")

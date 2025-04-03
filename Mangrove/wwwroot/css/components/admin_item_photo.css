@@ -32,13 +32,15 @@
 	max-height: 300px;
 }
 
+.min_height_input_img {
+	min-height: 150px;
+}
+
 @media (width <= 1200px) {
 	:root {
 		--size_btn_remove_preview_img: 30px;
 	}
-	.add_img_min_height {
-		min-height: 200px;
-	}
+	
 
 	.img_max_height {
 		max-height: 200px;
