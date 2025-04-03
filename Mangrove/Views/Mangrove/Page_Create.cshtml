@@ -18,6 +18,7 @@
 <input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
 <input id="photo" value="@translate["label_hinh_anh"]" hidden />
 <input id="description" value="@translate["label_mo_ta"]" hidden />
+<input id="maxItem" value="@Helper.Variable.maxItem" hidden />
 
 <section class="mod-add-mangrove">
 	<div class="container py-2">
@@ -43,14 +44,14 @@
 			</div>
 
 			<!-- Slides -->
-			<div class="frame_slide rounded-1 mb-2 box">
+			<div class="frame_slide rounded-1 mb-2 box frame_items">
 				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1">
 						Slide (<span class="quantity_item">@(dataTypes.Any() ? dataTypes.Count() : 1)</span>/@Helper.Variable.maxItem)
 					</h6>
 				</div>
 
-				<div class="info frame_items">
+				<div class="info">
 					<div class="items bg-form have_move">
 						@{
 							if (!dataBase64s.Any())
@@ -63,8 +64,8 @@
 									<div class="add_img col-12 col-lg-6 rounded-1">
 										<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">
-											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 													type="button">
 												<i class="icon_add fa-solid fa-plus"></i>
 											</button>
@@ -76,7 +77,7 @@
 										</div>
 
 										<div class="preview_img position-relative d-none">
-											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100"
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 												 alt="" />
 
 											<button class="btn_remove_preview_img"
@@ -121,8 +122,8 @@
 										<div class="add_img col-12 col-lg-6 rounded-1">
 											<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">
-												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 														type="button">
 													<i class="icon_add fa-solid fa-plus"></i>
 												</button>
@@ -134,7 +135,7 @@
 											</div>
 
 											<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
-												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100"
+												<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 													 src="/img/temp-img/@dataBase64"
 													 alt="" />
 

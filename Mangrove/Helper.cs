@@ -34,6 +34,9 @@ public class Helper {
 	// Variable
 	public static class Variable {
 		public static int maxItem = 10;
+		public static int maxItemImageIndividual = 20;
+		public static int maxStage = 5;
+
 		public static int timeSession = 365;
 		public static int timeLogin = 30;
 

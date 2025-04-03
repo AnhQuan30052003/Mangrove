@@ -1,11 +1,6 @@
-.individual_display .tabs .previod {
-    padding: 4px 8px;
-    background-color: white;
-}
-
-.individual_display .tabs .previod.active {
-    background-color: black;
-    color: white;
+.individual_display .stage_individual.active {
+    background-color: black !important;
+    color: white !important;
 }
 
 #btnQRFixed {

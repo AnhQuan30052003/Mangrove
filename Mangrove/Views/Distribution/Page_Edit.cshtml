@@ -22,12 +22,12 @@
 			<input asp-for="@Model.Id" hidden />
 			<input asp-for="@Model.ImageMap" hidden />
 
-			<div class="item py-2 bg-form rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
-				<div class="add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2">
+			<div class="item p-2 bg-form rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+				<div class="add_img col-12 col-lg-6 rounded-1">
 					<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-					<div class="input_img bg-white d-flex justify-content-center align-items-center @(haveImage ? "d-none" : "")" style="height: calc(100% - 27px);">
-						<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1"
+					<div class="input_img bg-white d-flex justify-content-center align-items-center @(haveImage ? "d-none" : "") min_height_input_img rounded-1 green_effect">
+						<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 								type="button">
 							<i class="icon_add fa-solid fa-plus"></i>
 						</button>
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 
-					<div class="preview_img position-relative @(haveImage ? "" : "d-none")" style="height: calc(100% - 27px);">
+					<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
 						<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 							 src="/img/@folder/@dataBase64"
 							 alt="" />

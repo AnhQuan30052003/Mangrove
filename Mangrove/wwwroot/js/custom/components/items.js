@@ -67,16 +67,20 @@ function addImageToItem() {
 addImageToItem();
 
 // Khi click vào nút thêm item
-export function addItem(idButtonClick) {
+export function addItem(idButtonClick, maxItem = null) {
 	const clicked = document.querySelector(idButtonClick)
-	const items = clicked.closest(".frame_items").querySelector(".items");
+	const frameItems = clicked.closest(".frame_items");
+	const items = frameItems.querySelector(".items");
 	const addItemFind = items.querySelectorAll(".add_item");
-	if (addItemFind.length == 10) return;
+
+	// Xử lý giới hạn item
+	maxItem = maxItem ?? 10;
+	if (addItemFind.length == maxItem) return;
 
 	const addItem = createDivAddItem();
 	items.appendChild(addItem);
 
-	const quantity = document.querySelector(".quantity_item");
+	const quantity = frameItems.querySelector(".quantity_item");
 	quantity.innerHTML = addItemFind.length + 1;
 }
 
@@ -100,10 +104,10 @@ function createDivAddItem() {
 	photo.innerText = document.querySelector("#photo").value;
 
 	const inputImg = document.createElement("div");
-	inputImg.className = "input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1";
+	inputImg.className = "input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect";
 
 	const btnAddImg = document.createElement("button");
-	btnAddImg.className = "btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1";
+	btnAddImg.className = "btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect";
 	btnAddImg.type = "button";
 
 	const iconAdd = document.createElement("i");
@@ -139,7 +143,7 @@ function createDivAddItem() {
 	previewImg.className = "preview_img position-relative d-none";
 
 	const img = document.createElement("img");
-	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height w-100";
+	img.className = "show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height";
 	img.setAttribute("name", "ImageName");
 
 	const btnRemovvPreviewImg = document.createElement("button")
@@ -204,3 +208,46 @@ function createDivAddItem() {
 
 	return addItem;
 }
+
+// Theo dõi khi click và tab giai đoạn của mỗi cây bên page admin
+function clickChangeStageTab() {
+	document.addEventListener("click", function (e) {
+		const clicked = e.target;
+		if (clicked.matches(".change_tab")) {
+			const tabs = clicked.closest(".tabs");
+			const changeTabs = tabs.querySelectorAll(".change_tab");			
+
+			// Highlight tab click
+			changeTabs.forEach((item) => item.classList.remove("active"));
+			clicked.classList.add("active");
+
+			// Run fun thay đổi display_item
+		}
+	});
+}
+clickChangeStageTab();
+
+// Add item stage 
+function addStage() {
+	const btn = document.querySelector(".btn_add_stage");
+	btn.addEventListener("click", function () {
+		const frameTab = this.closest(".frame_tab");
+		const tabs = frameTab.querySelector(".tabs");
+		const tabItemSpan = tabs.querySelectorAll(".tab_item");
+
+		const maxStage = btn.getAttribute("max-stage");
+		if (tabItemSpan.length >= maxStage) return;
+
+		const lastTab = tabItemSpan[tabItemSpan.length - 1];
+		let index = parseInt(lastTab.getAttribute("data-tab")) + 1;
+
+		// Tạo item stage - span
+		const span = document.createElement("span");
+		span.className = "tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer";
+		span.setAttribute("data-tab", index);
+		span.innerHTML = index;
+
+		tabs.appendChild(span);
+	});
+}
+addStage();

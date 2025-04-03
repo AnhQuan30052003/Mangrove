@@ -45,12 +45,12 @@
 		{
 			<div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
 				@{
-					int countStage = 0;
+					int countStage = 1;
 					foreach (var stage in Model.Stages)
 					{
-						<span tab=@countStage class="previod rounded-1 tab @(countStage == 0 ? "active" : "")">
-							<span class="hidden_mobile cursor-pointer">@translate["label_giai_doan"]</span>
-							@(++countStage)
+						<span class="stage_individual tab py-2 px-3 bg-white rounded-circle cursor-pointer @(countStage == 1 ? "active" : "")"
+							  data-tab=@countStage>
+							@(countStage++)
 						</span>
 					}
 				}
