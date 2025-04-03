@@ -55,12 +55,12 @@
 						@{
 							if (!dataBase64s.Any())
 							{
-								<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+								<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 									<button class="btn_remove_item" type="button">
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
-									<div class="add_img col-12 col-lg-6 rounded-1 p-2">
+									<div class="add_img col-12 col-lg-6 rounded-1">
 										<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
 										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">
@@ -113,12 +113,12 @@
 
 									bool haveImage = !string.IsNullOrEmpty(dataBase64);
 
-									<div class="add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+									<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 										<button class="btn_remove_item" type="button">
 											<i class="icon_remove_item fa-solid fa-xmark"></i>
 										</button>
 
-										<div class="add_img col-12 col-lg-6 rounded-1 p-2">
+										<div class="add_img col-12 col-lg-6 rounded-1">
 											<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
 											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1">

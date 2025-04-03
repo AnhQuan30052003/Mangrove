@@ -82,7 +82,7 @@ export function addItem(idButtonClick) {
 
 function createDivAddItem() {
 	const addItem = document.createElement("div");
-	addItem.className = "add_item py-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail";
+	addItem.className = "add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail";
 
 	const btnRemoveItem = document.createElement("button");
 	btnRemoveItem.className = "btn_remove_item";
@@ -93,7 +93,7 @@ function createDivAddItem() {
 	btnRemoveItem.appendChild(iconRemoveItem);
 
 	const addImg = document.createElement("div");
-	addImg.className = "add_img col-12 col-lg-6 add_img_min_height rounded-1 p-2";
+	addImg.className = "add_img col-12 col-lg-6 add_img_min_height rounded-1";
 
 	const photo = document.createElement("p");
 	photo.className = "text-center text-black";
