@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tetUaMDGt1QiUAVdOOelXXl1IBFGcD+1LjUSCoYE1Aw=",
+  "Hash": "sOCVQkxEFOm2Ak0IHl+9wUMxxwLR5Yi3A/PebXFzhAs=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1858,8 +1858,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ong5cvaivt",
-      "Integrity": "lGubI8irXI93p0JFZlK+sR4ID90gfkQ7GgxliDvkb+g=",
+      "Fingerprint": "4yeku5s4vk",
+      "Integrity": "rFqCP/6lIDVW9nsRDgW1M4hTDFDJ3HeSVMXxf2XJ+7w=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\items.js"
@@ -1942,8 +1942,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "i92ik76r3h",
-      "Integrity": "9gu6HoGSNcZI8G/Eh7BePNpPf1G9GbGKUE6dknHR78Y=",
+      "Fingerprint": "ppx52euna6",
+      "Integrity": "7RNqQyc7+6ErzVMnhfMW4j+oC93OowOcsxvMfPbm50I=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\move_item_photo.js"
@@ -10471,6 +10471,51 @@
       ]
     },
     {
+      "Route": "js/custom/components/items.4yeku5s4vk.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14927"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rFqCP/6lIDVW9nsRDgW1M4hTDFDJ3HeSVMXxf2XJ+7w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 04 Apr 2025 08:57:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4yeku5s4vk"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/items.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rFqCP/6lIDVW9nsRDgW1M4hTDFDJ3HeSVMXxf2XJ+7w="
+        }
+      ]
+    },
+    {
       "Route": "js/custom/components/items.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
       "Selectors": [],
@@ -10481,7 +10526,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14531"
+          "Value": "14927"
         },
         {
           "Name": "Content-Type",
@@ -10489,11 +10534,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"lGubI8irXI93p0JFZlK+sR4ID90gfkQ7GgxliDvkb+g=\""
+          "Value": "\"rFqCP/6lIDVW9nsRDgW1M4hTDFDJ3HeSVMXxf2XJ+7w=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:23:26 GMT"
+          "Value": "Fri, 04 Apr 2025 08:57:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10503,52 +10548,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-lGubI8irXI93p0JFZlK+sR4ID90gfkQ7GgxliDvkb+g="
-        }
-      ]
-    },
-    {
-      "Route": "js/custom/components/items.ong5cvaivt.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14531"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"lGubI8irXI93p0JFZlK+sR4ID90gfkQ7GgxliDvkb+g=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:23:26 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ong5cvaivt"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/items.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-lGubI8irXI93p0JFZlK+sR4ID90gfkQ7GgxliDvkb+g="
+          "Value": "sha256-rFqCP/6lIDVW9nsRDgW1M4hTDFDJ3HeSVMXxf2XJ+7w="
         }
       ]
     },
@@ -10799,51 +10799,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/move_item_photo.i92ik76r3h.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1019"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"9gu6HoGSNcZI8G/Eh7BePNpPf1G9GbGKUE6dknHR78Y=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:22:17 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "i92ik76r3h"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/move_item_photo.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-9gu6HoGSNcZI8G/Eh7BePNpPf1G9GbGKUE6dknHR78Y="
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/move_item_photo.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
       "Selectors": [],
@@ -10854,7 +10809,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1019"
+          "Value": "1089"
         },
         {
           "Name": "Content-Type",
@@ -10862,11 +10817,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9gu6HoGSNcZI8G/Eh7BePNpPf1G9GbGKUE6dknHR78Y=\""
+          "Value": "\"7RNqQyc7+6ErzVMnhfMW4j+oC93OowOcsxvMfPbm50I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:22:17 GMT"
+          "Value": "Fri, 04 Apr 2025 08:31:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10876,7 +10831,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9gu6HoGSNcZI8G/Eh7BePNpPf1G9GbGKUE6dknHR78Y="
+          "Value": "sha256-7RNqQyc7+6ErzVMnhfMW4j+oC93OowOcsxvMfPbm50I="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/move_item_photo.ppx52euna6.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1089"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7RNqQyc7+6ErzVMnhfMW4j+oC93OowOcsxvMfPbm50I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 04 Apr 2025 08:31:03 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ppx52euna6"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/move_item_photo.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7RNqQyc7+6ErzVMnhfMW4j+oC93OowOcsxvMfPbm50I="
         }
       ]
     },

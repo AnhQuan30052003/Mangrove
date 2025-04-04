@@ -212,6 +212,7 @@ function addStage() {
 
 			// Xử lý chỉ số index
 			let index = -1;
+			listIndex.sort();
 			for (let i = 0; i < listIndex.length; i++) {
 				if (listIndex[i] != i + 1) {
 					index = i + 1;
