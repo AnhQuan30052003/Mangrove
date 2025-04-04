@@ -151,6 +151,13 @@ option {
     outline: solid 1px;
 }
 
+.position_remove_tab {
+	position: absolute;
+	top: -15px;
+	right: -5px;
+	z-index: 1;
+}
+
 @media (width <=1200px) {
     .hidden_mobile {
         display: none !important;
