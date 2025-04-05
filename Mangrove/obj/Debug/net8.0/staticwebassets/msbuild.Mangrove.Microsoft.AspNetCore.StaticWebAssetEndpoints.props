@@ -1092,17 +1092,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-ath3wx3uCa2bxKIv71BOVbT\u002B2iQEP49Li7XKt17ouRQ="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1423"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022ath3wx3uCa2bxKIv71BOVbT\u002B2iQEP49Li7XKt17ouRQ=\u0022"},{"Name":"Last-Modified","Value":"Wed, 19 Mar 2025 05:37:48 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/move_item_photo.9688m3z9yj.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\move_item_photo.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9688m3z9yj"},{"Name":"integrity","Value":"sha256-YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/move_item_photo.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1149"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 05 Apr 2025 03:43:19 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/move_item_photo.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\move_item_photo.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1149"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM=\u0022"},{"Name":"Last-Modified","Value":"Sat, 05 Apr 2025 03:43:19 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-sdn4o61GNEOSHb\u002BLK8kIQpmUE/qn5AdPY4dzVdwYLxs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1516"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sdn4o61GNEOSHb\u002BLK8kIQpmUE/qn5AdPY4dzVdwYLxs=\u0022"},{"Name":"Last-Modified","Value":"Sat, 05 Apr 2025 04:09:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/move_item_photo.nyjp19xa8d.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\move_item_photo.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"nyjp19xa8d"},{"Name":"integrity","Value":"sha256-sdn4o61GNEOSHb\u002BLK8kIQpmUE/qn5AdPY4dzVdwYLxs="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/move_item_photo.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1516"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022sdn4o61GNEOSHb\u002BLK8kIQpmUE/qn5AdPY4dzVdwYLxs=\u0022"},{"Name":"Last-Modified","Value":"Sat, 05 Apr 2025 04:09:57 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/paginate.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\paginate.js'))</AssetFile>

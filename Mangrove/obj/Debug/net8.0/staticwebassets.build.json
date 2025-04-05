@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eRzPbco/zZym1xzwuqprvs/S5h+uDbub6C1LMtO2GOg=",
+  "Hash": "EYXdAehgTjbUHnZC+qor9SfnyC9xMSMjaa+qbIWvThE=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1942,8 +1942,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9688m3z9yj",
-      "Integrity": "YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM=",
+      "Fingerprint": "nyjp19xa8d",
+      "Integrity": "sdn4o61GNEOSHb+LK8kIQpmUE/qn5AdPY4dzVdwYLxs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\move_item_photo.js"
@@ -10799,51 +10799,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/move_item_photo.9688m3z9yj.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1149"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 03:43:19 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9688m3z9yj"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/move_item_photo.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM="
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/move_item_photo.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
       "Selectors": [],
@@ -10854,7 +10809,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1149"
+          "Value": "1516"
         },
         {
           "Name": "Content-Type",
@@ -10862,11 +10817,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM=\""
+          "Value": "\"sdn4o61GNEOSHb+LK8kIQpmUE/qn5AdPY4dzVdwYLxs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 03:43:19 GMT"
+          "Value": "Sat, 05 Apr 2025 04:09:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10876,7 +10831,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YQ0nTYDce44T3NMRLTiALnApmhyM/5joLP42nsEJvSM="
+          "Value": "sha256-sdn4o61GNEOSHb+LK8kIQpmUE/qn5AdPY4dzVdwYLxs="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/move_item_photo.nyjp19xa8d.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1516"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sdn4o61GNEOSHb+LK8kIQpmUE/qn5AdPY4dzVdwYLxs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 05 Apr 2025 04:09:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nyjp19xa8d"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/move_item_photo.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sdn4o61GNEOSHb+LK8kIQpmUE/qn5AdPY4dzVdwYLxs="
         }
       ]
     },

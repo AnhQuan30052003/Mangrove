@@ -3,6 +3,7 @@ using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
@@ -91,30 +92,36 @@ namespace Mangrove.Controllers {
 
 		// Create
 		public async Task<IActionResult> Page_Create() {
-			bool isEN = Helper.Func.IsEnglish();
-
 			// Tạo model
 			var model = new TblIndividual();
 
 			// Tạo select
 			var mangroves = await context.TblMangroves.ToListAsync();
-			var select = new SelectList(
-				mangroves.Select(item => new {
-					Value = item.Id,
-					Text = isEN ? item.NameEn : item.NameVi + " - " + item.ScientificName
-				}),
-				"Value",
-				"Text"
-			);
-
-			ViewData["SelectMangrove"] = select;
+			ViewData["Mangroves"] = mangroves;
 
 			Helper.Validate.Clear();
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(TblDistributiton model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
-			return View();
+		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
+			bool isEN = Helper.Func.IsEnglish();
+
+			// Tạo select
+			var mangroves = await context.TblMangroves.ToListAsync();
+			ViewData["Mangroves"] = mangroves;
+			ViewData["ChooseIdMangrove"] = chooseIdMangrove;
+
+			try {
+				return View(model);
+
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "There was an error adding the individual. Please try again later !" : "Có lỗi trong quá trình thêm cá thể. Vui lòng thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return View(model);
+			}
 		}
 
 		// Edit
