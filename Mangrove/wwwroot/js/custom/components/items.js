@@ -167,9 +167,15 @@ function clickChangeStageTab() {
 		const tabItems = document.querySelectorAll(".tab_item");
 		tabItems.forEach((tabItem) => {
 			if (tabItem.contains(e.target)) {
-				tabItems.forEach((item) => item.classList.remove("active"));
+				tabItems.forEach((item) => {
+					item.classList.remove("active");
+					const listActiveStage = item.querySelector(".listActiveStage");
+					listActiveStage.value = "";
+				});
 
 				tabItem.classList.add("active");
+				const listActiveStage = tabItem.querySelector(".listActiveStage");
+				listActiveStage.value = "active";
 
 				// Run fun thay đổi display_item
 				const dataTab = tabItem.getAttribute("data-tab");
@@ -199,7 +205,6 @@ function addStage() {
 			const frameTab = this.closest(".frame_tab");
 			const tabs = frameTab.querySelector(".tabs");
 
-
 			// Ẩn các tab item kia và lấy chỉ số index - data tab
 			let listIndex = [];
 			const tabItems = tabs.querySelectorAll(".tab_item");
@@ -208,6 +213,8 @@ function addStage() {
 				const getDataTab = item.getAttribute("data-tab");
 				listIndex.push(parseInt(getDataTab));
 				item.classList.remove("active");
+				const listActiveStage = item.querySelector(".listActiveStage");
+				listActiveStage.value = "";
 			});
 
 			// Xử lý chỉ số index
@@ -231,6 +238,9 @@ function addStage() {
 				<span class="remove_tab text-danger position_remove_tab">
 					<i class="icon_remove_tab fa-solid fa-xmark"></i>
 				</span>
+
+				<input class="indexStage" type="text" name="listIndexStage" value="${index}" hidden />
+				<input class="listActiveStage" type="text" name="listActiveStage" value="active" hidden />
 			`;
 			tabs.appendChild(newTabItem);
 

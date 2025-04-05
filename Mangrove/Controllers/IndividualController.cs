@@ -103,14 +103,18 @@ namespace Mangrove.Controllers {
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
-			bool isEN = Helper.Func.IsEnglish();
+		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<int> listIndexStage, List<string> listActiveStage) {
+			// List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs
 
+			// Tạm lưu lại dữ liệu cho view
 			// Tạo select
 			var mangroves = await context.TblMangroves.ToListAsync();
 			ViewData["Mangroves"] = mangroves;
 			ViewData["ChooseIdMangrove"] = chooseIdMangrove;
+			ViewData["ListIndexStage"] = listIndexStage;
+			ViewData["ListActiveStage"] = listActiveStage;
 
+			bool isEN = Helper.Func.IsEnglish();
 			try {
 				return View(model);
 
