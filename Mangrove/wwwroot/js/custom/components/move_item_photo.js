@@ -18,20 +18,27 @@ function changeIndexItemPhoto() {
 		});
 
 		// Cho các item stage
-		const tabss = document.querySelectorAll(".tabs");
-		tabss.forEach((tab) => {
-			if (tab.contains(e.target) && tab.classList.contains("have_move")) {
-				new Sortable(tab, {
-					animation: 150,
-					ghostClass: "sortable-ghost",
-					handle: ".tab_item",
-					draggable: ".tab_item",
-					onEnd: function (evt) {
-						//let arr = new Array[5];
-					},
-				});
-			}
-		});
+		const tabsChange = document.querySelector(".tabs_change");
+		if (tabsChange && tabsChange.classList.contains("have_move")) {
+			new Sortable(tabsChange, {
+				animation: 150,
+				ghostClass: "sortable-ghost",
+				handle: ".tab_item",
+				draggable: ".tab_item",
+				onEnd: function (evt) {
+					const tabItems = tabsChange.querySelectorAll(".tab_item");
+					const listDisplayItem = document.querySelectorAll(".display_item");
+
+					const listIndex = Array.from(tabItems).map(tab => {
+						const tabValue = tab.getAttribute("data-tab");
+						return Array.from(listDisplayItem).find(item => item.getAttribute("data-tab") === tabValue);
+					});
+
+					const displayInfo = document.querySelector(".display_info_stage");
+					displayInfo.innerHTML = listIndex.map(el => el.outerHTML).join("");
+				},
+			});
+		}
 	});
 }
 changeIndexItemPhoto();
