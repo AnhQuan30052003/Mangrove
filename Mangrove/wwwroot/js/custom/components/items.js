@@ -104,9 +104,10 @@ export function addItem(idButtonClick) {
 		quantity.innerHTML = addItemFind.length + 1;
 	}
 
-	const listItemPhotoOfStage = frameItems.querySelector(".listItemPhotoOfStage");
-	if (listItemPhotoOfStage) {
-		listItemPhotoOfStage.value = addItemFind.length + 1;
+	// Thêm só lượng item photo bên manager (create, edit) individual
+	const itemPhotoOfStages = frameItems.querySelector(".itemPhotoOfStages");
+	if (itemPhotoOfStages) {
+		itemPhotoOfStages.value = addItemFind.length + 1;
 	}
 }
 
@@ -176,13 +177,13 @@ function clickChangeStageTab() {
 			if (tabItem.contains(e.target)) {
 				tabItems.forEach((item) => {
 					item.classList.remove("active");
-					const listActiveStage = item.querySelector(".listActiveStage");
-					listActiveStage.value = "";
+					const activeStages = item.querySelector(".activeStages");
+					activeStages.value = "";
 				});
 
 				tabItem.classList.add("active");
-				const listActiveStage = tabItem.querySelector(".listActiveStage");
-				listActiveStage.value = "active";
+				const activeStages = tabItem.querySelector(".activeStages");
+				activeStages.value = "active";
 
 				// Run fun thay đổi display_item
 				const dataTab = tabItem.getAttribute("data-tab");
@@ -220,8 +221,8 @@ function addStage() {
 				const getDataTab = item.getAttribute("data-tab");
 				listIndex.push(parseInt(getDataTab));
 				item.classList.remove("active");
-				const listActiveStage = item.querySelector(".listActiveStage");
-				listActiveStage.value = "";
+				const activeStages = item.querySelector(".activeStages");
+				activeStages.value = "";
 			});
 
 			// Xử lý chỉ số index
@@ -246,8 +247,8 @@ function addStage() {
 					<i class="icon_remove_tab fa-solid fa-xmark"></i>
 				</span>
 
-				<input class="indexStage" type="text" name="listIndexStage" value="${index}" hidden />
-				<input class="listActiveStage" type="text" name="listActiveStage" value="active" hidden />
+				<input class="indexStages" type="text" name="indexStages" value="${index}" hidden />
+				<input class="activeStages" type="text" name="activeStages" value="active" hidden />
 			`;
 			tabs.appendChild(newTabItem);
 
@@ -314,29 +315,29 @@ function createDisplayItem(index) {
 			</div>
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${surveyDay}</small>
-				<input type="date" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>
 
 		<div class="bottom col-sm-6 p-2">
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${stageName} (${labelEnglish})</small>
-				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${stageName} (${labelVietnamese})</small>
-				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${weather} (${labelEnglish})</small>
-				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${weather} (${labelVietnamese})</small>
-				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>
 	`;
@@ -346,9 +347,9 @@ function createDisplayItem(index) {
 	frameItems.innerHTML = `
 		<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
 			<h6 class="py-2 bg-black text-white rounded-1">
-				${detailImageStage} ${index}
-				(<span class="quantity_item">1</span>/${maxItem})
+				${detailImageStage} ${index} (<span class="quantity_item">1</span>/${maxItem})
 			</h6>
+			<input class="itemPhotoOfStages" name="itemPhotoOfStages" type="text" value="1" hidden />
 		</div>
 
 		<div class="info">

@@ -103,21 +103,70 @@ namespace Mangrove.Controllers {
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<int> listIndexStage, List<string> listActiveStage) {
-			// List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs
-
-			// Tạm lưu lại dữ liệu cho view
-			// Tạo select
-			var mangroves = await context.TblMangroves.ToListAsync();
-			ViewData["Mangroves"] = mangroves;
-			ViewData["ChooseIdMangrove"] = chooseIdMangrove;
-			ViewData["ListIndexStage"] = listIndexStage;
-			ViewData["ListActiveStage"] = listActiveStage;
-
+		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages,
+			List<string> surveyDates, List<string> stageNameENs, List<string> stageNameVIS, List<string> weatherENS, List<string> weatherVIs,
+			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
-				return View(model);
+				// Tạm lưu lại dữ liệu cho view
+				ViewData["ChooseIdMangrove"] = chooseIdMangrove;
+				ViewData["IndexStages"] = indexStages;
+				ViewData["ActiveStages"] = activeStages;
+				ViewData["ItemPhotoOfStages"] = itemPhotoOfStages;
 
+				ViewData["SurveyDates"] = surveyDates;
+				ViewData["StageNameENs"] = stageNameENs;
+				ViewData["StageNameVIS"] = stageNameVIS;
+				ViewData["WeatherENS"] = weatherENS;
+				ViewData["WeatherVIs"] = weatherVIs;
+
+				ViewData["DataTypes"] = dataTypes;
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["NoteENs"] = noteENs;
+				ViewData["NoteVIs"] = noteVIs;
+				// Tạo select
+				var mangroves = await context.TblMangroves.ToListAsync();
+				ViewData["Mangroves"] = mangroves;
+
+				// Begin validate
+				Helper.Validate.Clear();
+				Helper.Validate.NotEmpty(model.Longitude);
+				Helper.Validate.NotEmpty(model.Latitude);
+				Helper.Validate.NotEmpty(model.PositionEn);
+				Helper.Validate.NotEmpty(model.PositionVi);
+
+				int indexPhoto = 0;
+				for (int i = 0; i < indexStages.Count(); i++) {
+					int countItem = Convert.ToInt32(itemPhotoOfStages[i]);
+					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
+					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
+
+					Helper.Validate.NotEmpty(surveyDates[i]);
+					Helper.Validate.NotEmpty(stageNameENs[i]);
+					Helper.Validate.NotEmpty(stageNameVIS[i]);
+					Helper.Validate.NotEmpty(weatherENS[i]);
+					Helper.Validate.NotEmpty(weatherVIs[i]);
+
+					for (int j = indexPhoto + 1; j < countItem + 1; i++) {
+						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
+						Helper.Validate.NotEmpty(dataBase64s[j]);
+						Helper.Validate.NotEmpty(noteENs[j]);
+						Helper.Validate.NotEmpty(noteVIs[j]);
+					}
+					indexPhoto += countItem + 1;
+				}
+
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View(model);
+				}
+				// End validate
+
+				return View(model);
 			}
 			catch {
 				Helper.Notifier.Fail(

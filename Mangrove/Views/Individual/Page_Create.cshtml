@@ -11,15 +11,14 @@
 	string _pv = Helper.Path.partialView;
 
 	// Variables for page
-	var dataTypes = TempData["DataTypes"] as List<string> ?? new List<string>();
-	var dataBase64s = TempData["DataBase64s"] as List<string> ?? new List<string>();
-	var noteENs = TempData["NoteENs"] as List<string> ?? new List<string>();
-	var noteVIs = TempData["NoteVIs"] as List<string> ?? new List<string>();
+	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>();
+	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>();
+	var noteENs = ViewData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = ViewData["NoteVIs"] as List<string> ?? new List<string>();
 
-	var listIndexStage = ViewData["ListIndexStage"] as List<int> ?? new List<int>();
-	var listActiveStage = ViewData["ListActiveStage"] as List<string> ?? new List<string>();
-	var listItemPhotoOfStage = ViewData["ListItemPhotoOfStage"] as List<string> ?? new List<string>();
-
+	var indexStages = ViewData["IndexStages"] as List<int> ?? new List<int>();
+	var activeStages = ViewData["ActiveStages"] as List<string> ?? new List<string>();
+	var itemPhotoOfStages = ViewData["ItemPhotoOfStages"] as List<string> ?? new List<string>();
 
 	List<TblMangrove> mangroves = ViewData["Mangroves"] as List<TblMangrove> ?? new List<TblMangrove>();
 	var selectMangrove = new SelectList(
@@ -34,6 +33,7 @@
 	);
 }
 
+<!-- Setup variables for js when create item -->
 <input id="english" value="@translate["label_tieng_anh"]" hidden />
 <input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
 <input id="photo" value="@translate["label_hinh_anh"]" hidden />
@@ -124,7 +124,7 @@
 					<div class="frame_tab d-flex justify-content-center gap-2">
 						<div class="tabs tabs_change have_move d-flex justify-content-center gap-1 gap-sm-3 py-2">
 							@{
-								if (!listIndexStage.Any())
+								if (!indexStages.Any())
 								{
 									<span data-tab="1" class="tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer active position-relative">
 										<span class="value_tab">1</span>
@@ -132,16 +132,16 @@
 											<i class="icon_remove_tab fa-solid fa-xmark"></i>
 										</span>
 
-										<input class="indexStage" type="text" name="listIndexStage" value="1" hidden />
-										<input class="listActiveStage" type="text" name="listActiveStage" value="active" hidden />
+										<input class="indexStages" type="text" name="indexStages" value="1" hidden />
+										<input class="activeStages" type="text" name="activeStages" value="active" hidden />
 									</span>
 								}
 								else
 								{
-									for (int i = 0; i < listIndexStage.Count(); i++)
+									for (int i = 0; i < indexStages.Count(); i++)
 									{
-										int index = listIndexStage[i];
-										var active = listActiveStage[i];
+										int index = indexStages[i];
+										var active = activeStages[i];
 
 										<span data-tab="@index" class="tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer @active position-relative">
 											<span class="value_tab">@index</span>
@@ -149,8 +149,8 @@
 												<i class="icon_remove_tab fa-solid fa-xmark"></i>
 											</span>
 
-											<input class="indexStage" type="text" name="listIndexStage" value="@index" hidden />
-											<input class="listActiveStage" type="text" name="listActiveStage" value="@active" hidden />
+											<input class="indexStages" type="text" name="indexStages" value="@index" hidden />
+											<input class="activeStages" type="text" name="activeStages" value="@active" hidden />
 										</span>
 									}
 								}
@@ -166,7 +166,7 @@
 					<!-- Tabs display -->
 					<div class="display_info_stage">
 						@{
-							if (!listIndexStage.Any())
+							if (!indexStages.Any())
 							{
 								<div class="display_item box" data-tab="1">
 									<!-- Info stage -->
@@ -202,29 +202,29 @@
 											</div>
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_ngay_khao_sat"]</small>
-												<input type="date" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+												<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 										</div>
 
 										<div class="bottom col-sm-6 p-2">
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_anh"])</small>
-												<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+												<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_viet"])</small>
-												<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+												<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_anh"])</small>
-												<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+												<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
-												<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+												<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 										</div>
 									</div>
@@ -235,7 +235,7 @@
 											<h6 class="py-2 bg-black text-white rounded-1">
 												@translate["label_hinh_anh_chi_tiet_giai_doan"] 1 (<span class="quantity_item">1</span>/@Helper.Variable.maxItemImageIndividual)
 											</h6>
-											<input class="listItemPhotoOfStage" name="listItemPhotoOfStage" type="text" value="1" hidden />
+											<input class="listItemPhotoOfStage" name="itemPhotoOfStages" type="text" value="1" hidden />
 										</div>
 
 										<div class="info">
@@ -303,11 +303,11 @@
 							}
 							else
 							{
-								for (int i = 0; i < listIndexStage.Count(); i++)
+								for (int i = 0; i < indexStages.Count(); i++)
 								{
-									int index = listIndexStage[i];
-									var show = listActiveStage[i] == "active" ? "" : "d-none";
-									var itemPhoto = listItemPhotoOfStage[i];
+									int index = indexStages[i];
+									var show = activeStages[i] == "active" ? "" : "d-none";
+									var itemPhoto = itemPhotoOfStages[i];
 
 									<div class="display_item box @show" data-tab="@index">
 										<!-- Info stage -->
@@ -338,34 +338,41 @@
 																	<i class="icon_remove fa-solid fa-xmark"></i>
 																</button>
 															</div>
+
+															<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 														</div>
 													</div>
 												</div>
 												<div class="mt-1">
 													<small class="mb-1 d-block font-small">@translate["label_ngay_khao_sat"]</small>
-													<input type="date" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 												</div>
 											</div>
 
 											<div class="bottom col-sm-6 p-2">
 												<div class="mt-1">
 													<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_anh"])</small>
-													<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 												</div>
 
 												<div class="mt-1">
 													<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_viet"])</small>
-													<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 												</div>
 
 												<div class="mt-1">
 													<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_anh"])</small>
-													<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 												</div>
 
 												<div class="mt-1">
 													<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
-													<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+													<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 												</div>
 											</div>
 										</div>
@@ -375,59 +382,126 @@
 											<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
 												<h6 class="py-2 bg-black text-white rounded-1">
 													@translate["label_hinh_anh_chi_tiet_giai_doan"] @index
-													(<span class="quantity_item">@listItemPhotoOfStage[i]</span>/@Helper.Variable.maxItemImageIndividual)
+													(<span class="quantity_item">@itemPhotoOfStages[i]</span>/@Helper.Variable.maxItemImageIndividual)
 												</h6>
-												<input class="listItemPhotoOfStage" name="listItemPhotoOfStage" type="text" value="@(dataTypes.Any() ? dataTypes.Count() : 1)" />
+												<input class="listItemPhotoOfStage" name="itemPhotoOfStages" type="text" value="@itemPhoto" hidden />
 											</div>
 
 											<div class="info">
 												<div class="items bg-form have_move">
-													<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
-														<button class="btn_remove_item" type="button">
-															<i class="icon_remove_item fa-solid fa-xmark"></i>
-														</button>
-
-														<div class="add_img col-12 col-lg-6 rounded-1">
-															<p class="text-center text-black">@translate["label_hinh_anh"]</p>
-
-															<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
-																<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
-																		type="button">
-																	<i class="icon_add fa-solid fa-plus"></i>
+													@{
+														if (!dataBase64s.Any())
+														{
+															<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+																<button class="btn_remove_item" type="button">
+																	<i class="icon_remove_item fa-solid fa-xmark"></i>
 																</button>
-																<input class="file" name="ImageFile" type="file" hidden />
-																<div class="overflow-hidden w-h-0">
-																	<input class="image_type" name="dataTypes" />
-																	<input class="image_data" name="dataBase64s" />
+
+																<div class="add_img col-12 col-lg-6 rounded-1">
+																	<p class="text-center text-black">@translate["label_hinh_anh"]</p>
+
+																	<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																		<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+																				type="button">
+																			<i class="icon_add fa-solid fa-plus"></i>
+																		</button>
+																		<input class="file" name="ImageFile" type="file" hidden />
+																		<div class="overflow-hidden w-h-0">
+																			<input class="image_type" name="dataTypes" />
+																			<input class="image_data" name="dataBase64s" />
+																		</div>
+																	</div>
+
+																	<div class="preview_img position-relative d-none">
+																		<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																			 alt="" />
+
+																		<button class="btn_remove_preview_img"
+																				type="button">
+																			<i class="icon_remove fa-solid fa-xmark"></i>
+																		</button>
+																	</div>
+																</div>
+
+																<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+																	<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+																	<div class="add_content_item mt-1 col-12">
+																		<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+																		<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																	</div>
+
+																	<div class="add_content_item mt-1 col-12">
+																		<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+																		<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />																		
+																	</div>
 																</div>
 															</div>
+														}
+														else
+														{
+															for (int j = 0; j < dataBase64s.Count(); j++)
+															{
+																var dataType = dataTypes[j];
+																var dataBase64 = dataBase64s[j];
+																var noteEN = noteENs[j];
+																var noteVI = noteVIs[j];
 
-															<div class="preview_img position-relative d-none">
-																<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-																	 alt="" />
+																bool haveImage = !string.IsNullOrEmpty(dataBase64);
 
-																<button class="btn_remove_preview_img"
-																		type="button">
-																	<i class="icon_remove fa-solid fa-xmark"></i>
-																</button>
-															</div>
-														</div>
+																<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+																	<button class="btn_remove_item" type="button">
+																		<i class="icon_remove_item fa-solid fa-xmark"></i>
+																	</button>
 
-														<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
-															<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+																	<div class="add_img col-12 col-lg-6 rounded-1">
+																		<p class="text-center text-black">@translate["label_hinh_anh"]</p>
 
-															<div class="add_content_item mt-1 col-12">
-																<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-																<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																		<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																			<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+																					type="button">
+																				<i class="icon_add fa-solid fa-plus"></i>
+																			</button>
+																			<input class="file" name="ImageFile" type="file" hidden />
+																			<div class="overflow-hidden w-h-0">
+																				<input class="image_type" name="dataTypes" value="@dataType" />
+																				<input class="image_data" name="dataBase64s" value="@dataBase64" />
+																			</div>
+																		</div>
 
-															</div>
+																		<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+																			<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																				 src="/img/temp-img/@dataBase64"
+																				 alt="" />
 
-															<div class="add_content_item mt-1 col-12">
-																<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-																<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
-															</div>
-														</div>
-													</div>
+																			<button class="btn_remove_preview_img"
+																					type="button">
+																				<i class="icon_remove fa-solid fa-xmark"></i>
+																			</button>
+																		</div>
+
+																		<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+																	</div>
+
+																	<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+																		<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+																		<div class="add_content_item mt-1 col-12">
+																			<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+																			<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
+																			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+																		</div>
+
+																		<div class="add_content_item mt-1 col-12">
+																			<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+																			<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
+																			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+																		</div>
+																	</div>
+																</div>
+															}
+														}
+													}
 												</div>
 
 												<div class="text-center py-2">
