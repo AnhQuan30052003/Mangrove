@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GFIcFQIGmsy/Cv9aGnw/XQogsoyHuWpkafHjDUYntCw=",
+  "Hash": "WpVqtRf9ysOjE9SVitkNC6SJ+azSGOSg3r37xC0x9IQ=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1858,8 +1858,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "wsbigui64x",
-      "Integrity": "wAuNYBBz03bat1ZZjcpAkCjgUTUywcyzJIipDdWReoo=",
+      "Fingerprint": "fgs1udi21c",
+      "Integrity": "sefGvqzE6YOHhD7kRFbfzxvMBtZ8CBfESXyWSVAFp4o=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\items.js"
@@ -10471,6 +10471,51 @@
       ]
     },
     {
+      "Route": "js/custom/components/items.fgs1udi21c.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15645"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sefGvqzE6YOHhD7kRFbfzxvMBtZ8CBfESXyWSVAFp4o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 13:20:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fgs1udi21c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/items.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sefGvqzE6YOHhD7kRFbfzxvMBtZ8CBfESXyWSVAFp4o="
+        }
+      ]
+    },
+    {
       "Route": "js/custom/components/items.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
       "Selectors": [],
@@ -10481,7 +10526,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "15448"
+          "Value": "15645"
         },
         {
           "Name": "Content-Type",
@@ -10489,11 +10534,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"wAuNYBBz03bat1ZZjcpAkCjgUTUywcyzJIipDdWReoo=\""
+          "Value": "\"sefGvqzE6YOHhD7kRFbfzxvMBtZ8CBfESXyWSVAFp4o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 15:39:51 GMT"
+          "Value": "Sun, 06 Apr 2025 13:20:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10503,52 +10548,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-wAuNYBBz03bat1ZZjcpAkCjgUTUywcyzJIipDdWReoo="
-        }
-      ]
-    },
-    {
-      "Route": "js/custom/components/items.wsbigui64x.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "15448"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"wAuNYBBz03bat1ZZjcpAkCjgUTUywcyzJIipDdWReoo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 05 Apr 2025 15:39:51 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "wsbigui64x"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/items.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-wAuNYBBz03bat1ZZjcpAkCjgUTUywcyzJIipDdWReoo="
+          "Value": "sha256-sefGvqzE6YOHhD7kRFbfzxvMBtZ8CBfESXyWSVAFp4o="
         }
       ]
     },

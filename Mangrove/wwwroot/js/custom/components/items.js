@@ -100,7 +100,14 @@ export function addItem(idButtonClick) {
 	items.appendChild(addItem);
 
 	const quantity = frameItems.querySelector(".quantity_item");
-	quantity.innerHTML = addItemFind.length + 1;
+	if (quantity) {
+		quantity.innerHTML = addItemFind.length + 1;
+	}
+
+	const listItemPhotoOfStage = frameItems.querySelector(".listItemPhotoOfStage");
+	if (listItemPhotoOfStage) {
+		listItemPhotoOfStage.value = addItemFind.length + 1;
+	}
 }
 
 function createDivAddItem() {
@@ -265,6 +272,9 @@ function createDisplayItem(index) {
 	const labelEnglish = document.querySelector("#english").value;
 	const labelVietnamese = document.querySelector("#vietnamese").value;
 	const maxItem = document.querySelector("#maxItem").value;
+	const surveyDay = document.querySelector("#surveyDay").value;
+	const stageName = document.querySelector("#stageName").value;
+	const weather = document.querySelector("#weather").value;
 
 	const displayItem = document.createElement("div");
 	displayItem.className = "display_item box";
@@ -275,7 +285,7 @@ function createDisplayItem(index) {
 	frameInfoAndPosition.innerHTML = `
 		<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Hình ảnh</small>
+				<small class="mb-1 d-block font-small">${labelPhoto}</small>
 				<div class="w-100">
 					<div class="add_img rounded-1">
 						<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">
@@ -303,29 +313,29 @@ function createDisplayItem(index) {
 				</div>
 			</div>
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Ngày khảo sát</small>
+				<small class="mb-1 d-block font-small">${surveyDay}</small>
 				<input type="date" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>
 
 		<div class="bottom col-sm-6 p-2">
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Tên giai đoạn (Tiếng Anh)</small>
+				<small class="mb-1 d-block font-small">${stageName} (${labelEnglish})</small>
 				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Tên giai đoạn (Tiếng Việt)</small>
+				<small class="mb-1 d-block font-small">${stageName} (${labelVietnamese})</small>
 				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Thời tiết (Tiếng Anh)</small>
+				<small class="mb-1 d-block font-small">${weather} (${labelEnglish})</small>
 				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">Thời tiết (Tiếng Việt)</small>
+				<small class="mb-1 d-block font-small">${weather} (${labelVietnamese})</small>
 				<input type="text" name="" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>
