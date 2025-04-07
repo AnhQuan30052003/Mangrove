@@ -128,6 +128,16 @@ namespace Mangrove.Controllers {
 				var mangroves = await context.TblMangroves.ToListAsync();
 				ViewData["Mangroves"] = mangroves;
 
+				Console.Clear();
+				Console.WriteLine($"Nhận được:");
+				Console.WriteLine($"indexStages: {indexStages.Count()}");
+				Console.WriteLine($"activeStages: {activeStages.Count()}");
+				Console.WriteLine($"itemPhotoOfStages: {itemPhotoOfStages.Count()}");
+				Console.WriteLine($"dataTypes: {dataTypes.Count()}");
+				Console.WriteLine($"dataBase64s: {dataBase64s.Count()}");
+				Console.WriteLine($"noteENs: {noteENs.Count()}");
+				Console.WriteLine($"noteVIs: {noteVIs.Count()}");
+
 				// Begin validate
 				Helper.Validate.Clear();
 				Helper.Validate.NotEmpty(model.Longitude);
@@ -135,30 +145,28 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.PositionEn);
 				Helper.Validate.NotEmpty(model.PositionVi);
 
-				//int indexPhoto = 0;
-				//for (int i = 0; i < indexStages.Count(); i++) {
-				//	int countItem = Convert.ToInt32(itemPhotoOfStages[i]);
-				//	dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
-				//	Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
+				int indexPhoto = 0;
+				for (int i = 0; i < indexStages.Count(); i++) { 
+					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
+					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
 
-				//	Helper.Validate.NotEmpty(surveyDates[i]);
-				//	Helper.Validate.NotEmpty(stageNameENs[i]);
-				//	Helper.Validate.NotEmpty(stageNameVIS[i]);
-				//	Helper.Validate.NotEmpty(weatherENS[i]);
-				//	Helper.Validate.NotEmpty(weatherVIs[i]);
+					Helper.Validate.NotEmpty(surveyDates[i]);
+					Helper.Validate.NotEmpty(stageNameENs[i]);
+					Helper.Validate.NotEmpty(stageNameVIs[i]);
+					Helper.Validate.NotEmpty(weatherENs[i]);
+					Helper.Validate.NotEmpty(weatherVIs[i]);
 
-				//	for (int j = indexPhoto + 1; j < countItem + 1; i++) {
-				//		dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
-				//		Helper.Validate.NotEmpty(dataBase64s[j]);
-				//		Helper.Validate.NotEmpty(noteENs[j]);
-				//		Helper.Validate.NotEmpty(noteVIs[j]);
-				//	}
-				//	indexPhoto += countItem + 1;
-				//}
-
-				Console.Clear();
-				Console.WriteLine($"Database64s: {dataBase64s.Count()}");
-				Console.WriteLine($"itemPhotoOfStages: {itemPhotoOfStages.Count()}");
+					int countItem = Convert.ToInt32(itemPhotoOfStages[i]);
+					for (int j = indexPhoto + 1, indexNote = 0; j < indexPhoto + countItem + 1; j++, indexNote++) {
+						Console.WriteLine($"Duyệt nè, {j}");
+						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
+						Console.WriteLine($"Duyệt item dataBase64 and noteENs and noteVIs thứ {j} & {j-1}");
+						Helper.Validate.NotEmpty(dataBase64s[j]);
+						Helper.Validate.NotEmpty(noteENs[j-1]);
+						Helper.Validate.NotEmpty(noteVIs[j-1]);
+					}
+					indexPhoto += countItem + 1;
+				}
 
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
@@ -172,11 +180,12 @@ namespace Mangrove.Controllers {
 
 				return View(model);
 			}
-			catch {
+			catch (Exception ex) {
 				Helper.Notifier.Fail(
 					isEN ? "There was an error adding the individual. Please try again later !" : "Có lỗi trong quá trình thêm cá thể. Vui lòng thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
+				Console.WriteLine($"Error:\n{ex.Message}");
 				return View(model);
 			}
 		}
