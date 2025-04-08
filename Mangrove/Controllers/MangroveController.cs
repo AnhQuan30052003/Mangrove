@@ -195,6 +195,7 @@ namespace Mangrove.Controllers {
 				}
 
 				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
 				Helper.Notifier.Success(

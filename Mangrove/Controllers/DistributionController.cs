@@ -241,6 +241,7 @@ namespace Mangrove.Controllers {
 
 				context.TblDistributitons.Update(model);
 				await context.SaveChangesAsync();
+
 				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo

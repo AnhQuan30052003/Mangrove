@@ -104,7 +104,7 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages,
-			List<string> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
+			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
 			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
@@ -124,19 +124,10 @@ namespace Mangrove.Controllers {
 				ViewData["DataBase64s"] = dataBase64s;
 				ViewData["NoteENs"] = noteENs;
 				ViewData["NoteVIs"] = noteVIs;
+
 				// Tạo select
 				var mangroves = await context.TblMangroves.ToListAsync();
 				ViewData["Mangroves"] = mangroves;
-
-				Console.Clear();
-				Console.WriteLine($"Nhận được:");
-				Console.WriteLine($"indexStages: {indexStages.Count()}");
-				Console.WriteLine($"activeStages: {activeStages.Count()}");
-				Console.WriteLine($"itemPhotoOfStages: {itemPhotoOfStages.Count()}");
-				Console.WriteLine($"dataTypes: {dataTypes.Count()}");
-				Console.WriteLine($"dataBase64s: {dataBase64s.Count()}");
-				Console.WriteLine($"noteENs: {noteENs.Count()}");
-				Console.WriteLine($"noteVIs: {noteVIs.Count()}");
 
 				// Begin validate
 				Helper.Validate.Clear();
@@ -145,27 +136,26 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.PositionEn);
 				Helper.Validate.NotEmpty(model.PositionVi);
 
-				int indexPhoto = 0;
+				int indexPhoto = 0, indexNote = 0;
 				for (int i = 0; i < indexStages.Count(); i++) { 
 					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
 					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
 
-					Helper.Validate.NotEmpty(surveyDates[i]);
+					Helper.Validate.NotEmpty(surveyDates[i].ToString("yyyy-MM-dd"));
 					Helper.Validate.NotEmpty(stageNameENs[i]);
 					Helper.Validate.NotEmpty(stageNameVIs[i]);
 					Helper.Validate.NotEmpty(weatherENs[i]);
 					Helper.Validate.NotEmpty(weatherVIs[i]);
 
-					int countItem = Convert.ToInt32(itemPhotoOfStages[i]);
-					for (int j = indexPhoto + 1, indexNote = 0; j < indexPhoto + countItem + 1; j++, indexNote++) {
-						Console.WriteLine($"Duyệt nè, {j}");
+					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
+					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
 						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
-						Console.WriteLine($"Duyệt item dataBase64 and noteENs and noteVIs thứ {j} & {j-1}");
 						Helper.Validate.NotEmpty(dataBase64s[j]);
-						Helper.Validate.NotEmpty(noteENs[j-1]);
-						Helper.Validate.NotEmpty(noteVIs[j-1]);
+						Helper.Validate.NotEmpty(noteENs[indexNote]);
+						Helper.Validate.NotEmpty(noteVIs[indexNote]);
+						indexNote += 1;
 					}
-					indexPhoto += countItem + 1;
+					indexPhoto += countItemPhotoOfStage + 1;
 				}
 
 				// Trả lại view nếu có lỗi validate

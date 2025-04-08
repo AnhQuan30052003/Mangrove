@@ -54,7 +54,6 @@ function addImageToItem() {
 			const addItem = clicked.closest(".add_item");
 
 			const frameItems = addItem.closest(".frame_items");
-			console.log(frameItems);
 			const quantity = frameItems.querySelector(".quantity_item");
 			quantity.innerHTML = parseInt(quantity.innerText) - 1;
 
@@ -62,6 +61,12 @@ function addImageToItem() {
 			const imageType = addItem.querySelector(".image_type");
 			const imageData = addItem.querySelector(".image_data");
 			inputFile.value = imageData.value = imageType.value = "";
+
+			// Thêm só lượng item photo bên manager (create, edit) individual
+			const itemPhotoOfStages = frameItems.querySelector(".itemPhotoOfStages");
+			if (itemPhotoOfStages) {
+				itemPhotoOfStages.value = parseInt(itemPhotoOfStages.value) - 1;
+			}
 			addItem.remove();
 		}
 
@@ -107,7 +112,7 @@ export function addItem(idButtonClick) {
 	// Thêm só lượng item photo bên manager (create, edit) individual
 	const itemPhotoOfStages = frameItems.querySelector(".itemPhotoOfStages");
 	if (itemPhotoOfStages) {
-		itemPhotoOfStages.value = addItemFind.length + 1;
+		itemPhotoOfStages.value = parseInt(itemPhotoOfStages.value) + 1;
 	}
 }
 
@@ -125,7 +130,7 @@ function createDivAddItem() {
 		</button>
 
 		<div class="add_img col-12 col-lg-6 rounded-1">
-			<p class="text-center text-black">${labelPhoto}</p>
+			<p class="catch_to_move text-center text-black">${labelPhoto}</p>
 
 			<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
@@ -277,6 +282,14 @@ function createDisplayItem(index) {
 	const stageName = document.querySelector("#stageName").value;
 	const weather = document.querySelector("#weather").value;
 
+	// Create today
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, "0");
+	const day = String(today.getDate()).padStart(2, "0");
+
+	const dodayStr = `${year}-${month}-${day}`;
+
 	const displayItem = document.createElement("div");
 	displayItem.className = "display_item box";
 	displayItem.setAttribute("data-tab", index);
@@ -315,7 +328,7 @@ function createDisplayItem(index) {
 			</div>
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${surveyDay}</small>
-				<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+				<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="${dodayStr}" />
 			</div>
 		</div>
 
@@ -360,7 +373,7 @@ function createDisplayItem(index) {
 					</button>
 
 					<div class="add_img col-12 col-lg-6 rounded-1">
-						<p class="text-center text-black">${labelPhoto}</p>
+						<p class="catch_to_move text-center text-black">${labelPhoto}</p>
 
 						<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 							<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"

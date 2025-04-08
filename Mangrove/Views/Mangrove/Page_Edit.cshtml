@@ -4,7 +4,7 @@
 	bool isEN = Helper.Func.IsEnglish();
 
 	ViewData["Title"] = isEN ? Model.NameEn : Model.NameVi;
-	ViewData["InfoPage"] = translate["label_cay_ngap_man"] + $" ({translate["label_duoc_chinh_sua"]})";
+	ViewData["InfoPage"] = translate["label_thanh_phan_loai"] + $" ({translate["label_duoc_chinh_sua"]})";
 	ViewData["TypePage"] = "Page_Mangrove";
 
 	Layout = Helper.Path.layoutAdmin;
@@ -80,7 +80,7 @@
 									</button>
 
 									<div class="add_img col-12 col-lg-6 rounded-1">
-										<p class="text-center text-black">@translate["label_hinh_anh"]</p>
+										<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
 
 										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
@@ -138,7 +138,7 @@
 										</button>
 
 										<div class="add_img col-12 col-lg-6 rounded-1">
-											<p class="text-center text-black">@translate["label_hinh_anh"]</p>
+											<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
 
 											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"

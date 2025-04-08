@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\css\\both_custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\css\\both_custom.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\individual\\page_create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -43,27 +47,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IndividualController.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Controllers\\IndividualController.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeToolTip": "Mangrove\\Controllers\\IndividualController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAIwKAAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T06:12:43.987Z",
+              "Title": "both_custom.css",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\both_custom.css",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\css\\both_custom.css",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\both_custom.css",
+              "RelativeToolTip": "Mangrove\\wwwroot\\css\\both_custom.css",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAIQAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-08T15:31:56.464Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Page_Create.cshtml",
               "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Individual\\Page_Create.cshtml",
               "RelativeDocumentMoniker": "Mangrove\\Views\\Individual\\Page_Create.cshtml",
               "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Individual\\Page_Create.cshtml",
               "RelativeToolTip": "Mangrove\\Views\\Individual\\Page_Create.cshtml",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAAGoAAABKAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAIoAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-04T07:42:10.075Z",
+              "WhenOpened": "2025-04-08T14:09:20.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "move_item_photo.js",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+              "RelativeToolTip": "Mangrove\\wwwroot\\js\\custom\\components\\move_item_photo.js",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAQwBUAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-08T14:01:35.93Z",
               "EditorCaption": ""
             }
           ]
