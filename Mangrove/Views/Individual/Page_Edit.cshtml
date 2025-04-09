@@ -1,0 +1,437 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model TblIndividual
+
+@{
+	bool isEN = Helper.Func.IsEnglish();
+	ViewData["Title"] = translate["label_ca_the"];
+	ViewData["InfoPage"] = translate["label_thong_tin_ca_the"] + $" ({translate["label_duoc_chinh_sua"]})";
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string _pv = Helper.Path.partialView;
+
+	// Variables for page
+	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>();
+	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>();
+	var noteENs = ViewData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = ViewData["NoteVIs"] as List<string> ?? new List<string>();
+
+	var indexStages = ViewData["IndexStages"] as List<int> ?? new List<int>();
+	var activeStages = ViewData["ActiveStages"] as List<string> ?? new List<string>();
+	var itemPhotoOfStages = ViewData["ItemPhotoOfStages"] as List<string> ?? new List<string>();
+
+	var surveyDates = ViewData["SurveyDates"] as List<DateTime> ?? new List<DateTime>();
+	var stageNameENs = ViewData["StageNameENs"] as List<string> ?? new List<string>();
+	var stageNameVIs = ViewData["StageNameVIs"] as List<string> ?? new List<string>();
+	var weatherENs = ViewData["WeatherENs"] as List<string> ?? new List<string>();
+	var weatherVIs = ViewData["WeatherVIs"] as List<string> ?? new List<string>();
+
+	List<TblMangrove> mangroves = ViewData["Mangroves"] as List<TblMangrove> ?? new List<TblMangrove>();
+	var selectMangrove = new SelectList(
+		mangroves.Select(item => new
+		{
+			Value = item.Id,
+			Text = isEN ? item.NameEn : item.NameVi + " - " + item.ScientificName
+		}),
+		"Value",
+		"Text",
+		ViewData["ChooseIdMangrove"]
+	);
+}
+
+<!-- Setup variables for js when create item -->
+<input id="english" value="@translate["label_tieng_anh"]" hidden />
+<input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
+<input id="photo" value="@translate["label_hinh_anh"]" hidden />
+<input id="description" value="@translate["label_mo_ta"]" hidden />
+<input id="btnAddPhoto" value="@translate["label_them_anh"]" hidden />
+<input id="surveyDay" value="@translate["label_ngay_khao_sat"]" hidden />
+<input id="stageName" value="@translate["label_ten_giai_doan"]" hidden />
+<input id="weather" value="@translate["label_thoi_tiet_khao_sat"]" hidden />
+
+<input id="detailImageStage" value="@translate["label_hinh_anh_chi_tiet_giai_doan"]" hidden />
+<input id="maxStage" value="@Helper.Variable.maxStage" hidden />
+<input id="maxItem" value="@Helper.Variable.maxItemImageIndividual" hidden />
+
+<section class="mod-add-individual">
+	<div class="container py-2">
+		<form action="" method="post" enctype="multipart/form-data">
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center my-3 gap-2">
+				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex, true)"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+					<i class="fa-solid fa-list"></i>
+					<span class="hidden_mobile">
+						@translate["label_quay_lai_danh_sach"]
+					</span>
+				</button>
+
+				<a href="@Url.Action("Page_Detail", "Individual", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_chi_tiet"]
+					</span>
+				</a>
+
+				<a href="@Url.Action("Page_Delete", "Individual", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms"
+				   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageDelete) return confirm('@translate["label_text_xac_nhan_xoa"]');">
+					<i class="fa-solid fa-trash"></i>
+					<span class="hidden_mobile">
+						@translate["label_xoa"]
+					</span>
+				</a>
+
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms btn_loading">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
+				</button>
+			</div>
+
+			<!-- Thành phần loài và vị trí -->
+			<div class="box bg-white mb-2 rounded-1">
+				<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thanh_phan_loai_va_tri_tri"]</h6>
+				</div>
+
+				<div class="info bg-form">
+					<div class="frame_info_and_position d-sm-flex">
+						<div class="top col-sm-6 p-2">
+							<div class="mt-1">
+								<small class="mb-1 d-block font-small">@translate["label_thanh_phan_loai"]</small>
+								<select class="w-100 border-none bg-white outline-none green_effect py-1 rounded-1 text_body"
+										name="chooseIdMangrove"
+										asp-items="@selectMangrove">
+								</select>
+							</div>
+
+							<div class="mt-1">
+								<small class="mb-1 d-block font-small">@translate["label_kinh_do_khao_sat"]</small>
+								<input type="text" asp-for="@Model.Longitude" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+
+							<div class="mt-1">
+								<small class="mb-1 d-block font-small">@translate["label_vi_do_khao_sat"]</small>
+								<input type="text" asp-for="@Model.Latitude" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+						</div>
+
+						<div class="bottom col-sm-6 p-2">
+							<div class="mt-1">
+								<small class="mb-1 d-block font-small">@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_anh"])</small>
+								<input type="text" asp-for="@Model.PositionEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+
+							<div class="mt-1">
+								<small class="mb-1 d-block font-small">@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_viet"])</small>
+								<input type="text" asp-for="@Model.PositionVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Giai đoạn -->
+			<div class="box bg-white mb-2 rounded-1 overflow-hidden_">
+				<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cac_giai_doan"]</h6>
+				</div>
+
+				<div class="info bg-form">
+					<!-- Tabs -->
+					<div class="frame_tab d-flex justify-content-center gap-2">
+						<div class="tabs tabs_change have_move d-flex justify-content-center gap-1 gap-sm-3 py-2">
+							@{
+								for (int i = 0; i < indexStages.Count(); i++)
+								{
+									int index = indexStages[i];
+									var active = activeStages[i];
+
+									<span data-tab="@index" class="tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer @active position-relative">
+										<span class="value_tab">@index</span>
+										<span class="remove_tab text-danger position_remove_tab">
+											<i class="icon_remove_tab fa-solid fa-xmark"></i>
+										</span>
+
+										<input class="indexStages" type="text" name="indexStages" value="@index" hidden />
+										<input class="activeStages" type="text" name="activeStages" value="@active" hidden />
+									</span>
+								}
+							}
+						</div>
+
+						<button type="button"
+								class="btn_add_stage border-none outline-none px-3 py-1 rounded-circle color-tree bg-transparent fs-5">
+							<i class="fa-solid fa-plus"></i>
+						</button>
+					</div>
+
+					<!-- Tabs display -->
+					<div class="display_info_stage">
+						@{
+							int indexPhoto = 0, indexNote = 0;
+							for (int i = 0; i < indexStages.Count(); i++)
+							{
+								int index = indexStages[i];
+								string show = activeStages[i] == "active" ? "" : "d-none";
+								int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
+								bool haveImage = !string.IsNullOrEmpty(dataBase64s[indexPhoto]);
+
+								<div class="display_item box @show" data-tab="@index">
+									<!-- Info stage -->
+									<div class="frame_info_and_position d-sm-flex">
+										<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_hinh_anh"]</small>
+												<div class="w-100">
+													<div class="add_img rounded-1">
+														<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
+															<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+																	type="button">
+																<i class="icon_add fa-solid fa-plus"></i>
+															</button>
+															<input class="file" name="ImageFile" type="file" hidden />
+															<div class="overflow-hidden w-h-0">
+																<input class="image_type" name="dataTypes" value="@dataTypes[indexPhoto]" />
+																<input class="image_data" name="dataBase64s" value="@dataBase64s[indexPhoto]" />
+															</div>
+														</div>
+
+														<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden">
+															<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																 src="/img/temp-img/@dataBase64s[indexPhoto]"
+																 alt="" />
+
+															<button class="btn_remove_preview_img"
+																	type="button">
+																<i class="icon_remove fa-solid fa-xmark"></i>
+															</button>
+														</div>
+
+														<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+													</div>
+												</div>
+											</div>
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_ngay_khao_sat"]</small>
+												<input type="date" name="surveyDates"
+													   class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body"
+													   value="@surveyDates[i].ToString("yyyy-MM-dd")" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+										</div>
+
+										<div class="bottom col-sm-6 p-2">
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_anh"])</small>
+												<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@stageNameENs[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_viet"])</small>
+												<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@stageNameVIs[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_anh"])</small>
+												<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@weatherENs[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
+												<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@weatherVIs[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+										</div>
+									</div>
+
+									<!-- Info image per stage -->
+									<div class="frame_items">
+										<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
+											<h6 class="py-2 bg-black text-white rounded-1">
+												@translate["label_hinh_anh_chi_tiet_giai_doan"] @index
+												(<span class="quantity_item">@countItemPhotoOfStage</span>/@Helper.Variable.maxItemImageIndividual)
+											</h6>
+											<input class="itemPhotoOfStages" name="itemPhotoOfStages" type="text" value="@countItemPhotoOfStage" hidden />
+										</div>
+
+										<div class="info">
+											<div class="items bg-form have_move">
+												@{
+													if (!dataBase64s.Any())
+													{
+														<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+															<button class="btn_remove_item" type="button">
+																<i class="icon_remove_item fa-solid fa-xmark"></i>
+															</button>
+
+															<div class="add_img col-12 col-lg-6 rounded-1">
+																<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
+
+																<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																	<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+																			type="button">
+																		<i class="icon_add fa-solid fa-plus"></i>
+																	</button>
+																	<input class="file" name="ImageFile" type="file" hidden />
+																	<div class="overflow-hidden w-h-0">
+																		<input class="image_type" name="dataTypes" />
+																		<input class="image_data" name="dataBase64s" />
+																	</div>
+																</div>
+
+																<div class="preview_img position-relative d-none">
+																	<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																		 alt="" />
+
+																	<button class="btn_remove_preview_img"
+																			type="button">
+																		<i class="icon_remove fa-solid fa-xmark"></i>
+																	</button>
+																</div>
+															</div>
+
+															<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+																<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+																<div class="add_content_item mt-1 col-12">
+																	<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+																	<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																</div>
+
+																<div class="add_content_item mt-1 col-12">
+																	<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+																	<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																</div>
+															</div>
+														</div>
+													}
+													else
+													{
+														for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++)
+														{
+															var dataType = dataTypes[j];
+															var dataBase64 = dataBase64s[j];
+															var noteEN = noteENs[indexNote];
+															var noteVI = noteVIs[indexNote];
+															indexNote += 1;
+
+															haveImage = !string.IsNullOrEmpty(dataBase64);
+
+															<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+																<button class="btn_remove_item" type="button">
+																	<i class="icon_remove_item fa-solid fa-xmark"></i>
+																</button>
+
+																<div class="add_img col-12 col-lg-6 rounded-1">
+																	<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
+
+																	<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																		<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+																				type="button">
+																			<i class="icon_add fa-solid fa-plus"></i>
+																		</button>
+																		<input class="file" name="ImageFile" type="file" hidden />
+																		<div class="overflow-hidden w-h-0">
+																			<input class="image_type" name="dataTypes" value="@dataType" />
+																			<input class="image_data" name="dataBase64s" value="@dataBase64" />
+																		</div>
+																	</div>
+
+																	<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+																		<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																		@(!string.IsNullOrEmpty(dataBase64) ? "src='/img/temp-img/@dataBase64'" : string.Empty)
+																			 alt="" />
+
+																		<button class="btn_remove_preview_img"
+																				type="button">
+																			<i class="icon_remove fa-solid fa-xmark"></i>
+																		</button>
+																	</div>
+
+																	<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+																</div>
+
+																<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+																	<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+																	<div class="add_content_item mt-1 col-12">
+																		<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+																		<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
+																		<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+																	</div>
+
+																	<div class="add_content_item mt-1 col-12">
+																		<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+																		<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
+																		<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+																	</div>
+																</div>
+															</div>
+														}
+														indexPhoto += countItemPhotoOfStage + 1;
+													}
+												}
+											</div>
+
+											<div class="text-center py-2">
+												<button id="btn_add_item_@index"
+														class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+														type="button"
+														onclick="item.addItem('#btn_add_item_@index');">
+													<i class="fa-solid fa-plus"></i>
+													@translate["label_them_anh"]
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+						}
+					</div>
+				</div>
+			</div>
+
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center my-3 gap-2">
+				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex, true)"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+					<i class="fa-solid fa-list"></i>
+					<span class="hidden_mobile">
+						@translate["label_quay_lai_danh_sach"]
+					</span>
+				</button>
+
+				<a href="@Url.Action("Page_Detail", "Individual", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_chi_tiet"]
+					</span>
+				</a>
+
+				<a href="@Url.Action("Page_Delete", "Individual", new { id = Model.Id })"
+				   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms"
+				   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageDelete) return confirm('@translate["label_text_xac_nhan_xoa"]');">
+					<i class="fa-solid fa-trash"></i>
+					<span class="hidden_mobile">
+						@translate["label_xoa"]
+					</span>
+				</a>
+
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms btn_loading">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</section>	

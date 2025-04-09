@@ -255,9 +255,46 @@ namespace Mangrove.Controllers {
 
 		// Edit
 		public async Task<IActionResult> Page_Edit(string id) {
-			
-			
-			return View();
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				// Truy vấn cá thể
+				var individual = await context.TblIndividuals
+				.Include(item => item.TblStages)
+				.FirstOrDefaultAsync(item => item.Id == id);
+				if (individual == null) {
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
+				}
+
+				string idMangrove = individual.IdMangrove ?? string.Empty;
+				ViewData["ChooseIdMangrove"] = idMangrove;
+				ViewData["Mangroves"] = await context.TblMangroves.ToListAsync();
+	
+				List<int> indexStages = new List<int>();
+				List<string> activeStages = new List<string>();
+				for (int i = 1; i <= individual.TblStages.Count(); i++) {
+					indexStages.Add(i);
+					activeStages.Add(i == 1 ? "active" : string.Empty);
+				}
+				ViewData["IndexStages"] = indexStages;
+				ViewData["ActiveStages"] = activeStages;
+
+				List<string> itemPhotoOfStages = new List<string>();
+				foreach (var stage in individual.TblStages) {
+					var listPhotos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+				}
+
+
+
+				Helper.Validate.Clear();
+				return View(individual);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+			}
 		}
 
 		// Detail
