@@ -473,6 +473,16 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Delete(string id) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				// Kiểm tra có cá thể nào không ?
+				var individuals = await context.TblIndividuals.Where(item => item.IdMangrove == id).ToListAsync();
+				if (individuals.Any()) {
+					Helper.Notifier.Fail(
+						isEN ? "Can only delete mangrove trees without any individuals !" : "Chỉ có thể xoá cây ngập mặn không có cá thể nào !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageDelete), "text/html");
+				}
+
 				// Xoá đối tượng
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == id);
 				if (mangrove == null) {

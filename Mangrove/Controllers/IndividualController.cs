@@ -304,6 +304,16 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Delete(string id) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				// Kiểm tra có giai đoạn nào không ?
+				var stages = await context.TblStages.Where(item => item.IdIndividual == id).ToListAsync();
+				if (stages.Any()) {
+					Helper.Notifier.Fail(
+						isEN ? "Can only delete individuals without any stages !" : "Chỉ có thể xoá cá thể không có giai đoạn nào !",
+						Helper.SetupNotifier.Timer.midTime
+					);
+					return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageDelete), "text/html");
+				}
+
 				// Xoá đối tượng
 				var individual = await context.TblIndividuals.FirstOrDefaultAsync(item => item.Id == id);
 				if (individual == null) {

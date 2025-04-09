@@ -103,6 +103,7 @@ public class Helper {
 		public static string adminToPageInfo = "adminToPageInfo";
 
 		public static string adminToPageListIndex = "adminToPageListIndex";
+		public static string adminToPageDelete = "adminToPageDelete";
 
 		// For Link - Default
 		public static string defaultUrlAdmin = "/Admin/Page_Statistical";

@@ -39,17 +39,16 @@
 	</a>
 </div>
 
-<section class="individual_display container info_qr">
+<section class="individual_display container info_qr infor_stage">
 	@{
-		if (Model.Stages.Count() > 0)
+		if (Model.Stages.Any())
 		{
 			<div class="tabs d-flex justify-content-center gap-3 gap-sm-2">
 				@{
 					int countStage = 1;
 					foreach (var stage in Model.Stages)
 					{
-						<span class="stage_individual tab py-2 px-3 bg-white rounded-circle cursor-pointer @(countStage == 1 ? "active" : "")"
-							  data-tab=@countStage>
+						<span class="tab_item tab py-2 px-3 bg-white rounded-circle cursor-pointer @(countStage == 1 ? "active" : string.Empty)">
 							@(countStage++)
 						</span>
 					}
@@ -58,10 +57,10 @@
 
 			<div class="display mt-3">
 				@{
-					countStage = 0;
+					countStage = 1;
 					foreach (var stage in Model.Stages)
 					{
-						<div class="display_item @(countStage++ == 0 ? "" : "d-none")">
+						<div class="display_item @(countStage++ == 1 ? string.Empty : "d-none")">
 							<div class="box bg-white mb-2 rounded-1 overflow-hidden">
 								<div class="toggle_title cursor-pointer text-center mb-2">
 									<h6 class="py-2 bg-black text-white">@(isEN ? stage.info.NameEn : stage.info.NameVi)</h6>
@@ -69,7 +68,8 @@
 
 								<div class="info title d-flex flex-wrap">
 									<div class="col-12 col-sm-5 text-center pb-2" style="height: 300px;">
-										<img class="h-100 click_show_image rounded-1"
+										<img class="h-100 object-fit-cover click_show_image rounded-1"
+											 style="max-width: 100%;"
 											 src="/img/stage-img/@stage.info.MainImage" alt="">
 									</div>
 
