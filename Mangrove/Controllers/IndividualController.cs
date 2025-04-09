@@ -254,7 +254,9 @@ namespace Mangrove.Controllers {
 		}
 
 		// Edit
-		public IActionResult Page_Edit() {
+		public async Task<IActionResult> Page_Edit(string id) {
+			
+			
 			return View();
 		}
 
