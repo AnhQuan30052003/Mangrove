@@ -356,7 +356,7 @@ public class Helper {
 		}
 
 		// Lấy ID từ file ảnh
-		public static string GetIdFormFileName(string fileName) {
+		public static string GetIdFromFileName(string fileName) {
 			int index = fileName.IndexOf("_");
 			if (index > 0) {
 				return fileName.Substring(0, index);
@@ -393,7 +393,7 @@ public class Helper {
 		// Check dataBase64 và lưu
 		public static async Task<string> CheckIsDataBase64StringAndSave(string data, string type) {
 			if (IsDataBase64String(data)) {
-				string fileTemp = $"{CreateId()}_{Key.temp}.{GetTypeImage(type)}";
+				string fileTemp = $"{CreateId()}_{Key.temp}{GetTypeImage(type)}";
 				bool status = await SaveImageFromBase64Data(
 					data,
 					Path.temptImg,

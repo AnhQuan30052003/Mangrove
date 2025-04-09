@@ -332,7 +332,7 @@ namespace Mangrove.Controllers {
 				List<string> saveFileName = new List<string>();
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					// Setup cho ảnh cũ
-					string idPhoto = Helper.Func.GetIdFormFileName(dataBase64s[i]);
+					string idPhoto = Helper.Func.GetIdFromFileName(dataBase64s[i]);
 					string fileName = $"{idPhoto}_{model.NameVi}";
 					string oldPath = Path.Combine(Helper.Path.treeImg, dataBase64s[i]);
 

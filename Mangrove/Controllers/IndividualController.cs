@@ -137,7 +137,7 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.PositionVi);
 
 				int indexPhoto = 0, indexNote = 0;
-				for (int i = 0; i < indexStages.Count(); i++) { 
+				for (int i = 0; i < indexStages.Count(); i++) {
 					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
 					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
 
@@ -168,7 +168,80 @@ namespace Mangrove.Controllers {
 				}
 				// End validate
 
-				return View(model);
+				// Save data
+				// Lưu cá thể
+				string idIndividual = Helper.Func.CreateId();
+				var newIndividual = new TblIndividual {
+					Id = idIndividual,
+					IdMangrove = chooseIdMangrove,
+					Longitude = model.Longitude,
+					Latitude = model.Latitude,
+					PositionEn = model.PositionEn,
+					PositionVi = model.PositionVi,
+					UpdateLast = DateTime.Now,
+					QrName = "qr-code.png", // Cần code tạo QR Image cho individual !
+					View = 0
+				};
+				context.TblIndividuals.Add(newIndividual);
+
+				// Truy vấn tên thành phần loài 
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
+				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
+
+				indexPhoto = indexNote = 0;
+				for (int i = 0; i < indexStages.Count(); i++) {
+					// Lưu giai đoạn
+					string fileName = $"{Helper.Func.CreateId()}_{nameMangrove}{Helper.Func.GetTypeImage(dataTypes[indexPhoto])}";
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[indexPhoto]),
+						Path.Combine(Helper.Path.stageImg, fileName)
+					);
+
+					string idStage = Helper.Func.CreateId();
+					var newStage = new TblStage {
+						Id = idStage,
+						IdIndividual = idIndividual,
+						MainImage = fileName,
+						SurveyDay = surveyDates[i],
+						NameEn = stageNameENs[i],
+						NameVi = stageNameVIs[i],
+						WeatherEn = weatherENs[i],
+						WeatherVi = weatherVIs[i],
+					};
+					context.TblStages.Add(newStage);
+
+					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
+					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
+						// Lưu ảnh
+						string idPhoto = Helper.Func.CreateId();
+						fileName = $"{idPhoto}_{noteVIs[indexNote]}{Helper.Func.GetTypeImage(dataTypes[indexNote])}";
+						Helper.Func.MovePhoto(
+							Path.Combine(Helper.Path.temptImg, dataBase64s[j]),
+							Path.Combine(Helper.Path.stageImg, fileName)
+						);
+						var newPhoto = new TblPhoto {
+							Id = idPhoto,
+							IdObj = idStage,
+							ImageName = fileName,
+							NoteImgEn = noteENs[indexNote],
+							NoteImgVi = noteVIs[indexNote]
+						};
+						context.TblPhotos.Add(newPhoto);
+
+						indexNote += 1;
+					}
+					indexPhoto += countItemPhotoOfStage + 1;
+				}
+
+				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+
+				// Setup thông báo
+				Helper.Notifier.Success(
+					isEN ? "Create successfully." : "Tạo thành công.",
+					Helper.SetupNotifier.Timer.fastTime
+				);
+				return RedirectToAction("Page_Detail", new { id = model.Id });
 			}
 			catch (Exception ex) {
 				Helper.Notifier.Fail(

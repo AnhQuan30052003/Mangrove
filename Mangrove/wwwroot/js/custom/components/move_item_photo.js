@@ -1,54 +1,48 @@
 ﻿// Thay đổi vị trí item photo
 function changeIndexItemPhoto() {
-	window.addEventListener("load", function () {
-		// Cho các add photo item
-		const listnerAddItemPhoto = setInterval(() => {
-			let listItems = document.querySelectorAll(".items");
-			let sort = null;
-			listItems.forEach((item) => {
-				if (item.classList.contains("have_move")) {
-					if (sort instanceof Sortable) sort.destroy();
-					sort = new Sortable(item, {
-						animation: 150,
-						ghostClass: "sortable-ghost",
-						handle: ".catch_to_move",
-						draggable: ".add_item",
-						onEnd: function (evt) {
+	document.addEventListener("click", function (e) {
+		const clicked = e.target;
 
-						},
-					});
-				}
-			});
-		}, 1000);
+		// Cho các add photo item
+		if (clicked.matches(".catch_to_move")) {
+			const items = clicked.closest(".items");
+			if (items.classList.contains("have_move")) {
+				new Sortable(items, {
+					animation: 150,
+					ghostClass: "sortable-ghost",
+					handle: ".catch_to_move",
+					draggable: ".add_item",
+					onEnd: function (evt) {
+
+					},
+				});
+			}
+		}
 
 		// Cho các stage item
-		const listenrStageItem = setInterval(() => {
-			let tabsChange = document.querySelectorAll(".tabs_change");
-			let sort = null;
-			tabsChange.forEach((tabs) => {
-				if (tabs.classList.contains("have_move")) {
-					if (sort instanceof Sortable) sort.destroy();
-					sort = new Sortable(tabs, {
-						animation: 150,
-						ghostClass: "sortable-ghost",
-						handle: ".change_tab",
-						draggable: ".change_tab",
-						onEnd: function (evt) {
-							const tabItems = tabs.querySelectorAll(".tab_item");
-							const listDisplayItem = document.querySelectorAll(".display_item");
+		if (clicked.matches(".change_tab") || clicked.matches(".value_tab")) {
+			const tabsChange = clicked.closest(".tabs_change");
+			if (tabsChange.classList.contains("have_move")) {
+				new Sortable(tabsChange, {
+					animation: 150,
+					ghostClass: "sortable-ghost",
+					handle: ".change_tab",
+					draggable: ".change_tab",
+					onEnd: function (evt) {
+						const tabItems = tabsChange.querySelectorAll(".tab_item");
+						const listDisplayItem = document.querySelectorAll(".display_item");
 
-							const listIndex = Array.from(tabItems).map(tab => {
-								const tabValue = tab.getAttribute("data-tab");
-								return Array.from(listDisplayItem).find(item => item.getAttribute("data-tab") === tabValue);
-							});
+						const listIndex = Array.from(tabItems).map(tab => {
+							const tabValue = tab.getAttribute("data-tab");
+							return Array.from(listDisplayItem).find(item => item.getAttribute("data-tab") === tabValue);
+						});
 
-							const displayInfo = document.querySelector(".display_info_stage");
-							displayInfo.innerHTML = listIndex.map(el => el.outerHTML).join("");
-						},
-					});
-				}
-			});
-		}, 1000);
+						const displayInfo = document.querySelector(".display_info_stage");
+						displayInfo.innerHTML = listIndex.map(el => el.outerHTML).join("");
+					},
+				});
+			}
+		}
 	});
 }
 changeIndexItemPhoto();
