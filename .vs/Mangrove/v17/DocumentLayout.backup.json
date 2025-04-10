@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\[github]\\Mangrove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\controllers\\individualcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\home\\page_individual.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\home\\page_individual.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\views\\shared\\_partialview_layout\\_user_showqrcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\views\\shared\\_partialview_layout\\_user_showqrcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|c:\\[github]\\mangrove\\mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{E6837476-18AA-4B63-B154-0E3E782E8156}|Mangrove\\Mangrove.csproj|solutionrelative:mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -13,7 +21,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 203,
+          "DockedWidth": 256,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -38,15 +46,47 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "show_info_image.js",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
+              "RelativeDocumentMoniker": "Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
+              "RelativeToolTip": "Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-10T15:36:15.353Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IndividualController.cs",
-              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeDocumentMoniker": "Mangrove\\Controllers\\IndividualController.cs",
-              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Controllers\\IndividualController.cs",
-              "RelativeToolTip": "Mangrove\\Controllers\\IndividualController.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAuwF0BAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T08:59:33.918Z",
+              "Title": "Page_Individual.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Home\\Page_Individual.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Home\\Page_Individual.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Home\\Page_Individual.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Home\\Page_Individual.cshtml",
+              "ViewState": "AgIAADQAAAAAAAAAAAAAAEsAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T15:39:10.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_User_ShowQRCode.cshtml",
+              "DocumentMoniker": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\_PartialView_Layout\\_User_ShowQRCode.cshtml",
+              "RelativeDocumentMoniker": "Mangrove\\Views\\Shared\\_PartialView_Layout\\_User_ShowQRCode.cshtml",
+              "ToolTip": "C:\\[github]\\Mangrove\\Mangrove\\Views\\Shared\\_PartialView_Layout\\_User_ShowQRCode.cshtml",
+              "RelativeToolTip": "Mangrove\\Views\\Shared\\_PartialView_Layout\\_User_ShowQRCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T15:36:34.926Z",
               "EditorCaption": ""
             }
           ]

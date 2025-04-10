@@ -1,10 +1,7 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
@@ -104,7 +101,8 @@ namespace Mangrove.Controllers {
 			return View(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove, List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages,
+		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove,
+			List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages, List<string> idStages,
 			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
 			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
@@ -114,6 +112,7 @@ namespace Mangrove.Controllers {
 				ViewData["IndexStages"] = indexStages;
 				ViewData["ActiveStages"] = activeStages;
 				ViewData["ItemPhotoOfStages"] = itemPhotoOfStages;
+				ViewData["IdStages"] = idStages;
 
 				ViewData["SurveyDates"] = surveyDates;
 				ViewData["StageNameENs"] = stageNameENs;
@@ -171,19 +170,13 @@ namespace Mangrove.Controllers {
 
 				// Save data
 				// Lưu cá thể
-				string idIndividual = Helper.Func.CreateId();
-				var newIndividual = new TblIndividual {
-					Id = idIndividual,
-					IdMangrove = chooseIdMangrove,
-					Longitude = model.Longitude,
-					Latitude = model.Latitude,
-					PositionEn = model.PositionEn,
-					PositionVi = model.PositionVi,
-					UpdateLast = DateTime.Now,
-					QrName = "qr-code.png", // Cần code tạo QR Image cho individual !
-					View = 0
-				};
-				context.TblIndividuals.Add(newIndividual);
+				//string idIndividual = Helper.Func.CreateId();
+				model.Id = Helper.Func.CreateId();
+				model.IdMangrove = chooseIdMangrove;
+				model.View = 0;
+				model.QrName = "qr-code.png"; // Cần code tạo QR Image cho individual !	
+				model.UpdateLast = DateTime.Now;
+				context.TblIndividuals.Add(model);
 
 				// Truy vấn tên thành phần loài 
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
@@ -200,7 +193,7 @@ namespace Mangrove.Controllers {
 					);
 					var newStage = new TblStage {
 						Id = idStage,
-						IdIndividual = idIndividual,
+						IdIndividual = model.Id,
 						MainImage = fileName,
 						SurveyDay = surveyDates[i],
 						NameEn = stageNameENs[i],
@@ -285,11 +278,13 @@ namespace Mangrove.Controllers {
 				List<string> noteENs = new List<string>();
 				List<string> noteVIs = new List<string>();
 
-				for (int i = 0; i < individual.TblStages.Count(); i++) {
+				int i = 0;
+				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
+				//for (int i = 0; i < individual.TblStages.Count(); i++) {
 					indexStages.Add(i + 1);
 					activeStages.Add(i == 0 ? "active" : string.Empty);
 
-					var stage = individual.TblStages.ElementAt(i);
+					//var stage = individual.TblStages.ElementAt(i);
 
 					var listPhotos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					itemPhotoOfStages.Add(listPhotos.Count().ToString());
@@ -310,6 +305,7 @@ namespace Mangrove.Controllers {
 						noteENs.Add(photo.NoteImgEn ?? string.Empty);
 						noteVIs.Add(photo.NoteImgVi ?? string.Empty);
 					}
+					i += 1;
 				}
 
 				ViewData["IndexStages"] = indexStages;
@@ -327,7 +323,6 @@ namespace Mangrove.Controllers {
 				ViewData["DataTypes"] = dataTypes;
 				ViewData["NoteENs"] = noteENs;
 				ViewData["NoteVIs"] = noteVIs;
-
 
 				Helper.Validate.Clear();
 				return View(individual);
@@ -410,9 +405,11 @@ namespace Mangrove.Controllers {
 
 				// Save data
 				// Cập nhật model
+				model.IdMangrove = chooseIdMangrove;
+				model.UpdateLast = DateTime.Now;
 				context.TblIndividuals.Update(model);
 
-				// Truy vấn tên thành phần loài 
+				// Truy vấn tên thành phần loài		
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
 				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
 
@@ -426,6 +423,7 @@ namespace Mangrove.Controllers {
 					string idStage = Helper.Func.CreateId();
 					if (string.IsNullOrEmpty(idStages[i])) {
 						fileName = $"{idStage}_{nameMangrove}{Helper.Func.GetTypeImage(dataTypes[indexPhoto])}";
+						// Tạo mới giai đoạn & thêm vào DB
 						var newStage = new TblStage {
 							Id = idStage,
 							IdIndividual = model.Id,
@@ -437,18 +435,24 @@ namespace Mangrove.Controllers {
 							WeatherVi = weatherVIs[i],
 						};
 						context.TblStages.Add(newStage);
+
+						// Lưu ảnh
+						Helper.Func.MovePhoto(
+							Path.Combine(Helper.Path.temptImg, dataBase64s[indexPhoto]),
+							Path.Combine(Helper.Path.stageImg, fileName)
+						);
 					}
 					else {
+						// Tìm giai đoạn ấy
 						var oldStage = await context.TblStages.FirstOrDefaultAsync(item => item.Id == idStages[i]);
 						if (oldStage != null) {
-							idStage = oldStage.Id;
-
 							oldStage.SurveyDay = surveyDates[i];
 							oldStage.NameEn = stageNameENs[i];
 							oldStage.NameVi = stageNameVIs[i];
 							oldStage.WeatherEn = weatherENs[i];
 							oldStage.WeatherVi = weatherVIs[i];
 
+							// Lưu ảnh
 							// setup lấy từ nguồn 
 							fileName = $"{oldStage.Id}_{nameMangrove}";
 							string oldPath = Path.Combine(Helper.Path.stageImg, dataBase64s[indexPhoto]);
@@ -467,6 +471,8 @@ namespace Mangrove.Controllers {
 
 							oldStage.MainImage = fileName;
 							context.TblStages.Update(oldStage);
+							// Gáng lại id cho giai đoạn đang thao tác để thêm vào SaveIdStage
+							idStage = oldStage.Id;
 						}
 					}
 					saveIdStage.Add(idStage);
@@ -488,7 +494,7 @@ namespace Mangrove.Controllers {
 
 							var newPhoto = new TblPhoto {
 								Id = idPhoto,
-								IdObj = model.Id,
+								IdObj = idStage,
 								ImageName = fileName,
 								NoteImgEn = noteENs[indexNote],
 								NoteImgVi = noteVIs[indexNote],
@@ -498,7 +504,7 @@ namespace Mangrove.Controllers {
 						else {
 							fileName += Path.GetExtension(dataBase64s[j]);
 
-							var photo = await context.TblPhotos.FindAsync(idPhoto);
+							var photo = await context.TblPhotos.FirstOrDefaultAsync(item => item.Id == idPhoto);
 							if (photo != null) {
 								photo.ImageName = fileName;
 								photo.NoteImgEn = noteENs[indexNote];
@@ -513,9 +519,8 @@ namespace Mangrove.Controllers {
 					}
 					indexPhoto += countItemPhotoOfStage + 1;
 
-					await context.SaveChangesAsync();
-
 					// Xoá ảnh cũ của giai đoạn này
+					await context.SaveChangesAsync();
 					var photoStage = await context.TblPhotos.Where(item => item.IdObj == idStage).ToListAsync();
 					if (photoStage.Any()) {
 						foreach (var photo in photoStage) {
@@ -529,7 +534,7 @@ namespace Mangrove.Controllers {
 				}
 
 				await context.SaveChangesAsync();
-				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+				//Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Xoá giai đoạn cũ không dùng của cá thể
 				var stageOfInvidual = await context.TblStages.Where(item => item.IdIndividual == model.Id).ToListAsync();
@@ -544,6 +549,9 @@ namespace Mangrove.Controllers {
 									context.TblPhotos.Remove(photo);
 								}
 							}
+
+							// Xoả ảnh đại diện giai đoạn này
+							Helper.Func.DeletePhoto(Helper.Path.stageImg, stage.MainImage);
 
 							// Xoá giai đoạn này
 							context.TblStages.Remove(stage);
@@ -585,7 +593,7 @@ namespace Mangrove.Controllers {
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
-				foreach (var stage in individual.TblStages.ToList()) {
+				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
 					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					var _stage = new Stage {
 						info = stage,
@@ -642,6 +650,7 @@ namespace Mangrove.Controllers {
 						Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
 					}
 				}
+
 				await context.SaveChangesAsync();
 
 				// Setup thông báo

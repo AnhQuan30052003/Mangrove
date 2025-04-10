@@ -491,7 +491,7 @@
 
 																		<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
 																			<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-																				@(!string.IsNullOrEmpty(dataBase64) ? "src='/img/temp-img/@dataBase64'" : string.Empty)
+																				src="/img/temp-img/@dataBase64"
 																				 alt="" />
 
 																			<button class="btn_remove_preview_img"

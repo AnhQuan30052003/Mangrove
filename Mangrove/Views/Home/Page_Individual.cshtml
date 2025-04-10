@@ -15,6 +15,8 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
+<input class="qr_name_mangrove" value="@Model.NameMangrove" hidden />
+
 <section class="individual_display container py-2 info_qr infor_stage">
 	@{
 		if (Model.Stages.Any())
@@ -50,10 +52,10 @@
 									</div>
 
 									<div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
-										<h5 class="text-center mb-2 fw-bold text-sm-start qr_name_mangrove">@Model.NameMangrove</h5>
+										<h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
 										<p class="d-flex justify-content-between justify-content-lg-start">
 											<span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
-											<span class="qr_day">@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
+											<span>@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
 										</p>
 
 										<p class="d-flex justify-content-between justify-content-lg-start">
@@ -69,21 +71,15 @@
 											</p>
 										}
 
-										@if (!String.IsNullOrEmpty(Model.Individual.Longitude))
-										{
-											<p class="d-flex justify-content-between justify-content-lg-start">
-												<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
-												<span>@Model.Individual.Longitude</span>
-											</p>
-										}
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+											<span class="qrLongitude">@Model.Individual.Longitude</span>
+										</p>
 
-										@if (!String.IsNullOrEmpty(Model.Individual.Latitude))
-										{
-											<p class="d-flex justify-content-between justify-content-lg-start">
-												<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
-												<span>@Model.Individual.Latitude</span>
-											</p>
-										}
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+											<span class="qrLatitude">@Model.Individual.Latitude</span>
+										</p>
 									</div>
 								</div>
 							</div>

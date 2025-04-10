@@ -198,7 +198,7 @@ namespace Mangrove.Controllers {
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
-				foreach (var stage in individual.TblStages.ToList()) {
+				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
 					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					var _stage = new Stage {
 						info = stage,

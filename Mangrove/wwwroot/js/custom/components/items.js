@@ -92,7 +92,7 @@ addImageToItem();
 
 // Khi click vào nút thêm item
 export function addItem(idButtonClick) {
-	const clicked = document.querySelector(idButtonClick)
+	const clicked = document.querySelector(idButtonClick);
 	const frameItems = clicked.closest(".frame_items");
 	const items = frameItems.querySelector(".items");
 	const addItemFind = items.querySelectorAll(".add_item");

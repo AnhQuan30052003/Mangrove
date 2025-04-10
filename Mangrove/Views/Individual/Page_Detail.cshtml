@@ -11,7 +11,9 @@
 	string _pv = Helper.Path.partialView;
 }
 
-<!-- Frame button --> 
+<input class="qr_name_mangrove" value="@Model.NameMangrove" hidden />
+
+<!-- Frame button -->
 <div class="d-flex justify-content-center my-3 gap-2">
 	<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex, true)"
 			class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
@@ -31,7 +33,7 @@
 
 	<a href="@Url.Action("Page_Delete", "Individual", new { id = Model.IdIndividual })"
 	   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms"
-	   onclick="return confirm('@translate["label_text_xac_nhan_xoa"]');">
+	   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageDelete) return confirm('@translate["label_text_xac_nhan_xoa"]');">
 		<i class="fa-solid fa-trash"></i>
 		<span class="hidden_mobile">
 			@translate["label_xoa"]
@@ -74,7 +76,7 @@
 									</div>
 
 									<div class="col-12 col-sm-7 pb-2 d-flex flex-column justify-content-center px-2">
-										<h5 class="text-center mb-2 fw-bold text-sm-start qr_name_mangrove">@Model.NameMangrove</h5>
+										<h5 class="text-center mb-2 fw-bold text-sm-start">@Model.NameMangrove</h5>
 										<p class="d-flex justify-content-between justify-content-lg-start">
 											<span style="width: 120px;">@translate["label_ngay_khao_sat"]:</span>
 											<span class="qr_day">@stage.info.SurveyDay.ToString("dd/MM/yyyy")</span>
@@ -93,21 +95,15 @@
 											</p>
 										}
 
-										@if (!String.IsNullOrEmpty(Model.Individual.Longitude))
-										{
-											<p class="d-flex justify-content-between justify-content-lg-start">
-												<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
-												<span>@Model.Individual.Longitude</span>
-											</p>
-										}
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+											<span class="qrLongitude">@Model.Individual.Longitude</span>
+										</p>
 
-										@if (!String.IsNullOrEmpty(Model.Individual.Latitude))
-										{
-											<p class="d-flex justify-content-between justify-content-lg-start">
-												<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
-												<span>@Model.Individual.Latitude</span>
-											</p>
-										}
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+											<span class="qrLatitude">@Model.Individual.Latitude</span>
+										</p>
 									</div>
 								</div>
 							</div>
@@ -177,7 +173,7 @@
 
 	<a href="@Url.Action("Page_Delete", "Individual", new { id = Model.IdIndividual })"
 	   class="px-3 py-2 border-none outline-none bg-danger rounded-1 text-white opacity_hover time_delay_500ms"
-	   onclick="return confirm('@translate["label_text_xac_nhan_xoa"]');">
+	   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageDelete) return confirm('@translate["label_text_xac_nhan_xoa"]');">
 		<i class="fa-solid fa-trash"></i>
 		<span class="hidden_mobile">
 			@translate["label_xoa"]

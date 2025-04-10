@@ -56,14 +56,19 @@ function clickShowQR() {
 		qrImgs.forEach((item) => {
 			item.addEventListener("click", function () {
 				const infoQR = document.querySelector(".info_qr");
-				const qrDay = infoQR.querySelector(".qr_day");
 				const qrPos = infoQR.querySelector(".qr_pos");
 				const qrName = document.querySelector(".qr_name_mangrove");
+				const qrLongitude = infoQR.querySelector(".qrLongitude");
+				const qrLatitude = infoQR.querySelector(".qrLatitude");
 
 				const showQRCode = document.querySelector("#show_qr_code");
-				showQRCode.querySelector(".qr_name").innerHTML = qrName.textContent;
-				showQRCode.querySelector(".qr_day").innerHTML = qrDay.textContent;
+
+				console.log(showQRCode);
+
+				showQRCode.querySelector(".qr_name").innerHTML = qrName.value;
 				showQRCode.querySelector(".qr_pos").innerHTML = qrPos.textContent;
+				showQRCode.querySelector(".qr_longitude").innerHTML = qrLongitude.textContent;
+				showQRCode.querySelector(".qr_latitude").innerHTML = qrLatitude.textContent;
 				showQRCode.querySelector(".qr_img").src = item.getAttribute("src");
 				showQRCode.classList.remove("d-none");
 			});

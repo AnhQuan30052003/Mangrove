@@ -57,6 +57,10 @@
 <section class="mod-add-individual">
 	<div class="container py-2">
 		<form action="" method="post" enctype="multipart/form-data">
+			<input type="text" asp-for="@Model.Id" hidden />
+			<input type="text" asp-for="@Model.View" hidden />
+			<input type="text" asp-for="@Model.QrName" hidden />
+
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center my-3 gap-2">
 				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex, true)"
@@ -152,7 +156,7 @@
 								{
 									int index = indexStages[i];
 									var active = activeStages[i];
-									var idStage = idStages[i];	
+									var idStage = idStages[i];
 
 									<span data-tab="@index" class="tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer @active position-relative">
 										<span class="value_tab">@index</span>
