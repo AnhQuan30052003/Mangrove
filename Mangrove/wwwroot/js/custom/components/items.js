@@ -257,6 +257,7 @@ function addStage() {
 
 				<input class="indexStages" type="text" name="indexStages" value="${index}" hidden />
 				<input class="activeStages" type="text" name="activeStages" value="active" hidden />
+				<input class="idStages" type="text" name="idStages" value="" hidden />
 			`;
 			tabs.appendChild(newTabItem);
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
@@ -191,13 +192,12 @@ namespace Mangrove.Controllers {
 				indexPhoto = indexNote = 0;
 				for (int i = 0; i < indexStages.Count(); i++) {
 					// Lưu giai đoạn
-					string fileName = $"{Helper.Func.CreateId()}_{nameMangrove}{Helper.Func.GetTypeImage(dataTypes[indexPhoto])}";
+					string idStage = Helper.Func.CreateId();
+					string fileName = $"{idStage}_{nameMangrove}{Helper.Func.GetTypeImage(dataTypes[indexPhoto])}";
 					Helper.Func.MovePhoto(
 						Path.Combine(Helper.Path.temptImg, dataBase64s[indexPhoto]),
 						Path.Combine(Helper.Path.stageImg, fileName)
 					);
-
-					string idStage = Helper.Func.CreateId();
 					var newStage = new TblStage {
 						Id = idStage,
 						IdIndividual = idIndividual,
@@ -272,6 +272,7 @@ namespace Mangrove.Controllers {
 				List<int> indexStages = new List<int>();
 				List<string> activeStages = new List<string>();
 				List<string> itemPhotoOfStages = new List<string>();
+				List<string> idStages = new List<string>();
 
 				List<DateTime> surveyDats = new List<DateTime>();
 				List<string> stageNameENs = new List<string>();
@@ -289,8 +290,10 @@ namespace Mangrove.Controllers {
 					activeStages.Add(i == 0 ? "active" : string.Empty);
 
 					var stage = individual.TblStages.ElementAt(i);
+
 					var listPhotos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
 					itemPhotoOfStages.Add(listPhotos.Count().ToString());
+					idStages.Add(stage.Id);
 
 					surveyDats.Add(stage.SurveyDay);
 
@@ -312,6 +315,7 @@ namespace Mangrove.Controllers {
 				ViewData["IndexStages"] = indexStages;
 				ViewData["ActiveStages"] = activeStages;
 				ViewData["ItemPhotoOfStages"] = itemPhotoOfStages;
+				ViewData["IdStages"] = idStages;
 
 				ViewData["SurveyDates"] = surveyDats;
 				ViewData["StageNameENs"] = stageNameENs;
@@ -337,7 +341,8 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Edit(TblIndividual model, string chooseIdMangrove, List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages,
+		public async Task<IActionResult> Page_Edit(TblIndividual model, string chooseIdMangrove,
+			List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages, List<string> idStages,
 			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
 			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 
@@ -348,6 +353,7 @@ namespace Mangrove.Controllers {
 				ViewData["IndexStages"] = indexStages;
 				ViewData["ActiveStages"] = activeStages;
 				ViewData["ItemPhotoOfStages"] = itemPhotoOfStages;
+				ViewData["IdStages"] = idStages;
 
 				ViewData["SurveyDates"] = surveyDates;
 				ViewData["StageNameENs"] = stageNameENs;
@@ -403,7 +409,148 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Save data
+				// Cập nhật model
+				context.TblIndividuals.Update(model);
+
+				// Truy vấn tên thành phần loài 
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
+				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
+
+				List<string> saveIdStage = new List<string>();
+				List<string> saveIdPhoto = new List<string>();
+
+				indexPhoto = indexNote = 0;
+				string fileName = string.Empty;
+				for (int i = 0; i < indexStages.Count(); i++) {
+					// Cập nhật giai đoạn
+					string idStage = Helper.Func.CreateId();
+					if (string.IsNullOrEmpty(idStages[i])) {
+						fileName = $"{idStage}_{nameMangrove}{Helper.Func.GetTypeImage(dataTypes[indexPhoto])}";
+						var newStage = new TblStage {
+							Id = idStage,
+							IdIndividual = model.Id,
+							MainImage = fileName,
+							SurveyDay = surveyDates[i],
+							NameEn = stageNameENs[i],
+							NameVi = stageNameVIs[i],
+							WeatherEn = weatherENs[i],
+							WeatherVi = weatherVIs[i],
+						};
+						context.TblStages.Add(newStage);
+					}
+					else {
+						var oldStage = await context.TblStages.FirstOrDefaultAsync(item => item.Id == idStages[i]);
+						if (oldStage != null) {
+							idStage = oldStage.Id;
+
+							oldStage.SurveyDay = surveyDates[i];
+							oldStage.NameEn = stageNameENs[i];
+							oldStage.NameVi = stageNameVIs[i];
+							oldStage.WeatherEn = weatherENs[i];
+							oldStage.WeatherVi = weatherVIs[i];
+
+							// setup lấy từ nguồn 
+							fileName = $"{oldStage.Id}_{nameMangrove}";
+							string oldPath = Path.Combine(Helper.Path.stageImg, dataBase64s[indexPhoto]);
+							// Ảnh đại diện mới
+							if (dataBase64s[indexPhoto].Contains(Helper.Key.temp)) {
+								fileName += Helper.Func.GetTypeImage(dataTypes[indexPhoto]);
+								oldPath = Path.Combine(Helper.Path.temptImg, dataBase64s[indexPhoto]);
+								Helper.Func.DeletePhoto(Helper.Path.stageImg, oldStage.MainImage);
+							}
+							else {
+								fileName += Path.GetExtension(oldStage.MainImage);
+							}
+
+							string newPath = Path.Combine(Helper.Path.stageImg, fileName);
+							Helper.Func.MovePhoto(oldPath, newPath);
+
+							oldStage.MainImage = fileName;
+							context.TblStages.Update(oldStage);
+						}
+					}
+					saveIdStage.Add(idStage);
+
+					// Cập nhật ảnh của giai đoạn
+					saveIdPhoto.Clear();
+					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
+					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
+						// Lưu ảnh
+						// Setup cho ảnh cũ
+						string idPhoto = Helper.Func.GetIdFromFileName(dataBase64s[j]);
+						fileName = $"{idPhoto}_{noteVIs[indexNote]}";
+						string oldPath = Path.Combine(Helper.Path.stageImg, dataBase64s[j]);
+
+						// Nếu là ảnh mới
+						if (dataBase64s[j].Contains(Helper.Key.temp)) {
+							fileName += Helper.Func.GetTypeImage(dataTypes[j]);
+							oldPath = Path.Combine(Helper.Path.temptImg, dataBase64s[j]);
+
+							var newPhoto = new TblPhoto {
+								Id = idPhoto,
+								IdObj = model.Id,
+								ImageName = fileName,
+								NoteImgEn = noteENs[indexNote],
+								NoteImgVi = noteVIs[indexNote],
+							};
+							context.TblPhotos.Add(newPhoto);
+						}
+						else {
+							fileName += Path.GetExtension(dataBase64s[j]);
+
+							var photo = await context.TblPhotos.FindAsync(idPhoto);
+							if (photo != null) {
+								photo.ImageName = fileName;
+								photo.NoteImgEn = noteENs[indexNote];
+								photo.NoteImgVi = noteVIs[indexNote];
+								context.TblPhotos.Update(photo);
+							}
+						}
+						saveIdPhoto.Add(idPhoto);
+						string newPath = Path.Combine(Helper.Path.stageImg, fileName);
+						Helper.Func.MovePhoto(oldPath, newPath);
+						indexNote += 1;
+					}
+					indexPhoto += countItemPhotoOfStage + 1;
+
+					await context.SaveChangesAsync();
+
+					// Xoá ảnh cũ của giai đoạn này
+					var photoStage = await context.TblPhotos.Where(item => item.IdObj == idStage).ToListAsync();
+					if (photoStage.Any()) {
+						foreach (var photo in photoStage) {
+							if (!saveIdPhoto.Contains(photo.Id)) {
+								Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
+								context.TblPhotos.Remove(photo);
+							}
+						}
+					}
+					await context.SaveChangesAsync();
+				}
+
+				await context.SaveChangesAsync();
 				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+
+				// Xoá giai đoạn cũ không dùng của cá thể
+				var stageOfInvidual = await context.TblStages.Where(item => item.IdIndividual == model.Id).ToListAsync();
+				if (stageOfInvidual.Any()) {
+					foreach (var stage in stageOfInvidual) {
+						if (!saveIdStage.Contains(stage.Id)) {
+							// Xoá ảnh của giai đoạn
+							var photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+							if (photos.Any()) {
+								foreach (var photo in photos) {
+									Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
+									context.TblPhotos.Remove(photo);
+								}
+							}
+
+							// Xoá giai đoạn này
+							context.TblStages.Remove(stage);
+						}
+					}
+				}
+				await context.SaveChangesAsync();
 
 				// Setup thông báo
 				Helper.Notifier.Create(

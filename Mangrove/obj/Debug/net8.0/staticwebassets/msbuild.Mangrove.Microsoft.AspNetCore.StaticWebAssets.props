@@ -1206,12 +1206,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\23A7D870-E348-4F57-BEC2-EA24DF97BB79_1.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\BC5F3E3E-A5B3-4A2E-80FD-09FAB5185169_Ráng đại.jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\834510CD-533E-432A-8D1A-1D0CC60CA09C_Ráng đại.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/stage-img/BC5F3E3E-A5B3-4A2E-80FD-09FAB5185169_Ráng đại.jpg</RelativePath>
+      <RelativePath>img/stage-img/834510CD-533E-432A-8D1A-1D0CC60CA09C_Ráng đại.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1222,7 +1222,7 @@
       <Integrity>h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\BC5F3E3E-A5B3-4A2E-80FD-09FAB5185169_Ráng đại.jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\834510CD-533E-432A-8D1A-1D0CC60CA09C_Ráng đại.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\EB407507-7864-465C-B87C-E7AA4895F365_Ráng đại.jpg'))">
       <SourceType>Package</SourceType>
@@ -1650,8 +1650,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>cgmwczzos3</Fingerprint>
-      <Integrity>rGEMHeiRn+kHJHdpOXV/KCjfyh1T4F9Pp1yyIAoV+l0=</Integrity>
+      <Fingerprint>qireoo6stt</Fingerprint>
+      <Integrity>0lobfPd3q1EQMjq+TYlY1ArrvuHM4kWfxnHk6zH4VuI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</OriginalItemSpec>

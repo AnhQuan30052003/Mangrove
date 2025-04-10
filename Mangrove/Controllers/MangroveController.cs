@@ -339,9 +339,26 @@ namespace Mangrove.Controllers {
 					if (dataBase64s[i].Contains(Helper.Key.temp)) {
 						fileName += Helper.Func.GetTypeImage(dataTypes[i]);
 						oldPath = Path.Combine(Helper.Path.temptImg, dataBase64s[i]);
+
+						var newPhoto = new TblPhoto {
+							Id = idPhoto,
+							IdObj = model.Id,
+							ImageName = fileName,
+							NoteImgEn = noteENs[i],
+							NoteImgVi = noteVIs[i],
+						};
+						context.TblPhotos.Add(newPhoto);
 					}
 					else {
 						fileName += Path.GetExtension(dataBase64s[i]);
+
+						var photo = await context.TblPhotos.FindAsync(idPhoto);
+						if (photo != null) {
+							photo.ImageName = fileName;
+							photo.NoteImgEn = noteENs[i];
+							photo.NoteImgVi = noteVIs[i];
+							context.TblPhotos.Update(photo);
+						}
 					}
 
 					// Lưu lại tên ảnh này
@@ -353,33 +370,12 @@ namespace Mangrove.Controllers {
 					// Chuyển ảnh vào đúng thư mục
 					string newPath = Path.Combine(Helper.Path.treeImg, fileName);
 					Helper.Func.MovePhoto(oldPath, newPath);
-
-					if (dataBase64s[i].Contains(Helper.Key.temp)) {
-						var newPhoto = new TblPhoto {
-							Id = idPhoto,
-							IdObj = model.Id,
-							ImageName = fileName,
-							NoteImgEn = noteENs[i],
-							NoteImgVi = noteVIs[i],
-						};
-
-						context.TblPhotos.Add(newPhoto);
-					}
-					else {
-						var photo = await context.TblPhotos.FindAsync(idPhoto);
-						if (photo != null) {
-							photo.ImageName = fileName;
-							photo.NoteImgEn = noteENs[i];
-							photo.NoteImgVi = noteVIs[i];
-							context.TblPhotos.Update(photo);
-						}
-					}
 				}
 				await context.SaveChangesAsync();
 
 				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!
 				var photoMangrove = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
-				if (photoMangrove.Count() >= saveFileName.Count()) {
+				if (photoMangrove.Any()) {
 					foreach (var photo in photoMangrove) {
 						if (!saveFileName.Contains(photo.ImageName)) {
 							Helper.Func.DeletePhoto(Helper.Path.treeImg, photo.ImageName);

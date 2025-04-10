@@ -19,6 +19,7 @@
 	var indexStages = ViewData["IndexStages"] as List<int> ?? new List<int>();
 	var activeStages = ViewData["ActiveStages"] as List<string> ?? new List<string>();
 	var itemPhotoOfStages = ViewData["ItemPhotoOfStages"] as List<string> ?? new List<string>();
+	var idStages = ViewData["IdStages"] as List<string> ?? new List<string>();
 
 	var surveyDates = ViewData["SurveyDates"] as List<DateTime> ?? new List<DateTime>();
 	var stageNameENs = ViewData["StageNameENs"] as List<string> ?? new List<string>();
@@ -144,6 +145,7 @@
 
 										<input class="indexStages" type="text" name="indexStages" value="1" hidden />
 										<input class="activeStages" type="text" name="activeStages" value="active" hidden />
+										<input class="idStages" type="text" name="idStages" value="" hidden />
 									</span>
 								}
 								else
@@ -152,6 +154,7 @@
 									{
 										int index = indexStages[i];
 										var active = activeStages[i];
+										var idStage = idStages[i];
 
 										<span data-tab="@index" class="tab_item change_tab stage_individual py-2 px-3 bg-white rounded-circle cursor-pointer @active position-relative">
 											<span class="value_tab">@index</span>
@@ -161,6 +164,7 @@
 
 											<input class="indexStages" type="text" name="indexStages" value="@index" hidden />
 											<input class="activeStages" type="text" name="activeStages" value="@active" hidden />
+											<input class="idStages" type="text" name="idStages" value="@idStage" hidden />
 										</span>
 									}
 								}
