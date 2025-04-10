@@ -177,35 +177,40 @@ function createDivAddItem() {
 // Theo dõi khi click và tab giai đoạn của mỗi cây bên page admin
 function clickChangeStageTab() {
 	document.addEventListener("click", function (e) {
-		try {
-			const tabItems = document.querySelectorAll(".tab_item");
-			tabItems.forEach((tabItem) => {
-				if (tabItem.contains(e.target)) {
-					tabItems.forEach((item) => {
-						item.classList.remove("active");
-						const activeStages = item.querySelector(".activeStages");
+		//try {
+		const tabItems = document.querySelectorAll(".tab_item");
+		tabItems.forEach((tabItem) => {
+			if (tabItem.contains(e.target)) {
+				tabItems.forEach((item) => {
+					item.classList.remove("active");
+					const activeStages = item.querySelector(".activeStages");
+					if (activeStages) {
 						activeStages.value = "";
-					});
+					}
+				});
 
-					tabItem.classList.add("active");
-					const activeStages = tabItem.querySelector(".activeStages");
+				tabItem.classList.add("active");
+				const activeStages = tabItem.querySelector(".activeStages");
+				if (activeStages) {
 					activeStages.value = "active";
-
-					// Run fun thay đổi display_item
-					const dataTab = tabItem.getAttribute("data-tab");
-					const displayItems = document.querySelectorAll(".display_item");
-					displayItems.forEach((item) => {
-						if (item.getAttribute("data-tab") == dataTab) {
-							item.classList.remove("d-none");
-						}
-						else {
-							item.classList.add("d-none");
-						}
-					});
 				}
-			});
-		}
-		catch { }
+
+				// Run fun thay đổi display_item
+				const indexTab = parseInt(tabItem.innerText) - 1;
+				const displayItems = document.querySelectorAll(".display_item");
+				for (let i = 0; i < displayItems.length; i++) {
+					var item = displayItems[i];
+					if (i == indexTab) {
+						item.classList.remove("d-none");
+					}
+					else {
+						item.classList.add("d-none");
+					}
+				}
+			}
+		});
+		//}
+		//catch { }
 	});
 }
 clickChangeStageTab();

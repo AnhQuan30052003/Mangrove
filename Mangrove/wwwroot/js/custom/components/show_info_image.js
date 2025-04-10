@@ -62,9 +62,6 @@ function clickShowQR() {
 				const qrLatitude = infoQR.querySelector(".qrLatitude");
 
 				const showQRCode = document.querySelector("#show_qr_code");
-
-				console.log(showQRCode);
-
 				showQRCode.querySelector(".qr_name").innerHTML = qrName.value;
 				showQRCode.querySelector(".qr_pos").innerHTML = qrPos.textContent;
 				showQRCode.querySelector(".qr_longitude").innerHTML = qrLongitude.textContent;
