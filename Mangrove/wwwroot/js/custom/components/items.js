@@ -302,7 +302,7 @@ function createDisplayItem(index) {
 	frameInfoAndPosition.innerHTML = `
 		<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
 			<div class="mt-1">
-				<small class="mb-1 d-block font-small">${labelPhoto}</small>
+				<small class="mb-1 d-block font-small text-center">${labelPhoto}</small>
 				<div class="w-100">
 					<div class="add_img rounded-1">
 						<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">

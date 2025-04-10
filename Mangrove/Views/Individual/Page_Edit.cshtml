@@ -181,13 +181,14 @@
 								string show = activeStages[i] == "active" ? "" : "d-none";
 								int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
 								bool haveImage = !string.IsNullOrEmpty(dataBase64s[indexPhoto]);
+								string folder = (dataBase64s[indexPhoto] != null && dataBase64s[indexPhoto].Contains(Helper.Key.temp)) ? "temp-img" : "stage-img";
 
 								<div class="display_item box @show" data-tab="@index">
 									<!-- Info stage -->
 									<div class="frame_info_and_position d-sm-flex">
 										<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
 											<div class="mt-1">
-												<small class="mb-1 d-block font-small">@translate["label_hinh_anh"]</small>
+												<small class="mb-1 d-block font-small text-center">@translate["label_hinh_anh"]</small>
 												<div class="w-100">
 													<div class="add_img rounded-1">
 														<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
@@ -204,7 +205,7 @@
 
 														<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden">
 															<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-																 src="/img/temp-img/@dataBase64s[indexPhoto]"
+																 src="/img/@folder/@dataBase64s[indexPhoto]"
 																 alt="" />
 
 															<button class="btn_remove_preview_img"
@@ -266,8 +267,17 @@
 										<div class="info">
 											<div class="items bg-form have_move">
 												@{
-													if (!dataBase64s.Any())
+													for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++)
 													{
+														var dataType = dataTypes[j];
+														var dataBase64 = dataBase64s[j];
+														var noteEN = noteENs[indexNote];
+														var noteVI = noteVIs[indexNote];
+														indexNote += 1;
+
+														haveImage = !string.IsNullOrEmpty(dataBase64);
+														folder = (dataBase64s[j] != null && dataBase64s[j].Contains(Helper.Key.temp)) ? "temp-img" : "stage-img";
+
 														<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 															<button class="btn_remove_item" type="button">
 																<i class="icon_remove_item fa-solid fa-xmark"></i>
@@ -276,20 +286,21 @@
 															<div class="add_img col-12 col-lg-6 rounded-1">
 																<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
 
-																<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 																	<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																			type="button">
 																		<i class="icon_add fa-solid fa-plus"></i>
 																	</button>
 																	<input class="file" name="ImageFile" type="file" hidden />
 																	<div class="overflow-hidden w-h-0">
-																		<input class="image_type" name="dataTypes" />
-																		<input class="image_data" name="dataBase64s" />
+																		<input class="image_type" name="dataTypes" value="@dataType" />
+																		<input class="image_data" name="dataBase64s" value="@dataBase64" />
 																	</div>
 																</div>
 
-																<div class="preview_img position-relative d-none">
+																<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
 																	<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+																		 src="/img/@folder/@dataBase64"
 																		 alt="" />
 
 																	<button class="btn_remove_preview_img"
@@ -297,6 +308,8 @@
 																		<i class="icon_remove fa-solid fa-xmark"></i>
 																	</button>
 																</div>
+
+																<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
 															</div>
 
 															<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
@@ -304,81 +317,19 @@
 
 																<div class="add_content_item mt-1 col-12">
 																	<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-																	<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																	<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
+																	<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 																</div>
 
 																<div class="add_content_item mt-1 col-12">
 																	<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-																	<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+																	<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
+																	<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 																</div>
 															</div>
 														</div>
 													}
-													else
-													{
-														for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++)
-														{
-															var dataType = dataTypes[j];
-															var dataBase64 = dataBase64s[j];
-															var noteEN = noteENs[indexNote];
-															var noteVI = noteVIs[indexNote];
-															indexNote += 1;
-
-															haveImage = !string.IsNullOrEmpty(dataBase64);
-
-															<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
-																<button class="btn_remove_item" type="button">
-																	<i class="icon_remove_item fa-solid fa-xmark"></i>
-																</button>
-
-																<div class="add_img col-12 col-lg-6 rounded-1">
-																	<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
-
-																	<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
-																		<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
-																				type="button">
-																			<i class="icon_add fa-solid fa-plus"></i>
-																		</button>
-																		<input class="file" name="ImageFile" type="file" hidden />
-																		<div class="overflow-hidden w-h-0">
-																			<input class="image_type" name="dataTypes" value="@dataType" />
-																			<input class="image_data" name="dataBase64s" value="@dataBase64" />
-																		</div>
-																	</div>
-
-																	<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
-																		<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-																		@(!string.IsNullOrEmpty(dataBase64) ? "src='/img/temp-img/@dataBase64'" : string.Empty)
-																			 alt="" />
-
-																		<button class="btn_remove_preview_img"
-																				type="button">
-																			<i class="icon_remove fa-solid fa-xmark"></i>
-																		</button>
-																	</div>
-
-																	<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
-																</div>
-
-																<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
-																	<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
-
-																	<div class="add_content_item mt-1 col-12">
-																		<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
-																		<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
-																		<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
-																	</div>
-
-																	<div class="add_content_item mt-1 col-12">
-																		<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
-																		<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
-																		<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
-																	</div>
-																</div>
-															</div>
-														}
-														indexPhoto += countItemPhotoOfStage + 1;
-													}
+													indexPhoto += countItemPhotoOfStage + 1;
 												}
 											</div>
 

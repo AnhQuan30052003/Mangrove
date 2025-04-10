@@ -269,6 +269,11 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_Edit(TblMangrove model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				TempData["DataTypes"] = dataTypes;
+				TempData["DataBase64s"] = dataBase64s;
+				TempData["NoteENs"] = noteENs;
+				TempData["NoteVIs"] = noteVIs;
+
 				// Begin validate
 				Helper.Validate.Clear();
 
@@ -295,11 +300,6 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.DistributionVi);
 				Helper.Validate.NotEmpty(model.ConservationStatusEn);
 				Helper.Validate.NotEmpty(model.ConservationStatusVi);
-
-				TempData["DataTypes"] = dataTypes;
-				TempData["DataBase64s"] = dataBase64s;
-				TempData["NoteENs"] = noteENs;
-				TempData["NoteVIs"] = noteVIs;
 
 				// Khi không có ảnh nào
 				if (!dataBase64s.Any()) {
