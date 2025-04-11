@@ -98,6 +98,7 @@ namespace Mangrove.Controllers {
 				// Danh sách hình ảnh
 				List<Photo_Mangrove_Client_VM> listPhoto = await context.TblPhotos
 				.Where(item => item.IdObj == id)
+				.OrderBy(item => item.NumberOrder)
 				.Select(item => new Photo_Mangrove_Client_VM {
 					Image = item.ImageName,
 					Note = (isEN ? item.NoteImgEn : item.NoteImgVi) ?? ""
@@ -198,8 +199,11 @@ namespace Mangrove.Controllers {
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
-				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
-					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+				foreach (var stage in individual.TblStages.OrderBy(item => item.NumberOrder).ToList()) {
+					List<TblPhoto> photos = await context.TblPhotos
+					.Where(item => item.IdObj == stage.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
 					var _stage = new Stage {
 						info = stage,
 						photo = photos

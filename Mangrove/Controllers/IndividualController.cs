@@ -200,6 +200,7 @@ namespace Mangrove.Controllers {
 						NameVi = stageNameVIs[i],
 						WeatherEn = weatherENs[i],
 						WeatherVi = weatherVIs[i],
+						NumberOrder = i
 					};
 					context.TblStages.Add(newStage);
 
@@ -217,7 +218,8 @@ namespace Mangrove.Controllers {
 							IdObj = idStage,
 							ImageName = fileName,
 							NoteImgEn = noteENs[indexNote],
-							NoteImgVi = noteVIs[indexNote]
+							NoteImgVi = noteVIs[indexNote],
+							NumberOrder = indexNote
 						};
 						context.TblPhotos.Add(newPhoto);
 
@@ -279,14 +281,16 @@ namespace Mangrove.Controllers {
 				List<string> noteVIs = new List<string>();
 
 				int i = 0;
-				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
-				//for (int i = 0; i < individual.TblStages.Count(); i++) {
+				foreach (var stage in individual.TblStages.OrderBy(item => item.NumberOrder).ToList()) {
 					indexStages.Add(i + 1);
 					activeStages.Add(i == 0 ? "active" : string.Empty);
 
 					//var stage = individual.TblStages.ElementAt(i);
 
-					var listPhotos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+					var listPhotos = await context.TblPhotos
+					.Where(item => item.IdObj == stage.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
 					itemPhotoOfStages.Add(listPhotos.Count().ToString());
 					idStages.Add(stage.Id);
 
@@ -295,7 +299,7 @@ namespace Mangrove.Controllers {
 					stageNameENs.Add(stage.NameEn);
 					stageNameVIs.Add(stage.NameVi);
 					weatherENs.Add(stage.WeatherEn ?? string.Empty);
-					weatherVIs.Add(stage.WeatherVi ?? string.Empty);
+					weatherVIs.Add(stage.WeatherVi ?? string.Empty);	
 
 					dataBase64s.Add(stage.MainImage);
 					dataTypes.Add(string.Empty);
@@ -433,6 +437,7 @@ namespace Mangrove.Controllers {
 							NameVi = stageNameVIs[i],
 							WeatherEn = weatherENs[i],
 							WeatherVi = weatherVIs[i],
+							NumberOrder = i
 						};
 						context.TblStages.Add(newStage);
 
@@ -451,6 +456,7 @@ namespace Mangrove.Controllers {
 							oldStage.NameVi = stageNameVIs[i];
 							oldStage.WeatherEn = weatherENs[i];
 							oldStage.WeatherVi = weatherVIs[i];
+							oldStage.NumberOrder = i;
 
 							// Lưu ảnh
 							// setup lấy từ nguồn 
@@ -498,6 +504,7 @@ namespace Mangrove.Controllers {
 								ImageName = fileName,
 								NoteImgEn = noteENs[indexNote],
 								NoteImgVi = noteVIs[indexNote],
+								NumberOrder = indexNote
 							};
 							context.TblPhotos.Add(newPhoto);
 						}
@@ -509,6 +516,7 @@ namespace Mangrove.Controllers {
 								photo.ImageName = fileName;
 								photo.NoteImgEn = noteENs[indexNote];
 								photo.NoteImgVi = noteVIs[indexNote];
+								photo.NumberOrder = indexNote;
 								context.TblPhotos.Update(photo);
 							}
 						}
@@ -593,8 +601,11 @@ namespace Mangrove.Controllers {
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
-				foreach (var stage in individual.TblStages.OrderBy(item => item.SurveyDay).ToList()) {
-					List<TblPhoto> photos = await context.TblPhotos.Where(item => item.IdObj == stage.Id).ToListAsync();
+				foreach (var stage in individual.TblStages.OrderBy(item => item.NumberOrder).ToList()) {
+					List<TblPhoto> photos = await context.TblPhotos
+					.Where(item => item.IdObj == stage.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
 					var _stage = new Stage {
 						info = stage,
 						photo = photos

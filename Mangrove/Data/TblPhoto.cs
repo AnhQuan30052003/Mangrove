@@ -14,4 +14,6 @@ public partial class TblPhoto
     public string? NoteImgVi { get; set; }
 
     public string? NoteImgEn { get; set; }
+
+    public int? NumberOrder { get; set; }
 }

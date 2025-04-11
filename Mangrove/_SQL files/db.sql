@@ -123,7 +123,9 @@ create table tblStage
     _nameEN nvarchar(256) not null,
 
     _weatherVI nvarchar(256) null,
-    _weatherEN nvarchar(256) null
+    _weatherEN nvarchar(256) null,
+
+    _numberOrder int null
 )
 
 -- Bảng lưu trữ ảnh
@@ -134,7 +136,9 @@ create table tblPhotos
     _imageName nvarchar(256) not null,
 
     _noteImgVI nvarchar(256) null,
-    _noteImgEN nvarchar(256) null
+    _noteImgEN nvarchar(256) null,
+
+    _numberOrder int null
 )
 
 -- Bảng phân bố - bản đồ

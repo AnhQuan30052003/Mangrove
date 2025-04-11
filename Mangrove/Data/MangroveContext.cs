@@ -30,6 +30,7 @@ public partial class MangroveContext : DbContext
     public virtual DbSet<TblSetting> TblSettings { get; set; }
 
     public virtual DbSet<TblStage> TblStages { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblAdmin>(entity =>
@@ -221,6 +222,7 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.NoteImgVi)
                 .HasMaxLength(256)
                 .HasColumnName("_noteImgVI");
+            entity.Property(e => e.NumberOrder).HasColumnName("_numberOrder");
         });
 
         modelBuilder.Entity<TblSetting>(entity =>
@@ -292,6 +294,7 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.NameVi)
                 .HasMaxLength(256)
                 .HasColumnName("_nameVI");
+            entity.Property(e => e.NumberOrder).HasColumnName("_numberOrder");
             entity.Property(e => e.SurveyDay)
                 .HasColumnType("datetime")
                 .HasColumnName("_surveyDay");

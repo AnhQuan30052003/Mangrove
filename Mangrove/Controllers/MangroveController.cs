@@ -160,18 +160,15 @@ namespace Mangrove.Controllers {
 
 				// Lưu dữ liệu
 				// Lưu cây
-				string idMangrve = Helper.Func.CreateId();
-				model.Id = idMangrve;
+				model.Id = Helper.Func.CreateId();
 				model.View = 0;
-				model.CommonNameEn = model.CommonNameEn ?? string.Empty;
-				model.CommonNameVi = model.CommonNameVi ?? string.Empty;
 				model.UpdateLast = DateTime.Now;
 				context.TblMangroves.Add(model);
 
 				// Phần ảnh
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					string idPhoto = Helper.Func.CreateId();
-					string fileName = $"{model.Id}_{model.NameVi}{Helper.Func.GetTypeImage(dataTypes[i])}";
+					string fileName = $"{idPhoto}_{model.NameVi}{Helper.Func.GetTypeImage(dataTypes[i])}";
 
 					// Chuyển ảnh vào đúng thư mục
 					Helper.Func.MovePhoto(
@@ -189,6 +186,7 @@ namespace Mangrove.Controllers {
 						ImageName = fileName,
 						NoteImgEn = noteENs[i],
 						NoteImgVi = noteVIs[i],
+						NumberOrder = i
 					};
 					context.TblPhotos.Add(photoDB);
 				}
@@ -224,6 +222,7 @@ namespace Mangrove.Controllers {
 				// Danh sách hình ảnh
 				var listPhoto = await context.TblPhotos
 				.Where(item => item.IdObj == model.Id)
+				.OrderBy(item => item.NumberOrder)
 				.ToListAsync();
 
 				// Xử lý thứ tự ảnh banner slick slider
@@ -328,7 +327,7 @@ namespace Mangrove.Controllers {
 				context.TblMangroves.Update(model);
 
 				// Phẩn ảnh - Lưu ảnh mới về (mới này có thể có luôn ảnh cũ)
-				List<string> saveFileName = new List<string>();
+				List<string> saveIdPhoto = new List<string>();
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					// Setup cho ảnh cũ
 					string idPhoto = Helper.Func.GetIdFromFileName(dataBase64s[i]);
@@ -346,18 +345,22 @@ namespace Mangrove.Controllers {
 							ImageName = fileName,
 							NoteImgEn = noteENs[i],
 							NoteImgVi = noteVIs[i],
+							NumberOrder = i
 						};
 						context.TblPhotos.Add(newPhoto);
 					}
 					else {
 						fileName += Path.GetExtension(dataBase64s[i]);
 
-						var photo = await context.TblPhotos.FindAsync(idPhoto);
+						var photo = await context.TblPhotos.FirstOrDefaultAsync(item => item.Id == idPhoto);
 						if (photo != null) {
 							photo.ImageName = fileName;
 							photo.NoteImgEn = noteENs[i];
 							photo.NoteImgVi = noteVIs[i];
+							photo.NumberOrder = i;
 							context.TblPhotos.Update(photo);
+
+							idPhoto = photo.Id;
 						}
 					}
 
@@ -365,7 +368,7 @@ namespace Mangrove.Controllers {
 					if (i == 0) {
 						model.MainImage = fileName;
 					}
-					saveFileName.Add(fileName);
+					saveIdPhoto.Add(idPhoto);
 
 					// Chuyển ảnh vào đúng thư mục
 					string newPath = Path.Combine(Helper.Path.treeImg, fileName);
@@ -377,7 +380,7 @@ namespace Mangrove.Controllers {
 				var photoMangrove = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
 				if (photoMangrove.Any()) {
 					foreach (var photo in photoMangrove) {
-						if (!saveFileName.Contains(photo.ImageName)) {
+						if (!saveIdPhoto.Contains(photo.Id)) {
 							Helper.Func.DeletePhoto(Helper.Path.treeImg, photo.ImageName);
 							context.TblPhotos.Remove(photo);
 						}
@@ -433,6 +436,7 @@ namespace Mangrove.Controllers {
 				// Danh sách hình ảnh
 				List<Photo_Mangrove_Client_VM> listPhoto = await context.TblPhotos
 				.Where(item => item.IdObj == id)
+				.OrderBy(item => item.NumberOrder)
 				.Select(item => new Photo_Mangrove_Client_VM {
 					Image = item.ImageName,
 					Note = (isEN ? item.NoteImgEn : item.NoteImgVi) ?? ""

@@ -55,7 +55,9 @@ function addImageToItem() {
 
 			const frameItems = addItem.closest(".frame_items");
 			const quantity = frameItems.querySelector(".quantity_item");
-			quantity.innerHTML = parseInt(quantity.innerText) - 1;
+			if (quantity) {
+				quantity.innerHTML = parseInt(quantity.innerText) - 1;
+			}
 
 			const inputFile = addItem.querySelector("input");
 			const imageType = addItem.querySelector(".image_type");

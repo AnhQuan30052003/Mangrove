@@ -21,5 +21,7 @@ public partial class TblStage
 
     public string? WeatherEn { get; set; }
 
+    public int? NumberOrder { get; set; }
+
     public virtual TblIndividual? IdIndividualNavigation { get; set; }
 }
