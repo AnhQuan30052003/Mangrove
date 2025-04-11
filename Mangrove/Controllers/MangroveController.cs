@@ -378,7 +378,7 @@ namespace Mangrove.Controllers {
 
 				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!
 				var photoMangrove = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
-				if (photoMangrove.Any()) {
+				if (photoMangrove.Any() && saveIdPhoto.Any()) {
 					foreach (var photo in photoMangrove) {
 						if (!saveIdPhoto.Contains(photo.Id)) {
 							Helper.Func.DeletePhoto(Helper.Path.treeImg, photo.ImageName);

@@ -557,7 +557,7 @@ namespace Mangrove.Controllers {
 					// Xoá ảnh cũ của giai đoạn này
 					await context.SaveChangesAsync();
 					var photoStage = await context.TblPhotos.Where(item => item.IdObj == idStage).ToListAsync();
-					if (photoStage.Any()) {
+					if (photoStage.Any() && saveIdPhoto.Any()) {
 						foreach (var photo in photoStage) {
 							if (!saveIdPhoto.Contains(photo.Id)) {
 								Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
@@ -573,7 +573,7 @@ namespace Mangrove.Controllers {
 
 				// Xoá giai đoạn cũ không dùng của cá thể
 				var stageOfInvidual = await context.TblStages.Where(item => item.IdIndividual == model.Id).ToListAsync();
-				if (stageOfInvidual.Any()) {
+				if (stageOfInvidual.Any() && saveIdStage.Any()) {
 					foreach (var stage in stageOfInvidual) {
 						if (!saveIdStage.Contains(stage.Id)) {
 							// Xoá ảnh của giai đoạn
