@@ -372,8 +372,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kknyjjouob</Fingerprint>
-      <Integrity>1MrSkmoeZq5QvtD0qdUKKRR7pkPC5xj2Bkz06fYckBY=</Integrity>
+      <Fingerprint>4pdoq58pz5</Fingerprint>
+      <Integrity>qFZrdPu/hDXAiYP6Y9kar25Oxde3DxmAhfOmEf86YJk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\components\user_individual.css'))</OriginalItemSpec>
@@ -1170,48 +1170,66 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB027_Tổng quan.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\2D6EF364-2E69-4981-BA4A-FC38C48C07E8_Temp..jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\06C1ABCC-66DF-4BAB-AE4A-67376174F597_Ráng đại.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/temp-img/2D6EF364-2E69-4981-BA4A-FC38C48C07E8_Temp..jpg</RelativePath>
+      <RelativePath>img/stage-img/06C1ABCC-66DF-4BAB-AE4A-67376174F597_Ráng đại.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jtuissfbct</Fingerprint>
-      <Integrity>h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=</Integrity>
+      <Fingerprint>0owkirzb0w</Fingerprint>
+      <Integrity>oI9oUTsJw2DSB47vqfeFxU/6RJ80aHG443YKBi/Ykvg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\2D6EF364-2E69-4981-BA4A-FC38C48C07E8_Temp..jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\06C1ABCC-66DF-4BAB-AE4A-67376174F597_Ráng đại.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\91E6D196-F986-4A82-BB1E-8C35F8CB31E6_Temp..jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\0C64A24F-A582-4721-9E16-9B6CD1553AEE_đen.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/temp-img/91E6D196-F986-4A82-BB1E-8C35F8CB31E6_Temp..jpg</RelativePath>
+      <RelativePath>img/stage-img/0C64A24F-A582-4721-9E16-9B6CD1553AEE_đen.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jtuissfbct</Fingerprint>
-      <Integrity>h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=</Integrity>
+      <Fingerprint>db3gjngjok</Fingerprint>
+      <Integrity>NxxRlxuycB73d6CiCSYLCSSC9rwuL4H69/Ev9QnLAJs=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\91E6D196-F986-4A82-BB1E-8C35F8CB31E6_Temp..jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\0C64A24F-A582-4721-9E16-9B6CD1553AEE_đen.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\A6177B80-F213-4429-B1E5-397CF20076E4_Temp..jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\17A77215-E46C-45C8-97FF-4535BC42E5D3_1.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/temp-img/A6177B80-F213-4429-B1E5-397CF20076E4_Temp..jpg</RelativePath>
+      <RelativePath>img/stage-img/17A77215-E46C-45C8-97FF-4535BC42E5D3_1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>n75qup175z</Fingerprint>
+      <Integrity>HbG+FC2a2Sn+d7IVh1Sjrlpv6xsroTN1Ev4do2Uxgww=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\17A77215-E46C-45C8-97FF-4535BC42E5D3_1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\83B13382-C360-44A7-8722-F55FD4E78C2F_Ráng đại.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/stage-img/83B13382-C360-44A7-8722-F55FD4E78C2F_Ráng đại.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1222,7 +1240,25 @@
       <Integrity>h6gTcxGJT2RKoLVkGOtTevqJehSpIztLHmj5B6muC4U=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\temp-img\A6177B80-F213-4429-B1E5-397CF20076E4_Temp..jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\83B13382-C360-44A7-8722-F55FD4E78C2F_Ráng đại.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\E57192F9-382F-46AA-90EB-FAF07702B230_năm 1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/stage-img/E57192F9-382F-46AA-90EB-FAF07702B230_năm 1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>oa0efx4gs3</Fingerprint>
+      <Integrity>ADTO3fksFTmrNorMx/bVj3DDjb+3UymdYvfleR3AFqE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\E57192F9-382F-46AA-90EB-FAF07702B230_năm 1.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\tree-img\06568232-8E9F-4037-8977-9EBD004F47D7_Ráng đại.jpg'))">
       <SourceType>Package</SourceType>
@@ -1524,8 +1560,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>1ophycqo42</Fingerprint>
-      <Integrity>z7Ei9mY1nYOK3quKrdBr8VsMHBxVSZv3Fz+WgXhQaKE=</Integrity>
+      <Fingerprint>7wwnth5gqt</Fingerprint>
+      <Integrity>R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\admin_site.js'))</OriginalItemSpec>
@@ -1632,8 +1668,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>rwoytd9u1o</Fingerprint>
-      <Integrity>m1O+m/KxvNB4PoIjNnDToqEFzQh07WPY/Hta/3MFlms=</Integrity>
+      <Fingerprint>ztordcj2hb</Fingerprint>
+      <Integrity>d0Po662eyBxxazOo8oNakgkL2XVQDpqRoyjXHDqgPCk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\items.js'))</OriginalItemSpec>
@@ -1812,8 +1848,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>ly7s9j0p91</Fingerprint>
-      <Integrity>TSyG6jmy8qoK2RNm7JE+WtKjhLE6miZUSBYaa8KyjkM=</Integrity>
+      <Fingerprint>s2od7p4r71</Fingerprint>
+      <Integrity>JCbfXxgwxPQ27O1ZFwTzX4XRtgR36B0cXIi2+nvoXoQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_hidden_tab.js'))</OriginalItemSpec>
@@ -1830,8 +1866,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>iuusj8hef8</Fingerprint>
-      <Integrity>Ki4nqhwpkpkWm/KJ/An/XcO+pyFqYnJPU+K6+DRINOI=</Integrity>
+      <Fingerprint>k1g4ywvjbc</Fingerprint>
+      <Integrity>OLz7Z0OGHskWsLjfyEh6DGdkhXF3B0K3sEwK+7lMZdU=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</OriginalItemSpec>
