@@ -8,7 +8,7 @@ using System.Collections.Immutable;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
-	//[Authorize]
+	[Authorize]
 	public class MangroveController : Controller {
 		private readonly MangroveContext context;
 

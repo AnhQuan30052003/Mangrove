@@ -292,6 +292,8 @@ function createDisplayItem(index) {
 	const surveyDay = document.querySelector("#surveyDay").value;
 	const stageName = document.querySelector("#stageName").value;
 	const weather = document.querySelector("#weather").value;
+	const heigut = document.querySelector("#height").value;
+	const perimeter = document.querySelector("#perimeter").value;
 
 	// Create today
 	const today = new Date();
@@ -362,6 +364,16 @@ function createDisplayItem(index) {
 			<div class="mt-1">
 				<small class="mb-1 d-block font-small">${weather} (${labelVietnamese})</small>
 				<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+			</div>
+
+			<div class="mt-1">
+				<small class="mb-1 d-block font-small">${height}</small>
+				<input type="text" name="heights" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+			</div>
+
+			<div class="mt-1">
+				<small class="mb-1 d-block font-small">${perimeter}</small>
+				<input type="text" name="perimeters" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>
 	`;

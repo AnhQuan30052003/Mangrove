@@ -15,7 +15,10 @@
 
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
 
-<input class="qr_name_mangrove" value="@Model.NameMangrove" hidden />
+<input class="get_qr_name" type="text" value="@Model.NameMangrove" hidden />
+<input class="get_qr_pos" type="text" value="@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)" hidden />
+<input class="get_qr_longitude" type="text" value="@Model.Individual.Longitude" hidden />
+<input class="get_qr_Latitude" type="text" value="@Model.Individual.Latitude" hidden />
 
 <section class="individual_display container py-2 info_qr infor_stage">
 	@{
@@ -60,7 +63,17 @@
 
 										<p class="d-flex justify-content-between justify-content-lg-start">
 											<span style="width: 120px;">@translate["label_vi_tri_khao_sat"]:</span>
-											<span class="qr_pos">@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
+											<span>@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
+										</p>
+
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+											<span>@Model.Individual.Longitude</span>
+										</p>
+
+										<p class="d-flex justify-content-between justify-content-lg-start">
+											<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+											<span>@Model.Individual.Latitude</span>
 										</p>
 
 										@if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
@@ -69,17 +82,23 @@
 												<span style="width: 120px;">@translate["label_thoi_tiet_khao_sat"]:</span>
 												<span>@(isEN ? stage.info.WeatherEn : stage.info.WeatherVi)</span>
 											</p>
+										}										
+
+										@if (!String.IsNullOrEmpty(stage.info.Height))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_chieu_cao_khao_sat"]:</span>
+												<span>@stage.info.Height</span>
+											</p>
 										}
 
-										<p class="d-flex justify-content-between justify-content-lg-start">
-											<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
-											<span class="qrLongitude">@Model.Individual.Longitude</span>
-										</p>
-
-										<p class="d-flex justify-content-between justify-content-lg-start">
-											<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
-											<span class="qrLatitude">@Model.Individual.Latitude</span>
-										</p>
+										@if (!String.IsNullOrEmpty(stage.info.Perimeter))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_chu_vi_khao_sat"]:</span>
+												<span>@stage.info.Perimeter</span>
+											</p>
+										}
 									</div>
 								</div>
 							</div>

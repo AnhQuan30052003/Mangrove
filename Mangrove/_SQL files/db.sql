@@ -125,6 +125,8 @@ create table tblStage
     _weatherVI nvarchar(256) null,
     _weatherEN nvarchar(256) null,
 
+    _height nvarchar(100) null,
+    _perimeter nvarchar(100) null,
     _numberOrder int null
 )
 

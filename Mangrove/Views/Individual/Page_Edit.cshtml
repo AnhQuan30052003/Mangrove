@@ -26,6 +26,8 @@
 	var stageNameVIs = ViewData["StageNameVIs"] as List<string> ?? new List<string>();
 	var weatherENs = ViewData["WeatherENs"] as List<string> ?? new List<string>();
 	var weatherVIs = ViewData["WeatherVIs"] as List<string> ?? new List<string>();
+	var heights = ViewData["Heights"] as List<string> ?? new List<string>();
+	var perimeters = ViewData["Perimeters"] as List<string> ?? new List<string>();
 
 	List<TblMangrove> mangroves = ViewData["Mangroves"] as List<TblMangrove> ?? new List<TblMangrove>();
 	var selectMangrove = new SelectList(
@@ -49,6 +51,8 @@
 <input id="surveyDay" value="@translate["label_ngay_khao_sat"]" hidden />
 <input id="stageName" value="@translate["label_ten_giai_doan"]" hidden />
 <input id="weather" value="@translate["label_thoi_tiet_khao_sat"]" hidden />
+<input id="height" value="@translate["label_chieu_cao_khao_sat"]" hidden />
+<input id="perimeter" value="@translate["label_chu_vi_khao_sat"]" hidden />
 
 <input id="detailImageStage" value="@translate["label_hinh_anh_chi_tiet_giai_doan"]" hidden />
 <input id="maxStage" value="@Helper.Variable.maxStage" hidden />
@@ -256,6 +260,18 @@
 											<div class="mt-1">
 												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
 												<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@weatherVIs[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_chieu_cao_khao_sat"]</small>
+												<input type="text" name="heights" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@heights[i]" />
+												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+											</div>
+
+											<div class="mt-1">
+												<small class="mb-1 d-block font-small">@translate["label_chu_vi_khao_sat"]</small>
+												<input type="text" name="perimeters" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@perimeters[i]" />
 												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 											</div>
 										</div>

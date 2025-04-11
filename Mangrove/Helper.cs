@@ -3,11 +3,9 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 using System.Net.Mail;
-using System;
 using System.Net;
-using System.Linq;
-using System.Security.Policy;
-using System.Composition;
+using QRCoder;
+using Microsoft.Identity.Client;
 
 public class Helper {
 	private static IHttpContextAccessor? httpContextAccessor;
@@ -40,6 +38,7 @@ public class Helper {
 		public static int timeSession = 365;
 		public static int timeLogin = 30;
 
+
 		public static string cookieName = "ASP_Auth_Mangrove";
 
 		public class TypeError {
@@ -51,6 +50,9 @@ public class Helper {
 
 	// Links JS
 	public static class Link {
+		public static string local = "https://localhost:3005";
+		public static string hosting = "https://mangrove.runasp.net";
+
 		// Trở về link trước đó
 		public static string ScriptGetUrlBack(string key, bool noScript = false, bool pageUser = false) {
 			string urlRoot = pageUser ? Key.defaultUrlUser : Key.defaultUrlAdmin;
@@ -270,7 +272,6 @@ public class Helper {
 			return textNumber;
 		}
 
-
 		// Check exsits contain
 		public static bool CheckContain(string key, List<string> data) {
 			key = FormatUngisnedString(key.ToLower().Trim());
@@ -415,6 +416,20 @@ public class Helper {
 				code += random.Next(0, 10);
 			}
 			return code;
+		}
+
+		// Tạo mã QR
+		public static string CreateQRCode(string url, string fileName) {
+			var qrGenerator = new QRCodeGenerator();
+			var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+			var pngQrCode = new PngByteQRCode(qrCodeData);
+			byte[] qrCodeAsPng = pngQrCode.GetGraphic(20);
+
+			// Lưu vào website
+			string filePath = System.IO.Path.Combine(Path.qrImg, fileName);
+			System.IO.File.WriteAllBytes(filePath, qrCodeAsPng);
+
+			return fileName;
 		}
 	}
 
@@ -637,7 +652,7 @@ public class Helper {
 
 				</html>
 			";
-			
+
 			return html;
 		}
 

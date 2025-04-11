@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
-	//[Authorize]
+	[Authorize]
 	public class DistributionController : Controller {
 		private readonly MangroveContext context;
 

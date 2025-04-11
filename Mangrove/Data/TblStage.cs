@@ -23,5 +23,9 @@ public partial class TblStage
 
     public int? NumberOrder { get; set; }
 
+    public string? Height { get; set; }
+
+    public string? Perimeter { get; set; }
+
     public virtual TblIndividual? IdIndividualNavigation { get; set; }
 }

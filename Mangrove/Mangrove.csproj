@@ -62,16 +62,11 @@
     <None Include="wwwroot\img\logo\Logo_NTU.png" />
     <None Include="wwwroot\img\logo\mangrove.png" />
     <None Include="wwwroot\img\logo\mission.jpg" />
-    <None Include="wwwroot\img\qr-img\qr-code.png" />
-    <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB016_Bần trắng.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB018_Bộ rễ.jpg" />
-    <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB020_Dà vôi.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB021_trụ mầm và hoa.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB022_trụ mầm và hoa.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB023_Rễ cây.jpg" />
-    <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non và tái sinh.jpg" />
-    <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB025_Bần trắng.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB026_Tổng quan.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB027_Tổng quan.jpg" />
     <None Include="wwwroot\js\custom\admin_site.js" />
@@ -161,7 +156,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
   </ItemGroup>
 
   <ItemGroup>

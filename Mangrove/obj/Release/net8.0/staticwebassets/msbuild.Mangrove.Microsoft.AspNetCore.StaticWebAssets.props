@@ -954,41 +954,77 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\logo\password_recovery.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\qr-code.png'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/qr-img/qr-code.png</RelativePath>
+      <RelativePath>img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>48pkuu0km7</Fingerprint>
-      <Integrity>tNL9v2gj2hxjUYVL+cE1ZJxNJoCtCU4qMvebKf6gLXg=</Integrity>
+      <Fingerprint>xfn3fo5jrq</Fingerprint>
+      <Integrity>bXgPTPrE0r8V5jpLFMH31foGWwI3wiUzqt8c0FIBdVQ=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\qr-code.png'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB016_Bần trắng.jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI001_Dà vôi_Vạn Giã, Vạn Ninh, Khánh Hoà.png'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB016_Bần trắng.jpg</RelativePath>
+      <RelativePath>img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI001_Dà vôi_Vạn Giã, Vạn Ninh, Khánh Hoà.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>c4thsugwzs</Fingerprint>
-      <Integrity>rIElUxuHqYYmNkEZOG1Fb0K2Pq4rjUGfRDcnZbTQG3g=</Integrity>
+      <Fingerprint>s9gowx1kp0</Fingerprint>
+      <Integrity>YLwpVQs81E8wVcjIZTJYSPl+nkU+of9+piIvN/vVdCk=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB016_Bần trắng.jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI001_Dà vôi_Vạn Giã, Vạn Ninh, Khánh Hoà.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI002_Bần trắng_Tuần Lẽ, Vạn Ninh, Khánh Hoà.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI002_Bần trắng_Tuần Lẽ, Vạn Ninh, Khánh Hoà.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>kvwv00la7z</Fingerprint>
+      <Integrity>MIiEyenx4FIEzVWYT4LBd+D12xTe1Kd7tah3lBNddq4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI002_Bần trắng_Tuần Lẽ, Vạn Ninh, Khánh Hoà.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_47098213-4B37-4080-B9C8-899F0D2D5469_Ráng đại_Vị trí.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/qr-img/QR_47098213-4B37-4080-B9C8-899F0D2D5469_Ráng đại_Vị trí.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>cu2r1bgxg4</Fingerprint>
+      <Integrity>3MsWImoaMNqooqTeevyOERKGK48l5OVLMlD9hsdXeFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\qr-img\QR_47098213-4B37-4080-B9C8-899F0D2D5469_Ráng đại_Vị trí.png'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.jpg'))">
       <SourceType>Package</SourceType>
@@ -1025,24 +1061,6 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB018_Bộ rễ.jpg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB020_Dà vôi.jpg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>Mangrove</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB020_Dà vôi.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>llch7ntrxo</Fingerprint>
-      <Integrity>9/KEFeOg/IC2opaT/Tlwx5GFF3pFtvFkD/NGB3QfxFM=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB020_Dà vôi.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB021_trụ mầm và hoa.jpg'))">
       <SourceType>Package</SourceType>
@@ -1098,12 +1116,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB023_Rễ cây.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non và tái sinh.jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non tái sinh.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Mangrove</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non và tái sinh.jpg</RelativePath>
+      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non tái sinh.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1114,25 +1132,7 @@
       <Integrity>j+jTK6/x2J/jpY4GRAbO5y48RcQzFWAv5O4EAJE8c4M=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non và tái sinh.jpg'))</OriginalItemSpec>
-    </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB025_Bần trắng.jpg'))">
-      <SourceType>Package</SourceType>
-      <SourceId>Mangrove</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/Mangrove</BasePath>
-      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB025_Bần trắng.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>e5r2zqjny2</Fingerprint>
-      <Integrity>8pCHCGbabcwfVDkg6J2hkNe4XzTQYL3bDm/xHtG0zAc=</Integrity>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB025_Bần trắng.jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB024_Cây non tái sinh.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB026_Tổng quan.jpg'))">
       <SourceType>Package</SourceType>
@@ -1169,6 +1169,60 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB027_Tổng quan.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS000_Bần trắng.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAS000_Bần trắng.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>c4thsugwzs</Fingerprint>
+      <Integrity>rIElUxuHqYYmNkEZOG1Fb0K2Pq4rjUGfRDcnZbTQG3g=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS000_Bần trắng.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS001_Dà vôi.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAS001_Dà vôi.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>llch7ntrxo</Fingerprint>
+      <Integrity>9/KEFeOg/IC2opaT/Tlwx5GFF3pFtvFkD/NGB3QfxFM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS001_Dà vôi.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS002_Bần trắng.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Mangrove</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Mangrove</BasePath>
+      <RelativePath>img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAS002_Bần trắng.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>e5r2zqjny2</Fingerprint>
+      <Integrity>8pCHCGbabcwfVDkg6J2hkNe4XzTQYL3bDm/xHtG0zAc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAS002_Bần trắng.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\06C1ABCC-66DF-4BAB-AE4A-67376174F597_Ráng đại.jpg'))">
       <SourceType>Package</SourceType>
@@ -1866,8 +1920,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>k1g4ywvjbc</Fingerprint>
-      <Integrity>OLz7Z0OGHskWsLjfyEh6DGdkhXF3B0K3sEwK+7lMZdU=</Integrity>
+      <Fingerprint>uwua0pcudz</Fingerprint>
+      <Integrity>/v6qzUIno/dgsWYobQg5BeGs2LViwru4ekPOZFlBsSw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</OriginalItemSpec>

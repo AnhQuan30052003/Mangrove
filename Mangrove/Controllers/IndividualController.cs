@@ -1,10 +1,12 @@
 ﻿using Mangrove.Data;
 using Mangrove.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
+	[Authorize]
 	public class IndividualController : Controller {
 		private readonly MangroveContext context;
 
@@ -103,7 +105,7 @@ namespace Mangrove.Controllers {
 		[HttpPost]
 		public async Task<IActionResult> Page_Create(TblIndividual model, string chooseIdMangrove,
 			List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages, List<string> idStages,
-			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
+			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs, List<string> heights, List<string> perimeters, 
 			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
@@ -124,6 +126,8 @@ namespace Mangrove.Controllers {
 				ViewData["DataBase64s"] = dataBase64s;
 				ViewData["NoteENs"] = noteENs;
 				ViewData["NoteVIs"] = noteVIs;
+				ViewData["Heights"] = heights;
+				ViewData["Perimeters"] = perimeters;
 
 				// Tạo select
 				var mangroves = await context.TblMangroves.ToListAsync();
@@ -146,6 +150,8 @@ namespace Mangrove.Controllers {
 					Helper.Validate.NotEmpty(stageNameVIs[i]);
 					Helper.Validate.NotEmpty(weatherENs[i], true);
 					Helper.Validate.NotEmpty(weatherVIs[i], true);
+					Helper.Validate.NotEmpty(heights[i], true);
+					Helper.Validate.NotEmpty(perimeters[i], true);
 
 					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
@@ -169,18 +175,18 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Save data
-				// Lưu cá thể
-				//string idIndividual = Helper.Func.CreateId();
-				model.Id = Helper.Func.CreateId();
-				model.IdMangrove = chooseIdMangrove;
-				model.View = 0;
-				model.QrName = "qr-code.png"; // Cần code tạo QR Image cho individual !	
-				model.UpdateLast = DateTime.Now;
-				context.TblIndividuals.Add(model);
-
 				// Truy vấn tên thành phần loài 
 				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
 				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
+
+				// Lưu cá thể
+				model.Id = Helper.Func.CreateId();
+				model.IdMangrove = chooseIdMangrove;
+				model.View = 0;
+				model.QrName = $"QR_{model.Id}_{nameMangrove}_{model.PositionVi}.png";
+				model.UpdateLast = DateTime.Now;
+				context.TblIndividuals.Add(model);
+				Helper.Func.CreateQRCode($"{Helper.Link.hosting}/Home/Page_Individual/{model.Id}", model.QrName);
 
 				indexPhoto = indexNote = 0;
 				for (int i = 0; i < indexStages.Count(); i++) {
@@ -200,6 +206,8 @@ namespace Mangrove.Controllers {
 						NameVi = stageNameVIs[i],
 						WeatherEn = weatherENs[i],
 						WeatherVi = weatherVIs[i],
+						Height = heights[i],
+						Perimeter = perimeters[i],
 						NumberOrder = i
 					};
 					context.TblStages.Add(newStage);
@@ -274,6 +282,8 @@ namespace Mangrove.Controllers {
 				List<string> stageNameVIs = new List<string>();
 				List<string> weatherENs = new List<string>();
 				List<string> weatherVIs = new List<string>();
+				List<string> heights = new List<string>();
+				List<string> perimeters = new List<string>();
 
 				List<string> dataBase64s = new List<string>();
 				List<string> dataTypes = new List<string>();
@@ -299,7 +309,9 @@ namespace Mangrove.Controllers {
 					stageNameENs.Add(stage.NameEn);
 					stageNameVIs.Add(stage.NameVi);
 					weatherENs.Add(stage.WeatherEn ?? string.Empty);
-					weatherVIs.Add(stage.WeatherVi ?? string.Empty);	
+					weatherVIs.Add(stage.WeatherVi ?? string.Empty);
+					heights.Add(stage.Height ?? string.Empty);
+					perimeters.Add(stage.Perimeter ?? string.Empty);
 
 					dataBase64s.Add(stage.MainImage);
 					dataTypes.Add(string.Empty);
@@ -322,6 +334,8 @@ namespace Mangrove.Controllers {
 				ViewData["StageNameVIs"] = stageNameVIs;
 				ViewData["WeatherENs"] = weatherENs;
 				ViewData["WeatherVIs"] = weatherVIs;
+				ViewData["Heights"] = heights;
+				ViewData["Perimeters"] = perimeters;
 
 				ViewData["DataBase64s"] = dataBase64s;
 				ViewData["DataTypes"] = dataTypes;
@@ -342,7 +356,7 @@ namespace Mangrove.Controllers {
 		[HttpPost]
 		public async Task<IActionResult> Page_Edit(TblIndividual model, string chooseIdMangrove,
 			List<int> indexStages, List<string> activeStages, List<string> itemPhotoOfStages, List<string> idStages,
-			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs,
+			List<DateTime> surveyDates, List<string> stageNameENs, List<string> stageNameVIs, List<string> weatherENs, List<string> weatherVIs, List<string> heights, List<string> perimeters, 
 			List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 
 			bool isEN = Helper.Func.IsEnglish();
@@ -359,6 +373,8 @@ namespace Mangrove.Controllers {
 				ViewData["StageNameVIs"] = stageNameVIs;
 				ViewData["WeatherENs"] = weatherENs;
 				ViewData["WeatherVIs"] = weatherVIs;
+				ViewData["Heights"] = heights;
+				ViewData["Perimeters"] = perimeters;
 
 				ViewData["DataTypes"] = dataTypes;
 				ViewData["DataBase64s"] = dataBase64s;
@@ -386,6 +402,8 @@ namespace Mangrove.Controllers {
 					Helper.Validate.NotEmpty(stageNameVIs[i]);
 					Helper.Validate.NotEmpty(weatherENs[i], true);
 					Helper.Validate.NotEmpty(weatherVIs[i], true);
+					Helper.Validate.NotEmpty(heights[i], true);
+					Helper.Validate.NotEmpty(perimeters[i], true);
 
 					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
@@ -408,14 +426,19 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Save data
+				// Truy vấn tên thành phần loài		
+				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
+				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
+
+				// xử lý QR cũ
+				Helper.Func.DeletePhoto(Helper.Path.qrImg, model.QrName);
+				model.QrName = $"QR_{model.Id}_{nameMangrove}_{model.PositionVi}.png";
+				Helper.Func.CreateQRCode($"{Helper.Link.hosting}/Home/Page_Individual/{model.Id}", model.QrName);
+
 				// Cập nhật model
 				model.IdMangrove = chooseIdMangrove;
 				model.UpdateLast = DateTime.Now;
 				context.TblIndividuals.Update(model);
-
-				// Truy vấn tên thành phần loài		
-				var mangrove = await context.TblMangroves.FirstOrDefaultAsync(item => item.Id == chooseIdMangrove);
-				string nameMangrove = mangrove != null ? mangrove.NameVi : string.Empty;
 
 				List<string> saveIdStage = new List<string>();
 				List<string> saveIdPhoto = new List<string>();
@@ -437,6 +460,8 @@ namespace Mangrove.Controllers {
 							NameVi = stageNameVIs[i],
 							WeatherEn = weatherENs[i],
 							WeatherVi = weatherVIs[i],
+							Height = heights[i],
+							Perimeter = perimeters[i],
 							NumberOrder = i
 						};
 						context.TblStages.Add(newStage);
@@ -456,6 +481,8 @@ namespace Mangrove.Controllers {
 							oldStage.NameVi = stageNameVIs[i];
 							oldStage.WeatherEn = weatherENs[i];
 							oldStage.WeatherVi = weatherVIs[i];
+							oldStage.Height = heights[i];
+							oldStage.Perimeter = perimeters[i];
 							oldStage.NumberOrder = i;
 
 							// Lưu ảnh
@@ -651,16 +678,9 @@ namespace Mangrove.Controllers {
 					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
 				}
 				context.TblIndividuals.Remove(individual);
-				await context.SaveChangesAsync();
 
-				// Xoá ảnh
-				var individualPhotos = await context.TblPhotos.Where(item => item.IdObj == id).ToListAsync();
-				if (individualPhotos.Any()) {
-					foreach (var photo in individualPhotos) {
-						context.TblPhotos.Remove(photo);
-						Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
-					}
-				}
+				// Xoá QR
+				Helper.Func.DeletePhoto(Helper.Path.qrImg, individual.QrName);
 
 				await context.SaveChangesAsync();
 

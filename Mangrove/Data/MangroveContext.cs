@@ -30,7 +30,6 @@ public partial class MangroveContext : DbContext
     public virtual DbSet<TblSetting> TblSettings { get; set; }
 
     public virtual DbSet<TblStage> TblStages { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblAdmin>(entity =>
@@ -281,6 +280,9 @@ public partial class MangroveContext : DbContext
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("_id");
+            entity.Property(e => e.Height)
+                .HasMaxLength(100)
+                .HasColumnName("_height");
             entity.Property(e => e.IdIndividual)
                 .HasMaxLength(36)
                 .IsUnicode(false)
@@ -295,6 +297,9 @@ public partial class MangroveContext : DbContext
                 .HasMaxLength(256)
                 .HasColumnName("_nameVI");
             entity.Property(e => e.NumberOrder).HasColumnName("_numberOrder");
+            entity.Property(e => e.Perimeter)
+                .HasMaxLength(100)
+                .HasColumnName("_perimeter");
             entity.Property(e => e.SurveyDay)
                 .HasColumnType("datetime")
                 .HasColumnName("_surveyDay");
