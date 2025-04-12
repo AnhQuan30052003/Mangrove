@@ -1,33 +1,32 @@
 ﻿@inject IStringLocalizer<Translate> translate
 
 <div id="show_qr_code" class="d-none">
-	<div class="wrapper bg-white d-flex flex-column justify-content-center align-items-center gap-5 rounded-1">
-		<div class="info d-flex flex-column gap-1 px-5 w-100">
+	<div class="wrapper bg-white d-flex flex-column justify-content-center align-items-center gap-5_ rounded-1">
+		<div class="info d-flex flex-column gap-1 px-3 w-100">
 			<h3 class="color-tree text-center mb-3">@translate["label_thong_tin_QR_code"]</h3>
 			<p>
-				<span>@translate["label_ten"]:</span>
-				<span class="qr_name"></span>
+				<span>@translate["label_ca_the"]:</span>
+				<span class="qr_name">Mấm biển - Avicennia marina (Forssk.) Vierh</span>
 			</p>
 			<p>
 				<span>@translate["label_vi_tri_khao_sat"]:</span>
-				<span class="qr_pos"></span>
+				<span class="qr_pos">Ngọc Diêm, Ninh Ích, Ninh Hòa, Khánh Hòa</span>
 			</p>
 			<p>
 				<span>@translate["label_kinh_do_khao_sat"]:</span>
-				<span class="qr_longitude"></span>
+				<span class="qr_longitude">109°11'38.0 N</span>
 			</p>
 			<p>
 				<span>@translate["label_vi_do_khao_sat"]:</span>
-				<span class="qr_latitude"></span>
+				<span class="qr_latitude">12°23'48.8 E</span>
 			</p>
 		</div>
 
-		<div class="box_show_img">
-			@* <img class="img qr_img"
-				style="height: 300px;"
-				src="/img/qr-img/QR_0FBBD37A-CBF0-4591-8385-F6B5C6EB794F_Ráng đại_1.png" /> *@
-			<img class="w-100 img qr_img"
-				 style="height: 300px;"
+		<div class="box_show_img" style="height: 400px;">
+			@* <img class="img qr_img border rounded-3"
+				 src="/img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png" /> *@
+
+			<img class="w-100 h-100 img qr_img border_ rounded-3"
 				 src="" />
 		</div>
 

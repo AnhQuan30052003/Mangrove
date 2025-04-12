@@ -41,6 +41,7 @@ function cancelActionWhenClickOut() {
 
 			if (!showQRCode.classList.contains("d-none") && showQRCode.contains(event.target) && (!wrapper.contains(event.target) || btnQRCancel.contains(event.target))) {
 				showQRCode.classList.add("d-none");
+				//document.body.style.overflow = "";
 			}
 		}
 		catch { }

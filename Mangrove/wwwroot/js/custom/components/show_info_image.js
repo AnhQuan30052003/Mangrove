@@ -84,6 +84,7 @@ function clickShowQR() {
 
 				showQRCode.querySelector(".qr_img").src = item.getAttribute("src");
 				showQRCode.classList.remove("d-none");
+				//document.body.style.overflow = "hidden";
 			});
 		});
 	}

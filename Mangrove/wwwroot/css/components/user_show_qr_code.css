@@ -2,6 +2,7 @@
 	position: fixed;
 	inset: 0;
 	z-index: 11;
+	overflow-y: scroll;
 }
 
 #show_qr_code::after {
@@ -16,19 +17,21 @@
 }
 
 #show_qr_code .wrapper {
-	width: 450px;
-	height: 90%;
-	background-color: white;
 	position: absolute;
-	z-index: 13;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	width: 450px;
+	height: 90%;
+
+	background-color: white;
+	z-index: 13;
+/*	overflow-y: scroll;*/
 }
 
 #show_qr_code .info p {
 	display: flex;
-	justify-content: space-between
+	justify-content: space-between;
 }
 
 #show_qr_code .info p span {
@@ -37,7 +40,14 @@
 }
 
 #show_qr_code .info p span:first-child {
-	color: var(--colorBody);
+	width: 70px;
+}
+
+#show_qr_code .info p span:last-child {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 #show_qr_code button {
