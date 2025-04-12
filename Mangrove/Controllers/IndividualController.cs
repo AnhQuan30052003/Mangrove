@@ -96,7 +96,9 @@ namespace Mangrove.Controllers {
 			var model = new TblIndividual();
 
 			// Tạo select
-			var mangroves = await context.TblMangroves.ToListAsync();
+			var mangroves = await context.TblMangroves
+			.OrderBy(item => Helper.Func.IsEnglish() ? item.NameEn : item.NameVi)
+			.ToListAsync();
 			ViewData["Mangroves"] = mangroves;
 
 			Helper.Validate.Clear();
@@ -135,8 +137,8 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				Helper.Validate.NotEmpty(model.Longitude);
-				Helper.Validate.NotEmpty(model.Latitude);
+				Helper.Validate.NotEmpty(model.Longitude, true);
+				Helper.Validate.NotEmpty(model.Latitude, true);
 				Helper.Validate.NotEmpty(model.PositionEn);
 				Helper.Validate.NotEmpty(model.PositionVi);
 
@@ -157,8 +159,8 @@ namespace Mangrove.Controllers {
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
 						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
 						Helper.Validate.NotEmpty(dataBase64s[j]);
-						Helper.Validate.NotEmpty(noteENs[indexNote]);
-						Helper.Validate.NotEmpty(noteVIs[indexNote]);
+						Helper.Validate.NotEmpty(noteENs[indexNote], true);
+						Helper.Validate.NotEmpty(noteVIs[indexNote], true);
 						indexNote += 1;
 					}
 					indexPhoto += countItemPhotoOfStage + 1;
@@ -270,7 +272,7 @@ namespace Mangrove.Controllers {
 
 				string idMangrove = individual.IdMangrove ?? string.Empty;
 				ViewData["ChooseIdMangrove"] = idMangrove;
-				ViewData["Mangroves"] = await context.TblMangroves.ToListAsync();
+				ViewData["Mangroves"] = await context.TblMangroves.OrderBy(item => isEN ? item.NameEn : item.NameVi).ToListAsync();
 
 				List<int> indexStages = new List<int>();
 				List<string> activeStages = new List<string>();
@@ -387,8 +389,8 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				Helper.Validate.NotEmpty(model.Longitude);
-				Helper.Validate.NotEmpty(model.Latitude);
+				Helper.Validate.NotEmpty(model.Longitude, true);
+				Helper.Validate.NotEmpty(model.Latitude, true);
 				Helper.Validate.NotEmpty(model.PositionEn);
 				Helper.Validate.NotEmpty(model.PositionVi);
 
@@ -409,8 +411,8 @@ namespace Mangrove.Controllers {
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
 						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
 						Helper.Validate.NotEmpty(dataBase64s[j]);
-						Helper.Validate.NotEmpty(noteENs[indexNote]);
-						Helper.Validate.NotEmpty(noteVIs[indexNote]);
+						Helper.Validate.NotEmpty(noteENs[indexNote], true);
+						Helper.Validate.NotEmpty(noteVIs[indexNote], true);
 						indexNote += 1;
 					}
 					indexPhoto += countItemPhotoOfStage + 1;
@@ -555,9 +557,8 @@ namespace Mangrove.Controllers {
 					indexPhoto += countItemPhotoOfStage + 1;
 
 					// Xoá ảnh cũ của giai đoạn này
-					await context.SaveChangesAsync();
 					var photoStage = await context.TblPhotos.Where(item => item.IdObj == idStage).ToListAsync();
-					if (photoStage.Any() && saveIdPhoto.Any()) {
+					if (photoStage.Any()) {
 						foreach (var photo in photoStage) {
 							if (!saveIdPhoto.Contains(photo.Id)) {
 								Helper.Func.DeletePhoto(Helper.Path.stageImg, photo.ImageName);
@@ -568,12 +569,9 @@ namespace Mangrove.Controllers {
 					await context.SaveChangesAsync();
 				}
 
-				await context.SaveChangesAsync();
-				//Helper.Func.DeleteAllFile(Helper.Path.temptImg);
-
 				// Xoá giai đoạn cũ không dùng của cá thể
 				var stageOfInvidual = await context.TblStages.Where(item => item.IdIndividual == model.Id).ToListAsync();
-				if (stageOfInvidual.Any() && saveIdStage.Any()) {
+				if (stageOfInvidual.Any()) {
 					foreach (var stage in stageOfInvidual) {
 						if (!saveIdStage.Contains(stage.Id)) {
 							// Xoá ảnh của giai đoạn
@@ -594,6 +592,7 @@ namespace Mangrove.Controllers {
 					}
 				}
 				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
 
 				// Setup thông báo
 				Helper.Notifier.Create(

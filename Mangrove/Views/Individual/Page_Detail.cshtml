@@ -90,15 +90,21 @@
 											<span>@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)</span>
 										</p>
 
-										<p class="d-flex justify-content-between justify-content-lg-start">
-											<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
-											<span>@Model.Individual.Longitude</span>
-										</p>
+										@if (!String.IsNullOrEmpty(Model.Individual.Longitude))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_kinh_do_khao_sat"]:</span>
+												<span>@Model.Individual.Longitude</span>
+											</p>
+										}
 
-										<p class="d-flex justify-content-between justify-content-lg-start">
-											<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
-											<span>@Model.Individual.Latitude</span>
-										</p>
+										@if (!String.IsNullOrEmpty(Model.Individual.Latitude))
+										{
+											<p class="d-flex justify-content-between justify-content-lg-start">
+												<span style="width: 120px;">@translate["label_vi_do_khao_sat"]:</span>
+												<span>@Model.Individual.Latitude</span>
+											</p>
+										}
 
 										@if (!String.IsNullOrEmpty(isEN ? stage.info.WeatherEn : stage.info.WeatherVi))
 										{

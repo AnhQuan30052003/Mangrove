@@ -113,8 +113,8 @@ namespace Mangrove.Controllers {
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i]);
-					Helper.Validate.NotEmpty(noteVIs[i]);
+					Helper.Validate.NotEmpty(noteENs[i], true);
+					Helper.Validate.NotEmpty(noteVIs[i], true);
 				}
 
 				Helper.Validate.NotEmpty(model.NameEn);
@@ -279,8 +279,8 @@ namespace Mangrove.Controllers {
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i]);
-					Helper.Validate.NotEmpty(noteVIs[i]);
+					Helper.Validate.NotEmpty(noteENs[i], true);
+					Helper.Validate.NotEmpty(noteVIs[i], true);
 				}
 
 				Helper.Validate.NotEmpty(model.NameEn);
@@ -374,11 +374,10 @@ namespace Mangrove.Controllers {
 					string newPath = Path.Combine(Helper.Path.treeImg, fileName);
 					Helper.Func.MovePhoto(oldPath, newPath);
 				}
-				await context.SaveChangesAsync();
 
 				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!
 				var photoMangrove = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
-				if (photoMangrove.Any() && saveIdPhoto.Any()) {
+				if (photoMangrove.Any()) {
 					foreach (var photo in photoMangrove) {
 						if (!saveIdPhoto.Contains(photo.Id)) {
 							Helper.Func.DeletePhoto(Helper.Path.treeImg, photo.ImageName);

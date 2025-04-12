@@ -63,8 +63,25 @@ function clickShowQR() {
 				const showQRCode = document.querySelector("#show_qr_code");
 				showQRCode.querySelector(".qr_name").innerHTML = qrName.value;
 				showQRCode.querySelector(".qr_pos").innerHTML = qrPos.value;
-				showQRCode.querySelector(".qr_longitude").innerHTML = qrLongitude.value;
-				showQRCode.querySelector(".qr_latitude").innerHTML = qrLatitude.value;
+
+				const setQRLongitude = showQRCode.querySelector(".qr_longitude");
+				if (qrLongitude.value != "") {
+					setQRLongitude.innerHTML = qrLongitude.value;
+				}
+				else {
+					const p = setQRLongitude.closest("p");
+					p.classList.add("d-none");
+				}
+
+				const setQRLatitude = showQRCode.querySelector(".qr_latitude");
+				if (qrLatitude.value != "") {
+					setQRLatitude.innerHTML = qrLatitude.value;
+				}
+				else {
+					const p = setQRLatitude.closest("p");
+					p.classList.add("d-none");
+				}
+
 				showQRCode.querySelector(".qr_img").src = item.getAttribute("src");
 				showQRCode.classList.remove("d-none");
 			});
