@@ -1,23 +1,23 @@
 @inject IStringLocalizer<Translate> translate
 @model List<SearchMangroe_Client_VM>
 @{
-    if (Model.Count > 0)
-    {
-        long stt = 0;
-        foreach (var item in Model)
-        {
-            stt += 1;
+	if (Model.Count > 0)
+	{
+		long stt = 0;
+		foreach (var item in Model)
+		{
+			stt += 1;
 
-            <a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
-                onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
-               class="item_mangrove d-block text-start py-1 px-2 mb-2 rounded-1 overflow-hidden time_delay_500ms btn_loading">
-                <h5 class="mb-2 name">#@stt | @item.Name</h5>
-                <p class="content">@item.Morphology</p>
-            </a>
-        }
-    }
-    else
-    {
-        <p class="text-center">@translate["label_khong_tim_thay_ket_qua"]</p>
-    }
+			<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
+			   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
+			   class="item_mangrove d-block text-start py-1 px-2 mb-3 rounded-1 overflow-hidden time_delay_500ms btn_loading">
+				<h5 class="mb-2 name">#@stt | @item.Name</h5>
+				<p class="content">@item.Morphology</p>
+			</a>
+		}
+	}
+	else
+	{
+		<p class="text-center">@translate["label_khong_tim_thay_ket_qua"]</p>
+	}
 }

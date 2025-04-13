@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hj4D7xcpjTkaNL9PqBQpNuOhhQGaXB1Xf7UZf5Swrk0=",
+  "Hash": "8d9MLvH0TdcQwbD2hyNrVdd4tyzh8QZG3NNwsTr7lt0=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "u8s37m9u3l",
-      "Integrity": "vkCqOTrBDEZNUVV++4NdAYgH+yXWVH2NknslIUKGSVw=",
+      "Fingerprint": "qy9yd1me7g",
+      "Integrity": "Dug13WmdLNP/h/TIF+xlzvGQ/YvRCdmSkapVo4lr6a8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\admin_site.css"
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mljncux5gz",
-      "Integrity": "+tYXJoDs4Y4pI95O+JuX2pmuWAupvlRAUePXR5J5rho=",
+      "Fingerprint": "kvjelqlio5",
+      "Integrity": "IAky/keSNO0V58nBdG1xceuaqwdiKR4A/MRF6Lpbwas=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\both_custom.css"
@@ -204,6 +204,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components\\admin_item_photo.css"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_statistical.css",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "css/components/admin_statistical#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "nee2u5khbx",
+      "Integrity": "kbiJNAiHLleHXTd9RJhP3FDC49sJrBnAiWsHYJgOCJg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\components\\admin_statistical.css"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\both_click_show_image.css",
@@ -2341,8 +2362,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "7wwnth5gqt",
-      "Integrity": "R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI=",
+      "Fingerprint": "eqvcqe2lzh",
+      "Integrity": "WiJHxesAdIjsix2NcyNlwzNxoR7dBthSnfJHuwwk0qs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\admin_site.js"
@@ -2467,8 +2488,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0ac7babv3k",
-      "Integrity": "6PwLZduZkX5au5fJQuBRqtLM3L1CqbtjGi+CKWOrmgE=",
+      "Fingerprint": "nf25wuoyss",
+      "Integrity": "k/NAoyxHA1V8yVBhuEpIB862v201imrd870nTUoGTxQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\items.js"
@@ -2724,6 +2745,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\slider.js"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\statistical_admin.js",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "js/custom/components/statistical_admin#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "n2pgo5t4nw",
+      "Integrity": "EQFDhQhgtMz6nFvwnjqXJt+dZw2ir4GXxnXOxZUcobg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\custom\\components\\statistical_admin.js"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\jquery\\jquery-2.2.4.min.js",
@@ -3956,7 +3998,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "815"
+          "Value": "867"
         },
         {
           "Name": "Content-Type",
@@ -3964,11 +4006,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vkCqOTrBDEZNUVV++4NdAYgH+yXWVH2NknslIUKGSVw=\""
+          "Value": "\"Dug13WmdLNP/h/TIF+xlzvGQ/YvRCdmSkapVo4lr6a8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 14:28:44 GMT"
+          "Value": "Sun, 13 Apr 2025 12:01:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -3978,12 +4020,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-vkCqOTrBDEZNUVV++4NdAYgH+yXWVH2NknslIUKGSVw="
+          "Value": "sha256-Dug13WmdLNP/h/TIF+xlzvGQ/YvRCdmSkapVo4lr6a8="
         }
       ]
     },
     {
-      "Route": "css/admin_site.u8s37m9u3l.css",
+      "Route": "css/admin_site.qy9yd1me7g.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\admin_site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -3993,7 +4035,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "815"
+          "Value": "867"
         },
         {
           "Name": "Content-Type",
@@ -4001,11 +4043,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vkCqOTrBDEZNUVV++4NdAYgH+yXWVH2NknslIUKGSVw=\""
+          "Value": "\"Dug13WmdLNP/h/TIF+xlzvGQ/YvRCdmSkapVo4lr6a8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 14:28:44 GMT"
+          "Value": "Sun, 13 Apr 2025 12:01:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4015,7 +4057,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "u8s37m9u3l"
+          "Value": "qy9yd1me7g"
         },
         {
           "Name": "label",
@@ -4023,7 +4065,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-vkCqOTrBDEZNUVV++4NdAYgH+yXWVH2NknslIUKGSVw="
+          "Value": "sha256-Dug13WmdLNP/h/TIF+xlzvGQ/YvRCdmSkapVo4lr6a8="
         }
       ]
     },
@@ -4120,7 +4162,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2632"
+          "Value": "2739"
         },
         {
           "Name": "Content-Type",
@@ -4128,11 +4170,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+tYXJoDs4Y4pI95O+JuX2pmuWAupvlRAUePXR5J5rho=\""
+          "Value": "\"IAky/keSNO0V58nBdG1xceuaqwdiKR4A/MRF6Lpbwas=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 15:15:55 GMT"
+          "Value": "Sun, 13 Apr 2025 13:36:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4142,12 +4184,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-+tYXJoDs4Y4pI95O+JuX2pmuWAupvlRAUePXR5J5rho="
+          "Value": "sha256-IAky/keSNO0V58nBdG1xceuaqwdiKR4A/MRF6Lpbwas="
         }
       ]
     },
     {
-      "Route": "css/both_custom.mljncux5gz.css",
+      "Route": "css/both_custom.kvjelqlio5.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\both_custom.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -4157,7 +4199,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2632"
+          "Value": "2739"
         },
         {
           "Name": "Content-Type",
@@ -4165,11 +4207,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"+tYXJoDs4Y4pI95O+JuX2pmuWAupvlRAUePXR5J5rho=\""
+          "Value": "\"IAky/keSNO0V58nBdG1xceuaqwdiKR4A/MRF6Lpbwas=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 15:15:55 GMT"
+          "Value": "Sun, 13 Apr 2025 13:36:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4179,7 +4221,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mljncux5gz"
+          "Value": "kvjelqlio5"
         },
         {
           "Name": "label",
@@ -4187,7 +4229,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-+tYXJoDs4Y4pI95O+JuX2pmuWAupvlRAUePXR5J5rho="
+          "Value": "sha256-IAky/keSNO0V58nBdG1xceuaqwdiKR4A/MRF6Lpbwas="
         }
       ]
     },
@@ -4680,6 +4722,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-BORJ82/ZHA9C9nGQIRRbLIDcpgHx9TZx+I9nFlyXEJk="
+        }
+      ]
+    },
+    {
+      "Route": "css/components/admin_statistical.css",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_statistical.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "128"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kbiJNAiHLleHXTd9RJhP3FDC49sJrBnAiWsHYJgOCJg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 13:03:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kbiJNAiHLleHXTd9RJhP3FDC49sJrBnAiWsHYJgOCJg="
+        }
+      ]
+    },
+    {
+      "Route": "css/components/admin_statistical.nee2u5khbx.css",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\admin_statistical.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "128"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kbiJNAiHLleHXTd9RJhP3FDC49sJrBnAiWsHYJgOCJg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 13:03:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nee2u5khbx"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components/admin_statistical.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kbiJNAiHLleHXTd9RJhP3FDC49sJrBnAiWsHYJgOCJg="
         }
       ]
     },
@@ -8314,7 +8438,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:51:26 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8351,7 +8475,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:51:26 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8396,7 +8520,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:52:24 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8433,7 +8557,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:52:24 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8478,7 +8602,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:20:21 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8523,7 +8647,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:20:21 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8560,7 +8684,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 03:16:03 GMT"
+          "Value": "Sun, 13 Apr 2025 02:44:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8605,7 +8729,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 03:16:03 GMT"
+          "Value": "Sun, 13 Apr 2025 02:44:23 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8642,7 +8766,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:30:57 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8687,7 +8811,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:30:57 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8724,7 +8848,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 02:20:29 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8769,7 +8893,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 02:20:29 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:59 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8806,7 +8930,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:31:30 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8843,7 +8967,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 01:31:30 GMT"
+          "Value": "Sun, 13 Apr 2025 02:28:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12966,7 +13090,7 @@
       ]
     },
     {
-      "Route": "js/custom/admin_site.7wwnth5gqt.js",
+      "Route": "js/custom/admin_site.eqvcqe2lzh.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\admin_site.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -12976,7 +13100,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "391"
+          "Value": "464"
         },
         {
           "Name": "Content-Type",
@@ -12984,11 +13108,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI=\""
+          "Value": "\"WiJHxesAdIjsix2NcyNlwzNxoR7dBthSnfJHuwwk0qs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 09:13:17 GMT"
+          "Value": "Sun, 13 Apr 2025 12:34:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12998,7 +13122,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "7wwnth5gqt"
+          "Value": "eqvcqe2lzh"
         },
         {
           "Name": "label",
@@ -13006,7 +13130,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI="
+          "Value": "sha256-WiJHxesAdIjsix2NcyNlwzNxoR7dBthSnfJHuwwk0qs="
         }
       ]
     },
@@ -13021,7 +13145,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "391"
+          "Value": "464"
         },
         {
           "Name": "Content-Type",
@@ -13029,11 +13153,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI=\""
+          "Value": "\"WiJHxesAdIjsix2NcyNlwzNxoR7dBthSnfJHuwwk0qs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 09 Apr 2025 09:13:17 GMT"
+          "Value": "Sun, 13 Apr 2025 12:34:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13043,7 +13167,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-R3f6wwi2/pkmKcSSNj6DL/5W07NTwCe1cDOvtcTyMwI="
+          "Value": "sha256-WiJHxesAdIjsix2NcyNlwzNxoR7dBthSnfJHuwwk0qs="
         }
       ]
     },
@@ -13458,51 +13582,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/items.0ac7babv3k.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "17348"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6PwLZduZkX5au5fJQuBRqtLM3L1CqbtjGi+CKWOrmgE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:34:04 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0ac7babv3k"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/items.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-6PwLZduZkX5au5fJQuBRqtLM3L1CqbtjGi+CKWOrmgE="
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/items.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
       "Selectors": [],
@@ -13513,7 +13592,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "17348"
+          "Value": "17537"
         },
         {
           "Name": "Content-Type",
@@ -13521,11 +13600,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"6PwLZduZkX5au5fJQuBRqtLM3L1CqbtjGi+CKWOrmgE=\""
+          "Value": "\"k/NAoyxHA1V8yVBhuEpIB862v201imrd870nTUoGTxQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 11 Apr 2025 15:34:04 GMT"
+          "Value": "Sun, 13 Apr 2025 02:54:47 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13535,7 +13614,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-6PwLZduZkX5au5fJQuBRqtLM3L1CqbtjGi+CKWOrmgE="
+          "Value": "sha256-k/NAoyxHA1V8yVBhuEpIB862v201imrd870nTUoGTxQ="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/items.nf25wuoyss.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\items.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "17537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"k/NAoyxHA1V8yVBhuEpIB862v201imrd870nTUoGTxQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 02:54:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "nf25wuoyss"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/items.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-k/NAoyxHA1V8yVBhuEpIB862v201imrd870nTUoGTxQ="
         }
       ]
     },
@@ -14520,6 +14644,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-bgeSxutOehJJiVUxYPdFLdvD8Xu/8N5aJFF1plJo6Qc="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/statistical_admin.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\statistical_admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "645"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EQFDhQhgtMz6nFvwnjqXJt+dZw2ir4GXxnXOxZUcobg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 12:54:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EQFDhQhgtMz6nFvwnjqXJt+dZw2ir4GXxnXOxZUcobg="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/statistical_admin.n2pgo5t4nw.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\statistical_admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "645"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EQFDhQhgtMz6nFvwnjqXJt+dZw2ir4GXxnXOxZUcobg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 12:54:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n2pgo5t4nw"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/statistical_admin.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EQFDhQhgtMz6nFvwnjqXJt+dZw2ir4GXxnXOxZUcobg="
         }
       ]
     },

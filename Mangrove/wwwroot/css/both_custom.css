@@ -158,6 +158,15 @@ option {
 	z-index: 1;
 }
 
+.scroll_x {
+	overflow-x: auto;
+	white-space: nowrap;
+}
+
+.border_ccc {
+	border: solid 1px #ccc;
+}
+
 @media (width <=1200px) {
     .hidden_mobile {
         display: none !important;

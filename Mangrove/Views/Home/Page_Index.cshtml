@@ -11,8 +11,8 @@
 
 <section class="module_home_page py-2">
 	<div class="container d-flex flex-column gap-3">
-		<div class="frame_img">
-			<img class="w-100 h-100 rounded-1 object-fit-cover" src="/img/logo/@Model.BannerImage" alt="">
+		<div class="frame_img shadow-sm rounded-1 overflow-hidden mb-3">
+			<img class="w-100 h-100 object-fit-cover" src="/img/logo/@Model.BannerImage" alt="">
 
 			<div class="frame_title rounded-1 overflow-hidden">
 				<h1 class="title m-0 px-2 text-center">@Model.BannerTitle</h1>
@@ -23,22 +23,22 @@
 			</div>
 		</div>
 
-		<div class="frame_introduce">
+		<div class="frame_introduce bg-white shadow-sm rounded-1 p-2 mb-3">
 			<p class="fw-bold fs-5 mb-2">@translate["label_muc_dich_website"]</p>
-			<p class="content border_detail text-justify p-2">
+			<p class="content border_detail_ text-justify my-2">
 				@Html.Raw(Helper.Func.Show(Model.Purpose))
 			</p>
 		</div>
 
-		<div class="frame_individual_recent">
-			<p class="fw-bold fs-5 mb-2">@translate["label_cac_thanh_phan_gan_day"]</p>
+		<div class="frame_individual_recent shadown-sm rounded-1 bg-white mb-3">
+			<p class="fw-bold fs-5 mb-2 p-2">@translate["label_cac_thanh_phan_gan_day"]</p>
 			<div class="items d-flex flex-wrap">
 				@{
 					foreach (var item in Model.Mangroves)
 					{
 						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
 						   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
-						   class="item px-2 col-12 col-sm-6 col-lg-4 mt-3 d-flex flex-column btn_loading">
+						   class="item px-2 col-12 col-sm-6 col-lg-4 mb-4 d-flex flex-column btn_loading">
 							<div class="rounded-1 overflow-hidden flex-grow-1">
 								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.Image"
 									 alt="">
