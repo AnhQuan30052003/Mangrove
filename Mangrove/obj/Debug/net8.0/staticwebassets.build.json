@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tOei6zmkOVEDBAuv3jU+tjTDgG1xXr9+yaBoNf6c0Ac=",
+  "Hash": "Hj4D7xcpjTkaNL9PqBQpNuOhhQGaXB1Xf7UZf5Swrk0=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -493,8 +493,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0gq7jdujkw",
-      "Integrity": "YJfCpEjdunLzQKLgSxmrYLs5oyn5m+95foHnsFDNtiY=",
+      "Fingerprint": "r6s065yhus",
+      "Integrity": "s+g/4V9JTPlEElgCOM9Gam3X4ygsOJYuPc1YX2qxA+E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components\\user_show_qr_code.css"
@@ -5750,51 +5750,6 @@
       ]
     },
     {
-      "Route": "css/components/user_show_qr_code.0gq7jdujkw.css",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\user_show_qr_code.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1126"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"YJfCpEjdunLzQKLgSxmrYLs5oyn5m+95foHnsFDNtiY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 15:33:49 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0gq7jdujkw"
-        },
-        {
-          "Name": "label",
-          "Value": "css/components/user_show_qr_code.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YJfCpEjdunLzQKLgSxmrYLs5oyn5m+95foHnsFDNtiY="
-        }
-      ]
-    },
-    {
       "Route": "css/components/user_show_qr_code.css",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\user_show_qr_code.css",
       "Selectors": [],
@@ -5805,7 +5760,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1126"
+          "Value": "1141"
         },
         {
           "Name": "Content-Type",
@@ -5813,11 +5768,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YJfCpEjdunLzQKLgSxmrYLs5oyn5m+95foHnsFDNtiY=\""
+          "Value": "\"s+g/4V9JTPlEElgCOM9Gam3X4ygsOJYuPc1YX2qxA+E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 15:33:49 GMT"
+          "Value": "Sun, 13 Apr 2025 02:02:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5827,7 +5782,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YJfCpEjdunLzQKLgSxmrYLs5oyn5m+95foHnsFDNtiY="
+          "Value": "sha256-s+g/4V9JTPlEElgCOM9Gam3X4ygsOJYuPc1YX2qxA+E="
+        }
+      ]
+    },
+    {
+      "Route": "css/components/user_show_qr_code.r6s065yhus.css",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\components\\user_show_qr_code.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1141"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"s+g/4V9JTPlEElgCOM9Gam3X4ygsOJYuPc1YX2qxA+E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 13 Apr 2025 02:02:31 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r6s065yhus"
+        },
+        {
+          "Name": "label",
+          "Value": "css/components/user_show_qr_code.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-s+g/4V9JTPlEElgCOM9Gam3X4ygsOJYuPc1YX2qxA+E="
         }
       ]
     },
@@ -8724,7 +8724,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 03:19:49 GMT"
+          "Value": "Sun, 13 Apr 2025 02:20:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8769,7 +8769,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 12 Apr 2025 03:19:49 GMT"
+          "Value": "Sun, 13 Apr 2025 02:20:29 GMT"
         },
         {
           "Name": "Cache-Control",

@@ -148,8 +148,8 @@ namespace Mangrove.Controllers {
 					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
 
 					Helper.Validate.NotEmpty(surveyDates[i].ToString("yyyy-MM-dd"));
-					Helper.Validate.NotEmpty(stageNameENs[i]);
-					Helper.Validate.NotEmpty(stageNameVIs[i]);
+					Helper.Validate.NotEmpty(stageNameENs[i], true);
+					Helper.Validate.NotEmpty(stageNameVIs[i], true);
 					Helper.Validate.NotEmpty(weatherENs[i], true);
 					Helper.Validate.NotEmpty(weatherVIs[i], true);
 					Helper.Validate.NotEmpty(heights[i], true);
@@ -204,8 +204,8 @@ namespace Mangrove.Controllers {
 						IdIndividual = model.Id,
 						MainImage = fileName,
 						SurveyDay = surveyDates[i],
-						NameEn = stageNameENs[i],
-						NameVi = stageNameVIs[i],
+						NameEn = stageNameENs[i] ?? $"Stages {i + 1}",
+						NameVi = stageNameVIs[i] ?? $"Giai đoạn {i + 1}",
 						WeatherEn = weatherENs[i],
 						WeatherVi = weatherVIs[i],
 						Height = heights[i],
@@ -400,8 +400,8 @@ namespace Mangrove.Controllers {
 					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
 
 					Helper.Validate.NotEmpty(surveyDates[i].ToString("yyyy-MM-dd"));
-					Helper.Validate.NotEmpty(stageNameENs[i]);
-					Helper.Validate.NotEmpty(stageNameVIs[i]);
+					Helper.Validate.NotEmpty(stageNameENs[i], true);
+					Helper.Validate.NotEmpty(stageNameVIs[i], true);
 					Helper.Validate.NotEmpty(weatherENs[i], true);
 					Helper.Validate.NotEmpty(weatherVIs[i], true);
 					Helper.Validate.NotEmpty(heights[i], true);
@@ -458,8 +458,8 @@ namespace Mangrove.Controllers {
 							IdIndividual = model.Id,
 							MainImage = fileName,
 							SurveyDay = surveyDates[i],
-							NameEn = stageNameENs[i],
-							NameVi = stageNameVIs[i],
+							NameEn = stageNameENs[i] ?? $"Stages {i + 1}",
+							NameVi = stageNameVIs[i] ?? $"Giai đoạn {i + 1}",
 							WeatherEn = weatherENs[i],
 							WeatherVi = weatherVIs[i],
 							Height = heights[i],
@@ -479,8 +479,8 @@ namespace Mangrove.Controllers {
 						var oldStage = await context.TblStages.FirstOrDefaultAsync(item => item.Id == idStages[i]);
 						if (oldStage != null) {
 							oldStage.SurveyDay = surveyDates[i];
-							oldStage.NameEn = stageNameENs[i];
-							oldStage.NameVi = stageNameVIs[i];
+							oldStage.NameEn = stageNameENs[i] ?? $"Stages {i + 1}";
+							oldStage.NameVi = stageNameVIs[i] ?? $"Giai đoạn {i + 1}";
 							oldStage.WeatherEn = weatherENs[i];
 							oldStage.WeatherVi = weatherVIs[i];
 							oldStage.Height = heights[i];

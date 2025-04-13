@@ -93,7 +93,7 @@ function addImageToItem() {
 addImageToItem();
 
 // Khi click vào nút thêm item
-export function addItem(idButtonClick) {
+export function addItem(idButtonClick, haveFocus = false) {
 	const clicked = document.querySelector(idButtonClick);
 	const frameItems = clicked.closest(".frame_items");
 	const items = frameItems.querySelector(".items");
@@ -103,7 +103,7 @@ export function addItem(idButtonClick) {
 	const maxItem = document.querySelector("#maxItem").value;
 	if (addItemFind.length == maxItem) return;
 
-	const addItem = createDivAddItem();
+	const addItem = createDivAddItem(haveFocus);
 	items.appendChild(addItem);
 
 	const quantity = frameItems.querySelector(".quantity_item");
@@ -118,7 +118,9 @@ export function addItem(idButtonClick) {
 	}
 }
 
-function createDivAddItem() {
+function createDivAddItem(haveFocus = false) {
+	const htmlFocus = haveFocus ? `<small class="text-danger">✶</small>` : ``;
+
 	const labelPhoto = document.querySelector("#photo").value;
 	const labelDescription = document.querySelector("#description").value;
 	const labelEnglish = document.querySelector("#english").value;
@@ -132,7 +134,7 @@ function createDivAddItem() {
 		</button>
 
 		<div class="add_img col-12 col-lg-6 rounded-1">
-			<p class="catch_to_move text-center text-black">${labelPhoto}</p>
+			<p class="catch_to_move text-center text-black"><small class="text-danger" >✶</small>${labelPhoto}</p>
 
 			<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
@@ -161,13 +163,13 @@ function createDivAddItem() {
 			<p class="text-center col-12 align-self-start text-black">${labelDescription}</p>
 
 			<div class="add_content_item mt-1 col-12">
-				<small class="mb-1 d-block font-small">${labelEnglish}</small>
+				<small class="mb-1 d-block font-small">${htmlFocus}${labelEnglish}</small>
 				<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 
 			</div>
 
 			<div class="add_content_item mt-1 col-12">
-				<small class="mb-1 d-block font-small">${labelVietnamese}</small>
+				<small class="mb-1 d-block font-small">${htmlFocus}${labelVietnamese}</small>
 				<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 		</div>

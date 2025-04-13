@@ -108,7 +108,7 @@
 					<div class="frame_info_and_position d-sm-flex">
 						<div class="top col-sm-6 p-2">
 							<div class="mt-1">
-								<small class="mb-1 d-block font-small">@translate["label_thanh_phan_loai"]</small>
+								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_thanh_phan_loai"]</small>
 								<select class="w-100 border-none bg-white outline-none green_effect py-1 rounded-1 text_body"
 										name="chooseIdMangrove"
 										asp-items="@selectMangrove">
@@ -130,13 +130,13 @@
 
 						<div class="bottom col-sm-6 p-2">
 							<div class="mt-1">
-								<small class="mb-1 d-block font-small">@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_anh"])</small>
+								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_anh"])</small>
 								<input type="text" asp-for="@Model.PositionEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 							</div>
 
 							<div class="mt-1">
-								<small class="mb-1 d-block font-small">@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_viet"])</small>
+								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_viet"])</small>
 								<input type="text" asp-for="@Model.PositionVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 							</div>
@@ -199,7 +199,7 @@
 									<div class="frame_info_and_position d-sm-flex">
 										<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
 											<div class="mt-1">
-												<small class="mb-1 d-block font-small text-center">@translate["label_hinh_anh"]</small>
+												<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</small>
 												<div class="w-100">
 													<div class="add_img rounded-1">
 														<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
@@ -230,7 +230,7 @@
 												</div>
 											</div>
 											<div class="mt-1">
-												<small class="mb-1 d-block font-small">@translate["label_ngay_khao_sat"]</small>
+												<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ngay_khao_sat"]</small>
 												<input type="date" name="surveyDates"
 													   class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body"
 													   value="@surveyDates[i].ToString("yyyy-MM-dd")" />
@@ -307,7 +307,7 @@
 															</button>
 
 															<div class="add_img col-12 col-lg-6 rounded-1">
-																<p class="catch_to_move text-center text-black">@translate["label_hinh_anh"]</p>
+																<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
 																<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
 																	<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
