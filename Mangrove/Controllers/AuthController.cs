@@ -62,7 +62,7 @@ namespace Mangrove.Controllers {
 					Helper.Notifier.Success(
 						isEN ? "Login successfully. Redirecting..." : "Đăng nhập thành công. Đang chuyển hướng...",
 						Helper.SetupNotifier.Timer.fastTime,
-						Url.Action("Page_Statistical", "Admin")
+						Url.Action("Page_Overview", "Statistical")
 					);
 					return View();
 				}
