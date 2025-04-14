@@ -25,17 +25,17 @@
 <section class="mod_statistical">
 	<div class="container py-2">
 		<!-- Tuỳ chọn -->
-		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mb-2">
+		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mt-2 mb-3">
 			<a href='@Url.Action("Page_Overview", "Statistical")'
-			   class="btn_option active border-none outline-none text_tree_hover time_delay_500ms">
+			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-eye color-tree"></i>
-				<span class="text_body">@translate["label_tong_quan"]</span>
+				<span class="text-black text_tree_hover">@translate["label_tong_quan"]</span>
 			</a>
 			<span>|</span>
 			<a href='@Url.Action("Page_Fillter", "Statistical")'
 			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-filter color-tree"></i>
-				<span class="text_body">@translate["label_bo_loc"]</span>
+				<span class="text_body text_tree_hover">@translate["label_bo_loc"]</span>
 			</a>
 		</div>
 
@@ -50,7 +50,7 @@
 				<div class="box_card bg-white rounded-3 shadow-s h-100">
 					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
 						<h5 class="text-black pt-2">@translate["label_tong_so_cay_ngap_man"]</h5>
-						<p class="counter display-4" data-target="@countMangrove">0</p>
+						<p class="counter display-4 text_tree_hover" data-target="@countMangrove">0</p>
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 				<div class="box_card bg-white rounded-3 shadow-s h-100">
 					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
 						<h5 class="text-black pt-2">@translate["label_tong_so_ca_the"]</h5>
-						<p class="counter display-4" data-target="@countIndividual">0</p>
+						<p class="counter display-4 text_tree_hover" data-target="@countIndividual">0</p>
 					</div>
 				</div>
 			</div>
@@ -68,7 +68,7 @@
 				<div class="box_card bg-white rounded-3 shadow-s h-100">
 					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
 						<h5 class="text-black pt-2">@translate["label_tong_so_ban_do_phan_bo"]</h5>
-						<p class="counter display-4" data-target="@countDistributionMap">0</p>
+						<p class="counter display-4 text_tree_hover" data-target="@countDistributionMap">0</p>
 					</div>
 				</div>
 			</div>
@@ -101,12 +101,12 @@
 		</div>
 
 		<!-- Top số cá thể của cây | table-->
-		<div class="mb-4">
+		<div class="mb-4 p-1">
 			<div class="box_card bg-white shadow-sm p-2 rounded-3">
-				<h5 class="mt-1 mb-3 text-center">@translate["label_bang"]</h5>
+				<h5 class="pt-2 mb-3 text-center">@translate["label_bang"]</h5>
 
-				<div class="scroll_x">
-					<table class="table table-bordered m-0" id="table_top_mangrove">
+				<div class="scroll_x mb-4">
+					<table class="table table-striped table-bordered m-0" id="table_top_mangrove">
 						<thead>
 							<tr class="text-center">
 								@{
@@ -114,43 +114,29 @@
 									{
 										var label = listTitle[i];
 
-										string setSortType = string.Empty;
-										if (sortFollow == label)
-										{
-											setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
-										}
-										else
-										{
-											setSortType = Helper.Key.sortASC;
-										}
+										bool outList = i == 0 || i == listTitle.Count() - 1;
 
-										string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
+										string labelASC = isEN ? "Ascending" : "Tăng dần";
+										string labelDESC = isEN ? "Descending" : "Giảm dần";
 
-										string text = isEN ? "Click to sort " : "Click để sắp xếp ";
-										if (typeArrow == "fa-arrow-up")
-										{
-											text += isEN ? "ascending" : "tăng dần";
-										}
-										else
-										{
-											text += isEN ? "descending" : "giảm dần";
-										}
-
-										<th class="head_sort position-relative">
-											@if (i == 0 || i == listTitle.Count() - 1)
+										<th class="head_sort">
+											@if (outList)
 											{
-												<a class="h-100 w-100 d-block">@label</a>
+												<span class="h-100">@label</span>
 											}
 											else
 											{
-												<a href='@Url.Action(action, controller, new { sortType=setSortType, sortFollow=label })'
-												   class="h-100 w-100 d-block btn_loading"
-												   title="@text">
+												<span class="h-100 px-3 position-relative">
+													<a href='@Url.Action(action, controller, new { sortType=Helper.Key.sortDESC, sortFollow=label })'
+													   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+														<i class="fa-solid fa-arrow-down"></i>
+													</a>
 													@label
-												</a>
-												<i class="icon_sort fa-solid @typeArrow position-absolute"
-												   style="top: 50%; right: 5px; transform: translateY(-50%); font-size: 13px;">
-												</i>
+													<a href='@Url.Action(action, controller, new { sortType=Helper.Key.sortASC, sortFollow=label })'
+													   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+														<i class="fa-solid fa-arrow-up"></i>
+													</a>
+												</span>
 											}
 										</th>
 									}
@@ -162,7 +148,7 @@
 							@for (int i = 0; i < topMangrove.Count(); i++)
 							{
 								var item = topMangrove[i];
-								<tr>
+								<tr class="text_tree_hover">
 									<td class="text-center">@(i + 1)</td>
 									<td>@(isEN ? item.NameEn : item.NameVi)</td>
 									<td>@item.Familia</td>
@@ -179,6 +165,14 @@
 							}
 						</tbody>
 					</table>
+				</div>
+
+				<div class="text-center mb-3">
+					<a href='@Url.Action("ExportToExcel", "Statistical")'
+					   class="px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+						<i class="fa-solid fa-file-excel"></i>
+						<span>@translate["label_xuat_excel"]</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -215,7 +209,7 @@
 					tooltip: {
 						callbacks: {
 							label: function (tooltipItem) {
-								return tooltipItem.label + ': ' + tooltipItem.raw + ` ${labelExtra}`;
+								return `${tooltipItem.label} ${tooltipItem.raw} ${labelExtra}`;
 							}
 						}
 					}

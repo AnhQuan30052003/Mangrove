@@ -21,45 +21,33 @@
 			var label = listStyle[i];
 			bool outList = i == 0 || i == listStyle.Count() - 1;
 
-			string setSortType = "";
-			if (sortFollow == label)
-			{
-				setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
-			}
-			else
-			{
-				setSortType = Helper.Key.sortASC;
-			}
-
-			string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
-
-			string text = isEN ? "Click to sort " : "Click để sắp xếp ";
-			if (typeArrow == "fa-arrow-up")
-			{
-				text += isEN ? "ascending" : "tăng dần";
-			}
-			else
-			{
-				text += isEN ? "descending" : "giảm dần";
-			}
+			string labelASC = isEN ? "Ascending" : "Tăng dần";
+			string labelDESC = isEN ? "Descending" : "Giảm dần";
 
 			string setMaxWidthHead = "";
 			if (i == 0) setMaxWidthHead = "width: 60px !important;";
 			else if (i == listStyle.Count() - 1) setMaxWidthHead = "width: 110px !important;";
 
-			<th class="head_sort position-relative" style="@setMaxWidthHead">
+			<th class="head_sort" style="@setMaxWidthHead">
 				@if (outList)
 				{
-					<a class="h-100 w-100 d-block">@label</a>
+					<span class="h-100">@label</span>
 				}
 				else
 				{
-					<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=setSortType, sortFollow=label })'
-					   class="h-100 w-100 d-block btn_loading"
-					   title="@text">
+					<span class="h-100 px-3 position-relative">
+						<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=Helper.Key.sortDESC, sortFollow=label })'
+						   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+							<i class="fa-solid fa-arrow-down"></i>
+						</a>
+
 						@label
-					</a>
-					<i class="icon_sort fa-solid @typeArrow"></i>
+
+						<a href='@Url.Action(action, controller, new { search=search, currentpage=currentpage, pageSize=pageSize, sortType=Helper.Key.sortASC, sortFollow=label })'
+						   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+							<i class="fa-solid fa-arrow-up"></i>
+						</a>
+					</span>
 				}
 			</th>
 		}

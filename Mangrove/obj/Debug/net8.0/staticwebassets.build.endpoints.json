@@ -1001,7 +1001,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1842"
+          "Value": "1905"
         },
         {
           "Name": "Content-Type",
@@ -1009,22 +1009,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"32VMlYuXaXToHTo8ykMHKLNHUdtaAibq41NtPYmDOig=\""
+          "Value": "\"3QYoZB4UbA9Aoh44uD0lW2KeBg09bvi2joOnqS7hDKU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 07:42:57 GMT"
+          "Value": "Mon, 14 Apr 2025 13:25:43 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-32VMlYuXaXToHTo8ykMHKLNHUdtaAibq41NtPYmDOig="
+          "Value": "sha256-3QYoZB4UbA9Aoh44uD0lW2KeBg09bvi2joOnqS7hDKU="
         }
       ]
     },
     {
-      "Route": "css/components/both_have_paginate.hcemkp1841.css",
+      "Route": "css/components/both_have_paginate.pdrhq6nnzv.css",
       "AssetFile": "css/components/both_have_paginate.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1038,7 +1038,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1842"
+          "Value": "1905"
         },
         {
           "Name": "Content-Type",
@@ -1046,21 +1046,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"32VMlYuXaXToHTo8ykMHKLNHUdtaAibq41NtPYmDOig=\""
+          "Value": "\"3QYoZB4UbA9Aoh44uD0lW2KeBg09bvi2joOnqS7hDKU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 07:42:57 GMT"
+          "Value": "Mon, 14 Apr 2025 13:25:43 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hcemkp1841"
+          "Value": "pdrhq6nnzv"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-32VMlYuXaXToHTo8ykMHKLNHUdtaAibq41NtPYmDOig="
+          "Value": "sha256-3QYoZB4UbA9Aoh44uD0lW2KeBg09bvi2joOnqS7hDKU="
         },
         {
           "Name": "label",
@@ -10663,51 +10663,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/statistical_admin.0q28f5h36s.js",
-      "AssetFile": "js/custom/components/statistical_admin.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1152"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"OM3znyCifYrw8zvdFwpvq4EOD1FcRvmriSz3z4cElps=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 09:56:14 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0q28f5h36s"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-OM3znyCifYrw8zvdFwpvq4EOD1FcRvmriSz3z4cElps="
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/statistical_admin.js"
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/statistical_admin.js",
       "AssetFile": "js/custom/components/statistical_admin.js",
       "Selectors": [],
@@ -10722,7 +10677,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1152"
+          "Value": "1348"
         },
         {
           "Name": "Content-Type",
@@ -10730,17 +10685,62 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"OM3znyCifYrw8zvdFwpvq4EOD1FcRvmriSz3z4cElps=\""
+          "Value": "\"ijisY10Ow2H5zzYxKv/UXTR4xJlEwgbHMlXnctTWbX4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 14 Apr 2025 09:56:14 GMT"
+          "Value": "Mon, 14 Apr 2025 14:36:22 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-OM3znyCifYrw8zvdFwpvq4EOD1FcRvmriSz3z4cElps="
+          "Value": "sha256-ijisY10Ow2H5zzYxKv/UXTR4xJlEwgbHMlXnctTWbX4="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/statistical_admin.m8c21ncwbz.js",
+      "AssetFile": "js/custom/components/statistical_admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ijisY10Ow2H5zzYxKv/UXTR4xJlEwgbHMlXnctTWbX4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Apr 2025 14:36:22 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "m8c21ncwbz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ijisY10Ow2H5zzYxKv/UXTR4xJlEwgbHMlXnctTWbX4="
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/statistical_admin.js"
         }
       ]
     },

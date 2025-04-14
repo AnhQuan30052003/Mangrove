@@ -71,12 +71,19 @@
 	outline: solid 1px;
 }
 
-.have_paginate .head_sort .icon_sort {
+.head_sort .icon_sort {
 	position: absolute;
 	top: 50%;
-	right: 5px;
 	transform: translateY(-50%);
 	font-size: 13px;
+}
+
+.head_sort .icon_sort_asc {
+	right: 0;
+}
+
+.head_sort .icon_sort_desc {
+	left: 0;
 }
 
 .have_paginate .table_responsive {
