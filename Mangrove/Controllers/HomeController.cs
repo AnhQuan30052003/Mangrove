@@ -26,7 +26,7 @@ namespace Mangrove.Controllers {
 				var admin = HttpContext.User.FindFirst("Username")?.Value;
 				// Có admin 
 				if (!string.IsNullOrEmpty(admin)) {
-					return RedirectToAction("Page_Statistical", "Admin");
+					return RedirectToAction("Page_Overview", "Statistical");
 				}
 				return RedirectToAction("Page_Index");
 			}

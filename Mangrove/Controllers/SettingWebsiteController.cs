@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-
 namespace Mangrove.Controllers {
 	public class SettingWebsiteController : Controller {
 		private readonly MangroveContext context;

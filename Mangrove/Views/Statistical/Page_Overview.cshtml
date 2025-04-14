@@ -1,0 +1,235 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	var isEN = Helper.Func.IsEnglish();
+	ViewData["Title"] = ViewData["InfoPage"] = translate["label_thong_ke"] + $" ({translate["label_tong_quan"]})";
+	ViewData["TypePage"] = "Page_Statistical";
+
+	Layout = Helper.Path.layoutAdmin;
+
+	int countMangrove = Convert.ToInt32(ViewData["CountMangrove"]);
+	int countIndividual = Convert.ToInt32(ViewData["CountIndividual"]);
+	int countDistributionMap = Convert.ToInt32(ViewData["CountDistributionMap"]);
+
+	List<TblMangrove> topMangrove = ViewData["TopMangrove"] as List<TblMangrove> ?? new List<TblMangrove>();
+
+	string controller = "Statistical";
+	string action = "Page_Overview";
+	string sortType = ViewData["SortType"] as string ?? Helper.Key.sortASC;
+	string sortFollow = ViewData["SortFollow"] as string ?? string.Empty;
+	List<string> listTitle = ViewData["ListTitle"] as List<string> ?? new List<string>();
+}
+
+<input type="text" id="labelExtra_Individual" value="@translate["label_ca_the"]" hidden />
+<input type="text" id="labelExtra_Visit" value="@translate["label_luot_xem"]" hidden />
+
+<section class="mod_statistical">
+	<div class="container py-2">
+		<!-- Tuỳ chọn -->
+		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mb-2">
+			<a href='@Url.Action("Page_Overview", "Statistical")'
+			   class="btn_option active border-none outline-none text_tree_hover time_delay_500ms">
+				<i class="fa-solid fa-eye color-tree"></i>
+				<span class="text_body">@translate["label_tong_quan"]</span>
+			</a>
+			<span>|</span>
+			<a href='@Url.Action("Page_Fillter", "Statistical")'
+			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
+				<i class="fa-solid fa-filter color-tree"></i>
+				<span class="text_body">@translate["label_bo_loc"]</span>
+			</a>
+		</div>
+
+		<!-- Tiêu đề báo cáo -->
+		<div class="text-center mb-4">
+			<h4>@translate["label_bao_cao_thong_ke_he_thong"]</h4>
+		</div>
+
+		<!-- Thông tin số lượng: Cây ngập mặn, Cá thể và Bản đồ phân bố -->
+		<div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+			<div class="col-5 col-md-3">
+				<div class="box_card bg-white rounded-3 shadow-s h-100">
+					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
+						<h5 class="text-black pt-2">@translate["label_tong_so_cay_ngap_man"]</h5>
+						<p class="counter display-4" data-target="@countMangrove">0</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-5 col-md-3">
+				<div class="box_card bg-white rounded-3 shadow-s h-100">
+					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
+						<h5 class="text-black pt-2">@translate["label_tong_so_ca_the"]</h5>
+						<p class="counter display-4" data-target="@countIndividual">0</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-5 col-md-3">
+				<div class="box_card bg-white rounded-3 shadow-s h-100">
+					<div class="h-100 p-2 text-center d-flex flex-column justify-content-between">
+						<h5 class="text-black pt-2">@translate["label_tong_so_ban_do_phan_bo"]</h5>
+						<p class="counter display-4" data-target="@countDistributionMap">0</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center mt-1 mb-3">
+			<h5>Top @topMangrove.Count() @translate["label_thanh_phan_loai_co_nhieu_ca_the_nhat"]</h5>
+		</div>
+
+		<!-- Chart -->
+		<div class="d-flex flex-wrap mb-4 gap-2 gap-md-0">
+			<div class="col-12 col-md-6 px-md-1">
+				<div class="card shadow-sm h-100">
+					<div class="card-body">
+						<h5 class="card-title text-center">@translate["label_bieu_do_theo_so_luong_ca_the"]</h5>
+						<canvas id="Mangrove_NumberOfIndividuals"></canvas>
+					</div>
+				</div>
+			</div>
+			<!-- Thống kê theo trạng thái (Biểu đồ tròn) -->
+
+			<div class="col-12 col-md-6 px-md-1">
+				<div class="card shadow-sm h-100">
+					<div class="card-body">
+						<h5 class="card-title text-center">@translate["label_bieu_do_theo_so_luong_truy_cap"]</h5>
+						<canvas id="Mangrove_NumberOfVisits"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Top số cá thể của cây | table-->
+		<div class="mb-4">
+			<div class="box_card bg-white shadow-sm p-2 rounded-3">
+				<h5 class="mt-1 mb-3 text-center">@translate["label_bang"]</h5>
+
+				<div class="scroll_x">
+					<table class="table table-bordered m-0" id="table_top_mangrove">
+						<thead>
+							<tr class="text-center">
+								@{
+									for (int i = 0; i < listTitle.Count(); i++)
+									{
+										var label = listTitle[i];
+
+										string setSortType = string.Empty;
+										if (sortFollow == label)
+										{
+											setSortType = sortType == Helper.Key.sortASC ? Helper.Key.sortDESC : Helper.Key.sortASC;
+										}
+										else
+										{
+											setSortType = Helper.Key.sortASC;
+										}
+
+										string typeArrow = setSortType == Helper.Key.sortASC ? "fa-arrow-up" : "fa-arrow-down";
+
+										string text = isEN ? "Click to sort " : "Click để sắp xếp ";
+										if (typeArrow == "fa-arrow-up")
+										{
+											text += isEN ? "ascending" : "tăng dần";
+										}
+										else
+										{
+											text += isEN ? "descending" : "giảm dần";
+										}
+
+										<th class="head_sort position-relative">
+											@if (i == 0 || i == listTitle.Count() - 1)
+											{
+												<a class="h-100 w-100 d-block">@label</a>
+											}
+											else
+											{
+												<a href='@Url.Action(action, controller, new { sortType=setSortType, sortFollow=label })'
+												   class="h-100 w-100 d-block btn_loading"
+												   title="@text">
+													@label
+												</a>
+												<i class="icon_sort fa-solid @typeArrow position-absolute"
+												   style="top: 50%; right: 5px; transform: translateY(-50%); font-size: 13px;">
+												</i>
+											}
+										</th>
+									}
+								}
+							</tr>
+						</thead>
+
+						<tbody class="text_body">
+							@for (int i = 0; i < topMangrove.Count(); i++)
+							{
+								var item = topMangrove[i];
+								<tr>
+									<td class="text-center">@(i + 1)</td>
+									<td>@(isEN ? item.NameEn : item.NameVi)</td>
+									<td>@item.Familia</td>
+									<td class="text-center counter" data-target="@item.View">0</td>
+									<td class="text-center counter" data-target="@item.TblIndividuals.Count()">0</td>
+									<td class="text-center">
+										<a href='@Url.Action("Page_Result", "Home", new { id = item.Id})'
+										   target="_blank"
+										   class="text_tree_hover">
+											<i class="fa-solid fa-link"></i>
+										</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	// Hiển thị biểu đồ
+	function showChart(id, label, data, idlabelExtra) {
+		var departmentCtx = document.querySelector(id).getContext('2d');
+		var labelExtra = document.querySelector(idlabelExtra).value;
+		var departmentChart = new Chart(departmentCtx, {
+			type: 'pie',
+			data: {
+				labels: label,
+				datasets: [{
+					data: data,
+					backgroundColor: ['#00CED1', '#4682B4', '#8B4513', '#FF7F50', '#6A5ACD', '#3CB371', '#FF6347', '#20B2AA', '#FFD700', '#DC143C'],
+					borderColor: '#fff',
+					borderWidth: 2,
+					hoverOffset: 4
+				}]
+			},
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'top',
+						labels: {
+							boxWidth: 15,
+							padding: 20
+						}
+					},
+					tooltip: {
+						callbacks: {
+							label: function (tooltipItem) {
+								return tooltipItem.label + ': ' + tooltipItem.raw + ` ${labelExtra}`;
+							}
+						}
+					}
+				}
+			}
+		});
+	}
+
+	// Biểu đồ số lượng cá thể
+	const label = @Html.Raw(Json.Serialize(topMangrove.Select(item => isEN ? item.NameEn : item.NameVi)));
+	const individual_data = @Html.Raw(Json.Serialize(topMangrove.Select(item => item.TblIndividuals.Count())));
+	showChart("#Mangrove_NumberOfIndividuals", label, individual_data, "#labelExtra_Individual");
+
+	// Biểu đồ số lượt truy cập
+	const visit_data = @Html.Raw(Json.Serialize(topMangrove.Select(item => item.View)));
+	showChart("#Mangrove_NumberOfVisits", label, visit_data, "#labelExtra_Visit");
+</script>

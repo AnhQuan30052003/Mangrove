@@ -265,10 +265,7 @@ public class Helper {
 
 		// Format number
 		public static string FormatNumber(long number) {
-			string textNumber = number.ToString();
-			if (textNumber.Length > 3) {
-				textNumber = textNumber.Substring(0, 1) + "." + textNumber.Substring(1, 3);
-			}
+			string textNumber = number.ToString("N0").Replace(",", ".");
 			return textNumber;
 		}
 

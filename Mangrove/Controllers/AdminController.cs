@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
 
 namespace Mangrove.Controllers {
 	[Authorize]
@@ -12,11 +11,6 @@ namespace Mangrove.Controllers {
 
 		public AdminController(MangroveContext context) {
 			this.context = context;
-		}
-
-		// Thống kê
-		public IActionResult Page_Statistical() {
-			return View();
 		}
 
 		// Xem thông tin 
