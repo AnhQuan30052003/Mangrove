@@ -10,17 +10,17 @@
 <section class="mod_statistical">
 	<div class="py-2">
 		<!-- Tuỳ chọn -->
-		<div class="container statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mb-2">
+		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mt-2 mb-3">
 			<a href='@Url.Action("Page_Overview", "Statistical")'
 			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-eye color-tree"></i>
-				<span class="text_body">Tổng quan</span>
+				<span class="text_body text_tree_hover">@translate["label_tong_quan"]</span>
 			</a>
 			<span>|</span>
 			<a href='@Url.Action("Page_Fillter", "Statistical")'
-			   class="btn_option active border-none outline-none text_tree_hover time_delay_500ms">
+			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-filter color-tree"></i>
-				<span class="text_body">Bộ lọc</span>
+				<span class="text-black text_tree_hover">@translate["label_bo_loc"]</span>
 			</a>
 		</div>
 
@@ -55,7 +55,7 @@
 					</div>
 
 					<div class="frame_button_fillter text-center d-flex align-items-end justify-content-center flex-grow-1 mt-3 mt-sm-0 col-lg-5">
-						<button class="border-none outline-none px-3 py-2 py-sm-1 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
+						<button class="border-none outline-none px-3 py-2 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
 								type="submit">
 							Lọc
 						</button>
@@ -64,11 +64,19 @@
 			</form>
 		</div>
 
-		<div class="container-fluid data_fillter">
+		<div class="container data_fillter">
 			<div class="box_card bg-white shadow-sm p-2 rounded-3 mb-4">
-				<h5 class="text-center mt-1 mb-3">10 Thành phần loài</h5>
+				<nav class="d-flex gap-2">
+					<select class="px-3 py-1">
+						<option value="value">5</option>
+						<option value="value">10</option>
+						<option value="value">20</option>
+					</select>
+					<h5 class="text-center mt-1 mb-3">10 Thành phần loài</h5>
+				</nav>
+
 				<div class="scroll_x">
-					<table class="table table-bordered">
+					<table class="table table-bordered table-striped m-0">
 						<thead>
 							<tr class="text-center">
 								<th>STT</th>
