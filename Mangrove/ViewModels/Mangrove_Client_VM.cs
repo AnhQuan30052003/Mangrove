@@ -29,5 +29,8 @@
 		public int NumberStages { get; set; }
 		public string Position { get; set; } = null!;
 		public string QrName { get; set; } = null!;
+		public string NameMangrove { get; set; } = null!;
+		public string Longitude { get; set; } = null!;
+		public string Latitude { get; set; } = null!;
 	}
 }

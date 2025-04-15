@@ -40,7 +40,12 @@
 					</div>
 
 					<div class="frame_qr text-center col-12">
-						<img class="h-100 click_show_qr rounded-1 lazy-load" data-src="/img/qr-img/@item.QrName" alt="">
+						<input class="get_qr_name" type="text" value="@item.NameMangrove" hidden />
+						<input class="get_qr_pos" type="text" value="@item.Position" hidden />
+						<input class="get_qr_longitude" type="text" value="@item.Longitude" hidden />
+						<input class="get_qr_latitude" type="text" value="@item.Latitude" hidden />
+						<img class="h-100 click_show_qr rounded-1 lazy-load"
+							data-src="/img/qr-img/@item.QrName" alt="">
 					</div>
 				</div>
 			</div>

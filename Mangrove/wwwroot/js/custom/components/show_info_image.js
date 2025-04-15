@@ -55,10 +55,12 @@ function clickShowQR() {
 		const qrImgs = document.querySelectorAll(".click_show_qr");
 		qrImgs.forEach((item) => {
 			item.addEventListener("click", function () {
-				const qrName = document.querySelector(".get_qr_name");
-				const qrPos = document.querySelector(".get_qr_pos");
-				const qrLongitude = document.querySelector(".get_qr_longitude");
-				const qrLatitude = document.querySelector(".get_qr_Latitude");
+				const frameQR = item.closest(".frame_qr");
+
+				const qrName = frameQR.querySelector(".get_qr_name");
+				const qrPos = frameQR.querySelector(".get_qr_pos");
+				const qrLongitude = frameQR.querySelector(".get_qr_longitude");
+				const qrLatitude = frameQR.querySelector(".get_qr_latitude");
 
 				const showQRCode = document.querySelector("#show_qr_code");
 				showQRCode.querySelector(".qr_name").innerHTML = qrName.value;

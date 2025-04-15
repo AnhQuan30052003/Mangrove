@@ -237,9 +237,16 @@
 	</a>
 </div>
 
-<button id="btnQRFixed"
-		class="rounded-1 click_show_qr outline_tree_hover bg_white_hover text_black_hover"
-		title="QR"
-		src="/img/qr-img/@Model.Individual.QrName">
-	<i class="fa-solid fa-qrcode"></i>
-</button>
+<div class="frame_qr">
+	<input class="get_qr_name" type="text" value="@Model.NameMangrove" hidden />
+	<input class="get_qr_pos" type="text" value="@(isEN ? Model.Individual.PositionEn : Model.Individual.PositionVi)" hidden />
+	<input class="get_qr_longitude" type="text" value="@Model.Individual.Longitude" hidden />
+	<input class="get_qr_latitude" type="text" value="@Model.Individual.Latitude" hidden />
+
+	<button id="btnQRFixed"
+			class="rounded-1 click_show_qr outline_tree_hover bg_white_hover text_black_hover"
+			title="QR"
+			src="/img/qr-img/@Model.Individual.QrName">
+		<i class="fa-solid fa-qrcode"></i>
+	</button>
+</div>
