@@ -45,20 +45,11 @@
 						</li>
 
 						<!-- Trang chủ -->
-						<li class="dropdown_menu position-relative page_option" page="Page_Home">
-							<div class="item dropdown_toggle d-xl-block d-flex align-items-center cursor-pointer">
+						<li class="item active_click page_option btn_loading" page="Page_Home">
+							<a href='@Url.Action("Page_IndexAdmin_View", "Home")' class="d-flex align-items-center gap-xl-1">
 								<i class="fa-solid fa-house"></i>
-								<span class="d-xl-inline-block d-flex justify-content-between flex-grow-1 align-items-center">
-									<span>@translate["label_trang_chu"]</span>
-									<i class="fa-solid fa-caret-down time_delay_500ms w-auto"
-									   style="margin-left: 3px;">
-									</i>
-								</span>
-							</div>
-							<ul class="dropdown_list rounded-1 overflow-hidden">
-								<a href='@Url.Action("Page_Index", "Home")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_xem"]</a>
-								<a href='@Url.Action("Page_Edit", "HomePage")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_sua"]</a>
-							</ul>
+								<span class="">@translate["label_trang_chu"]</span>
+							</a>
 						</li>
 
 						<!-- Cây ngập mặn -->

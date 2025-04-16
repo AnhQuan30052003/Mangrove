@@ -305,5 +305,40 @@ namespace Mangrove.Controllers {
 				return RedirectToAction("Page_Index");
 			}
 		}
+
+		// Page: View home (admin)
+		public async Task<IActionResult> Page_IndexAdmin_View() {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var home = await context.TblHomes.FirstOrDefaultAsync();
+				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
+				var listMangrove = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
+
+				List<Mangrove_HomePage_Client_VM> list = new List<Mangrove_HomePage_Client_VM>();
+				foreach (var mangrove in listMangrove) {
+					var item = new Mangrove_HomePage_Client_VM {
+						Id = mangrove.Id,
+						Image = mangrove.MainImage,
+						Name = (isEN ? mangrove.NameEn : mangrove.NameVi + " - " + mangrove.ScientificName)
+					};
+					list.Add(item);
+				}
+
+				var model = new HomePage_Client_VM {
+					BannerTitle = (isEN ? home?.BannerTitleEn : home?.BannerTitleVi) ?? "",
+					BannerImage = home?.BannerImg ?? "",
+					Purpose = (isEN ? home?.PurposeEn : home?.PurposeVi) ?? "",
+					Mangroves = list,
+				};
+
+				return View(model);
+			}
+			catch (Exception ex) {
+				string notifier = $"-----\nCó lỗi khi kết nối với Cơ sở dữ liệu.\n-----\nError: {ex.Message}";
+				Console.WriteLine(notifier);
+				return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.disconnectDatabase });
+			}
+		}
+
 	}
 }
