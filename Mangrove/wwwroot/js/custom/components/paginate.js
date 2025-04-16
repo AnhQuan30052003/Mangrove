@@ -1,13 +1,13 @@
 ﻿// Theo dõi hiển thị page_hidden
 function togglePageHidden() {
 	document.addEventListener("click", function (e) {
-		const toggle = document.querySelector(".toggle_page_hidden");
-		if (toggle) {
+		const toggles = document.querySelectorAll(".toggle_page_hidden");
+		toggles.forEach((toggle) => {
 			if (toggle.contains(e.target)) {
 				const pageHidden = toggle.closest(".pagination").querySelector(".page_hidden");
 				if (pageHidden) pageHidden.classList.toggle("d-none");
 			}
-		}
+		});
 	});
 }
 togglePageHidden();

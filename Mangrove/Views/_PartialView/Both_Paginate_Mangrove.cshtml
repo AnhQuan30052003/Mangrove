@@ -34,7 +34,7 @@
 									<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
 									<td>@item.ScientificName</td>
 									<td>@item.Familia</td>
-									<td class="text-center">@item.TblIndividuals.Count()</td>
+									<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count())</td>
 									<td class="text-center">@item.UpdateLast.ToString()</td>
 
 									<td class="text-center">

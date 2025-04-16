@@ -33,7 +33,9 @@
 									<td class="text-center">@(stt++)</td>
 									<td>@(isEN ? item.IdMangroveNavigation!.NameEn : item.IdMangroveNavigation!.NameVi)</td>
 									<td>@(isEN ? item.PositionEn : item.PositionVi)</td>
-									<td class="text-center">@item.TblStages.Count()</td>
+									<td>@item.Longitude</td>
+									<td>@item.Latitude</td>
+									<td class="text-center">@Helper.Func.FormatNumber(item.TblStages.Count())</td>
 									<td class="text-center">@item.UpdateLast.ToString()</td>
 
 									<td class="text-center">

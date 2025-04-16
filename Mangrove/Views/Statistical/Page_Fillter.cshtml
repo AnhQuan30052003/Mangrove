@@ -11,6 +11,7 @@
 	DateTime fromDate = Convert.ToDateTime(ViewData["FromDate"]);
 	DateTime toDate = Convert.ToDateTime(ViewData["ToDate"]);
 	string chooseData = ViewData["ChooseData"] as string ?? string.Empty;
+	bool searched = Convert.ToBoolean(ViewData["Searched"]);
 
 	int pageSizeMangrove = Convert.ToInt32(ViewData["PageSizeMangrove"]);
 	int currentPageMangrove = Convert.ToInt32(ViewData["CurrentPageMangrove"]);
@@ -49,7 +50,7 @@
 
 <style>
 	.mod_statistical td {
-		max-width: 250px !important;
+	max-width: 250px !important;
 	}
 
 </style>
@@ -60,6 +61,7 @@
 <input type="text" id="fromDate" value="@fromDate" hidden />
 <input type="text" id="toDate" value="@toDate" hidden />
 <input type="text" id="chooseData" value="@chooseData" hidden />
+<input type="text" id="searched" value="@searched.ToString()" hidden />
 
 <input type="text" id="pageSizeMangrove" value="@pageSizeMangrove" hidden />
 <input type="text" id="currentPageMangrove" value="@currentPageMangrove" hidden />
@@ -76,13 +78,13 @@
 		<!-- Tuỳ chọn -->
 		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mt-2 mb-3">
 			<a href='@Url.Action("Page_Overview", "Statistical")'
-			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
+			class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-eye color-tree"></i>
 				<span class="text_body text_tree_hover">@translate["label_tong_quan"]</span>
 			</a>
 			<span>|</span>
 			<a href='@Url.Action("Page_Fillter", "Statistical")'
-			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
+			class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-filter color-tree"></i>
 				<span class="text-black text_tree_hover">@translate["label_bo_loc"]</span>
 			</a>
@@ -95,7 +97,7 @@
 
 		<div class="container filter">
 			<form action="" method="get"
-				  class="py-2 bg-white rounded-1 shadow-sm d-flex flex-wrap mb-4">
+			class="py-2 bg-white rounded-1 shadow-sm d-flex flex-wrap mb-4">
 				<div class="choose_date col-sm-6 p-2 d-flex flex-wrap justify-content-between justify-content-lg-around gap-sm-2 col-12">
 					<div class="col-5 col-sm-12 col-lg-5">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tu_ngay"]</small>
@@ -111,15 +113,16 @@
 					<div class="list_option col-lg-5">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_chon_du_lieu"]</small>
 						<select name="chooseData"
-								class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
-								style="max-height: 36.99px;"
-								asp-items="@selectlist_chooseData">
+						class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
+						style="max-height: 36.99px;"
+						asp-items="@selectlist_chooseData">
 						</select>
 					</div>
 
 					<div class="frame_button_fillter text-center d-flex align-items-end justify-content-center flex-grow-1 mt-3 mt-sm-0 col-lg-5">
+						<input type="text" name="searched" value="true" hidden/>
 						<button class="border-none outline-none px-3 py-2 py-sm-1 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
-								type="submit">
+						type="submit">
 							@translate["label_tim"]
 						</button>
 					</div>
@@ -129,13 +132,14 @@
 
 		<div class="container data_fillter">
 			<!-- For mangrove -->
-			@if (totalData_mangrove > 0 && chooseData != listTable[2])
+			@if (totalData_mangrove > 0 && chooseData != listTable[2] && searched)
 			{
 				<div class="paginate_mangrove box_card bg-white shadow-sm p-2 rounded-3 mb-4">
 					<nav class="d-flex justify-content-between my-2">
 						<h5 class="mt-1 mb-3">@Helper.Func.FormatNumber(totalData_mangrove) @translate["label_thanh_phan_loai"]</h5>
+
 						<select class="changeSelect mangrove px-2 py-1 h-100 outline_ccc border-none outline_tree_hover bg-white cursor-pointer text_black_hover text_body rounded-1"
-								asp-items="@selectlist_mangrove">
+						asp-items="@selectlist_mangrove">
 						</select>
 					</nav>
 
@@ -162,20 +166,20 @@
 												{
 													<span class="h-100 px-3 position-relative">
 														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
-															fromDate=fromDate, toDate=toDate, chooseData=chooseData,
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData, searched=searched,
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortDESC, sortFollowMangrove=label,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
 														})'
-														   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+														class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
 															<i class="fa-solid fa-arrow-down"></i>
 														</a>
 														@label
 														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
-															fromDate=fromDate, toDate=toDate, chooseData=chooseData,
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData, searched=searched,
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortASC, sortFollowMangrove=label,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
 														})'
-														   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+														class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
 															<i class="fa-solid fa-arrow-up"></i>
 														</a>
 													</span>
@@ -189,11 +193,11 @@
 							<tbody class="text_body">
 								@{
 									var dataMangrove = Model.Mangrove.DataPaginate;
-									for (int i = 0; i < dataMangrove.Count(); i++)
+									int stt = (Model.Mangrove.InfomationPaginate.CurrentPage - 1) * Model.Mangrove.InfomationPaginate.PageSize + 1;
+									foreach (var item in dataMangrove)
 									{
-										var item = dataMangrove[i];
 										<tr>
-											<td class="text-center">@(i + 1)</td>
+											<td class="text-center">@(stt++)</td>
 											<td>@(isEN ? item.NameEn : item.NameVi)</td>
 											<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
 											<td>@item.ScientificName</td>
@@ -208,8 +212,8 @@
 											<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count())</td>
 											<td class="text-center">
 												<a href='@Url.Action("Page_Result", "Home", new { id = item.Id})'
-												   target="_blank"
-												   class="text_tree_hover">
+												target="_blank"
+												class="text_tree_hover">
 													<i class="fa-solid fa-link"></i>
 												</a>
 											</td>
@@ -220,26 +224,143 @@
 						</table>
 					</div>
 
-					<div class="text-end mb-3">
-						<div class="pages_d-inline-flex flex-column justify-content-center align-items-center gap-1" style="width: max-content">
-							<!-- Page main -->
-							<div class="group_page d-flex justify-content-center align-items-center"></div>
+					<div class="have_paginate mb-3">
+						<div class="pagination not_paginate_normal py-1 d-flex justify-content-center">
+							<div class="pages_mangrove mangrove d-inline-flex flex-column justify-content-center align-items-center gap-1"
+							style="width: max-content"
+							totalpages="@Model.Mangrove.InfomationPaginate.TotalPages">
+								<!-- Page main -->
+								<div class="group_page d-flex justify-content-center align-items-center"></div>
 
-							<!-- Page hidden -->
-							<div class="page_hidden d-none d-flex flex-wrap justify-content-center"></div>
+								<!-- Page hidden -->
+								<div class="page_hidden d-none d-flex flex-wrap justify-content-center"></div>
+							</div>
 						</div>
 
-						<a href='@Url.Action("ExportToExcel", "Statistical")'
-						   class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
-							<i class="fa-solid fa-file-excel"></i>
-							<span>@translate["label_xuat_excel"]</span>
-						</a>
+						<div class="text-center mt-4">
+							<a href='@Url.Action("ExportToExcel_Mangrove", "Statistical")'
+							class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+								<i class="fa-solid fa-file-excel"></i>
+								<span>@translate["label_xuat_excel"]</span>
+							</a>
+						</div>
 					</div>
 				</div>
 			}
 
+			<!-- For individual -->
+			@if (totalData_individual > 0 && chooseData != listTable[1] && searched)
+			{
+				<div class="paginate_individual box_card bg-white shadow-sm p-2 rounded-3 mb-4">
+					<nav class="d-flex justify-content-between my-2">
+						<h5 class="mt-1 mb-3">@Helper.Func.FormatNumber(totalData_individual) @translate["label_ca_the"]</h5>
+
+						<select class="changeSelect individual px-2 py-1 h-100 outline_ccc border-none outline_tree_hover bg-white cursor-pointer text_black_hover text_body rounded-1"
+						asp-items="@selectlist_individual">
+						</select>
+					</nav>
+
+					<div class="scroll_x mb-4">
+						<table class="table table-bordered table-striped m-0">
+							<thead>
+								<tr class="text-center">
+									@{
+										var listTitle = Model.Individual.InfomationPaginate.ListTitle;
+										for (int i = 0; i < listTitle.Count(); i++)
+										{
+											var label = listTitle[i];
+											bool outList = i == 0 || i == listTitle.Count() - 1;
+
+											string labelASC = isEN ? "Ascending" : "Tăng dần";
+											string labelDESC = isEN ? "Descending" : "Giảm dần";
+
+											<th class="head_sort refersh">
+												@if (outList)
+												{
+													<span class="h-100">@label</span>
+												}
+												else
+												{
+													<span class="h-100 px-3 position-relative">
+														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData, searched=searched,
+															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=sortTypeMangrove, sortFollowMangrove=sortFollowMangrove,
+															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=Helper.Key.sortDESC, sortFollowIndividual=label
+														})'
+														class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+															<i class="fa-solid fa-arrow-down"></i>
+														</a>
+														@label
+														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData, searched=searched,
+															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=sortTypeMangrove, sortFollowMangrove=sortFollowMangrove,
+															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=Helper.Key.sortASC, sortFollowIndividual=label
+														})'
+														class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+															<i class="fa-solid fa-arrow-up"></i>
+														</a>
+													</span>
+												}
+											</th>
+										}
+									}
+								</tr>
+							</thead>
+
+							<tbody class="text_body">
+								@{
+									var dataMangrove = Model.Individual.DataPaginate;
+									int stt = (Model.Individual.InfomationPaginate.CurrentPage - 1) * Model.Individual.InfomationPaginate.PageSize + 1;
+									foreach (var item in dataMangrove)
+									{
+										<tr>
+											<td class="text-center">@(stt++)</td>
+											<td>@(isEN ? item.IdMangroveNavigation!.NameEn : item.IdMangroveNavigation!.NameVi)</td>
+											<td>@(isEN ? item.PositionEn : item.PositionVi)</td>
+											<td>@item.Longitude</td>
+											<td>@item.Latitude</td>
+											<td class="text-center">@Helper.Func.FormatNumber(item.View)</td>
+											<td class="text-center">@Helper.Func.FormatNumber(item.TblStages.Count())</td>
+
+											<td class="text-center">
+												<a href='@Url.Action("Page_Individual", "Home", new { id = item.Id })'
+												target="_blank"
+												class="text_tree_hover">
+													<i class="fa-solid fa-link"></i>
+												</a>
+											</td>
+										</tr>
+									}
+								}
+							</tbody>
+						</table>
+					</div>
+
+					<div class="have_paginate mb-3">
+						<div class="pagination not_paginate_normal py-1 d-flex justify-content-center">
+							<div class="pages_individual individual d-inline-flex flex-column justify-content-center align-items-center gap-1"
+							style="width: max-content"
+							totalpages="@Model.Individual.InfomationPaginate.TotalPages">
+								<!-- Page main -->
+								<div class="group_page d-flex justify-content-center align-items-center"></div>
+
+								<!-- Page hidden -->
+								<div class="page_hidden d-none d-flex flex-wrap justify-content-center"></div>
+							</div>
+						</div>
+
+						<div class="text-center mt-4">
+							<a href='@Url.Action("ExportToExcel_Individual", "Statistical")'
+							class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+								<i class="fa-solid fa-file-excel"></i>
+								<span>@translate["label_xuat_excel"]</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
 		</div>
 	</div>
 </section>
 
-<script src="~/js/custom/components/create_items_page.js"></script>											
+<script src="~/js/custom/components/create_items_page.js"></script>

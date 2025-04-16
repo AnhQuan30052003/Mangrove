@@ -24,8 +24,8 @@ namespace Mangrove.Controllers {
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
 
-				var listTitleVI = new List<string> { "STT", "Tên cá thể", "Vị trí", "Số giai đoạn", "Cập nhật lần cuối", "Tuỳ chọn" };
-				var listTitleEN = new List<string> { "No", "Individual name", "Position", "Number of stage", "Last updated", "Options" };
+				var listTitleVI = new List<string> { "STT", "Tên cá thể", "Vị trí", "Kinh độ", "Vĩ độ", "Số giai đoạn", "Cập nhật lần cuối", "Tuỳ chọn" };
+				var listTitleEN = new List<string> { "No", "Individual name", "Position", "Longitude", "Latitude", "Number of stage", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;
@@ -33,6 +33,8 @@ namespace Mangrove.Controllers {
 				{
 					{ listTitleVI[index++], item => item.IdMangroveNavigation!.NameVi },
 					{ listTitleVI[index++], item => item.PositionVi },
+					{ listTitleVI[index++], item => item.Longitude ?? string.Empty },
+					{ listTitleVI[index++], item => item.Latitude ?? string.Empty },
 					{ listTitleVI[index++], item => item.TblStages.Count() },
 					{ listTitleVI[index++], item => item.UpdateLast },
 				};
@@ -42,6 +44,8 @@ namespace Mangrove.Controllers {
 				{
 					{ listTitleEN[index++], item => item.IdMangroveNavigation!.NameEn },
 					{ listTitleEN[index++], item => item.PositionEn },
+					{ listTitleEN[index++], item => item.Longitude ?? string.Empty },
+					{ listTitleEN[index++], item => item.Latitude ?? string.Empty },
 					{ listTitleEN[index++], item => item.TblStages.Count() },
 					{ listTitleEN[index++], item => item.UpdateLast },
 				};

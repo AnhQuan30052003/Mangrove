@@ -1,6 +1,6 @@
 ﻿window.addEventListener("load", function () {
 	updateCount();
-	refershTable();
+	revoveryPositionPage();
 });
 
 // Cập nhật số liệu nhanh ra UI
@@ -25,25 +25,22 @@ function updateCount() {
 	});
 }
 
-function refershTable () {
-	const table = document.getElementById("table_top_mangrove");
-	if (!table) return;
+// Lưu vị trí scroll trước khi trang reload
+window.addEventListener("beforeunload", function () {
+	localStorage.setItem("scrollPosition", window.scrollY);
+});
 
-	const iconSorts = table.querySelectorAll(".icon_sort");
-	iconSorts.forEach((icon) => {
-		icon.addEventListener("click", function () {
-			localStorage.setItem("scrollToTable", "true");
-		});
-	});
-
-	// Nếu đã có vị trí được lưu, thì cuộn đến đó
-	const shouldScrollToTable = localStorage.getItem("scrollToTable");
-	if (shouldScrollToTable === "true") {
-		localStorage.removeItem("scrollToTable");
-		window.scrollTo({
-			top: table.offsetTop,
-			behavior: "instant"
-		});
+// Cuộn tới vị trí sau khi reload
+function revoveryPositionPage() {
+	try {
+		const savedPosition = localStorage.getItem("scrollPosition");
+		if (savedPosition !== null) {
+			window.scrollTo({
+				top: parseInt(savedPosition, 10),
+				behavior: "instant"
+			});
+			localStorage.removeItem("scrollPosition");
+		}
 	}
+	catch { }
 }
-
