@@ -113,7 +113,6 @@
 									for (int i = 0; i < listTitle.Count(); i++)
 									{
 										var label = listTitle[i];
-
 										bool outList = i == 0 || i == listTitle.Count() - 1;
 
 										string labelASC = isEN ? "Ascending" : "Tăng dần";
@@ -152,8 +151,8 @@
 									<td class="text-center">@(i + 1)</td>
 									<td>@(isEN ? item.NameEn : item.NameVi)</td>
 									<td>@item.Familia</td>
-									<td class="text-center counter" data-target="@item.View">0</td>
-									<td class="text-center counter" data-target="@item.TblIndividuals.Count()">0</td>
+									<td class="text-center">@Helper.Func.FormatNumber(item.View)</td>
+									<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count)</td>
 									<td class="text-center">
 										<a href='@Url.Action("Page_Result", "Home", new { id = item.Id})'
 										   target="_blank"
@@ -168,7 +167,7 @@
 				</div>
 
 				<div class="text-center mb-3">
-					<a href='@Url.Action("ExportToExcel", "Statistical")'
+					<a href='@Url.Action("ExportToExcel_TopMangrove", "Statistical")'
 					   class="px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
 						<i class="fa-solid fa-file-excel"></i>
 						<span>@translate["label_xuat_excel"]</span>

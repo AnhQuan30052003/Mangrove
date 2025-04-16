@@ -167,6 +167,16 @@ option {
 	border: solid 1px #ccc;
 }
 
+.outline_ccc {
+    outline: solid 1px #ccc;
+}
+
+.show_one_line {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 @media (width <=1200px) {
     .hidden_mobile {
         display: none !important;

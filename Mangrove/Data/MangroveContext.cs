@@ -30,6 +30,7 @@ public partial class MangroveContext : DbContext
     public virtual DbSet<TblSetting> TblSettings { get; set; }
 
     public virtual DbSet<TblStage> TblStages { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TblAdmin>(entity =>
@@ -78,6 +79,9 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.MapNameVi)
                 .HasMaxLength(256)
                 .HasColumnName("_mapNameVI");
+            entity.Property(e => e.UpdateLast)
+                .HasColumnType("datetime")
+                .HasColumnName("_updateLast");
         });
 
         modelBuilder.Entity<TblHome>(entity =>

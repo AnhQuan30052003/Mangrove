@@ -149,5 +149,7 @@ create table tblDistributiton (
     _imageMap nvarchar(256) not null,
     
     _mapNameVI nvarchar(256) not null,
-    _mapNameEN nvarchar(256) not null
+    _mapNameEN nvarchar(256) not null,
+
+    _upateLast datetime null,
 )

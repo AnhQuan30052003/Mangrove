@@ -1,11 +1,75 @@
 ﻿@inject IStringLocalizer<Translate> translate
+@model Statistical_Filter
 @{
 	var isEN = Helper.Func.IsEnglish();
-	ViewData["Title"] = ViewData["InfoPage"] = translate["label_thong_ke"] + $" (Bộ lọc)";
+	ViewData["Title"] = ViewData["InfoPage"] = translate["label_thong_ke"] + $" ({translate["label_bo_loc"]})";
 	ViewData["TypePage"] = "Page_Statistical";
 
 	Layout = Helper.Path.layoutAdmin;
+
+	// Lấy dữ liệu ra ngoài
+	DateTime fromDate = Convert.ToDateTime(ViewData["FromDate"]);
+	DateTime toDate = Convert.ToDateTime(ViewData["ToDate"]);
+	string chooseData = ViewData["ChooseData"] as string ?? string.Empty;
+
+	int pageSizeMangrove = Convert.ToInt32(ViewData["PageSizeMangrove"]);
+	int currentPageMangrove = Convert.ToInt32(ViewData["CurrentPageMangrove"]);
+	string sortTypeMangrove = ViewData["SortTypeMangrove"] as string ?? string.Empty;
+	string sortFollowMangrove = ViewData["SortFollowMangrove"] as string ?? string.Empty;
+
+	int pageSizeIndividual = Convert.ToInt32(ViewData["PageSizeIndividual"]);
+	int currentPageIndividual = Convert.ToInt32(ViewData["CurrentPageIndividual"]);
+	string sortTypeIndividual = ViewData["SortTypeIndividual"] as string ?? string.Empty;
+	string sortFollowIndividual = ViewData["SortFollowIndividual"] as string ?? string.Empty;
+
+	int totalData_mangrove = Convert.ToInt32(ViewData["TotalData_Mangrove"]);
+	int totalData_individual = Convert.ToInt32(ViewData["TotalData_Individual"]);
+
+	// Tạo SelectList cho chooseData
+	var listTableEN = new List<string> { "All", "Species Composition", "Individual" };
+	var listTableVI = new List<string> { "Tất cả", "Thành phần loài", "Cá thể" };
+	var listTable = isEN ? listTableEN : listTableVI;
+	var selectlist_chooseData = new SelectList(
+		listTable.Select(item => new { Value = item, Text = item }),
+		"Value", "Text", chooseData
+	);
+
+	// Tạo select item cho Mangrove và Individual
+	var listPageSize = new List<int> { 5, 10, 20, 50, 100 };
+	string line = isEN ? "line" : "dòng";
+	var selectlist_mangrove = new SelectList(
+		listPageSize.Select(item => new { Value = item, Text = $"{item} {line}" }),
+		"Value", "Text", pageSizeMangrove
+	);
+	var selectlist_individual = new SelectList(
+		listPageSize.Select(item => new { Value = item, Text = $"{item} {line}" }),
+		"Value", "Text", pageSizeIndividual
+	);
 }
+
+<style>
+	.mod_statistical td {
+		max-width: 250px !important;
+	}
+
+</style>
+
+<input type="text" id="controller" value="@Model.ControllerName" hidden />
+<input type="text" id="action" value="@Model.ActionName" hidden />
+
+<input type="text" id="fromDate" value="@fromDate" hidden />
+<input type="text" id="toDate" value="@toDate" hidden />
+<input type="text" id="chooseData" value="@chooseData" hidden />
+
+<input type="text" id="pageSizeMangrove" value="@pageSizeMangrove" hidden />
+<input type="text" id="currentPageMangrove" value="@currentPageMangrove" hidden />
+<input type="text" id="sortTypeMangrove" value="@sortTypeMangrove" hidden />
+<input type="text" id="sortFollowMangrove" value="@sortFollowMangrove" hidden />
+
+<input type="text" id="pageSizeIndividual" value="@pageSizeIndividual" hidden />
+<input type="text" id="currentPageIndividual" value="@currentPageIndividual" hidden />
+<input type="text" id="sortTypeIndividual" value="@sortTypeIndividual" hidden />
+<input type="text" id="sortFollowIndividual" value="@sortFollowIndividual" hidden />
 
 <section class="mod_statistical">
 	<div class="py-2">
@@ -26,7 +90,7 @@
 
 		<!-- Tiêu đề báo cáo -->
 		<div class="container text-center mb-4">
-			<h4>Báo cáo thống kê hệ thống</h4>
+			<h4>@translate["label_bao_cao_thong_ke_he_thong"]</h4>
 		</div>
 
 		<div class="container filter">
@@ -34,30 +98,29 @@
 				  class="py-2 bg-white rounded-1 shadow-sm d-flex flex-wrap mb-4">
 				<div class="choose_date col-sm-6 p-2 d-flex flex-wrap justify-content-between justify-content-lg-around gap-sm-2 col-12">
 					<div class="col-5 col-sm-12 col-lg-5">
-						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>Từ ngày</small>
-						<input type="date" name="fromDate" class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tu_ngay"]</small>
+						<input id="choose_fromDate" type="date" name="fromDate" class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body" value="@fromDate.ToString("yyyy-MM-dd")" />
 					</div>
 					<div class="col-5 col-sm-12 col-lg-5">
-						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>Tới ngày</small>
-						<input type="date" name="fromDate" class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_toi_ngay"]</small>
+						<input id="choose_toDate" type="date" name="toDate" class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body" value="@toDate.ToString("yyyy-MM-dd")" />
 					</div>
 				</div>
 
 				<div class="choose_option col-sm-6 p-2 d-flex flex-column flex-lg-row col-12">
 					<div class="list_option col-lg-5">
-						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>Chọn bảng</small>
-						<select class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
-								name="option_table">
-							<option value="" selected>Tất cả</option>
-							<option value="mangrove">Thành phần loài</option>
-							<option value="individual">Cá thể</option>
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_chon_du_lieu"]</small>
+						<select name="chooseData"
+								class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
+								style="max-height: 36.99px;"
+								asp-items="@selectlist_chooseData">
 						</select>
 					</div>
 
 					<div class="frame_button_fillter text-center d-flex align-items-end justify-content-center flex-grow-1 mt-3 mt-sm-0 col-lg-5">
-						<button class="border-none outline-none px-3 py-2 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
+						<button class="border-none outline-none px-3 py-2 py-sm-1 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
 								type="submit">
-							Lọc
+							@translate["label_tim"]
 						</button>
 					</div>
 				</div>
@@ -65,58 +128,118 @@
 		</div>
 
 		<div class="container data_fillter">
-			<div class="box_card bg-white shadow-sm p-2 rounded-3 mb-4">
-				<nav class="d-flex gap-2">
-					<select class="px-3 py-1">
-						<option value="value">5</option>
-						<option value="value">10</option>
-						<option value="value">20</option>
-					</select>
-					<h5 class="text-center mt-1 mb-3">10 Thành phần loài</h5>
-				</nav>
+			<!-- For mangrove -->
+			@if (totalData_mangrove > 0 && chooseData != listTable[2])
+			{
+				<div class="paginate_mangrove box_card bg-white shadow-sm p-2 rounded-3 mb-4">
+					<nav class="d-flex justify-content-between my-2">
+						<h5 class="mt-1 mb-3">@Helper.Func.FormatNumber(totalData_mangrove) @translate["label_thanh_phan_loai"]</h5>
+						<select class="changeSelect mangrove px-2 py-1 h-100 outline_ccc border-none outline_tree_hover bg-white cursor-pointer text_black_hover text_body rounded-1"
+								asp-items="@selectlist_mangrove">
+						</select>
+					</nav>
 
-				<div class="scroll_x">
-					<table class="table table-bordered table-striped m-0">
-						<thead>
-							<tr class="text-center">
-								<th>STT</th>
-								<th>Tên cây</th>
-								<th>Tên khác</th>
-								<th>Tên khoa học</th>
-								<th>Họ</th>
-								<th>Hình thái</th>
-								<th>Sinh thái</th>
-								<th>Phân bố</th>
-								<th>Tình trạng bảo tồn</th>
-								<th>Công dụng</th>
-								<th>Số lượng truy cập</th>
-								<th>Số cá thể</th>
-								<th>Link truy cập</th>
-							</tr>
-						</thead>
-						<tbody class="text_body">
-							@for (int i = 0; i < 10; i++)
-							{
-								<tr>
-									<td class="text-center">@(i + 1)</td>
-									<td>Tên cây</td>
-									<td>Tên khác</td>
-									<td>Tên khoa học</td>
-									<td>Họ</td>
-									<td>Hình thái</td>
-									<td>Sinh thái</td>
-									<td>Phân bố</td>
-									<td>Tình trạng bảo tồn</td>
-									<td>Công dụng</td>
-									<td class="text-center">12</td>
-									<td class="text-center">999</td>
-									<td>Link truy cập</td>
+					<div class="scroll_x mb-4">
+						<table class="table table-bordered table-striped m-0">
+							<thead>
+								<tr class="text-center">
+									@{
+										var listTitle = Model.Mangrove.InfomationPaginate.ListTitle;
+										for (int i = 0; i < listTitle.Count(); i++)
+										{
+											var label = listTitle[i];
+											bool outList = i == 0 || i == listTitle.Count() - 1;
+
+											string labelASC = isEN ? "Ascending" : "Tăng dần";
+											string labelDESC = isEN ? "Descending" : "Giảm dần";
+
+											<th class="head_sort">
+												@if (outList)
+												{
+													<span class="h-100">@label</span>
+												}
+												else
+												{
+													<span class="h-100 px-3 position-relative">
+														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData,
+															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortDESC, sortFollowMangrove=label,
+															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
+														})'
+														   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+															<i class="fa-solid fa-arrow-down"></i>
+														</a>
+														@label
+														<a href='@Url.Action(Model.ActionName, Model.ControllerName, new {
+															fromDate=fromDate, toDate=toDate, chooseData=chooseData,
+															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortASC, sortFollowMangrove=label,
+															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
+														})'
+														   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+															<i class="fa-solid fa-arrow-up"></i>
+														</a>
+													</span>
+												}
+											</th>
+										}
+									}
 								</tr>
-							}
-						</tbody>
-					</table>
+							</thead>
+
+							<tbody class="text_body">
+								@{
+									var dataMangrove = Model.Mangrove.DataPaginate;
+									for (int i = 0; i < dataMangrove.Count(); i++)
+									{
+										var item = dataMangrove[i];
+										<tr>
+											<td class="text-center">@(i + 1)</td>
+											<td>@(isEN ? item.NameEn : item.NameVi)</td>
+											<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
+											<td>@item.ScientificName</td>
+											<td>@item.Familia</td>
+
+											<td class="show_one_line">@(isEN ? item.MorphologyEn : item.MorphologyVi)</td>
+											<td class="show_one_line">@(isEN ? item.EcologyEn : item.EcologyVi)</td>
+											<td class="show_one_line">@(isEN ? item.DistributionEn : item.DistributionVi)</td>
+											<td class="show_one_line">@(isEN ? item.ConservationStatusEn : item.ConservationStatusVi)</td>
+											<td class="show_one_line">@(isEN ? item.UseEn : item.UseVi)</td>
+											<td class="text-center">@Helper.Func.FormatNumber(item.View)</td>
+											<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count())</td>
+											<td class="text-center">
+												<a href='@Url.Action("Page_Result", "Home", new { id = item.Id})'
+												   target="_blank"
+												   class="text_tree_hover">
+													<i class="fa-solid fa-link"></i>
+												</a>
+											</td>
+										</tr>
+									}
+								}
+							</tbody>
+						</table>
+					</div>
+
+					<div class="text-end mb-3">
+						<div class="pages_d-inline-flex flex-column justify-content-center align-items-center gap-1" style="width: max-content">
+							<!-- Page main -->
+							<div class="group_page d-flex justify-content-center align-items-center"></div>
+
+							<!-- Page hidden -->
+							<div class="page_hidden d-none d-flex flex-wrap justify-content-center"></div>
+						</div>
+
+						<a href='@Url.Action("ExportToExcel", "Statistical")'
+						   class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+							<i class="fa-solid fa-file-excel"></i>
+							<span>@translate["label_xuat_excel"]</span>
+						</a>
+					</div>
 				</div>
-			</div>
+			}
+
 		</div>
 	</div>
 </section>
+
+<script src="~/js/custom/components/create_items_page.js"></script>											

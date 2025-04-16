@@ -12,12 +12,7 @@
 	<!-- Table -->
 	<div class="wrapper_data rounded-3 overflow-hidden">
 		<div class="table_responsive bg-white">
-			<table class="table table-striped table-bordered mb-0 data_paginate"
-				   controller="@Model.InfomationPaginate.Controller"
-				   action="@Model.InfomationPaginate.Action"
-				   sortType="@Model.InfomationPaginate.sortType"
-				   sortFollow="@Model.InfomationPaginate.sortFollow">
-
+			<table class="table table-striped table-bordered mb-0 data_paginate">
 				<!-- thead -->
 				<thead>
 					@await Html.PartialAsync($"{pv}/Both_PaginateTHead.cshtml", Model.InfomationPaginate)
@@ -36,7 +31,7 @@
 								<tr class="table_item position-relative">
 									<td class="text-center">@(stt++)</td>
 									<td>@(isEN ? item.MapNameEn : item.MapNameVi)</td>
-									<td>@item.ImageMap</td>
+									<td class="text-center">@item.UpdateLast</td>
 
 									<td class="text-center">
 										<button type="button" class="btn_toggle_option px-2 border-none outline-none bg-black text-white rounded-1">
@@ -72,17 +67,6 @@
 										</ul>
 									</td>
 								</tr>
-							}
-
-							while (stt <= Model.InfomationPaginate.PageSize * (Model.InfomationPaginate.CurrentPage))
-							{
-								<tr>
-									@foreach (var item in Model.InfomationPaginate.ListTitle)
-									{
-										<td>&nbsp;</td>
-									}
-								</tr>
-								stt += 1;
 							}
 						}
 						else

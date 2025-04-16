@@ -27,22 +27,22 @@ namespace Mangrove.Controllers {
 				string findText = search ?? "";
 				ViewData["Search"] = findText;
 
-				var listTitleVI = new List<string> { "STT", "Vị trí", "Tên ảnh", "Tuỳ chọn" };
-				var listTitleEN = new List<string> { "No", "Position", "Photo name", "Options" };
+				var listTitleVI = new List<string> { "STT", "Vị trí", "Cập nhật lần cuối", "Tuỳ chọn" };
+				var listTitleEN = new List<string> { "No", "Position", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;
 				var sortOptionsVI = new Dictionary<string, Expression<Func<TblDistributiton, object>>>()
 				{
 					{ listTitleVI[index++], item => item.MapNameVi },
-					{ listTitleVI[index++], item => item.ImageMap },
+					{ listTitleVI[index++], item => item.UpdateLast! },
 				};
 
 				index = 1;
 				var sortOptionsEN = new Dictionary<string, Expression<Func<TblDistributiton, object>>>()
 				{
 					{ listTitleEN[index++], item => item.MapNameEn },
-					{ listTitleEN[index++], item => item.ImageMap },
+					{ listTitleEN[index++], item => item.UpdateLast! },
 
 				};
 				var sortOptions = isEN ? sortOptionsEN : sortOptionsVI;
@@ -145,7 +145,8 @@ namespace Mangrove.Controllers {
 						Id = id,
 						ImageMap = fileName,
 						MapNameEn = noteENs[i],
-						MapNameVi = noteVIs[i]
+						MapNameVi = noteVIs[i],
+						UpdateLast = DateTime.Now
 					};
 					context.TblDistributitons.Add(map);
 
@@ -239,6 +240,7 @@ namespace Mangrove.Controllers {
 				string newPath = Path.Combine(Helper.Path.distributionImg, fileName);
 				Helper.Func.MovePhoto(oldPath, newPath);
 
+				model.UpdateLast = DateTime.Now;
 				context.TblDistributitons.Update(model);
 				await context.SaveChangesAsync();
 

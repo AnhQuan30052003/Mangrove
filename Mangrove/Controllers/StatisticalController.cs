@@ -5,6 +5,10 @@ using Newtonsoft.Json;
 using ClosedXML.Excel;
 using System.Linq.Expressions;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Mangrove.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Mangrove.Controllers {
 	public class StatisticalController : Controller {
@@ -34,8 +38,8 @@ namespace Mangrove.Controllers {
 			bool isEN = Helper.Func.IsEnglish();
 
 			// Setup cho bảng
-			var listTitleVI = new List<string> { "STT", "Tên", "Họ", "Số lượng truy cập", "Số cá thể", "Liên kết" };
-			var listTitleEN = new List<string> { "No", "Name", "Familia", "Number of visits", "Number of individuals", "Link" };
+			var listTitleVI = new List<string> { "STT", "Tên", "Họ", "Số lượng truy cập", "Số cá thể", "Chi tiết" };
+			var listTitleEN = new List<string> { "No", "Name", "Familia", "Number of visits", "Number of individuals", "Detail" };
 			var listTitle = isEN ? listTitleEN : listTitleVI;
 			ViewData["ListTitle"] = listTitle;
 
@@ -77,11 +81,10 @@ namespace Mangrove.Controllers {
 			.ToListAsync();
 
 			return topMangrove;
-			;
 		}
 
 		// Xuất Excel (Top mangrove)
-		public async Task<IActionResult> ExportToExcel() {
+		public async Task<IActionResult> ExportToExcel_TopMangrove() {
 			bool isEN = Helper.Func.IsEnglish();
 
 			// Cấu hình EPPlus
@@ -89,8 +92,8 @@ namespace Mangrove.Controllers {
 			var worksheet = workbook.Worksheets.Add("Excel");
 
 			// Setup cho tiêu đề
-			var listTitleVI = new List<string> { "STT", "Tên", "Họ", "Số lượng truy cập", "Số cá thể", "Liên kết" };
-			var listTitleEN = new List<string> { "No", "Name", "Familia", "Number of visits", "Number of individuals", "Link" };
+			var listTitleVI = new List<string> { "STT", "Tên", "Họ", "Số lượng truy cập", "Số cá thể", "Chi tiết" };
+			var listTitleEN = new List<string> { "No", "Name", "Familia", "Number of visits", "Number of individuals", "Detail" };
 			var listTitle = isEN ? listTitleEN : listTitleVI;
 
 			// Tạo tiêu đề
@@ -142,8 +145,113 @@ namespace Mangrove.Controllers {
 		}
 
 		// Bộ lọc
-		public IActionResult Page_Fillter() {
-			return View();
+		public async Task<IActionResult> Page_Fillter(
+			DateTime? fromDate = null, DateTime? toDate = null, string? chooseData = null,
+			int pageSizeMangrove = 5, int currentPageMangrove = 1, string sortTypeMangrove = "asc", string? sortFollowMangrove = null,
+			int pageSizeIndividual = 5, int currentPageIndividual = 1, string sortTypeIndividual = "asc", string? sortFollowIndividual = null) {
+			
+			//fromDate = fromDate ?? new DateTime(2025, 01, 01);
+			fromDate = fromDate ?? DateTime.Now;
+			toDate = toDate ?? DateTime.Now;
+
+			// Save data
+			ViewData["FromDate"] = fromDate;
+			ViewData["ToDate"] = toDate;
+			ViewData["ChooseData"] = chooseData;
+
+			ViewData["PageSizeMangrove"] = pageSizeMangrove;
+			ViewData["CurrentPageMangrove"] = currentPageMangrove;
+			ViewData["SortTypeMangrove"] = sortTypeMangrove;
+			ViewData["SortFollowMangrove"] = sortFollowMangrove;
+
+			ViewData["PageSizeIndividual"] = pageSizeIndividual;
+			ViewData["CurrentPageIndividual"] = currentPageIndividual;
+			ViewData["SortTypeIndividual"] = sortTypeIndividual;
+			ViewData["SortFollowIndividual"] = sortFollowIndividual;
+
+			Paginate_VM<TblMangrove> pagiMangrove = await Get_Mangrove(
+				fromDate, toDate,
+				pageSizeMangrove, currentPageMangrove, sortTypeMangrove, sortFollowMangrove
+			);
+			//Paginate_VM<TblIndividual> pagiIndividual = await Get_Individual(from, to, pageSize_I, currentPage_I, sortType_I, sortFollow_I);
+
+			var model = new Statistical_Filter {
+				ControllerName = "Statistical",
+				ActionName = "Page_Fillter",
+				Mangrove = pagiMangrove,
+				Individual = null,
+			};
+
+			return View(model);
+		}
+
+		// Get Top mangrove
+		private async Task<Paginate_VM<TblMangrove>> Get_Mangrove(DateTime? from = null, DateTime? to = null, int pageSize = 5, int currentPage = 1, string sortType = "asc", string? sortFollow = null) {
+			bool isEN = Helper.Func.IsEnglish();
+
+			// Setup cho bảng
+			var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Hình thái", "Sinh thái", "Phân bố", "Tình trạng bảo tồn", "Công dụng", "Số lượng truy cập", "Số cá thể", "Chi tiết" };
+			var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Morphology", "Ecology", "Distribution", "Conservation status", "Use", "Number of visits", "Number of individuals", "Detail" };
+			var listTitle = isEN ? listTitleEN : listTitleVI;
+			ViewData["ListTitle_Mangrove"] = listTitle;
+
+			int index = 1;
+			var sortOptionsVI = new Dictionary<string, Expression<Func<TblMangrove, object>>>()
+			{
+				{ listTitleVI[index++], item => item.NameVi },
+				{ listTitleVI[index++], item => item.CommonNameVi },
+				{ listTitleVI[index++], item => item.ScientificName },
+				{ listTitleVI[index++], item => item.Familia },
+				{ listTitleVI[index++], item => item.MorphologyVi },
+				{ listTitleVI[index++], item => item.EcologyVi },
+				{ listTitleVI[index++], item => item.DistributionVi },
+				{ listTitleVI[index++], item => item.ConservationStatusVi },
+				{ listTitleVI[index++], item => item.UseVi },
+				{ listTitleVI[index++], item => item.View },
+				{ listTitleVI[index++], item => item.TblIndividuals.Count() },
+			};
+
+			index = 1;
+			var sortOptionsEN = new Dictionary<string, Expression<Func<TblMangrove, object>>>()
+			{
+				{ listTitleEN[index++], item => item.NameVi },
+				{ listTitleEN[index++], item => item.CommonNameVi },
+				{ listTitleEN[index++], item => item.ScientificName },
+				{ listTitleEN[index++], item => item.Familia },
+				{ listTitleEN[index++], item => item.MorphologyVi },
+				{ listTitleEN[index++], item => item.EcologyVi },
+				{ listTitleEN[index++], item => item.DistributionVi },
+				{ listTitleEN[index++], item => item.ConservationStatusVi },
+				{ listTitleEN[index++], item => item.UseVi },
+				{ listTitleEN[index++], item => item.View },
+				{ listTitleEN[index++], item => item.TblIndividuals.Count() },
+			};
+			var sortOptions = isEN ? sortOptionsEN : sortOptionsVI;
+
+			// Tạo query
+			var query = context.TblMangroves
+			.Include(item => item.TblIndividuals)
+			.Where(item => item.UpdateLast >= from && item.UpdateLast <= to)
+			.AsQueryable();
+
+			// Kiểm tra nếu có thuộc tính cần sắp xếp
+			if (!string.IsNullOrEmpty(sortFollow) && sortOptions.ContainsKey(sortFollow)) {
+				var sortExpression = sortOptions[sortFollow];
+				query = sortType == Helper.Key.sortASC ? query.OrderBy(sortExpression) : query.OrderByDescending(sortExpression);
+			}
+
+			var data = await query.ToListAsync();
+
+			ViewData["TotalData_Mangrove"] = data.Count();
+
+			var info = new InfomationPaginate(
+				listTitle, currentPage, (int)pageSize, data.Count(),
+				sortType, sortFollow, string.Empty,
+				string.Empty, string.Empty
+			);
+			var pagi = new Paginate_VM<TblMangrove>(data, info);
+
+			return pagi;
 		}
 	}
 }

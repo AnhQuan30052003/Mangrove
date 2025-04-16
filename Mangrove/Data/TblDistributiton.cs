@@ -12,4 +12,6 @@ public partial class TblDistributiton
     public string MapNameVi { get; set; } = null!;
 
     public string MapNameEn { get; set; } = null!;
+
+    public DateTime? UpdateLast { get; set; }
 }
