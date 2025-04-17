@@ -168,7 +168,7 @@ function createItemsPageFor(_classFor) {
 
 		const fromDate = document.querySelector("#choose_fromDate").value;
 		const toDate = document.querySelector("#choose_toDate").value;
-		const chooseData = document.querySelector("#chooseData").value;
+		const chooseData = parseInt(document.querySelector("#chooseData").value);
 		const searched = document.querySelector("#searched").value;
 
 		const pageSizeMangrove = parseInt(document.querySelector("#pageSizeMangrove").value);

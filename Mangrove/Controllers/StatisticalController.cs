@@ -157,7 +157,7 @@ namespace Mangrove.Controllers {
 
 		// Bộ lọc
 		public async Task<IActionResult> Page_Fillter(
-			DateTime? fromDate = null, DateTime? toDate = null, string? chooseData = null, bool searched = false,
+			DateTime? fromDate = null, DateTime? toDate = null, int chooseData = 1, bool searched = false,
 			int pageSizeMangrove = 5, int currentPageMangrove = 1, string sortTypeMangrove = "asc", string? sortFollowMangrove = null,
 			int pageSizeIndividual = 5, int currentPageIndividual = 1, string sortTypeIndividual = "asc", string? sortFollowIndividual = null) {
 

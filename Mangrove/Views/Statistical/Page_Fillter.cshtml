@@ -10,7 +10,7 @@
 	// Lấy dữ liệu ra ngoài
 	DateTime fromDate = Convert.ToDateTime(ViewData["FromDate"]);
 	DateTime toDate = Convert.ToDateTime(ViewData["ToDate"]);
-	string chooseData = ViewData["ChooseData"] as string ?? string.Empty;
+	int chooseData = Convert.ToInt32(ViewData["ChooseData"]);
 	bool searched = Convert.ToBoolean(ViewData["Searched"]);
 
 	int pageSizeMangrove = Convert.ToInt32(ViewData["PageSizeMangrove"]);
@@ -29,9 +29,10 @@
 	// Tạo SelectList cho chooseData
 	var listTableEN = new List<string> { "All", "Species Composition", "Individual" };
 	var listTableVI = new List<string> { "Tất cả", "Thành phần loài", "Cá thể" };
+	var listTableValue = new List<int> { 0, 1, 2 };
 	var listTable = isEN ? listTableEN : listTableVI;
 	var selectlist_chooseData = new SelectList(
-		listTable.Select(item => new { Value = item, Text = item }),
+		listTable.Select((item, index) => new { Value = listTableValue[index], Text = item }),
 		"Value", "Text", chooseData
 	);
 
@@ -132,7 +133,7 @@
 
 		<div class="container data_fillter">
 			<!-- For mangrove -->
-			@if (totalData_mangrove > 0 && chooseData != listTable[2] && searched)
+			@if (totalData_mangrove > 0 && chooseData != listTableValue[2] && searched)
 			{
 				<div class="paginate_mangrove box_card bg-white shadow-sm p-2 rounded-3 mb-4">
 					<nav class="d-flex justify-content-between my-2">
@@ -249,7 +250,7 @@
 			}
 
 			<!-- For individual -->
-			@if (totalData_individual > 0 && chooseData != listTable[1] && searched)
+			@if (totalData_individual > 0 && chooseData != listTableValue[1] && searched)
 			{
 				<div class="paginate_individual box_card bg-white shadow-sm p-2 rounded-3 mb-4">
 					<nav class="d-flex justify-content-between my-2">
