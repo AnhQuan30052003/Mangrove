@@ -35,7 +35,7 @@ public partial class MangroveContext : DbContext
     {
         modelBuilder.Entity<TblAdmin>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblAdmin__DED88B1C793478F7");
+            entity.HasKey(e => e.Id).HasName("PK__tblAdmin__DED88B1C4EAC5E3C");
 
             entity.ToTable("tblAdmin");
 
@@ -86,7 +86,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblHome>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblHome__DED88B1C440504A2");
+            entity.HasKey(e => e.Id).HasName("PK__tblHome__DED88B1C969FC8A1");
 
             entity.ToTable("tblHome");
 
@@ -242,7 +242,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblSetting>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1C600D1BF7");
+            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1CFDF290B2");
 
             entity.ToTable("tblSetting");
 

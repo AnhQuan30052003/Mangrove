@@ -354,8 +354,8 @@ namespace Mangrove.Controllers {
 
 				dataBase64s.Add(home!.BannerImg);
 				dataTypes.Add(string.Empty);
-				NoteENs.Add(string.Empty);
-				NoteVIs.Add(string.Empty);
+				NoteENs.Add(home.BannerTitleEn);
+				NoteVIs.Add(home.BannerTitleVi);
 
 				foreach (var sponsor in sponsors) {
 					dataBase64s.Add(sponsor.ImageName);
@@ -369,6 +369,7 @@ namespace Mangrove.Controllers {
 				ViewData["NoteENs"] = NoteENs;
 				ViewData["NoteVIs"] = NoteVIs;
 
+				Helper.Validate.Clear();
 				return View(home);
 			}
 			catch {
@@ -377,6 +378,127 @@ namespace Mangrove.Controllers {
 					Helper.SetupNotifier.Timer.midTime
 				);
 				return RedirectToAction("Page_IndexAdmin_View");
+			}
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_IndexAdmin_Edit(TblHome model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["DataTypes"] = dataTypes;
+				ViewData["NoteENs"] = noteENs;
+				ViewData["NoteVIs"] = noteVIs;
+
+				// Begin validate
+				Helper.Validate.Clear();
+				for (int i = 0; i < dataBase64s.Count(); i++) {
+					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
+					Helper.Validate.NotEmpty(dataBase64s[i]);
+					Helper.Validate.NotEmpty(noteENs[i], i == 0 ? false : true);
+					Helper.Validate.NotEmpty(noteVIs[i], i == 0 ? false : true);
+				}
+
+				Helper.Validate.NotEmpty(model.TitlePurposeEn);
+				Helper.Validate.NotEmpty(model.TitlePurposeVi);
+				Helper.Validate.NotEmpty(model.PurposeEn);
+				Helper.Validate.NotEmpty(model.PurposeVi);
+				Helper.Validate.NotEmpty(model.TitleListItemEn);
+				Helper.Validate.NotEmpty(model.TitleListItemVi);
+				Helper.Validate.NotEmpty(model.ItemRecent.ToString());
+
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View(model);
+				}
+				// End valiate
+
+				// Save data
+				// Save home
+				context.TblHomes.Update(model);
+
+				// Save banner khi có ảnh mới
+				if (dataBase64s[0].Contains(Helper.Key.temp)) {
+					Helper.Func.DeletePhoto(Helper.Path.logo, model.BannerImg);
+					string bannerName = $"banner{Helper.Func.GetTypeImage(dataTypes[0])}";
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[0]),
+						Path.Combine(Helper.Path.logo, bannerName)
+					);
+					model.BannerImg = bannerName;
+				}
+
+				// Save sponsor
+				List<string> saveIdSonsor = new List<string>();
+				for (int i = 1; i < dataBase64s.Count(); i++) {
+					// Nếu có ảnh mới	
+					string idSponsor = Helper.Func.CreateId();
+					if (dataBase64s[i].Contains(Helper.Key.temp)) {
+						string fileName = $"{idSponsor}_{noteVIs[i]}{Helper.Func.GetTypeImage(dataTypes[i])}";
+						Helper.Func.MovePhoto(
+							Path.Combine(Helper.Path.temptImg, dataBase64s[i]),
+							Path.Combine(Helper.Path.sponImg, fileName)
+						);
+
+						var newSponsor = new TblPhoto {
+							Id = idSponsor,
+							IdObj = model.Id,
+							ImageName = fileName,
+							NoteImgVi = noteVIs[i],
+							NoteImgEn = noteENs[i],
+							NumberOrder = i - 1
+						};
+						context.TblPhotos.Add(newSponsor);
+					}
+					else {
+						idSponsor = Helper.Func.GetIdFromFileName(dataBase64s[i]);
+						var oldSponsor = await context.TblPhotos.FirstOrDefaultAsync(item => item.Id == idSponsor);
+						if (oldSponsor != null) {
+							string fileName = $"{idSponsor}_{noteVIs[i]}{Path.GetExtension(dataBase64s[i])}";
+							Helper.Func.MovePhoto(
+								Path.Combine(Helper.Path.sponImg, dataBase64s[i]),
+								Path.Combine(Helper.Path.sponImg, fileName)
+							);
+
+							oldSponsor.ImageName = fileName;
+							oldSponsor.NoteImgVi = noteVIs[i];
+							oldSponsor.NoteImgEn = noteENs[i];
+							oldSponsor.NumberOrder = i - 1;
+							context.TblPhotos.Update(oldSponsor);
+						}
+					}
+					saveIdSonsor.Add(idSponsor);
+				}
+
+				// Xóa sponsor không còn tồn tại
+				var sponsorDelete = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
+				foreach (var sponsor in sponsorDelete) {
+					if (!saveIdSonsor.Contains(sponsor.Id)) {
+						Helper.Func.DeletePhoto(Helper.Path.sponImg, sponsor.ImageName);
+						context.TblPhotos.Remove(sponsor);
+					}
+				}
+
+				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+
+				// Setup thông báo thành công 
+				Helper.Notifier.Success(
+					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime
+				);
+
+				return RedirectToAction("Page_IndexAdmin_View");
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return View(model);
 			}
 		}
 	}

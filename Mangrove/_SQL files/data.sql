@@ -16,7 +16,7 @@ delete tblAdmin
 insert into tblAdmin
 values
     (
-        'adminID',
+        'A0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
         'anhquan300503@gmail.com',
         'admin',
         'admin',
@@ -26,7 +26,7 @@ values
 insert into tblSetting
 values
     (
-        'settingID',
+        'S0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
 
         N'logo.png',
         N'bg-footer.jpg',
@@ -51,7 +51,7 @@ values
 insert into tblHome
 values
     (
-		'homeID',
+		'H0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
         N'banner.jpg',
         N'Thành phần loài gần đây',
         N'Recent species composition',
@@ -313,4 +313,4 @@ values
 -- Insert for Sponsor
 insert into tblPhotos
 values
-('00000000-AAAA-AAAA-AAAA-SAAAAAAA0000', 'homeID', N'Logo_NTU.png', N'Logo NTU', N'Logo NTU', 0)
+('00000000-AAAA-AAAA-AAAA-SAAAAAAA0000', 'homeID', N'00000000-AAAA-AAAA-AAAA-SAAAAAAA0000_Logo_NTU.png', N'Logo NTU', N'Logo NTU', 0)

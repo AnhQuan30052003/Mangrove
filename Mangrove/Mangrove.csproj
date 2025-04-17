@@ -59,7 +59,6 @@
     <None Include="wwwroot\img\logo\img_bg.jpg" />
     <None Include="wwwroot\img\logo\leaf.png" />
     <None Include="wwwroot\img\logo\logo.png" />
-    <None Include="wwwroot\img\spon-img\Logo_NTU.png" />
     <None Include="wwwroot\img\logo\mangrove.png" />
     <None Include="wwwroot\img\logo\mission.jpg" />
     <None Include="wwwroot\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.jpg" />
@@ -185,6 +184,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\img\spon-img\" />
     <Folder Include="wwwroot\img\temp-img\" />
   </ItemGroup>
 

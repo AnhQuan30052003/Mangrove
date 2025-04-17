@@ -720,17 +720,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wy73zehudp"},{"Name":"integrity","Value":"sha256-6CmbcNHR3UbEB8LXgG88bxcDg\u002BbyrouQ3SG8H/9PrnM="},{"Name":"label","Value":"_content/Mangrove/img/qr-img/QR_A7489B44-B463-44C2-9A35-3AD1A213F4F6_\u0110\u01B0\u1EDBc \u0111\u00F4i_Ninh \u00CDch, Ninh H\u00F2a, Kh\u00E1nh H\u00F2a.png"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1739"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u00226CmbcNHR3UbEB8LXgG88bxcDg\u002BbyrouQ3SG8H/9PrnM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 13 Apr 2025 02:28:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/img/spon-img/Logo_NTU.mi8hfpepk9.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\spon-img\Logo_NTU.png'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\spon-img\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"mi8hfpepk9"},{"Name":"integrity","Value":"sha256-oif6NRagwcewR1Y4A\u002BK5lRAtnMV6TOjGbm6uHweAkPk="},{"Name":"label","Value":"_content/Mangrove/img/spon-img/Logo_NTU.png"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"26242"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022oif6NRagwcewR1Y4A\u002BK5lRAtnMV6TOjGbm6uHweAkPk=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:13:43 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-NcbG13MCqLqwq\u002BgEqjK5i9ap6Kh0k\u002BTGsUiIMX5Ornc="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"11601"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022NcbG13MCqLqwq\u002BgEqjK5i9ap6Kh0k\u002BTGsUiIMX5Ornc=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 15:03:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/img/spon-img/Logo_NTU.png">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\spon-img\Logo_NTU.png'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.vr2f2vq76g.jpg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\spon-img\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-oif6NRagwcewR1Y4A\u002BK5lRAtnMV6TOjGbm6uHweAkPk="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"26242"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022oif6NRagwcewR1Y4A\u002BK5lRAtnMV6TOjGbm6uHweAkPk=\u0022"},{"Name":"Last-Modified","Value":"Sat, 01 Mar 2025 05:13:43 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vr2f2vq76g"},{"Name":"integrity","Value":"sha256-NcbG13MCqLqwq\u002BgEqjK5i9ap6Kh0k\u002BTGsUiIMX5Ornc="},{"Name":"label","Value":"_content/Mangrove/img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11601"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022NcbG13MCqLqwq\u002BgEqjK5i9ap6Kh0k\u002BTGsUiIMX5Ornc=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 15:03:45 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/img/stage-img/00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.g4a8d81f03.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\img\stage-img\00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.jpg'))</AssetFile>

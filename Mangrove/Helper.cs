@@ -22,6 +22,7 @@ public class Helper {
 		public static string partialView = "~/Views/_PartialView";
 		public static string partialViewLayout = "~/Views/Shared/_PartialView_Layout";
 
+		public static string logo = "wwwroot/img/logo";
 		public static string treeImg = "wwwroot/img/tree-img";
 		public static string stageImg = "wwwroot/img/stage-img";
 		public static string qrImg = "wwwroot/img/qr-img";

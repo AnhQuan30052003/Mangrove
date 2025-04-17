@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dt2lcaiFuNqQPeoOMv9gOxb5ga3WjLS6i+cN4DBOUF8=",
+  "Hash": "l8yQ2PA9qPysa91apjBBvL3wjyqmsb0e6F+kVuVBwkU=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1277,12 +1277,12 @@
       "OriginalItemSpec": "wwwroot\\img\\qr-img\\QR_A7489B44-B463-44C2-9A35-3AD1A213F4F6_Đước đôi_Ninh Ích, Ninh Hòa, Khánh Hòa.png"
     },
     {
-      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\Logo_NTU.png",
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg",
       "SourceId": "Mangrove",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
       "BasePath": "_content/Mangrove",
-      "RelativePath": "img/spon-img/Logo_NTU#[.{fingerprint}]?.png",
+      "RelativePath": "img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_#[.{fingerprint}]?.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1291,11 +1291,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mi8hfpepk9",
-      "Integrity": "oif6NRagwcewR1Y4A+K5lRAtnMV6TOjGbm6uHweAkPk=",
+      "Fingerprint": "vr2f2vq76g",
+      "Integrity": "NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\img\\spon-img\\Logo_NTU.png"
+      "OriginalItemSpec": "wwwroot\\img\\spon-img\\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\stage-img\\00000000-AAAA-AAAA-AAAA-AAAAAAAAB017_Sinh cảnh.jpg",
@@ -8908,8 +8908,8 @@
       ]
     },
     {
-      "Route": "img/spon-img/Logo_NTU.mi8hfpepk9.png",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\Logo_NTU.png",
+      "Route": "img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -8918,64 +8918,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "26242"
+          "Value": "11601"
         },
         {
           "Name": "Content-Type",
-          "Value": "image/png"
+          "Value": "image/jpeg"
         },
         {
           "Name": "ETag",
-          "Value": "\"oif6NRagwcewR1Y4A+K5lRAtnMV6TOjGbm6uHweAkPk=\""
+          "Value": "\"NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 05:13:43 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "mi8hfpepk9"
-        },
-        {
-          "Name": "label",
-          "Value": "img/spon-img/Logo_NTU.png"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-oif6NRagwcewR1Y4A+K5lRAtnMV6TOjGbm6uHweAkPk="
-        }
-      ]
-    },
-    {
-      "Route": "img/spon-img/Logo_NTU.png",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\Logo_NTU.png",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "26242"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/png"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"oif6NRagwcewR1Y4A+K5lRAtnMV6TOjGbm6uHweAkPk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 05:13:43 GMT"
+          "Value": "Thu, 17 Apr 2025 15:03:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8985,7 +8940,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-oif6NRagwcewR1Y4A+K5lRAtnMV6TOjGbm6uHweAkPk="
+          "Value": "sha256-NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc="
+        }
+      ]
+    },
+    {
+      "Route": "img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.vr2f2vq76g.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11601"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 15:03:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vr2f2vq76g"
+        },
+        {
+          "Name": "label",
+          "Value": "img/spon-img/05FCA12C-9BD0-479C-9FE6-392B5D374864_.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc="
         }
       ]
     },
