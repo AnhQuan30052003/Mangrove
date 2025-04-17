@@ -11,6 +11,8 @@ public partial class TblSetting
 
     public string FooterBgImg { get; set; } = null!;
 
+    public bool FooterDark { get; set; }
+
     public string Phone { get; set; } = null!;
 
     public string Email { get; set; } = null!;

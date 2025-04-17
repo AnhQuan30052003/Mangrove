@@ -1,1 +1,293 @@
-﻿
+﻿@inject IStringLocalizer<Translate> translate
+@model TblHome
+@{
+	bool isEN = Helper.Func.IsEnglish();
+	ViewData["Title"] = translate["label_trang_chu"];
+	ViewData["InfoPage"] = $"{translate["label_gioi_thieu"]} ({translate["label_duoc_chinh_sua"]})";
+	ViewData["TypePage"] = "Page_Home";
+
+	Layout = Helper.Path.layoutAdmin;
+	string _pv = Helper.Path.partialView;
+
+	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>();
+	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>();
+	var noteENs = ViewData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = ViewData["NoteVIs"] as List<string> ?? new List<string>();
+
+	bool haveImage = !string.IsNullOrEmpty(dataBase64s[0]);
+	string folder = dataBase64s[0].Contains(Helper.Key.temp) ? "temp-img" : "logo";
+
+	// Tạo item số lượng thành phần loài gần đây
+	List<int> itemRecent = new List<int> { 3, 6, 9, 12, 15 };
+	var selectItemRecent = new SelectList(
+		itemRecent.Select(
+			item => new
+			{
+				Value = item,
+				Text = item
+			}
+		),
+		"Value",
+		"Text",
+		Model.ItemRecent
+	);
+}
+
+<input id="english" value="@translate["label_tieng_anh"]" hidden />
+<input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
+<input id="photo" value="@translate["label_hinh_anh"]" hidden />
+<input id="description" value="@translate["label_mo_ta"]" hidden />
+
+<section class="module_home_page py-2">
+	<div class="container">
+		<form action="" method="post">
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center mt-2 gap-2">
+				<a href="@Url.Action("Page_IndexAdmin_View", "Home")"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_chi_tiet"]
+					</span>
+				</a>
+
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
+				</button>
+			</div>
+
+			<!-- Banner -->
+			<div class="box bg-white mb-4 rounded-1 overflow-hidden shadown-sm mt-3">
+				<div class="toggle_title cursor-pointer text-center mb-2">
+					<h6 class="py-2 bg-black text-white">Banner</h6>
+				</div>
+
+				<div class="info">
+					<div class="p-2 bg-form rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail shadow-sm">
+						<div class="add_img col-12 col-lg-6 rounded-1">
+							<p class="text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
+
+							<div class="input_img bg-white d-flex justify-content-center align-items-center @(haveImage ? "d-none" : "") min_height_input_img rounded-1 green_effect">
+								<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+										type="button">
+									<i class="icon_add fa-solid fa-plus"></i>
+								</button>
+								<input class="file" name="ImageFile" type="file" hidden />
+								<div class="overflow-hidden w-h-0">
+									<input class="image_type" name="dataType" value="@dataTypes[0]" />
+									<input class="image_data" name="dataBase64" value="@dataBase64s[0]" />
+								</div>
+							</div>
+
+							<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+								<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+									 src="/img/@folder/@dataBase64s[0]"
+									 alt="" />
+
+								<button class="btn_remove_preview_img"
+										type="button">
+									<i class="icon_remove fa-solid fa-xmark"></i>
+								</button>
+							</div>
+
+							<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+							<p class="text-center col-12 align-self-start text-black">@translate["label_tieu_de"]</p>
+
+							<div class="add_content_item mt-1 m-lg-0 col-12">
+								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
+								<input type="text" asp-for="@Model.BannerTitleEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+
+							<div class="add_content_item mt-1 m-lg-0 col-12">
+								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
+								<input type="text" asp-for="@Model.BannerTitleVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Sponsor -->
+			<div class="frame_slide frame_items rounded-1 mb-4 shadow-sm box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">
+						@translate["label_nha_tai_tro"] (<span class="quantity_item">@(dataBase64s.Any() ? dataBase64s.Count() - 1 : 1)</span>)
+					</h6>
+				</div>
+
+				<div class="info">
+					<div class="items bg-form have_move">
+						@{
+							for (int i = 1; i < dataBase64s.Count(); i++)
+							{
+								var dataType = dataTypes[i];
+								var dataBase64 = dataBase64s[i];
+								var noteEN = noteENs[i];
+								var noteVI = noteVIs[i];
+
+								haveImage = !string.IsNullOrEmpty(dataBase64);
+								folder = dataBase64 != null && dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "spon-img";
+
+								<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+									<button class="btn_remove_item" type="button">
+										<i class="icon_remove_item fa-solid fa-xmark"></i>
+									</button>
+
+									<div class="add_img col-12 col-lg-6 rounded-1">
+										<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
+
+										<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+													type="button">
+												<i class="icon_add fa-solid fa-plus"></i>
+											</button>
+											<input class="file" name="ImageFile" type="file" hidden />
+											<div class="overflow-hidden w-h-0">
+												<input class="image_type" name="dataTypes" value="@dataType" />
+												<input class="image_data" name="dataBase64s" value="@dataBase64" />
+											</div>
+										</div>
+
+										<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+												 src="/img/@folder/@dataBase64"
+												 alt="" />
+
+											<button class="btn_remove_preview_img"
+													type="button">
+												<i class="icon_remove fa-solid fa-xmark"></i>
+											</button>
+										</div>
+
+										<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+									</div>
+
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+										<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+											<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
+											<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+										</div>
+
+										<div class="add_content_item mt-1 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+											<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
+											<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+										</div>
+									</div>
+								</div>
+							}
+						}
+					</div>
+
+					<div class="text-center py-2">
+						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+								id="btn_add_item_1"
+								type="button"
+								onclick="item.addItem('#btn_add_item_1');">
+							<i class="fa-solid fa-plus"></i>
+							@translate["label_them_anh"]
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Introduce -->
+			<div class="frame_name_info rounded-1 mb-4 shadow-sm bg-form box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_gioi_thieu"]</h6>
+				</div>
+
+				<div class="info px-2 add_content d-flex flex-column gap-1">
+					<div class="left d-sm-flex w-100">
+						<div class="add_content_item my-2 col-sm-6 pr-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de"] (@translate["label_tieng_anh"])</small>
+							<input type="text" asp-for="@Model.TitlePurposeEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="add_content_item my-2 col-sm-6 pl-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de"] (@translate["label_tieng_viet"])</small>
+							<input type="text" asp-for="@Model.TitlePurposeVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+
+						</div>
+					</div>
+
+					<div class="right d-sm-flex">
+						<div class="add_content_item mt-1 m-lg-0 col-sm-6 pr-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_noi_dung"] (@translate["label_tieng_anh"])</small>
+							<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.PurposeEn" cols="30" rows="7"></textarea>
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="add_content_item mt-1 m-lg-0 col-sm-6 pl-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_noi_dung"] (@translate["label_tieng_viet"])</small>
+							<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.PurposeVi" cols="30" rows="7"></textarea>
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Recent -->
+			<div class="frame_name_info rounded-1 mb-4 shadow-sm bg-form box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thanh_phan_loai"]</h6>
+				</div>
+
+				<div class="info px-2 add_content d-flex flex-column gap-1">
+					<div class="left d-sm-flex w-100">
+						<div class="add_content_item my-2 col-sm-6 pr-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
+							<input type="text" asp-for="@Model.TitleListItemEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="add_content_item my-2 col-sm-6 pl-10">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
+							<input type="text" asp-for="@Model.TitleListItemVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+
+						</div>
+					</div>
+
+					<div class="right d-flex">
+						<div class="add_content_item my-2 col-sm-6 pr-10 d-flex align-items-center gap-3">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_so_luong_hien_thi"]</small>
+							<select asp-for="@Model.ItemRecent"
+									class="px-2 py-0 h-100 m-0 border-none outline-none green_effect rounded-1 text_body"
+								asp-items="@selectItemRecent">
+							</select>
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center mt-2 gap-2 mb-2">
+				<a href="@Url.Action("Page_IndexAdmin_View", "Home")"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_chi_tiet"]
+					</span>
+				</a>
+
+				<button type="submit" class="btn_submit_form px-3 py-2 border-none outline-none bg-tree rounded-1 text-white opacity_hover time_delay_500ms">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">@translate["label_luu"]</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</section>

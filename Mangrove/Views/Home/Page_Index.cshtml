@@ -1,6 +1,7 @@
 @inject IStringLocalizer<Translate> translate
 @model HomePage_Client_VM
 @{
+	bool isEN = Helper.Func.IsEnglish();
 	ViewData["Title"] = translate["label_trang_chu"];
 	ViewData["InfoPage"] = translate["label_gioi_thieu"];
 	ViewData["TypePage"] = "Page_Index";
@@ -19,19 +20,25 @@
 			</div>
 
 			<div class="frame_logo">
-				<img class="logo" src="/img/logo/logo_ntu.png" alt="">
+				@{
+					foreach (var sponsor in Model.Sponsor)
+					{
+						string textTitle = (isEN ? sponsor.NoteImgEn : sponsor.NoteImgVi) ?? string.Empty;
+						<img class="logo rounded-circle" src="/img/spon-img/@sponsor.ImageName" alt="@textTitle" title="@textTitle">
+					}
+				}
 			</div>
 		</div>
 
 		<div class="frame_introduce bg-white shadow-sm rounded-1 p-2 mb-3">
-			<p class="fw-bold fs-5 mb-2">@translate["label_muc_dich_website"]</p>
+			<p class="fw-bold fs-5 mb-2">@Model.PurposeTitle</p>
 			<p class="content border_detail_ text-justify my-2">
-				@Html.Raw(Helper.Func.Show(Model.Purpose))
+				@Html.Raw(Helper.Func.Show(Model.PurposeContent))
 			</p>
 		</div>
 
 		<div class="frame_individual_recent shadown-sm rounded-1 bg-white mb-3">
-			<p class="fw-bold fs-5 mb-2 p-2">@translate["label_cac_thanh_phan_gan_day"]</p>
+			<p class="fw-bold fs-5 mb-2 p-2">@Model.LabelSpeciesCompositionRecent</p>
 			<div class="items d-flex flex-wrap">
 				@{
 					foreach (var item in Model.Mangroves)

@@ -86,7 +86,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblHome>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblHome__DED88B1C8FB9978D");
+            entity.HasKey(e => e.Id).HasName("PK__tblHome__DED88B1C440504A2");
 
             entity.ToTable("tblHome");
 
@@ -106,6 +106,18 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.ItemRecent).HasColumnName("_itemRecent");
             entity.Property(e => e.PurposeEn).HasColumnName("_purposeEN");
             entity.Property(e => e.PurposeVi).HasColumnName("_purposeVI");
+            entity.Property(e => e.TitleListItemEn)
+                .HasMaxLength(256)
+                .HasColumnName("_titleListItemEN");
+            entity.Property(e => e.TitleListItemVi)
+                .HasMaxLength(256)
+                .HasColumnName("_titleListItemVI");
+            entity.Property(e => e.TitlePurposeEn)
+                .HasMaxLength(256)
+                .HasColumnName("_titlePurposeEN");
+            entity.Property(e => e.TitlePurposeVi)
+                .HasMaxLength(256)
+                .HasColumnName("_titlePurposeVI");
         });
 
         modelBuilder.Entity<TblIndividual>(entity =>
@@ -230,7 +242,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblSetting>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1C853564AB");
+            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1C600D1BF7");
 
             entity.ToTable("tblSetting");
 
@@ -259,6 +271,7 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.FooterBgImg)
                 .HasMaxLength(50)
                 .HasColumnName("_footerBgImg");
+            entity.Property(e => e.FooterDark).HasColumnName("_footerDark");
             entity.Property(e => e.LogoImg)
                 .HasMaxLength(50)
                 .HasColumnName("_logoImg");

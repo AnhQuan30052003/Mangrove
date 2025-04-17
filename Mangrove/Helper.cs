@@ -27,6 +27,7 @@ public class Helper {
 		public static string qrImg = "wwwroot/img/qr-img";
 		public static string distributionImg = "wwwroot/img/distribution-map-img";
 		public static string temptImg = "wwwroot/img/temp-img";
+		public static string sponImg = "wwwroot/img/spon-img";		
 	}
 
 	// Variable

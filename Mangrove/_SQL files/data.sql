@@ -27,10 +27,13 @@ insert into tblSetting
 values
     (
         'settingID',
+
         N'logo.png',
         N'bg-footer.jpg',
-        N'0398 090 114',
-        N'mangrove.ntu.edu.vn',
+        1,
+
+        N'0258 2461 301',
+        N'vcnshmt@ntu.edu.vn',
 
         N'Đại học Nha Trang',
         N'Nha Trang University',
@@ -41,8 +44,8 @@ values
         N'Website cung cấp các thông tin chi tiết, liên quan đến các loài cây ngập mặn ở phía Bắc - Khánh Hoà.',
         N'Website provides detailed information related to mangrove species in the North - Khanh Hoa.',
 
-        N'02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hoà',
-        N'02 Nguyen Dinh Chieu, Vinh Tho, Nha Trang, Khanh Hoa'
+        N'Số 09 Nguyễn Đình Chiểu, Nha Trang, Khánh Hoà',
+        N'Số 09 Nguyen Dinh Chieu, Nha Trang, Khanh Hoa'
     )
 
 insert into tblHome
@@ -50,10 +53,15 @@ values
     (
 		'homeID',
         N'banner.jpg',
+        N'Thành phần loài gần đây',
+        N'Recent species composition',
         6,
-
+        
         N'Cây Ngập Mặn Tại Bắc - Khánh Hoà.',
         N'Mangrove Trees In The North - Khanh Hoa.',
+
+        N'Mục đích Website ?',
+        N'Purpose of Website ?',
 
         N'Trang web cung cấp thông tin chi tiết về hệ sinh thái rừng ngập mặn tại Bắc – Khánh Hòa, giúp nâng cao nhận thức và kêu gọi cộng đồng chung tay bảo vệ môi trường.
         Chúng tôi chia sẻ kiến thức về các loài cây ngập mặn, vai trò quan trọng của chúng, thực trạng hiện tại và những hoạt động bảo tồn đang diễn ra.
@@ -302,3 +310,7 @@ values
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM013', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM013_Xã Vạn Thạnh, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Thạnh, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Thạnh Communne, Vạn Ninh District, Khánh Hoà Province'),
     ('00000000-AAAA-AAAA-AAAA-AAAAAAAAM014', N'00000000-AAAA-AAAA-AAAA-AAAAAAAAM014_Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà.png', N'Xã Vạn Thọ, Huyện Vạn Ninh, Tỉnh Khánh Hoà', N'Vạn Thọ Communne, Vạn Ninh District, Khánh Hoà Province')
 
+-- Insert for Sponsor
+insert into tblPhotos
+values
+('00000000-AAAA-AAAA-AAAA-SAAAAAAA0000', 'homeID', N'Logo_NTU.png', N'Logo NTU', N'Logo NTU', 0)

@@ -26,9 +26,12 @@ create table tblAdmin
 -- Bảng cho trang setting
 create table tblSetting
 (
-	_id varchar(36) primary key,
+     _id varchar(36) primary key,
+
      _logoImg nvarchar(50) not null,
      _footerBgImg nvarchar(50) not null,
+     _footerDark bit not null,
+
      _phone varchar(20) not null,
      _email varchar(256) not null,
 
@@ -46,15 +49,20 @@ create table tblSetting
 )
 
 -- Bảng cho trang home
- create table tblHome
+create table tblHome
  (
-	
-	_id varchar(36) primary key,
+	 _id varchar(36) primary key,
      _bannerImg nvarchar(50) not null,
+
+     _titleListItemVI nvarchar(256) not null,
+     _titleListItemEN nvarchar(256) not null,
      _itemRecent int not null,
 
      _bannerTitleVI nvarchar(256) not null,
      _bannerTitleEN nvarchar(256) not null,
+
+     _titlePurposeVI nvarchar(256) not null,
+     _titlePurposeEN nvarchar(256) not null,
 
      _purposeVI nvarchar(max) not null,
      _purposeEN nvarchar(max) not null

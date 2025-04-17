@@ -14,8 +14,29 @@ function addImageToItem() {
 				file.click();
 				file.addEventListener("change", function () {
 					if (!file.files) return;
-
 					const selected = file.files[0];
+
+					// Định dạng cho phép
+					const allowedTypes = ['image/jpeg', 'image/png'];
+					const maxSizeMB = parseInt(document.querySelector("#maxSizeMB").value);
+
+					// Kiểm tra định dạng
+					if (!allowedTypes.includes(selected.type)) {
+						const text = document.querySelector("#textImageNotAllow").value;
+						alert(text);
+						this.value = '';
+						return;
+					}
+
+					// Kiểm tra dung lượng
+					if (selected.size > maxSizeMB * 1024 * 1024) {
+						const text = document.querySelector("#textMaxSize").value;
+						alert(`${text} ${maxSizeMB}MB !`);
+						this.value = '';
+						return;
+					}
+
+					// Nếu file hợp lệ, hiển thị ảnh
 					const reader = new FileReader();
 
 					const img = previewImg.querySelector(".show_temp");
@@ -100,8 +121,8 @@ export function addItem(idButtonClick, haveFocus = false) {
 	const addItemFind = items.querySelectorAll(".add_item");
 
 	// Xử lý giới hạn item
-	const maxItem = document.querySelector("#maxItem").value;
-	if (addItemFind.length == maxItem) return;
+	const maxItem = document.querySelector("#maxItem");
+	if (maxItem && addItemFind.length == maxItem.value) return;
 
 	const addItem = createDivAddItem(haveFocus);
 	items.appendChild(addItem);

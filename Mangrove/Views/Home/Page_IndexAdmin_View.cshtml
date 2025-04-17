@@ -1,6 +1,7 @@
 ﻿@inject IStringLocalizer<Translate> translate
 @model HomePage_Client_VM
 @{
+	bool isEN = Helper.Func.IsEnglish();
 	ViewData["Title"] = translate["label_trang_chu"];
 	ViewData["InfoPage"] = $"{translate["label_gioi_thieu"]} ({translate["label_chi_xem"]})";
 	ViewData["TypePage"] = "Page_Home";
@@ -10,11 +11,10 @@
 }
 
 <section class="module_home_page py-2">
-
 	<div class="container d-flex flex-column gap-3">
 		<!-- Frame button -->
-		<div class="d-flex justify-content-center my-3 gap-2">
-			<a href="@Url.Action("Page_Edit", "Mangrove")"
+		<div class="d-flex justify-content-center mt-2 gap-2">
+			<a href="@Url.Action("Page_IndexAdmin_Edit", "Home")"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
 				<i class="fas fa-edit"></i>
 				<span class="hidden_mobile">
@@ -23,7 +23,7 @@
 			</a>
 		</div>
 
-		<div class="frame_img shadow-sm rounded-1 overflow-hidden mt-2 mb-3">
+		<div class="frame_img shadow-sm rounded-1 overflow-hidden mb-3">
 			<img class="w-100 h-100 object-fit-cover" src="/img/logo/@Model.BannerImage" alt="">
 
 			<div class="frame_title rounded-1 overflow-hidden">
@@ -31,35 +31,52 @@
 			</div>
 
 			<div class="frame_logo">
-				<img class="logo" src="/img/logo/logo_ntu.png" alt="">
+				@{
+					foreach (var sponsor in Model.Sponsor)
+					{
+						string textTitle = (isEN ? sponsor.NoteImgEn : sponsor.NoteImgVi) ?? string.Empty;
+						<img class="logo rounded-cricle" src="/img/spon-img/@sponsor.ImageName" alt="@textTitle" title="@textTitle">
+					}
+				}
 			</div>
 		</div>
 
 		<div class="frame_introduce bg-white shadow-sm rounded-1 p-2 mb-3">
-			<p class="fw-bold fs-5 mb-2">@translate["label_muc_dich_website"]</p>
+			<p class="fw-bold fs-5 mb-2">@Model.PurposeTitle</p>
 			<p class="content border_detail_ text-justify my-2">
-				@Html.Raw(Helper.Func.Show(Model.Purpose))
+				@Html.Raw(Helper.Func.Show(Model.PurposeContent))
 			</p>
 		</div>
 
-		<div class="frame_individual_recent shadown-sm rounded-1 bg-white mb-3">
-			<p class="fw-bold fs-5 mb-2 p-2">@translate["label_cac_thanh_phan_gan_day"]</p>
+		<div class="frame_individual_recent shadown-sm rounded-1 bg-white">
+			<p class="fw-bold fs-5 mb-2 p-2">@Model.LabelSpeciesCompositionRecent</p>
 			<div class="items d-flex flex-wrap">
 				@{
 					foreach (var item in Model.Mangroves)
 					{
 						<a href='@Url.Action("Page_Result", "Home", new { id = @item.Id })'
-							onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
-							class="item px-2 col-12 col-sm-6 col-lg-4 mb-4 d-flex flex-column btn_loading">
+						   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
+						   class="item px-2 col-12 col-sm-6 col-lg-4 mb-4 d-flex flex-column btn_loading">
 							<div class="rounded-1 overflow-hidden flex-grow-1">
 								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.Image"
-										alt="">
+									 alt="">
 							</div>
 							<p class="text-center mt-1 text_tree_hover">@item.Name</p>
 						</a>
 					}
 				}
 			</div>
+		</div>
+
+		<!-- Frame button -->
+		<div class="d-flex justify-content-center mt-2 gap-2 mb-2">
+			<a href="@Url.Action("Page_IndexAdmin_Edit", "Home")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+				<i class="fas fa-edit"></i>
+				<span class="hidden_mobile">
+					@translate["label_sua"]
+				</span>
+			</a>
 		</div>
 	</div>
 </section>

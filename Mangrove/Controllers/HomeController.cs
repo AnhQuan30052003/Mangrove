@@ -35,31 +35,48 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		// Get HomePage Client VM
+		private async Task<HomePage_Client_VM> GetHomePageClient() {
+			bool isEN = Helper.Func.IsEnglish();
+			var home = await context.TblHomes.FirstOrDefaultAsync();
+			var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
+			var listMangrove = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
+
+			// Truy vấn số item recent
+			List<Mangrove_HomePage_Client_VM> list = new List<Mangrove_HomePage_Client_VM>();
+			foreach (var mangrove in listMangrove) {
+				var item = new Mangrove_HomePage_Client_VM {
+					Id = mangrove.Id,
+					Image = mangrove.MainImage,
+					Name = (isEN ? mangrove.NameEn : mangrove.NameVi + " - " + mangrove.ScientificName)
+				};
+				list.Add(item);
+			}
+
+			// Truy vấn nhà tài trợ
+			var sponsors = await context.TblPhotos
+			.Where(item => item.IdObj == home!.Id)
+			.OrderBy(item => item.NumberOrder)
+			.ToListAsync();
+
+			// Tạo Model
+			var model = new HomePage_Client_VM {
+				BannerTitle = (isEN ? home?.BannerTitleEn : home?.BannerTitleVi) ?? string.Empty,
+				BannerImage = home?.BannerImg ?? "",
+				PurposeTitle = (isEN ? home?.TitlePurposeEn : home?.TitlePurposeVi) ?? string.Empty,
+				PurposeContent = (isEN ? home?.PurposeEn : home?.PurposeVi) ?? string.Empty,
+				LabelSpeciesCompositionRecent = (isEN ? home?.TitleListItemEn : home?.TitleListItemVi) ?? string.Empty,
+				Mangroves = list,
+				Sponsor = sponsors
+			};
+
+			return model;
+		}
+
 		// Page: Trang chủ
 		public async Task<IActionResult> Page_Index() {
-			bool isEN = Helper.Func.IsEnglish();
 			try {
-				var home = await context.TblHomes.FirstOrDefaultAsync();
-				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
-				var listMangrove = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
-
-				List<Mangrove_HomePage_Client_VM> list = new List<Mangrove_HomePage_Client_VM>();
-				foreach (var mangrove in listMangrove) {
-					var item = new Mangrove_HomePage_Client_VM {
-						Id = mangrove.Id,
-						Image = mangrove.MainImage,
-						Name = (isEN ? mangrove.NameEn : mangrove.NameVi + " - " + mangrove.ScientificName)
-					};
-					list.Add(item);
-				}
-
-				var model = new HomePage_Client_VM {
-					BannerTitle = (isEN ? home?.BannerTitleEn : home?.BannerTitleVi) ?? "",
-					BannerImage = home?.BannerImg ?? "",
-					Purpose = (isEN ? home?.PurposeEn : home?.PurposeVi) ?? "",
-					Mangroves = list,
-				};
-
+				var model = await GetHomePageClient();
 				return View(model);
 			}
 			catch (Exception ex) {
@@ -308,29 +325,8 @@ namespace Mangrove.Controllers {
 
 		// Page: View home (admin)
 		public async Task<IActionResult> Page_IndexAdmin_View() {
-			bool isEN = Helper.Func.IsEnglish();
 			try {
-				var home = await context.TblHomes.FirstOrDefaultAsync();
-				var query = context.TblMangroves.OrderByDescending(item => item.UpdateLast);
-				var listMangrove = await query.Take(home?.ItemRecent ?? 6).ToListAsync();
-
-				List<Mangrove_HomePage_Client_VM> list = new List<Mangrove_HomePage_Client_VM>();
-				foreach (var mangrove in listMangrove) {
-					var item = new Mangrove_HomePage_Client_VM {
-						Id = mangrove.Id,
-						Image = mangrove.MainImage,
-						Name = (isEN ? mangrove.NameEn : mangrove.NameVi + " - " + mangrove.ScientificName)
-					};
-					list.Add(item);
-				}
-
-				var model = new HomePage_Client_VM {
-					BannerTitle = (isEN ? home?.BannerTitleEn : home?.BannerTitleVi) ?? "",
-					BannerImage = home?.BannerImg ?? "",
-					Purpose = (isEN ? home?.PurposeEn : home?.PurposeVi) ?? "",
-					Mangroves = list,
-				};
-
+				var model = await GetHomePageClient();
 				return View(model);
 			}
 			catch (Exception ex) {
@@ -340,5 +336,48 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		// Page: Edit home (admin)
+		public async Task<IActionResult> Page_IndexAdmin_Edit() {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var home = await context.TblHomes.FirstOrDefaultAsync();
+				var sponsors = await context.TblPhotos
+				.Where(item => item.IdObj == home!.Id)
+				.OrderBy(item => item.NumberOrder)
+				.ToListAsync();
+
+				// Tạo list dữ liệu
+				var dataBase64s = new List<string>();
+				var dataTypes = new List<string>();
+				var NoteENs = new List<string>();
+				var NoteVIs = new List<string>();
+
+				dataBase64s.Add(home!.BannerImg);
+				dataTypes.Add(string.Empty);
+				NoteENs.Add(string.Empty);
+				NoteVIs.Add(string.Empty);
+
+				foreach (var sponsor in sponsors) {
+					dataBase64s.Add(sponsor.ImageName);
+					dataTypes.Add(string.Empty);
+					NoteENs.Add(sponsor.NoteImgEn ?? string.Empty);
+					NoteVIs.Add(sponsor.NoteImgVi ?? string.Empty);
+				}
+
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["DataTypes"] = dataTypes;
+				ViewData["NoteENs"] = NoteENs;
+				ViewData["NoteVIs"] = NoteVIs;
+
+				return View(home);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_IndexAdmin_View");
+			}
+		}
 	}
 }
