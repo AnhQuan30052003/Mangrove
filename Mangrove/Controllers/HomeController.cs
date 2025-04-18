@@ -1,16 +1,7 @@
-using System.Diagnostics;
-using System.Threading.Tasks;
 using Mangrove.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
-using System.Configuration;
-using System.Net.Mime;
 using Mangrove.ViewModels;
-using System.Security.Principal;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using System.Linq.Expressions;
-using System.Collections.Generic;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -340,9 +331,13 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_IndexAdmin_Edit() {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
-				var home = await context.TblHomes.FirstOrDefaultAsync();
+				var home = await context.TblHomes.FirstOrDefaultAsync(item => item.Id == "H0000000-AAAA-AAAA-AAAA-AAAAAAAA0000");
+				if (home == null) {
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
+				}
+
 				var sponsors = await context.TblPhotos
-				.Where(item => item.IdObj == home!.Id)
+				.Where(item => item.IdObj == home.Id)
 				.OrderBy(item => item.NumberOrder)
 				.ToListAsync();
 
@@ -352,7 +347,7 @@ namespace Mangrove.Controllers {
 				var NoteENs = new List<string>();
 				var NoteVIs = new List<string>();
 
-				dataBase64s.Add(home!.BannerImg);
+				dataBase64s.Add(home.BannerImg);
 				dataTypes.Add(string.Empty);
 				NoteENs.Add(home.BannerTitleEn);
 				NoteVIs.Add(home.BannerTitleVi);
@@ -417,9 +412,6 @@ namespace Mangrove.Controllers {
 				// End valiate
 
 				// Save data
-				// Save home
-				context.TblHomes.Update(model);
-
 				// Save banner khi có ảnh mới
 				if (dataBase64s[0].Contains(Helper.Key.temp)) {
 					Helper.Func.DeletePhoto(Helper.Path.logo, model.BannerImg);
@@ -431,8 +423,12 @@ namespace Mangrove.Controllers {
 					model.BannerImg = bannerName;
 				}
 
+				model.BannerTitleEn = noteENs[0];
+				model.BannerTitleVi = noteVIs[0];
+				context.TblHomes.Update(model);
+
 				// Save sponsor
-				List<string> saveIdSonsor = new List<string>();
+				List<string> saveIdSponsor = new List<string>();
 				for (int i = 1; i < dataBase64s.Count(); i++) {
 					// Nếu có ảnh mới	
 					string idSponsor = Helper.Func.CreateId();
@@ -470,13 +466,13 @@ namespace Mangrove.Controllers {
 							context.TblPhotos.Update(oldSponsor);
 						}
 					}
-					saveIdSonsor.Add(idSponsor);
+					saveIdSponsor.Add(idSponsor);
 				}
 
 				// Xóa sponsor không còn tồn tại
 				var sponsorDelete = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
 				foreach (var sponsor in sponsorDelete) {
-					if (!saveIdSonsor.Contains(sponsor.Id)) {
+					if (!saveIdSponsor.Contains(sponsor.Id)) {
 						Helper.Func.DeletePhoto(Helper.Path.sponImg, sponsor.ImageName);
 						context.TblPhotos.Remove(sponsor);
 					}
@@ -490,7 +486,6 @@ namespace Mangrove.Controllers {
 					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
 					Helper.SetupNotifier.Timer.shortTime
 				);
-
 				return RedirectToAction("Page_IndexAdmin_View");
 			}
 			catch {
