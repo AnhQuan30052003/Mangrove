@@ -2,6 +2,7 @@ using Mangrove.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mangrove.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -314,6 +315,7 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		[Authorize]
 		// Page: View home (admin)
 		public async Task<IActionResult> Page_IndexAdmin_View() {
 			try {
@@ -327,6 +329,7 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		[Authorize]
 		// Page: Edit home (admin)
 		public async Task<IActionResult> Page_IndexAdmin_Edit() {
 			bool isEN = Helper.Func.IsEnglish();
@@ -376,6 +379,7 @@ namespace Mangrove.Controllers {
 			}
 		}
 		[HttpPost]
+		[Authorize]
 		public async Task<IActionResult> Page_IndexAdmin_Edit(TblHome model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {

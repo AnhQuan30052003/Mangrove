@@ -92,12 +92,21 @@
 								<!-- Thông tin admin - tài khoản -->
 								<a href='@Url.Action("Page_AdminInformation_View", "Admin")'
 								   class="py-2 px-3 d-block downdown_item btn_loading"
-								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageInfo)">@translate["label_thong_tin_quan_tri"]</a>
+								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageInfo)">@translate["label_thong_tin_quan_tri"]
+								</a>
+
+								<!-- Thông tin website-->
+								<a href='@Url.Action("", "Admin")'
+								   class="py-2 px-3 d-block downdown_item btn_loading"
+								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageInfo)">
+									@translate["label_thong_tin_website"]
+								</a>
 
 								<!-- Thay đổi mật khẩu -->
 								<a href='@Url.Action("Page_ChangePassword","Admin")'
 								   class="py-2 px-3 d-block downdown_item btn_loading"
-								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageChangePassword)">@translate["label_doi_mat_khau"]</a>
+								   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageChangePassword)">@translate["label_doi_mat_khau"]
+								</a>
 
 								<!-- Thay đổi ngôn ngữ -->
 								<li class="py-xl-2 px-xl-3 dropdown_level_2 dropdown_menu position-relative">

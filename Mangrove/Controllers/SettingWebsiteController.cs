@@ -65,5 +65,11 @@ namespace Mangrove.Controllers {
 			ViewData["JustBackPageLogin"] = justBackPageLogin;
 			return View();
 		}
+
+		// Page thông tin website (view)
+		public async Task<IActionResult> WebsitInformation() {
+			var setting = await GetSetting();
+			return View(setting);
+		}
 	}
 }
