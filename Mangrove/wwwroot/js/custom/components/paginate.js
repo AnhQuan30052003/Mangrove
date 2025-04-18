@@ -30,9 +30,9 @@ function whenClickOption() {
 
 				listOption.style.right = theadLast.clientWidth + "px";
 
-				if (i > options.length / 2) {
-					listOption.style.top = "-100px";
-				}
+				//if (i > options.length / 2) {
+				//	listOption.style.top = "-200px";
+				//}
 				listOption.classList.toggle("d-none");
 			}
 		});

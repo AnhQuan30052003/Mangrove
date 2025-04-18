@@ -1,5 +1,69 @@
-﻿// Thêm ảnh vào item 
-function addImageToItem() {
+﻿// Thêm ảnh vào item (kéo thả)
+function listenrDragover() {
+	document.addEventListener("dragover", function (e) {
+		const elementDragover = e.target;
+		if (elementDragover.matches(".drop-zone") || elementDragover.matches(".btn_add_imge") || elementDragover.matches(".icon_add")) {
+			// Ngăn chặn hành vi mặc định của trình duyệt
+			['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+				elementDragover.addEventListener(eventName, (e) => e.preventDefault());
+			});
+
+			elementDragover.addEventListener('dragover', (e) => elementDragover.classList.add('dragover'));
+			elementDragover.addEventListener('dragleave', (e) => elementDragover.classList.remove('dragover'));
+
+			elementDragover.addEventListener('drop', (e) => {
+
+				const addImg = elementDragover.closest(".add_img");
+				const inputImg = addImg.querySelector(".input_img");
+				const previewImg = addImg.querySelector(".preview_img");
+
+				elementDragover.classList.remove('dragover');
+				const file = e.dataTransfer.files[0];
+				if (file) {
+					// Định dạng cho phép
+					const allowedTypes = ['image/jpeg', 'image/png'];
+					const maxSizeMB = parseInt(document.querySelector("#maxSizeMB").value);
+
+					// Kiểm tra định dạng
+					if (!allowedTypes.includes(file.type)) {
+						const text = document.querySelector("#textImageNotAllow").value;
+						alert(text);
+						file.value = "";
+						return;
+					}
+
+					// Kiểm tra dung lượng
+					if (file.size > maxSizeMB * 1024 * 1024) {
+						const text = document.querySelector("#textMaxSize").value;
+						alert(`${text} ${maxSizeMB}MB !`);
+						file.value = "";
+						return;
+					}
+
+					// Nếu file hợp lệ, hiển thị ảnh
+					const reader = new FileReader();
+
+					const img = previewImg.querySelector(".show_temp");
+					const imageType = inputImg.querySelector(".image_type");
+					const imageData = inputImg.querySelector(".image_data");
+					reader.onload = () => {
+						img.src = reader.result;
+						imageType.value = file.type;
+						imageData.value = reader.result;
+
+						inputImg.classList.add("d-none");
+						previewImg.classList.remove("d-none");
+					};
+					reader.readAsDataURL(file);
+				}
+			});
+		}
+	});
+}
+listenrDragover();
+
+// Thêm ảnh vào item (click chọn)
+function listenerAddImageToItem() {
 	document.addEventListener("click", function (e) {
 		const clicked = e.target;
 
@@ -111,7 +175,7 @@ function addImageToItem() {
 		}
 	});
 }
-addImageToItem();
+listenerAddImageToItem();
 
 // Khi click vào nút thêm item
 export function addItem(idButtonClick, haveFocus = false) {
@@ -157,7 +221,7 @@ function createDivAddItem(haveFocus = false) {
 		<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 			<p class="catch_to_move text-center text-black"><small class="text-danger" >✶</small>${labelPhoto}</p>
 
-			<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
+			<div class="drop-zone input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 						type="button">
 					<i class="icon_add fa-solid fa-plus"></i>
@@ -338,7 +402,7 @@ function createDisplayItem(index) {
 				<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>${labelPhoto}</small>
 				<div class="w-100 flex-grow-1">
 					<div class="add_img rounded-1 w-100 h-100">
-						<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">
+						<div class="drop-zone input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">
 							<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 									type="button">
 								<i class="icon_add fa-solid fa-plus"></i>
@@ -421,7 +485,7 @@ function createDisplayItem(index) {
 					<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 						<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>${labelPhoto}</p>
 
-						<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
+						<div class="drop-zone input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 							<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 									type="button">
 								<i class="icon_add fa-solid fa-plus"></i>

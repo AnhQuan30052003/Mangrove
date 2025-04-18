@@ -191,6 +191,10 @@ option {
 	height: 100%;
 }
 
+.drop-zone.dragover {
+	outline: dashed 3px var(--greenPage) !important;
+}
+
 @media (width <=1200px) {
 	.hidden_mobile {
 		display: none !important;
