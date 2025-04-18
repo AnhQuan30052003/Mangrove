@@ -88,9 +88,11 @@ namespace Mangrove.Controllers {
 				var dataTypes = new List<string>();
 
 				dataBase64s.Add(setting.LogoImg);
+				dataBase64s.Add(setting.AuthImg);
 				dataBase64s.Add(setting.FooterBgImg);
-				dataTypes.Add(string.Empty);
-				dataTypes.Add(string.Empty);
+				for (int i = 0; i < 3; i++) {
+					dataTypes.Add(string.Empty);
+				}
 
 				ViewData["DataBase64s"] = dataBase64s;
 				ViewData["DataTypes"] = dataTypes;
@@ -115,17 +117,23 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				int index = 0; // Check cho logo and header
+				int index = 0; // Check logo
 				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
 				Helper.Validate.NotEmpty(dataBase64s[index]);
+				
+				index += 1; // Check auth img
+				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
+				Helper.Validate.NotEmpty(dataBase64s[index]);
+
 				Helper.Validate.MaxLength(model.SchoolNameEn, 256);
 				Helper.Validate.MaxLength(model.SchoolNameVi, 256);
 				Helper.Validate.MaxLength(model.FacultyEn, 256);
 				Helper.Validate.MaxLength(model.FacultyVi, 256);
 
-				index = 1; // check cho background footer và footer
+				index += 1; // check cho background footer và footer
 				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
 				Helper.Validate.NotEmpty(dataBase64s[index]);
+
 				Helper.Validate.NotEmpty(model.FooterDark.ToString());
 				Helper.Validate.MaxLength(model.Phone, 20);
 				Helper.Validate.MaxLength(model.Email, 256);
@@ -133,7 +141,7 @@ namespace Mangrove.Controllers {
 				Helper.Validate.MaxLength(model.AddressVi, 256);
 				Helper.Validate.NotEmpty(model.DescriptionWebsiteEn);
 				Helper.Validate.NotEmpty(model.DescriptionWebsiteVi);
-				
+
 				// Trả lại view nếu có lỗi validate
 				if (Helper.Validate.HaveError()) {
 					Helper.Notifier.Fail(
@@ -157,8 +165,20 @@ namespace Mangrove.Controllers {
 					);
 				}
 
+				// Với auth 
+				index += 1;
+				if (dataBase64s[index].Contains(Helper.Key.temp)) {
+					Helper.Func.DeletePhoto(Helper.Path.logo, model.AuthImg);
+					string fileName = $"auth_img{Helper.Func.GetTypeImage(dataTypes[index])}";
+					model.AuthImg = fileName;
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[index]),
+						Path.Combine(Helper.Path.logo, fileName)
+					);
+				}
+
 				// Với background footer
-				index = 1;
+				index += 1;
 				if (dataBase64s[index].Contains(Helper.Key.temp)) {
 					Helper.Func.DeletePhoto(Helper.Path.logo, model.FooterBgImg);
 					string fileName = $"bg-footer{Helper.Func.GetTypeImage(dataTypes[index])}";

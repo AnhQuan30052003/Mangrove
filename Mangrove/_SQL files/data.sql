@@ -28,24 +28,22 @@ values
     (
         'S0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
 
-        N'logo.png',
-        N'bg-footer.jpg',
-        1,
-
-        N'0258 2461 301',
-        N'vcnshmt@ntu.edu.vn',
-
+        N'logo.ico',
         N'Đại học Nha Trang',
         N'Nha Trang University',
-
         N'Viện Công Nghệ Sinh Học & Môi Trường',
         N'Institute of Biotechnology & Environment',
 
+        N'bg-footer.jpg',
+        1,
+        N'0258 2461 301',
+        N'vcnshmt@ntu.edu.vn',
+        N'Số 09 Nguyễn Đình Chiểu, Nha Trang, Khánh Hoà',
+        N'Số 09 Nguyen Dinh Chieu, Nha Trang, Khanh Hoa',
         N'Website cung cấp các thông tin chi tiết, liên quan đến các loài cây ngập mặn ở phía Bắc - Khánh Hoà.',
         N'Website provides detailed information related to mangrove species in the North - Khanh Hoa.',
 
-        N'Số 09 Nguyễn Đình Chiểu, Nha Trang, Khánh Hoà',
-        N'Số 09 Nguyen Dinh Chieu, Nha Trang, Khanh Hoa'
+        N'auth_img.jpg'
     )
 
 insert into tblHome
@@ -53,6 +51,7 @@ values
     (
 		'H0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
         N'banner.jpg',
+
         N'Thành phần loài gần đây',
         N'Recent species composition',
         6,

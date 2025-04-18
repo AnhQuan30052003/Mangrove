@@ -9,8 +9,8 @@
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
 
-	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>() { string.Empty, string.Empty };
-	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>() { string.Empty, string.Empty };
+	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>() { string.Empty, string.Empty, string.Empty };
+	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>() { string.Empty, string.Empty, string.Empty };
 
 	// Tạo item select for dark backgroud
 	var listTitleVI = new List<string>() { "Có", "Không" };
@@ -22,8 +22,9 @@
 		"Value", "Text", Model.FooterDark
 	);
 
-	bool haveImage = !string.IsNullOrEmpty(dataBase64s[0]);
-	string folder = dataBase64s[0] != null ? (dataBase64s[0].Contains(Helper.Key.temp) ? "temp-img" : "logo") : "logo";
+	int index = 0;
+	bool haveImage = !string.IsNullOrEmpty(dataBase64s[index]);
+	string folder = dataBase64s[index] != null ? (dataBase64s[index].Contains(Helper.Key.temp) ? "temp-img" : "logo") : "logo";
 	string darkBackground = Model.FooterDark == true ? "darkBackground" : string.Empty;
 }
 
@@ -32,12 +33,13 @@
 		<form action="" method="post" enctype="multipart/form-data">
 			<input type="text" asp-for="@Model.Id" hidden />
 			<input type="text" asp-for="@Model.LogoImg" hidden />
+			<input type="text" asp-for="@Model.AuthImg" hidden />
 			<input type="text" asp-for="@Model.FooterBgImg" hidden />
 
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center mt-2 gap-2">
 				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageSettingWebsite, true)"
-						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+				class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 					<i class="fa-solid fa-list"></i>
 					<span class="hidden_mobile">
 						@translate["label_tro_ve"]
@@ -45,7 +47,7 @@
 				</button>
 
 				<a href="@Url.Action("Page_WebsiteInformation_View", "SettingWebsite")"
-				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+				class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
 					<i class="fa-solid fa-circle-info"></i>
 					<span class="hidden_mobile">
 						@translate["label_chi_tiet"]
@@ -65,30 +67,30 @@
 				</div>
 
 				<div class="info bg-form">
-					<div class=" d-sm-flex">
-						<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
-							<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</small>
+					<div class="top d-sm-flex">
+						<div class="col-sm-6 p-2 d-flex flex-column justify-content-between">
+							<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>Logo</small>
 							<div class="w-100 flex-grow-1 d-flex justify-content-center algin-items-center">
 								<div class="add_img rounded-1 w-100">
 									<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
 										<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
-												type="button">
+										type="button">
 											<i class="icon_add fa-solid fa-plus"></i>
 										</button>
 										<input class="file" name="ImageFile" type="file" hidden />
 										<div class="overflow-hidden w-h-0">
-											<input class="image_type" name="dataTypes" value="@dataTypes[0]" />
-											<input class="image_data" name="dataBase64s" value="@dataBase64s[0]" />
+											<input class="image_type" name="dataTypes" value="@dataTypes[index]" />
+											<input class="image_data" name="dataBase64s" value="@dataBase64s[index]" />
 										</div>
 									</div>
 
 									<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden h-100 d-flex justify-content-center align-items-center">
 										<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-											 src="/img/@folder/@dataBase64s[0]"
-											 alt="" />
+										src="/img/@folder/@dataBase64s[index]"
+										alt="" />
 
 										<button class="btn_remove_preview_img"
-												type="button">
+										type="button">
 											<i class="icon_remove fa-solid fa-xmark"></i>
 										</button>
 									</div>
@@ -98,30 +100,68 @@
 							</div>
 						</div>
 
-						<div class="bottom col-sm-6 p-2">
-							<div class="py-2">
-								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_truong"] (@translate["label_tieng_anh"])</small>
-								<input type="text" asp-for="@Model.SchoolNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
-								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
-							</div>
+						@{
+							index += 1;
+							haveImage = !string.IsNullOrEmpty(dataBase64s[index]);
+							folder = dataBase64s[index] != null ? (dataBase64s[index].Contains(Helper.Key.temp) ? "temp-img" : "logo") : "logo";
+						}
+						<div class="col-sm-6 p-2 d-flex flex-column justify-content-between">
+							<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>@translate["label_xac_thuc"]</small>
+							<div class="w-100 flex-grow-1 d-flex justify-content-center algin-items-center">
+								<div class="add_img rounded-1 w-100">
+									<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
+										<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+										type="button">
+											<i class="icon_add fa-solid fa-plus"></i>
+										</button>
+										<input class="file" name="ImageFile" type="file" hidden />
+										<div class="overflow-hidden w-h-0">
+											<input class="image_type" name="dataTypes" value="@dataTypes[index]" />
+											<input class="image_data" name="dataBase64s" value="@dataBase64s[index]" />
+										</div>
+									</div>
 
-							<div class="py-2">
-								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_truong"] (@translate["label_tieng_viet"])</small>
-								<input type="text" asp-for="@Model.SchoolNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
-								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
-							</div>
+									<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden h-100 d-flex justify-content-center align-items-center">
+										<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+										src="/img/@folder/@dataBase64s[index]"
+										alt="" />
 
-							<div class="py-2">
-								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_khoa"] (@translate["label_tieng_anh"])</small>
-								<input type="text" asp-for="@Model.FacultyEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
-								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
-							</div>
+										<button class="btn_remove_preview_img"
+										type="button">
+											<i class="icon_remove fa-solid fa-xmark"></i>
+										</button>
+									</div>
 
-							<div class="py-2">
-								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_khoa"] (@translate["label_tieng_anh"])</small>
-								<input type="text" asp-for="@Model.FacultyVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
-								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+									<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+								</div>
 							</div>
+						</div>
+
+					</div>
+
+					<div class="bottom p-2 d-flex flex-wrap">
+						<div class="p-2 col-12 col-sm-6">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_truong"] (@translate["label_tieng_anh"])</small>
+							<input type="text" asp-for="@Model.SchoolNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="p-2 col-12 col-sm-6">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_truong"] (@translate["label_tieng_viet"])</small>
+							<input type="text" asp-for="@Model.SchoolNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="p-2 col-12 col-sm-6">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_khoa"] (@translate["label_tieng_anh"])</small>
+							<input type="text" asp-for="@Model.FacultyEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+						</div>
+
+						<div class="p-2 col-12 col-sm-6">
+							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_khoa"] (@translate["label_tieng_anh"])</small>
+							<input type="text" asp-for="@Model.FacultyVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
+							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 					</div>
 				</div>
@@ -134,8 +174,9 @@
 				</div>
 
 				@{
-					haveImage = !string.IsNullOrEmpty(dataBase64s[1]);
-					folder = dataBase64s[1] != null ? (dataBase64s[1].Contains(Helper.Key.temp) ? "temp-img" : "logo") : "logo";
+					index += 1;
+					haveImage = !string.IsNullOrEmpty(dataBase64s[index]);
+					folder = dataBase64s[index] != null ? (dataBase64s[index].Contains(Helper.Key.temp) ? "temp-img" : "logo") : "logo";
 				}
 
 				<div class="info bg-form">
@@ -151,15 +192,15 @@
 										</button>
 										<input class="file" name="ImageFile" type="file" hidden />
 										<div class="overflow-hidden w-h-0">
-											<input class="image_type" name="dataTypes" value="@dataTypes[1]" />
-											<input class="image_data" name="dataBase64s" value="@dataBase64s[1]" />
+											<input class="image_type" name="dataTypes" value="@dataTypes[index]" />
+											<input class="image_data" name="dataBase64s" value="@dataBase64s[index]" />
 										</div>
 									</div>
 
 									<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden h-100 d-flex justify-content-center align-items-center">
 										<div class="background @darkBackground rounded-1 overflow-hidden click_show_image" src="/img/logo/@Model.FooterBgImg">
 											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
-												 src="/img/@folder/@dataBase64s[1]"
+												 src="/img/@folder/@dataBase64s[index]"
 												 alt="" />
 										</div>
 

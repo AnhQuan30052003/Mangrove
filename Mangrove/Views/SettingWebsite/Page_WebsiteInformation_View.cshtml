@@ -40,8 +40,8 @@
 			</div>
 
 			<div class="info bg-form rounded-1 pb-1">
-				<div class=" d-sm-flex">
-					<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
+				<div class="top d-sm-flex">
+					<div class="col-sm-6 p-2 d-flex flex-column justify-content-between">
 						<small class="mb-1 d-block font-small text-center">Logo</small>
 						<div class="preview_img position-relative overflow-hidden flex-grow-1 d-flex justify-content-center align-items-center">
 							<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
@@ -50,16 +50,25 @@
 						</div>
 					</div>
 
-					<div class="bottom col-sm-6 p-2">
-						<div class="py-2">
-							<small class="mb-1 d-block font-small">@translate["label_ten_truong"]</small>
-							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)</p>
+					<div class="col-sm-6 p-2 d-flex flex-column justify-content-between">
+						<small class="mb-1 d-block font-small text-center">@translate["label_xac_thuc"]</small>
+						<div class="preview_img position-relative overflow-hidden flex-grow-1 d-flex justify-content-center align-items-center">
+							<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+								 src="/img/logo/@Model.AuthImg"
+								 alt="" />
 						</div>
+					</div>
+				</div>
 
-						<div class="py-2">
-							<small class="mb-1 d-block font-small">@translate["label_ten_khoa"]</small>
-							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.FacultyEn : Model.FacultyVi)</p>
-						</div>
+				<div class="bottom p-2 d-flex flex-wrap">
+					<div class="p-2 col-12 col-sm-6">
+						<small class="mb-1 d-block font-small">@translate["label_ten_truong"]</small>
+						<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)</p>
+					</div>
+
+					<div class="p-2 col-12 col-sm-6">
+						<small class="mb-1 d-block font-small">@translate["label_ten_khoa"]</small>
+						<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.FacultyEn : Model.FacultyVi)</p>
 					</div>
 				</div>
 			</div>

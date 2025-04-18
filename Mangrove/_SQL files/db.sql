@@ -1,3 +1,4 @@
+
 use mangrove;
 
 --- [Drop tables] --
@@ -42,6 +43,8 @@ create table tblSetting
      _addressEN nvarchar(256) not null,
      _descriptionWebsiteVI nvarchar(max) not null,
      _descriptionWebsiteEN nvarchar(max) not null,
+
+     _authImg nvarchar(50) not null,
 )
 
 -- Bảng cho trang home

@@ -242,7 +242,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblSetting>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1CFDF290B2");
+            entity.HasKey(e => e.Id).HasName("PK__tblSetti__DED88B1C1F3365DD");
 
             entity.ToTable("tblSetting");
 
@@ -256,6 +256,9 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.AddressVi)
                 .HasMaxLength(256)
                 .HasColumnName("_addressVI");
+            entity.Property(e => e.AuthImg)
+                .HasMaxLength(50)
+                .HasColumnName("_authImg");
             entity.Property(e => e.DescriptionWebsiteEn).HasColumnName("_descriptionWebsiteEN");
             entity.Property(e => e.DescriptionWebsiteVi).HasColumnName("_descriptionWebsiteVI");
             entity.Property(e => e.Email)
