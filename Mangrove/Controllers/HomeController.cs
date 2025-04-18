@@ -393,16 +393,23 @@ namespace Mangrove.Controllers {
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i], i == 0 ? false : true);
-					Helper.Validate.NotEmpty(noteVIs[i], i == 0 ? false : true);
+
+					if (i == 0) {
+						Helper.Validate.MaxLength(noteENs[i], 256, false);
+						Helper.Validate.MaxLength(noteVIs[i], 256, false);
+					}
+					else {
+						Helper.Validate.NotEmpty(noteENs[i], true);
+						Helper.Validate.NotEmpty(noteVIs[i], true);
+					}
 				}
 
-				Helper.Validate.NotEmpty(model.TitlePurposeEn);
-				Helper.Validate.NotEmpty(model.TitlePurposeVi);
+				Helper.Validate.MaxLength(model.TitlePurposeEn, 256);
+				Helper.Validate.MaxLength(model.TitlePurposeVi, 256);
 				Helper.Validate.NotEmpty(model.PurposeEn);
 				Helper.Validate.NotEmpty(model.PurposeVi);
-				Helper.Validate.NotEmpty(model.TitleListItemEn);
-				Helper.Validate.NotEmpty(model.TitleListItemVi);
+				Helper.Validate.MaxLength(model.TitleListItemEn, 256);
+				Helper.Validate.MaxLength(model.TitleListItemVi, 256);
 				Helper.Validate.NotEmpty(model.ItemRecent.ToString());
 
 				// Trả lại view nếu có lỗi validate

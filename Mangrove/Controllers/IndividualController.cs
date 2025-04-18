@@ -141,30 +141,30 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				Helper.Validate.NotEmpty(model.Longitude, true);
-				Helper.Validate.NotEmpty(model.Latitude, true);
-				Helper.Validate.NotEmpty(model.PositionEn);
-				Helper.Validate.NotEmpty(model.PositionVi);
+				Helper.Validate.MaxLength(model.Longitude, 256, true);
+				Helper.Validate.MaxLength(model.Latitude, 256, true);
+				Helper.Validate.MaxLength(model.PositionEn, 256);
+				Helper.Validate.MaxLength(model.PositionVi, 256);
 
 				int indexPhoto = 0, indexNote = 0;
 				for (int i = 0; i < indexStages.Count(); i++) {
 					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
-					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
+					Helper.Validate.MaxLength(dataBase64s[indexPhoto], 256);
 
 					Helper.Validate.NotEmpty(surveyDates[i].ToString("yyyy-MM-dd"));
-					Helper.Validate.NotEmpty(stageNameENs[i], true);
-					Helper.Validate.NotEmpty(stageNameVIs[i], true);
-					Helper.Validate.NotEmpty(weatherENs[i], true);
-					Helper.Validate.NotEmpty(weatherVIs[i], true);
-					Helper.Validate.NotEmpty(heights[i], true);
-					Helper.Validate.NotEmpty(perimeters[i], true);
+					Helper.Validate.MaxLength(stageNameENs[i], 256, true);
+					Helper.Validate.MaxLength(stageNameVIs[i], 256, true);
+					Helper.Validate.MaxLength(weatherENs[i], 256, true);
+					Helper.Validate.MaxLength(weatherVIs[i], 256, true);
+					Helper.Validate.MaxLength(heights[i], 100, true);
+					Helper.Validate.MaxLength(perimeters[i], 100, true);
 
 					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
 						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
-						Helper.Validate.NotEmpty(dataBase64s[j]);
-						Helper.Validate.NotEmpty(noteENs[indexNote], true);
-						Helper.Validate.NotEmpty(noteVIs[indexNote], true);
+						Helper.Validate.MaxLength(dataBase64s[j], 256);
+						Helper.Validate.MaxLength(noteENs[indexNote], 256, true);
+						Helper.Validate.MaxLength(noteVIs[indexNote], 256, true);
 						indexNote += 1;
 					}
 					indexPhoto += countItemPhotoOfStage + 1;
@@ -393,30 +393,30 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				Helper.Validate.NotEmpty(model.Longitude, true);
-				Helper.Validate.NotEmpty(model.Latitude, true);
-				Helper.Validate.NotEmpty(model.PositionEn);
-				Helper.Validate.NotEmpty(model.PositionVi);
+				Helper.Validate.MaxLength(model.Longitude, 256, true);
+				Helper.Validate.MaxLength(model.Latitude, 256, true);
+				Helper.Validate.MaxLength(model.PositionEn, 256);
+				Helper.Validate.MaxLength(model.PositionVi, 256);
 
 				int indexPhoto = 0, indexNote = 0;
 				for (int i = 0; i < indexStages.Count(); i++) {
 					dataBase64s[indexPhoto] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[indexPhoto], dataTypes[indexPhoto]);
-					Helper.Validate.NotEmpty(dataBase64s[indexPhoto]);
+					Helper.Validate.MaxLength(dataBase64s[indexPhoto], 256);
 
 					Helper.Validate.NotEmpty(surveyDates[i].ToString("yyyy-MM-dd"));
-					Helper.Validate.NotEmpty(stageNameENs[i], true);
-					Helper.Validate.NotEmpty(stageNameVIs[i], true);
-					Helper.Validate.NotEmpty(weatherENs[i], true);
-					Helper.Validate.NotEmpty(weatherVIs[i], true);
-					Helper.Validate.NotEmpty(heights[i], true);
-					Helper.Validate.NotEmpty(perimeters[i], true);
+					Helper.Validate.MaxLength(stageNameENs[i], 256, true);
+					Helper.Validate.MaxLength(stageNameVIs[i], 256, true);
+					Helper.Validate.MaxLength(weatherENs[i], 256, true);
+					Helper.Validate.MaxLength(weatherVIs[i], 256, true);
+					Helper.Validate.MaxLength(heights[i], 100, true);
+					Helper.Validate.MaxLength(perimeters[i], 100, true);
 
 					int countItemPhotoOfStage = Convert.ToInt32(itemPhotoOfStages[i]);
 					for (int j = indexPhoto + 1; j < indexPhoto + countItemPhotoOfStage + 1; j++) {
 						dataBase64s[j] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[j], dataTypes[j]);
-						Helper.Validate.NotEmpty(dataBase64s[j]);
-						Helper.Validate.NotEmpty(noteENs[indexNote], true);
-						Helper.Validate.NotEmpty(noteVIs[indexNote], true);
+						Helper.Validate.MaxLength(dataBase64s[j], 256);
+						Helper.Validate.MaxLength(noteENs[indexNote], 256, true);
+						Helper.Validate.MaxLength(noteVIs[indexNote], 256, true);
 						indexNote += 1;
 					}
 					indexPhoto += countItemPhotoOfStage + 1;

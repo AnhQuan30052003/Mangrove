@@ -1,0 +1,120 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model TblSetting
+@{
+	bool isEN = Helper.Func.IsEnglish();
+	ViewData["Title"] = @translate["label_thong_tin_website"];
+	ViewData["InfoPage"] = @translate["label_thong_tin_website"] + $" ({translate["label_chi_xem"]})";
+	ViewData["TypePage"] = "Page_Setting";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+
+	string darkBackground = Model.FooterDark == true ? "darkBackground" : string.Empty;
+}
+
+<section class="mod-add-individual">
+	<div class="container py-2">
+		<!-- Frame button -->
+		<div class="d-flex justify-content-center mt-2 gap-2">
+			<a href="@Url.Action("Page_WebsiteInformation_Edit", "SettingWebsite")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+				<i class="fas fa-edit"></i>
+				<span class="hidden_mobile">
+					@translate["label_sua"]
+				</span>
+			</a>
+		</div>
+
+		<!-- Header -->
+		<div class="box bg-white mt-3 mb-4 rounded-1">
+			<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_tieu_de_trang"]</h6>
+			</div>
+
+			<div class="info bg-form rounded-1 pb-1">
+				<div class=" d-sm-flex">
+					<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
+						<small class="mb-1 d-block font-small text-center">Logo</small>
+						<div class="preview_img position-relative overflow-hidden flex-grow-1 d-flex justify-content-center align-items-center">
+							<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+								 src="/img/logo/@Model.LogoImg"
+								 alt="" />
+						</div>
+					</div>
+
+					<div class="bottom col-sm-6 p-2">
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">@translate["label_ten_truong"]</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)</p>
+						</div>
+
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">@translate["label_ten_khoa"]</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.FacultyEn : Model.FacultyVi)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div class="box bg-white mt-3 mb-4 rounded-1">
+			<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_chan_trang"]</h6>
+			</div>
+
+			<div class="info bg-form rounded-1 pb-1">
+				<div class=" d-sm-flex">
+					<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
+						<small class="mb-1 d-block font-small text-center">@translate["label_anh_nen"]</small>
+						<div class="preview_img position-relative overflow-hidden flex-grow-1 d-flex justify-content-center align-items-center">
+							<div class="background @darkBackground rounded-1 overflow-hidden">
+								<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+									 src="/img/logo/@Model.FooterBgImg"
+									 alt="" />
+							</div>
+						</div>
+					</div>
+
+					<div class="bottom col-sm-6 p-2">
+						<div class="py-2 d-flex gap-2 align-items-center">
+							<small class="mb-1 d-block font-small">@translate["label_toi_anh_nen"]</small>
+							<input type="checkbox" class="border-none bg-white px-1 rounded-1 text_body" disabled @(Model.FooterDark ? "checked" : string.Empty) />
+						</div>
+
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">@translate["label_dia_chi"]</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.AddressEn : Model.AddressVi)</p>
+						</div>
+
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">@translate["label_so_dien_thoai"]</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@Model.Phone</p>
+						</div>
+
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">Email</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@Model.Email</p>
+						</div>
+
+						<div class="py-2">
+							<small class="mb-1 d-block font-small">@translate["label_mo_ta_trang_web"]</small>
+							<p class="w-100 border-none bg-white px-2 py-1 rounded-1 text_body">@(isEN ? Model.DescriptionWebsiteEn : Model.DescriptionWebsiteVi)</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Frame button -->
+		<div class="d-flex justify-content-center my-2 gap-2">
+			<a href="@Url.Action("Page_WebsiteInformation_Edit", "SettingWebsite")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+				<i class="fas fa-edit"></i>
+				<span class="hidden_mobile">
+					@translate["label_sua"]
+				</span>
+			</a>
+		</div>
+	</div>
+</section>	

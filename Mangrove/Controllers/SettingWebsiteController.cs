@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 namespace Mangrove.Controllers {
 	public class SettingWebsiteController : Controller {
 		private readonly MangroveContext context;
@@ -67,9 +68,120 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page thông tin website (view)
-		public async Task<IActionResult> WebsitInformation() {
+		[Authorize]
+		public async Task<IActionResult> Page_WebsiteInformation_View() {
 			var setting = await GetSetting();
 			return View(setting);
+		}
+
+		// Page thông tin website (view)
+		[Authorize]
+		public async Task<IActionResult> Page_WebsiteInformation_Edit() {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var setting = await context.TblSettings.FirstOrDefaultAsync();
+				if (setting == null) {
+					return RedirectToAction("Page_Error", "SettingWebsite", new { typeError = Helper.Variable.TypeError.notExists });
+				}
+
+				var dataBase64s = new List<string>();
+				var dataTypes = new List<string>();
+
+				dataBase64s.Add(setting.LogoImg);
+				dataBase64s.Add(setting.FooterBgImg);
+				dataTypes.Add(string.Empty);
+				dataTypes.Add(string.Empty);
+
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["DataTypes"] = dataTypes;
+
+				Helper.Validate.Clear();
+				return View(setting);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_WebsiteInformation_View");
+			}
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_WebsiteInformation_Edit(TblSetting model, List<string> dataBase64s, List<string> dataTypes) {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["DataTypes"] = dataTypes;
+
+				// Begin validate
+				Helper.Validate.Clear();
+				dataBase64s[0] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[0], dataTypes[0]);
+				Helper.Validate.NotEmpty(dataBase64s[0]);
+				Helper.Validate.MaxLength(model.SchoolNameEn, 256);
+				Helper.Validate.MaxLength(model.SchoolNameVi, 256);
+				Helper.Validate.MaxLength(model.FacultyEn, 256);
+				Helper.Validate.MaxLength(model.FacultyVi, 256);
+
+				dataBase64s[1] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[1], dataTypes[1]);
+				Helper.Validate.NotEmpty(dataBase64s[1]);
+				Helper.Validate.NotEmpty(model.FooterDark.ToString());
+				Helper.Validate.MaxLength(model.Phone, 20);
+				Helper.Validate.MaxLength(model.Email, 256);
+				Helper.Validate.MaxLength(model.AddressEn, 256);
+				Helper.Validate.MaxLength(model.AddressVi, 256);
+				Helper.Validate.NotEmpty(model.DescriptionWebsiteEn);
+				Helper.Validate.NotEmpty(model.DescriptionWebsiteVi);
+				
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View(model);
+				}
+				// End validate
+
+				// Save data
+				// Với logo
+				if (dataBase64s[0].Contains(Helper.Key.temp)) {
+					Helper.Func.DeletePhoto(Helper.Path.logo, model.LogoImg);
+					string fileName = $"logo{Helper.Func.GetTypeImage(dataTypes[0])}";
+					model.LogoImg = fileName;
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[0]),
+						Path.Combine(Helper.Path.logo, fileName)
+					);
+				}
+
+				if (dataBase64s[1].Contains(Helper.Key.temp)) {
+					Helper.Func.DeletePhoto(Helper.Path.logo, model.FooterBgImg);
+					string fileName = $"bg-footer{Helper.Func.GetTypeImage(dataTypes[1])}";
+					model.FooterBgImg = fileName;
+					Helper.Func.MovePhoto(
+						Path.Combine(Helper.Path.temptImg, dataBase64s[1]),
+						Path.Combine(Helper.Path.logo, fileName)
+					);
+				}
+
+				context.TblSettings.Update(model);
+				await context.SaveChangesAsync();
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+
+				// Setup thông báo thành công 
+				Helper.Notifier.Success(
+					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime
+				);
+				return RedirectToAction("Page_WebsiteInformation_View");
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return View(model);
+			}
 		}
 	}
 }

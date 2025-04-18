@@ -1,6 +1,5 @@
 ﻿window.addEventListener("load", function () {
 	updateCount();
-	revoveryPositionPage();
 });
 
 // Cập nhật số liệu nhanh ra UI
@@ -29,18 +28,3 @@ function updateCount() {
 window.addEventListener("beforeunload", function () {
 	localStorage.setItem("scrollPosition", window.scrollY);
 });
-
-// Cuộn tới vị trí sau khi reload
-function revoveryPositionPage() {
-	try {
-		const savedPosition = localStorage.getItem("scrollPosition");
-		if (savedPosition !== null) {
-			window.scrollTo({
-				top: parseInt(savedPosition, 10),
-				behavior: "instant"
-			});
-			localStorage.removeItem("scrollPosition");
-		}
-	}
-	catch { }
-}

@@ -112,27 +112,27 @@ namespace Mangrove.Controllers {
 
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
-					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i], true);
-					Helper.Validate.NotEmpty(noteVIs[i], true);
+					Helper.Validate.MaxLength(dataBase64s[i], 256);
+					Helper.Validate.MaxLength(noteENs[i], 256, true);
+					Helper.Validate.MaxLength(noteVIs[i], 256, true);
 				}
 
-				Helper.Validate.NotEmpty(model.NameEn);
-				Helper.Validate.NotEmpty(model.NameVi);
-				Helper.Validate.NotEmpty(model.ScientificName);
-				Helper.Validate.NotEmpty(model.CommonNameEn, true);
-				Helper.Validate.NotEmpty(model.CommonNameVi, true);
-				Helper.Validate.NotEmpty(model.Familia);
+				Helper.Validate.MaxLength(model.NameEn, 256);
+				Helper.Validate.MaxLength(model.NameVi, 256);
+				Helper.Validate.MaxLength(model.ScientificName, 256);
+				Helper.Validate.MaxLength(model.CommonNameEn, 256, true);
+				Helper.Validate.MaxLength(model.CommonNameVi, 256, true);
+				Helper.Validate.MaxLength(model.Familia, 256);
 				Helper.Validate.NotEmpty(model.MorphologyEn);
 				Helper.Validate.NotEmpty(model.MorphologyVi);
 				Helper.Validate.NotEmpty(model.EcologyEn);
 				Helper.Validate.NotEmpty(model.EcologyVi);
 				Helper.Validate.NotEmpty(model.UseEn);
 				Helper.Validate.NotEmpty(model.UseVi);
-				Helper.Validate.NotEmpty(model.DistributionEn);
-				Helper.Validate.NotEmpty(model.DistributionVi);
-				Helper.Validate.NotEmpty(model.ConservationStatusEn);
-				Helper.Validate.NotEmpty(model.ConservationStatusVi);
+				Helper.Validate.MaxLength(model.DistributionEn, 256);
+				Helper.Validate.MaxLength(model.DistributionVi, 256);
+				Helper.Validate.MaxLength(model.ConservationStatusEn, 256);
+				Helper.Validate.MaxLength(model.ConservationStatusVi, 256);
 
 				TempData["DataTypes"] = dataTypes;
 				TempData["DataBase64s"] = dataBase64s;
@@ -278,27 +278,27 @@ namespace Mangrove.Controllers {
 
 				for (int i = 0; i < dataTypes.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
-					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i], true);
-					Helper.Validate.NotEmpty(noteVIs[i], true);
+					Helper.Validate.MaxLength(dataBase64s[i], 256);
+					Helper.Validate.MaxLength(noteENs[i], 256, true);
+					Helper.Validate.MaxLength(noteVIs[i], 256, true);
 				}
 
-				Helper.Validate.NotEmpty(model.NameEn);
-				Helper.Validate.NotEmpty(model.NameVi);
-				Helper.Validate.NotEmpty(model.ScientificName);
-				Helper.Validate.NotEmpty(model.CommonNameEn, true);
-				Helper.Validate.NotEmpty(model.CommonNameVi, true);
-				Helper.Validate.NotEmpty(model.Familia);
+				Helper.Validate.MaxLength(model.NameEn, 256);
+				Helper.Validate.MaxLength(model.NameVi, 256);
+				Helper.Validate.MaxLength(model.ScientificName, 256);
+				Helper.Validate.MaxLength(model.CommonNameEn, 256, true);
+				Helper.Validate.MaxLength(model.CommonNameVi, 256, true);
+				Helper.Validate.MaxLength(model.Familia, 256);
 				Helper.Validate.NotEmpty(model.MorphologyEn);
 				Helper.Validate.NotEmpty(model.MorphologyVi);
 				Helper.Validate.NotEmpty(model.EcologyEn);
 				Helper.Validate.NotEmpty(model.EcologyVi);
 				Helper.Validate.NotEmpty(model.UseEn);
 				Helper.Validate.NotEmpty(model.UseVi);
-				Helper.Validate.NotEmpty(model.DistributionEn);
-				Helper.Validate.NotEmpty(model.DistributionVi);
-				Helper.Validate.NotEmpty(model.ConservationStatusEn);
-				Helper.Validate.NotEmpty(model.ConservationStatusVi);
+				Helper.Validate.MaxLength(model.DistributionEn, 256);
+				Helper.Validate.MaxLength(model.DistributionVi, 256);
+				Helper.Validate.MaxLength(model.ConservationStatusEn, 256);
+				Helper.Validate.MaxLength(model.ConservationStatusVi, 256);
 
 				// Khi không có ảnh nào
 				if (!dataBase64s.Any()) {

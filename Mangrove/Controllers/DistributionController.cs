@@ -99,9 +99,9 @@ namespace Mangrove.Controllers {
 
 				for (int i = 0; i < dataBase64s.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
-					Helper.Validate.NotEmpty(dataBase64s[i]);
-					Helper.Validate.NotEmpty(noteENs[i]);
-					Helper.Validate.NotEmpty(noteVIs[i]);
+					Helper.Validate.MaxLength(dataBase64s[i], 256);
+					Helper.Validate.MaxLength(noteENs[i], 256);
+					Helper.Validate.MaxLength(noteVIs[i], 256);
 				}
 
 				TempData["DataTypes"] = dataTypes;
@@ -208,9 +208,9 @@ namespace Mangrove.Controllers {
 				Helper.Validate.Clear();
 
 				dataBase64 = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64, dataType);
-				Helper.Validate.NotEmpty(dataBase64);
-				Helper.Validate.NotEmpty(model.MapNameEn);
-				Helper.Validate.NotEmpty(model.MapNameVi);
+				Helper.Validate.MaxLength(dataBase64, 256);
+				Helper.Validate.MaxLength(model.MapNameEn, 256);
+				Helper.Validate.MaxLength(model.MapNameVi, 256);
 
 				TempData["DataBase64"] = dataBase64;
 

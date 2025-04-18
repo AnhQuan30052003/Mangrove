@@ -29,23 +29,19 @@ create table tblSetting
      _id varchar(36) primary key,
 
      _logoImg nvarchar(50) not null,
-     _footerBgImg nvarchar(50) not null,
-     _footerDark bit not null,
-
-     _phone varchar(20) not null,
-     _email varchar(256) not null,
-
      _schoolNameVI nvarchar(256) not null,
      _schoolNameEN nvarchar(256) not null,
-
      _facultyVI nvarchar(256) not null,
      _facultyEN nvarchar(256) not null,
-
+     
+     _footerBgImg nvarchar(50) not null,
+     _footerDark bit not null,
+     _phone varchar(20) not null,
+     _email varchar(256) not null,
+     _addressVI nvarchar(256) not null,
+     _addressEN nvarchar(256) not null,
      _descriptionWebsiteVI nvarchar(max) not null,
      _descriptionWebsiteEN nvarchar(max) not null,
-
-     _addressVI nvarchar(256) not null,
-     _addressEN nvarchar(256) not null
 )
 
 -- Bảng cho trang home

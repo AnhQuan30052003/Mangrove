@@ -3,6 +3,7 @@ function loadPage() {
 	window.addEventListener("load", function () {
 		removeIconLoadPage();
 		highlightTabHeader();
+		revoveryPositionPage();
 
 		const pointerLastInputs = document.querySelectorAll(".pointer_last");
 		if (pointerLastInputs.length > 0) {
@@ -75,3 +76,18 @@ function movePointerInput() {
 	}
 }
 movePointerInput();
+
+// Cuộn tới vị trí sau khi reload
+function revoveryPositionPage() {
+	try {
+		const savedPosition = localStorage.getItem("scrollPosition");
+		if (savedPosition !== null) {
+			window.scrollTo({
+				top: parseInt(savedPosition, 10),
+				behavior: "instant"
+			});
+			localStorage.removeItem("scrollPosition");
+		}
+	}
+	catch { }
+}

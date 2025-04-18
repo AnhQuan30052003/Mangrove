@@ -462,9 +462,9 @@ public class Helper {
 
 		// Codes - functions check validate
 		// Không rỗng
-		public static void NotEmpty(string? value, bool allowSpace = false) {
+		public static void NotEmpty(string? value, bool allowNull = false) {
 			string content = string.Empty;
-			if (allowSpace) {
+			if (allowNull) {
 				AddError(content);
 				return;
 			}
@@ -479,9 +479,9 @@ public class Helper {
 		}
 
 		// Không vượt qua x ký tự
-		public static void MaxLength(string? value, int maxLength, bool allowSpace = false) {
+		public static void MaxLength(string? value, int maxLength, bool allowNull = false) {
 			if (value == null) {
-				NotEmpty(value, allowSpace);
+				NotEmpty(value, allowNull);
 				return;
 			}
 
@@ -498,15 +498,15 @@ public class Helper {
 		}
 
 		// Có độ dài từ x -> y
-		public static void TextLength(string? value, int minLength, int maxLength, bool allowSpace = false) {
+		public static void TextLength(string? value, int minLength, int maxLength, bool allowNull = false) {
 			if (value == null) {
-				NotEmpty(value, allowSpace);
+				NotEmpty(value, allowNull);
 				return;
 			}
 
 			string content = string.Empty;
 			if (value.Length > maxLength) {
-				MaxLength(value, maxLength, allowSpace);
+				MaxLength(value, maxLength, allowNull);
 				return;
 			}
 
@@ -522,9 +522,9 @@ public class Helper {
 		}
 
 		// Có độ dài từ x ký tự
-		public static void TextLength(string? value, int length, bool allowSpace = false) {
+		public static void TextLength(string? value, int length, bool allowNull = false) {
 			if (value == null) {
-				NotEmpty(value, allowSpace);
+				NotEmpty(value, allowNull);
 				return;
 			}
 
@@ -541,15 +541,15 @@ public class Helper {
 		}
 
 		// Check email có hợp lệ
-		public static void IsEmail(string? value, bool allowSpace = false) {
+		public static void IsEmail(string? value, bool allowNull = false) {
 			try {
 				if (value == null) {
-					NotEmpty(value, allowSpace);
+					NotEmpty(value, allowNull);
 					return;
 				}
 
 				var email = new MailAddress(value);
-				TextLength(value, 10, 256, allowSpace);
+				TextLength(value, 10, 256, allowNull);
 			}
 			catch {
 				string EN = "Not a valid email !";

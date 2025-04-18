@@ -17,8 +17,8 @@ public partial class TblSetting
     public bool FooterDark { get; set; }
     public string Phone { get; set; } = null!;
     public string Email { get; set; } = null!;
-    public string DescriptionWebsiteVi { get; set; } = null!;
-    public string DescriptionWebsiteEn { get; set; } = null!;
     public string AddressVi { get; set; } = null!;
     public string AddressEn { get; set; } = null!;
+    public string DescriptionWebsiteVi { get; set; } = null!;
+    public string DescriptionWebsiteEn { get; set; } = null!;
 }
