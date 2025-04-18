@@ -23,10 +23,10 @@
 			<input type="text" asp-for="@Model.ImageMap" hidden />
 
 			<div class="item p-2 bg-form rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail shadow-sm">
-				<div class="add_img col-12 col-lg-6 rounded-1">
+				<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 					<p class="text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-					<div class="input_img bg-white d-flex justify-content-center align-items-center @(haveImage ? "d-none" : "") min_height_input_img rounded-1 green_effect">
+					<div class="input_img bg-white d-flex justify-content-center align-items-center @(haveImage ? "d-none" : "") min_height_input_img rounded-1 green_effect flex-grow-1">
 						<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 								type="button">
 							<i class="icon_add fa-solid fa-plus"></i>
@@ -55,13 +55,13 @@
 				<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 					<p class="text-center col-12 align-self-start text-black">@translate["label_vi_tri"]</p>
 
-					<div class="add_content_item mt-1 m-lg-0 col-12">
+					<div class="add_content_item py-2 m-lg-0 col-12">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
 						<input type="text" asp-for="@Model.MapNameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item mt-1 m-lg-0 col-12">
+					<div class="add_content_item py-2 m-lg-0 col-12">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
 						<input type="text" asp-for="@Model.MapNameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>

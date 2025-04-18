@@ -16,6 +16,14 @@
 	<div class="container py-2">
 		<!-- Frame button -->
 		<div class="d-flex justify-content-center mt-2 gap-2">
+			<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageSettingWebsite, true)"
+					class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+				<i class="fa-solid fa-list"></i>
+				<span class="hidden_mobile">
+					@translate["label_tro_ve"]
+				</span>
+			</button>
+
 			<a href="@Url.Action("Page_WebsiteInformation_Edit", "SettingWebsite")"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
 				<i class="fas fa-edit"></i>
@@ -68,7 +76,7 @@
 					<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
 						<small class="mb-1 d-block font-small text-center">@translate["label_anh_nen"]</small>
 						<div class="preview_img position-relative overflow-hidden flex-grow-1 d-flex justify-content-center align-items-center">
-							<div class="background @darkBackground rounded-1 overflow-hidden">
+							<div class="background @darkBackground rounded-1 overflow-hidden click_show_image" src="/img/logo/@Model.FooterBgImg">
 								<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 									 src="/img/logo/@Model.FooterBgImg"
 									 alt="" />
@@ -108,6 +116,14 @@
 
 		<!-- Frame button -->
 		<div class="d-flex justify-content-center my-2 gap-2">
+			<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageSettingWebsite, true)"
+					class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+				<i class="fa-solid fa-list"></i>
+				<span class="hidden_mobile">
+					@translate["label_tro_ve"]
+				</span>
+			</button>
+
 			<a href="@Url.Action("Page_WebsiteInformation_Edit", "SettingWebsite")"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
 				<i class="fas fa-edit"></i>

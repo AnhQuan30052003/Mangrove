@@ -154,10 +154,10 @@ function createDivAddItem(haveFocus = false) {
 			<i class="icon_remove_item fa-solid fa-xmark"></i>
 		</button>
 
-		<div class="add_img col-12 col-lg-6 rounded-1">
+		<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 			<p class="catch_to_move text-center text-black"><small class="text-danger" >✶</small>${labelPhoto}</p>
 
-			<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+			<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 				<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 						type="button">
 					<i class="icon_add fa-solid fa-plus"></i>
@@ -183,13 +183,13 @@ function createDivAddItem(haveFocus = false) {
 		<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 			<p class="text-center col-12 align-self-start text-black">${labelDescription}</p>
 
-			<div class="add_content_item mt-1 col-12">
+			<div class="add_content_item py-2 col-12">
 				<small class="mb-1 d-block font-small">${htmlFocus}${labelEnglish}</small>
 				<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 
 			</div>
 
-			<div class="add_content_item mt-1 col-12">
+			<div class="add_content_item py-2 col-12">
 				<small class="mb-1 d-block font-small">${htmlFocus}${labelVietnamese}</small>
 				<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
@@ -315,7 +315,7 @@ function createDisplayItem(index) {
 	const surveyDay = document.querySelector("#surveyDay").value;
 	const stageName = document.querySelector("#stageName").value;
 	const weather = document.querySelector("#weather").value;
-	const heigut = document.querySelector("#height").value;
+	const height = document.querySelector("#height").value;
 	const perimeter = document.querySelector("#perimeter").value;
 
 	// Create today
@@ -334,10 +334,10 @@ function createDisplayItem(index) {
 	frameInfoAndPosition.className = "rame_info_and_position d-sm-flex";
 	frameInfoAndPosition.innerHTML = `
 		<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
-			<div class="mt-1">
-				<small class="mb-1 d-block font-small text-center">${labelPhoto}</small>
-				<div class="w-100">
-					<div class="add_img rounded-1">
+			<div class="py-2 d-flex flex-column flex-grow-1">
+				<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>${labelPhoto}</small>
+				<div class="w-100 flex-grow-1">
+					<div class="add_img rounded-1 w-100 h-100">
 						<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">
 							<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 									type="button">
@@ -350,7 +350,7 @@ function createDisplayItem(index) {
 							</div>
 						</div>
 
-						<div class="preview_img position-relative d-none overflow-hidden">
+						<div class="preview_img position-relative d-none overflow-hidden h-100 d-flex align-items-center">
 							<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 									alt="" />
 
@@ -362,39 +362,39 @@ function createDisplayItem(index) {
 					</div>
 				</div>
 			</div>
-			<div class="mt-1">
-				<small class="mb-1 d-block font-small">${surveyDay}</small>
+			<div class="py-2">
+				<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>${surveyDay}</small>
 				<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="${dodayStr}" />
 			</div>
 		</div>
 
 		<div class="bottom col-sm-6 p-2">
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${stageName} (${labelEnglish})</small>
 				<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${stageName} (${labelVietnamese})</small>
 				<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${weather} (${labelEnglish})</small>
 				<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${weather} (${labelVietnamese})</small>
 				<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${height}</small>
 				<input type="text" name="heights" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
 
-			<div class="mt-1">
+			<div class="py-2">
 				<small class="mb-1 d-block font-small">${perimeter}</small>
 				<input type="text" name="perimeters" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 			</div>
@@ -404,7 +404,7 @@ function createDisplayItem(index) {
 	const frameItems = document.createElement("div");
 	frameItems.className = "frame_items";
 	frameItems.innerHTML = `
-		<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
+		<div class="toggle_title cursor-pointer text-center my-2">
 			<h6 class="py-2 bg-black text-white rounded-1">
 				${detailImageStage} ${index} (<span class="quantity_item">1</span>/${maxItem})
 			</h6>
@@ -418,10 +418,10 @@ function createDisplayItem(index) {
 						<i class="icon_remove_item fa-solid fa-xmark"></i>
 					</button>
 
-					<div class="add_img col-12 col-lg-6 rounded-1">
-						<p class="catch_to_move text-center text-black">${labelPhoto}</p>
+					<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
+						<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>${labelPhoto}</p>
 
-						<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+						<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 							<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 									type="button">
 								<i class="icon_add fa-solid fa-plus"></i>
@@ -447,13 +447,13 @@ function createDisplayItem(index) {
 					<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 						<p class="text-center col-12 align-self-start text-black">${labelDescription}</p>
 
-						<div class="add_content_item mt-1 col-12">
+						<div class="add_content_item py-2 col-12">
 							<small class="mb-1 d-block font-small">${labelEnglish}</small>
 							<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 
 						</div>
 
-						<div class="add_content_item mt-1 col-12">
+						<div class="add_content_item py-2 col-12">
 							<small class="mb-1 d-block font-small">${labelVietnamese}</small>
 							<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 						</div>

@@ -61,10 +61,10 @@
 										<i class="icon_remove_item fa-solid fa-xmark"></i>
 									</button>
 
-									<div class="add_img col-12 col-lg-6 rounded-1">
+									<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 										<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+										<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 													type="button">
 												<i class="icon_add fa-solid fa-plus"></i>
@@ -90,13 +90,13 @@
 									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 										<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
-										<div class="add_content_item mt-1 col-12">
+										<div class="add_content_item py-2 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
 											<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 
 										</div>
 
-										<div class="add_content_item mt-1 col-12">
+										<div class="add_content_item py-2 col-12">
 											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
 											<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 										</div>
@@ -119,10 +119,10 @@
 											<i class="icon_remove_item fa-solid fa-xmark"></i>
 										</button>
 
-										<div class="add_img col-12 col-lg-6 rounded-1">
+										<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 											<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+											<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 												<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 														type="button">
 													<i class="icon_add fa-solid fa-plus"></i>
@@ -151,13 +151,13 @@
 										<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 											<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
-											<div class="add_content_item mt-1 col-12">
+											<div class="add_content_item py-2 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
 												<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
 												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 											</div>
 
-											<div class="add_content_item mt-1 col-12">
+											<div class="add_content_item py-2 col-12">
 												<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
 												<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
 												<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -189,20 +189,20 @@
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="left col-12 col-lg-6 d-flex flex-column gap-1 pr-10">
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten"] (@translate["label_tieng_anh"])</small>
 							<input type="text" asp-for="@Model.NameEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten"] (@translate["label_tieng_viet"])</small>
 							<input type="text" asp-for="@Model.NameVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
 						</div>
 
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ten_khoa_hoc"]</small>
 							<input type="text" asp-for="@Model.ScientificName" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -210,19 +210,19 @@
 					</div>
 
 					<div class="right col-12 col-lg-6 d-flex flex-column gap-1 pl-10">
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_anh"])</small>
 							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" type="text" asp-for="@Model.CommonNameEn" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small">@translate["label_ten_khac"] (@translate["label_tieng_viet"])</small>
 							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" type="text" asp-for="@Model.CommonNameVi" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 						</div>
 
-						<div class="add_content_item mt-1">
+						<div class="add_content_item py-2">
 							<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ho"]</small>
 							<input class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" type="text" asp-for="@Model.Familia" />
 							<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -238,13 +238,13 @@
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
-					<div class="add_content_item col-12 col-lg-6 mt-1 pr-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.MorphologyEn" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pl-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.MorphologyVi" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -259,13 +259,13 @@
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
-					<div class="add_content_item col-12 col-lg-6 mt-1 pr-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.EcologyEn" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pl-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.EcologyVi" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -280,13 +280,13 @@
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
-					<div class="add_content_item col-12 col-lg-6 mt-1 pr-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_anh"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.UseEn" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pl-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieng_viet"]</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.UseVi" cols="30" rows="7"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -301,25 +301,25 @@
 				</div>
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
-					<div class="add_content_item col-12 col-lg-6 mt-1 pr-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_phan_bo"] (@translate["label_tieng_anh"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.DistributionEn" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pl-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_phan_bo"] (@translate["label_tieng_viet"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.DistributionVi" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pr-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_anh"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.ConservationStatusEn" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 					</div>
 
-					<div class="add_content_item col-12 col-lg-6 mt-1 pl-10">
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tinh_trang_bao_ton"] (@translate["label_tieng_viet"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.ConservationStatusVi" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>

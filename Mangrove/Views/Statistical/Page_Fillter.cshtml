@@ -360,6 +360,14 @@
 					</div>
 				</div>
 			}
+
+			<!-- For not data -->
+			@if (totalData_mangrove == 0 && totalData_individual == 0 && searched)
+			{
+				<div class="text-center">
+					<h5 class="">@translate["label_khong_tim_thay_ket_qua"]</h5>
+				</div>
+			}
 		</div>
 	</div>
 </section>

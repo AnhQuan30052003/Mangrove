@@ -105,6 +105,8 @@ public class Helper {
 		// For Link - Admin
 		public static string adminToPageChangePassword = "adminToPageChangePassword";
 		public static string adminToPageInfo = "adminToPageInfo";
+		public static string adminToPageSettingWebsite = "adminToPageSettingWebsite";
+		public static string adminToPageHomePage = "adminToPageHomePage";
 
 		public static string adminToPageListIndex = "adminToPageListIndex";
 		public static string adminToPageDelete = "adminToPageDelete";

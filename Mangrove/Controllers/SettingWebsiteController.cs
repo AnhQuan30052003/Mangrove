@@ -115,15 +115,17 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				dataBase64s[0] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[0], dataTypes[0]);
-				Helper.Validate.NotEmpty(dataBase64s[0]);
+				int index = 0; // Check cho logo and header
+				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
+				Helper.Validate.NotEmpty(dataBase64s[index]);
 				Helper.Validate.MaxLength(model.SchoolNameEn, 256);
 				Helper.Validate.MaxLength(model.SchoolNameVi, 256);
 				Helper.Validate.MaxLength(model.FacultyEn, 256);
 				Helper.Validate.MaxLength(model.FacultyVi, 256);
 
-				dataBase64s[1] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[1], dataTypes[1]);
-				Helper.Validate.NotEmpty(dataBase64s[1]);
+				index = 1; // check cho background footer và footer
+				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
+				Helper.Validate.NotEmpty(dataBase64s[index]);
 				Helper.Validate.NotEmpty(model.FooterDark.ToString());
 				Helper.Validate.MaxLength(model.Phone, 20);
 				Helper.Validate.MaxLength(model.Email, 256);
@@ -144,22 +146,25 @@ namespace Mangrove.Controllers {
 
 				// Save data
 				// Với logo
-				if (dataBase64s[0].Contains(Helper.Key.temp)) {
+				index = 0;
+				if (dataBase64s[index].Contains(Helper.Key.temp)) {
 					Helper.Func.DeletePhoto(Helper.Path.logo, model.LogoImg);
-					string fileName = $"logo{Helper.Func.GetTypeImage(dataTypes[0])}";
+					string fileName = $"logo.ico";
 					model.LogoImg = fileName;
 					Helper.Func.MovePhoto(
-						Path.Combine(Helper.Path.temptImg, dataBase64s[0]),
+						Path.Combine(Helper.Path.temptImg, dataBase64s[index]),
 						Path.Combine(Helper.Path.logo, fileName)
 					);
 				}
 
-				if (dataBase64s[1].Contains(Helper.Key.temp)) {
+				// Với background footer
+				index = 1;
+				if (dataBase64s[index].Contains(Helper.Key.temp)) {
 					Helper.Func.DeletePhoto(Helper.Path.logo, model.FooterBgImg);
-					string fileName = $"bg-footer{Helper.Func.GetTypeImage(dataTypes[1])}";
+					string fileName = $"bg-footer{Helper.Func.GetTypeImage(dataTypes[index])}";
 					model.FooterBgImg = fileName;
 					Helper.Func.MovePhoto(
-						Path.Combine(Helper.Path.temptImg, dataBase64s[1]),
+						Path.Combine(Helper.Path.temptImg, dataBase64s[index]),
 						Path.Combine(Helper.Path.logo, fileName)
 					);
 				}

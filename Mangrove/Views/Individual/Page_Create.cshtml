@@ -83,14 +83,14 @@
 
 			<!-- Thành phần loài và vị trí -->
 			<div class="box bg-white mb-2 rounded-1">
-				<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+				<div class="toggle_title cursor-pointer text-center mb-2">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thanh_phan_loai_va_tri_tri"]</h6>
 				</div>
 
 				<div class="info bg-form">
 					<div class="frame_info_and_position d-sm-flex">
 						<div class="top col-sm-6 p-2">
-							<div class="mt-1">
+							<div class="py-2">
 								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_thanh_phan_loai"]</small>
 								<select class="w-100 border-none bg-white outline-none green_effect py-1 rounded-1 text_body"
 										name="chooseIdMangrove"
@@ -98,13 +98,13 @@
 								</select>
 							</div>
 
-							<div class="mt-1">
+							<div class="py-2">
 								<small class="mb-1 d-block font-small">@translate["label_kinh_do_khao_sat"]</small>
 								<input type="text" asp-for="@Model.Longitude" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 							</div>
 
-							<div class="mt-1">
+							<div class="py-2">
 								<small class="mb-1 d-block font-small">@translate["label_vi_do_khao_sat"]</small>
 								<input type="text" asp-for="@Model.Latitude" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -112,13 +112,13 @@
 						</div>
 
 						<div class="bottom col-sm-6 p-2">
-							<div class="mt-1">
+							<div class="py-2">
 								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_anh"])</small>
 								<input type="text" asp-for="@Model.PositionEn" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 							</div>
 
-							<div class="mt-1">
+							<div class="py-2">
 								<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_vi_tri_khao_sat"] (@translate["label_tieng_viet"])</small>
 								<input type="text" asp-for="@Model.PositionVi" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 								<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -130,7 +130,7 @@
 
 			<!-- Giai đoạn -->
 			<div class="box bg-white mb-2 rounded-1 overflow-hidden_">
-				<div class="toggle_title cursor-pointer text-center mb-2 position-sticky top-0" style="z-index: 4;">
+				<div class="toggle_title cursor-pointer text-center mb-2">
 					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_cac_giai_doan"]</h6>
 				</div>
 
@@ -190,10 +190,10 @@
 									<!-- Info stage -->
 									<div class="frame_info_and_position d-sm-flex">
 										<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
-											<div class="mt-1">
+											<div class="py-2 d-flex flex-column flex-grow-1">
 												<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</small>
-												<div class="w-100">
-													<div class="add_img rounded-1">
+												<div class="w-100 flex-grow-1">
+													<div class="add_img rounded-1 w-100 h-100">
 														<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect">
 															<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																	type="button">
@@ -206,7 +206,7 @@
 															</div>
 														</div>
 
-														<div class="preview_img position-relative d-none overflow-hidden">
+														<div class="preview_img position-relative d-none overflow-hidden h-100 d-flex align-items-center">
 															<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 																 alt="" />
 
@@ -218,39 +218,39 @@
 													</div>
 												</div>
 											</div>
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ngay_khao_sat"]</small>
 												<input type="date" name="surveyDates" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
 											</div>
 										</div>
 
 										<div class="bottom col-sm-6 p-2">
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_anh"])</small>
 												<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_viet"])</small>
 												<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_anh"])</small>
 												<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
 												<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_chieu_cao_khao_sat"]</small>
 												<input type="text" name="heights" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
 
-											<div class="mt-1">
+											<div class="py-2">
 												<small class="mb-1 d-block font-small">@translate["label_chu_vi_khao_sat"]</small>
 												<input type="text" name="perimeters" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 											</div>
@@ -259,7 +259,7 @@
 
 									<!-- Info image per stage -->
 									<div class="frame_items">
-										<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
+										<div class="toggle_title cursor-pointer text-center my-2">
 											<h6 class="py-2 bg-black text-white rounded-1">
 												@translate["label_hinh_anh_chi_tiet_giai_doan"] 1 (<span class="quantity_item">1</span>/@Helper.Variable.maxItemImageIndividual)
 											</h6>
@@ -273,10 +273,10 @@
 														<i class="icon_remove_item fa-solid fa-xmark"></i>
 													</button>
 
-													<div class="add_img col-12 col-lg-6 rounded-1">
+													<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 														<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-														<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+														<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 															<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																	type="button">
 																<i class="icon_add fa-solid fa-plus"></i>
@@ -302,13 +302,13 @@
 													<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 														<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
-														<div class="add_content_item mt-1 col-12">
+														<div class="add_content_item py-2 col-12">
 															<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
 															<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 
 														</div>
 
-														<div class="add_content_item mt-1 col-12">
+														<div class="add_content_item py-2 col-12">
 															<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
 															<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 														</div>
@@ -343,10 +343,10 @@
 										<!-- Info stage -->
 										<div class="frame_info_and_position d-sm-flex">
 											<div class="top col-sm-6 p-2 d-flex flex-column justify-content-between">
-												<div class="mt-1">
+												<div class="py-2 d-flex flex-column flex-grow-1">
 													<small class="mb-1 d-block font-small text-center"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</small>
-													<div class="w-100">
-														<div class="add_img rounded-1">
+													<div class="w-100 flex-grow-1">
+														<div class="add_img rounded-1 w-100 h-100">
 															<div class="input_img bg-white d-flex justify-content-center align-items-center w-100 h-100 min_height_input_img rounded-1 green_effect @(haveImage ? "d-none" : "")">
 																<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																		type="button">
@@ -359,7 +359,7 @@
 																</div>
 															</div>
 
-															<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden">
+															<div class="preview_img position-relative @(haveImage ? "" : "d-none") overflow-hidden h-100 d-flex align-items-center">
 																<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
 																	 src="/img/temp-img/@dataBase64s[indexPhoto]"
 																	 alt="" />
@@ -374,7 +374,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_ngay_khao_sat"]</small>
 													<input type="date" name="surveyDates"
 														   class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body"
@@ -384,37 +384,37 @@
 											</div>
 
 											<div class="bottom col-sm-6 p-2">
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_anh"])</small>
 													<input type="text" name="stageNameENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@stageNameENs[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 												</div>
 
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_ten_giai_doan"] (@translate["label_tieng_viet"])</small>
 													<input type="text" name="stageNameVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@stageNameVIs[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 												</div>
 
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_anh"])</small>
 													<input type="text" name="weatherENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@weatherENs[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 												</div>
 
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_thoi_tiet_khao_sat"] (@translate["label_tieng_viet"])</small>
 													<input type="text" name="weatherVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@weatherVIs[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 												</div>
 
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_chieu_cao_khao_sat"]</small>
 													<input type="text" name="heights" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@heights[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 												</div>
 
-												<div class="mt-1">
+												<div class="py-2">
 													<small class="mb-1 d-block font-small">@translate["label_chu_vi_khao_sat"]</small>
 													<input type="text" name="perimeters" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@perimeters[i]" />
 													<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -424,7 +424,7 @@
 
 										<!-- Info image per stage -->
 										<div class="frame_items">
-											<div class="toggle_title cursor-pointer text-center my-2 position-sticky top-0" style="z-index: 4;">
+											<div class="toggle_title cursor-pointer text-center my-2">
 												<h6 class="py-2 bg-black text-white rounded-1">
 													@translate["label_hinh_anh_chi_tiet_giai_doan"] @index
 													(<span class="quantity_item">@countItemPhotoOfStage</span>/@Helper.Variable.maxItemImageIndividual)
@@ -442,10 +442,10 @@
 																	<i class="icon_remove_item fa-solid fa-xmark"></i>
 																</button>
 
-																<div class="add_img col-12 col-lg-6 rounded-1">
+																<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 																	<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-																	<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																	<div class="input_img bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 																		<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																				type="button">
 																			<i class="icon_add fa-solid fa-plus"></i>
@@ -471,12 +471,12 @@
 																<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 																	<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
-																	<div class="add_content_item mt-1 col-12">
+																	<div class="add_content_item py-2 col-12">
 																		<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
 																		<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 																	</div>
 
-																	<div class="add_content_item mt-1 col-12">
+																	<div class="add_content_item py-2 col-12">
 																		<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
 																		<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" />
 																	</div>
@@ -500,10 +500,10 @@
 																		<i class="icon_remove_item fa-solid fa-xmark"></i>
 																	</button>
 
-																	<div class="add_img col-12 col-lg-6 rounded-1">
+																	<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
 																		<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
 
-																		<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect">
+																		<div class="input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
 																			<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
 																					type="button">
 																				<i class="icon_add fa-solid fa-plus"></i>
@@ -532,13 +532,13 @@
 																	<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
 																		<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
 
-																		<div class="add_content_item mt-1 col-12">
+																		<div class="add_content_item py-2 col-12">
 																			<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
 																			<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
 																			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 																		</div>
 
-																		<div class="add_content_item mt-1 col-12">
+																		<div class="add_content_item py-2 col-12">
 																			<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
 																			<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
 																			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
