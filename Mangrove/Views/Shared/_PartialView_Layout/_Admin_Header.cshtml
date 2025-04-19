@@ -16,12 +16,12 @@
 
 		<div class="actions fw-bold d-flex px-2 justify-content-between flex-grow-1">
 			<div class="left d-flex flex-column justify-content-around col-10 col-sm-11 col-xl-3">
-				<a href='@Url.Action("Page_Statistical", "Admin")' class="btn_loading">
+				<a href='@Url.Action("Page_Overview", "Statistical")' class="btn_loading">
 					<h5 class="text_tree_hover upper">
 						@(isEN ? Model.SchoolNameEn : Model.SchoolNameVi)
 					</h5>
 				</a>
-				<a href='@Url.Action("Page_Statistical", "Admin")' class="text_tree_hover btn_loading">
+				<a href='@Url.Action("Page_Overview", "Statistical")' class="text_tree_hover btn_loading">
 					@(isEN ? Model.FacultyEn : Model.FacultyVi)
 				</a>
 			</div>

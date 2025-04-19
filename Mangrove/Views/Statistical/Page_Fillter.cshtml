@@ -51,7 +51,7 @@
 
 <style>
 	.mod_statistical td {
-	max-width: 250px !important;
+		max-width: 250px !important;
 	}
 
 </style>
@@ -75,30 +75,29 @@
 <input type="text" id="sortFollowIndividual" value="@sortFollowIndividual" hidden />
 
 <section class="mod_statistical">
-	<div class="py-2">
+	<div class="container py-2">
 		<!-- Tuỳ chọn -->
 		<div class="statistical_option d-flex justify-content-around justify-content-lg-center gap-2 mt-2 mb-3">
 			<a href='@Url.Action("Page_Overview", "Statistical")'
-			class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
+			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-eye color-tree"></i>
 				<span class="text_body text_tree_hover">@translate["label_tong_quan"]</span>
 			</a>
 			<span>|</span>
 			<a href='@Url.Action("Page_Fillter", "Statistical")'
-			class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
+			   class="btn_option border-none outline-none text_tree_hover time_delay_500ms">
 				<i class="fa-solid fa-filter color-tree"></i>
 				<span class="text-black text_tree_hover">@translate["label_bo_loc"]</span>
 			</a>
 		</div>
 
 		<!-- Tiêu đề báo cáo -->
-		<div class="container text-center mb-4">
+		<div class="text-center mb-4">
 			<h4>@translate["label_bao_cao_thong_ke_he_thong"]</h4>
 		</div>
 
-		<div class="container filter">
-			<form action="" method="get"
-			class="py-2 bg-white rounded-1 shadow-sm d-flex flex-wrap mb-4">
+		<div class="input filter">
+			<form action="" method="get" class="py-2 bg-white rounded-1 shadow-sm d-flex flex-wrap mb-4">
 				<div class="choose_date col-sm-6 p-2 d-flex flex-wrap justify-content-between justify-content-lg-around gap-sm-2 col-12">
 					<div class="col-5 col-sm-12 col-lg-5">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tu_ngay"]</small>
@@ -111,19 +110,18 @@
 				</div>
 
 				<div class="choose_option col-sm-6 p-2 d-flex flex-column flex-lg-row col-12">
-					<div class="list_option col-lg-5">
+					<div class="list_option_data col-lg-5">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_chon_du_lieu"]</small>
 						<select name="chooseData"
-						class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
-						style="max-height: 36.99px;"
-						asp-items="@selectlist_chooseData">
+								class="w-100 border-none bg-form outline_black green_effect px-2 py-1 rounded-1 text_body"
+								style="max-height: 36.99px;"
+								asp-items="@selectlist_chooseData">
 						</select>
 					</div>
 
 					<div class="frame_button_fillter text-center d-flex align-items-end justify-content-center flex-grow-1 mt-3 mt-sm-0 col-lg-5">
-						<input type="text" name="searched" value="true" hidden/>
-						<button class="border-none outline-none px-3 py-2 py-sm-1 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50"
-						type="submit">
+						<input type="text" name="searched" value="true" hidden />
+						<button class="border-none outline-none px-3 py-2 py-sm-1 rounded-1 bg-black text-white time_delay_500ms bg_tree_hover w-50">
 							@translate["label_tim"]
 						</button>
 					</div>
@@ -131,7 +129,7 @@
 			</form>
 		</div>
 
-		<div class="container data_fillter">
+		<div class="data_fillter">
 			<!-- For mangrove -->
 			@if (totalData_mangrove > 0 && chooseData != listTableValue[2] && searched)
 			{
@@ -140,7 +138,7 @@
 						<h5 class="mt-1 mb-3">@Helper.Func.FormatNumber(totalData_mangrove) @translate["label_thanh_phan_loai"]</h5>
 
 						<select class="changeSelect mangrove px-2 py-1 h-100 outline_ccc border-none outline_tree_hover bg-white cursor-pointer text_black_hover text_body rounded-1"
-						asp-items="@selectlist_mangrove">
+								asp-items="@selectlist_mangrove">
 						</select>
 					</nav>
 
@@ -171,7 +169,7 @@
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortDESC, sortFollowMangrove=label,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
 														})'
-														class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+														   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
 															<i class="fa-solid fa-arrow-down"></i>
 														</a>
 														@label
@@ -180,7 +178,7 @@
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=Helper.Key.sortASC, sortFollowMangrove=label,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=sortTypeIndividual, sortFollowIndividual=sortFollowIndividual
 														})'
-														class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+														   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
 															<i class="fa-solid fa-arrow-up"></i>
 														</a>
 													</span>
@@ -213,9 +211,9 @@
 											<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count())</td>
 											<td class="text-center">
 												<a href='@Url.Action("Page_Result", "Home", new { id = item.Id})'
-												target="_blank"
-												class="text_tree_hover">
-													<i class="fa-solid fa-link"></i>
+												   target="_blank"
+												   class="text_tree_hover">
+													<i class="fa-solid fa-eye"></i>
 												</a>
 											</td>
 										</tr>
@@ -228,8 +226,8 @@
 					<div class="have_paginate mb-3">
 						<div class="pagination not_paginate_normal py-1 d-flex justify-content-center">
 							<div class="pages_mangrove mangrove d-inline-flex flex-column justify-content-center align-items-center gap-1"
-							style="width: max-content"
-							totalpages="@Model.Mangrove.InfomationPaginate.TotalPages">
+								 style="width: max-content"
+								 totalpages="@Model.Mangrove.InfomationPaginate.TotalPages">
 								<!-- Page main -->
 								<div class="group_page d-flex justify-content-center align-items-center"></div>
 
@@ -240,7 +238,7 @@
 
 						<div class="text-center mt-4">
 							<a href='@Url.Action("ExportToExcel_Mangrove", "Statistical")'
-							class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+							   class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
 								<i class="fa-solid fa-file-excel"></i>
 								<span>@translate["label_xuat_excel"]</span>
 							</a>
@@ -257,7 +255,7 @@
 						<h5 class="mt-1 mb-3">@Helper.Func.FormatNumber(totalData_individual) @translate["label_ca_the"]</h5>
 
 						<select class="changeSelect individual px-2 py-1 h-100 outline_ccc border-none outline_tree_hover bg-white cursor-pointer text_black_hover text_body rounded-1"
-						asp-items="@selectlist_individual">
+								asp-items="@selectlist_individual">
 						</select>
 					</nav>
 
@@ -288,7 +286,7 @@
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=sortTypeMangrove, sortFollowMangrove=sortFollowMangrove,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=Helper.Key.sortDESC, sortFollowIndividual=label
 														})'
-														class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
+														   class="icon_sort icon_sort_desc btn_loading" title="@labelDESC">
 															<i class="fa-solid fa-arrow-down"></i>
 														</a>
 														@label
@@ -297,7 +295,7 @@
 															pageSizeMangrove=pageSizeMangrove, currentPageMangrove=currentPageMangrove, sortTypeMangrove=sortTypeMangrove, sortFollowMangrove=sortFollowMangrove,
 															pageSizeIndividual=pageSizeIndividual, currentPageIndividual=currentPageIndividual, sortTypeIndividual=Helper.Key.sortASC, sortFollowIndividual=label
 														})'
-														class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
+														   class="icon_sort icon_sort_asc btn_loading" title="@labelASC">
 															<i class="fa-solid fa-arrow-up"></i>
 														</a>
 													</span>
@@ -325,9 +323,9 @@
 
 											<td class="text-center">
 												<a href='@Url.Action("Page_Individual", "Home", new { id = item.Id })'
-												target="_blank"
-												class="text_tree_hover">
-													<i class="fa-solid fa-link"></i>
+												   target="_blank"
+												   class="text_tree_hover">
+													<i class="fa-solid fa-eye"></i>
 												</a>
 											</td>
 										</tr>
@@ -340,8 +338,8 @@
 					<div class="have_paginate mb-3">
 						<div class="pagination not_paginate_normal py-1 d-flex justify-content-center">
 							<div class="pages_individual individual d-inline-flex flex-column justify-content-center align-items-center gap-1"
-							style="width: max-content"
-							totalpages="@Model.Individual.InfomationPaginate.TotalPages">
+								 style="width: max-content"
+								 totalpages="@Model.Individual.InfomationPaginate.TotalPages">
 								<!-- Page main -->
 								<div class="group_page d-flex justify-content-center align-items-center"></div>
 
@@ -352,7 +350,7 @@
 
 						<div class="text-center mt-4">
 							<a href='@Url.Action("ExportToExcel_Individual", "Statistical")'
-							class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
+							   class="h-100 px-3 py-2 text-white bg-tree outline-none border-none rounded-1 time_delay_500ms bg_black_hover">
 								<i class="fa-solid fa-file-excel"></i>
 								<span>@translate["label_xuat_excel"]</span>
 							</a>

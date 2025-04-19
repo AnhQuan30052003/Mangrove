@@ -19,8 +19,16 @@
 				<i class="fa-solid fa-list"></i>
 				<span class="hidden_mobile">
 					@translate["label_tro_ve"]
-				</span>
+				</span> 
 			</button>
+
+			<a href="@Url.Action("Page_Index", "Home")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-warning opacity_hover btn_loading">
+				<i class="fa-solid fa-eye"></i>
+				<span class="hidden_mobile">
+					@translate["label_hien_thi"]
+				</span>
+			</a>
 
 			<a href="@Url.Action("Page_IndexAdmin_Edit", "Home")"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
@@ -85,6 +93,14 @@
 					@translate["label_tro_ve"]
 				</span>
 			</button>
+
+			<a href="@Url.Action("Page_Index", "Home")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-warning opacity_hover btn_loading">
+				<i class="fa-solid fa-eye"></i>
+				<span class="hidden_mobile">
+					@translate["label_hien_thi"]
+				</span>
+			</a>
 
 			<a href="@Url.Action("Page_IndexAdmin_Edit", "Home")"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">

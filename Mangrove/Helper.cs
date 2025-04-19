@@ -28,7 +28,7 @@ public class Helper {
 		public static string qrImg = "wwwroot/img/qr-img";
 		public static string distributionImg = "wwwroot/img/distribution-map-img";
 		public static string temptImg = "wwwroot/img/temp-img";
-		public static string sponImg = "wwwroot/img/spon-img";		
+		public static string sponImg = "wwwroot/img/spon-img";
 	}
 
 	// Variable
@@ -501,7 +501,7 @@ public class Helper {
 
 		// Có độ dài từ x -> y
 		public static void TextLength(string? value, int minLength, int maxLength, bool allowNull = false) {
-			if (value == null) {
+			if (string.IsNullOrEmpty(value)) {
 				NotEmpty(value, allowNull);
 				return;
 			}
@@ -525,7 +525,7 @@ public class Helper {
 
 		// Có độ dài từ x ký tự
 		public static void TextLength(string? value, int length, bool allowNull = false) {
-			if (value == null) {
+			if (string.IsNullOrEmpty(value)) {
 				NotEmpty(value, allowNull);
 				return;
 			}
@@ -545,7 +545,7 @@ public class Helper {
 		// Check email có hợp lệ
 		public static void IsEmail(string? value, bool allowNull = false) {
 			try {
-				if (value == null) {
+				if (string.IsNullOrEmpty(value)) {
 					NotEmpty(value, allowNull);
 					return;
 				}

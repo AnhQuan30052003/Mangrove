@@ -10,7 +10,7 @@
 }
 
 <section class="module_auth w-100 d-flex align-items-center justify-content-center" style="min-height: 85vh;">
-	<div class="container d-flex align-items-center justify-content-center">
+	<div class="container py-3 d-flex align-items-center justify-content-center">
 		<form action="" method="post"
 			  class="col-12 col-sm-8 col-xl-5 py-4 px-3 rounded-1 bg-form width_auth">
 			<h3 class="text-center mb-3 text-black">@translate["label_thong_tin_quan_tri"]</h3>
@@ -42,12 +42,12 @@
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center gap-3 justify-content-sm-between align-items-center mt-5">
 				<a href='@Url.Action("Page_AdminInformation_View", "Admin")'
-				   class="text-tree_hover border-none bg-white text_body px-4 py-2 rounded-1 opacity_hover btn_loading outline">
+				   class="text-tree_hover border-none bg-white text_body px-4 px-xl-3 py-2 rounded-1 opacity_hover btn_loading outline">
 					<i class="fa-solid fa-eye"></i>
 					<span class="hidden_mobile">@translate["label_xem"]</span>
 				</a>
 				<button type="submit"
-						class="btn_auth bg-tree text-white bg_black_hover time_delay_500ms btn_loading text-center"
+						class="py-2 outline_none border-none bg-tree text-white bg_black_hover time_delay_500ms btn_loading text-center px-4 rounded-1"
 						href='@Url.Action("Page_AdminInformation_Edit", "Admin")'>
 					<i class="fa-solid fa-floppy-disk"></i>
 					<span class="hidden_mobile">@translate["label_luu"]</span>

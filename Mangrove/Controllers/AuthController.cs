@@ -20,7 +20,7 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Login(string username, string password) {
+		public async Task<IActionResult> Page_Login(string username = "", string password = "") {
 			username = username.Trim();
 			password = password.Trim();
 
@@ -88,7 +88,7 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_ForgottenPassword_Find(string email) {
+		public async Task<IActionResult> Page_ForgottenPassword_Find(string email = "") {
 			email = email.Trim();
 			ViewData["Email"] = email;
 			bool isEN = Helper.Func.IsEnglish();
@@ -169,7 +169,7 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_ForgottenPassword_Input(string email, string codeNumber, string newPass, string newPassConfirm) {
+		public async Task<IActionResult> Page_ForgottenPassword_Input(string email = "", string codeNumber = "", string newPass = "", string newPassConfirm = "") {
 			codeNumber = codeNumber.Trim();
 			newPass = newPass.Trim();
 			newPassConfirm = newPassConfirm.Trim();
