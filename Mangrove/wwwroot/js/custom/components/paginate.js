@@ -25,14 +25,12 @@ function whenClickOption() {
 					continue;
 				}
 
-				const theads = document.querySelectorAll(".head_sort");
-				const theadLast = theads[theads.length - 1];
+				const posItem = item.getBoundingClientRect();
+				const td = item.closest("td");
+				const posTd = td.getBoundingClientRect();
 
-				listOption.style.right = theadLast.clientWidth + "px";
-
-				//if (i > options.length / 2) {
-				//	listOption.style.top = "-200px";
-				//}
+				listOption.style.top = posItem.top + "px";
+				listOption.style.right = posTd.width + "px";
 				listOption.classList.toggle("d-none");
 			}
 		});
@@ -41,3 +39,10 @@ function whenClickOption() {
 }
 whenClickOption();
 
+// Ẩn list_option khi click ra ngoài hoặc là scroll page
+document.addEventListener("scroll", function () {
+	const listOptions = document.querySelectorAll(".list_option");
+	listOptions.forEach((listOption) => {
+		listOption.classList.add("d-none");
+	});
+});

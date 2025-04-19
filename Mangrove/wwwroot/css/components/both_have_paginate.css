@@ -1,11 +1,8 @@
 ﻿.have_paginate .list_option {
-	position: absolute;
+	position: fixed;
 	width: max-content;
 	min-width: 120px;
 	color: black;
-/*	top: -20px;*/
-	right: 6%;
-	bottom: 0;
 	z-index: 1;
 }
 
