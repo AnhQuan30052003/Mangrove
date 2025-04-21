@@ -143,10 +143,6 @@
 }
 
 @media (width > 1200px) {
-    :root {
-        --size_logo: 70px;
-    }
-
     .list_menu .list_item > li {
         position: relative;
     }
