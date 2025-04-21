@@ -11,8 +11,10 @@
 
 <section class="module_auth w-100 d-flex align-items-center justify-content-center" style="min-height: 85vh;">
 	<div class="container py-3 d-flex align-items-center justify-content-center">
-		<form action="" method="post"
-			  class="col-12 col-sm-8 col-xl-5 py-4 px-3 rounded-1 bg-form width_auth">
+		<form action="" method="post" class="col-12 col-sm-8 col-xl-5 py-4 px-3 rounded-1 bg-form width_auth">
+			<input asp-for="@Model.Id" type="text" hidden />
+			<input asp-for="@Model.Password" type="text" hidden />
+
 			<h3 class="text-center mb-3 text-black">@translate["label_thong_tin_quan_tri"]</h3>
 
 			<!-- Username -->

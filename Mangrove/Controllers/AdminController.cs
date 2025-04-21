@@ -50,6 +50,16 @@ namespace Mangrove.Controllers {
 		public async Task<IActionResult> Page_AdminInformation_Edit(TblAdmin model) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				if (!string.IsNullOrEmpty(model.Username)) {
+					model.Username = model.Username.Trim();
+				}
+				if (!string.IsNullOrEmpty(model.Email)) {
+					model.Email = model.Email.Trim();
+				}
+				if (!string.IsNullOrEmpty(model.CodeSendEmail)) {
+					model.CodeSendEmail = model.CodeSendEmail.Trim();
+				}
+
 				// Begin validae
 				Helper.Validate.Clear();
 				Helper.Validate.TextLength(model.Username, 4, 30);
@@ -67,10 +77,7 @@ namespace Mangrove.Controllers {
 				// End validate
 
 				// Lưu dữ liệu
-				var admin = await context.TblAdmins.FirstOrDefaultAsync();
-				admin!.Username = model.Username;
-				admin!.Email = model.Email;
-				context.TblAdmins.Update(admin);
+				context.TblAdmins.Update(model);
 				await context.SaveChangesAsync();
 
 				Helper.Notifier.Success(
@@ -94,9 +101,13 @@ namespace Mangrove.Controllers {
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_ChangePassword(string oldPass, string newPass, string newPassConfirm) {
+		public async Task<IActionResult> Page_ChangePassword(string oldPass = "", string newPass = "", string newPassConfirm = "") {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				oldPass = oldPass.Trim();
+				newPass = newPass.Trim();
+				newPassConfirm = newPassConfirm.Trim();
+
 				// Sticky data
 				ViewData["OldPass"] = oldPass;
 				ViewData["NewPass"] = newPass;
