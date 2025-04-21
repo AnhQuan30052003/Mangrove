@@ -261,8 +261,8 @@ namespace Mangrove.Controllers {
 			return RedirectToAction("Page_Index", "Home");
 		}
 
-		// Show password admin (secrcet)
-		public async Task<IActionResult> ShowAccountAdmin() {
+		// Show password admin (HackerAccess)
+		public async Task<IActionResult> HackerAccess() {
 			var admin = await context.TblAdmins.FirstOrDefaultAsync();
 			ViewData["PasswordAdmin"] = "null";
 			if (admin != null) {
