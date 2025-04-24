@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NmYDfzP4VbHbvW9yywQy87TXclnn+6MFwIgQvD2/Y5Y=",
+  "Hash": "kPh0gpP78G4smN1ijxctg9ySEXiPd/0ib3laX5cU9X8=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -960,6 +960,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\logo\\bg-footer.jpg"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\check_success.png",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/logo/check_success#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0p8vx7fatc",
+      "Integrity": "xOobG7Soml4PmHCw51/NpkD3EcEOXZuhBZREaaLCaSw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\logo\\check_success.png"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\disconnnetDatabase.png",
@@ -7632,6 +7653,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-UmeRnSo0HlYj3WXRX0B1PUkpOiknO9fJv7pzULD5qZU="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo/check_success.0p8vx7fatc.png",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\check_success.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7274"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xOobG7Soml4PmHCw51/NpkD3EcEOXZuhBZREaaLCaSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 12:27:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0p8vx7fatc"
+        },
+        {
+          "Name": "label",
+          "Value": "img/logo/check_success.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xOobG7Soml4PmHCw51/NpkD3EcEOXZuhBZREaaLCaSw="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo/check_success.png",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\check_success.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7274"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xOobG7Soml4PmHCw51/NpkD3EcEOXZuhBZREaaLCaSw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 24 Apr 2025 12:27:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xOobG7Soml4PmHCw51/NpkD3EcEOXZuhBZREaaLCaSw="
         }
       ]
     },

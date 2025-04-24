@@ -6,6 +6,8 @@ using System.Net.Mail;
 using System.Net;
 using QRCoder;
 using Microsoft.Identity.Client;
+using Mangrove.Data;
+using Mangrove.Controllers;
 
 public class Helper {
 	private static IHttpContextAccessor? httpContextAccessor;
@@ -563,8 +565,19 @@ public class Helper {
 
 	// Email
 	public static class Email {
-		// Lấy Form Html
-		public static string CreateFormHtml(string code) {
+		// Lấy Form Html Reset Password
+		public static string CreateFormHtmlResetPassword(string code) {
+			bool isEN = Func.IsEnglish();
+
+			string schoolName = isEN ? "Nha Trang University" : "Đại học Nha Trang";
+			string instituteName = isEN ? "Institute of Biotechnology & Environment" : "Viện Công Nghệ Sinh Học & Môi Trường";
+			string title = isEN ? "Password Recovery" : "Khôi phục mật khẩu";
+			string hello = isEN ? "Hello Admin" : "Xin chào Quản trị viên";
+			string resetLabel = isEN ? "your rebuild code is" : "mã tạo lại của bạn là";
+			string remark = isEN ? "Remark" : "Lưu ý";
+			string timeText = isEN ? "The value of the code is limited to" : "Giá trị của mã chỉ có thời hạn là";
+			string time = isEN ? "5 minute" : "5 phút";
+
 			string html = @$"
 				<html>
 
@@ -574,30 +587,28 @@ public class Helper {
 
 				<body style='overflow-x: hidden; margin: 0;'>
 					<div class='mod_email'
-						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif;'>
+						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: " + "'Oswald', sans-serif;'>" + @$"
 						<div class='email_header' style='min-height: 60px; background-color: white; padding: 10px 5px; margin: 0;'>
 							<div class='logo' style='display: inline; float: left;'>
-								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
+								<img style='width: 60px; height: 60px;' src='{Link.hosting}/img/logo/logo.ico' alt=''>
 							</div>
 
 							<div class='info' style='display: inline; padding-left: 10px; float: left;'>
-								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>Nha Trang University</h3>
-								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>
-									Institute of Biotechnology & Environment
-								</p>
+								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>{schoolName}</h3>
+								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>{instituteName}</p>
 							</div>
 						</div>
 
 						<div class='email_body' style='padding: 10px; max-width: 500px; margin: 0 auto;'>
 							<div class='email_title' style='text-align: center;'>
 								<img style='width: 100px; height: 100px; margin: 30px 0;'
-									src='https://cdn-icons-png.flaticon.com/512/6146/6146587.png' alt=''>
-								<h2 style='text-align: center; margin: 0;'>Password Recovery</h2>
+									src='{Link.hosting}/img/logo/password_recovery.png' alt=''>
+								<h2 style='text-align: center; margin: 0;'>{title}</h2>
 							</div>
 
 							<div class='email_content' style='margin: 30px 0; text-align: center;'>
 								<p style='display: inline-block; margin: 0 5px 10px 0;'>
-									<b>Hello Admin</b>, your rebuild code is
+									<b>{hello}</b>, {resetLabel}
 								</p>
 								<p
 									style='display: inline-block; padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; margin: 0;'>
@@ -606,45 +617,75 @@ public class Helper {
 							</div>
 
 							<div class='note'>
-								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Remark:</p>
-								<p>The value of the code is limited to <i style='text-decoration: underline;'>5 minute</i>.</p>
+								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>{remark}:</p>
+								<p>{timeText} <i style='text-decoration: underline;'>{time}</i>.</p>
 							</div>
 						</div>
 					</div>
+				</body>
 
+				</html>
+			";
+
+			return html;
+		}
+
+		// Lấy Form Html Notifier Status Update Admin Information
+		public static string CreateFormHtmlNotifierStatusAdminInformatoin(string username = "", string email = "", string codeRecret = "") {
+			bool isEN = Func.IsEnglish();
+			DateTime now = DateTime.Now;
+
+			string schoolName = isEN ? "Nha Trang University" : "Đại học Nha Trang";
+			string instituteName = isEN ? "Institute of Biotechnology & Environment" : "Viện Công Nghệ Sinh Học & Môi Trường";
+			string title = isEN ? "Update admin information successfully" : "Cập nhật thông tin quản trị thành công";
+			string hello = isEN ? "Hello Admin" : "Xin chào Quản trị viên";
+			string labelHello = isEN ? $"on {now.ToString()} you updated admin information" : $"vào ngày {now.ToString()} bạn đã cập nhật thông tin quản trị viên";
+			string keyLabel = isEN ? "Secret key" : "Khoá bí mật";
+			string usernameLabel = isEN ? "Username" : "Tên người dùng";
+
+			string html = @$"
+				<html>
+
+				<head>
+					<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0'>
+				</head>
+
+				<body style='overflow-x: hidden; margin: 0;'>
 					<div class='mod_email'
-						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: 'Oswald', sans-serif;'>
+						style='background-color: #eaeff1 !important; font-size: 18px; color: #707070; font-family: " + "'Oswald', sans-serif;'>" + $@"
 						<div class='email_header' style='min-height: 60px; background-color: white; padding: 10px 5px; margin: 0;'>
 							<div class='logo' style='display: inline; float: left;'>
-								<img style='width: 60px; height: 60px;' src='https://mangrove.runasp.net/img/logo/logo.png' alt=''>
+								<img style='width: 60px; height: 60px;' src='{Link.hosting}/img/logo/logo.ico' alt=''>
 							</div>
 
 							<div class='info' style='display: inline; padding-left: 10px; float: left;'>
-								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>Trường Đại học Nha Trang</h3>
-								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>Viện Công Nghệ Sinh Học & Môi Trường</p>
+								<h3 style='font-weight: bold; padding: 3px 0; margin: 0;'>{schoolName}</h3>
+								<p style='font-weight: bold; padding: 5px 0 10px 0; margin: 0;'>{instituteName}</p>
 							</div>
 						</div>
 
-						<div class='email_body' style='padding: 10px; max-width: 500px; margin: 0 auto;'>
+						<div class='email_body' style='padding: 10px; max-width: 600px; margin: 0 auto;'>
 							<div class='email_title' style='text-align: center;'>
 								<img style='width: 100px; height: 100px; margin: 30px 0;'
-									src='https://cdn-icons-png.flaticon.com/512/6146/6146587.png' alt=''>
-								<h2 style='text-align: center; margin: 0;'>Khôi phục mật khẩu</h2>
+									src='{Link.hosting}/img/logo/check_success.png' alt=''>
+								<h2 style='text-align: center; margin: 0;'>{title}</h2>
 							</div>
 
-							<div class='email_content' style='margin: 30px 0; text-align: center;'>
-								<p style='display: inline-block; margin: 0 5px 10px 0;'>
-									<b>Xin chào Quản trị viên</b>, mã tạo lại của bạn là
+							<div class='email_content' style='margin: 30px 0;'>
+								<p style='line-height: 30px;'>
+									<b>{hello}</b>, {labelHello}
 								</p>
-								<p
-									style='display: inline-block; padding: 15px 20px; background-color: #f8f9fa; border-radius: 10px; margin: 0;'>
-									{code}
-								</p>
-							</div>
 
-							<div class='note'>
-								<p style='color: red; text-decoration: underline; margin-bottom: 10px;'>Lưu ý:</p>
-								<p>Giá trị của mã chỉ có thời hạn là <i style='text-decoration: underline;'>5 phút</i>.</p>
+								<p>{usernameLabel}: <b><i>{username}</i></b></p>
+
+								<p>Email: <b><i>{email}</i></b></p>
+
+								<p>{keyLabel}:
+									<span
+										style='display: inline-block; padding: 10px; background-color: #f8f9fa; border-radius: 10px; margin: 0 5px;'>
+										<b><i>{codeRecret.Trim()}</i></b>
+									</span>
+								</p>
 							</div>
 						</div>
 					</div>

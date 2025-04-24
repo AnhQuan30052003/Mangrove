@@ -8,7 +8,7 @@ using Microsoft.Identity.Client;
 
 namespace Mangrove.Controllers {
 	public class AuthController : Controller {
-		private readonly MangroveContext context;		
+		private readonly MangroveContext context;
 
 		public AuthController(MangroveContext context) {
 			this.context = context;
@@ -57,7 +57,7 @@ namespace Mangrove.Controllers {
 							Helper.Variable.cookieName
 						)
 					);
-					await HttpContext.SignInAsync(Helper.Variable.cookieName, principal);					
+					await HttpContext.SignInAsync(Helper.Variable.cookieName, principal);
 
 					Helper.Notifier.Success(
 						isEN ? "Login successfully. Redirecting..." : "Đăng nhập thành công. Đang chuyển hướng...",
@@ -89,11 +89,13 @@ namespace Mangrove.Controllers {
 		}
 		[HttpPost]
 		public async Task<IActionResult> Page_ForgottenPassword_Find(string email = "") {
+			bool isEN = Helper.Func.IsEnglish();
 			email = email.Trim();
 			ViewData["Email"] = email;
-			bool isEN = Helper.Func.IsEnglish();
+
 			try {
 				// Begin validate
+				Helper.Validate.Clear();
 				Helper.Validate.IsEmail(email);
 
 				if (Helper.Validate.HaveError()) {
@@ -117,7 +119,7 @@ namespace Mangrove.Controllers {
 
 				// Tạo mã 6 số
 				string codeReset = Helper.Func.CreateCodeRandom(6);
-				
+
 				// Mã có tác dụng trong 5 phút
 				HttpContext.Response.Cookies.Append(
 					Helper.Key.resetPasswordSave,
@@ -136,8 +138,8 @@ namespace Mangrove.Controllers {
 				);
 
 				// Gửi email thông báo
-				string subject = "ADMIN - RESET PASSWORD | TẠO LẠI MẬT KHẨU.";
-				string body = Helper.Email.CreateFormHtml(codeReset);
+				string subject = isEN ? "RESET PASSOWRD" : "TẠO LẠI MẬT KHẨU";
+				string body = Helper.Email.CreateFormHtmlResetPassword(codeReset);
 				Helper.Email.SendAsync(admin.Email, admin.CodeSendEmail, admin.Email, subject, body);
 
 				// Setup thông báo thành công

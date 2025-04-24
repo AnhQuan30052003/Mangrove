@@ -1,4 +1,5 @@
-﻿using Mangrove.Data;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Mangrove.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -80,9 +81,13 @@ namespace Mangrove.Controllers {
 				context.TblAdmins.Update(model);
 				await context.SaveChangesAsync();
 
+				string subject = isEN ? "UPDATE ADMIN INFORMATION" : "CẬP NHẬT THÔNG TIN QUẢN TRỊ";
+				string body = Helper.Email.CreateFormHtmlNotifierStatusAdminInformatoin(model.Username, model.Email, model.CodeSendEmail);
+				Helper.Email.SendAsync(model.Email, model.CodeSendEmail, model.Email, subject, body);
 				Helper.Notifier.Success(
-					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
-					Helper.SetupNotifier.Timer.fastTime
+					isEN ? "The system will send an email notifying you of a successful update. If you do not receive the notification, please check your information again." 
+					: "Hệ thống sẽ gửi một email thông báo cập nhật thành công. Nếu không nhận được thông báo, vui lòng kiểm tra lại thông tin.",
+					Helper.SetupNotifier.Timer.midTime
 				);
 				return RedirectToAction("Page_AdminInformation_View");
 			}
