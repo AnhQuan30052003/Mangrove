@@ -21,7 +21,6 @@ builder.Services.AddAuthentication(Helper.Variable.cookieName)
 	options.Cookie.Name = Helper.Variable.cookieName;
 	options.LoginPath = "/SettingWebsite/Page_Error";
 	options.ExpireTimeSpan = TimeSpan.FromDays(Helper.Variable.timeLogin);
-	options.ExpireTimeSpan = TimeSpan.FromDays(Helper.Variable.timeLogin);
 	options.SlidingExpiration = true;
 });
 

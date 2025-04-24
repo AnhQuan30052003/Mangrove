@@ -37,9 +37,8 @@ public class Helper {
 		public static int maxItemImageIndividual = 20;
 		public static int maxStage = 5;
 
-		public static int timeSession = 365;
-		public static int timeLogin = 30;
-
+		public static double timeSession = 365;
+		public static double timeLogin = 365;
 
 		public static string cookieName = "ASP_Auth_Mangrove";
 
