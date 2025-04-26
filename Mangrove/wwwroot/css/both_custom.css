@@ -195,6 +195,10 @@ option {
 	outline: dashed 3px var(--greenPage) !important;
 }
 
+.text_tree {
+	color: var(--greenPage) !important;
+}
+
 @media (width <=1200px) {
 	.hidden_mobile {
 		display: none !important;

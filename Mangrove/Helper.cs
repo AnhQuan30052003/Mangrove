@@ -119,6 +119,10 @@ public class Helper {
 		// Cookie reset password
 		public static string resetPassword = "resetPassword";
 		public static string resetPasswordSave = "resetPasswordSave";
+
+		// Key show item map
+		public static string showGird = "showGrid";
+		public static string showList = "showList";
 	}
 
 	// Setup noifier

@@ -9,31 +9,132 @@
 	string _pv = Helper.Path.partialView;
 
 	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageDistribution, null);
+	string showType = ViewData["ShowType"] as string ?? Helper.Key.showList;
+	string textList = string.Empty;
+	string textGrid = string.Empty;
+	if (showType == Helper.Key.showList)
+	{
+		textList = "text_tree";
+	}
+	else
+	{
+		textGrid = "text_tree";
+	}
 }
 
+<style>
+	.list .box:hover p,
+	.grid .distance:hover p {
+		color: var(--greenPage);
+	}
+</style>
+
+<input type="text" hidden class="showType" data-content="@Helper.Key.showList" value="@showType" />
+
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
+
+<div class="container pb-2">
+	<div class="option_show d-flex justify-content-center gap-2 fw-bold">
+		<a href='@Url.Action("Page_Distribution", "Home", new { showType = Helper.Key.showList })'
+		   class="@textList btn_loading">
+			@translate["label_danh_sach"]
+		</a>
+
+		<span>|</span>
+
+		<a href='@Url.Action("Page_Distribution", "Home", new { showType = Helper.Key.showGird })'
+		   class="@textGrid btn_loading">
+			@translate["label_luoi"]
+		</a>
+	</div>
+</div>
 
 <section class="distribution_maps">
 	<div class="container py-2">
 		@{
 			int i = 1;
-			foreach (var item in Model)
+			if (showType == Helper.Key.showList)
 			{
-				<div class="box shadow-sm rounded-1 bg-white mb-4">
-					<div class="toggle_title mb-2 cursor-pointer position-sticky top-0" style="z-index: 2;">
-						<h6 class="p-2 bg-black text-white rounded-1">@translate["label_ban_do"] @(i++)</h6>
-					</div>
+				// Cho list view
+				<div class="list">
+					@foreach (var item in Model)
+					{
+						<div class="box shadow-sm rounded-1 bg-white mb-4">
+							<div class="toggle_title mb-2 cursor-pointer position-sticky top-0" style="z-index: 2;">
+								<h6 class="p-2 bg-black text-white rounded-1">@translate["label_ban_do"] @(i++)</h6>
+							</div>
 
-					<div class="info max-h-content min-height-lazy">
-						<img class="map-img w-100 click_show_image lazy-load"
-							 data-src="/img/distribution-map-img/@item.Image"
-							 alt="" />
-						<p class="text-center p-2 fw-bold">@item.Position</p>
-					</div>
+							<div class="info max-h-content min-height-lazy">
+								<img class="map-img w-100 click_show_image lazy-load"
+									 data-src="/img/distribution-map-img/@item.Image"
+									 alt="" />
+								<p class="text-center p-2 fw-bold">@item.Position</p>
+							</div>
+						</div>
+					}
+				</div>
+			}
+			else
+			{
+				// Cho grid view
+				<div class="grid d-flex flex-wrap align-items-stretch">
+					@foreach (var item in Model)
+					{
+						<div class="distance col-6 col-lg-4 p-2 my-1">
+							<div class="h-100 shadow-sm rounded-1 bg-white d-flex flex-column justify-content-between">
+								<div class="mb-2">
+									<h6 class="p-2 bg-black text-white rounded-1">@translate["label_ban_do"] @(i++)</h6>
+								</div>
+
+								<div class="min-height-lazy flex-grow-1 d-flex flex-column justify-content-between">
+									<img class="map-img w-100 click_show_image lazy-load flex-grow-1"
+										 data-src="/img/distribution-map-img/@item.Image"
+										 alt="" />
+									<p class="text-center p-2 fw-bold time_delay_500ms">@item.Position</p>
+								</div>
+							</div>
+						</div>
+					}
 				</div>
 			}
 		}
 	</div>
 </section>
 
+<div class="container">
+	<div class="option_show d-flex justify-content-center gap-2 fw-bold">
+		<a href='@Url.Action("Page_Distribution", "Home", new { showType = Helper.Key.showList })'
+		   class="@textList btn_loading">
+			@translate["label_danh_sach"]
+		</a>
+
+		<span>|</span>
+
+		<a href='@Url.Action("Page_Distribution", "Home", new { showType = Helper.Key.showGird })'
+		   class="@textGrid btn_loading">
+			@translate["label_luoi"]
+		</a>
+	</div>
+</div>
+
 @await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
+
+<script>
+	try {
+		const showType = document.querySelector(".showType");
+		const dataContent = showType.getAttribute("data-content");
+		const select_ex_co = document.querySelector(".select_ex_co");
+
+		select_ex_co.removeAttribute("disabled");
+		select_ex_co.classList.add("outline_tree_hover", "text_black_hover");
+		select_ex_co.style.opacity = "1";
+
+		if (showType.value != dataContent) {
+			select_ex_co.setAttribute("disabled", "disabled");
+			select_ex_co.classList.remove("outline_tree_hover", "text_black_hover");
+			select_ex_co.style.opacity = "0.5";
+		}
+	}
+	catch {}
+
+</script>

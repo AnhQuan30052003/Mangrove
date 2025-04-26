@@ -294,7 +294,11 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: phân bố
-		public async Task<IActionResult> Page_Distribution() {
+		public async Task<IActionResult> Page_Distribution(string showType = "") {
+			showType = showType.Trim();
+			showType = string.IsNullOrEmpty(showType) ? Helper.Key.showList : showType;
+			ViewData["ShowType"] = showType;
+
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var model = await context.TblDistributitons
