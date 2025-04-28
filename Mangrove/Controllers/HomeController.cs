@@ -161,8 +161,15 @@ namespace Mangrove.Controllers {
 				}
 
 				// Tăng view của cây
-				mangrove.View += 1;
-				await context.SaveChangesAsync();
+				string cookieIdView = $"Mangrove_{id}";
+				if (!Request.Cookies.ContainsKey(cookieIdView)) {
+					// Tăng View vì chưa xem
+					mangrove.View += 1;
+					await context.SaveChangesAsync();
+
+					// Sau đó đợi 10 phút mới cho trình duyệt cập nhật lại
+					HttpContext.Response.Cookies.Append(cookieIdView, "Viewed", new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMinutes(10) });
+				}
 
 				var model = new Mangrove_Client_VM {
 					Id = mangrove.Id,
@@ -207,8 +214,15 @@ namespace Mangrove.Controllers {
 				}
 
 				// Tăng View cho lần xem này
-				individual.View += 1;
-				await context.SaveChangesAsync();
+				string cookieIdView = $"Individual_{id}";
+				if (!Request.Cookies.ContainsKey(cookieIdView)) {
+					// Tăng View vì chưa xem
+					individual.View += 1;
+					await context.SaveChangesAsync();
+
+					// Sau đó đợi 10 phút mới cho trình duyệt cập nhật lại
+					HttpContext.Response.Cookies.Append(cookieIdView, "Viewed", new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMinutes(10) });
+				}
 
 				// Truy vấn giai đoạn và thông tin mỗi giai đoạn
 				List<Stage> listStages = new List<Stage>();
