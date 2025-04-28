@@ -2,6 +2,7 @@ using Mangrove.Controllers;
 using Mangrove.Data;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<SettingWebsiteController>();

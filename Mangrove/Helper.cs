@@ -31,6 +31,7 @@ public class Helper {
 		public static string distributionImg = "wwwroot/img/distribution-map-img";
 		public static string temptImg = "wwwroot/img/temp-img";
 		public static string sponImg = "wwwroot/img/spon-img";
+		public static string overviewImg = "wwwroot/img/overview-img";
 	}
 
 	// Variable
@@ -108,6 +109,7 @@ public class Helper {
 		public static string adminToPageInfo = "adminToPageInfo";
 		public static string adminToPageSettingWebsite = "adminToPageSettingWebsite";
 		public static string adminToPageHomePage = "adminToPageHomePage";
+		public static string adminToPageOverviewMangrove = "adminToPageOverviewMangrove";
 
 		public static string adminToPageListIndex = "adminToPageListIndex";
 		public static string adminToPageDelete = "adminToPageDelete";

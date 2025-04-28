@@ -519,5 +519,17 @@ namespace Mangrove.Controllers {
 				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 		}
+
+		// Thông tin chung
+		public async Task<IActionResult> Page_Overview_View() {
+			
+			return View();
+		}
+
+		// Thông tin chung
+		public async Task<IActionResult> Page_Overview_Edit() {
+			
+			return View();
+		}
 	}
 }

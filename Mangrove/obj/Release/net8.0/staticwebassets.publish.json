@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qUzslCIIp+6TVciWrmn/DmAofyCRKjHzXAJMuqnwS/s=",
+  "Hash": "cAta3BX+3d5YCYtpy+Lgw4wctaQsuUI1yo5AjYhJ2N8=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1086,6 +1086,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\logo\\password_recovery.png"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\ava den  tron.jpg",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/overview-img/ava den  tron#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vr2f2vq76g",
+      "Integrity": "NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\overview-img\\ava den  tron.jpg"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\avt_default.jpg",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/overview-img/avt_default#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hb3f90maoi",
+      "Integrity": "jUf7Nu27hs9txkzPK2t5MRaxkRVZEy80yG5ONPo4374=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\overview-img\\avt_default.jpg"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\qr-img\\QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png",
@@ -8187,6 +8229,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-pinBhUpxQBS4gF/ILsWRam0ZtsJlwXOzbNf7seGP+dk="
+        }
+      ]
+    },
+    {
+      "Route": "img/overview-img/ava den  tron.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\ava den  tron.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11601"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 08:55:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc="
+        }
+      ]
+    },
+    {
+      "Route": "img/overview-img/ava den  tron.vr2f2vq76g.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\ava den  tron.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11601"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 08:55:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vr2f2vq76g"
+        },
+        {
+          "Name": "label",
+          "Value": "img/overview-img/ava den  tron.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NcbG13MCqLqwq+gEqjK5i9ap6Kh0k+TGsUiIMX5Ornc="
+        }
+      ]
+    },
+    {
+      "Route": "img/overview-img/avt_default.hb3f90maoi.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\avt_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31547"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jUf7Nu27hs9txkzPK2t5MRaxkRVZEy80yG5ONPo4374=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 08:55:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hb3f90maoi"
+        },
+        {
+          "Name": "label",
+          "Value": "img/overview-img/avt_default.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jUf7Nu27hs9txkzPK2t5MRaxkRVZEy80yG5ONPo4374="
+        }
+      ]
+    },
+    {
+      "Route": "img/overview-img/avt_default.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\overview-img\\avt_default.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31547"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jUf7Nu27hs9txkzPK2t5MRaxkRVZEy80yG5ONPo4374=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 08:55:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jUf7Nu27hs9txkzPK2t5MRaxkRVZEy80yG5ONPo4374="
         }
       ]
     },

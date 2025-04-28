@@ -1,0 +1,118 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	ViewData["InfoPage"] = translate["label_tong_quan_thuc_vat_ngap_man"] + $" ({translate["label_duoc_chinh_sua"]})";
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+}
+
+<style>
+	#editor {
+		min-height: 600px;
+	}
+</style>
+
+<section class="overview_mangrove">
+	<div class="container py-2">
+		<form action="" method="post">
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center mt-2 gap-2">
+				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+					<i class="fa-solid fa-backward"></i>
+					<span class="hidden_mobile">
+						@translate["label_tro_ve"]
+					</span>
+				</button>
+
+				<a href='@Url.Action("Page_Overview_View", "Mangrove")'
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_xem"]
+					</span>
+				</a>
+
+				<button type="submit"
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">
+						@translate["label_luu"]
+					</span>
+				</button>
+			</div>
+
+			<!-- Content overview -->
+			<div class="frame_content mt-3">
+				<textarea name="contentCkEditor" id="editor" class="text_body p-1"></textarea>
+			</div>
+
+			<!-- Frame button -->
+			<div class="d-flex justify-content-center mt-3 mb-2 gap-2">
+				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+					<i class="fa-solid fa-backward"></i>
+					<span class="hidden_mobile">
+						@translate["label_tro_ve"]
+					</span>
+				</button>
+
+				<a href='@Url.Action("Page_Overview_View", "Mangrove")'
+				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="hidden_mobile">
+						@translate["label_xem"]
+					</span>
+				</a>
+
+				<button type="submit"
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+					<i class="fa-solid fa-floppy-disk"></i>
+					<span class="hidden_mobile">
+						@translate["label_luu"]
+					</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</section>
+
+<script>
+	ClassicEditor
+		.create(document.querySelector('#editor'), {
+			ckfinder: {
+				// 👉 Cho phép dùng Base64 để gắn ảnh vào bài viết
+				uploadUrl: '/CkEditor/Upload'
+			},
+			image: {
+				toolbar: [
+					'imageTextAlternative',
+					'imageStyle:full',
+					'imageStyle:side'
+				]
+			}
+		})
+		.then(editor => {
+			const editableElement = editor.ui.view.editable.element;
+			const minHeight = '600px';
+
+			// Hàm gán minHeight
+			const applyMinHeight = () => {
+				editableElement.style.minHeight = minHeight;
+			};
+
+			// Set ngay từ đầu
+			applyMinHeight();
+
+			// Gán lại khi focus / unfocus
+			editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
+				applyMinHeight();
+			});
+		})
+		.catch(error => {
+			console.error(error);
+		});
+</script>

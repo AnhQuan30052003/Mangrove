@@ -66,6 +66,7 @@
 								</span>
 							</div>
 							<ul class="dropdown_list rounded-1 overflow-hidden">
+								<a href='@Url.Action("Page_Overview_View", "Mangrove")' class="py-2 px-3 d-block downdown_item btn_loading" onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageOverviewMangrove)">@translate["label_tong_quan"]</a>
 								<a href='@Url.Action("Page_Index", "Mangrove")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_thanh_phan_loai"]</a>
 								<a href='@Url.Action("Page_Index", "Individual")' class="py-2 px-3 d-block downdown_item btn_loading">@translate["label_ca_the"]</a>
 							</ul>

@@ -1,0 +1,57 @@
+﻿@inject IStringLocalizer<Translate> translate
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = translate["label_thanh_phan_loai"];
+	ViewData["InfoPage"] = translate["label_tong_quan_thuc_vat_ngap_man"] + $" ({translate["label_chi_xem"]})";
+	ViewData["TypePage"] = "Page_Mangrove";
+
+	Layout = Helper.Path.layoutAdmin;
+	string pv = Helper.Path.partialView;
+}
+
+<section class="overview_mangrove">
+	<div class="container py-2">
+		<!-- Frame button -->
+		<div class="d-flex justify-content-center mt-2 gap-2">
+			<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+					class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+				<i class="fa-solid fa-backward"></i>
+				<span class="hidden_mobile">
+					@translate["label_tro_ve"]
+				</span>
+			</button>
+
+			<a href="@Url.Action("Page_Overview_Edit", "Mangrove")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+				<i class="fas fa-edit"></i>
+				<span class="hidden_mobile">
+					@translate["label_sua"]
+				</span>
+			</a>
+		</div>
+
+		<!-- Content overview -->
+		<div class="frame_content mt-3 d-none">
+			<textarea name="contentCkEditor" id="editor" class="text_body p-1"></textarea>
+		</div>
+
+		<!-- Frame button -->
+		<div class="d-flex justify-content-center my-2 gap-2 d-none">
+			<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+					class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
+				<i class="fa-solid fa-backward"></i>
+				<span class="hidden_mobile">
+					@translate["label_tro_ve"]
+				</span>
+			</button>
+
+			<a href="@Url.Action("Page_Overview_Edit", "Mangrove")"
+			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+				<i class="fas fa-edit"></i>
+				<span class="hidden_mobile">
+					@translate["label_sua"]
+				</span>
+			</a>
+		</div>
+	</div>
+</section>
