@@ -20,7 +20,7 @@
 			<!-- Username -->
 			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
 				<i class="fa-solid fa-user col-1 text-center"></i>
-				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Username" />
+				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Username" placeholder="@translate["label_ten_nguoi_dung"]" />
 				<i class="fa-solid fa-lock-open col-1 text-center"></i>
 			</div>
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
@@ -28,15 +28,15 @@
 			<!-- Email -->
 			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
 				<i class="fa-solid fa-envelope col-1 text-center"></i>
-				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Email" />
+				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.Email" placeholder="Email" />
 				<i class="fa-solid fa-lock-open col-1 text-center"></i>
 			</div>
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
 
-			<!-- Key application -->
+			<!-- Application key -->
 			<div class="frame_password d-flex justify-content-center align-items-center bg-white mt-3 rounded-1 outline_tree_hover">
 				<i class="fa-solid fa-key col-1 text-center"></i>
-				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.CodeSendEmail" />
+				<input class="flex-grow-1 border-none py-2 outline-none text_body" asp-for="@Model.CodeSendEmail" placeholder="@translate["label_khoa_ung_dung"]" />
 				<i class="fa-solid fa-lock-open col-1 text-center"></i>
 			</div>
 			<p class="text-danger small_font">@Helper.Validate.ShowError()</p>

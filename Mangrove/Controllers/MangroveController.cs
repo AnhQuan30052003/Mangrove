@@ -129,6 +129,8 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.EcologyVi);
 				Helper.Validate.NotEmpty(model.UseEn);
 				Helper.Validate.NotEmpty(model.UseVi);
+				Helper.Validate.MaxLength(model.TitleDistributionEn, 256);
+				Helper.Validate.MaxLength(model.TitleDistributionVi, 256);
 				Helper.Validate.MaxLength(model.DistributionEn, 256);
 				Helper.Validate.MaxLength(model.DistributionVi, 256);
 				Helper.Validate.MaxLength(model.ConservationStatusEn, 256);
@@ -295,6 +297,8 @@ namespace Mangrove.Controllers {
 				Helper.Validate.NotEmpty(model.EcologyVi);
 				Helper.Validate.NotEmpty(model.UseEn);
 				Helper.Validate.NotEmpty(model.UseVi);
+				Helper.Validate.MaxLength(model.TitleDistributionEn, 256);
+				Helper.Validate.MaxLength(model.TitleDistributionVi, 256);
 				Helper.Validate.MaxLength(model.DistributionEn, 256);
 				Helper.Validate.MaxLength(model.DistributionVi, 256);
 				Helper.Validate.MaxLength(model.ConservationStatusEn, 256);
@@ -422,6 +426,7 @@ namespace Mangrove.Controllers {
 					Use = isEN ? item.UseEn : item.UseVi,
 					Morphology = isEN ? item.MorphologyEn : item.MorphologyVi,
 					Ecology = isEN ? item.EcologyEn : item.EcologyVi,
+					TitleDistribution = (isEN ? item.TitleDistributionEn : item.TitleDistributionVi) ?? string.Empty,
 					Distribution = isEN ? item.DistributionEn : item.DistributionVi,
 					ConservationStatus = isEN ? item.ConservationStatusEn : item.ConservationStatusVi,
 					View = item.View,

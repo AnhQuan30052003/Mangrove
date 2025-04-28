@@ -17,6 +17,9 @@
 		  method="get"
 		  action="@Url.Action("Page_Index", Model.Controller)">
 
+		<input type="text" hidden name="sortType" value="@Model.sortType" />
+		<input type="text" hidden name="sortFollow" value="@Model.sortFollow" />
+
 		<div class="form_input flex-grow-1 col-xl-5 flex-xl-grow-0 bg-white border green_effect d-flex align-items-center justify-content-center gap-1 rounded-1 overflow-hidden"
 			 style="padding-left: 10px;">
 			<i id="icon-s" class="fa fa-search"></i>
@@ -34,7 +37,9 @@
 				asp-items="@Model.SelectListPageSize">
 		</select>
 
-		<button class="btn_search nav_btn rounded-1 border-none time_delay_500ms d-flex align-items-center justify-content-around outline_tree_hover bg_transparent_hover text_black_hover btn_loading">
+		<button type="submit"
+				class="btn_search nav_btn rounded-1 border-none time_delay_500ms
+						d-flex align-items-center justify-content-around outline_tree_hover bg_transparent_hover text_black_hover btn_loading">
 			<i class="fa fa-search"></i>
 			@translate["label_tim"]
 		</button>

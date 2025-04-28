@@ -32,7 +32,7 @@
 									<td class="text-center">@(stt++)</td>
 									<td>@(isEN ? item.NameEn : item.NameVi)</td>
 									<td>@(isEN ? item.CommonNameEn : item.CommonNameVi)</td>
-									<td>@item.ScientificName</td>
+									<td class="fst-italic">@item.ScientificName</td>
 									<td>@item.Familia</td>
 									<td class="text-center">@Helper.Func.FormatNumber(item.TblIndividuals.Count())</td>
 									<td class="text-center">@item.UpdateLast.ToString()</td>

@@ -206,6 +206,12 @@ public partial class MangroveContext : DbContext
             entity.Property(e => e.ScientificName)
                 .HasMaxLength(256)
                 .HasColumnName("_scientificName");
+            entity.Property(e => e.TitleDistributionEn)
+                .HasMaxLength(256)
+                .HasColumnName("_titleDistributionEN");
+            entity.Property(e => e.TitleDistributionVi)
+                .HasMaxLength(256)
+                .HasColumnName("_titleDistributionVI");
             entity.Property(e => e.UpdateLast)
                 .HasColumnType("datetime")
                 .HasColumnName("_updateLast");

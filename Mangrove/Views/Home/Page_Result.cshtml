@@ -56,7 +56,7 @@
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">@translate["label_ten_khoa_hoc"]:</span>
-							<span>@Model.ScientificName</span>
+							<span class="fst-italic">@Model.ScientificName</span>
 						</p>
 						<p class="d-flex justify-content-between d-sm-block">
 							<span class="space_word fw-bold">@translate["label_ho"]:</span>
@@ -102,7 +102,7 @@
 
 			<div class="info d-flex flex-wrap">
 				<div class="conservation_status_info p-2 col-12 col-sm-6">
-					<p class="fw-bold">@translate["label_phan_bo_phia_bac"]:</p>
+					<p class="fw-bold">@Model.TitleDistribution:</p>
 					<p>@Html.Raw(Helper.Func.Show(Model.Distribution))</p>
 				</div>
 

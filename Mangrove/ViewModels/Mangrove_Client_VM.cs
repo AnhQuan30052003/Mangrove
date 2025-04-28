@@ -9,6 +9,7 @@
 		public string Use { get; set; } = null!;
 		public string Morphology { get; set; } = null!;
 		public string Ecology { get; set; } = null!;
+		public string TitleDistribution { get; set; } = null!;
 		public string Distribution { get; set; } = null!;
 		public string ConservationStatus { get; set; } = null!;
 		public long View { get; set; }

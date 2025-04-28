@@ -88,6 +88,8 @@ create table tblMangrove
     _ecologyVI nvarchar(max) not null,
     _ecologyEN nvarchar(max) not null,
 
+    _titleDistributionVI nvarchar(256) null,
+    _titleDistributionEN nvarchar(256) null,
     _distributionVI nvarchar(256) not null,
     _distributionEN nvarchar(256) not null,
 

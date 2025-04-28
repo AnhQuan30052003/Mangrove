@@ -302,6 +302,18 @@
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de_phan_bo"] (@translate["label_tieng_anh"])</small>
+						<input type="text" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.TitleDistributionEn" value="Distribution - in northern of Khanh Hoa province" />
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+					</div>
+
+					<div class="add_content_item col-12 col-lg-6 py-2 pl-10">
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de_phan_bo"] (@translate["label_tieng_viet"])</small>
+						<input type="text" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.TitleDistributionVi" value="Phân bố - Phía Bắc Khánh Hoà" />
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+					</div>
+
+					<div class="add_content_item col-12 col-lg-6 py-2 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_phan_bo"] (@translate["label_tieng_anh"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.DistributionEn" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>

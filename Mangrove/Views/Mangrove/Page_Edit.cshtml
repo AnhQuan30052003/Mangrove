@@ -269,6 +269,18 @@
 
 				<div class="info px-2 add_content d-flex flex-wrap justify-content-lg-between">
 					<div class="add_content_item col-12 col-lg-6 py-2 m-lg-0 pr-10">
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de_phan_bo"] (@translate["label_tieng_anh"])</small>
+						<input type="text" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.TitleDistributionEn" />
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+					</div>
+
+					<div class="add_content_item col-12 col-lg-6 py-2 m-lg-0 pl-10">
+						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_tieu_de_phan_bo"] (@translate["label_tieng_viet"])</small>
+						<input type="text" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.TitleDistributionVi" />
+						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+					</div>
+
+					<div class="add_content_item col-12 col-lg-6 py-2 m-lg-0 pr-10">
 						<small class="mb-1 d-block font-small"><small class="text-danger">✶</small>@translate["label_phan_bo"] (@translate["label_tieng_anh"])</small>
 						<textarea class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" asp-for="@Model.DistributionEn" cols="30" rows="3"></textarea>
 						<p class="text-danger small_font">@Helper.Validate.ShowError()</p>

@@ -45,5 +45,9 @@ public partial class TblMangrove
 
     public DateTime UpdateLast { get; set; }
 
+    public string? TitleDistributionVi { get; set; }
+
+    public string? TitleDistributionEn { get; set; }
+
     public virtual ICollection<TblIndividual> TblIndividuals { get; set; } = new List<TblIndividual>();
 }

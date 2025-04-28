@@ -644,7 +644,7 @@ public class Helper {
 			string title = isEN ? "Update admin information successfully" : "Cập nhật thông tin quản trị thành công";
 			string hello = isEN ? "Hello Admin" : "Xin chào Quản trị viên";
 			string labelHello = isEN ? $"on {now.ToString()} you updated admin information" : $"vào ngày {now.ToString()} bạn đã cập nhật thông tin quản trị viên";
-			string keyLabel = isEN ? "Secret key" : "Khoá bí mật";
+			string keyLabel = isEN ? "Application key" : "Khoá ứng dụng";
 			string usernameLabel = isEN ? "Username" : "Tên người dùng";
 
 			string html = @$"

@@ -174,6 +174,7 @@ namespace Mangrove.Controllers {
 					Use = isEN ? mangrove.UseEn : mangrove.UseVi,
 					Morphology = isEN ? mangrove.MorphologyEn : mangrove.MorphologyVi,
 					Ecology = isEN ? mangrove.EcologyEn : mangrove.EcologyVi,
+					TitleDistribution = (isEN ? mangrove.TitleDistributionEn : mangrove.TitleDistributionVi) ?? string.Empty,
 					Distribution = isEN ? mangrove.DistributionEn : mangrove.DistributionVi,
 					ConservationStatus = isEN ? mangrove.ConservationStatusEn : mangrove.ConservationStatusVi,
 					View = mangrove.View,
