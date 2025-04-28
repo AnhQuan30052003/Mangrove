@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l0Fv4J2KCyYGYqgNoDXWrIOgjvC0wO88hHeuFkWDrzE=",
+  "Hash": "qUzslCIIp+6TVciWrmn/DmAofyCRKjHzXAJMuqnwS/s=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -1233,6 +1233,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\qr-img\\QR_A7489B44-B463-44C2-9A35-3AD1A213F4F6_Đước đôi_Ninh Ích, Ninh Hòa, Khánh Hòa.png"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/spon-img/27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krhmme7bx3",
+      "Integrity": "cAFcTuHXHStTciR3We2EwzZ/8YOFm1EWxOKj5X/Or2U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\spon-img\\27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg"
+    },
+    {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "img/spon-img/BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rp3xy9egtx",
+      "Integrity": "D5eWRhHnKc829cY3olCBEw3QxRz5c5nrc5v7SKwvln8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\spon-img\\BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\E6ED7028-2024-4543-AA20-A71378774F7E_Logo Đại học Nha Trang.png",
@@ -8719,6 +8761,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-6CmbcNHR3UbEB8LXgG88bxcDg+byrouQ3SG8H/9PrnM="
+        }
+      ]
+    },
+    {
+      "Route": "img/spon-img/27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cAFcTuHXHStTciR3We2EwzZ/8YOFm1EWxOKj5X/Or2U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:00:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cAFcTuHXHStTciR3We2EwzZ/8YOFm1EWxOKj5X/Or2U="
+        }
+      ]
+    },
+    {
+      "Route": "img/spon-img/27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.krhmme7bx3.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cAFcTuHXHStTciR3We2EwzZ/8YOFm1EWxOKj5X/Or2U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:00:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krhmme7bx3"
+        },
+        {
+          "Name": "label",
+          "Value": "img/spon-img/27A39412-E084-4E36-BC3E-EAA1F8DECE6F_AquaBio4.0.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cAFcTuHXHStTciR3We2EwzZ/8YOFm1EWxOKj5X/Or2U="
+        }
+      ]
+    },
+    {
+      "Route": "img/spon-img/BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "29986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D5eWRhHnKc829cY3olCBEw3QxRz5c5nrc5v7SKwvln8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:00:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D5eWRhHnKc829cY3olCBEw3QxRz5c5nrc5v7SKwvln8="
+        }
+      ]
+    },
+    {
+      "Route": "img/spon-img/BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.rp3xy9egtx.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\spon-img\\BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "29986"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D5eWRhHnKc829cY3olCBEw3QxRz5c5nrc5v7SKwvln8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 28 Apr 2025 05:00:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rp3xy9egtx"
+        },
+        {
+          "Name": "label",
+          "Value": "img/spon-img/BB1A06A1-F493-4F87-A2E8-4EEFD2083B35_LSQ Việt Nam.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D5eWRhHnKc829cY3olCBEw3QxRz5c5nrc5v7SKwvln8="
         }
       ]
     },
