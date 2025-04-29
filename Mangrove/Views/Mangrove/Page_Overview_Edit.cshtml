@@ -1,4 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
+@model TblInforOverview
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
@@ -12,6 +13,10 @@
 <section class="overview_mangrove">
 	<div class="container py-2">
 		<form action="" method="post">
+			<input type="text" hidden asp-for="@Model.Id" />
+			<input type="text" hidden asp-for="@Model.InforEn" />
+			<input type="text" hidden asp-for="@Model.InforVi" />
+
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center mt-2 gap-2">
 				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
@@ -41,7 +46,7 @@
 
 			<!-- Content overview -->
 			<div class="frame_content mt-3">
-				<textarea name="contentCkEditor" id="editor" class="text_body p-1"></textarea>
+				<textarea asp-for="@Model.InforVi" id="InforVi" class="w-100 text_body p-1"></textarea>
 			</div>
 
 			<!-- Frame button -->
@@ -73,3 +78,34 @@
 		</form>
 	</div>
 </section>
+
+<style>
+	.sun-editor-editable {
+		font-size: inherit !important;
+		font-family: inherit !important;
+	}
+</style>
+
+<script>
+	function createSunEditor(id) {
+		const editor = SUNEDITOR.create(id, {
+			minHeight: '600px',
+			autoResize: true,
+			buttonList: [
+				['undo', 'redo', 'font', 'fontSize', 'formatBlock'],
+				['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+				['fontColor', 'hiliteColor', 'textStyle'],
+				['removeFormat'],
+				['outdent', 'indent'],
+				['align', 'horizontalRule', 'list', 'table'],
+				['link', 'image', 'video'],
+				['fullScreen'],
+			],
+			 // onChange: function(contents) {
+				// document.getElementById('infoVI').innerHTML = contents;
+			 // }	
+		});
+	}
+
+	// const editorVI = createSunEditor("InforVi");
+</script>

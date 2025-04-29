@@ -1,4 +1,5 @@
 ﻿@inject IStringLocalizer<Translate> translate
+@model TblInforOverview
 @{
 	var isEN = Helper.Func.IsLanguage("en");
 	ViewData["Title"] = translate["label_thanh_phan_loai"];
@@ -31,8 +32,8 @@
 		</div>
 
 		<!-- Content overview -->
-		<div class="frame_content mt-3 d-none">
-			<textarea name="contentCkEditor" id="editor" class="text_body p-1"></textarea>
+		<div class="frame_content mt-3">
+			@Helper.Func.Show(isEN ? Model.InforEn : Model.InforVi)
 		</div>
 
 		<!-- Frame button -->

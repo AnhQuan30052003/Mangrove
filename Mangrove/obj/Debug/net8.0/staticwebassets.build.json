@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YWFVyjQblcZJpkjhlLw1HOXS6q9hYlzF4Ks+pIOzfSI=",
+  "Hash": "t7S4eru5RQk75yQ1OrwqJPYKlUJbd6fv4dvAZw3An60=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -4740,27 +4740,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\plugins\\Chart.js"
-    },
-    {
-      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
-      "SourceId": "Mangrove",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
-      "BasePath": "_content/Mangrove",
-      "RelativePath": "js/plugins/CkEditor#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "2djkz82kqr",
-      "Integrity": "BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\plugins\\CkEditor.js"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\Sortable.js",
@@ -10187,7 +10166,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 06:35:32 GMT"
+          "Value": "Tue, 29 Apr 2025 13:53:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10224,7 +10203,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 06:35:32 GMT"
+          "Value": "Tue, 29 Apr 2025 13:53:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -24429,88 +24408,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-IwELmK6Fici2K5qWS7JG6zFOpfYNsbfW2LNz3l2H96M="
-        }
-      ]
-    },
-    {
-      "Route": "js/plugins/CkEditor.2djkz82kqr.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1256816"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 03:12:10 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "2djkz82kqr"
-        },
-        {
-          "Name": "label",
-          "Value": "js/plugins/CkEditor.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4="
-        }
-      ]
-    },
-    {
-      "Route": "js/plugins/CkEditor.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1256816"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 03:12:10 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4="
         }
       ]
     },

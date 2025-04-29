@@ -4,6 +4,7 @@ using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq.Expressions;
 
@@ -522,14 +523,53 @@ namespace Mangrove.Controllers {
 
 		// Thông tin chung
 		public async Task<IActionResult> Page_Overview_View() {
-			
-			return View();
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				return View(info);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "The Overview of mangrove plants page is currently inaccessible !" : "Trang tổng quan thực vật ngập mặn hiện tại không thể truy cập !",
+					Helper.SetupNotifier.Timer.shortTime
+				);
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove), "text/html");
+			}
 		}
 
 		// Thông tin chung
 		public async Task<IActionResult> Page_Overview_Edit() {
-			
-			return View();
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				return View(info);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+			}
+		}
+		[HttpPost]
+		public async Task<IActionResult> Page_Overview_Edit(TblInforOverview model) {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				context.TblInforOverviews.Update(model);
+				await context.SaveChangesAsync();
+
+				// Xử lý thông tin đã lưu
+				return RedirectToAction("Page_Overview_View");
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return View(model);
+				//return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+			}
 		}
 	}
 }
