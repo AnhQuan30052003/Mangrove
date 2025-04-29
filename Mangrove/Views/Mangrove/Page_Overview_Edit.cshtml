@@ -9,12 +9,6 @@
 	string pv = Helper.Path.partialView;
 }
 
-<style>
-	#editor {
-		min-height: 600px;
-	}
-</style>
-
 <section class="overview_mangrove">
 	<div class="container py-2">
 		<form action="" method="post">
@@ -32,12 +26,12 @@
 				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
 					<i class="fa-solid fa-circle-info"></i>
 					<span class="hidden_mobile">
-						@translate["label_xem"]
+						@translate["label_chi_tiet"]
 					</span>
 				</a>
 
 				<button type="submit"
-				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
+						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-tree opacity_hover btn_loading">
 					<i class="fa-solid fa-floppy-disk"></i>
 					<span class="hidden_mobile">
 						@translate["label_luu"]
@@ -64,7 +58,7 @@
 				   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg_blue opacity_hover btn_loading">
 					<i class="fa-solid fa-circle-info"></i>
 					<span class="hidden_mobile">
-						@translate["label_xem"]
+						@translate["label_chi_tiet"]
 					</span>
 				</a>
 
@@ -84,33 +78,18 @@
 	ClassicEditor
 		.create(document.querySelector('#editor'), {
 			ckfinder: {
-				// 👉 Cho phép dùng Base64 để gắn ảnh vào bài viết
 				uploadUrl: '/CkEditor/Upload'
 			},
 			image: {
 				toolbar: [
 					'imageTextAlternative',
-					'imageStyle:full',
-					'imageStyle:side'
+					'imageStyleFull',
+					'imageStyleSide'
 				]
 			}
 		})
 		.then(editor => {
-			const editableElement = editor.ui.view.editable.element;
-			const minHeight = '600px';
 
-			// Hàm gán minHeight
-			const applyMinHeight = () => {
-				editableElement.style.minHeight = minHeight;
-			};
-
-			// Set ngay từ đầu
-			applyMinHeight();
-
-			// Gán lại khi focus / unfocus
-			editor.ui.focusTracker.on('change:isFocused', (evt, name, isFocused) => {
-				applyMinHeight();
-			});
 		})
 		.catch(error => {
 			console.error(error);

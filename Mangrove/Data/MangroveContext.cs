@@ -23,6 +23,8 @@ public partial class MangroveContext : DbContext
 
     public virtual DbSet<TblIndividual> TblIndividuals { get; set; }
 
+    public virtual DbSet<TblInforOverview> TblInforOverviews { get; set; }
+
     public virtual DbSet<TblMangrove> TblMangroves { get; set; }
 
     public virtual DbSet<TblPhoto> TblPhotos { get; set; }
@@ -159,6 +161,20 @@ public partial class MangroveContext : DbContext
             entity.HasOne(d => d.IdMangroveNavigation).WithMany(p => p.TblIndividuals)
                 .HasForeignKey(d => d.IdMangrove)
                 .HasConstraintName("FK__tblIndivi___idMa__6166761E");
+        });
+
+        modelBuilder.Entity<TblInforOverview>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblInfor__DED88B1C0ACB7861");
+
+            entity.ToTable("tblInforOverview");
+
+            entity.Property(e => e.Id)
+                .HasMaxLength(36)
+                .IsUnicode(false)
+                .HasColumnName("_id");
+            entity.Property(e => e.InforEn).HasColumnName("_inforEN");
+            entity.Property(e => e.InforVi).HasColumnName("_inforVI");
         });
 
         modelBuilder.Entity<TblMangrove>(entity =>

@@ -3,6 +3,7 @@ use mangrove
 -- [Delete data from tables]
 delete tblHome
 delete tblSetting
+delete tblInforOverview
 
 delete tblStage
 delete tblIndividual
@@ -13,6 +14,14 @@ delete tblDistributiton
 delete tblAdmin
 
 -- [Insert data for tables
+insert into tblInforOverview
+values
+(
+    'I0000000-AAAA-AAAA-AAAA-AAAAAAAA0000',
+    N'',
+    N''
+)
+
 insert into tblAdmin
 values
     (

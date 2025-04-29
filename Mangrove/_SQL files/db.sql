@@ -4,6 +4,7 @@ use mangrove;
 --- [Drop tables] --
 drop table if exists tblHome
 drop table if exists tblSetting
+drop table if exists tblInforOverview
 
 drop table if exists tblStage
 drop table if exists tblIndividual
@@ -14,6 +15,14 @@ drop table if exists tblDistributiton
 drop table if exists tblAdmin
 
 -- [Add tables] --
+-- Bảng cho trang thông tin tổng quan
+create table tblInforOverview
+(
+    _id varchar(36) primary key,
+    _inforVI nvarchar(max) not null,
+    _inforEN nvarchar(max) not null,
+)
+
 -- Bảng cho admin
 create table tblAdmin
 (
@@ -27,45 +36,45 @@ create table tblAdmin
 -- Bảng cho trang setting
 create table tblSetting
 (
-     _id varchar(36) primary key,
+    _id varchar(36) primary key,
 
-     _logoImg nvarchar(50) not null,
-     _schoolNameVI nvarchar(256) not null,
-     _schoolNameEN nvarchar(256) not null,
-     _facultyVI nvarchar(256) not null,
-     _facultyEN nvarchar(256) not null,
+    _logoImg nvarchar(50) not null,
+    _schoolNameVI nvarchar(256) not null,
+    _schoolNameEN nvarchar(256) not null,
+    _facultyVI nvarchar(256) not null,
+    _facultyEN nvarchar(256) not null,
      
-     _footerBgImg nvarchar(50) not null,
-     _footerDark bit not null,
-     _phone varchar(20) not null,
-     _email varchar(256) not null,
-     _addressVI nvarchar(256) not null,
-     _addressEN nvarchar(256) not null,
-     _descriptionWebsiteVI nvarchar(max) not null,
-     _descriptionWebsiteEN nvarchar(max) not null,
+    _footerBgImg nvarchar(50) not null,
+    _footerDark bit not null,
+    _phone varchar(20) not null,
+    _email varchar(256) not null,
+    _addressVI nvarchar(256) not null,
+    _addressEN nvarchar(256) not null,
+    _descriptionWebsiteVI nvarchar(max) not null,
+    _descriptionWebsiteEN nvarchar(max) not null,
 
-     _authImg nvarchar(50) not null,
+    _authImg nvarchar(50) not null,
 )
 
 -- Bảng cho trang home
 create table tblHome
- (
-	 _id varchar(36) primary key,
-     _bannerImg nvarchar(50) not null,
+(
+	_id varchar(36) primary key,
+    _bannerImg nvarchar(50) not null,
 
-     _titleListItemVI nvarchar(256) not null,
-     _titleListItemEN nvarchar(256) not null,
-     _itemRecent int not null,
+    _titleListItemVI nvarchar(256) not null,
+    _titleListItemEN nvarchar(256) not null,
+    _itemRecent int not null,
 
-     _bannerTitleVI nvarchar(256) not null,
-     _bannerTitleEN nvarchar(256) not null,
+    _bannerTitleVI nvarchar(256) not null,
+    _bannerTitleEN nvarchar(256) not null,
 
-     _titlePurposeVI nvarchar(256) not null,
-     _titlePurposeEN nvarchar(256) not null,
+    _titlePurposeVI nvarchar(256) not null,
+    _titlePurposeEN nvarchar(256) not null,
 
-     _purposeVI nvarchar(max) not null,
-     _purposeEN nvarchar(max) not null
- )
+    _purposeVI nvarchar(max) not null,
+    _purposeEN nvarchar(max) not null
+)
 
 -- Bảng tổng quan cây ngập mặn
 create table tblMangrove

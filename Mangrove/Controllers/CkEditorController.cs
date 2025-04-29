@@ -2,7 +2,7 @@
 
 namespace Mangrove.Controllers {
 	public class CkEditorController : Controller {
-		// Action xử lý upload ảnh
+		// Action xử lý upload ảnh với CkEditor
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile upload)
         {
@@ -18,11 +18,9 @@ namespace Mangrove.Controllers {
             }
 
             // Trả về URL của ảnh đã tải lên để CKEditor sử dụng
-            var fileUrl = $"/overview-img/{upload.FileName}";
+            var fileUrl = $"/img/overview-img/{upload.FileName}";
 
-            Console.Clear();
-            Console.WriteLine($"File image: {fileUrl}");
-            return Json(new { url = fileUrl });
+            return Json(new { uploaded = true, url = fileUrl });
         }
 	}
 }
