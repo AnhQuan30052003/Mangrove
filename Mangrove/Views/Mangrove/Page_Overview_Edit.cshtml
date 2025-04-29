@@ -73,25 +73,3 @@
 		</form>
 	</div>
 </section>
-
-<script>
-	ClassicEditor
-		.create(document.querySelector('#editor'), {
-			ckfinder: {
-				uploadUrl: '/CkEditor/Upload'
-			},
-			image: {
-				toolbar: [
-					'imageTextAlternative',
-					'imageStyleFull',
-					'imageStyleSide'
-				]
-			}
-		})
-		.then(editor => {
-
-		})
-		.catch(error => {
-			console.error(error);
-		});
-</script>
