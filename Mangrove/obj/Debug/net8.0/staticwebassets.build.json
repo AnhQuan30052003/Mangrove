@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PWSAHnjA1c6U6pYYO1VM7JJV6kwpS6GW7pjPds2iKek=",
+  "Hash": "/1CKGMNhNfoJlLslI5uobcvSuQpXnFpcraaCeDoK/0U=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -561,27 +561,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\components\\user_species_composition.css"
-    },
-    {
-      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\plugins\\font_awesome.css",
-      "SourceId": "Mangrove",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
-      "BasePath": "_content/Mangrove",
-      "RelativePath": "css/plugins/font_awesome#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "ekwz8pcg90",
-      "Integrity": "nluCH0dwIdpkbLNn4xG6aUGmB/amvWn/2mErQYU7mMU=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\plugins\\font_awesome.css"
     },
     {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\user_site.css",
@@ -7745,6 +7724,27 @@
       "OriginalItemSpec": "wwwroot\\js\\plugins\\Chart.js"
     },
     {
+      "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
+      "SourceId": "Mangrove",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\",
+      "BasePath": "_content/Mangrove",
+      "RelativePath": "js/plugins/CkEditor#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2djkz82kqr",
+      "Integrity": "BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\plugins\\CkEditor.js"
+    },
+    {
       "Identity": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\jquery-2.2.4.min.js",
       "SourceId": "Mangrove",
       "SourceType": "Discovered",
@@ -11114,88 +11114,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-SPv7S0IPP2ylqrr6fwwNY9dcp2t5jIpaR64j3UfE93I="
-        }
-      ]
-    },
-    {
-      "Route": "css/plugins/font_awesome.css",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\plugins\\font_awesome.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "96995"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nluCH0dwIdpkbLNn4xG6aUGmB/amvWn/2mErQYU7mMU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 03:01:20 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-nluCH0dwIdpkbLNn4xG6aUGmB/amvWn/2mErQYU7mMU="
-        }
-      ]
-    },
-    {
-      "Route": "css/plugins/font_awesome.ekwz8pcg90.css",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\css\\plugins\\font_awesome.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "96995"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"nluCH0dwIdpkbLNn4xG6aUGmB/amvWn/2mErQYU7mMU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 29 Apr 2025 03:01:20 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "ekwz8pcg90"
-        },
-        {
-          "Name": "label",
-          "Value": "css/plugins/font_awesome.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-nluCH0dwIdpkbLNn4xG6aUGmB/amvWn/2mErQYU7mMU="
         }
       ]
     },
@@ -39158,6 +39076,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-IwELmK6Fici2K5qWS7JG6zFOpfYNsbfW2LNz3l2H96M="
+        }
+      ]
+    },
+    {
+      "Route": "js/plugins/CkEditor.2djkz82kqr.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1256816"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 03:12:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2djkz82kqr"
+        },
+        {
+          "Name": "label",
+          "Value": "js/plugins/CkEditor.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4="
+        }
+      ]
+    },
+    {
+      "Route": "js/plugins/CkEditor.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\plugins\\CkEditor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1256816"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 29 Apr 2025 03:12:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BuKVyi+lgvg72zUvUAzuMc1TWpHF9mSxiJ8ukZiluc4="
         }
       ]
     },

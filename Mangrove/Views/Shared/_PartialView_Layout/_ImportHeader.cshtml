@@ -34,14 +34,17 @@
 <script src="~/js/plugins/Chart.js"></script>
 
 <!-- CkEditor -->
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-@* <script src="~/js/ckeditor5/ckeditor5.js"></script> *@
+<script src="~/js/plugins/CkEditor.js"></script>
+
+
+
 
 <!------------------------------------>
 <!-- jQuery gốc của ASP -->
 @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
 @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
 
+<!-- Dark mode for background footer -->
 @if (Model.FooterDark)
 {
 	<style>
@@ -58,6 +61,7 @@
 	</style>
 }
 
+<!-- Variable when upload image -->
 <input id="textImageNotAllow" type="text" value="@translate["label_anh_tai_len"]" hidden />
 <input id="textMaxSize" type="text" value="@translate["label_dung_luong_toi_da_cua_anh"]" hidden />
 <input id="maxSizeMB" type="text" value="5" hidden />
