@@ -19,9 +19,12 @@ function editWithCkEditor(idEditor) {
 						'undo', 'redo', '|',
 						'heading', '|',
 						'bold', 'italic', '|',
-						'blockQuote', 'link', 'imageUpload', 'insertTable', '|',
+						'blockQuote', 'link', 'imageUpload', 'mediaEmbed', 'insertTable', '|',
 					]
 				},
+				mediaEmbed: {
+					previewsInData: true
+				}
 			})
 	}
 }

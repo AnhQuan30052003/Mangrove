@@ -50,8 +50,17 @@
 	text-align: justify;
 }
 
-
 .frame_edit_editor h2, .frame_edit_editor h3, .frame_edit_editor h4,
 .frame_show_editor h2, .frame_show_editor h3, .frame_show_editor h4 {
 	margin: 15px 0 5px 0;
+}
+
+.frame_show_editor blockquote {
+	border-left: 5px solid #ccc;
+	font-style: italic;
+	margin-left: 0;
+	margin-right: 0;
+	overflow: hidden;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
 }
