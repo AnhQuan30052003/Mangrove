@@ -53,6 +53,14 @@
 						</li>
 
 						<!-- Page Search Mangrove -->
+						<li class="item active_click page_option" page="Page_Overview" onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageOverview)">
+							<a href='@Url.Action("Page_OverviewMangrove", "Home")' class="btn_loading">
+								<i class="fa-solid fa-tree"></i>
+								<span class="">@translate["label_tong_quan"]</span>
+							</a>
+						</li>
+
+						<!-- Page Search Mangrove -->
 						<li class="item active_click page_option" page="Page_SpeciesComposition" onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageSeachMangrove)">
 							<a href='@Url.Action("Page_SpeciesComposition", "Home")' class="btn_loading">
 								<i class="fa-solid fa-leaf"></i>

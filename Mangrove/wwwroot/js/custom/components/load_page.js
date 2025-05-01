@@ -78,8 +78,23 @@ function movePointerInput() {
 movePointerInput();
 
 // Cuộn tới vị trí sau khi reload
-function revoveryPositionPage() {
+export function revoveryPositionPage() {
 	try {
+		let load = false;
+		const url = location.href;
+		const listPageRecovery = [
+			"/Statistical/Page_Fillter",
+			"/Statistical/Page_Overview"
+		];
+		listPageRecovery.forEach((page) => {
+			if (url.includes(page)) {
+				load = true;
+				return;
+			}
+		});
+		
+		if (!load) return;
+
 		const savedPosition = localStorage.getItem("scrollPosition");
 		if (savedPosition !== null) {
 			window.scrollTo({

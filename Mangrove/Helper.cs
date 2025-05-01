@@ -32,6 +32,8 @@ public class Helper {
 		public static string temptImg = "wwwroot/img/temp-img";
 		public static string sponImg = "wwwroot/img/spon-img";
 		public static string overviewImg = "wwwroot/img/overview-img";
+		public static string overviewArticleImg = "wwwroot/img/overview-img/article/";
+		public static string overviewSlideImg = "wwwroot/img/overview-img/slide";
 	}
 
 	// Variable
@@ -101,6 +103,7 @@ public class Helper {
 		// For Link - Client
 		public static string clientToPageResult = "clientToPageResult";
 		public static string clientToPageIndividual = "clientToPageIndividual";
+		public static string clientToPageOverview = "clientToPageOverview";
 		public static string clientToPageSeachMangrove = "clientToPageSeachMangrove";
 		public static string clientToPageDistribution = "clientToPageDistribution";
 

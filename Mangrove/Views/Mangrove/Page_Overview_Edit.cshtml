@@ -73,7 +73,7 @@
 								var noteVI = noteVIs[i];
 
 								bool haveImage = !string.IsNullOrEmpty(dataBase64);
-								string folder = dataBase64 != null && dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "overview-img";
+								string folder = dataBase64 != null && dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "overview-img/slide";
 
 								<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
 									<button class="btn_remove_item" type="button">
@@ -143,7 +143,7 @@
 
 			<!-- Content overview -->
 			<div class="frame_editor rounded-1 mt-3 mb-4 shadow-sm box">
-				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+				<div class="toggle_title text-center cursor-pointer position-sticky top-0" style="z-index: 4;">
 					<h6 class="py-2 bg-black text-white rounded-1 d-flex justify-content-center gap-1 title">
 						<span>@translate["label_noi_dung"]</span>(<div><img src="~/img/logo/vi.jpg" /></div>)
 					</h6>
@@ -151,9 +151,9 @@
 
 				<div class="info frame_items">
 					<div class="frame_content frame_edit_editor">
-						<div class="option_editor d-flex justify-content-center gap-2 mb-2 fw-bold">
+						<div class="option_editor d-flex justify-content-center gap-2 py-2 fw-bold position-sticky" style="z-index: 4; top: 43px; background-color: #eaeff1">
 							<span class="option active px-2 py-1 cursor-pointer d-flex gap-1 align-items-center"
-								data="InforVi">
+								  data="InforVi">
 								<div><img src="~/img/logo/vi.jpg" /></div>
 								<span class="hidden_mobile">@translate["label_tieng_viet"]</span>
 							</span>
@@ -170,7 +170,7 @@
 						</div>
 
 						<div class="infor_editor InforEn d-none">
-						<textarea asp-for="@Model.InforEn" class="w-100 text_body p-1"></textarea>
+							<textarea asp-for="@Model.InforEn" class="w-100 text_body p-1"></textarea>
 						</div>
 					</div>
 				</div>

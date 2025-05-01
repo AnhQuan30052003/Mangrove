@@ -6,6 +6,11 @@
 	gap: 10px;
 }
 
+.frame_show_editor figure.image img {
+	max-width: 100%;
+	object-fit: cover;
+}
+
 .frame_show_editor figure.table {
 	display: table;
 	margin: .9em auto;
@@ -38,3 +43,15 @@
 	border-radius: 5px;
 }
 
+.frame_edit_editor p,
+.frame_show_editor p {
+	padding: 5px 0;
+	line-height: 30px;
+	text-align: justify;
+}
+
+
+.frame_edit_editor h2, .frame_edit_editor h3, .frame_edit_editor h4,
+.frame_show_editor h2, .frame_show_editor h3, .frame_show_editor h4 {
+	margin: 15px 0 5px 0;
+}

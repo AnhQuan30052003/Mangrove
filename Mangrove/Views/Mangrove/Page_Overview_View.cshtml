@@ -47,7 +47,7 @@
 							@foreach (var photo in listPhotos)
 							{
 								<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
-									<img class="rounded-1 click_show_image" src="/img/overview-img/@photo.ImageName" alt="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)" />
+									<img class="rounded-1 click_show_image" src="/img/overview-img/slide/@photo.ImageName" alt="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)" />
 								</div>
 							}
 						</div>
@@ -67,7 +67,7 @@
 			</div>
 
 			<div class="info">
-				<div class="frame_show_editor bg-white p-2 pt-0 rounded-1" style="max-height: max-content;">
+				<div class="frame_show_editor bg-white px-2 py-3 rounded-1" style="max-height: max-content;">
 					@Html.Raw(isEN ? Model.InforEn : Model.InforVi)
 				</div>
 			</div>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Immutable;
+using System.Drawing;
 using System.Linq.Expressions;
 
 namespace Mangrove.Controllers {
@@ -279,7 +280,7 @@ namespace Mangrove.Controllers {
 				// Begin validate
 				Helper.Validate.Clear();
 
-				for (int i = 0; i < dataTypes.Count(); i++) {
+				for (int i = 0; i < dataBase64s.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.MaxLength(dataBase64s[i], 256);
 					Helper.Validate.MaxLength(noteENs[i], 256, true);
@@ -520,17 +521,21 @@ namespace Mangrove.Controllers {
 				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
 			}
 		}
-
-		// Thông tin chung
+	
+		// Thông tin chung admin
 		public async Task<IActionResult> Page_Overview_View() {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				List<TblPhoto> listPhoto = new List<TblPhoto>();
+
 				// Danh sách hình ảnh
-				List<TblPhoto> listPhoto = await context.TblPhotos
-				.Where(item => item.IdObj == info.Id)
-				.OrderBy(item => item.NumberOrder)
-				.ToListAsync();
+				if (info != null) {
+					listPhoto = await context.TblPhotos
+					.Where(item => item.IdObj == info.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
+				}
 
 				ViewData["Photos"] = listPhoto;
 
@@ -545,17 +550,20 @@ namespace Mangrove.Controllers {
 			}
 		}
 
-		// Thông tin chung
+		// Thông tin chung admin
 		public async Task<IActionResult> Page_Overview_Edit() {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
-				
+				List<TblPhoto> listPhoto = new List<TblPhoto>();
+
 				// Danh sách hình ảnh
-				var listPhoto = await context.TblPhotos
-				.Where(item => item.IdObj == info.Id)
-				.OrderBy(item => item.NumberOrder)
-				.ToListAsync();
+				if (info != null) {
+					listPhoto = await context.TblPhotos
+					.Where(item => item.IdObj == info.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
+				}
 
 				var dataTypes = new List<string>();
 				var dataBase64s = new List<string>();
@@ -595,7 +603,7 @@ namespace Mangrove.Controllers {
 
 				// Begin validate
 				Helper.Validate.Clear();
-				for (int i = 0; i < dataTypes.Count(); i++) {
+				for (int i = 0; i < dataBase64s.Count(); i++) {
 					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
 					Helper.Validate.MaxLength(dataBase64s[i], 256);
 					Helper.Validate.MaxLength(noteENs[i], 256, true);
@@ -653,7 +661,7 @@ namespace Mangrove.Controllers {
 					saveIdPhoto.Add(idPhoto);
 
 					// Chuyển ảnh vào đúng thư mục
-					string newPath = Path.Combine(Helper.Path.overviewImg, fileName);
+					string newPath = Path.Combine(Helper.Path.overviewSlideImg, fileName);
 					Helper.Func.MovePhoto(oldPath, newPath);
 				}
 
@@ -662,18 +670,30 @@ namespace Mangrove.Controllers {
 				if (photoSaved.Any()) {
 					foreach (var photo in photoSaved) {
 						if (!saveIdPhoto.Contains(photo.Id)) {
-							Helper.Func.DeletePhoto(Helper.Path.overviewImg, photo.ImageName);
+							Helper.Func.DeletePhoto(Helper.Path.overviewSlideImg, photo.ImageName);
 							context.TblPhotos.Remove(photo);
 						}
 					}
 				}
 				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
-			
+
 				// Cập nhật model
 				model.InforEn = model.InforEn ?? string.Empty;
 				model.InforVi = model.InforVi ?? string.Empty;
 				context.TblInforOverviews.Update(model);
 				await context.SaveChangesAsync();
+
+				// Xoá ảnh không dùng trong bài viết
+				string pathDelete = Helper.Path.overviewArticleImg;
+				if (Path.Exists(pathDelete)) {
+					foreach (var file in Directory.GetFiles(pathDelete)) {
+						string fileName = file.Replace("wwwroot/img/overview-img/article/", "");
+						// Nếu file không tồn tại trong bài viết (Anh lẫn Việt) thì xoá
+						if (!model.InforVi.Contains(fileName) && !model.InforEn.Contains(fileName)) {
+							System.IO.File.Delete(file);
+						}
+					}
+				}
 
 				// Setup thông báo thành công
 				Helper.Notifier.Create(

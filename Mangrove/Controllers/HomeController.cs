@@ -334,6 +334,34 @@ namespace Mangrove.Controllers {
 			}
 		}
 
+		// Thông tin chung user
+		public async Task<IActionResult> Page_OverviewMangrove() {
+			bool isEN = Helper.Func.IsEnglish();
+			try {
+				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				List<TblPhoto> listPhoto = new List<TblPhoto>();
+
+				// Danh sách hình ảnh
+				if (info != null) {
+					listPhoto = await context.TblPhotos
+					.Where(item => item.IdObj == info.Id)
+					.OrderBy(item => item.NumberOrder)
+					.ToListAsync();
+				}
+
+				ViewData["Photos"] = listPhoto;
+
+				return View(info);
+			}
+			catch {
+				Helper.Notifier.Fail(
+					isEN ? "The mangrove overview website is currently unavailable. Please try again later !" : "Trang web tổng quan về rừng ngập mặn hiện không khả dụng. Vui lòng thử lại sau !",
+					Helper.SetupNotifier.Timer.midTime
+				);
+				return RedirectToAction("Page_Index");
+			}
+		}
+
 		[Authorize]
 		// Page: View home (admin)
 		public async Task<IActionResult> Page_IndexAdmin_View() {

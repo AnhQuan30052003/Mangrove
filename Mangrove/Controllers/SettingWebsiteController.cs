@@ -4,6 +4,8 @@ using Mangrove.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Net;
 namespace Mangrove.Controllers {
 	public class SettingWebsiteController : Controller {
 		private readonly MangroveContext context;
@@ -216,12 +218,13 @@ namespace Mangrove.Controllers {
 				return Json(new { error = "No files sent." });
 			}
 
-			var uploadPath = Path.Combine(Helper.Path.overviewImg, upload.FileName);
+			string fileName = $"{Helper.Func.CreateId()}_{upload.FileName}";
+			var uploadPath = Path.Combine(Helper.Path.overviewArticleImg, fileName);
 			using (var fileStream = new FileStream(uploadPath, FileMode.Create)) {
 				await upload.CopyToAsync(fileStream);
 			}
 
-			var fileUrl = $"/img/overview-img/{upload.FileName}";
+			var fileUrl = $"/img/overview-img/article/{fileName}";
 
 			return Json(new { uploaded = true, url = fileUrl });
 		}

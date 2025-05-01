@@ -1,0 +1,62 @@
+﻿@inject IStringLocalizer<Translate> translate
+@model TblInforOverview
+@{
+	var isEN = Helper.Func.IsLanguage("en");
+	ViewData["Title"] = ViewData["InfoPage"] = translate["label_tong_quan"];
+	ViewData["TypePage"] = "Page_Overview";
+
+	Layout = Helper.Path.layoutUser;
+	string _pv = Helper.Path.partialView;
+
+	List<TblPhoto> listPhotos = ViewData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
+
+	var BackPage = new BackPage_Client_VM(Helper.Key.clientToPageOverview, (long?) null);
+}
+
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
+
+<section class="overview_mangrove">
+	<div class="container py-2">
+		<!-- Slide -->
+		@if (listPhotos.Any())
+		{
+			<div class="box rounded-1 bg-transparent mt-2 mb-4 shadown-sm">
+				<div class="toggle_title text-center mb-2">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_anh"]</h6>
+				</div>
+
+				<div class="info">
+					<div class="images slick_slider height_responsive">
+						<div class="slides">
+							@foreach (var photo in listPhotos)
+							{
+								<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
+									<img class="rounded-1 click_show_image" src="/img/overview-img/slide/@photo.ImageName" alt="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)" />
+								</div>
+							}
+						</div>
+					</div>
+
+					<div class="show_description_photo">
+						<p class="pt-1 px-2 text-center"></p>
+					</div>
+				</div>
+			</div>
+		}
+
+		<!-- Content overview -->
+		<div class="box rounded-1 bg-transparent mt-3 mb-1 shadown-sm">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thong_tin"]</h6>
+			</div>
+
+			<div class="info">
+				<div class="frame_show_editor bg-white px-2 py-3 rounded-1" style="max-height: max-content;">
+					@Html.Raw(isEN ? Model.InforEn : Model.InforVi)
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+@await Html.PartialAsync($"{_pv}/User_Back.cshtml", BackPage)
