@@ -120,7 +120,7 @@ namespace Mangrove.Controllers {
 				int index = 0; // Check logo
 				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
 				Helper.Validate.NotEmpty(dataBase64s[index]);
-				
+
 				index += 1; // Check auth img
 				dataBase64s[index] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[index], dataTypes[index]);
 				Helper.Validate.NotEmpty(dataBase64s[index]);
@@ -207,6 +207,23 @@ namespace Mangrove.Controllers {
 				);
 				return View(model);
 			}
+		}
+
+		// Upload ảnh từ CkEditor
+		[HttpPost]
+		public async Task<IActionResult> Upload(IFormFile upload) {
+			if (upload == null || upload.Length == 0) {
+				return Json(new { error = "No files sent." });
+			}
+
+			var uploadPath = Path.Combine(Helper.Path.overviewImg, upload.FileName);
+			using (var fileStream = new FileStream(uploadPath, FileMode.Create)) {
+				await upload.CopyToAsync(fileStream);
+			}
+
+			var fileUrl = $"/img/overview-img/{upload.FileName}";
+
+			return Json(new { uploaded = true, url = fileUrl });
 		}
 	}
 }

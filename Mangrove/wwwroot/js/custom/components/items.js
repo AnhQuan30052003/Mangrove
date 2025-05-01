@@ -141,7 +141,8 @@ function listenerAddImageToItem() {
 			const frameItems = addItem.closest(".frame_items");
 			const quantity = frameItems.querySelector(".quantity_item");
 			if (quantity) {
-				quantity.innerHTML = parseInt(quantity.innerText) - 1;
+				let _value = parseInt(quantity.innerText) - 1;
+				quantity.innerHTML = _value > 0 ? _value : 0;
 			}
 
 			const inputFile = addItem.querySelector("input");

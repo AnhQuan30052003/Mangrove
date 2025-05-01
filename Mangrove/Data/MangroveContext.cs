@@ -165,7 +165,7 @@ public partial class MangroveContext : DbContext
 
         modelBuilder.Entity<TblInforOverview>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblInfor__DED88B1C0ACB7861");
+            entity.HasKey(e => e.Id).HasName("PK__tblInfor__DED88B1CE3E696ED");
 
             entity.ToTable("tblInforOverview");
 

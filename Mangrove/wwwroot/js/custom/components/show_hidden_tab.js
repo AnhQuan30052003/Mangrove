@@ -1,4 +1,4 @@
-﻿// Theo dõi khi click và tab giai đoạn của mỗi cây
+﻿// Theo dõi khi click vào tab giai đoạn của mỗi cây
 function clickPreviodOfTree() {
 	try {
 		const infoStage = document.querySelector(".infor_stage");
@@ -20,3 +20,35 @@ function clickPreviodOfTree() {
 }
 clickPreviodOfTree();
 
+
+// Theo dõi click vào tab khi chỉinh sửa nội dung trnag chung
+function clickInfoOverview() {
+	try {
+		const optionEditor = document.querySelector(".option_editor");
+		const options = optionEditor.querySelectorAll(".option");
+
+		const frameContent = optionEditor.closest(".frame_content");
+		const inforEditors = frameContent.querySelectorAll(".infor_editor")
+
+		options.forEach((option) => {
+			option.addEventListener("click", function () {
+				// Thay đổi tab
+				options.forEach((item) => item.classList.remove("active"));
+				this.classList.add("active");
+
+				// Thay đổi cờ quốc gia
+				const frame = this.closest(".frame_editor");
+				const img = frame.querySelector(".title img")
+				const getImg = this.querySelector("img");
+				img.src = getImg.src;
+
+				// Thay đổi trình soạn thảo
+				inforEditors.forEach((item) => item.classList.add("d-none"));
+				const title = option.getAttribute("data");
+				document.querySelector(`.${title}`).classList.remove("d-none");
+			});
+		});
+	}
+	catch { }
+}
+clickInfoOverview();

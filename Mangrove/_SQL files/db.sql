@@ -19,8 +19,8 @@ drop table if exists tblAdmin
 create table tblInforOverview
 (
     _id varchar(36) primary key,
-    _inforVI nvarchar(max) not null,
-    _inforEN nvarchar(max) not null,
+    _inforVI nvarchar(max) null,
+    _inforEN nvarchar(max) null,
 )
 
 -- Bảng cho admin

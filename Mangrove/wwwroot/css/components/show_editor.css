@@ -1,0 +1,40 @@
+﻿.frame_show_editor figure.image {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.frame_show_editor figure.table {
+	display: table;
+	margin: .9em auto;
+	color: inherit;
+	outline-color: transparent;
+	outline-style: solid;
+}
+
+.frame_show_editor figure.table table {
+	width: 100%;
+}
+
+.frame_show_editor figure.table table td {
+	border: solid 1px #808080;
+	border-collapse: collapse;
+	padding: 7.2px;
+}
+
+.frame_edit_editor figure.table {
+	color: inherit;
+}
+
+.frame_show_editor a,
+.frame_edit_editor a {
+	color: blue;
+}
+
+.frame_show_editor img,
+.frame_edit_editor img {
+	border-radius: 5px;
+}
+

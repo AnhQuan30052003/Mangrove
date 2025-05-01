@@ -8,18 +8,28 @@
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
+
+	var dataTypes = ViewData["DataTypes"] as List<string> ?? new List<string>();
+	var dataBase64s = ViewData["DataBase64s"] as List<string> ?? new List<string>();
+	var noteENs = ViewData["NoteENs"] as List<string> ?? new List<string>();
+	var noteVIs = ViewData["NoteVIs"] as List<string> ?? new List<string>();
 }
+
+<input id="english" value="@translate["label_tieng_anh"]" hidden />
+<input id="vietnamese" value="@translate["label_tieng_viet"]" hidden />
+<input id="photo" value="@translate["label_hinh_anh"]" hidden />
+<input id="description" value="@translate["label_mo_ta"]" hidden />
+<input id="maxItem" value="@Helper.Variable.maxItem" hidden />
 
 <section class="overview_mangrove">
 	<div class="container py-2">
 		<form action="" method="post">
 			<input type="text" hidden asp-for="@Model.Id" />
-			<input type="text" hidden asp-for="@Model.InforEn" />
-			<input type="text" hidden asp-for="@Model.InforVi" />
 
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center mt-2 gap-2">
-				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+				<button type="button"
+						onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
 						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 					<i class="fa-solid fa-backward"></i>
 					<span class="hidden_mobile">
@@ -44,14 +54,132 @@
 				</button>
 			</div>
 
+			<!-- Slides -->
+			<div class="frame_items rounded-1 mt-3 mb-4 shadow-sm box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1">
+						Slide (<span class="quantity_item">@(dataBase64s.Any() ? dataBase64s.Count() : 0)</span>/@Helper.Variable.maxItem)
+					</h6>
+				</div>
+
+				<div class="info">
+					<div class="items bg-form have_move">
+						@{
+							for (int i = 0; i < dataBase64s.Count(); i++)
+							{
+								var dataType = dataTypes[i];
+								var dataBase64 = dataBase64s[i];
+								var noteEN = noteENs[i];
+								var noteVI = noteVIs[i];
+
+								bool haveImage = !string.IsNullOrEmpty(dataBase64);
+								string folder = dataBase64 != null && dataBase64.Contains(Helper.Key.temp) ? "temp-img" : "overview-img";
+
+								<div class="add_item p-2 mb-3 rounded-1 d-flex flex-wrap gap-1 gap-lg-0 position-relative border_detail">
+									<button class="btn_remove_item" type="button">
+										<i class="icon_remove_item fa-solid fa-xmark"></i>
+									</button>
+
+									<div class="add_img col-12 col-lg-6 rounded-1 d-flex flex-column">
+										<p class="catch_to_move text-center text-black"><small class="text-danger">✶</small>@translate["label_hinh_anh"]</p>
+
+										<div class="drop-zone input_img @(haveImage ? "d-none" : "") bg-white d-flex justify-content-center align-items-center min_height_input_img rounded-1 green_effect flex-grow-1">
+											<button class="btn_add_img outline-none color-tree bg-transparent fs-1 px-4 py-2 border rounded-1 green_effect"
+													type="button">
+												<i class="icon_add fa-solid fa-plus"></i>
+											</button>
+											<input class="file" name="ImageFile" type="file" hidden />
+											<div class="overflow-hidden w-h-0">
+												<input class="image_type" name="dataTypes" value="@dataType" />
+												<input class="image_data" name="dataBase64s" value="@dataBase64" />
+											</div>
+										</div>
+
+										<div class="preview_img position-relative @(haveImage ? "" : "d-none")">
+											<img class="show_temp object-fit-cover mx-auto d-block rounded-1 click_show_image img_max_height"
+												 src="/img/@folder/@dataBase64"
+												 alt="" />
+
+											<button class="btn_remove_preview_img"
+													type="button">
+												<i class="icon_remove fa-solid fa-xmark"></i>
+											</button>
+										</div>
+
+										<p class="text-danger small_font text-center">@Helper.Validate.ShowError()</p>
+									</div>
+
+									<div class="add_content col-12 col-lg-6 d-lg-flex flex-lg-wrap p-2">
+										<p class="text-center col-12 align-self-start text-black">@translate["label_mo_ta"]</p>
+
+										<div class="add_content_item py-2 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_anh"]</small>
+											<input type="text" name="noteENs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteEN" />
+											<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+										</div>
+
+										<div class="add_content_item py-2 m-lg-0 col-12">
+											<small class="mb-1 d-block font-small">@translate["label_tieng_viet"]</small>
+											<input type="text" name="noteVIs" class="w-100 border-none bg-white green_effect px-2 py-1 rounded-1 text_body" value="@noteVI" />
+											<p class="text-danger small_font">@Helper.Validate.ShowError()</p>
+										</div>
+									</div>
+								</div>
+							}
+						}
+					</div>
+
+					<div class="text-center py-2">
+						<button class="btn_add_item bg-black text-white rounded-1 border-none px-3 py-2"
+								id="btn_add_item_1"
+								type="button"
+								onclick="item.addItem('#btn_add_item_1');">
+							<i class="fa-solid fa-plus"></i>
+							@translate["label_them_anh"]
+						</button>
+					</div>
+				</div>
+			</div>
+
 			<!-- Content overview -->
-			<div class="frame_content mt-3">
-				<textarea asp-for="@Model.InforVi" id="InforVi" class="w-100 text_body p-1"></textarea>
+			<div class="frame_editor rounded-1 mt-3 mb-4 shadow-sm box">
+				<div class="toggle_title text-center mb-2 cursor-pointer position-sticky top-0" style="z-index: 4;">
+					<h6 class="py-2 bg-black text-white rounded-1 d-flex justify-content-center gap-1 title">
+						<span>@translate["label_noi_dung"]</span>(<div><img src="~/img/logo/vi.jpg" /></div>)
+					</h6>
+				</div>
+
+				<div class="info frame_items">
+					<div class="frame_content frame_edit_editor">
+						<div class="option_editor d-flex justify-content-center gap-2 mb-2 fw-bold">
+							<span class="option active px-2 py-1 cursor-pointer d-flex gap-1 align-items-center"
+								data="InforVi">
+								<div><img src="~/img/logo/vi.jpg" /></div>
+								<span class="hidden_mobile">@translate["label_tieng_viet"]</span>
+							</span>
+
+							<span class="option px-2 py-1 cursor-pointer d-flex gap-1 align-items-center"
+								  data="InforEn">
+								<div><img src="~/img/logo/en.jpg" /></div>
+								<span class="hidden_mobile">@translate["label_tieng_anh"]</span>
+							</span>
+						</div>
+
+						<div class="infor_editor InforVi">
+							<textarea asp-for="@Model.InforVi" class="w-100 text_body p-1"></textarea>
+						</div>
+
+						<div class="infor_editor InforEn d-none">
+						<textarea asp-for="@Model.InforEn" class="w-100 text_body p-1"></textarea>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!-- Frame button -->
 			<div class="d-flex justify-content-center mt-3 mb-2 gap-2">
-				<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
+				<button type="button"
+						onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
 						class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 					<i class="fa-solid fa-backward"></i>
 					<span class="hidden_mobile">
@@ -78,34 +206,3 @@
 		</form>
 	</div>
 </section>
-
-<style>
-	.sun-editor-editable {
-		font-size: inherit !important;
-		font-family: inherit !important;
-	}
-</style>
-
-<script>
-	function createSunEditor(id) {
-		const editor = SUNEDITOR.create(id, {
-			minHeight: '600px',
-			autoResize: true,
-			buttonList: [
-				['undo', 'redo', 'font', 'fontSize', 'formatBlock'],
-				['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
-				['fontColor', 'hiliteColor', 'textStyle'],
-				['removeFormat'],
-				['outdent', 'indent'],
-				['align', 'horizontalRule', 'list', 'table'],
-				['link', 'image', 'video'],
-				['fullScreen'],
-			],
-			 // onChange: function(contents) {
-				// document.getElementById('infoVI').innerHTML = contents;
-			 // }	
-		});
-	}
-
-	// const editorVI = createSunEditor("InforVi");
-</script>

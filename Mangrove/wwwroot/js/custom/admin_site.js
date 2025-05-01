@@ -6,5 +6,6 @@ import * as password from "./components/password.js"
 import * as show_hidden_tab from "./components/show_hidden_tab.js";
 import * as statistical_admin from "./components/statistical_admin.js";
 import * as setting_website from "./components/setting_website.js";
+import * as editor from "./components/editor.js";
 
 window.item = item;

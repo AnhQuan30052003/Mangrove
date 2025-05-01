@@ -8,6 +8,8 @@
 
 	Layout = Helper.Path.layoutAdmin;
 	string pv = Helper.Path.partialView;
+
+	List<TblPhoto> listPhotos = ViewData["Photos"] as List<TblPhoto> ?? new List<TblPhoto>();
 }
 
 <section class="overview_mangrove">
@@ -31,13 +33,48 @@
 			</a>
 		</div>
 
+		<!-- Slide -->
+		@if (listPhotos.Any())
+		{
+			<div class="box rounded-1 bg-transparent mt-3 mb-4 shadown-sm">
+				<div class="toggle_title text-center mb-2">
+					<h6 class="py-2 bg-black text-white rounded-1">@translate["label_hinh_anh"]</h6>
+				</div>
+
+				<div class="info">
+					<div class="images slick_slider height_responsive">
+						<div class="slides">
+							@foreach (var photo in listPhotos)
+							{
+								<div class="slide_item" note="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)">
+									<img class="rounded-1 click_show_image" src="/img/overview-img/@photo.ImageName" alt="@(isEN ? photo.NoteImgEn : photo.NoteImgVi)" />
+								</div>
+							}
+						</div>
+					</div>
+
+					<div class="show_description_photo">
+						<p class="pt-1 px-2 text-center"></p>
+					</div>
+				</div>
+			</div>
+		}
+
 		<!-- Content overview -->
-		<div class="frame_content mt-3">
-			@Helper.Func.Show(isEN ? Model.InforEn : Model.InforVi)
+		<div class="box rounded-1 bg-transparent mt-3 mb-4 shadown-sm">
+			<div class="toggle_title text-center mb-2">
+				<h6 class="py-2 bg-black text-white rounded-1">@translate["label_thong_tin"]</h6>
+			</div>
+
+			<div class="info">
+				<div class="frame_show_editor bg-white p-2 pt-0 rounded-1" style="max-height: max-content;">
+					@Html.Raw(isEN ? Model.InforEn : Model.InforVi)
+				</div>
+			</div>
 		</div>
 
 		<!-- Frame button -->
-		<div class="d-flex justify-content-center my-2 gap-2 d-none">
+		<div class="d-flex justify-content-center mt-3 mb-2 gap-2">
 			<button type="button" onclick="@Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove, true)"
 					class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text_body bg-white opacity_hover btn_loading">
 				<i class="fa-solid fa-backward"></i>

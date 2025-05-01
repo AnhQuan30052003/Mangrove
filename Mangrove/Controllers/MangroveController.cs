@@ -1,10 +1,10 @@
-﻿using Humanizer;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Office2019.Drawing.Model3D;
 using Mangrove.Data;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq.Expressions;
 
@@ -526,6 +526,14 @@ namespace Mangrove.Controllers {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				// Danh sách hình ảnh
+				List<TblPhoto> listPhoto = await context.TblPhotos
+				.Where(item => item.IdObj == info.Id)
+				.OrderBy(item => item.NumberOrder)
+				.ToListAsync();
+
+				ViewData["Photos"] = listPhoto;
+
 				return View(info);
 			}
 			catch {
@@ -542,6 +550,30 @@ namespace Mangrove.Controllers {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
 				var info = await context.TblInforOverviews.FirstOrDefaultAsync();
+				
+				// Danh sách hình ảnh
+				var listPhoto = await context.TblPhotos
+				.Where(item => item.IdObj == info.Id)
+				.OrderBy(item => item.NumberOrder)
+				.ToListAsync();
+
+				var dataTypes = new List<string>();
+				var dataBase64s = new List<string>();
+				var noteENs = new List<string>();
+				var noteVIs = new List<string>();
+				foreach (var photo in listPhoto) {
+					dataTypes.Add(string.Empty);
+					dataBase64s.Add(photo.ImageName);
+					noteENs.Add(photo.NoteImgEn ?? string.Empty);
+					noteVIs.Add(photo.NoteImgVi ?? string.Empty);
+				}
+
+				ViewData["DataTypes"] = dataTypes;
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["NoteENs"] = noteENs;
+				ViewData["NoteVIs"] = noteVIs;
+
+				Helper.Validate.Clear();
 				return View(info);
 			}
 			catch {
@@ -549,17 +581,107 @@ namespace Mangrove.Controllers {
 					isEN ? "Request to access edit status failed. Please try again later !" : "Gửi yêu cầu truy cập trang chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove), "text/html");
 			}
 		}
 		[HttpPost]
-		public async Task<IActionResult> Page_Overview_Edit(TblInforOverview model) {
+		public async Task<IActionResult> Page_Overview_Edit(TblInforOverview model, List<string> dataTypes, List<string> dataBase64s, List<string> noteENs, List<string> noteVIs) {
 			bool isEN = Helper.Func.IsEnglish();
 			try {
+				ViewData["DataTypes"] = dataTypes;
+				ViewData["DataBase64s"] = dataBase64s;
+				ViewData["NoteENs"] = noteENs;
+				ViewData["NoteVIs"] = noteVIs;
+
+				// Begin validate
+				Helper.Validate.Clear();
+				for (int i = 0; i < dataTypes.Count(); i++) {
+					dataBase64s[i] = await Helper.Func.CheckIsDataBase64StringAndSave(dataBase64s[i], dataTypes[i]);
+					Helper.Validate.MaxLength(dataBase64s[i], 256);
+					Helper.Validate.MaxLength(noteENs[i], 256, true);
+					Helper.Validate.MaxLength(noteVIs[i], 256, true);
+				}
+
+				// Trả lại view nếu có lỗi validate
+				if (Helper.Validate.HaveError()) {
+					Helper.Notifier.Fail(
+						isEN ? "Some input fields are missing or contain errors !" : " Một số ô nhập liệu còn thiếu hoặc chứa lỗi !",
+						Helper.SetupNotifier.Timer.shortTime
+					);
+					return View(model);
+				}
+				// End validate
+
+				// Save Data
+				// Phẩn ảnh - Lưu ảnh mới về (mới này có thể có luôn ảnh cũ)
+				List<string> saveIdPhoto = new List<string>();
+				for (int i = 0; i < dataBase64s.Count(); i++) {
+					// Setup cho ảnh cũ
+					string idPhoto = Helper.Func.GetIdFromFileName(dataBase64s[i]);
+					string fileName = $"{idPhoto}_{noteVIs[i] ?? string.Empty}";
+					string oldPath = Path.Combine(Helper.Path.treeImg, dataBase64s[i]);
+
+					// Nếu là ảnh mới
+					if (dataBase64s[i].Contains(Helper.Key.temp)) {
+						fileName += Helper.Func.GetTypeImage(dataTypes[i]);
+						oldPath = Path.Combine(Helper.Path.temptImg, dataBase64s[i]);
+
+						var newPhoto = new TblPhoto {
+							Id = idPhoto,
+							IdObj = model.Id,
+							ImageName = fileName,
+							NoteImgEn = noteENs[i],
+							NoteImgVi = noteVIs[i],
+							NumberOrder = i
+						};
+						context.TblPhotos.Add(newPhoto);
+					}
+					else {
+						fileName += Path.GetExtension(dataBase64s[i]);
+
+						var photo = await context.TblPhotos.FirstOrDefaultAsync(item => item.Id == idPhoto);
+						if (photo != null) {
+							photo.ImageName = fileName;
+							photo.NoteImgEn = noteENs[i];
+							photo.NoteImgVi = noteVIs[i];
+							photo.NumberOrder = i;
+							context.TblPhotos.Update(photo);
+
+							idPhoto = photo.Id;
+						}
+					}
+					saveIdPhoto.Add(idPhoto);
+
+					// Chuyển ảnh vào đúng thư mục
+					string newPath = Path.Combine(Helper.Path.overviewImg, fileName);
+					Helper.Func.MovePhoto(oldPath, newPath);
+				}
+
+				// Phần ảnh - Xử lý, xoá đi các ảnh cũ!
+				var photoSaved = await context.TblPhotos.Where(item => item.IdObj == model.Id).ToListAsync();
+				if (photoSaved.Any()) {
+					foreach (var photo in photoSaved) {
+						if (!saveIdPhoto.Contains(photo.Id)) {
+							Helper.Func.DeletePhoto(Helper.Path.overviewImg, photo.ImageName);
+							context.TblPhotos.Remove(photo);
+						}
+					}
+				}
+				Helper.Func.DeleteAllFile(Helper.Path.temptImg);
+			
+				// Cập nhật model
+				model.InforEn = model.InforEn ?? string.Empty;
+				model.InforVi = model.InforVi ?? string.Empty;
 				context.TblInforOverviews.Update(model);
 				await context.SaveChangesAsync();
 
-				// Xử lý thông tin đã lưu
+				// Setup thông báo thành công
+				Helper.Notifier.Create(
+					Helper.SetupNotifier.Status.success,
+					isEN ? "Edit successfully." : "Chỉnh sửa thành công.",
+					Helper.SetupNotifier.Timer.shortTime,
+					""
+				);
 				return RedirectToAction("Page_Overview_View");
 			}
 			catch {
@@ -567,8 +689,7 @@ namespace Mangrove.Controllers {
 					isEN ? "Edit request failed. Please try again later !" : "Yêu cầu chỉnh sửa thất bại. Hãy thử lại sau !",
 					Helper.SetupNotifier.Timer.midTime
 				);
-				return View(model);
-				//return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageListIndex), "text/html");
+				return Content(Helper.Link.ScriptGetUrlBack(Helper.Key.adminToPageOverviewMangrove), "text/html");
 			}
 		}
 	}
