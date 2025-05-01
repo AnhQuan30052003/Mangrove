@@ -687,7 +687,7 @@ namespace Mangrove.Controllers {
 				string pathDelete = Helper.Path.overviewArticleImg;
 				if (Path.Exists(pathDelete)) {
 					foreach (var file in Directory.GetFiles(pathDelete)) {
-						string fileName = file.Replace("wwwroot/img/overview-img/article/", "");
+						string fileName = file.Replace(Helper.Path.overviewArticleImg, "");
 						// Nếu file không tồn tại trong bài viết (Anh lẫn Việt) thì xoá
 						if (!model.InforVi.Contains(fileName) && !model.InforEn.Contains(fileName)) {
 							System.IO.File.Delete(file);
