@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="frame_img shadow-sm rounded-1 overflow-hidden mb-3">
-			<img class="w-100 h-100 object-fit-cover" src="/img/logo/@Model.BannerImage" alt="">
+			<img class="w-100 h-100 object-fit-cover click_show_image" src="/img/logo/@Model.BannerImage" alt="">
 
 			<div class="frame_title rounded-1 overflow-hidden">
 				<h1 class="title m-0 px-2 text-center">@Model.BannerTitle</h1>
@@ -52,7 +52,7 @@
 					foreach (var sponsor in Model.Sponsor)
 					{
 						string textTitle = (isEN ? sponsor.NoteImgEn : sponsor.NoteImgVi) ?? string.Empty;
-						<img class="logo rounded-circle" src="/img/spon-img/@sponsor.ImageName" alt="@textTitle" title="@textTitle">
+						<img class="logo rounded-circle click_show_image" src="/img/spon-img/@sponsor.ImageName" alt="@textTitle" title="@textTitle">
 					}
 				}
 			</div>
