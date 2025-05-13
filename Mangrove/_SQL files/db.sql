@@ -1,4 +1,3 @@
-
 use mangrove;
 
 --- [Drop tables] --
