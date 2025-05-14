@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Mangrove.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Mangrove.Controllers {
 	public class HomeController : Controller {
@@ -13,13 +14,18 @@ namespace Mangrove.Controllers {
 		}
 
 		// Page: Xử lý xem có phải admin còn đăng nhập ?
-		public IActionResult Handle_Index() {
+		public async Task<IActionResult> Handle_Index() {
 			try {
 				var admin = HttpContext.User.FindFirst("Username")?.Value;
 				// Có admin 
 				if (!string.IsNullOrEmpty(admin)) {
+					// Gia hạn thêm thời gian đăng nhập
+					await HttpContext.SignInAsync(Helper.Variable.cookieName, HttpContext.User);
+
+					// Chuyển đến trang thống kê - Quản trị viên
 					return RedirectToAction("Page_Overview", "Statistical");
 				}
+				// Chuyển đến trang chủ - Người tra cứu
 				return RedirectToAction("Page_Index");
 			}
 			catch {

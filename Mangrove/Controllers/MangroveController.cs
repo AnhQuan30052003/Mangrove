@@ -627,7 +627,7 @@ namespace Mangrove.Controllers {
 					// Setup cho ảnh cũ
 					string idPhoto = Helper.Func.GetIdFromFileName(dataBase64s[i]);
 					string fileName = $"{idPhoto}_{noteVIs[i] ?? string.Empty}";
-					string oldPath = Path.Combine(Helper.Path.treeImg, dataBase64s[i]);
+					string oldPath = Path.Combine(Helper.Path.overviewSlideImg, dataBase64s[i]);
 
 					// Nếu là ảnh mới
 					if (dataBase64s[i].Contains(Helper.Key.temp)) {
@@ -654,8 +654,6 @@ namespace Mangrove.Controllers {
 							photo.NoteImgVi = noteVIs[i];
 							photo.NumberOrder = i;
 							context.TblPhotos.Update(photo);
-
-							idPhoto = photo.Id;
 						}
 					}
 					saveIdPhoto.Add(idPhoto);
