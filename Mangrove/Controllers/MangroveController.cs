@@ -29,7 +29,7 @@ namespace Mangrove.Controllers {
 				ViewData["Search"] = findText;
 
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Số cá thể", "Cập nhật lần cuối", "Tuỳ chọn" };
-				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Number of individuals", "Last updated", "Options" };
+				var listTitleEN = new List<string> { "No", "Name", "Synonyms", "Latin name", "Familia", "Number of individuals", "Last updated", "Options" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;

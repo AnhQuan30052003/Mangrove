@@ -214,7 +214,7 @@ namespace Mangrove.Controllers {
 
 			// Setup cho bảng
 			var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Hình thái", "Sinh thái", "Phân bố", "Tình trạng bảo tồn", "Công dụng", "Số lượng truy cập", "Số cá thể", "Chi tiết" };
-			var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Morphology", "Ecology", "Distribution", "Conservation status", "Use", "Number of visits", "Number of individuals", "Detail" };
+			var listTitleEN = new List<string> { "No", "Name", "Synonyms", "Latin name", "Familia", "Morphology", "Ecology", "Distribution", "Conservation status", "Use", "Number of visits", "Number of individuals", "Detail" };
 			var listTitle = isEN ? listTitleEN : listTitleVI;
 
 			int index = 1;
@@ -352,7 +352,7 @@ namespace Mangrove.Controllers {
 
 				// Setup cho tiêu đề
 				var listTitleVI = new List<string> { "STT", "Tên", "Tên khác", "Tên khoa học", "Họ", "Hình thái", "Sinh thái", "Phân bố", "Tình trạng bảo tồn", "Công dụng", "Số lượng truy cập", "Số cá thể", "Chi tiết" };
-				var listTitleEN = new List<string> { "No", "Name", "Common name", "Scientific name", "Familia", "Morphology", "Ecology", "Distribution", "Conservation status", "Use", "Number of visits", "Number of individuals", "Detail" };
+				var listTitleEN = new List<string> { "No", "Name", "Synonyms", "Latin name", "Familia", "Morphology", "Ecology", "Distribution", "Conservation status", "Use", "Number of visits", "Number of individuals", "Detail" };
 				var listTitle = isEN ? listTitleEN : listTitleVI;
 
 				int index = 1;
