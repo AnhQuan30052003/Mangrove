@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "utwlIqZPVm6GMt0FJe4yN1B8Z/L6asuuXvD8y4kB5hQ=",
+  "Hash": "1ttOmeca7c3uST+jiAg+EsnHWSPQQQt723W5zzCGY44=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -3076,8 +3076,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dg75kosxx0",
-      "Integrity": "/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4=",
+      "Fingerprint": "rh0im9f22m",
+      "Integrity": "/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\custom\\components\\show_info_image.js"
@@ -16256,51 +16256,6 @@
       ]
     },
     {
-      "Route": "js/custom/components/show_info_image.dg75kosxx0.js",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2955"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 15 Apr 2025 01:18:07 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dg75kosxx0"
-        },
-        {
-          "Name": "label",
-          "Value": "js/custom/components/show_info_image.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4="
-        }
-      ]
-    },
-    {
       "Route": "js/custom/components/show_info_image.js",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
       "Selectors": [],
@@ -16311,7 +16266,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2955"
+          "Value": "2987"
         },
         {
           "Name": "Content-Type",
@@ -16319,11 +16274,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4=\""
+          "Value": "\"/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 15 Apr 2025 01:18:07 GMT"
+          "Value": "Wed, 11 Jun 2025 07:31:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16333,7 +16288,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4="
+          "Value": "sha256-/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20="
+        }
+      ]
+    },
+    {
+      "Route": "js/custom/components/show_info_image.rh0im9f22m.js",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\js\\custom\\components\\show_info_image.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2987"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 11 Jun 2025 07:31:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rh0im9f22m"
+        },
+        {
+          "Name": "label",
+          "Value": "js/custom/components/show_info_image.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20="
         }
       ]
     },

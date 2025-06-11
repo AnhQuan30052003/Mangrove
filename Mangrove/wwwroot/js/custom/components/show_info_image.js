@@ -52,10 +52,11 @@ clickButtonQR();
 // Theo dõi click hiện thông tin QR
 function clickShowQR() {
 	try {
-		const qrImgs = document.querySelectorAll(".click_show_qr");
-		qrImgs.forEach((item) => {
-			item.addEventListener("click", function () {
+		document.addEventListener("click", function (e) {
+			if (e.target.matches(".click_show_qr") || e.target.matches(".fa-qrcode")) {
+				const item = e.target;
 				const frameQR = item.closest(".frame_qr");
+				const showQR = frameQR.querySelector(".click_show_qr");
 
 				const qrName = frameQR.querySelector(".get_qr_name");
 				const qrPos = frameQR.querySelector(".get_qr_pos");
@@ -84,10 +85,9 @@ function clickShowQR() {
 					p.classList.add("d-none");
 				}
 
-				showQRCode.querySelector(".qr_img").src = item.getAttribute("src");
+				showQRCode.querySelector(".qr_img").src = showQR.getAttribute("src");
 				showQRCode.classList.remove("d-none");
-				//document.body.style.overflow = "hidden";
-			});
+			}
 		});
 	}
 	catch { }

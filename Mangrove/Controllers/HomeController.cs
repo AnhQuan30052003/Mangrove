@@ -156,7 +156,10 @@ namespace Mangrove.Controllers {
 									View = indi.View,
 									NumberStages = indi.TblStages.Count(),
 									Position = isEN ? indi.PositionEn : indi.PositionVi,
-									QrName = indi.QrName
+									QrName = indi.QrName,
+									NameMangrove = isEN ? mangrove.NameEn : $"{mangrove.NameVi} - {mangrove.ScientificName}",
+									Longitude = indi.Longitude ?? string.Empty,
+									Latitude = indi.Latitude ?? string.Empty
 								};
 								fillter.Add(item);
 							}
