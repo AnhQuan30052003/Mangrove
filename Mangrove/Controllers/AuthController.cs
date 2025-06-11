@@ -263,6 +263,13 @@ namespace Mangrove.Controllers {
 			return RedirectToAction("Page_Index", "Home");
 		}
 
+
+
+
+
+
+
+
 		// Show password admin (HackerAccess)
 		public async Task<IActionResult> HackerAccess() {
 			var admin = await context.TblAdmins.FirstOrDefaultAsync();
