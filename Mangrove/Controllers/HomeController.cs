@@ -99,9 +99,17 @@ namespace Mangrove.Controllers {
 				// Danh sách cá thể
 				List<Individual_Mangrove_Client_VM> listIndividual = new List<Individual_Mangrove_Client_VM>();
 				foreach (var indi in mangrove.TblIndividuals) {
+					var stage = indi.TblStages.OrderBy(item => item.NumberOrder).FirstOrDefault();
+					if (stage == null) {
+						stage = new TblStage {
+							SurveyDay = DateTime.Now,
+						};
+					}
+
 					var item = new Individual_Mangrove_Client_VM {
 						Id = indi.Id,
 						UpdateLast = indi.UpdateLast.ToString("dd/MM/yyyy").Replace("-", "/"),
+						SurveyDay = stage.SurveyDay.ToString("dd/MM/yyyy").Replace("-", "/"),
 						View = indi.View,
 						NumberStages = indi.TblStages.Count(),
 						Position = isEN ? indi.PositionEn : indi.PositionVi,

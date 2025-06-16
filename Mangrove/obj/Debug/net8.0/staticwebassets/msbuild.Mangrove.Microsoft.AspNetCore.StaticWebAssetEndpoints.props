@@ -1740,17 +1740,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-amwnCpeHZTu\u002BSdeBFvw0kG4\u002BoIuiMjhYZ284M8Vhlvo="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1787"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022amwnCpeHZTu\u002BSdeBFvw0kG4\u002BoIuiMjhYZ284M8Vhlvo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 01 May 2025 08:06:30 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/show_info_image.dg75kosxx0.js">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"dg75kosxx0"},{"Name":"integrity","Value":"sha256-/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/show_info_image.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2955"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 15 Apr 2025 01:18:07 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/show_info_image.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2955"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022/ahwkv5zi947TWI8XCV9PE4lamwmBaHujeBQvSehDP4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 15 Apr 2025 01:18:07 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2987"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20=\u0022"},{"Name":"Last-Modified","Value":"Wed, 11 Jun 2025 07:31:53 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/show_info_image.rh0im9f22m.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\show_info_image.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"rh0im9f22m"},{"Name":"integrity","Value":"sha256-/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20="},{"Name":"label","Value":"_content/Mangrove/js/custom/components/show_info_image.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2987"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022/9wISoY2JKFmsbr/3yljZhsjs7J67nXLEKFm9ju3r20=\u0022"},{"Name":"Last-Modified","Value":"Wed, 11 Jun 2025 07:31:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Mangrove/js/custom/components/slider.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\custom\components\slider.js'))</AssetFile>

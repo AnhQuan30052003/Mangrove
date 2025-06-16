@@ -26,6 +26,7 @@
 	public class Individual_Mangrove_Client_VM {
 		public string Id { get; set; } = null!;
 		public string UpdateLast { get; set; } = null!;
+		public string SurveyDay { get; set; } = string.Empty;
 		public long View { get; set; }
 		public int NumberStages { get; set; }
 		public string Position { get; set; } = null!;
