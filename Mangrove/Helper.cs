@@ -57,7 +57,7 @@ public class Helper {
 	// Links JS
 	public static class Link {
 		public static string local = "https://localhost:3005";
-		public static string hosting = "https://mangrove.runasp.net";
+		public static string hosting = "https://mangroventu.runasp.net";
 
 		// Trở về link trước đó
 		public static string ScriptGetUrlBack(string key, bool noScript = false, bool pageUser = false) {

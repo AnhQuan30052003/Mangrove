@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1ttOmeca7c3uST+jiAg+EsnHWSPQQQt723W5zzCGY44=",
+  "Hash": "4c2y/yOA9DRd2aot9jVKbnECbKjgQMFA7nWXzeAlFOs=",
   "Source": "Mangrove",
   "BasePath": "_content/Mangrove",
   "Mode": "Default",
@@ -955,8 +955,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "0r121z3luv",
-      "Integrity": "pA1Oxmnk6wSAUtB3DO4eMUtYmwGZmJg9tY3zgcHvzrA=",
+      "Fingerprint": "vhz3bpd31a",
+      "Integrity": "c1W+gl4tx/80Z2gjAdxrw3OunK3ipevTnBGxfgvANJo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\logo\\auth_img.jpg"
@@ -7974,51 +7974,6 @@
       ]
     },
     {
-      "Route": "img/logo/auth_img.0r121z3luv.jpg",
-      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\auth_img.jpg",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "75013"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "image/jpeg"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"pA1Oxmnk6wSAUtB3DO4eMUtYmwGZmJg9tY3zgcHvzrA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 14:56:31 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "0r121z3luv"
-        },
-        {
-          "Name": "label",
-          "Value": "img/logo/auth_img.jpg"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-pA1Oxmnk6wSAUtB3DO4eMUtYmwGZmJg9tY3zgcHvzrA="
-        }
-      ]
-    },
-    {
       "Route": "img/logo/auth_img.jpg",
       "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\auth_img.jpg",
       "Selectors": [],
@@ -8029,7 +7984,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "75013"
+          "Value": "68290"
         },
         {
           "Name": "Content-Type",
@@ -8037,11 +7992,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pA1Oxmnk6wSAUtB3DO4eMUtYmwGZmJg9tY3zgcHvzrA=\""
+          "Value": "\"c1W+gl4tx/80Z2gjAdxrw3OunK3ipevTnBGxfgvANJo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 14:56:31 GMT"
+          "Value": "Mon, 16 Jun 2025 04:40:26 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -8051,7 +8006,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pA1Oxmnk6wSAUtB3DO4eMUtYmwGZmJg9tY3zgcHvzrA="
+          "Value": "sha256-c1W+gl4tx/80Z2gjAdxrw3OunK3ipevTnBGxfgvANJo="
+        }
+      ]
+    },
+    {
+      "Route": "img/logo/auth_img.vhz3bpd31a.jpg",
+      "AssetFile": "C:\\[github]\\Mangrove\\Mangrove\\wwwroot\\img\\logo\\auth_img.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "68290"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"c1W+gl4tx/80Z2gjAdxrw3OunK3ipevTnBGxfgvANJo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Jun 2025 04:40:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vhz3bpd31a"
+        },
+        {
+          "Name": "label",
+          "Value": "img/logo/auth_img.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-c1W+gl4tx/80Z2gjAdxrw3OunK3ipevTnBGxfgvANJo="
         }
       ]
     },
