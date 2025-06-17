@@ -19,11 +19,11 @@
 				<i class="fa-solid fa-backward"></i>
 				<span class="hidden_mobile">
 					@translate["label_tro_ve"]
-				</span> 
+				</span>
 			</button>
 
 			<a href="@Url.Action("Page_Index", "Home")"
-				target="_blank"
+			   target="_blank"
 			   class="px-3 py-2 border-none outline-none rounded-1 time_delay_500ms text-white bg-warning opacity_hover">
 				<i class="fa-solid fa-eye"></i>
 				<span class="hidden_mobile">
@@ -75,7 +75,9 @@
 						   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.adminToPageListIndex)"
 						   class="item px-2 col-12 col-sm-6 col-lg-4 mb-4 d-flex flex-column btn_loading">
 							<div class="rounded-1 overflow-hidden flex-grow-1">
-								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.Image"
+								<img class="w-100 h-100 object-fit-cover scale_hover time_delay_500ms lazy-load"
+									 style="max-height: 250px;"
+									 data-src="/img/tree-img/@item.Image"
 									 alt="">
 							</div>
 							<p class="text-center mt-1 text_tree_hover">@item.Name</p>

@@ -1,7 +1,7 @@
 ﻿@inject IStringLocalizer<Translate> translate
 
 <div id="show_qr_code" class="d-none">
-	<div class="wrapper bg-white d-flex flex-column justify-content-center align-items-center gap-5_ rounded-1">
+	<div class="wrapper bg-white d-flex flex-column justify-content-around align-items-center rounded-1">
 		<div class="info d-flex flex-column gap-1 px-4 w-100">
 			<h3 class="color-tree text-center mb-3">@translate["label_thong_tin_QR_code"]</h3>
 			<p>
@@ -23,14 +23,13 @@
 		</div>
 
 		<div class="box_show_img">
-			@* <img class="img qr_img border rounded-3"
-				 src="/img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png" /> *@
+			@* <img class="img qr_img border rounded-3" *@
+				 @* src="/img/qr-img/QR_00000000-AAAA-AAAA-AAAA-AAAAAAAAI000_Bần trắng_Vạn Giã, Vạn Ninh, Khánh Hoà.png" /> *@
 
-			<img class="w-100 h-100 img qr_img border_ rounded-3"
-				 src="" />
+			<img class="img qr_img rounded-3" style="max-height: 250px;" src="" />
 		</div>
 
-		<button class="btnQR_cancel">
+		<button class="btnQR_cancel mt-1">
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 	</div>

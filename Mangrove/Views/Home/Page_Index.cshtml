@@ -47,8 +47,10 @@
 						   onclick="@Helper.Link.JSSetUrlBack(Helper.Key.clientToPageResult)"
 						   class="item px-2 col-12 col-sm-6 col-lg-4 mb-4 d-flex flex-column btn_loading">
 							<div class="rounded-1 overflow-hidden flex-grow-1">
-								<img class="w-100 h-100 scale_hover time_delay_500ms lazy-load" data-src="/img/tree-img/@item.Image"
-									 alt="">
+								<img
+									class="w-100 h-100 object-fit-cover scale_hover time_delay_500ms lazy-load"
+									style="max-height: 250px;"
+									data-src="/img/tree-img/@item.Image" alt="">
 							</div>
 							<p class="text-center mt-1 text_tree_hover">@item.Name</p>
 						</a>
